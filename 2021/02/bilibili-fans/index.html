@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee">
   
   
-  <title>标签: 设备 | Powersee的博客</title>
+  <title>bilibili 粉丝数量展示器 app | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="手机,">
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
@@ -148,74 +148,85 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">标签: 设备</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-02-24
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    bilibili 粉丝数量展示器 app
+  </h1>
   
+  <article class="passage-article">
+    <p>去年搞了好几台墨水屏手机，平时除了阅读，就是放在桌面上当时钟用。</p>
+<p><img src="\img\2021\f1_time.jpg" alt="f1_time"></p>
+<p>后来突发奇想，要不拿它来当粉丝计数器吧。放在桌面上展示当前的粉丝数量，反正墨水屏屏幕不刷新的话，也不怎么耗电。</p>
+<p>于是花费了一些时间，写了这个 app —— B站粉丝展示器</p>
+<p><img src="\img\2021\Bili_fans_app.jpg" alt="Bili_fans_app"></p>
+<p>app 只申请网络权限而已，其它的权限都不需要</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">&lt;uses-permission android:<span class="built_in">name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>当然这个权限申请不会弹出选项，所以直接安装就可以使用。打开 app 后会显示 </p>
+<blockquote>
+<p>waiting for update</p>
+</blockquote>
+<p>需要点击文字，进入设置页面</p>
+<p><img src="\img\2021\bili_fans_settings.jpg" alt="bili_fans_settings"></p>
+<p>填写 mid ，在电脑网页上，点击用户头像，就可以在地址栏看到 mid 了。例如这样</p>
+<blockquote>
+<p><a href="https://space.bilibili.com/254479550" target="_blank" rel="noopener">https://space.bilibili.com/254479550</a></p>
+<p>254479550 就是 mid</p>
+</blockquote>
+<p>填完退出 app，再重新打开。就可以刷新出粉丝数量了。手机如果有打开自动旋转屏幕，可以横屏展示。</p>
+<p><img src="\img\2021\phones_bili_fans.jpg" alt="phones_bili_fans"></p>
+<p>默认设置每 60 秒请求一次粉丝数量，并且屏幕永不熄屏，比较适合在墨水瓶设备上面使用。</p>
+<p>下载地址：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p>
+<p>在【手机软件】文件夹里</p>
+<p>其它信息</p>
+<blockquote>
+<p>compileSdkVersion 30<br>minSdkVersion 16<br>targetSdkVersion 30</p>
+</blockquote>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
     
-      <h3 class="timeline-subtitle">2021</h3>
-    
-    <div class="timeline-item">
-      <time>2021-02-14</time>
-      <a target="_self" href="/2021/02/about-zhangyuxingqiu/">关于章鱼星球</a>
-    </div>
+  </div>
+</aside>
   
-    
-    <div class="timeline-item">
-      <time>2021-02-01</time>
-      <a target="_self" href="/2021/02/wankeyun-2/">玩客云第二版固件说明</a>
-    </div>
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2021/02/bilibili-fans/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
   
-    
-    <div class="timeline-item">
-      <time>2021-01-26</time>
-      <a target="_self" href="/2021/01/wankeyun-server/">玩客云导航固件使用说明</a>
-    </div>
   
+    <div class="passage-tags">
+     
+      <a href="/tags/手机/"><i class="fa fa-tags"></i>手机</a>
     
-      <h3 class="timeline-subtitle">2020</h3>
-    
-    <div class="timeline-item">
-      <time>2020-12-08</time>
-      <a target="_self" href="/2020/12/raspberrypi-nas/">树莓派 4B 变身 NAS 服务器</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-12-06</time>
-      <a target="_self" href="/2020/12/raspberrypi-install-transmission/">树莓派安装 transmission</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-11-26</time>
-      <a target="_self" href="/2020/11/bky-wjy-eth-100/">贝壳云、我家云以太网口自动从千兆变为百兆</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-11-20</time>
-      <a target="_self" href="/2020/11/wankeyun-flash/">沦为废铁的玩客云还能拿来干什么？</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-09-06</time>
-      <a target="_self" href="/2020/09/discuz-in-N1/">在 N1、我家云搭建 discuz 论坛</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-09-05</time>
-      <a target="_self" href="/2020/09/qiandao-docker/">搭建自动签到平台——qiandao</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-07-07</time>
-      <a target="_self" href="/2020/07/about-s905/">关于 s905 盒子数码Q5刷 armbian Ubuntu</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -272,12 +283,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/tags/设备/page/2/" data-enable="true">
+    <a href="/2021/02/about-zhangyuxingqiu/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2021-02-14T04:05:56.916Z</updated>
+  <updated>2021-02-24T06:32:09.412Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,18 +17,53 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>about-zhangyuxingqiu</title>
-    <link href="https://powersee.github.io/2021/02/about-zhangyuxingqiu/"/>
-    <id>https://powersee.github.io/2021/02/about-zhangyuxingqiu/</id>
-    <published>2021-02-14T04:05:56.000Z</published>
-    <updated>2021-02-14T04:05:56.916Z</updated>
+    <title>bilibili 粉丝数量展示器 app</title>
+    <link href="https://powersee.github.io/2021/02/bilibili-fans/"/>
+    <id>https://powersee.github.io/2021/02/bilibili-fans/</id>
+    <published>2021-02-24T05:58:21.000Z</published>
+    <updated>2021-02-24T06:32:09.412Z</updated>
+    
+    <content type="html"><![CDATA[<p>去年搞了好几台墨水屏手机，平时除了阅读，就是放在桌面上当时钟用。</p><p><img src="\img\2021\f1_time.jpg" alt="f1_time"></p><p>后来突发奇想，要不拿它来当粉丝计数器吧。放在桌面上展示当前的粉丝数量，反正墨水屏屏幕不刷新的话，也不怎么耗电。</p><p>于是花费了一些时间，写了这个 app —— B站粉丝展示器</p><p><img src="\img\2021\Bili_fans_app.jpg" alt="Bili_fans_app"></p><p>app 只申请网络权限而已，其它的权限都不需要</p><figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">&lt;uses-permission android:<span class="built_in">name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span><br></pre></td></tr></table></figure><p>当然这个权限申请不会弹出选项，所以直接安装就可以使用。打开 app 后会显示 </p><blockquote><p>waiting for update</p></blockquote><p>需要点击文字，进入设置页面</p><p><img src="\img\2021\bili_fans_settings.jpg" alt="bili_fans_settings"></p><p>填写 mid ，在电脑网页上，点击用户头像，就可以在地址栏看到 mid 了。例如这样</p><blockquote><p><a href="https://space.bilibili.com/254479550" target="_blank" rel="noopener">https://space.bilibili.com/254479550</a></p><p>254479550 就是 mid</p></blockquote><p>填完退出 app，再重新打开。就可以刷新出粉丝数量了。手机如果有打开自动旋转屏幕，可以横屏展示。</p><p><img src="\img\2021\phones_bili_fans.jpg" alt="phones_bili_fans"></p><p>默认设置每 60 秒请求一次粉丝数量，并且屏幕永不熄屏，比较适合在墨水瓶设备上面使用。</p><p>下载地址：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p><p>在【手机软件】文件夹里</p><p>其它信息</p><blockquote><p>compileSdkVersion 30<br>minSdkVersion 16<br>targetSdkVersion 30</p></blockquote>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;去年搞了好几台墨水屏手机，平时除了阅读，就是放在桌面上当时钟用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;\img\2021\f1_time.jpg&quot; alt=&quot;f1_time&quot;&gt;&lt;/p&gt;
+&lt;p&gt;后来突发奇想，要不拿它来当粉丝计数器吧。放在桌面上展示当前的粉丝数量，反正墨水屏屏幕
+      
     
     </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="手机" scheme="https://powersee.github.io/tags/%E6%89%8B%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于章鱼星球</title>
+    <link href="https://powersee.github.io/2021/02/about-zhangyuxingqiu/"/>
+    <id>https://powersee.github.io/2021/02/about-zhangyuxingqiu/</id>
+    <published>2021-02-14T04:05:56.000Z</published>
+    <updated>2021-02-16T07:43:18.354Z</updated>
+    
+    <content type="html"><![CDATA[<p>1</p><h3 id="固件介绍"><a href="#固件介绍" class="headerlink" title="固件介绍"></a>固件介绍</h3><p><img src="C:\Users\ver\hexobackup\source\img\2021\2021-02-14_16-56-47.jpg" alt="2021-02-14_16-56-47"></p><p>打开 win10 主题是这样的</p><p><img src="C:\Users\ver\hexobackup\source\img\2021\2021-02-14_16-57-25.jpg" alt="2021-02-14_16-57-25"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1&lt;/p&gt;
+&lt;h3 id=&quot;固件介绍&quot;&gt;&lt;a href=&quot;#固件介绍&quot; class=&quot;headerlink&quot; title=&quot;固件介绍&quot;&gt;&lt;/a&gt;固件介绍&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;C:\Users\ver\hexobackup\source\img\2021\202
+      
+    
+    </summary>
+    
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -37,9 +72,9 @@
     <link href="https://powersee.github.io/2021/02/wankeyun-2/"/>
     <id>https://powersee.github.io/2021/02/wankeyun-2/</id>
     <published>2021-02-01T07:05:09.000Z</published>
-    <updated>2021-02-02T11:34:26.922Z</updated>
+    <updated>2021-02-21T01:38:44.878Z</updated>
     
-    <content type="html"><![CDATA[<p>玩客云第二版固件已经发布。</p><p><img src="\img\2021\wky-2.jpg" alt="wky-2"></p><p>下载链接和上一版一样。</p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>解压出来，名字是 <code>Armbian_s805_powersee_2021-01-31.img</code>  </p><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>第二版的介绍已发布视频到 B站</p><p><a href="https://www.bilibili.com/video/BV1kT4y1P7RL?p=5" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1kT4y1P7RL?p=5</a></p><hr><p>博客用来作为补充和方便大家查询。</p><p>第二版更改了 led。开机后，灯自动熄灭，但是网口的灯是亮着的，而且一般网口两个灯都是亮着的。</p><p><img src="\img\2021\2021-02-02_19-29-14.jpg" alt="2021-02-02_19-29-14"></p><p>可以通过这来判断机器有没有进入U盘中的系统。</p><p>qbittorrent 使用原生安装，而不使用 docker 了。并且默认下载路径设置为 <code>/mnt</code> ，下载之前请注意网页底部显示的 <code>剩余磁盘空间</code> 。</p><p>添加了 Aria2 ，使用的是 P3TERX 大佬制作的<a href="https://github.com/P3TERX/aria2.sh" target="_blank" rel="noopener">一键脚本</a>安装的。rpc 密钥是：12345</p><p>启动：<code>/etc/init.d/aria2 start</code> | <code>service aria2 start</code></p><p>停止：<code>/etc/init.d/aria2 stop</code> | <code>service aria2 stop</code></p><p>重启：<code>/etc/init.d/aria2 restart</code> | <code>service aria2 restart</code></p><hr><p>smb 添加多一个共享文件夹 <code>mnt-rw</code> ，访问路径依然是 <code>/mnt</code> ，这个文件夹需要账号密码才可以访问，账号 <code>root</code>，密码 <code>1234</code> </p><hr><h3 id="led-灯的控制"><a href="#led-灯的控制" class="headerlink" title="led 灯的控制"></a>led 灯的控制</h3><p>开机之后，系统会执行 <code>ledoff blue</code> 来关闭灯光。</p><p>如果想自己控制灯光，可以用 <code>ledon blue</code> 来打开蓝灯。打开绿灯就是 <code>ledon green</code>，红灯 <code>ledon red</code> 。关闭的话，就是将 <code>ledon</code> 换为 <code>ledoff</code></p><p>如果想要在 python 脚本中控制它，可以这样用</p><figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.system(<span class="string">"ledon green"</span>)</span><br></pre></td></tr></table></figure><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p>1、<a href="https://www.right.com.cn/forum/thread-2881296-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-2881296-1-1.html</a></p><p>2、<a href="https://github.com/P3TERX/aria2.sh" target="_blank" rel="noopener">https://github.com/P3TERX/aria2.sh</a></p><p>3、<a href="https://github.com/qbittorrent/qBittorrent/wiki" target="_blank" rel="noopener">https://github.com/qbittorrent/qBittorrent/wiki</a></p>]]></content>
+    <content type="html"><![CDATA[<p>玩客云第二版固件已经发布。</p><p><img src="\img\2021\wky-2.jpg" alt="wky-2"></p><p>下载链接和上一版一样。</p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>固件天翼云盘分流：<a href="https://cloud.189.cn/t/eYfInuiuYFja" target="_blank" rel="noopener">https://cloud.189.cn/t/eYfInuiuYFja</a></p><p>解压出来，名字是 <code>Armbian_s805_powersee_2021-01-31.img</code>  </p><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>第二版的介绍已发布视频到 B站</p><p><a href="https://www.bilibili.com/video/BV1kT4y1P7RL?p=5" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1kT4y1P7RL?p=5</a></p><hr><p>博客用来作为补充和方便大家查询。</p><p>第二版更改了 led。开机后，灯自动熄灭，但是网口的灯是亮着的，而且一般网口两个灯都是亮着的。</p><p><img src="\img\2021\2021-02-02_19-29-14.jpg" alt="2021-02-02_19-29-14"></p><p>可以通过这来判断机器有没有进入U盘中的系统。</p><p>qbittorrent 使用原生安装，而不使用 docker 了。并且默认下载路径设置为 <code>/mnt</code> ，下载之前请注意网页底部显示的 <code>剩余磁盘空间</code> 。</p><p>添加了 Aria2 ，使用的是 P3TERX 大佬制作的<a href="https://github.com/P3TERX/aria2.sh" target="_blank" rel="noopener">一键脚本</a>安装的。rpc 密钥是：12345</p><p>启动：<code>/etc/init.d/aria2 start</code> | <code>service aria2 start</code></p><p>停止：<code>/etc/init.d/aria2 stop</code> | <code>service aria2 stop</code></p><p>重启：<code>/etc/init.d/aria2 restart</code> | <code>service aria2 restart</code></p><hr><p>smb 添加多一个共享文件夹 <code>mnt-rw</code> ，访问路径依然是 <code>/mnt</code> ，这个文件夹需要账号密码才可以访问，账号 <code>root</code>，密码 <code>1234</code> </p><hr><h3 id="led-灯的控制"><a href="#led-灯的控制" class="headerlink" title="led 灯的控制"></a>led 灯的控制</h3><p>开机之后，系统会执行 <code>ledoff blue</code> 来关闭灯光。</p><p>如果想自己控制灯光，可以用 <code>ledon blue</code> 来打开蓝灯。打开绿灯就是 <code>ledon green</code>，红灯 <code>ledon red</code> 。关闭的话，就是将 <code>ledon</code> 换为 <code>ledoff</code></p><p>如果想要在 python 脚本中控制它，可以这样用</p><figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.system(<span class="string">"ledon green"</span>)</span><br></pre></td></tr></table></figure><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p>1、<a href="https://www.right.com.cn/forum/thread-2881296-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-2881296-1-1.html</a></p><p>2、<a href="https://github.com/P3TERX/aria2.sh" target="_blank" rel="noopener">https://github.com/P3TERX/aria2.sh</a></p><p>3、<a href="https://github.com/qbittorrent/qBittorrent/wiki" target="_blank" rel="noopener">https://github.com/qbittorrent/qBittorrent/wiki</a></p>]]></content>
     
     <summary type="html">
     
@@ -55,9 +90,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -80,9 +115,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -133,9 +168,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="树莓派" scheme="https://powersee.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
@@ -161,9 +196,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -187,9 +222,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -213,9 +248,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -334,11 +369,11 @@
     
       <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -362,9 +397,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
@@ -416,9 +451,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -442,9 +477,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="nas" scheme="https://powersee.github.io/tags/nas/"/>
     
@@ -498,32 +533,6 @@
     
     
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于 docker 一些事</title>
-    <link href="https://powersee.github.io/2020/04/about-docker/"/>
-    <id>https://powersee.github.io/2020/04/about-docker/</id>
-    <published>2020-04-26T00:17:59.000Z</published>
-    <updated>2020-12-02T07:29:58.213Z</updated>
-    
-    <content type="html"><![CDATA[<p>有些小伙伴反映 armbian 的 docker，按照小钢炮那篇文章的方法，有一些容器老是无法启动成功。在此开一篇帖子记录一下。当然帖子的内容肯定不仅限于 armbian 。</p><h2 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h2><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> docker.io</span><br></pre></td></tr></table></figure><p>判断安装是否成功可以通过 <code>docker info</code> 这个命令查看。</p><h2 id="docker-镜像"><a href="#docker-镜像" class="headerlink" title="docker 镜像"></a>docker 镜像</h2><p>默认情况下 docker 镜像很难拉取，最简单的方案是路由器挂梯子，速度还是挺可以的。没有这个条件的话，就多准备几个镜像源吧。</p><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">七牛</span><br><span class="line"><span class="symbol">https:</span><span class="comment">//reg-mirror.qiniu.com</span></span><br><span class="line">中科大</span><br><span class="line"><span class="symbol">https:</span><span class="comment">//docker.mirrors.ustc.edu.cn</span></span><br><span class="line">腾讯云</span><br><span class="line"><span class="symbol">https:</span><span class="comment">//mirror.ccs.tencentyun.com/</span></span><br><span class="line">网易</span><br><span class="line"><span class="symbol">http:</span><span class="comment">//hub-mirror.c.163.com/</span></span><br><span class="line">daocloud</span><br><span class="line"><span class="symbol">http:</span><span class="comment">//f1361db2.m.daocloud.io/</span></span><br><span class="line">华为云</span><br><span class="line"><span class="symbol">https:</span><span class="comment">//05f073ad3c0010ea0f4bc00b7105ec20.mirror.swr.myhuaweicloud.com/</span></span><br></pre></td></tr></table></figure><p>阿里云私有镜像加速。<br>（自己进入<br><a href="https://cr.console.aliyun.com/cn-shenzhen/instances/mirrors" target="_blank" rel="noopener">https://cr.console.aliyun.com/cn-shenzhen/instances/mirrors</a> 用自己的账号登陆，获取属于自己的加速镜像）</p><p>得到的格式是这样的：<a href="https://xxxxxxxx.mirror.aliyuncs.com/" target="_blank" rel="noopener">https://xxxxxxxx.mirror.aliyuncs.com/</a></p><h2 id="关于-qb"><a href="#关于-qb" class="headerlink" title="关于 qb"></a>关于 qb</h2><p>armbian 用小钢炮的配置来建立 qb 容器的话，有一堆的问题，这里我改了一些内容，自己试了几次，应该没什么大问题了。使用的是 4.2.1，想用新的可以去 dockerhub 看→<a href="https://hub.docker.com/r/80x86/qbittorrent/tags" target="_blank" rel="noopener">传送门</a></p><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">IMAGE_NAME</span>=<span class="number">80</span>x86/qbittorrent:<span class="number">4.2</span>.<span class="number">1</span>-arm64</span><br><span class="line"><span class="comment">#下面我是将 /media/one 作为下载路径，你自己修改</span></span><br><span class="line"><span class="attr">DOWNLOAD_PATH</span>=/media/<span class="literal">on</span>e/</span><br><span class="line"><span class="attr">QBT_AUTH_SERVER_ADDR</span>=<span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="comment">#下面我是将 /media/one/lib/qb 作为配置文件的路径，你自己修改</span></span><br><span class="line"><span class="attr">QBCONF</span>=/media/<span class="literal">on</span>e/lib/qb</span><br></pre></td></tr></table></figure><p>对上面的部分修改，然后粘贴到 shell 中。</p><p>下面的不用修改，直接复制粘贴就行。</p><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d --name qbittorrent \</span><br><span class="line">        -<span class="ruby">e WEB_PORT=<span class="number">8080</span> \</span></span><br><span class="line"><span class="ruby">        -e BT_PORT=<span class="number">8998</span> \</span></span><br><span class="line"><span class="ruby">        -e QBT_AUTH_SERVER_ADDR=$QBT_AUTH_SERVER_ADDR \</span></span><br><span class="line"><span class="ruby">        --restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby">        --network host \</span></span><br><span class="line"><span class="ruby">        -v $QBCONF/.config/<span class="symbol">qBittorrent:</span>/config \</span></span><br><span class="line"><span class="ruby">        -v $QBCONF/.local/share/data/<span class="symbol">qBittorrent:</span>/data \</span></span><br><span class="line"><span class="ruby">        -v <span class="string">"$DOWNLOAD_PATH"</span><span class="symbol">:/downloads</span> \</span></span><br><span class="line"><span class="ruby">        -v <span class="string">"$DOWNLOAD_PATH"</span><span class="symbol">:<span class="string">"$DOWNLOAD_PATH"</span></span> \</span></span><br><span class="line"><span class="ruby">        --mount type=tmpfs,destination=<span class="regexp">/tmp \</span></span></span><br><span class="line"><span class="ruby">        $&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure><p>将上面这堆在终端中输入后，到 portainer 中查看日志。</p><p><img src="/img/2020/container.jpg" alt="container"></p><p>如果启动成功，最后会出现一个地址，如果不成功，也可以看看具体出现什么问题。</p><p><img src="/img/2020/qb启动成功.jpg" alt="qb启动成功"></p><p>比较常见的问题是，docker 对文件夹没有读写权限。简单粗暴解决方案，给予 777 权限。先在 portainer 中停止 qb 容器，然后在终端执行下面的命令。</p><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">chmod</span> <span class="number">777</span> -R $QBCONF</span><br><span class="line"><span class="keyword">chmod</span> <span class="number">777</span> -R $DOWNLOAD_PATH</span><br></pre></td></tr></table></figure><p>然后再去启动容器。按理应该就可以了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;有些小伙伴反映 armbian 的 docker，按照小钢炮那篇文章的方法，有一些容器老是无法启动成功。在此开一篇帖子记录一下。当然帖子的内容肯定不仅限于 armbian 。&lt;/p&gt;
-&lt;h2 id=&quot;docker-安装&quot;&gt;&lt;a href=&quot;#docker-安装&quot; class
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-      <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
   </entry>
   
