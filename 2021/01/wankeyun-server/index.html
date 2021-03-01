@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux,">
+    <meta name="keywords" content="Linux,设备,">
   
 
   
@@ -212,6 +212,10 @@
 <hr>
 <h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p>
 <p><img src="\img\2021\挂载 sd 卡.png" alt="挂载 sd 卡"></p>
+<h3 id="如何挂载硬盘"><a href="#如何挂载硬盘" class="headerlink" title="如何挂载硬盘"></a>如何挂载硬盘</h3><p>其实视频里有讲了，先输入 <code>lsblk</code> 查看一下硬盘连接上没，一般会显示 sda 或者 sdb 这样。</p>
+<p>假设显示的是 sda ，那么它下面应该有个 sda1 这个才对。这个 sda1 指的是分区，就像你在电脑上，你添加了一块硬盘，你可能把分为 D、E、F　三个盘。但是它都是属于同一块物理硬盘。而这里的 sda 就是指物理硬盘，你不能挂载它，只能挂载它里面的分区。</p>
+<p>所以你应该使用的命令是</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">mount <span class="string">/dev/sda1</span> <span class="string">/mnt</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">mount <span class="string">/dev/sdb1</span> <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
 <hr>
 <p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p>
 <p><img src="\img\2021\ranger.jpg" alt="ranger"></p>
@@ -259,7 +263,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#玩客云乱七八糟的坑"><span class="toc-text">玩客云乱七八糟的坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么我的主板和你不一样？"><span class="toc-text">为什么我的主板和你不一样？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么没有进入-U-盘中的系统？"><span class="toc-text">为什么没有进入 U 盘中的系统？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结一下玩客云的优劣"><span class="toc-text">总结一下玩客云的优劣</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#固件相关"><span class="toc-text">固件相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-SD-卡"><span class="toc-text">关于 SD 卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何判断有没有刷成功"><span class="toc-text">如何判断有没有刷成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一直线刷失败？"><span class="toc-text">一直线刷失败？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接："><span class="toc-text">参考链接：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下期内容"><span class="toc-text">下期内容</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#玩客云乱七八糟的坑"><span class="toc-text">玩客云乱七八糟的坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么我的主板和你不一样？"><span class="toc-text">为什么我的主板和你不一样？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么没有进入-U-盘中的系统？"><span class="toc-text">为什么没有进入 U 盘中的系统？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结一下玩客云的优劣"><span class="toc-text">总结一下玩客云的优劣</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#固件相关"><span class="toc-text">固件相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-SD-卡"><span class="toc-text">关于 SD 卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何挂载硬盘"><span class="toc-text">如何挂载硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何判断有没有刷成功"><span class="toc-text">如何判断有没有刷成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一直线刷失败？"><span class="toc-text">一直线刷失败？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接："><span class="toc-text">参考链接：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下期内容"><span class="toc-text">下期内容</span></a></li></ol>
   </div>
 </aside>
   
@@ -279,9 +283,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee">
   
   
-  <title>贝壳云、我家云以太网口自动从千兆变为百兆 | Powersee的博客</title>
+  <title>关于迅雷赚钱宝二代一些小记录 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备,">
+    <meta name="keywords" content="随笔,设备,">
   
 
   
@@ -152,7 +152,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2020-11-26
+      <i class="fa fa-calendar"></i>2021-03-01
     </span>
     
     
@@ -162,23 +162,30 @@
     
   </div>
   <h1 class="passage-title">
-    贝壳云、我家云以太网口自动从千兆变为百兆
+    关于迅雷赚钱宝二代一些小记录
   </h1>
   
   <article class="passage-article">
-    <p>偶然间发现，怎么通过 smb 方式从贝壳云上面读取文件，速度只有 11MB/s 左右，上传文件到里面去也是如此。明明前几天从里面复制文件还有 60 多的速度的，怎么无缘无故变慢了？难道现在网口变百兆速度了？</p>
-<p>于是我通过 <code>ifconfig</code> 命令，查看到 eth0 里显示</p>
-<blockquote>
-<p>collisions:0 txqueuelen:100</p>
-</blockquote>
-<p>以及通过 <code>dmesg</code> 命令查到这个</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">687120.156847</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">687122.156839</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br><span class="line">[<span class="meta">687126.156737</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">687139.156393</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">100</span>Mbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
-<p>看来确实是在某一时刻，以太网的网速从千兆降为百兆了。</p>
-<p>解决方案是，拔网线重插。速度就又恢复千兆了。<code>dmesg</code> 里面也有显示新的日志。</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">1736677.257293</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">1736681.257229</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
-<p>我拔下两秒后插回去，ssh 连接没断，smb 也可以继续访问。因此也没什么影响。</p>
-<p>这个问题好像在我家云上面更为明显，我记得之前用我家云的时候也碰到几次，当时还在论坛找到可以恢复千兆的命令，不过现在找不到了。</p>
-<p>因为贝壳云和我家云用的是同样的处理器，可能是硬件的通病吧，暂时也没什么更好的方法，只能发现降为百兆后就去重插一下网线就是了。</p>
+    <p>最近买了台 赚钱宝2代，闲鱼买的，30块包邮，有包装，电源适配器，网线。</p>
+<p><img src="\img\2021\2021-03-01_21-01-42.jpg" alt="2021-03-01_21-01-42"></p>
+<p>买这个干什么呢？拿它来赚钱吗？并不是，现在这个好像赚不了钱了吧，不然别人也不会卖。主要是看到恩山上面有刷机的帖子，想买来刷机玩玩。</p>
+<p>论坛帖子：<a href="https://www.right.com.cn/forum/thread-4063295-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4063295-1-1.html</a></p>
+<p>刷机很简单，下载镜像——<strong>二代线刷无需算号只需改mac后插盘就用.img</strong></p>
+<p>然后使用 usb burning tool 导入，赚钱宝先用双公头 usb 线连接电脑，然后用卡针或者牙签，捅住复位键，再插电源。软件应该就能识别到了，然后就可以点【开始】刷机</p>
+<p><img src="\img\2021\2021-03-01_23-17-35.jpg" alt="2021-03-01_23-17-35"></p>
+<p>完成后拔电源、双公头 usb，再插上网线、电源开机。等待路由器出现 IP，然后就可以通过 ssh 连接上去。</p>
+<p><img src="\img\2021\2021-03-01_21-05-16.jpg" alt="2021-03-01_21-05-16"></p>
+<p>原本以为是 armbian ，刷完才发现，原来是 openwrt，而且精简得不能再精简的，很多命令行工具都没有。里面自带有甜糖，一开机就跑，有兴趣可以去原帖看看。</p>
+<p>我对这个是没什么兴趣，那就把它拆开看看吧。网上一搜好像没有拆机的文章，那只能自己研究了。耗费很长很长的时间，终于把机器拆开了，也拆坏了。</p>
+<p><img src="\img\2021\2021-03-01_23-23-40.jpg" alt="2021-03-01_23-23-40"></p>
+<p>通过这伤痕累累的外壳，也可以想象我拆得好辛苦。</p>
+<p><img src="\img\2021\2021-03-01_23-24-19.jpg" alt="2021-03-01_23-24-19"></p>
+<p>而且主板上的一颗电阻也被我弄掉下来了，现在机器无法开机了。</p>
+<p><img src="\img\2021\2021-03-01_23-24-24.jpg" alt="2021-03-01_23-24-24"></p>
+<p>背面长这样，可以焊接排针，用于 ttl 。</p>
+<p><img src="\img\2021\2021-03-01_23-24-31.jpg" alt="2021-03-01_23-24-31"></p>
+<p>正确的拆法应该是，用吹风筒吹机器的正面加热，然后取下上面比较薄的一层壳，应该就能看到 4 颗螺丝，拧开才能取下外壳。而我这种拆法是直接大力出奇迹，在 4 颗螺丝拧紧的情况下，强行将外壳掰开。</p>
+<p>希望后人引以为戒。</p>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -196,7 +203,7 @@
       
         <div>
           原文链接: 
-          <a href="" target="_blank">https://powersee.github.io/2020/11/bky-wjy-eth-100/</a>
+          <a href="" target="_blank">https://powersee.github.io/2021/03/about-zhuanqianbao2/</a>
         </div>
       
       <div>
@@ -207,7 +214,7 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+      <a href="/tags/随笔/"><i class="fa fa-tags"></i>随笔</a>
      
       <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
     
@@ -268,10 +275,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2020/12/raspberrypi-install-transmission/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2020/11/wankeyun-flash/" data-enable="true">
+    <a href="/2021/02/bilibili-fans/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>

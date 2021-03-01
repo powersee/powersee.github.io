@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2021-02-24T06:32:09.412Z</updated>
+  <updated>2021-03-01T15:34:43.237Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于迅雷赚钱宝二代一些小记录</title>
+    <link href="https://powersee.github.io/2021/03/about-zhuanqianbao2/"/>
+    <id>https://powersee.github.io/2021/03/about-zhuanqianbao2/</id>
+    <published>2021-03-01T12:59:41.000Z</published>
+    <updated>2021-03-01T15:34:43.237Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近买了台 赚钱宝2代，闲鱼买的，30块包邮，有包装，电源适配器，网线。</p><p><img src="\img\2021\2021-03-01_21-01-42.jpg" alt="2021-03-01_21-01-42"></p><p>买这个干什么呢？拿它来赚钱吗？并不是，现在这个好像赚不了钱了吧，不然别人也不会卖。主要是看到恩山上面有刷机的帖子，想买来刷机玩玩。</p><p>论坛帖子：<a href="https://www.right.com.cn/forum/thread-4063295-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4063295-1-1.html</a></p><p>刷机很简单，下载镜像——<strong>二代线刷无需算号只需改mac后插盘就用.img</strong></p><p>然后使用 usb burning tool 导入，赚钱宝先用双公头 usb 线连接电脑，然后用卡针或者牙签，捅住复位键，再插电源。软件应该就能识别到了，然后就可以点【开始】刷机</p><p><img src="\img\2021\2021-03-01_23-17-35.jpg" alt="2021-03-01_23-17-35"></p><p>完成后拔电源、双公头 usb，再插上网线、电源开机。等待路由器出现 IP，然后就可以通过 ssh 连接上去。</p><p><img src="\img\2021\2021-03-01_21-05-16.jpg" alt="2021-03-01_21-05-16"></p><p>原本以为是 armbian ，刷完才发现，原来是 openwrt，而且精简得不能再精简的，很多命令行工具都没有。里面自带有甜糖，一开机就跑，有兴趣可以去原帖看看。</p><p>我对这个是没什么兴趣，那就把它拆开看看吧。网上一搜好像没有拆机的文章，那只能自己研究了。耗费很长很长的时间，终于把机器拆开了，也拆坏了。</p><p><img src="\img\2021\2021-03-01_23-23-40.jpg" alt="2021-03-01_23-23-40"></p><p>通过这伤痕累累的外壳，也可以想象我拆得好辛苦。</p><p><img src="\img\2021\2021-03-01_23-24-19.jpg" alt="2021-03-01_23-24-19"></p><p>而且主板上的一颗电阻也被我弄掉下来了，现在机器无法开机了。</p><p><img src="\img\2021\2021-03-01_23-24-24.jpg" alt="2021-03-01_23-24-24"></p><p>背面长这样，可以焊接排针，用于 ttl 。</p><p><img src="\img\2021\2021-03-01_23-24-31.jpg" alt="2021-03-01_23-24-31"></p><p>正确的拆法应该是，用吹风筒吹机器的正面加热，然后取下上面比较薄的一层壳，应该就能看到 4 颗螺丝，拧开才能取下外壳。而我这种拆法是直接大力出奇迹，在 4 颗螺丝拧紧的情况下，强行将外壳掰开。</p><p>希望后人引以为戒。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近买了台 赚钱宝2代，闲鱼买的，30块包邮，有包装，电源适配器，网线。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;\img\2021\2021-03-01_21-01-42.jpg&quot; alt=&quot;2021-03-01_21-01-42&quot;&gt;&lt;/p&gt;
+&lt;p&gt;买这个干什么呢？拿它来赚钱吗
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+  </entry>
   
   <entry>
     <title>bilibili 粉丝数量展示器 app</title>
@@ -61,9 +88,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -90,9 +117,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -101,9 +128,9 @@
     <link href="https://powersee.github.io/2021/01/wankeyun-server/"/>
     <id>https://powersee.github.io/2021/01/wankeyun-server/</id>
     <published>2021-01-26T00:46:22.000Z</published>
-    <updated>2021-02-16T04:14:14.485Z</updated>
+    <updated>2021-02-28T14:10:19.926Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="玩客云乱七八糟的坑"><a href="#玩客云乱七八糟的坑" class="headerlink" title="玩客云乱七八糟的坑"></a>玩客云乱七八糟的坑</h3><p>搞了一个腾讯文档，懒得复制过来了，已经设置了任何人都可以访问，可以在里面看看有没有适合自己的解决方案。</p><p><a href="https://docs.qq.com/doc/DWkhNSmRuQld0UEd0" target="_blank" rel="noopener">https://docs.qq.com/doc/DWkhNSmRuQld0UEd0</a></p><h3 id="为什么我的主板和你不一样？"><a href="#为什么我的主板和你不一样？" class="headerlink" title="为什么我的主板和你不一样？"></a>为什么我的主板和你不一样？</h3><p>有些小伙伴看了视频，非常激动地跑去买玩客云，买来拆开后却发现，怎么和视频里的不一样呢？难道是被坑了？</p><p>其实不用慌，这是因为玩客云有分两版，我视频里展示的是老版，它的短接点是在主板的背面。</p><p><img src="\img\2020\玩客云短接.png" alt="玩客云短接"></p><p>另外还有一款新版，短接点是在正面。</p><p><img src="\img\2021\玩客云新版短接点.jpg" alt="玩客云新版短接点"></p><p><img src="\img\2021\玩客云新版短接点45.jpg" alt="玩客云新版短接点45"></p><p>刷机方式一样的。</p><h3 id="为什么没有进入-U-盘中的系统？"><a href="#为什么没有进入-U-盘中的系统？" class="headerlink" title="为什么没有进入 U 盘中的系统？"></a>为什么没有进入 U 盘中的系统？</h3><p>如果你发现 led 灯每隔几秒就闪一下，那可能是你 U 盘没有插在靠近网口的 USB 口。</p><p><img src="\img\2021\wky-usb-1613448634572.png" alt="wky-usb"></p><p>如果这样还不行，你可以尝试换一个 U 盘，如果有内存卡加读卡器的话，也可以试试。</p><h3 id="总结一下玩客云的优劣"><a href="#总结一下玩客云的优劣" class="headerlink" title="总结一下玩客云的优劣"></a>总结一下玩客云的优劣</h3><p>优点</p><ul><li>便宜</li><li>省电，之前测试过功耗只有 1.5 w 左右</li><li>静音，没有风扇，自然不会有噪音</li></ul><p>缺点</p><ul><li>性能较弱</li><li>cpu 是 32 位的，能用的 docker 镜像有限</li><li>usb 2.0 速度慢</li></ul><p>由于这次视频的播放量还可以，很多没有关注我的观众在评论区里留言，说 N1 、树莓派这些比玩客云强。我当然知道这些比玩客云强啊，因为大多数矿渣设备我都有买，有兴趣的朋友可以去翻翻我以前的视频。</p><p>其实不用看参数也能知道 N1 、树莓派 这些比玩客云强，看价格就行呗。N1 现在应该要一百多，树莓派得两百多。所以没什么可比性嘛。</p><hr><h3 id="固件相关"><a href="#固件相关" class="headerlink" title="固件相关"></a>固件相关</h3><p>2021-01-25</p><p><img src="\img\2021\玩客云导航.jpg" alt="玩客云导航"></p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>访问导航：直接在浏览器输入 onecloud/ 或者输入玩客云的 ip 地址。</p><hr><p>文件管理器：账号密码都是 admin</p><p>portainer : 账号 admin 密码 powersee</p><p>transmission : 账号密码都是 admin</p><p>qbittorrent : 账号 admin 密码 adminadmin</p><p>ssh ：账号 root 密码 powersee233</p><hr><p>qiandao 这个容器并没有设置开机启动，如果想启动它，可以在 portainer 中启动，或者通过 ssh 使用</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qiandao</span><br></pre></td></tr></table></figure><p>来启动。</p><p>这个自动签到平台我以前也有做过视频，有兴趣可以去翻翻看。</p><hr><h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p><p><img src="\img\2021\挂载 sd 卡.png" alt="挂载 sd 卡"></p><hr><p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p><p><img src="\img\2021\ranger.jpg" alt="ranger"></p><p>按 q 退出</p><hr><h3 id="如何判断有没有刷成功"><a href="#如何判断有没有刷成功" class="headerlink" title="如何判断有没有刷成功"></a>如何判断有没有刷成功</h3><p>其实可以用通过玩客云的 hdmi 来判断，你可以把玩客云连接电视或者显示器。</p><p>当你刷好底层包之后，不插U盘，画面会显示这个几秒</p><p><img src="\img\2021\玩客云mxq.png" alt="玩客云mxq"></p><p>然后就没信号几秒，再显示这个画面几秒，再没信号……会这样一直重复。</p><p>如果你插上U盘，并且玩客云成功进入 U 盘里的系统，画面就会停留在上面这个图片这里，不会变化了。所以你可以通过这种方法来判断有没有成功进入 U 盘系统。</p><hr><h3 id="一直线刷失败？"><a href="#一直线刷失败？" class="headerlink" title="一直线刷失败？"></a>一直线刷失败？</h3><p>症状是什么呢？无法刷入 snail 底层包，也无法刷入 emmc 直刷包，线刷最后永远报错。这里有一张网友线刷失败的图片。</p><p><img src="\img\2021\wky-fail1.png" alt="wky-fail1"></p><p>里面的结果这一列，有好多个 5004。然后最近我收了一台有问题的玩客云，下午线刷，发现也是一堆 5004 的报错。所以我估计，可能报 5004 的，应该就是 emmc 有坏块，毕竟症状一样。</p><p>到目前为止，我见识过 4 台设备这样，我自己手上就有一台。唯有一个底层包可以刷，是一个 700多K的 img 包，我将它上传到了网盘。<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> </p><p><img src="\img\2021\wky-pan1.png" alt="wky-pan1"></p><p>使用这个底层包，可以线刷进去。</p><p><img src="\img\2021\wky-线刷成功.png" alt="wky-线刷成功"></p><p>刷这个 700 多k 的底层包，开机是亮绿灯。由于 emmc 损坏，因此系统只能装在 U 盘里面使用。</p><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ol><li><p><a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p></li><li><p><a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p></li><li><p><a href="https://github.com/bituplink/OneHtmlNav" target="_blank" rel="noopener">https://github.com/bituplink/OneHtmlNav</a></p></li><li><p><a href="https://www.right.com.cn/forum/thread-4058499-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4058499-1-1.html</a></p></li><li><a href="https://www.right.com.cn/FORUM/thread-4066518-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/FORUM/thread-4066518-1-1.html</a></li></ol><h3 id="下期内容"><a href="#下期内容" class="headerlink" title="下期内容"></a>下期内容</h3><p>下一个版本会添加的内容</p><p>1、网页终端</p><p><img src="\img\2021\wky-ttyd.png" alt="wky-ttyd"></p><p>2、portainer 中文化</p><p><img src="\img\2021\portainer汉化.png" alt="portainer汉化"></p><p>3、添加控制 led 功能</p><p>默认情况下，开机后会一直亮蓝灯。其实没什么用，我打算把这灯利用起来，所以设置了开机进入系统后，灯光会自动关闭。然后这灯就可以跑脚本的时候用。例如用 python 脚本来控制它，让它亮绿灯之类的。以后再说吧。</p><p><img src="\img\2021\wky-green.jpg" alt="wky-green"></p><p>4、aria2</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="玩客云乱七八糟的坑"><a href="#玩客云乱七八糟的坑" class="headerlink" title="玩客云乱七八糟的坑"></a>玩客云乱七八糟的坑</h3><p>搞了一个腾讯文档，懒得复制过来了，已经设置了任何人都可以访问，可以在里面看看有没有适合自己的解决方案。</p><p><a href="https://docs.qq.com/doc/DWkhNSmRuQld0UEd0" target="_blank" rel="noopener">https://docs.qq.com/doc/DWkhNSmRuQld0UEd0</a></p><h3 id="为什么我的主板和你不一样？"><a href="#为什么我的主板和你不一样？" class="headerlink" title="为什么我的主板和你不一样？"></a>为什么我的主板和你不一样？</h3><p>有些小伙伴看了视频，非常激动地跑去买玩客云，买来拆开后却发现，怎么和视频里的不一样呢？难道是被坑了？</p><p>其实不用慌，这是因为玩客云有分两版，我视频里展示的是老版，它的短接点是在主板的背面。</p><p><img src="\img\2020\玩客云短接.png" alt="玩客云短接"></p><p>另外还有一款新版，短接点是在正面。</p><p><img src="\img\2021\玩客云新版短接点.jpg" alt="玩客云新版短接点"></p><p><img src="\img\2021\玩客云新版短接点45.jpg" alt="玩客云新版短接点45"></p><p>刷机方式一样的。</p><h3 id="为什么没有进入-U-盘中的系统？"><a href="#为什么没有进入-U-盘中的系统？" class="headerlink" title="为什么没有进入 U 盘中的系统？"></a>为什么没有进入 U 盘中的系统？</h3><p>如果你发现 led 灯每隔几秒就闪一下，那可能是你 U 盘没有插在靠近网口的 USB 口。</p><p><img src="\img\2021\wky-usb-1613448634572.png" alt="wky-usb"></p><p>如果这样还不行，你可以尝试换一个 U 盘，如果有内存卡加读卡器的话，也可以试试。</p><h3 id="总结一下玩客云的优劣"><a href="#总结一下玩客云的优劣" class="headerlink" title="总结一下玩客云的优劣"></a>总结一下玩客云的优劣</h3><p>优点</p><ul><li>便宜</li><li>省电，之前测试过功耗只有 1.5 w 左右</li><li>静音，没有风扇，自然不会有噪音</li></ul><p>缺点</p><ul><li>性能较弱</li><li>cpu 是 32 位的，能用的 docker 镜像有限</li><li>usb 2.0 速度慢</li></ul><p>由于这次视频的播放量还可以，很多没有关注我的观众在评论区里留言，说 N1 、树莓派这些比玩客云强。我当然知道这些比玩客云强啊，因为大多数矿渣设备我都有买，有兴趣的朋友可以去翻翻我以前的视频。</p><p>其实不用看参数也能知道 N1 、树莓派 这些比玩客云强，看价格就行呗。N1 现在应该要一百多，树莓派得两百多。所以没什么可比性嘛。</p><hr><h3 id="固件相关"><a href="#固件相关" class="headerlink" title="固件相关"></a>固件相关</h3><p>2021-01-25</p><p><img src="\img\2021\玩客云导航.jpg" alt="玩客云导航"></p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>访问导航：直接在浏览器输入 onecloud/ 或者输入玩客云的 ip 地址。</p><hr><p>文件管理器：账号密码都是 admin</p><p>portainer : 账号 admin 密码 powersee</p><p>transmission : 账号密码都是 admin</p><p>qbittorrent : 账号 admin 密码 adminadmin</p><p>ssh ：账号 root 密码 powersee233</p><hr><p>qiandao 这个容器并没有设置开机启动，如果想启动它，可以在 portainer 中启动，或者通过 ssh 使用</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qiandao</span><br></pre></td></tr></table></figure><p>来启动。</p><p>这个自动签到平台我以前也有做过视频，有兴趣可以去翻翻看。</p><hr><h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p><p><img src="\img\2021\挂载 sd 卡.png" alt="挂载 sd 卡"></p><h3 id="如何挂载硬盘"><a href="#如何挂载硬盘" class="headerlink" title="如何挂载硬盘"></a>如何挂载硬盘</h3><p>其实视频里有讲了，先输入 <code>lsblk</code> 查看一下硬盘连接上没，一般会显示 sda 或者 sdb 这样。</p><p>假设显示的是 sda ，那么它下面应该有个 sda1 这个才对。这个 sda1 指的是分区，就像你在电脑上，你添加了一块硬盘，你可能把分为 D、E、F　三个盘。但是它都是属于同一块物理硬盘。而这里的 sda 就是指物理硬盘，你不能挂载它，只能挂载它里面的分区。</p><p>所以你应该使用的命令是</p><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">mount <span class="string">/dev/sda1</span> <span class="string">/mnt</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">mount <span class="string">/dev/sdb1</span> <span class="string">/mnt</span></span><br></pre></td></tr></table></figure><hr><p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p><p><img src="\img\2021\ranger.jpg" alt="ranger"></p><p>按 q 退出</p><hr><h3 id="如何判断有没有刷成功"><a href="#如何判断有没有刷成功" class="headerlink" title="如何判断有没有刷成功"></a>如何判断有没有刷成功</h3><p>其实可以用通过玩客云的 hdmi 来判断，你可以把玩客云连接电视或者显示器。</p><p>当你刷好底层包之后，不插U盘，画面会显示这个几秒</p><p><img src="\img\2021\玩客云mxq.png" alt="玩客云mxq"></p><p>然后就没信号几秒，再显示这个画面几秒，再没信号……会这样一直重复。</p><p>如果你插上U盘，并且玩客云成功进入 U 盘里的系统，画面就会停留在上面这个图片这里，不会变化了。所以你可以通过这种方法来判断有没有成功进入 U 盘系统。</p><hr><h3 id="一直线刷失败？"><a href="#一直线刷失败？" class="headerlink" title="一直线刷失败？"></a>一直线刷失败？</h3><p>症状是什么呢？无法刷入 snail 底层包，也无法刷入 emmc 直刷包，线刷最后永远报错。这里有一张网友线刷失败的图片。</p><p><img src="\img\2021\wky-fail1.png" alt="wky-fail1"></p><p>里面的结果这一列，有好多个 5004。然后最近我收了一台有问题的玩客云，下午线刷，发现也是一堆 5004 的报错。所以我估计，可能报 5004 的，应该就是 emmc 有坏块，毕竟症状一样。</p><p>到目前为止，我见识过 4 台设备这样，我自己手上就有一台。唯有一个底层包可以刷，是一个 700多K的 img 包，我将它上传到了网盘。<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> </p><p><img src="\img\2021\wky-pan1.png" alt="wky-pan1"></p><p>使用这个底层包，可以线刷进去。</p><p><img src="\img\2021\wky-线刷成功.png" alt="wky-线刷成功"></p><p>刷这个 700 多k 的底层包，开机是亮绿灯。由于 emmc 损坏，因此系统只能装在 U 盘里面使用。</p><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ol><li><p><a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p></li><li><p><a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p></li><li><p><a href="https://github.com/bituplink/OneHtmlNav" target="_blank" rel="noopener">https://github.com/bituplink/OneHtmlNav</a></p></li><li><p><a href="https://www.right.com.cn/forum/thread-4058499-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4058499-1-1.html</a></p></li><li><a href="https://www.right.com.cn/FORUM/thread-4066518-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/FORUM/thread-4066518-1-1.html</a></li></ol><h3 id="下期内容"><a href="#下期内容" class="headerlink" title="下期内容"></a>下期内容</h3><p>下一个版本会添加的内容</p><p>1、网页终端</p><p><img src="\img\2021\wky-ttyd.png" alt="wky-ttyd"></p><p>2、portainer 中文化</p><p><img src="\img\2021\portainer汉化.png" alt="portainer汉化"></p><p>3、添加控制 led 功能</p><p>默认情况下，开机后会一直亮蓝灯。其实没什么用，我打算把这灯利用起来，所以设置了开机进入系统后，灯光会自动关闭。然后这灯就可以跑脚本的时候用。例如用 python 脚本来控制它，让它亮绿灯之类的。以后再说吧。</p><p><img src="\img\2021\wky-green.jpg" alt="wky-green"></p><p>4、aria2</p>]]></content>
     
     <summary type="html">
     
@@ -115,9 +142,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -168,9 +195,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="树莓派" scheme="https://powersee.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
@@ -196,9 +223,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -222,9 +249,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -248,9 +275,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -369,11 +396,11 @@
     
       <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
       <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -397,9 +424,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
@@ -451,9 +478,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -477,9 +504,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="nas" scheme="https://powersee.github.io/tags/nas/"/>
     
@@ -507,30 +534,6 @@
     
     
       <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于斐讯 R1 智能音响</title>
-    <link href="https://powersee.github.io/2020/05/about-R1/"/>
-    <id>https://powersee.github.io/2020/05/about-R1/</id>
-    <published>2020-05-04T01:24:19.000Z</published>
-    <updated>2020-11-20T10:32:15.458Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这款产品是 燕飞利仕 和斐讯合作的产品，应该是2018年推出的。</p><p>这是一款智能音响，可以搭配【斐讯ai】这个 app 来使用，不过，由于斐讯后来翻车了，至今也快两年了。所谓智能音响，也就是可以用语音来控制罢了。但是由于斐讯服务器那边不能用（或者说不稳定）。账号现在没法正常注册，看论坛有人说每天 0 点会开放注册一段时间，由于本人 2017 年时就有了斐讯的账号，也没去尝试能否注册。</p><p>所以很多人就只能把这音响当普通音响来用，音响开机后按三下顶部的按键，就可以打开蓝牙，之后用手机或者电脑连接，听歌或者听有声小说还是不错的。</p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>不过最近我在拼多多买了这台设备，发现斐讯的服务器还是可以连接的嘛，而且网上有大佬修改了 app ，使得现在没有账号的情况下，也能配置音响的网络，使其连接家中的WIFI。修改版APP下载：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p><p>但是有些时候，配置网络好了，喊【小讯小讯】，却会提示，未绑定。。。</p><h2 id="这时候有两种解决方案"><a href="#这时候有两种解决方案" class="headerlink" title="这时候有两种解决方案"></a>这时候有两种解决方案</h2><p>一，修改路由器的 dns</p><p>将路由器的 DNS 改为 47.240.76.176</p><p><img src="/img/2020/padavan-dns.jpg" alt="padavan-dns"></p><p>二，自定义 hosts</p><p>在路由器的 hosts 中添加 118.24.249.189  aios-home.hivoice.cn</p><p>在老毛子路由器中</p><p><img src="/img/2020/padavan-hosts.jpg" alt="padavan-hosts"></p><p>在 openwrt 路由器中</p><p><img src="/img/2020/openwrt-hosts.jpg" alt="openwrt-hosts"></p><p>这样做音响才能完成绑定，之后我们就可以使用语音来控制它了。</p><blockquote><p>如果你用的是普通的路由器，那看看哪个地方可以修改 hosts，实在找不到就修改 DNS 吧。  </p></blockquote><hr><p><strong>如果你实在太小白，不会修改 dns 和 hosts ，那就放弃语音控制吧，反正作用也不是那么大。还有很多其它的东西可以折腾的。</strong></p><h2 id="使用-dlna-享受更好的音质"><a href="#使用-dlna-享受更好的音质" class="headerlink" title="使用 dlna 享受更好的音质"></a>使用 dlna 享受更好的音质</h2><p>前段时间，在网上看到这样的话</p><blockquote><p>蓝牙连接是sbc，音效很浑浊，发闷。dlan 才能发挥它真正的音质</p></blockquote><p>为了用上 dlna ，我在论坛中找到在 R1 上面安装 dlna 的方法，同样将资源放在网盘中了：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p><p>装好后，在电脑中就可以选中歌曲，然后将其推送到 R1 上面播放了。</p><p><img src="/img/2020/dlna1.jpg" alt="dlna1"></p><p>后来，有网友提示，其它系统也自带有 dlna 的，不过需要蓝牙打开的状态下才可以用。所以我打开蓝牙后，再来右键歌曲，就可以看到有两个 dlna 了。</p><p><img src="/img/2020/dlna2.jpg" alt="dlna2"></p><p>据说还可以装一个【乐播投屏】也同样有 dlna ，论坛有个帖子分析了各自的优缺点。<a href="https://www.right.com.cn/forum/thread-4017780-1-1.html" target="_blank" rel="noopener">R1音响三大dlna软件对比</a> 不过这个我自己没用，我最多使用的还是 从n1提取的dlna ，因为这个一直保持开启状态，用起来比较方便。</p><h2 id="电脑端-dlna"><a href="#电脑端-dlna" class="headerlink" title="电脑端 dlna"></a>电脑端 dlna</h2><p>用系统自带的播放器固然方便，但是不怎么好用，只能自己把歌曲添加进去，而且还不支持播放 FLAC 的歌曲。</p><p>我想要播放网易云音乐里的歌曲，有没有什么好方法呢？</p><p>那最简单的还是属用蓝牙连接。不过我这里讨论的是 dlna ，那就得用一个第三方软件了，名字是 airfoil ，这是一款付费软件，大家自己网上找吧。在电脑上安装好后，打开时就会搜索你的网络中有哪些 dlna 设备。</p><p><img src="/img/2020/Airfoil.jpg" alt="Airfoil"></p><p>下方可以选择那个设备作为音响，点亮其右侧的图标即可。上方可以选择声音来源，可以像上图那样，将整个系统的声音都输出。也可以像下图这样，只选择将网易云音乐的声音输出。</p><p><img src="/img/2020/Airfoil-netease.jpg" alt="Airfoil-netease"></p><p><strong>注意</strong> 通过 dlna 将声音输出到音响，大概有两秒的延迟，所以……只适合用来听歌，看视频和打游戏是完全没法用的。</p><h2 id="手机端-dlna"><a href="#手机端-dlna" class="headerlink" title="手机端 dlna"></a>手机端 dlna</h2><p>手机这边我一开始只知道小米系统自带的音乐播放器，可以通过 dlna 推送到 R1。不过它有很多缺陷，一次只能播放一首歌，然后就暂停了。而且没法显示播放进度。</p><p>然后我想去找其它支持 dlna 播放的 APP ，谷歌商店试了好几个，没好用的。</p><p>今天下载了个 咪咕音乐 ，想来听听周杰伦的歌，发现它居然可以把歌曲通过 dlna 推送到 R1 上面，而且切歌之后，播放进度就会同步。非常的意外，不过，它也有缺点，就是有时候没法调节 R1 的音量，有时候却可以……</p><p>后来，我发现，在网易云音乐的设置中，将 dlna 功能打开，也可以把歌曲通过 dlna 推送到 R1 上面。这个应该是现在手机端比较好用的了，可以连续播放，可以同步播放进度，还可以通过手机调节 R1 的音量。</p><h2 id="天线"><a href="#天线" class="headerlink" title="天线"></a>天线</h2><p>由于拆机时不小心，把天线弄断了。</p><p><img src="/img/2020/天线断.jpg" alt="天线断"></p><p>导致音响只有放在路由器旁边才能连接到 WiFi ，蓝牙连接距离只有一米左右……于是到淘宝买了条天线，1块4包邮，买来连接上，满血复活。</p><p><img src="/img/2020/tb天线.jpg" alt="tb天线"></p><p>由于不知道到底要买哪一款，我就买了几个，最终发现这个【IPEX 1代】在 R1 上用就刚好适合。</p><h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p><a href="https://www.right.com.cn/forum/thread-4013529-1-1.html" target="_blank" rel="noopener">R1音箱 小白入门 和目前现状</a></p><p>这篇文章作者用自己的服务器提供绑定服务。</p><p><a href="https://www.cnblogs.com/lome/p/12465328.html#4548078" target="_blank" rel="noopener">https://www.cnblogs.com/lome/p/12465328.html#4548078</a></p><p>这篇教自建服务</p><p><a href="http://www.mz6.net/news/android/12911.html" target="_blank" rel="noopener">http://www.mz6.net/news/android/12911.html</a></p><p>另外一个自建服务的帖子</p><p><a href="https://www.right.com.cn/forum/thread-3285422-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-3285422-1-1.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这款产品是 燕飞利仕 和斐讯合作的产品，应该是2018年推出的。&lt;/p&gt;
-&lt;p&gt;这是一款智能音响，可以搭配【斐讯ai】这个 app 来使用，
-      
-    
-    </summary>
-    
     
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     

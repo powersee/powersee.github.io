@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee">
   
   
-  <title>贝壳云、我家云以太网口自动从千兆变为百兆 | Powersee的博客</title>
+  <title>归档: 2021/3 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备,">
+    <meta name="keywords" content="Hexo, Theme-AD">
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: true,
+    is_post: false,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
@@ -148,73 +148,18 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      
-  <div class="passage">
-  <div class="passage-meta">
-    <span>
-      <i class="fa fa-calendar"></i>2020-11-26
-    </span>
-    
-    
-      <span>
-        | <i class="fa fa-unlock-alt"></i>UNLOCK
-      </span>
-    
-  </div>
-  <h1 class="passage-title">
-    贝壳云、我家云以太网口自动从千兆变为百兆
-  </h1>
+      <div class="timeline">
+  <h2 class="timeline-title">归档: 73篇</h2>
   
-  <article class="passage-article">
-    <p>偶然间发现，怎么通过 smb 方式从贝壳云上面读取文件，速度只有 11MB/s 左右，上传文件到里面去也是如此。明明前几天从里面复制文件还有 60 多的速度的，怎么无缘无故变慢了？难道现在网口变百兆速度了？</p>
-<p>于是我通过 <code>ifconfig</code> 命令，查看到 eth0 里显示</p>
-<blockquote>
-<p>collisions:0 txqueuelen:100</p>
-</blockquote>
-<p>以及通过 <code>dmesg</code> 命令查到这个</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">687120.156847</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">687122.156839</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br><span class="line">[<span class="meta">687126.156737</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">687139.156393</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">100</span>Mbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
-<p>看来确实是在某一时刻，以太网的网速从千兆降为百兆了。</p>
-<p>解决方案是，拔网线重插。速度就又恢复千兆了。<code>dmesg</code> 里面也有显示新的日志。</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">1736677.257293</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">1736681.257229</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
-<p>我拔下两秒后插回去，ssh 连接没断，smb 也可以继续访问。因此也没什么影响。</p>
-<p>这个问题好像在我家云上面更为明显，我记得之前用我家云的时候也碰到几次，当时还在论坛找到可以恢复千兆的命令，不过现在找不到了。</p>
-<p>因为贝壳云和我家云用的是同样的处理器，可能是硬件的通病吧，暂时也没什么更好的方法，只能发现降为百兆后就去重插一下网线就是了。</p>
-
-  </article>
-  <aside class="table-content" id="site-toc">
-  <div class="table-content-title">
-    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
-    <span>目录</span>
-  </div>
-  <div class="table-content-main">
     
-  </div>
-</aside>
-  
-    <aside class="passage-copyright">
-      <div>本文作者: powersee</div>
-      
-        <div>
-          原文链接: 
-          <a href="" target="_blank">https://powersee.github.io/2020/11/bky-wjy-eth-100/</a>
-        </div>
-      
-      <div>
-        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
-      </div>
-    </aside>
-  
-  
-    <div class="passage-tags">
-     
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
-      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
+      <h3 class="timeline-subtitle">2021</h3>
     
+    <div class="timeline-item">
+      <time>2021-03-01</time>
+      <a target="_self" href="/2021/03/about-zhuanqianbao2/">关于迅雷赚钱宝二代一些小记录</a>
     </div>
   
 </div>
-
     </main>
     
     <div class="site-footer-wrapper">
@@ -268,15 +213,15 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2020/12/raspberrypi-install-transmission/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2020/11/wankeyun-flash/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
