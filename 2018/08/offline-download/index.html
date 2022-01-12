@@ -185,26 +185,28 @@
     </li>
 </ul>
 <p>脚本来自<strong>逗比根据地</strong></p>
-<h3 id="首先安装-下载工具–-Aria2"><a href="#首先安装-下载工具–-Aria2" class="headerlink" title="首先安装 下载工具– Aria2"></a>首先安装 下载工具– Aria2</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget -<span class="keyword">N</span> --<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/ToyoDAdoubi/doubi/master/aria2.<span class="keyword">sh</span> &amp;&amp; chmod +<span class="keyword">x</span> aria2.<span class="keyword">sh</span> &amp;&amp; bash aria2.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+<h3 id="首先安装-下载工具–-Aria2"><a href="#首先安装-下载工具–-Aria2" class="headerlink" title="首先安装 下载工具– Aria2"></a>首先安装 下载工具– Aria2</h3><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/ToyoDAdoubi/</span>doubi<span class="regexp">/master/</span>aria2.sh &amp;&amp; chmod +x aria2.sh &amp;&amp; bash aria2.sh</span><br></pre></td></tr></table></figure>
 <p>按 1 ，就可以安装。成功后会看到这样的显示。<br><img src="/img/2018/Aria2-done.png" alt="image"></p>
 <p>由于我们用 ssh 登录 vps 后，默认是在 root 目录下。因此我想让下载位置也在这之下，方便以后用命令行删除文件。</p>
 <p>因此需先创建文件夹</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">mkdir -<span class="selector-tag">p</span> web/down</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">mkdir -p web/down</span><br></pre></td></tr></table></figure>
 <p>然后进入 Aria2 来需改下载位置和密码</p>
 <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="string">./aria2.sh</span></span><br></pre></td></tr></table></figure>
 <p>选择 7. 修改 配置文件</p>
 <p>再选择 4.  修改 Aria2 密码+端口+文件下载位置</p>
 <p>密码就个人按喜好改了(后面要用到)，端口就不改了，按回车键使用默认即可，下载位置就改为新的路径</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/root/</span>web<span class="regexp">/down</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/root/</span>web/down</span><br></pre></td></tr></table></figure>
 <p>再次看到 ==Aria2 启动成功 !  == 这部分就完成了。</p>
 <hr>
 <h3 id="安装使用界面"><a href="#安装使用界面" class="headerlink" title="安装使用界面"></a>安装使用界面</h3><p>下载工具安装完成了，那要怎么用它呢？难道用命令行来下载文件？虽然确实可以，不过这有点……</p>
 <p>还是图形界面比较任性化，点点几下就行。</p>
-<h4 id="安装-web-服务器-caddy"><a href="#安装-web-服务器-caddy" class="headerlink" title="安装 web 服务器 caddy"></a>安装 web 服务器 caddy</h4><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget -<span class="keyword">N</span> --<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/ToyoDAdoubi/doubi/master/caddy_install.<span class="keyword">sh</span> &amp;&amp; chmod +<span class="keyword">x</span> caddy_install.<span class="keyword">sh</span> &amp;&amp; bash caddy_install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-<h4 id="写入配置到-Caddy-配置文件"><a href="#写入配置到-Caddy-配置文件" class="headerlink" title="写入配置到 Caddy 配置文件"></a>写入配置到 Caddy 配置文件</h4><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="comment">":80 &#123;</span></span><br><span class="line"> root /root/web</span><br><span class="line"> timeouts none</span><br><span class="line"> gzip</span><br><span class="line"> <span class="keyword">browse</span></span><br><span class="line">&#125;<span class="comment">" &gt; /usr/local/caddy/Caddyfile</span></span><br></pre></td></tr></table></figure>
-<h4 id="下载-AriaNg"><a href="#下载-AriaNg" class="headerlink" title="下载 AriaNg"></a>下载 AriaNg</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cd web &amp;&amp; wget https:<span class="regexp">//gi</span>thub.com<span class="regexp">/mayswind/</span>AriaNg<span class="regexp">/releases/</span>download<span class="regexp">/0.4.0/</span>aria-ng-<span class="number">0.4</span>.<span class="number">0</span>.zip &amp;&amp; unzip aria-ng-<span class="number">0.4</span>.<span class="number">0</span>.zip</span><br></pre></td></tr></table></figure>
+<h4 id="安装-web-服务器-caddy"><a href="#安装-web-服务器-caddy" class="headerlink" title="安装 web 服务器 caddy"></a>安装 web 服务器 caddy</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/ToyoDAdoubi/</span>doubi<span class="regexp">/master/</span>caddy_install.sh &amp;&amp; chmod +x caddy_install.sh &amp;&amp; bash caddy_install.sh</span><br></pre></td></tr></table></figure>
+<h4 id="写入配置到-Caddy-配置文件"><a href="#写入配置到-Caddy-配置文件" class="headerlink" title="写入配置到 Caddy 配置文件"></a>写入配置到 Caddy 配置文件</h4><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="comment">&quot;:80 &#123;</span></span><br><span class="line"> root /root/web</span><br><span class="line"> timeouts none</span><br><span class="line"> gzip</span><br><span class="line"> <span class="keyword">browse</span></span><br><span class="line">&#125;<span class="comment">&quot; &gt; /usr/local/caddy/Caddyfile</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="下载-AriaNg"><a href="#下载-AriaNg" class="headerlink" title="下载 AriaNg"></a>下载 AriaNg</h4><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">cd</span> web &amp;&amp; wget https://github.com/mayswind/AriaNg/releases/download/<span class="number">0</span>.<span class="number">4</span>.<span class="number">0</span>/aria-ng-<span class="number">0</span>.<span class="number">4</span>.<span class="number">0</span>.zip &amp;&amp; unzip aria-ng-<span class="number">0</span>.<span class="number">4</span>.<span class="number">0</span>.zip</span><br></pre></td></tr></table></figure>
 <p>这里出错的话，可能是因为没有安装 unzip 这个应用，根据提示安装下即可。</p>
-<h4 id="启动-caddy"><a href="#启动-caddy" class="headerlink" title="启动 caddy"></a>启动 caddy</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/caddy start</span></span><br></pre></td></tr></table></figure>
+<h4 id="启动-caddy"><a href="#启动-caddy" class="headerlink" title="启动 caddy"></a>启动 caddy</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d/caddy start</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="下载文件并取回本地"><a href="#下载文件并取回本地" class="headerlink" title="下载文件并取回本地"></a>下载文件并取回本地</h3><p>这时候就可以用浏览器，通过 IP 或者域名来访问下载界面。需要设置一下。<br><img src="/img/2018/AriaNg.png" alt="image"></p>
 <p>第一个红圈可以填 IP 和域名，都行的。第二个红圈就是填刚才设置的密码了。</p>

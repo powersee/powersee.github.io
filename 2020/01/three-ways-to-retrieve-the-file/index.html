@@ -179,40 +179,52 @@
   
   <article class="passage-article">
     <p>本文介绍三种我自己都有用过的方法，都是比较简单的。</p>
-<h2 id="一、caddy"><a href="#一、caddy" class="headerlink" title="一、caddy"></a>一、caddy</h2><p> 首先，安装一个 caddy。现在是 <code>2020-09-29</code> ，最新的 caddy 版本是 2.2.0，后期如果有更新的话，请自行到官网或者 <a href="https://github.com/caddyserver/caddy/releases" target="_blank" rel="noopener">GitHub</a> 了解。</p>
+<h2 id="一、caddy"><a href="#一、caddy" class="headerlink" title="一、caddy"></a>一、caddy</h2><p> 首先，安装一个 caddy。现在是 <code>2020-09-29</code> ，最新的 caddy 版本是 2.2.0，后期如果有更新的话，请自行到官网或者 <a target="_blank" rel="noopener" href="https://github.com/caddyserver/caddy/releases">GitHub</a> 了解。</p>
 <p>这里下载的是一个 deb 包</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://github.com/caddyserver/caddy/releases/download/v2.2.0/caddy_2.2.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
+
 <p>下载完成后，用 dkpg 来安装</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg -i caddy_2.2.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
+
 <p>写入配置</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo ":80 &#123;  </span><br><span class="line"> root * /path/to/downloads</span><br><span class="line"> file_server browse  </span><br><span class="line">&#125;" &gt; Caddyfile</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo &quot;:80 &#123;  </span><br><span class="line"> root * /path/to/downloads</span><br><span class="line"> file_server browse  </span><br><span class="line">&#125;&quot; &gt; Caddyfile</span><br></pre></td></tr></table></figure>
+
 <p>启动 caddy</p>
 <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">caddy <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+
 <p>开放服务器 80 端口</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">ufw allow <span class="number">80</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ufw</span> <span class="literal">allow</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
 <p>完成后就可以在浏览器里，输入 <code>IP地址</code> 来访问下载好的文件了。如果是 MP4 文件的话，还可以支持在线播放。</p>
 <p>其实不建议用 80 端口，最好还是用其它的吧。如果用其它的端口，在浏览器中访问时，就需要加上 <code>:</code>和 <code>端口号</code>，例如用 <code>9527</code> 端口，此时 <code>IP</code>假设为 <code>111.222.111.111</code> 就需要在浏览器中访问</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">111<span class="selector-class">.222</span><span class="selector-class">.111</span><span class="selector-class">.111</span><span class="selector-pseudo">:9527</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line"><span class="number">111.222.111.111:9527</span></span><br></pre></td></tr></table></figure>
+
 <p>需要想要关闭 caddy 服务，可以用</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">caddy <span class="built_in">stop</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">caddy stop</span><br></pre></td></tr></table></figure>
+
 <p>如果想卸载，用</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">dpkg -r caddy</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="二、h5ai"><a href="#二、h5ai" class="headerlink" title="二、h5ai"></a>二、h5ai</h2><blockquote>
 <p>这是一个 PHP 程序，原本它是要求机器本身有 PHP 才能用的，不过现在使用 docker 来安装的话，也可以非常迅速就安装好。</p>
 </blockquote>
 <p>一行命令即可，最简单</p>
-<figure class="highlight perl"><table><tr><td class="code"><pre><span class="line">docker run -d -p <span class="number">8055</span>:<span class="number">80</span> -v /home/<span class="regexp">tr/download:/h5ai --name h5ai ilemonrain/h</span>5ai:full -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d -p <span class="number">8055</span>:<span class="number">80</span> -v /home/tr/download:/h<span class="number">5</span>ai --name h<span class="number">5</span>ai ilemonrain/h<span class="number">5</span>ai:full -d</span><br></pre></td></tr></table></figure>
+
 <p>如果你是用 docker 安装了 transmission ，而且下载路径是 <code>/home/tr/download</code> ，那么你可以直接使用上面的命令。</p>
 <p>如果你使用的是 qb ，你可以自己修改下载路径，例如将路径改为 <code>/path/to/downloads</code> ，改完的完整命令是这个</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">run</span> -d -p <span class="number">8055</span>:<span class="number">80</span> -v /path/<span class="keyword">to</span>/downloads:/h5ai <span class="comment">--name h5ai ilemonrain/h5ai:full -d</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d -p <span class="number">8055</span>:<span class="number">80</span> -v /path/to/downloads:/h<span class="number">5</span>ai --name h<span class="number">5</span>ai ilemonrain/h<span class="number">5</span>ai:full -d</span><br></pre></td></tr></table></figure>
+
 <p>装好后在浏览器输入 <code>ip:8085</code> 就可以看到里面的内容。</p>
 <p>如果后来觉得不需要了，可以选择停止这个容器</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">stop</span> h5ai</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> stop h<span class="number">5</span>ai</span><br></pre></td></tr></table></figure>
+
 <p>停止后觉得以后不会再用到它了，可以选择将它删除</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> rm h5ai</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> rm h<span class="number">5</span>ai</span><br></pre></td></tr></table></figure>
+
 <h2 id="三、Python-web"><a href="#三、Python-web" class="headerlink" title="三、Python web"></a>三、Python web</h2><p>这个是最简单的，基本所有的服务器都可以，而且不用额外安装其它的程序。只需要在 ssh 时进入到指定的文件夹，然后输入这条命令即可。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m SimpleHTTPServer</span><br></pre></td></tr></table></figure>
-<p>会默认采用8000端口,此时输入 <strong>IP:8000</strong> 或者 <strong>域名:8000</strong> ，即可访问当前目录下的文件，如果有 <strong>index.html </strong>则会默认加载。</p>
+<p>会默认采用8000端口,此时输入 <strong>IP:8000</strong> 或者 <strong>域名:8000</strong> ，即可访问当前目录下的文件，如果有 **index.html **则会默认加载。</p>
 <p>然后想要停止时，按<code>CTRL + C</code> 取消。<br>不过这种方法有挺多缺点的，比如不支持断点续传，开启时需一直保持 ssh 连接着，显示的文件信息简陋等。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第三种适合于临时下载的，前两种适合长时间的。如果机器本身有装 docker ，那我建议使用第二种。当然第一种也有好处，就是可以绑定指定的域名。</p>
 <p>各取所需吧，适合自己的需求的才是最好的。</p>

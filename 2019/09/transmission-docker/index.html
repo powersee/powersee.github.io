@@ -179,7 +179,7 @@
   
   <article class="passage-article">
     <blockquote>
-<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a href="https://www.vultr.com/?ref=8161953-4F" target="_blank" rel="noopener">点此链接注册充值 10 美元送 50 美元</a><br>送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧）</p>
+<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=8161953-4F">点此链接注册充值 10 美元送 50 美元</a><br>送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧）</p>
 </blockquote>
 <p>上次已经用 docker 安装了 qbittorrent，这是一个非常强大的 BT 软件，我个人是非常喜欢的。但是，它占的内存比较大，如果服务器还要做一些其它的工作，用这个可能就不太合适了。</p>
 <p><img src="https://i.loli.net/2019/09/10/lJAEmdBpbHKe4u5.png" alt="qb speed"></p>
@@ -188,7 +188,8 @@
 <p>这次使用一台纯净系统的服务器来装。</p>
 </blockquote>
 <h3 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">curl -sSL http<span class="variable">s:</span>//<span class="built_in">get</span>.docker.<span class="keyword">com</span>/ | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-<h3 id="安装-transmission"><a href="#安装-transmission" class="headerlink" title="安装 transmission"></a>安装 transmission</h3><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-<span class="ruby">-restart=always \</span></span><br><span class="line"><span class="ruby">--name transmission \</span></span><br><span class="line"><span class="ruby">-v /home/tr/<span class="symbol">torrents:</span>/to_download \</span></span><br><span class="line"><span class="ruby">-v /home/tr/<span class="symbol">download:</span>/output \</span></span><br><span class="line"><span class="ruby">-p <span class="number">9091</span><span class="symbol">:</span><span class="number">9091</span> \</span></span><br><span class="line"><span class="ruby">-p <span class="number">51413</span><span class="symbol">:</span><span class="number">51413</span> \</span></span><br><span class="line"><span class="ruby">-e USERNAME=admin \</span></span><br><span class="line"><span class="ruby">-e PASSWORD=admin \</span></span><br><span class="line"><span class="ruby">jaymoulin/transmission</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-transmission"><a href="#安装-transmission" class="headerlink" title="安装 transmission"></a>安装 transmission</h3><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">docker run -d <span class="string">\</span></span><br><span class="line">--restart=always <span class="string">\</span></span><br><span class="line">--name transmission <span class="string">\</span></span><br><span class="line">-v /home/tr/torrents:/to_download <span class="string">\</span></span><br><span class="line">-v /home/tr/download:/output <span class="string">\</span></span><br><span class="line">-p <span class="number">9091</span>:<span class="number">9091</span> <span class="string">\</span></span><br><span class="line">-p <span class="number">51413</span>:<span class="number">51413</span> <span class="string">\</span></span><br><span class="line">-e USERNAME=admin <span class="string">\</span></span><br><span class="line">-e PASSWORD=admin <span class="string">\</span></span><br><span class="line">jaymoulin/transmission</span><br></pre></td></tr></table></figure>
 <h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>输入 IP:9091 即可进入 transmission 的管理界面</p>
 <blockquote>
 <p>由于未知原因，现在创建好 transmission 这个容器之后，在输入用户名和密码那里，会一直被卡住，点登录之后还是让你再输入，完全无法进入……</p>
@@ -199,12 +200,16 @@
 <p>下载后的文件是保存在 <code>/home/tr/download</code> 这个路径下的</p>
 <p>想要取回本地，可以和上一篇文章一样，安装 caddy ，或者也可以使用 FTP 的方法。</p>
 <h3 id="取回本地"><a href="#取回本地" class="headerlink" title="取回本地"></a>取回本地</h3><p>但是下载好后文件是在服务器里，我想把它取回到电脑或者手机。那么，开启一个 http 服务即可。这里推荐两个方案：</p>
-<h2 id="一、h5ai"><a href="#一、h5ai" class="headerlink" title="一、h5ai"></a>一、h5ai</h2><p>一行命令即可，最简单<br><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line">docker run -d -p <span class="number">8055</span>:<span class="number">80</span> -v /home/<span class="regexp">tr/download:/h5ai --name h5ai ilemonrain/h</span>5ai:full -d</span><br></pre></td></tr></table></figure></p>
+<h2 id="一、h5ai"><a href="#一、h5ai" class="headerlink" title="一、h5ai"></a>一、h5ai</h2><p>一行命令即可，最简单</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d -p <span class="number">8055</span>:<span class="number">80</span> -v /home/tr/download:/h<span class="number">5</span>ai --name h<span class="number">5</span>ai ilemonrain/h<span class="number">5</span>ai:full -d</span><br></pre></td></tr></table></figure>
 <p>装好后在浏览器输入 <code>ip:8085</code> 就可以看到里面的内容</p>
-<h2 id="二、caddy"><a href="#二、caddy" class="headerlink" title="二、caddy"></a>二、caddy</h2><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget -<span class="keyword">N</span> --<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/ToyoDAdoubi/doubi/master/caddy_install.<span class="keyword">sh</span> &amp;&amp; chmod +<span class="keyword">x</span> caddy_install.<span class="keyword">sh</span> &amp;&amp; bash caddy_install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-<p>写入配置<br><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="comment">":80 &#123;  </span></span><br><span class="line"> root /home/<span class="keyword">tr</span></span><br><span class="line"> timeouts none  </span><br><span class="line"> gzip  </span><br><span class="line"> <span class="keyword">browse</span>  </span><br><span class="line">&#125;<span class="comment">" &gt; /usr/local/caddy/Caddyfile</span></span><br></pre></td></tr></table></figure></p>
-<p>启动 caddy<br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/caddy start</span></span><br></pre></td></tr></table></figure></p>
-<p>开放服务器 80 端口<br><figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">ufw allow <span class="number">80</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="二、caddy"><a href="#二、caddy" class="headerlink" title="二、caddy"></a>二、caddy</h2><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/ToyoDAdoubi/</span>doubi<span class="regexp">/master/</span>caddy_install.sh &amp;&amp; chmod +x caddy_install.sh &amp;&amp; bash caddy_install.sh</span><br></pre></td></tr></table></figure>
+<p>写入配置</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="comment">&quot;:80 &#123;  </span></span><br><span class="line"> root /home/<span class="keyword">tr</span></span><br><span class="line"> timeouts none  </span><br><span class="line"> gzip  </span><br><span class="line"> <span class="keyword">browse</span>  </span><br><span class="line">&#125;<span class="comment">&quot; &gt; /usr/local/caddy/Caddyfile</span></span><br></pre></td></tr></table></figure>
+<p>启动 caddy</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d/caddy start</span><br></pre></td></tr></table></figure>
+<p>开放服务器 80 端口</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ufw</span> <span class="literal">allow</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
 <p>完成后就可以在浏览器里，输入 <code>IP地址</code> 来访问下载好的文件了。如果是 MP4 文件的话，还可以支持在线播放。</p>
   </article>
   <aside class="table-content" id="site-toc">

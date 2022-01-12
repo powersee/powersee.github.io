@@ -178,11 +178,16 @@
   </h1>
   
   <article class="passage-article">
-    </p>
-<p>下面依然用这串代码<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">315</span> <span class="attr">width</span>=<span class="string">560</span> <span class="attr">src</span>=<span class="string">'视频的相对路径'</span> <span class="attr">frameborder</span>=<span class="string">0</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+    <p>下面依然用这串代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">315</span> <span class="attr">width</span>=<span class="string">560</span> <span class="attr">src</span>=<span class="string">&#x27;视频的相对路径&#x27;</span> <span class="attr">frameborder</span>=<span class="string">0</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>在本地的启动 web 服务，然后在浏览器打开，视频可以播放。不错，手机端也可以正常访问。此时将网页和视频文件放置在 GitHub 上，同样可以播放。但是有个缺点，一打开就自动播放，不知道怎么关闭。</p>
-<p>后来了解到用 video 标签的话，就可以设置它不自动播放，并且如果想让视频能够自动适应大小，只需要加上 div 标签就行。如下面这样<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>  <span class="attr">width</span>=<span class="string">"100%"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">src</span>=<span class="string">"视频路径"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<div width="100%"><br><video height="100%" width="100%" src="/misc/1.mp4" controls="controls"></video><br></div>
+<p>后来了解到用 video 标签的话，就可以设置它不自动播放，并且如果想让视频能够自动适应大小，只需要加上 div 标签就行。如下面这样</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>  <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">src</span>=<span class="string">&quot;视频路径&quot;</span> <span class="attr">controls</span>=<span class="string">&quot;controls&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<div  width="100%">
+<video height="100%" width="100%" src="/misc/1.mp4" controls="controls"></video>
+</div>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

@@ -183,9 +183,9 @@
 <h2 id="0，声卡驱动"><a href="#0，声卡驱动" class="headerlink" title="0，声卡驱动"></a>0，声卡驱动</h2><p>github 下载最新的 applealc ，放入 kexts 里的 other ，把里面的万能声卡移出来。clover configurator 里注入 id，重启完成。</p>
 <h2 id="1，调整按键"><a href="#1，调整按键" class="headerlink" title="1，调整按键"></a>1，调整按键</h2><p>由于使用 macOS 时，最主要用到的按键是 command ，在普通键盘上就是 Windows 键。为了能够和平时一样使用 ctrl + c , ctrl + v 来复制粘贴。可以在【系统偏好设置】–【键盘】–【修饰键…】里面将两者的位置换一下。</p>
 <h2 id="2，开启-hidpi"><a href="#2，开启-hidpi" class="headerlink" title="2，开启 hidpi"></a>2，开启 hidpi</h2><p>如果使用原生的分辨率，字体会非常的小，而且还会模糊。这种情况在 Windows 上面也有，不过 Windows 上我们可以开启屏幕缩放，比如我的 1080P 显示器，我就比较喜欢开启 115% 的缩放。但是在 macOS 上，官方的设定是用 4K 的显示器时，就可以在【系统偏好设置】–【显示器】开启。然而我并没有 4K 的显示器……<br>这时就只能自己来手动开启了。</p>
-<p><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">https://github.com/xzhih/one-key-hidpi</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/xzhih/one-key-hidpi">https://github.com/xzhih/one-key-hidpi</a></p>
 <p>用 GitHub 上的这个脚本很容易就可以开启。（在 Catalina 里面的会复杂一些，因为一些权限的问题）<br>然后，此时在【系统偏好设置】–【显示器】的缩放里面就能看到选项了。但是能选的并不多，这时可以下载一个工具，RDM</p>
-<p><a href="http://www.pc6.com/mac/441275.html" target="_blank" rel="noopener">http://www.pc6.com/mac/441275.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.pc6.com/mac/441275.html">http://www.pc6.com/mac/441275.html</a></p>
 <p>这个工具提供更多的选择，比如我的显示器是 1920 × 1200 的，在系统里有 1280 × 800 和 1650 × 1050 的选项，但是用这个工具后，我可以选择 1440 × 900 。这个分辨率我个人觉得更加合适。</p>
 <h2 id="3，oh-my-zsh-与-iterm2"><a href="#3，oh-my-zsh-与-iterm2" class="headerlink" title="3，oh my zsh 与 iterm2"></a>3，oh my zsh 与 iterm2</h2><p>由于系统本身就自带有 zsh 这个 shell 了，所以我只需要再装一下 oh-my-zsh ，然后在其装好时会询问【是否将 zsh 设置为默认的 shell】，选择是即可。<br>之后安装 iterm2 替代 terminal 。</p>
 <p>然后我还可以把之前系统的用户目录下的【.zshrc】和【.zsh_history】复制过来。</p>

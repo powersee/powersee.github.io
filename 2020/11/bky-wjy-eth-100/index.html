@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -184,10 +184,12 @@
 <p>collisions:0 txqueuelen:100</p>
 </blockquote>
 <p>以及通过 <code>dmesg</code> 命令查到这个</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">687120.156847</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">687122.156839</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br><span class="line">[<span class="meta">687126.156737</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">687139.156393</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">100</span>Mbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[687120.156847]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line"><span class="string">[687122.156839]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br><span class="line"><span class="string">[687126.156737]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line"><span class="string">[687139.156393]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">100</span>Mbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
+
 <p>看来确实是在某一时刻，以太网的网速从千兆降为百兆了。</p>
 <p>解决方案是，拔网线重插。速度就又恢复千兆了。<code>dmesg</code> 里面也有显示新的日志。</p>
-<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">1736677.257293</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line">[<span class="meta">1736681.257229</span>] rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[1736677.257293]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line"><span class="string">[1736681.257229]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
+
 <p>我拔下两秒后插回去，ssh 连接没断，smb 也可以继续访问。因此也没什么影响。</p>
 <p>这个问题好像在我家云上面更为明显，我记得之前用我家云的时候也碰到几次，当时还在论坛找到可以恢复千兆的命令，不过现在找不到了。</p>
 <p>因为贝壳云和我家云用的是同样的处理器，可能是硬件的通病吧，暂时也没什么更好的方法，只能发现降为百兆后就去重插一下网线就是了。</p>
@@ -219,9 +221,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

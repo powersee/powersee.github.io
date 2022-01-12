@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -179,12 +179,12 @@
   
   <article class="passage-article">
     <blockquote>
-<p>建议搭配视频观看：<a href="https://youtu.be/_3LqxpzISqE" target="_blank" rel="noopener">Youtube</a>    <a href="https://www.bilibili.com/video/BV13z411b7qY/" target="_blank" rel="noopener">bilibili</a></p>
+<p>建议搭配视频观看：<a target="_blank" rel="noopener" href="https://youtu.be/_3LqxpzISqE">Youtube</a>    <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13z411b7qY/">bilibili</a></p>
 </blockquote>
 <h2 id="0、前言"><a href="#0、前言" class="headerlink" title="0、前言"></a>0、前言</h2><p>之前折腾过把 N1 刷成 armbian 桌面版，<a href="/2019/12/N1-armbian/">斐讯 N1、P1 安装 armbian 变身电脑主机</a>可以当一台小电脑使用。后来觉得我没这个需求，所以就没去用它了。</p>
 <p>现在我想把 N1 刷成 armbian 服务器版，不需要桌面环境。因为我觉得，我用小钢炮最主要也是用 docker 和 smb 而已，那这个我用 armbian 也可以实现，而且刷成 armbian 我还可以用 WiFi ，N1 就不需要放在路由器旁边了。</p>
-<h2 id="1、写入-U-盘"><a href="#1、写入-U-盘" class="headerlink" title="1、写入 U 盘"></a>1、写入 U 盘</h2><p>将镜像【Armbian_5.77_Aml-s905_Ubuntu_bionic_default_5.0.2_20190401.img】写入 U 盘，放入 dtb【meson-gxl-s905d-phicomm-n1-xiangsm.dtb】，修改 uEnv.ini，将第一行的dtb 名字改一下。U盘做好了。xiangsm 大佬在恩山上的帖子：<a href="https://www.right.com.cn/FORUM/thread-510423-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/FORUM/thread-510423-1-1.html</a></p>
-<p>相关文件放在网盘：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> 的【盒子】文件夹中</p>
+<h2 id="1、写入-U-盘"><a href="#1、写入-U-盘" class="headerlink" title="1、写入 U 盘"></a>1、写入 U 盘</h2><p>将镜像【Armbian_5.77_Aml-s905_Ubuntu_bionic_default_5.0.2_20190401.img】写入 U 盘，放入 dtb【meson-gxl-s905d-phicomm-n1-xiangsm.dtb】，修改 uEnv.ini，将第一行的dtb 名字改一下。U盘做好了。xiangsm 大佬在恩山上的帖子：<a target="_blank" rel="noopener" href="https://www.right.com.cn/FORUM/thread-510423-1-1.html">https://www.right.com.cn/FORUM/thread-510423-1-1.html</a></p>
+<p>相关文件放在网盘：<a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a> 的【盒子】文件夹中</p>
 <blockquote>
 <p>armbian和dtb分别是什么来头，我简单说明一下：</p>
 <ul>
@@ -196,77 +196,97 @@
 <li>dtb文件需要随着内核编译，所以不同armbian内核版本必须使用配套的dtb文件。</li>
 <li>目前斐讯N1的dtb文件已经被armbian收录到官方源码库里，但是使用的时候linux负载会显示的很高，所以热心网友为armbian5.77编译了一个fix过的dtb文件。</li>
 </ul>
-<p>来自：<a href="https://yuerblog.cc/2019/10/23/%E6%96%90%E8%AE%AFn1-%E5%AE%8C%E7%BE%8E%E5%88%B7%E6%9C%BAarmbian%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener">斐讯N1 – 完美刷机Armbian教程</a></p>
+<p>来自：<a target="_blank" rel="noopener" href="https://yuerblog.cc/2019/10/23/%E6%96%90%E8%AE%AFn1-%E5%AE%8C%E7%BE%8E%E5%88%B7%E6%9C%BAarmbian%E6%95%99%E7%A8%8B/">斐讯N1 – 完美刷机Armbian教程</a></p>
 </li>
 </ul>
 </blockquote>
 <h2 id="1-5-首次开机需注意"><a href="#1-5-首次开机需注意" class="headerlink" title="1.5 首次开机需注意"></a>1.5 首次开机需注意</h2><p>第一次启动，用户名 root ，密码 1234 。</p>
 <p>登录成功后，会要求你更改密码，但是，但是，但是，需要你先输入当前的密码</p>
-<figure class="highlight nsis"><table><tr><td class="code"><pre><span class="line">（<span class="literal">current</span>）UNIX password：</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">（<span class="keyword">current</span>）UNIX <span class="keyword">password</span>：</span><br></pre></td></tr></table></figure>
+
 <p>也就是输入 1234，之后才是设置新的密码，要输入两次。</p>
 <p>这样改好密码之后，会要求你创建一个新的用户，这里我们可以不用创建的，按 <code>ctrl + c</code> 取消。然后需要再登录一次。</p>
-<h2 id="2、启动机器，修改源"><a href="#2、启动机器，修改源" class="headerlink" title="2、启动机器，修改源"></a>2、启动机器，修改源</h2><p><a href="https://www.right.com.cn/forum/thread-430903-1-1.html" target="_blank" rel="noopener">N1刷入Armbian后换软件源、安装Docker并提速</a>【这篇文章里的源是 debian 的】</p>
-<p><a href="https://www.dragoncave.me/2019/07/armbian-on-n1.html" target="_blank" rel="noopener">斐讯N1折腾记 - Armbian 5.77 刷入与优化</a>【这篇有 ubuntu 和 debian 】我上面用的镜像是 ubuntu 的。</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">vim</span> /etc/apt/sources.<span class="keyword">list</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、启动机器，修改源"><a href="#2、启动机器，修改源" class="headerlink" title="2、启动机器，修改源"></a>2、启动机器，修改源</h2><p><a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-430903-1-1.html">N1刷入Armbian后换软件源、安装Docker并提速</a>【这篇文章里的源是 debian 的】</p>
+<p><a target="_blank" rel="noopener" href="https://www.dragoncave.me/2019/07/armbian-on-n1.html">斐讯N1折腾记 - Armbian 5.77 刷入与优化</a>【这篇有 ubuntu 和 debian 】我上面用的镜像是 ubuntu 的。</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">vim <span class="regexp">/etc/</span>apt/sources.list</span><br></pre></td></tr></table></figure>
+
 <p>进来后，按 dG 就可以把里面所有的内容删除，然后按 i 就可以进入输入模式，将下面的内容粘贴进去即可。</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic main restricted universe multiverse</span><br><span class="line">#deb-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic main restricted universe multiverse</span><br><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic-security main restricted universe multiverse</span><br><span class="line">#deb-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic-security main restricted universe multiverse</span><br><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic-updates main restricted universe multiverse</span><br><span class="line">#deb-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic-updates main restricted universe multiverse</span><br><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic-backports main restricted universe multiverse</span><br><span class="line">#deb-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/ubuntu-ports/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">deb https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/ubuntu-ports/</span> bionic main restricted universe multiverse</span><br><span class="line"><span class="comment">#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main restricted universe multiverse</span></span><br><span class="line">deb https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/ubuntu-ports/</span> bionic-security main restricted universe multiverse</span><br><span class="line"><span class="comment">#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse</span></span><br><span class="line">deb https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/ubuntu-ports/</span> bionic-updates main restricted universe multiverse</span><br><span class="line"><span class="comment">#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse</span></span><br><span class="line">deb https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/ubuntu-ports/</span> bionic-backports main restricted universe multiverse</span><br><span class="line"><span class="comment">#deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>改 armbian 源</strong></p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">vim /etc/apt/sources<span class="selector-class">.list</span><span class="selector-class">.d</span>/armbian.list</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">vim <span class="regexp">/etc/</span>apt<span class="regexp">/sources.list.d/</span>armbian.list</span><br></pre></td></tr></table></figure>
+
 <p>将里面的那行注释掉（在前面添加 # ）然后添加这行</p>
 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/armbian bionic main bionic-utils bionic-desktop</span><br></pre></td></tr></table></figure>
+
 <p>改完这两个后</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">update</span></span><br><span class="line">apt <span class="keyword">upgrade</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">apt update</span></span><br><span class="line"><span class="attribute">apt upgrade</span></span><br></pre></td></tr></table></figure>
+
 <p>之后我视频中是安装了 zsh ，用这个 shell 会极大提高效率。有兴趣的看另外一篇文章去安装。</p>
 <p><a href="/2020/03/zsh-note">最强 shell 非 zsh 莫属</a></p>
 <h2 id="3、安装-docker-与改源"><a href="#3、安装-docker-与改源" class="headerlink" title="3、安装 docker 与改源"></a>3、安装 docker 与改源</h2><p>其实也可以用 armbian-config 里面的功能来安装。</p>
-<p>这里我参考的是这篇教程：<a href="https://www.right.com.cn/forum/thread-430903-1-1.html" target="_blank" rel="noopener">N1刷入Armbian后换软件源、安装Docker并提速</a></p>
-<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="string">curl </span>-<span class="string">fsSL </span><span class="string">https:</span>//<span class="string">get.</span><span class="string">docker.</span><span class="string">com </span>-o <span class="built_in">get-docker.sh</span></span><br><span class="line"><span class="built_in"></span></span><br><span class="line"><span class="built_in">sh</span> <span class="built_in">get-docker.sh</span> <span class="built_in">--mirror</span> <span class="string">Aliyun</span></span><br></pre></td></tr></table></figure>
+<p>这里我参考的是这篇教程：<a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-430903-1-1.html">N1刷入Armbian后换软件源、安装Docker并提速</a></p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="string">curl</span> -<span class="string">fsSL</span> <span class="string">https</span>://<span class="string">get</span>.<span class="string">docker</span>.<span class="string">com</span> -<span class="string">o</span> <span class="built_in">get-docker.sh</span></span><br><span class="line"></span><br><span class="line"><span class="string">sh</span> <span class="built_in">get-docker.sh</span> <span class="built_in">--mirror</span> <span class="string">Aliyun</span></span><br></pre></td></tr></table></figure>
+
 <p>使用上述命令安装会调用阿里云的镜像，安装速度较快。</p>
 <p>之后修改 docker 镜像源</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>docker<span class="regexp">/daemon.json</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>docker/daemon.json</span><br></pre></td></tr></table></figure>
+
 <p>粘贴下面内容</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"storage-driver"</span>: <span class="string">"overlay2"</span>,</span><br><span class="line">  <span class="attr">"registry-mirrors"</span>: [<span class="string">"https://dockerhub.azk8s.cn"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;storage-driver&quot;</span>: <span class="string">&quot;overlay2&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://dockerhub.azk8s.cn&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>重启 docker</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">systemctl daemon-reload</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">systemctl restart docker</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">systemctl daemon-reload</span></span><br><span class="line"><span class="attribute"></span></span><br><span class="line"><span class="attribute">systemctl restart docker</span></span><br></pre></td></tr></table></figure>
+
 <p>安装 portainer</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -<span class="selector-tag">p</span> <span class="number">9000</span>:<span class="number">9000</span> -v /var/run/docker<span class="selector-class">.sock</span>:/var/run/docker<span class="selector-class">.sock</span> -v portainer_data:/data --restart always portainer/portainer</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -p <span class="number">9000</span>:<span class="number">9000</span> -v <span class="regexp">/var/</span>run<span class="regexp">/docker.sock:/</span>var<span class="regexp">/run/</span>docker.sock -v portainer_data:<span class="regexp">/data --restart always portainer/</span>portainer</span><br></pre></td></tr></table></figure>
+
 <p>这样我们就可以在浏览器输入 <code>IP:9000</code> 来管理 docker 了。</p>
 <p>关于 docker 安装 qb 、filebrowser 之类，可以观看另外一篇文章，大概修改一下即可。</p>
 <p><a href="/2020/02/about-N1-nano/">N1 小钢炮系统相关</a></p>
-<h2 id="4、开机自动挂载硬盘"><a href="#4、开机自动挂载硬盘" class="headerlink" title="4、开机自动挂载硬盘"></a>4、开机自动挂载硬盘</h2><p>之后折腾开机自动挂载硬盘，参考这篇文章：<a href="https://blog.csdn.net/buxiaoxindasuile/article/details/49612867" target="_blank" rel="noopener">https://blog.csdn.net/buxiaoxindasuile/article/details/49612867</a></p>
+<h2 id="4、开机自动挂载硬盘"><a href="#4、开机自动挂载硬盘" class="headerlink" title="4、开机自动挂载硬盘"></a>4、开机自动挂载硬盘</h2><p>之后折腾开机自动挂载硬盘，参考这篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/buxiaoxindasuile/article/details/49612867">https://blog.csdn.net/buxiaoxindasuile/article/details/49612867</a></p>
 <p>这里我重启后，硬盘的设备名，就从 sdb 变成 sda 了，所以就重新编辑一下 fstab ，之后就可以正常挂载了。</p>
 <p>如果还是不行，就改用 uuid 吧。</p>
-<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">blkid </span>/dev/sdb1</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">blkid <span class="regexp">/dev/</span>sdb1</span><br></pre></td></tr></table></figure>
+
 <p>这条命令可以显示硬盘信息，里面就有 uuid，然后修改 fstab 即可。例如我就是在 fstab 最后添加这行。</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">UUID</span>=<span class="number">0000678400004823</span>   /media/<span class="literal">on</span>e      ntfs    defaults        <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">UUID</span>=<span class="number">0000678400004823</span>   /media/one      ntfs    defaults        <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="5、samba-共享"><a href="#5、samba-共享" class="headerlink" title="5、samba 共享"></a>5、samba 共享</h2><p>修改 apt 源 和 armbian 源 之后，再输入 armbian-config 就可以安装 samba 了。</p>
 <p>也可以用</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install samba</span><br></pre></td></tr></table></figure>
+
 <p>来安装。</p>
-<p>关于 samba 的配置，可以看这篇文章：<a href="https://wiki.jikexueyuan.com/project/linux/samba.html" target="_blank" rel="noopener">https://wiki.jikexueyuan.com/project/linux/samba.html</a></p>
+<p>关于 samba 的配置，可以看这篇文章：<a target="_blank" rel="noopener" href="https://wiki.jikexueyuan.com/project/linux/samba.html">https://wiki.jikexueyuan.com/project/linux/samba.html</a></p>
 <p>这里不要在 armbian-config 里修改，退出后用 vim 编辑 /etc/samba/smb.conf</p>
 <p>改完重启一下</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/smbd restart</span></span><br></pre></td></tr></table></figure>
-<h2 id="6、安装我家云固件的导航"><a href="#6、安装我家云固件的导航" class="headerlink" title="6、安装我家云固件的导航"></a>6、安装我家云固件的导航</h2><p>这时我又想，之前我家云上面的导航好像不错，而且它也是用 armbian 修改的，那我用 N1 应该也可以用这个导航吧。于是根据乘风大佬的这篇文章：<a href="https://blog.windtech.cf/index.php/archives/10/" target="_blank" rel="noopener">https://blog.windtech.cf/index.php/archives/10/</a></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d/smbd restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、安装我家云固件的导航"><a href="#6、安装我家云固件的导航" class="headerlink" title="6、安装我家云固件的导航"></a>6、安装我家云固件的导航</h2><p>这时我又想，之前我家云上面的导航好像不错，而且它也是用 armbian 修改的，那我用 N1 应该也可以用这个导航吧。于是根据乘风大佬的这篇文章：<a target="_blank" rel="noopener" href="https://blog.windtech.cf/index.php/archives/10/">https://blog.windtech.cf/index.php/archives/10/</a></p>
 <p>由于大佬的博客有时访问不了，我把导航传了一份到百度网盘中。</p>
-<p><a href="https://pan.baidu.com/s/1J0UYKHbEVWvmAdze_1bNIw" target="_blank" rel="noopener">https://pan.baidu.com/s/1J0UYKHbEVWvmAdze_1bNIw</a></p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1J0UYKHbEVWvmAdze_1bNIw">https://pan.baidu.com/s/1J0UYKHbEVWvmAdze_1bNIw</a></p>
 <p>提取码：6666</p>
 <p>在 armbian 上装了个导航。</p>
 <p>将导航下载后，改名，如 1.zip</p>
 <p>然后传到 N1 里面，<code>apt install zip</code> ，装一个 zip ，然后就可以解压这个压缩包。不过最好先把这个压缩包，移动到 /opt 中。也可以一开始就传到 /opt 中。</p>
 <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/opt</span></span><br><span class="line">unzip 1.zip <span class="comment">#会解压出来两个文件</span></span><br><span class="line">chmod +x install_navi.sh <span class="comment">#赋予脚本执行权限</span></span><br><span class="line"><span class="string">./install_navi.sh</span>	<span class="comment">#执行里面的安装脚本</span></span><br></pre></td></tr></table></figure>
+
 <p>一分多钟就可以安装完，然后在浏览器输入 N1 的 ip 就可以看到导航了。导航网页的位置在：/opt/wwwroot/navi/ ，可以自己修改里面的 index.php 。像我就自己修改了一些内容。</p>
-<p><img src="/img/2020/修改后的导航.jpg" alt="修改后的导航"></p>
+<p><img src="/img/2020/%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84%E5%AF%BC%E8%88%AA.jpg" alt="修改后的导航"></p>
 <h2 id="7、Nginx-开启-ipv6"><a href="#7、Nginx-开启-ipv6" class="headerlink" title="7、Nginx 开启 ipv6"></a>7、Nginx 开启 ipv6</h2><p>之后我将机器的 ipv6 地址绑定域名后，发现无法访问导航页面。而其它的端口是可以访问的，那难道是 nginx 的问题？查了一下，果然是因为 Nginx 没有开启 ipv6 支持导致的。开启方法如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /opt/etc/nginx/vhost/navi.conf</span><br></pre></td></tr></table></figure>
+
 <p>将 <code>listen 80;</code><br>改为 <code>listen [::]:80;</code></p>
 <p>之后再重启 Nginx 即可。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="string">/opt/sbin/nginx</span> -s <span class="keyword">reload</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/opt/</span>sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+
 <h2 id="8、用-rsync-备份"><a href="#8、用-rsync-备份" class="headerlink" title="8、用 rsync 备份"></a>8、用 rsync 备份</h2><p>因为我在 N1 上面搭建了一个 typecho 博客，文件都放在 /docker/typecho 中，为了安全，我想备份 typecho 文件夹到硬盘中，可以用这个命令</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rsync -av /docker/typecho /media/one/lib</span><br></pre></td></tr></table></figure>
-<p>rsync 使用详细可见：<a href="https://blog.csdn.net/wangjunjun2008/article/details/38658539" target="_blank" rel="noopener">https://blog.csdn.net/wangjunjun2008/article/details/38658539</a></p>
+
+<p>rsync 使用详细可见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wangjunjun2008/article/details/38658539">https://blog.csdn.net/wangjunjun2008/article/details/38658539</a></p>
 <p>当然这只是手动备份，我想设置它每天自动备份，于是用 <code>crontab -e</code> 进入计划任务编辑，在里面添加这一行</p>
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="number">0</span> <span class="number">2</span> * * * rsync -av /docker/typecho /media/one/<span class="class"><span class="keyword">lib</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="number">2</span> * * * rsync -av /docker/typecho /media/one/lib</span><br></pre></td></tr></table></figure>
+
 <p>这样每天的凌晨两点，就会自动备份一次。</p>
 <p>而且用 rsync 是增量备份，不用担心占太多空间的问题。</p>
 <h2 id="9、修改时区"><a href="#9、修改时区" class="headerlink" title="9、修改时区"></a>9、修改时区</h2><p>在 armbian-config 里面改就行。</p>
@@ -280,25 +300,30 @@
 <p>那么它还有另外的作用，就是<strong>备份</strong>。我现在才把系统写入emmc，之后我就可以脱离U盘使用这个系统了。但是，之后如果因为我的误操作，或者其它的原因，导致系统坏了，或者有些功能不能用了。那么这时，我可以重新插入U盘，再一次将U盘中的系统写入emmc。</p>
 <p>然后，可能有人会觉得，这样我的U盘岂不是，不能用来干其它事情了？因为里面存放着一个系统。那有没有什么办法，把里面的系统备份到电脑呢？</p>
 <p>答案是有的。此时将U盘插入电脑，然后再打开【USB image tool】，但是这次我们不是把 img 写入U盘，而是用它，把U盘中的系统，导出为 img 文件。点击右下角的 backup 就可以备份，你的U盘有多大，备份出来的文件就有多大。</p>
-<p><img src="/img/2020/备份U盘中的系统.jpg" alt="备份U盘中的系统"></p>
+<p><img src="/img/2020/%E5%A4%87%E4%BB%BDU%E7%9B%98%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F.jpg" alt="备份U盘中的系统"></p>
 <p>那么这样你就可以那U盘去干其它的事情了。而之后如果你有需要，就将刚才的备份的 img 文件，再次写入 U盘即可。</p>
-<h2 id="11、中文乱码问题"><a href="#11、中文乱码问题" class="headerlink" title="11、中文乱码问题"></a>11、中文乱码问题</h2><p>此时在终端中，无法显示和输入中文。解决方案来自 <a href="[https://yuerblog.cc/2019/10/23/%E6%96%90%E8%AE%AFn1-%E5%AE%8C%E7%BE%8E%E5%88%B7%E6%9C%BAarmbian%E6%95%99%E7%A8%8B/](https://yuerblog.cc/2019/10/23/斐讯n1-完美刷机armbian教程/">这篇文章</a>) 。</p>
+<h2 id="11、中文乱码问题"><a href="#11、中文乱码问题" class="headerlink" title="11、中文乱码问题"></a>11、中文乱码问题</h2><p>此时在终端中，无法显示和输入中文。解决方案来自 <a href="%5Bhttps://yuerblog.cc/2019/10/23/%E6%96%90%E8%AE%AFn1-%E5%AE%8C%E7%BE%8E%E5%88%B7%E6%9C%BAarmbian%E6%95%99%E7%A8%8B/%5D(https://yuerblog.cc/2019/10/23/%E6%96%90%E8%AE%AFn1-%E5%AE%8C%E7%BE%8E%E5%88%B7%E6%9C%BAarmbian%E6%95%99%E7%A8%8B/)">这篇文章</a> 。</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">vi <span class="regexp">/etc/</span>environment</span><br></pre></td></tr></table></figure>
+
 <p>将最后一行改为</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">LC_ALL</span>=<span class="string">"en_US.utf-8"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">LC_ALL</span>=<span class="string">&quot;en_US.utf-8&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p>之后重新连接 ssh 应该就可以了。</p>
 <h2 id="12、关于终端中的代理"><a href="#12、关于终端中的代理" class="headerlink" title="12、关于终端中的代理"></a>12、关于终端中的代理</h2><p>运行 Python 脚本需要依赖一些模块，那么就需要用到 pip</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> python3-pip</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">apt</span> install python<span class="number">3</span>-pip</span><br></pre></td></tr></table></figure>
+
 <p>然后就可以用 pip3 来安装模块了，比如</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> requests</span><br></pre></td></tr></table></figure>
+
 <p>不过由于国内的网络环境，你不一定能成功装上。这时可能就需要用代理了，如果你的电脑有开小飞机的话，那么可以设置 N1 通过电脑来代理访问。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">url=http://192.168.1.2:1080</span><br><span class="line">export http_proxy=$url; export https_proxy=$url</span><br></pre></td></tr></table></figure>
+
 <p>假设电脑的 ip 是 192.168.1.2 ，通过执行这两行命令之后，http https 的访问就会通过电脑的代理。例如 pip 安装模块，不用代理我根本没法安装成功，有时候 github clone 也一样，唉~</p>
 <p>不可详讲。。。</p>
 <hr>
-<p>相关文件的下载链接放在网盘：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> 的【盒子】文件夹中。</p>
+<p>相关文件的下载链接放在网盘：<a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a> 的【盒子】文件夹中。</p>
 <p>可能看完又有人要问，哪里可以买 N1 ？那一般就论坛买二手，拼多多买全新。这里分享一下论坛网友买 N1 的心得。</p>
-<p><img src="/img/2020/N1精打细算购买法.png" alt="N1精打细算购买法"></p>
+<p><img src="/img/2020/N1%E7%B2%BE%E6%89%93%E7%BB%86%E7%AE%97%E8%B4%AD%E4%B9%B0%E6%B3%95.png" alt="N1精打细算购买法"></p>
 <p>总之想省钱就多上论坛逛逛吧。然后我看有些店，原系统和小钢炮系统居然相差20多块，确实有点坑。不过现在卖的 N1 很多都是黑色版的，不知道区别大不大，要买得先去了解一下。</p>
 <hr>
 
@@ -329,9 +354,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

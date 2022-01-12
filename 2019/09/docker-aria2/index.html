@@ -179,34 +179,38 @@
   
   <article class="passage-article">
     <p>建议搭配之前的文章来观看：<a href="/2019/08/docker-qb">用服务器来离线下载 BT 种子，体验千兆网络的魅力</a></p>
-<p><a href="https://github.com/wahyd4/aria2-ariang-docker/blob/master/README.CN.md" target="_blank" rel="noopener">项目 GitHub 地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/wahyd4/aria2-ariang-docker/blob/master/README.CN.md">项目 GitHub 地址</a></p>
 <h3 id="安装-docker-如果机器没有的话）"><a href="#安装-docker-如果机器没有的话）" class="headerlink" title="安装 docker(如果机器没有的话）"></a>安装 docker(如果机器没有的话）</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">curl -sSL http<span class="variable">s:</span>//<span class="built_in">get</span>.docker.<span class="keyword">com</span>/ | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-<h3 id="最快速启动"><a href="#最快速启动" class="headerlink" title="最快速启动"></a>最快速启动</h3><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker run -d --name aria2-ui -v <span class="regexp">/home/</span><span class="string">down:</span><span class="regexp">/data -p 80:80 wahyd4/</span>aria2-ui</span><br></pre></td></tr></table></figure>
+
+<h3 id="最快速启动"><a href="#最快速启动" class="headerlink" title="最快速启动"></a>最快速启动</h3><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d --name aria<span class="number">2</span>-ui -v /home/down:/data -p <span class="number">80</span>:<span class="number">80</span> wahyd<span class="number">4</span>/aria<span class="number">2</span>-ui</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>Aria2: <a href="http://yourip/ui/" target="_blank" rel="noopener">http://yourip/ui/</a><ul>
-<li>假如你的 IP 是 123.123.123.123 ，这里你可以在浏览器输入 <a href="http://123.123.123.123/ui/" target="_blank" rel="noopener">http://123.123.123.123/ui/</a></li>
+<li>Aria2: <a target="_blank" rel="noopener" href="http://yourip/ui/">http://yourip/ui/</a><ul>
+<li>假如你的 IP 是 123.123.123.123 ，这里你可以在浏览器输入 <a target="_blank" rel="noopener" href="http://123.123.123.123/ui/">http://123.123.123.123/ui/</a></li>
 </ul>
 </li>
-<li>FileManger: <a href="http://yourip" target="_blank" rel="noopener">http://yourip</a><ul>
-<li>假如你的 IP 是 123.123.123.123 ，这里你可以在浏览器输入 <a href="http://123.123.123.123" target="_blank" rel="noopener">http://123.123.123.123</a></li>
+<li>FileManger: <a target="_blank" rel="noopener" href="http://yourip/">http://yourip</a><ul>
+<li>假如你的 IP 是 123.123.123.123 ，这里你可以在浏览器输入 <a target="_blank" rel="noopener" href="http://123.123.123.123/">http://123.123.123.123</a></li>
 </ul>
 </li>
 <li>访问文件管理器的默认账号和密码都是 admin</li>
 </ul>
 <p>这样下载的文件都放在 <code>/home/down</code> 这个文件夹里面</p>
-<p>文件夹没有写入权限，有兴趣看这篇文章了解 <a href="https://note.qidong.name/2018/01/docker-volume-permission/" target="_blank" rel="noopener">文章链接</a><br>不管原理，无脑给予 777</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">chmod <span class="number">777</span> /<span class="built_in">home</span>/down</span><br></pre></td></tr></table></figure>
+<p>文件夹没有写入权限，有兴趣看这篇文章了解 <a target="_blank" rel="noopener" href="https://note.qidong.name/2018/01/docker-volume-permission/">文章链接</a><br>不管原理，无脑给予 777</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">chmod <span class="number">777</span> <span class="regexp">/home/</span>down</span><br></pre></td></tr></table></figure>
+
 <p>强制删除容器</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> rm -f aria2-ui</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">rm</span> <span class="operator">-f</span> aria2<span class="literal">-ui</span></span><br></pre></td></tr></table></figure>
 <h3 id="加密下载界面"><a href="#加密下载界面" class="headerlink" title="加密下载界面"></a>加密下载界面</h3><p>由于前面的容器使用了 80 端口，所以想创建下面这个容器的话，要把前面的容器先删除了，有的小伙伴忘记删除前面的容器，导致下面这个容器一直无法建立。</p>
-<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d --name ariang \</span><br><span class="line">  -<span class="ruby">p <span class="number">80</span><span class="symbol">:</span><span class="number">80</span> \</span></span><br><span class="line"><span class="ruby">  -e PUID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e PGID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e ENABLE_AUTH=<span class="literal">true</span> \</span></span><br><span class="line"><span class="ruby">  -e RPC_SECRET=Hello \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_SSL=<span class="literal">false</span> \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_USER=user \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_PWD=pwd \</span></span><br><span class="line"><span class="ruby">  -v /home/<span class="symbol">down:</span>/data \</span></span><br><span class="line"><span class="ruby">  wahyd4/aria2-ui</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d --name ariang \</span><br><span class="line">  -p 80:80 \</span><br><span class="line">  -e <span class="attribute">PUID</span>=1000 \</span><br><span class="line">  -e <span class="attribute">PGID</span>=1000 \</span><br><span class="line">  -e <span class="attribute">ENABLE_AUTH</span>=<span class="literal">true</span> \</span><br><span class="line">  -e <span class="attribute">RPC_SECRET</span>=Hello \</span><br><span class="line">  -e <span class="attribute">ARIA2_SSL</span>=<span class="literal">false</span> \</span><br><span class="line">  -e <span class="attribute">ARIA2_USER</span>=user \</span><br><span class="line">  -e <span class="attribute">ARIA2_PWD</span>=pwd \</span><br><span class="line">  -v /home/down:/data \</span><br><span class="line">  wahyd4/aria2-ui</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>用户名：user</li>
 <li>密码：pwd</li>
 </ul>
 <h3 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h3><p>根据个人的需求来选择，如果觉得不需要加密 Aria2 的管理界面的，其实用第一种方式就行了。非常简单，一行命令即可。</p>
 <p>同时也可以结合 APP ：Transdrone_2.5.17.apk 来使用，这个我放在网盘里（在【手机软件】文件夹中），使用它来管理多个下载工具也是比较方便的。</p>
-<p><a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p>
+<p><a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a></p>
 <p><img src="https://i.loli.net/2019/09/30/SZ4jLRqiB5dzNgF.png" alt="transdrone"></p>
   </article>
   <aside class="table-content" id="site-toc">

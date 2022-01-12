@@ -184,13 +184,17 @@
 <p>我的思路是这样的，Linux 上的 qb，它有一个配置文件：<code>qBittorrent.conf</code> ，我通过修改这个文件，应该也是可以开启这个功能的。但是，我不知道添加什么语句，才能开启。所以我想到看一下我电脑的 qb 配置文件，来参考一下。</p>
 <p>那么我先查看一下我 Mac 上的配置文件：<code>qBittorrent.ini</code> ，它在用户目录下的隐藏文件夹<code>.config</code>里面，在这个文件里面，我找到了这一句</p>
 <figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line">Advanced\AnnounceToAllTrackers=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
 <p>它是放在 <code>[Preferences]</code>下面的，那么按理，我在 Linux 上也添加这一句，就可以开启这个功能了。</p>
 <p>Linux 上可能不同的发行版本，它配置文件的位置有可能不同，想我的 N1 小钢炮，它的配置文件是在这的：</p>
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">/var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span>/.<span class="title">config</span>/<span class="title">qBittorrent</span>/<span class="title">qBittorrent</span>.<span class="title">conf</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/var/</span>lib<span class="regexp">/qbittorrent/</span>.config<span class="regexp">/qBittorrent/</span>qBittorrent.conf</span><br></pre></td></tr></table></figure>
+
 <p>而我之前用脚本安装的 qb ，它的配置文件是在 home 目录下的某个位置，而如果在 docker 上面，它在容器中的位置可能也不一样吧。所以如果找不到，可以全局搜索一下：</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">find</span> / -name qBittorrent.conf</span><br></pre></td></tr></table></figure>
+
 <p>找到之后，用 vim 编辑这个文件，添加</p>
 <figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line">Advanced\AnnounceToAllTrackers=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
 <p>保存，重启 qb（不会的话就重启机器）</p>
 <p>然后就成功了，此时 qb 在下 BT 任务时，就可以连接多个 tracker 了。</p>
   </article>

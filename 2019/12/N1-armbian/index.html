@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -178,11 +178,11 @@
   </h1>
   
   <article class="passage-article">
-    <p>镜像下载地址：<a href="https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/" target="_blank" rel="noopener">https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/</a></p>
+    <p>镜像下载地址：<a target="_blank" rel="noopener" href="https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/">https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/</a></p>
 <p>但是，其实我之前折腾过很久，一直没法进入启动界面，一次又一次的放弃。早上突然想到会不会是我的写入工具有问题？</p>
 <p>所以改用另外一个将镜像写入 U盘的工具，再试一下。</p>
 <p>结果，还是不行……</p>
-<p>然后仔细看看教程，<a href="https://post.smzdm.com/p/aqnl5kz2/" target="_blank" rel="noopener">这篇文章</a>，难不成得先修改 dtb 才可以启动？试一下，果然如此。需要修改 <strong>uEnv.ini</strong> 这个文件。将第一行的dtb_name后面的文字替换成dtb文件夹里斐讯N1的dtb文件名，保存后再来启动就可以了。</p>
+<p>然后仔细看看教程，<a target="_blank" rel="noopener" href="https://post.smzdm.com/p/aqnl5kz2/">这篇文章</a>，难不成得先修改 dtb 才可以启动？试一下，果然如此。需要修改 <strong>uEnv.ini</strong> 这个文件。将第一行的dtb_name后面的文字替换成dtb文件夹里斐讯N1的dtb文件名，保存后再来启动就可以了。</p>
 <p>所以跟用什么工具将镜像写入U盘完全没有关系，用</p>
 <ul>
 <li>usb-image-tool</li>
@@ -196,19 +196,20 @@
 <p>进入桌面系统后，这就是一台电脑主机了，可以上网，看视频，听音乐，编程……</p>
 <p>但是想要更好地使用它，我们还得进行一系列的配置。想折腾可以耗费不少的时间。</p>
 <hr>
-<p>不过，后来我发现恩山有位大佬，直接把他自己修改好的系统打包上传上来，这样我们就可以直接使用他的系统，不用自己去配置了。<a href="https://right.com.cn/forum/thread-1380140-1-1.html" target="_blank" rel="noopener">帖子链接</a></p>
-<p>2020年7月，原作者后来又更新了其它版本的镜像，现在 <a href="https://www.right.com.cn/forum/thread-3758513-1-1.html" target="_blank" rel="noopener">最新的帖子</a></p>
+<p>不过，后来我发现恩山有位大佬，直接把他自己修改好的系统打包上传上来，这样我们就可以直接使用他的系统，不用自己去配置了。<a target="_blank" rel="noopener" href="https://right.com.cn/forum/thread-1380140-1-1.html">帖子链接</a></p>
+<p>2020年7月，原作者后来又更新了其它版本的镜像，现在 <a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-3758513-1-1.html">最新的帖子</a></p>
 <p>帖子里有百度网盘的链接，里面主要有三个版本，32G 16G 8G ，指的是用这个系统 U盘最少的容量，如果你 U盘大于或等于 32G，那三个版本都可以用。</p>
 <p>16G 镜像下载下来只有八百多兆，因为里面的软件最少，没有 docker 这些软件。8G 的比较好，安装好了 docker，并且容量适中，3G 多。32G 版本我没有下。</p>
-<p>而且，用官方系统会出现没有 WiFi 的问题，<a href="https://right.com.cn/forum/thread-995217-1-1.html" target="_blank" rel="noopener">这个帖子</a> 有讲到，看来用比较老的系统就可以用 WiFi。而使用恩山大佬打包的系统可以使用 WiFi 👍</p>
+<p>而且，用官方系统会出现没有 WiFi 的问题，<a target="_blank" rel="noopener" href="https://right.com.cn/forum/thread-995217-1-1.html">这个帖子</a> 有讲到，看来用比较老的系统就可以用 WiFi。而使用恩山大佬打包的系统可以使用 WiFi 👍</p>
 <blockquote>
 <p> 所以我个人的建议是直接使用打包的系统。</p>
 </blockquote>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>不管是使用原生的系统，还是打包的系统，都需要进行下面的配置。</p>
 <h3 id="改源"><a href="#改源" class="headerlink" title="改源"></a>改源</h3><p>默认的软件源可以连接到，但是慢到怀疑人生。把它改为国内的源，这样我们安装或更新软件会快很多。</p>
-<p><strong>改软件源</strong> <a href="https://www.jiayie.xyz/2019/06/26/N1刷入Armbian后换软件源、安装Docker并提速/" target="_blank" rel="noopener">文章链接</a></p>
+<p><strong>改软件源</strong> <a target="_blank" rel="noopener" href="https://www.jiayie.xyz/2019/06/26/N1%E5%88%B7%E5%85%A5Armbian%E5%90%8E%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90%E3%80%81%E5%AE%89%E8%A3%85Docker%E5%B9%B6%E6%8F%90%E9%80%9F/">文章链接</a></p>
 <p>vim /etc/apt/sources.list</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.ustc.edu.cn/debian stretch main contrib non-free</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.ustc.edu.cn/debian stretch-updates main contrib non-free</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.ustc.edu.cn/debian stretch-backports main contrib non-free</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.ustc.edu.cn/debian-security/ stretch/updates main contrib non-free</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/debian stretch main contrib non-free</span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/debian stretch-updates main contrib non-free</span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/debian stretch-backports main contrib non-free</span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn<span class="regexp">/debian-security/</span> stretch/updates main contrib non-free</span><br></pre></td></tr></table></figure>
+
 <p><strong>改 armbian 源</strong></p>
 <p>vim /etc/apt/sources.list.d/armbian.list</p>
 <p>将里面的那行注释掉（在前面添加 # ）然后添加这行</p>
@@ -240,9 +241,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

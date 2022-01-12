@@ -183,24 +183,32 @@
 <p>不同的发行版有不同的包管理工具，安装过程却都差不多，apt install zsh 像这样直接安装即可。</p>
 <hr>
 <p>下载 oh my zsh</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+
 <p>可恶的墙，哎，下载不了的使用这个吧</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://gitee.com/powersee/ohmyzsh/raw/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://gitee.com/powersee/ohmyzsh/raw/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+
 <p>下载 zsh-autosuggestions 这个插件</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone git:<span class="regexp">//gi</span>thub.com<span class="regexp">/zsh-users/</span>zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+
 <p>不行的话用这行</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>tee.com<span class="regexp">/powersee/</span>zsh-autosuggestions.git <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+
 <p>编辑 .zshrc 启用插件</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+
 <p>将 zsh-autosuggestions 添加到插件里，加在 git 后面即可，可以用空格，也可以换行。</p>
 <p>然后由于有时连接的设备太多，不太容易分清楚哪一台，所以我喜欢用 <code>ys</code> 这个主题。一般修改第 11 行。</p>
 <p>然后对于常用命令，可以用 alias 来自定义，比如找个空白处，写上</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> d=<span class="string">"docker"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> d=<span class="string">&quot;docker&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p>然后重新读取一下配置文件</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+
 <p>此时输入 <code>d info</code> 就等于 输入 <code>docker info</code></p>
 <p>如果后期配置文件搞得乱七八糟，或者误删了，可以使用这个来恢复成默认</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
+
 
   </article>
   <aside class="table-content" id="site-toc">

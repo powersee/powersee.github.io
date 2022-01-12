@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,随笔," />
+    <meta name="keywords" content="随笔,设备," />
   
 
   
@@ -181,22 +181,25 @@
     <p>终究还是按捺不住想薅羊毛的欲望，上了白嫖咪咕版 kindle 的车。虽然跟之前的 海信A5、腾讯口袋阅相比，咪咕的要求低了很多，只需要每天阅读 15 分钟，连续 100 天即可。</p>
 <p>但是，翻车的几率还是挺大的。为了提高成功率，我做了一些研究。</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>首先我在网上收集了一些图片。</p>
-<p><img src="\img\2020\小丸子打卡图.jpg" alt="小丸子打卡图"></p>
-<p><img src="\img\2020\红色打卡图-1592296231569.jpg" alt="红色打卡图"></p>
+<p><img src="/img/2020/%E5%B0%8F%E4%B8%B8%E5%AD%90%E6%89%93%E5%8D%A1%E5%9B%BE.jpg" alt="小丸子打卡图"></p>
+<p><img src="/img/2020/%E7%BA%A2%E8%89%B2%E6%89%93%E5%8D%A1%E5%9B%BE-1592296231569.jpg" alt="红色打卡图"></p>
 <p>来两张适合全面屏的</p>
-<p><img src="\img\2020\白嫖打开图-1592296454315.png" alt="白嫖打开图"></p>
-<p><img src="\img\2020\记得打卡.jpg" alt="记得打卡"></p>
+<p><img src="/img/2020/%E7%99%BD%E5%AB%96%E6%89%93%E5%BC%80%E5%9B%BE-1592296454315.png" alt="白嫖打开图"></p>
+<p><img src="/img/2020/%E8%AE%B0%E5%BE%97%E6%89%93%E5%8D%A1.jpg" alt="记得打卡"></p>
 <h3 id="1、锁屏壁纸"><a href="#1、锁屏壁纸" class="headerlink" title="1、锁屏壁纸"></a>1、锁屏壁纸</h3><p>将这些打卡图片设置为锁屏壁纸，这样每次打开手机就能看到。</p>
 <h3 id="2、微信聊天背景图"><a href="#2、微信聊天背景图" class="headerlink" title="2、微信聊天背景图"></a>2、微信聊天背景图</h3><p>还可以设置为微信常聊对象的背景图。</p>
 <h3 id="3、打卡群"><a href="#3、打卡群" class="headerlink" title="3、打卡群"></a>3、打卡群</h3><p>打卡群非常重要，个人认为，建立一个 5-8 个人的微信群，每天打卡完成就到群里报道，如果发现有人晚上 8 点还没打卡，就可以 @ ta 提醒一下。</p>
 <h3 id="4、公众号设置提醒"><a href="#4、公众号设置提醒" class="headerlink" title="4、公众号设置提醒"></a>4、公众号设置提醒</h3><p>公众号 【微定时】可以设置每天定时提醒，我将其置顶，如果当天没有打卡，那个小红点就一直在那里。</p>
 <h3 id="5、每天邮件提醒"><a href="#5、每天邮件提醒" class="headerlink" title="5、每天邮件提醒"></a>5、每天邮件提醒</h3><p>可以利用一个 python 脚本，每天发 Email 给自己，起到提醒作用。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> yagmail</span><br><span class="line"></span><br><span class="line">yag = yagmail.SMTP(user=<span class="string">'xxx@163.com'</span>,host=<span class="string">'smtp.163.com'</span>)</span><br><span class="line"></span><br><span class="line">contents = [<span class="string">'记得打卡啊，想想你的 468 '</span>]</span><br><span class="line"></span><br><span class="line">yag.send(<span class="string">'xxxxxx@qq.com'</span>,<span class="string">'签到提醒'</span>,contents)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> yagmail</span><br><span class="line"></span><br><span class="line">yag = yagmail.SMTP(user=<span class="string">&#x27;xxx@163.com&#x27;</span>,host=<span class="string">&#x27;smtp.163.com&#x27;</span>)</span><br><span class="line"></span><br><span class="line">contents = [<span class="string">&#x27;记得打卡啊，想想你的 468 &#x27;</span>]</span><br><span class="line"></span><br><span class="line">yag.send(<span class="string">&#x27;xxxxxx@qq.com&#x27;</span>,<span class="string">&#x27;签到提醒&#x27;</span>,contents)</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="6、使用-autojs-脚本自动翻页"><a href="#6、使用-autojs-脚本自动翻页" class="headerlink" title="6、使用 autojs 脚本自动翻页"></a>6、使用 autojs 脚本自动翻页</h3><p>用这个感觉还是有可能被软件检测到，虽然现在手机升级到 miui12 了，可以禁止 咪咕阅读 读取手机里的应用列表，不过感觉还是有危险，最好还是不用为好。</p>
 <h2 id="其它信息"><a href="#其它信息" class="headerlink" title="其它信息"></a>其它信息</h2><h3 id="断网能否统计阅读时间"><a href="#断网能否统计阅读时间" class="headerlink" title="断网能否统计阅读时间"></a>断网能否统计阅读时间</h3><p>刚才测试了一下，在开着飞行模式的状态下看书，能否统计阅读时间？看了十几分钟后，关闭飞行模式，联网。发现时间没有统计。。。然后继续阅读十分钟，再来看统计时间，发现阅读时间变30分钟了。 那看来，断网时也是有统计的，不过显示出来需要一段时间后。所以最好还是保持联网吧。 </p>
 <h3 id="电量"><a href="#电量" class="headerlink" title="电量"></a>电量</h3><p>我这台感觉电量还行吧，一天阅读30分钟，十天下来，电量剩 8%，这还是在联网的状态，如果断网应该还能用更久。</p>
 <h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><p>咪咕应该是用安卓系统，用数据线连接电脑的话，显示的是这样的</p>
-<p><img src="\img\2020\咪咕连接电脑.png" alt="咪咕连接电脑"></p>
+<p><img src="/img/2020/%E5%92%AA%E5%92%95%E8%BF%9E%E6%8E%A5%E7%94%B5%E8%84%91.png" alt="咪咕连接电脑"></p>
 <p>而用普通版 kindle 连接电脑，则显示的是像 U盘那样的。</p>
 <h3 id="支持什么格式的书？"><a href="#支持什么格式的书？" class="headerlink" title="支持什么格式的书？"></a>支持什么格式的书？</h3><p>打开咪咕的 WLAN 传书，可以看到</p>
 <blockquote>
@@ -234,9 +237,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/%E9%9A%8F%E7%AC%94/"><i class="fa fa-tags"></i>随笔</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

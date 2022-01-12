@@ -179,29 +179,34 @@
   
   <article class="passage-article">
     <p>今天介绍一个 python 库 —— telethon，使用它我们可以在 Linux 服务器上登录 telegram，可以获取群消息、联系人，以及今天要重点介绍的自动发送消息。</p>
-<p>更多的内容可以查看官方文档：<a href="https://docs.telethon.dev/en/latest/" target="_blank" rel="noopener">https://docs.telethon.dev/en/latest/</a></p>
+<p>更多的内容可以查看官方文档：<a target="_blank" rel="noopener" href="https://docs.telethon.dev/en/latest/">https://docs.telethon.dev/en/latest/</a></p>
 <h3 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h3><p>首先需要有 python 环境，我这里在 Ubuntu 服务器上面演示的，我用的是 python3</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> telethon</span><br></pre></td></tr></table></figure>
+
 <p>安装成功后可以通过执行下面这个来检查</p>
-<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">pytho<span class="symbol">n3</span> -c <span class="string">"import telethon; print(telethon.__version__)"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">pytho<span class="symbol">n3</span> -c <span class="string">&quot;import telethon; print(telethon.__version__)&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p>我目前装的版本是 <code>1.21.1</code></p>
 <h3 id="2、"><a href="#2、" class="headerlink" title="2、"></a>2、</h3><p>之后来到浏览器，需要申请 API</p>
-<p><a href="https://my.telegram.org/auth?to=apps" target="_blank" rel="noopener">https://my.telegram.org/auth?to=apps</a></p>
-<p><img src="\img\2021\2021-06-02_22-00-41.jpg" alt="2021-06-02_22-00-41"></p>
+<p><a target="_blank" rel="noopener" href="https://my.telegram.org/auth?to=apps">https://my.telegram.org/auth?to=apps</a></p>
+<p><img src="/img/2021/2021-06-02_22-00-41.jpg" alt="2021-06-02_22-00-41"></p>
 <p>填写自己的手机号，前面的 <code>+</code> 我是有填的，不知道不填行不行。点击 next 按钮后我们的 telegram 客户端就会收到一条验证消息，验证码是英文字母，还挺长的。</p>
 <p>之后需要创建一个 application ，要填的就是 App title 和 Short name 这两个而已，主要只能 <code>英文字母和数字</code> ，不可以用下划线，并且要在 5-32 个字符之间。可以参考这么填。</p>
 <blockquote>
 <p>App title: firstApp<br>Short name: 12345</p>
 </blockquote>
 <p>完成后可以看到 <code>api_id、api_hash</code> 这两个，把它们保存下来。需要将它们填写到下面的脚本里。</p>
-<h3 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> telethon <span class="keyword">import</span> TelegramClient</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use your own values from my.telegram.org</span></span><br><span class="line">api_id = <span class="number">12345</span></span><br><span class="line">api_hash = <span class="string">'0123456789abcdef0123456789abcdef'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The first parameter is the .session file name (absolute paths allowed)</span></span><br><span class="line"><span class="keyword">with</span> TelegramClient(<span class="string">'anon'</span>, api_id, api_hash) <span class="keyword">as</span> client:</span><br><span class="line">    client.loop.run_until_complete(client.send_message(<span class="string">'me'</span>, <span class="string">'Hello, myself!'</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> telethon <span class="keyword">import</span> TelegramClient</span><br><span class="line"></span><br><span class="line"><span class="comment"># Use your own values from my.telegram.org</span></span><br><span class="line">api_id = <span class="number">12345</span></span><br><span class="line">api_hash = <span class="string">&#x27;0123456789abcdef0123456789abcdef&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The first parameter is the .session file name (absolute paths allowed)</span></span><br><span class="line"><span class="keyword">with</span> TelegramClient(<span class="string">&#x27;anon&#x27;</span>, api_id, api_hash) <span class="keyword">as</span> client:</span><br><span class="line">    client.loop.run_until_complete(client.send_message(<span class="string">&#x27;me&#x27;</span>, <span class="string">&#x27;Hello, myself!&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
 <p>完成后保存，例如我这里保存为 tele-test.py ，然后通过 <code>python3 tele-test.py</code> 来执行这个脚本。它会让我们输入手机号码，因为这是我们第一次在陌生的设备上登录，之后在 telegram 客户端里我们会收到一个验证码，输入后就可以登录了。（此处手机号前面的 + 我就没填了）</p>
 <figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Please enter your phone (<span class="keyword">or</span> bot <span class="keyword">token</span>): <span class="number">123456789</span></span><br><span class="line">Please enter <span class="keyword">the</span> code you received: <span class="number">11631</span></span><br><span class="line">Signed <span class="keyword">in</span> successfully <span class="keyword">as</span> powersee</span><br></pre></td></tr></table></figure>
+
 <p>那么这样我们在服务器上面登录了，并且此时也已经成功地发送了一条消息。就是给 <code>me</code> 这个用户发送 <code>Hello, myself!</code> 这条消息。其实就是将这句话，保存到 “保存的消息”里面而已。如果你想发送给其他人，以及修改内容，就修改一下脚本的内容就行。</p>
 <p>里面的 anon 是缓存的密钥，第一次执行脚本后，我们输出手机号和验证码，完成后脚本所在文件夹就会出现一个 <code>anon.session</code> 文件，下次再执行这个脚本就不用输入手机号验证了。你可以将它移动到其它地方，但是记得也修改一下脚本里的内容，如将 acon 改为 <code>/opt/acon</code> 。</p>
 <h3 id="4、"><a href="#4、" class="headerlink" title="4、"></a>4、</h3><p>然后想要实现定时执行的话，需要用到 crontab ，可以轻松实现每天定时发送消息给某个用户。</p>
 <p>如果想让发送时间有些变化的话，可以在 python 里面加入 time 和 random</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line">time.sleep(random.randint(<span class="number">5</span>,<span class="number">200</span>))</span><br></pre></td></tr></table></figure>
+
 <p>这样会随机暂停 5 到 200 秒，因此每次发送消息的时间就不同了。</p>
 
   </article>

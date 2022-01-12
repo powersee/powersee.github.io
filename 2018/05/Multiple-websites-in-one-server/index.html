@@ -178,10 +178,13 @@
   </h1>
   
   <article class="passage-article">
-    <h3 id="本操作基于Ubuntu"><a href="#本操作基于Ubuntu" class="headerlink" title="本操作基于Ubuntu"></a>本操作基于Ubuntu</h3><p>我的nginx访问的根目录<br><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">/<span class="built_in">home</span>/wwwroot/<span class="built_in">default</span></span><br></pre></td></tr></table></figure></p>
-<p>创建一个”vhost”目录<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">sudo <span class="keyword">mkdir</span> /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/vhost</span><br></pre></td></tr></table></figure></p>
+    <h3 id="本操作基于Ubuntu"><a href="#本操作基于Ubuntu" class="headerlink" title="本操作基于Ubuntu"></a>本操作基于Ubuntu</h3><p>我的nginx访问的根目录 </p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/home/</span>wwwroot/<span class="keyword">default</span></span><br></pre></td></tr></table></figure>
+<p>创建一个”vhost”目录</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo mkdir <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf/vhost</span><br></pre></td></tr></table></figure>
 <hr>
-<p><span style="color: #ff0000;">创建siteA的配置文件</span><br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf<span class="regexp">/vhost/</span>vhost_siteA.conf</span><br></pre></td></tr></table></figure></p>
+<p><span style="color: #ff0000;">创建siteA的配置文件</span></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf<span class="regexp">/vhost/</span>vhost_siteA.conf</span><br></pre></td></tr></table></figure>
 <pre class="lang:default decode:true">    server {
     listen       80;                        # 监听端口
     server_name www.siteA.com siteA.com;    # 站点域名
@@ -204,7 +207,8 @@
 }</pre>
 
 <hr>
-<p><span style="color: #ff0000;">创建siteB的配置文件</span><br><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/etc/</span>nginx<span class="regexp">/vhost/</span>vhost_siteB.conf</span><br></pre></td></tr></table></figure></p>
+<p><span style="color: #ff0000;">创建siteB的配置文件</span></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/etc/</span>nginx<span class="regexp">/vhost/</span>vhost_siteB.conf</span><br></pre></td></tr></table></figure>
 <pre class="lang:default decode:true ">    server {
     listen       80;                        # 监听端口
     server_name www.siteA.com siteA.com;    # 站点域名
@@ -227,8 +231,11 @@
 }</pre>
 
 <hr>
-<p>修改nginx.conf<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">sudo vi /usr/<span class="keyword">local</span>/nginx/<span class="keyword">conf</span>/nginx.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure></p>
-<p>在http里加入这段<br><figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf<span class="regexp">/vhost/</span>*.conf;</span><br></pre></td></tr></table></figure></p>
+<p>修改nginx.conf</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf/nginx.conf</span><br></pre></td></tr></table></figure>
+<p>在http里加入这段</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf<span class="regexp">/vhost/</span>*.conf;</span><br></pre></td></tr></table></figure>
+
 <p>重启 nginx 即可。</p>
   </article>
   <aside class="table-content" id="site-toc">

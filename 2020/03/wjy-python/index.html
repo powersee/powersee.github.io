@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux,python," />
+    <meta name="keywords" content="Linux,设备,python," />
   
 
   
@@ -181,18 +181,24 @@
     <p>需要先安装pip</p>
 <p>对于 Python3.x 的</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">apt-<span class="builtin-name">get</span> install python3-pip</span><br></pre></td></tr></table></figure>
+
 <p>装好后用 pip3 来装 requests 这个模块</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> requests</span><br></pre></td></tr></table></figure>
+
 <p>之后我们就可以到 github 上面拉取 tieba 签到脚本了。</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/powersee/</span>some-scripts<span class="regexp">/master/</span>baidutieba_signin.py</span><br></pre></td></tr></table></figure>
+
 <p>然后需要填写 cookie ，之后就能用 Python 来运行这个脚本了。</p>
 <p><img src="/img/2020/firefox-cookie.jpg" alt="firefox-cookie"></p>
 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">python3</span> baidutieba_signin.<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
+
 <p>一切顺利的话，就看到签到信息了。但是这还不够，我想让它每天自动执行。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
 <p>之后会让你选择编辑器，默认是使用 nano ，这个比较容易使用。也可以选择第二个 vim 。当然这里选后不喜欢，可以用 select-editor 这个命令来重新选择。</p>
 <p>进入编辑器后，在里面添加这一行，就可以在每天的 7 点和 8 点，自动执行这个脚本去签到，然后将输出的信息，保存在 /root/tieba.log 这个文件里。</p>
 <figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">0 </span><span class="number">7</span>,<span class="number">8</span> * * * python3 /root/baidutieba_signin.py &gt;&gt; /root/tieba.<span class="keyword">log</span></span><br></pre></td></tr></table></figure>
+
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -221,9 +227,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
      
       <a href="/tags/python/"><i class="fa fa-tags"></i>python</a>
     

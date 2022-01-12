@@ -179,30 +179,35 @@
   
   <article class="passage-article">
     <p>简书刷机教程</p>
-<p><a href="https://www.jianshu.com/p/695fa3b0dab5" target="_blank" rel="noopener">https://www.jianshu.com/p/695fa3b0dab5</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/695fa3b0dab5">https://www.jianshu.com/p/695fa3b0dab5</a></p>
 <p>拆解与介绍</p>
-<p><a href="https://www.mydigit.cn/forum.php?mod=viewthread&amp;tid=139874" target="_blank" rel="noopener">https://www.mydigit.cn/forum.php?mod=viewthread&amp;tid=139874</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.mydigit.cn/forum.php?mod=viewthread&amp;tid=139874">https://www.mydigit.cn/forum.php?mod=viewthread&amp;tid=139874</a></p>
 <p>扩展玩法</p>
-<p><a href="https://www.right.com.cn/forum/thread-3773109-1-1.html" target="_blank" rel="noopener">乐橙SN1破解补丁包-机顶盒桌面-去限制-开ADB-ROOT-安装未知来源软件</a></p>
-<p><a href="https://post.smzdm.com/p/aoo8oqzn/" target="_blank" rel="noopener">乐橙SN1 扩展 Transmission插件， 内置硬盘充分利用 PT必备</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-3773109-1-1.html">乐橙SN1破解补丁包-机顶盒桌面-去限制-开ADB-ROOT-安装未知来源软件</a></p>
+<p><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/aoo8oqzn/">乐橙SN1 扩展 Transmission插件， 内置硬盘充分利用 PT必备</a></p>
 <p>由于我依然还是无法刷机，所以只能改为研究怎么折腾原生系统了。</p>
 <h4 id="自带的远程下载软件"><a href="#自带的远程下载软件" class="headerlink" title="自带的远程下载软件"></a>自带的远程下载软件</h4><p>与其它 bt 软件连接的端口，似乎每次都变化。我通过在电脑使用 qb 做种，然后 sn1 下载这个种子资源，了解到 sn1 在 qb 中显示的 客户端 信息为 client_test/1.1.1.0，估计是他们自己搞的一个 BT 软件吧。</p>
 <h4 id="硬盘的路径"><a href="#硬盘的路径" class="headerlink" title="硬盘的路径"></a>硬盘的路径</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/linux/m</span>nt<span class="regexp">/lv/</span></span><br></pre></td></tr></table></figure>
-<h4 id="web-网页的路径"><a href="#web-网页的路径" class="headerlink" title="web 网页的路径"></a>web 网页的路径</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/linux/m</span>nt<span class="regexp">/web</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="web-网页的路径"><a href="#web-网页的路径" class="headerlink" title="web 网页的路径"></a>web 网页的路径</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/linux/m</span>nt/web</span><br></pre></td></tr></table></figure>
+
 <p>我是先 root ，然后通过 ttl 备份原本的系统。再来折腾其它的，建议大家也这么做，这个非常重要，因为这机器现在是没有线刷包的，要是自己搞坏了系统，估计就变砖了。</p>
 <p>root 后是可以恢复出厂设置的，不用担心，而且恢复之后功能都还能用，远程访问、下载这些都在，并且 root 权限依旧，不会因为恢复出厂而丢失。</p>
 <p>折腾主要就是安装 entware ，他人已经写好教程了，大家可以根据超链接跳转过去学习，建议有科学上网环境再来折腾这个，不然很可能安装失败。</p>
-<p><a href="https://post.smzdm.com/p/aoo8oqzn/" target="_blank" rel="noopener">乐橙SN1 扩展 Transmission插件， 内置硬盘充分利用 PT必备</a></p>
-<p>这个过程中，需要安装 <strong>busybox</strong> ，我这里安装的是 1.20.2，使用这个版本才可以用 wget 。安装包我上传到网盘里 <a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> 在 【手机软件】里面。</p>
+<p><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/aoo8oqzn/">乐橙SN1 扩展 Transmission插件， 内置硬盘充分利用 PT必备</a></p>
+<p>这个过程中，需要安装 <strong>busybox</strong> ，我这里安装的是 1.20.2，使用这个版本才可以用 wget 。安装包我上传到网盘里 <a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a> 在 【手机软件】里面。</p>
 <p>代理可以参考这样</p>
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">url=http://192.168.123.69:7890</span><br><span class="line">alias pon='<span class="keyword">export</span> http_proxy=$url; <span class="keyword">export</span> https_proxy=$url'</span><br><span class="line">pon</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">url=http:<span class="comment">//192.168.123.69:7890</span></span><br><span class="line">alias pon=<span class="string">&#x27;export http_proxy=<span class="subst">$url</span>; export https_proxy=<span class="subst">$url</span>&#x27;</span></span><br><span class="line">pon</span><br></pre></td></tr></table></figure>
+
 <p>192.168.123.69 是我电脑的 ip ，不细讲了。</p>
 <p>配置好 entware 之后，还可以装 qb</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">opkg <span class="keyword">install</span> qbittorrent</span><br></pre></td></tr></table></figure>
+
 <p>安装完成应用在 /opt/bin 里面，可以通过 /opt/bin/qbittorrent-nox 来运行。</p>
-<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">/opt/bin # qbittorrent-nox </span><br><span class="line">QtSingleCoreApplication: listen <span class="keyword">on</span> <span class="keyword">local</span> socket failed, QLocalServer::listen: <span class="keyword">Name</span> error</span><br><span class="line"></span><br><span class="line">*** Legal Notice ***</span><br><span class="line">qBittorrent <span class="keyword">is</span> a <span class="keyword">file</span> sharing <span class="keyword">program</span>. When you run a torrent, its data will be made available <span class="keyword">to</span> others by means <span class="keyword">of</span> upload. Any content you share <span class="keyword">is</span> your sole responsibility.</span><br><span class="line"></span><br><span class="line">No further notices will be issued.</span><br><span class="line"></span><br><span class="line">Press <span class="string">'y'</span> key <span class="keyword">to</span> accept <span class="keyword">and</span> <span class="keyword">continue</span>...</span><br><span class="line">y</span><br><span class="line"></span><br><span class="line">******** Information ********</span><br><span class="line"><span class="keyword">To</span> control qBittorrent, access the Web UI at http:<span class="comment">//localhost:8080</span></span><br><span class="line">The Web UI administrator username <span class="keyword">is</span>: admin</span><br><span class="line">The Web UI administrator password <span class="keyword">is</span> still the <span class="keyword">default</span> one: adminadmin</span><br><span class="line">This <span class="keyword">is</span> a security risk, please consider changing your password from <span class="keyword">program</span> preferences.</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">/opt/bin # qbittorrent-nox </span><br><span class="line">QtSingleCoreApplication: listen <span class="keyword">on</span> <span class="keyword">local</span> socket failed, QLocalServer::listen: <span class="keyword">Name</span> error</span><br><span class="line"></span><br><span class="line">*** Legal Notice ***</span><br><span class="line">qBittorrent <span class="keyword">is</span> a <span class="keyword">file</span> sharing <span class="keyword">program</span>. When you run a torrent, its data will be made available <span class="keyword">to</span> others by means <span class="keyword">of</span> upload. Any content you share <span class="keyword">is</span> your sole responsibility.</span><br><span class="line"></span><br><span class="line">No further notices will be issued.</span><br><span class="line"></span><br><span class="line">Press <span class="string">&#x27;y&#x27;</span> key <span class="keyword">to</span> accept <span class="keyword">and</span> <span class="keyword">continue</span>...</span><br><span class="line">y</span><br><span class="line"></span><br><span class="line">******** Information ********</span><br><span class="line"><span class="keyword">To</span> control qBittorrent, access the Web UI at http:<span class="comment">//localhost:8080</span></span><br><span class="line">The Web UI administrator username <span class="keyword">is</span>: admin</span><br><span class="line">The Web UI administrator password <span class="keyword">is</span> still the <span class="keyword">default</span> one: adminadmin</span><br><span class="line">This <span class="keyword">is</span> a security risk, please consider changing your password from <span class="keyword">program</span> preferences.</span><br></pre></td></tr></table></figure>
+
 <p>第一次运行需要按 y 同意一下。</p>
-<p>想知道能装什么，可以浏览器访问 <a href="http://bin.entware.net/armv7sf-k3.2/" target="_blank" rel="noopener">http://bin.entware.net/armv7sf-k3.2/</a></p>
+<p>想知道能装什么，可以浏览器访问 <a target="_blank" rel="noopener" href="http://bin.entware.net/armv7sf-k3.2/">http://bin.entware.net/armv7sf-k3.2/</a></p>
 <p>然后通过查找来查询自己想装的应用。</p>
 <p>不过装好这些应用后，机器重启，自身的 launcher 就打不开了。也就是自身的 nas 功能丢失了。估计是哪里冲突了，暂时还没找到原因。</p>
 

@@ -178,7 +178,7 @@
   </h1>
   
   <article class="passage-article">
-    <p>（当然，windows 下能下载个便携版的 hexo 环境，(<a href="https://portablehexo.bitmoe.cn/" target="_blank" rel="noopener">https://portablehexo.bitmoe.cn/</a>) ，放在 U 盘里面，这样随便到哪里都可以用。这种这里不讨论。）</p>
+    <p>（当然，windows 下能下载个便携版的 hexo 环境，(<a target="_blank" rel="noopener" href="https://portablehexo.bitmoe.cn/">https://portablehexo.bitmoe.cn/</a>) ，放在 U 盘里面，这样随便到哪里都可以用。这种这里不讨论。）</p>
 <h2 id="备份哪"><a href="#备份哪" class="headerlink" title="备份哪"></a>备份哪</h2><p>用 hexo 搭建博客好后，生成的静态网页是放在（public）这个文件夹里的。正常流程就是把这个文件夹里的内容发布到 github 或者自己的服务器上。而我们要备份的，不是这个，而是整个博客源码，就是（public）的上一层的这整个文件夹。</p>
 <h2 id="如何备份"><a href="#如何备份" class="headerlink" title="如何备份"></a>如何备份</h2><p>那么可以手动复制吗？额，有点难。因为小文件太多，接近一万个，复制要很久。而且文件经常变动，每次变动都再重新复制一份？不现实。</p>
 <p>因此用 <strong>git</strong> 用管理是最好的方法。在博客项目根目录，比如我的博客源码放在 blog 这个文件夹里，那么就用命令行进入这个文件夹，git init 初始化这个项目，将它变成一个仓库，然后就可以把备份到网上了。</p>

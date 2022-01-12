@@ -178,21 +178,25 @@
   </h1>
   
   <article class="passage-article">
-    <p>nps 是一款内网穿透工具，在 Github 上面有一万多个 star ：<a href="https://github.com/ehang-io/nps" target="_blank" rel="noopener">https://github.com/ehang-io/nps</a></p>
+    <p>nps 是一款内网穿透工具，在 Github 上面有一万多个 star ：<a target="_blank" rel="noopener" href="https://github.com/ehang-io/nps">https://github.com/ehang-io/nps</a></p>
 <p>这个的原理和 frp 是一样的，都是用服务器来中转，不过用起来会简单一点。</p>
 <blockquote>
-<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a href="https://www.vultr.com/?ref=8161953-4F" target="_blank" rel="noopener">点此链接注册充值 10 美元送 50 美元</a></p>
+<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=8161953-4F">点此链接注册充值 10 美元送 50 美元</a></p>
 </blockquote>
 <h2 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h2><p>服务器开好后，先下载 nps ，解压，安装，启动。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://github.com/ehang-io/nps/releases/download/v0.26.6/linux_amd64_server.tar.gz</span><br><span class="line">tar -zxvf linux_amd64_server.tar.gz</span><br><span class="line">./nps install</span><br><span class="line">nps start</span><br></pre></td></tr></table></figure>
+
 <p>这样服务器就启动 nps 这个服务了，在浏览器输入 ip:8080 就可以进行管理。</p>
 <h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>像 N1 ，我家云，猫盘 这些设备，都是 arm64 ，因此它的使用方法都是一样的。</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget https:<span class="regexp">//gi</span>thub.com<span class="regexp">/ehang-io/</span>nps<span class="regexp">/releases/</span>download<span class="regexp">/v0.26.6/</span>linux_arm64_client.tar.gz</span><br><span class="line">tar -zxvf linux_arm64_client.tar.gz</span><br></pre></td></tr></table></figure>
+
 <p>然后需要到管理面板，添加客户端，这样会生成一个密钥。有了这个才能和服务器建立连接。</p>
 <p>建立的命令是这样的。</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">./npc <span class="attribute">-server</span>=ip:port <span class="attribute">-vkey</span>=web界面中显示的密钥</span><br></pre></td></tr></table></figure>
+
 <p>例如我的就是这样</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">./npc <span class="attribute">-server</span>=45.32.126.224:8024 <span class="attribute">-vkey</span>=4vv7n1p7u584an64</span><br></pre></td></tr></table></figure>
+
 <p>此时就与服务器建立好连接了，之后的操作只需在管理面板，进行端口映射即可。</p>
 <h2 id="建立隧道"><a href="#建立隧道" class="headerlink" title="建立隧道"></a>建立隧道</h2><p>点击左边的【TCP 隧道】，【新增】，填写【ID】，服务器访问端口，目标端口。</p>
 <p>比如我服务器端口设置为 1234 ，目标端口为 80 ，建立好后，我只要访问服务器的1234端口，就可以看到内网设备 80 端口的内容。想要访问其它的端口，就再建立隧道。内网的端口和服务器的端口是可以保持一致的。</p>

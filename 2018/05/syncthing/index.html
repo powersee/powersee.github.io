@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="一  下载到其官网下载对应的客户端">
+  <meta name="description" content="一  下载到其官网下载对应的客户端">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -182,10 +182,11 @@
   </h1>
   
   <article class="passage-article">
-    ：<a href="https://syncthing.net/" target="_blank" rel="noopener">官网链接</a>  例如我下载Android版和Ubuntu版 Ubuntu版链接：<a href="https://apt.syncthing.net/" target="_blank" rel="noopener">点我</a><br>安卓安装就不用说了，Ubuntu则根据其页面的这段命令输入就行。<br><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">\# Add the release PGP key<span class="variable">s:</span></span><br><span class="line">curl -s http<span class="variable">s:</span>//syncthing.net/release-key.txt | sudo apt-key <span class="built_in">add</span> -</span><br><span class="line"></span><br><span class="line">\# Add the <span class="string">"stable"</span> channel <span class="keyword">to</span> your APT <span class="keyword">source</span><span class="variable">s:</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"deb https://apt.syncthing.net/ syncthing stable"</span> | sudo tee /etc/apt/sources.<span class="keyword">list</span>.d/syncthing.<span class="keyword">list</span></span><br><span class="line"></span><br><span class="line">\# Update <span class="built_in">and</span> install syncthin<span class="variable">g:</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install syncthing</span><br></pre></td></tr></table></figure></p>
-<h3 id="二-运行"><a href="#二-运行" class="headerlink" title="二  运行"></a>二  运行</h3><p>此时在Ubuntu终端输入命令：<code>syncthing</code> 来运行它 等待看到<br><code>GUI and API listening on 127.0.0.1:8384</code><br>同时按<code>ctrl 和 C</code> 来取消命令 运行此命令的目的时为了生成配文件</p>
-<h3 id="三-修改"><a href="#三-修改" class="headerlink" title="三  修改"></a>三  修改</h3><p>此时我们即可修改配文件<br><code>vim ~/.config/syncthing/config.xml</code><br>然后找到 <code>127.0.0.1:8384</code> 将之改为 <code>0.0.0.0:8384</code><br>更改方法为找到此处 按键盘的 <code>i</code> 便可以修改，改完按 <code>Esc</code> 退出编辑状态，输入 <code>:wq</code> (保存并退出的意思)</p>
-<h3 id="四-配置"><a href="#四-配置" class="headerlink" title="四  配置"></a>四  配置</h3><p>这时就可以输入<code>IP:8384</code> (例如 <code>192.168.123.184:8384</code> )进入管理页面了 我们可以设置账号密码，以免随便他人登录这个界面 点击右上角的 操作 显示ID 将会出现一张二维码，用手机扫描这即可添加关联 然后设置想要同步的文件夹，当两个客户端都运行时就会自动同步</p>
+    ：<a target="_blank" rel="noopener" href="https://syncthing.net/">官网链接</a>  例如我下载Android版和Ubuntu版 Ubuntu版链接：<a target="_blank" rel="noopener" href="https://apt.syncthing.net/">点我</a><br>安卓安装就不用说了，Ubuntu则根据其页面的这段命令输入就行。</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">\<span class="comment"># Add the release PGP keys:</span></span><br><span class="line">curl -s https:<span class="regexp">//</span>syncthing.net/release-key.txt | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">\<span class="comment"># Add the &quot;stable&quot; channel to your APT sources:</span></span><br><span class="line">echo <span class="string">&quot;deb https://apt.syncthing.net/ syncthing stable&quot;</span> | sudo tee <span class="regexp">/etc/</span>apt<span class="regexp">/sources.list.d/</span>syncthing.list</span><br><span class="line"></span><br><span class="line">\<span class="comment"># Update and install syncthing:</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install syncthing</span><br></pre></td></tr></table></figure>
+<h3 id="二-运行"><a href="#二-运行" class="headerlink" title="二  运行"></a>二  运行</h3><p>此时在Ubuntu终端输入命令：<code>syncthing</code> 来运行它 等待看到<br><code>GUI and API listening on 127.0.0.1:8384</code><br>同时按<code>ctrl 和 C</code> 来取消命令 运行此命令的目的时为了生成配文件</p>
+<h3 id="三-修改"><a href="#三-修改" class="headerlink" title="三  修改"></a>三  修改</h3><p>此时我们即可修改配文件<br><code>vim ~/.config/syncthing/config.xml</code><br>然后找到 <code>127.0.0.1:8384</code> 将之改为 <code>0.0.0.0:8384</code><br>更改方法为找到此处 按键盘的 <code>i</code> 便可以修改，改完按 <code>Esc</code> 退出编辑状态，输入 <code>:wq</code> (保存并退出的意思)</p>
+<h3 id="四-配置"><a href="#四-配置" class="headerlink" title="四  配置"></a>四  配置</h3><p>这时就可以输入<code>IP:8384</code> (例如 <code>192.168.123.184:8384</code> )进入管理页面了 我们可以设置账号密码，以免随便他人登录这个界面 点击右上角的 操作 显示ID 将会出现一张二维码，用手机扫描这即可添加关联 然后设置想要同步的文件夹，当两个客户端都运行时就会自动同步</p>
 <p>完</p>
   </article>
   <aside class="table-content" id="site-toc">
@@ -194,7 +195,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%BF%90%E8%A1%8C"><span class="toc-text">二  运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E4%BF%AE%E6%94%B9"><span class="toc-text">三  修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E9%85%8D%E7%BD%AE"><span class="toc-text">四  配置</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C-%E8%BF%90%E8%A1%8C"><span class="toc-text">二  运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89-%E4%BF%AE%E6%94%B9"><span class="toc-text">三  修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B-%E9%85%8D%E7%BD%AE"><span class="toc-text">四  配置</span></a></li></ol>
   </div>
 </aside>
   

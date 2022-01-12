@@ -189,13 +189,15 @@
 </blockquote>
 <p>一路默认，虚拟机一个小时应该能安装好 之后就可以访问IP了</p>
 <p>默认的访问目录为这个</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">/<span class="built_in">home</span>/wwwroot/<span class="built_in">default</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/home/</span>wwwroot/<span class="keyword">default</span></span><br></pre></td></tr></table></figure>
+
+
 <h3 id="二，安装wordpress"><a href="#二，安装wordpress" class="headerlink" title="二，安装wordpress"></a>二，安装wordpress</h3><p>此时进入默认的访问目录的上一级</p>
 <blockquote>
 <p>cd /home/wwwroot/</p>
 </blockquote>
 <blockquote>
-<p>wget <a href="https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz" target="_blank" rel="noopener">https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz</a></p>
+<p>wget <a target="_blank" rel="noopener" href="https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz">https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz</a></p>
 </blockquote>
 <blockquote>
 <p>tar -zxvf wordpress-4.9.4-zh_CN.tar.gz</p>

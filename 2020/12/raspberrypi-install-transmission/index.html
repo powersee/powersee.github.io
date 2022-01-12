@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -180,22 +180,29 @@
   <article class="passage-article">
     <p>安装</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> transmission-daemon</span><br></pre></td></tr></table></figure>
+
 <p>停止程序，修改配置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">service transmission-daemon <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">vi</span> /etc/transmission-daemon/settings.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">service transmission-daemon stop</span><br><span class="line">vi <span class="regexp">/etc/</span>transmission-daemon/settings.json</span><br></pre></td></tr></table></figure>
+
 <p>使用 vi 打开这个配置文件后，按 <code>i</code> 键进入编辑模式</p>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">"download-dir"</span>: <span class="string">"/mnt/tr/downloads"</span>,</span><br><span class="line"><span class="string">"rpc-whitelist"</span>: <span class="string">"*"</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;download-dir&quot;</span>: <span class="string">&quot;/mnt/tr/downloads&quot;</span>,</span><br><span class="line"><span class="string">&quot;rpc-whitelist&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br></pre></td></tr></table></figure>
+
 <p>修改这么两行，此时账号和密码没有修改，默认情况下都是 transmission</p>
 <p>修改完成按 <code>ESC</code> 键退出编辑模式，再按 <code>:wq</code> 保存退出。</p>
 <p>接着启动 transmission</p>
 <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">service transmission-daemon <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+
 <p>此时在浏览器中输入 树莓派ip:9091 就可以访问 transmission 。</p>
-<p><img src="\img\2020\raspi-tr.png" alt></p>
+<p><img src="/img/2020/raspi-tr.png"></p>
 <p>此时直接下载种子，应该会报错提示没有写入权限。</p>
-<figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> /mnt/<span class="keyword">tr</span>/downloads</span><br><span class="line"><span class="keyword">chmod</span> <span class="number">777</span> /mnt/<span class="keyword">tr</span>/downloads</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir <span class="regexp">/mnt/</span>tr/downloads</span><br><span class="line">chmod <span class="number">777</span> <span class="regexp">/mnt/</span>tr/downloads</span><br></pre></td></tr></table></figure>
+
 <p>这样应该就可以正常下载了。下载完成后，如果想将下载文件夹通过 smb 共享出来，可以在 <code>/etc/samba/smb.conf</code> 中添加这一段</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">[download]</span></span><br><span class="line">   <span class="string">comment</span> <span class="string">=</span> <span class="string">Printer</span> <span class="string">Drivers</span></span><br><span class="line">   <span class="string">path</span> <span class="string">=</span> <span class="string">/mnt/tr/downloads</span></span><br><span class="line">   <span class="string">browseable</span> <span class="string">=</span> <span class="literal">yes</span></span><br><span class="line">   <span class="string">read</span> <span class="string">only</span> <span class="string">=</span> <span class="literal">yes</span></span><br><span class="line">   <span class="string">guest</span> <span class="string">ok</span> <span class="string">=</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">[download]</span><br><span class="line">   <span class="attr">comment</span> = Printer Drivers</span><br><span class="line">   <span class="attr">path</span> = /mnt/tr/downloads</span><br><span class="line">   <span class="attr">browseable</span> = yes</span><br><span class="line">   read <span class="attr">only</span> = yes</span><br><span class="line">   guest <span class="attr">ok</span> = yes</span><br></pre></td></tr></table></figure>
+
 <p>然后重启 smb</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">smbd restart</span></span><br></pre></td></tr></table></figure>
+
 <p>此时应该就可以在 win10 的资源管理器中的 【网络】找到树莓派，直接点击应该就可以访问里面的内容。</p>
 <p>我使用的内存卡的闪迪的，32G ，class 10，实测 smb 读取速度在 40MB/s 左右。如果打算长期下载的话，建议还是接一个 usb 硬盘比较好。</p>
 
@@ -226,9 +233,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

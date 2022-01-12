@@ -178,10 +178,10 @@
   </h1>
   
   <article class="passage-article">
-    <p>这里有一个案例：<a href="https://koolshare.cn/thread-170517-1-1.html" target="_blank" rel="noopener">重要消息：上海电信对于绑定域名用于WEB服务的 直接封宽带</a></p>
+    <p>这里有一个案例：<a target="_blank" rel="noopener" href="https://koolshare.cn/thread-170517-1-1.html">重要消息：上海电信对于绑定域名用于WEB服务的 直接封宽带</a></p>
 <p>所以现在哪怕我只是开放给自己使用而已，也不行了。其实之前也是不允许的，不过运营商会把 80 端口和 443 端口给封了，这样我们就无法在家里搭建网站了。不过严格来讲还是可以的，只不过得在域名后面加个端口号，例如这样</p>
 <blockquote>
-<p><a href="http://www.baidu.com:12345" target="_blank" rel="noopener">www.baidu.com:12345</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com:12345/">www.baidu.com:12345</a></p>
 </blockquote>
 <p>但是现在这种也不允许了，而且一经发现，直接封了你的宽带。除非你自己去电信询问，否则都不知道为什么封的。没错，现在只有电信会封，而且看网友的讨论，好像只有 <strong>上海、深圳</strong> 这两个地方的<strong>电信宽带</strong>才会。</p>
 <p>那么我是用 移动宽带 的，我需要担心吗？之前我是觉得不需要担心的，毕竟等网上别人出事的时候，我在网上看到别人的帖子，我再来开启防火墙就行了。</p>
@@ -195,9 +195,10 @@
 </ol>
 <p>所以这上面三台主机里面，我都有运行 ddns 脚本，让它们把自身的 ipv6 地址与我在阿里云申请的域名进行绑定。这样我就可以通过三个不同的域名访问这些主机。但是也麻烦，再添加机器我就得再去添加脚本，并且记住域名，所以我更改了方案。</p>
 <h3 id="现在的"><a href="#现在的" class="headerlink" title="现在的"></a>现在的</h3><p>我直接开启 padavan 系统的路由器里面的 ss_server ，之后我在外面要访问内网的设备时，就用 ss 连接我的路由器，这时就相当于把它当 VPN 来使用。我想要管理路由器，可以直接在浏览器输入 <code>192.168.123.1</code> 而不用去输入域名，管理其它设备也一样，直接输入局域网 IP 即可。</p>
-<p>但是，这一切，还是建立在我把防火墙关闭了的情景下，这样我的宽带还是有被封的风险。我想要开启防火墙，但同时我还可以连接到内网的设备。所以，我了解了一下 <code>ip6tables</code> ，这个是管理 ipv6 的防火墙软件，详情可以看这里 <a href="https://man.linuxde.net/ip6tables" target="_blank" rel="noopener">ip6tables详细使用说明</a></p>
+<p>但是，这一切，还是建立在我把防火墙关闭了的情景下，这样我的宽带还是有被封的风险。我想要开启防火墙，但同时我还可以连接到内网的设备。所以，我了解了一下 <code>ip6tables</code> ，这个是管理 ipv6 的防火墙软件，详情可以看这里 <a target="_blank" rel="noopener" href="https://man.linuxde.net/ip6tables">ip6tables详细使用说明</a></p>
 <p>但我用到不多，现在外界访问只通过一个端口，就是 ss_server 开放的那个端口，默认为 8388 ，所以我只需要开放这个端口即可。需要做的，是通过 ssh 连接路由器，或者直接在 高级设置，系统管理，控制台 输入这 3 条命令。</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">ip6tables -A FORWARD -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br><span class="line">ip6tables -A INPUT -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br><span class="line">ip6tables -A OUTPUT -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">ip6tables -<span class="selector-tag">A</span> FORWARD -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br><span class="line">ip6tables -<span class="selector-tag">A</span> <span class="selector-tag">INPUT</span> -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br><span class="line">ip6tables -<span class="selector-tag">A</span> OUTPUT -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br></pre></td></tr></table></figure>
+
 <p>这样外网就只能通过 8388 这个端口来访问内网，而且只能用 ss 连接才行，直接在浏览器输入我 IP 加 8388 肯定不行，因为我根本没有开启 web 服务。所以应该是不会有宽带被封的风险。</p>
 <p>但是这样有一个问题，就是当我路由器重启之后，就失效了，只能重新到控制台再输入一次。能否让它开机后自动执行呢？</p>
 <p>可以的，需要到【高级设置】——【自定义设置】——【脚本】里添加。由于我使用的是 hiboy 大佬修改的 padavan 系统，所以里面有好几个脚本。如果是其他人的固件估计没这个功能。</p>

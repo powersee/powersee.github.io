@@ -182,17 +182,18 @@
   </h1>
   
   <article class="passage-article">
-    </p>
-<p>有时我们想要把文件，通过网页的方式来共享，但是又不想去搭建像 Nginx 或者 caddy 这样的 web 服务器，此时用 Python 一行命令即可解决。</p>
+    <p>有时我们想要把文件，通过网页的方式来共享，但是又不想去搭建像 Nginx 或者 caddy 这样的 web 服务器，此时用 Python 一行命令即可解决。</p>
 <p>通过命令进入所要共享的文件夹</p>
-<p>输入这个命令<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m SimpleHTTPServer <span class="number">80</span></span><br></pre></td></tr></table></figure></p>
+<p>输入这个命令</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m SimpleHTTPServer <span class="number">80</span></span><br></pre></td></tr></table></figure>
 <p>后面的80为端口，这种适合没有搭建其它web服务的</p>
 <p>如果是 Python3 的话，是用这个</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m http.server</span><br></pre></td></tr></table></figure>
+
 <p>这时我后面并没有加端口，默认会使用 8000 端口</p>
 <p>若已经有搭建类似 nginx 的服务 可以通过修改端口数字，例如改为88，或者不输入端口，则会默认采用8000端口</p>
 <p>此时输入 <span style="color: #000000;"><strong>IP:8000</strong></span> 或者 <strong>域名:8000</strong></p>
-<p>即可访问当前目录下的文件，如果有 <strong>index.html </strong>则会默认加载。</p>
+<p>即可访问当前目录下的文件，如果有 **index.html **则会默认加载。</p>
 <p>然后想要停止时，按<code>CTRL + C</code> 取消。</p>
   </article>
   <aside class="table-content" id="site-toc">

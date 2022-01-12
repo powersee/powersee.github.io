@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux,docker," />
+    <meta name="keywords" content="Linux,设备,docker," />
   
 
   
@@ -178,27 +178,29 @@
   </h1>
   
   <article class="passage-article">
-    <p>Github 项目：<a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p>
+    <p>Github 项目：<a target="_blank" rel="noopener" href="https://github.com/AragonSnow/qiandao">https://github.com/AragonSnow/qiandao</a></p>
 <p>本文主要介绍 docker 安装法</p>
-<p>不定时上传一些模板到网盘中，网盘地址：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p>
+<p>不定时上传一些模板到网盘中，网盘地址：<a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a></p>
 <h3 id="一、导入镜像"><a href="#一、导入镜像" class="headerlink" title="一、导入镜像"></a>一、导入镜像</h3><p>直接拉取镜像，可以使用下面这行命令</p>
 <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
-<p>拉取不了镜像的，可以使用我放到网盘中的镜像 <a href="http://pan-yz.chaoxing.com/share/info/b63ab64054fc6e0a" target="_blank" rel="noopener">超星网盘地址</a></p>
-<p>百度网盘链接：<a href="https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw" target="_blank" rel="noopener">https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw</a><br>提取码：6666</p>
+
+<p>拉取不了镜像的，可以使用我放到网盘中的镜像 <a target="_blank" rel="noopener" href="http://pan-yz.chaoxing.com/share/info/b63ab64054fc6e0a">超星网盘地址</a></p>
+<p>百度网盘链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw">https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw</a><br>提取码：6666</p>
 <p>下载后是一个 tar 结尾的文件，可以通过 portainer 将它导入机器里。如果你的机器里没有装 portainer ，就得在命令行中导入了。可以通过 smb 、ftp 、scp 等方式，将文件传入到机器里，之后，在终端中，cd 到文件所在的目录。</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">docker load -<span class="selector-tag">i</span> qiandao.tar</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">docker load -<span class="selector-tag">i</span> qiandao<span class="selector-class">.tar</span></span><br></pre></td></tr></table></figure>
+
 <p>就可以导入镜像。</p>
 <h3 id="二、创建和启动容器"><a href="#二、创建和启动容器" class="headerlink" title="二、创建和启动容器"></a>二、创建和启动容器</h3><ol>
 <li>在 portainer 中创建容器</li>
 </ol>
-<p><img src="\img\2020\创建容器.png" alt="创建容器"></p>
+<p><img src="/img/2020/%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8.png" alt="创建容器"></p>
 <ol start="2">
 <li>在群晖中创建容器</li>
 </ol>
 <p>打开【docker】图标，【映像】，选择 qiandao ，【启动】，【高级设置】</p>
-<p><img src="\img\2020\群晖创建qiandao容器.png" alt="群晖创建qiandao容器">设置一下端口就行，之后 【下一步】，【应用】。</p>
+<p><img src="/img/2020/%E7%BE%A4%E6%99%96%E5%88%9B%E5%BB%BAqiandao%E5%AE%B9%E5%99%A8.png" alt="群晖创建qiandao容器">设置一下端口就行，之后 【下一步】，【应用】。</p>
 <h3 id="三、使用服务器创建容器"><a href="#三、使用服务器创建容器" class="headerlink" title="三、使用服务器创建容器"></a>三、使用服务器创建容器</h3><blockquote>
-<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a href="https://www.vultr.com/?ref=8161953-4F" target="_blank" rel="noopener">点此链接注册充值 10 美元送 50 美元</a><br>送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧）</p>
+<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=8161953-4F">点此链接注册充值 10 美元送 50 美元</a><br>送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧）</p>
 </blockquote>
 <blockquote>
 <p>使用这家的服务器，是因为它可以随时的删除，不像其它的，一买就得一年。而且，这家还可以选择自动安装 docker ，又节省了一些时间。</p>
@@ -208,20 +210,20 @@
 <li>充值方式支持 <strong>支付宝</strong> <strong>微信</strong>（但最少 10 美元）</li>
 <li>充值好后 ，点右边那个 <strong>+</strong> 的圆圈</li>
 <li>然后选择服务器的<strong>地区</strong>（日本和新加坡会比较快，不过有可能连接不上，选美国也可以。韩国好像是最近才有的，可以试试。）</li>
-<li><strong>Server Type</strong>点 <strong>application</strong> ，里面就有 <strong>docker</strong></li>
-<li><strong>Server Size</strong> 就是服务器的配置，越高就越贵。（如果有赠送的 50 美元，那就选那个 40 美元的吧，反正你不花，下个月也没了）</li>
+<li> <strong>Server Type</strong>点 <strong>application</strong> ，里面就有 <strong>docker</strong></li>
+<li> <strong>Server Size</strong> 就是服务器的配置，越高就越贵。（如果有赠送的 50 美元，那就选那个 40 美元的吧，反正你不花，下个月也没了）</li>
 <li>把下面的 <strong>Enable IPv6</strong> 前面的 框 打钩✅（可以使我们下载时连接到更多的用户）</li>
-<li>然后点击右下角的 deploy now<ol start="9">
+<li>然后点击右下角的 deploy now</li>
 <li>等待几分钟……</li>
 <li>就可以看到服务器部署好了，给了一个 ip 地址。</li>
-</ol>
-</li>
 </ol>
 <p>等待服务器装好系统，然后可以用 xshell 之类的工具，连接服务器。主要用到服务器的 ip ，用户名，密码。</p>
 <p>连接服务器后，我们便可以在终端中拉取镜像</p>
 <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
+
 <p>建立容器</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">run</span> -d <span class="comment">--name qiandao -p 9527:80 asdaragon/qiandao</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d --name qiandao -p <span class="number">9527</span>:<span class="number">80</span> asdaragon/qiandao</span><br></pre></td></tr></table></figure>
+
 <p>此时用的端口是 9527，然后在浏览器中输入 ip:9527，例如 <code>132.123.22.33:9527</code> 这样的格式，就可以访问签到平台。</p>
 <p>使用服务器的好处是，你订阅公共模板应该不会出现什么问题。而已，你可以将你搭建的签到网站，分享给你的朋友，这样这个平台就可以多人使用。</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最简单的使用方法是用别人写好的模板，然后根据要求，看是要 cookie ，还是要账号密码，根据要求给对应的内容即可。</p>
@@ -253,9 +255,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
      
       <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
     

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -183,25 +183,26 @@
 <p>比如我这台后面写的是江苏移动，那它应该是江苏那边的用户办理宽带送的，然后如果宽带到期了，这台设备也就没法用了。因为里面的系统是移动定制的。网上有方案可以把它刷成其它系统，做到废物利用。</p>
 <p>虽然我现在可以正常使用里面的安卓系统，不过我好奇的是怎么把它刷成 Linux 系统。研究之后发现挺简单的。</p>
 <hr>
-<p><strong>需要东西</strong>（在网盘 <a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> 的【不仅限于盒子】文件夹中）</p>
+<p><strong>需要东西</strong>（在网盘 <a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a> 的【不仅限于盒子】文件夹中）</p>
 <ol>
 <li>Linux 系统镜像（这里使用 Ubuntu 18.04）</li>
 <li>将 img 镜像写入 U 盘或者 tf 卡的工具——usb burning tool</li>
 <li>从安卓系统重启到 Linux 系统软件—— Reboot to libreELEC</li>
 </ol>
 <p>将三样东西准备好，然后用 usb burning tool 将 img 镜像写入 U 盘或者 tf 卡。写入好后，需要修改 dtb ，我们更改  U 盘或者 tf 卡的 <code>uEnv.ini</code> 文件，将里面的第一行修改为</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">dtb_name</span>=/dtb/meson-gxbb-p201.dtb</span><br></pre></td></tr></table></figure>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">dtb_name=<span class="regexp">/dtb/m</span>eson-gxbb-p201.dtb</span><br></pre></td></tr></table></figure>
+
 <p>保存文件，将 U 盘或者 tf 卡插入机器，开机。</p>
 <p>如果依然是进入到安卓系统的话，那就安装一个上面提到的 <code>Reboot to libreELEC</code> 这个软件，自己想办法把这个 apk 安装包弄到盒子上面装。</p>
 <p>装好打开这个软件，确认，就可以重启进入 Linux 系统。后面的教程和之前的 N1 教程一模一样的，可以去看之前的文章就行。</p>
 <p><a href="/2020/03/n1-armbian-server/">打造最具性价比服务器 N1-armbian</a></p>
 <p>有一个缺点就是，没法驱动 wifi ，我试过里面好几个 dtb ，都没法，尝试用其它版本的固件，也不行，暂时无解，如果有朋友知道怎么解决欢迎告知我一下，可以用下方的邮箱，或者其它平台的私信、留言都可以，感谢。</p>
-<p>视频发出后，感谢网友 @<a href="https://space.bilibili.com/53153092" target="_blank" rel="noopener">栾__</a> 的回复</p>
+<p>视频发出后，感谢网友 @<a target="_blank" rel="noopener" href="https://space.bilibili.com/53153092">栾__</a> 的回复</p>
 <blockquote>
 <p>wifi可以用544的镜像，后来的都没有驱动</p>
 </blockquote>
 <p>于是我通过搜索找到了这篇帖子</p>
-<p><a href="https://www.cnblogs.com/jzgw/p/S905_8189ETV_8189ES_wifi-config.html" target="_blank" rel="noopener">S905/S905X Armbian安装WiFi驱动8189ETV的解决方法</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jzgw/p/S905_8189ETV_8189ES_wifi-config.html">S905/S905X Armbian安装WiFi驱动8189ETV的解决方法</a></p>
 <p>在里面下载了 5.44 的镜像，将 dtb 文件夹里面的 meson-gxbb-p201.dtb 复制到根目录，改名为 dtb.img。</p>
 <p>使用这个镜像不能从 sd 卡启动，只能从 U 盘启动。然后 wifi 我没有成功驱动……</p>
 
@@ -232,9 +233,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

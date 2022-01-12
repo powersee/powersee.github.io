@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="WordPress,随笔," />
+    <meta name="keywords" content="随笔,WordPress," />
   
 
   
@@ -178,7 +178,7 @@
   </h1>
   
   <article class="passage-article">
-    <p>一开始的使用是看别人的教程，网上一堆人写了用 hexo 来搭建免费博客的文章。其官网 <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a> 上面也有教程，几条命令就可以在电脑上弄好一个博客。</p>
+    <p>一开始的使用是看别人的教程，网上一堆人写了用 hexo 来搭建免费博客的文章。其官网 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a> 上面也有教程，几条命令就可以在电脑上弄好一个博客。</p>
 <p>之后便是将文章推送到 GitHub 上面，进行设置，使用 GitHub page 建立博客网站。在这时我了解到，我们还可以搭建在国内的网站上面，如 gitee ，coding 。可以让我们的访问速度更快。而且之前还了解到有位老哥有一个不错的方法，可以让国外的 ip 就访问 github 的博客，国内的 ip 就访问 gitee 或者 coding 的博客。好像是利用域名解析来达到目的的，具体我没有去尝试。</p>
 <h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>不像　wordpress ，所有文件都是在服务器上。hexo 的博客源文件都是在我们自己的电脑上面的，如果我们的电脑出问题，如硬盘坏了，被偷了，那么我们的博客就没法更新和修改。因此我们需要自己来备份这些文件。</p>
 <p>如果只是想备份文章而已，那么同步网盘如 onedrive 、坚果云 也足够的。当然你想同步整个博客文件夹也可以，不过我不建议这么做，因为里面的文件实在太多了，之前　git push　的时候看到，好像有几万个文件。而且，这样也太 low 了。</p>
@@ -186,13 +186,16 @@
 <h3 id="备份前准备"><a href="#备份前准备" class="headerlink" title="备份前准备"></a>备份前准备</h3><p>我们得知道我们备份的目的，像我的话，我最主要的目的是备份文章，其次是博客主题，再来是博客的一些配置。<strong>目的明确</strong>之后，就来分析博客根目录下的文件。</p>
 <p>需要备份的</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source //文件夹放置着博客文章，最最重要的一个文件夹</span><br><span class="line">themes //放置着主题，我个人喜欢一起备份</span><br><span class="line">scaffolds //页面模板位置</span><br><span class="line">_config.yml</span><br><span class="line">package.json</span><br><span class="line">package-lock.json</span><br></pre></td></tr></table></figure>
+
 <p>不需要备份的</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">.deploy_git   //里面的文件除了多一个 .git 其它和 public 里面一样</span><br><span class="line">node_modules  //在根目录下 npm i 就会读取 package.json 来安装模块，没必要备份</span><br><span class="line">public    	  // hexo 生成 html 页面后所放的地方，hexo g 就可以生成，没必要备份</span><br><span class="line">db.json       //执行 hexo s 启动本地服务器的时候就会自动生成，没必要备份</span><br></pre></td></tr></table></figure>
+
 <p>了解这些之后，我们就可以只备份必要的文件。</p>
-<h3 id="以前的备份方案"><a href="#以前的备份方案" class="headerlink" title="以前的备份方案"></a>以前的备份方案</h3><p>我之前是根据这篇文章　<a href="https://www.jianshu.com/p/beb8d611340a" target="_blank" rel="noopener">Hexo博客从一台电脑迁移到其他电脑</a>　将博客源文件备份到 GitHub 上面。这个方法是让渲染文件和博客源文件，都放在同一个仓库里面的不同分支。但我个人觉得到不如放两个仓库好。</p>
+<h3 id="以前的备份方案"><a href="#以前的备份方案" class="headerlink" title="以前的备份方案"></a>以前的备份方案</h3><p>我之前是根据这篇文章　<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/beb8d611340a">Hexo博客从一台电脑迁移到其他电脑</a>　将博客源文件备份到 GitHub 上面。这个方法是让渲染文件和博客源文件，都放在同一个仓库里面的不同分支。但我个人觉得到不如放两个仓库好。</p>
 <h3 id="现在的备份方案"><a href="#现在的备份方案" class="headerlink" title="现在的备份方案"></a>现在的备份方案</h3><p>首先我们如果想备份主题的话，需要把主题文件夹里的 <code>.git</code> 给删除了，让它变成一个普通的文件夹。比如很多人使用的 <code>next</code> 主题，就进入 <code>themes/next</code> 里面将 .git 文件夹给删除了就行。</p>
 <p>在博客根目录下 <code>git init</code> ,让其变成一个 git 仓库。将那些不需要备份的文件和文件夹添加到 <code>.gitignore</code> 中，我的里面有这些内容。</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">public</span><br><span class="line">db.json</span><br><span class="line">.deploy_git</span><br><span class="line">.DS_Store</span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line"><span class="meta">public</span></span><br><span class="line"><span class="built_in">db</span><span class="number">.</span>json</span><br><span class="line"><span class="meta">.deploy_git</span></span><br><span class="line"><span class="meta">.DS_Store</span></span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+
 <p>之后 <code>git add .</code> ，再 commit ，然后将其推送到远程仓库即可。之后换电脑，只需把这个仓库 clone 到电脑，进入仓库， <code>npm i</code> 一下，npm 就会根据两个 package 开头的文件，去帮我们安装相对应的模块，之后我们便可以看到 <code>node_modules</code> 文件夹又回来了。此时我们的博客便已搭建成功，可以继续写博客了。</p>
   </article>
   <aside class="table-content" id="site-toc">
@@ -221,9 +224,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/WordPress/"><i class="fa fa-tags"></i>WordPress</a>
-     
       <a href="/tags/%E9%9A%8F%E7%AC%94/"><i class="fa fa-tags"></i>随笔</a>
+     
+      <a href="/tags/WordPress/"><i class="fa fa-tags"></i>WordPress</a>
     
     </div>
   

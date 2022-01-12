@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -179,21 +179,21 @@
   
   <article class="passage-article">
     <p>玩客云第二版固件已经发布。</p>
-<p><img src="\img\2021\wky-2.jpg" alt="wky-2"></p>
+<p><img src="/img/2021/wky-2.jpg" alt="wky-2"></p>
 <p>下载链接和上一版一样。</p>
 <p>固件和刷机工具下载链接</p>
-<p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p>
-<p>固件天翼云盘分流：<a href="https://cloud.189.cn/t/eYfInuiuYFja" target="_blank" rel="noopener">https://cloud.189.cn/t/eYfInuiuYFja</a></p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p>
+<p>固件天翼云盘分流：<a target="_blank" rel="noopener" href="https://cloud.189.cn/t/eYfInuiuYFja">https://cloud.189.cn/t/eYfInuiuYFja</a></p>
 <p>解压出来，名字是 <code>Armbian_s805_powersee_2021-01-31.img</code>  </p>
 <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>第二版的介绍已发布视频到 B站</p>
-<p><a href="https://www.bilibili.com/video/BV1kT4y1P7RL?p=5" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1kT4y1P7RL?p=5</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1kT4y1P7RL?p=5">https://www.bilibili.com/video/BV1kT4y1P7RL?p=5</a></p>
 <hr>
 <p>博客用来作为补充和方便大家查询。</p>
 <p>第二版更改了 led。开机后，灯自动熄灭，但是网口的灯是亮着的，而且一般网口两个灯都是亮着的。</p>
-<p><img src="\img\2021\2021-02-02_19-29-14.jpg" alt="2021-02-02_19-29-14"></p>
+<p><img src="/img/2021/2021-02-02_19-29-14.jpg" alt="2021-02-02_19-29-14"></p>
 <p>可以通过这来判断机器有没有进入U盘中的系统。</p>
 <p>qbittorrent 使用原生安装，而不使用 docker 了。并且默认下载路径设置为 <code>/mnt</code> ，下载之前请注意网页底部显示的 <code>剩余磁盘空间</code> 。</p>
-<p>添加了 Aria2 ，使用的是 P3TERX 大佬制作的<a href="https://github.com/P3TERX/aria2.sh" target="_blank" rel="noopener">一键脚本</a>安装的。rpc 密钥是：12345</p>
+<p>添加了 Aria2 ，使用的是 P3TERX 大佬制作的<a target="_blank" rel="noopener" href="https://github.com/P3TERX/aria2.sh">一键脚本</a>安装的。rpc 密钥是：12345</p>
 <p>启动：<code>/etc/init.d/aria2 start</code> | <code>service aria2 start</code></p>
 <p>停止：<code>/etc/init.d/aria2 stop</code> | <code>service aria2 stop</code></p>
 <p>重启：<code>/etc/init.d/aria2 restart</code> | <code>service aria2 restart</code></p>
@@ -203,15 +203,16 @@
 <h3 id="led-灯的控制"><a href="#led-灯的控制" class="headerlink" title="led 灯的控制"></a>led 灯的控制</h3><p>开机之后，系统会执行 <code>ledoff blue</code> 来关闭灯光。</p>
 <p>如果想自己控制灯光，可以用 <code>ledon blue</code> 来打开蓝灯。打开绿灯就是 <code>ledon green</code>，红灯 <code>ledon red</code> 。关闭的话，就是将 <code>ledon</code> 换为 <code>ledoff</code></p>
 <p>如果想要在 python 脚本中控制它，可以这样用</p>
-<figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.system(<span class="string">"ledon green"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.system(<span class="string">&quot;ledon green&quot;</span>)</span><br></pre></td></tr></table></figure>
+
 <p>来自 B友 @<strong>猫肆音Moshin</strong> 反馈的问题：</p>
 <blockquote>
 <p>我反映一个玩客云1.3板子刷第二版固件无法网页启动的解决方法。<br>我试了U盘读卡器TF卡好几个，面板灯不亮，网口只一个灯闪后一直没法进入网页。<br>后来发现一个不识别网络设备MAC是123456789ABC，直接用xshell连接IP成功，然后写入emmc后就可以正常进入网页了。</p>
 </blockquote>
 <p>我简单的复述一下，就是玩客云其实已经获取到 ip 了，但是在路由器里面，它的设备名没有被路由器正确识别到，所以可以通过 mac 地址来判断新增加的 ip 是否为玩客云的。</p>
-<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p>1、<a href="https://www.right.com.cn/forum/thread-2881296-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-2881296-1-1.html</a></p>
-<p>2、<a href="https://github.com/P3TERX/aria2.sh" target="_blank" rel="noopener">https://github.com/P3TERX/aria2.sh</a></p>
-<p>3、<a href="https://github.com/qbittorrent/qBittorrent/wiki" target="_blank" rel="noopener">https://github.com/qbittorrent/qBittorrent/wiki</a></p>
+<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p>1、<a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-2881296-1-1.html">https://www.right.com.cn/forum/thread-2881296-1-1.html</a></p>
+<p>2、<a target="_blank" rel="noopener" href="https://github.com/P3TERX/aria2.sh">https://github.com/P3TERX/aria2.sh</a></p>
+<p>3、<a target="_blank" rel="noopener" href="https://github.com/qbittorrent/qBittorrent/wiki">https://github.com/qbittorrent/qBittorrent/wiki</a></p>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -240,9 +241,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

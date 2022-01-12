@@ -187,12 +187,15 @@
 </ul>
 <p>我先通过 <code>ssh</code> 连接到 A 这台机器上，我想把 <code>/tmp/a.txt</code> 这个文件，传输到 B 这台机器上的 <code>/tmp</code> 文件夹中，我可以用这个命令</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp /tmp/a.txt root@192.168.1.5:/tmp</span><br></pre></td></tr></table></figure>
+
 <p>这里我是用 root 这个身份登录 B 这台机器。而且用的是 <code>22</code> 这个默认端口，如果机器的 ssh 是使用其它端口，得用 -p 这个参数。变成这样</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">scp -<span class="selector-tag">p</span> <span class="number">6655</span> /tmp/<span class="selector-tag">a</span><span class="selector-class">.txt</span> root@<span class="number">192.168</span>.<span class="number">1.5</span>:/tmp</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">scp -p <span class="number">6655</span> /tmp/a.txt root<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">5</span><span class="symbol">:/tmp</span></span><br></pre></td></tr></table></figure>
+
 <p>如果传输的是文件夹，则需要加 <code>-r</code> 参数</p>
 <h3 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h3><p>rsync 是更好的选择，它把整个文件夹复制过去时，可以同步其所有者和用户组，而不需要像 scp 那样复制后再自己用 <code>chown</code> 和 <code>chgrp</code> 去修改。同时它也会同步文件的属性，如创建日期这些信息过去。</p>
 <p>使用方法如下</p>
 <figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">rsync -av /tmp/one root<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">5</span><span class="symbol">:/tmp</span></span><br></pre></td></tr></table></figure>
+
 <p>便可以将当前机器的 <code>one</code> 这个文件或者文件夹，传输到 B 这台机器的 <code>/tmp</code> 文件夹下，而且其文件属性不会改变。</p>
 
   </article>

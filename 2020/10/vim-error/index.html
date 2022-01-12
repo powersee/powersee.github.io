@@ -180,14 +180,17 @@
   <article class="passage-article">
     <p>vim 是我在 Linux 上面最常用的编辑器，如果想要更好地使用它，需要对它进行一些设置。具体的方法是修改用户目录下的 <code>.vimrc</code> ，默认情况下需要自己创建这个文件。</p>
 <p>在里面添加这些设置，下次打开 vim 就能看到效果。例如（ <code>&quot;</code> 是注释符号）</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span> <span class="comment">"显示行数</span></span><br><span class="line"><span class="keyword">set</span> showmatch <span class="comment">"显示匹配的括号([&#123;和&#125;])</span></span><br><span class="line"><span class="keyword">set</span> hlsearch <span class="comment">"高亮显示搜索的内容</span></span><br><span class="line"><span class="comment">"...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span> <span class="comment">&quot;显示行数</span></span><br><span class="line"><span class="keyword">set</span> showmatch <span class="comment">&quot;显示匹配的括号([&#123;和&#125;])</span></span><br><span class="line"><span class="keyword">set</span> hlsearch <span class="comment">&quot;高亮显示搜索的内容</span></span><br><span class="line"><span class="comment">&quot;...</span></span><br></pre></td></tr></table></figure>
+
 <p>但是我有很多台 Linux 设备，每一台都自己去写一遍配置就太累了吧。于是我想把这个文件放在 gitee 上（ GitHub 有时连接不太上），之后其它的机器，只需要把这个文件下载下来即可。当然我还想放一些其它的配置，所以我新建一个 dotfiles 仓库，在里面放一些配置文件。</p>
 <p>我直接在 gitee 上面新建仓库，用 readme 初始化，然后新建文件，将 vim 配置复制粘贴进去。</p>
 <p>此时我在新设备上，就不只是单纯下载 <code>.vimrc</code> 这个文件了，我把整个 dotfiles 仓库克隆的 <code>/home</code> 目录下。然后用软链接的方式，将用户目录下的 <code>.vimrc</code> 指向 <code>/home/dotfiles/.vimrc</code> </p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /home/dotfiles/.vimrc ~/.vimrc</span><br></pre></td></tr></table></figure>
+
 <p> 之后如果我这个仓库更新了，我直接在 <code>/home/dotfiles/</code> 这个目录下用 <code>git pull</code> 更新即可。</p>
 <p>但是这时我发现用 vim 报错了，每次使用都会输出</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Error detected while processing /root/.vimrc:</span><br><span class="line">line    3:</span><br><span class="line">E474: Invalid argument: encoding=utf-8^M</span><br><span class="line">line    8:</span><br><span class="line">E488: Trailing characters: number^M</span><br><span class="line">line    9:</span><br><span class="line">E488: Trailing characters: wildmenu^M</span><br><span class="line">line   10:</span><br><span class="line">E488: Trailing characters: autoread^M</span><br><span class="line">line   11:</span><br><span class="line">E488: Trailing characters: autoindent^M</span><br><span class="line">line   13:</span><br><span class="line">E474: Invalid argument: tabstop=4^M</span><br><span class="line">line   14:</span><br><span class="line">E539: Illegal character &lt;^M&gt;: mouse=a^M</span><br><span class="line">line   15:</span><br><span class="line">E492: Not an editor command: ^M</span><br><span class="line">line   18:</span><br><span class="line">E15: Invalid expression: has("autocmd")                                                          ^M</span><br><span class="line">line   22:</span><br><span class="line">E171: Missing :endif</span><br><span class="line">Press ENTER or type command to continue</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Error detected while processing /root/.vimrc:</span><br><span class="line">line    3:</span><br><span class="line">E474: Invalid argument: encoding=utf-8^M</span><br><span class="line">line    8:</span><br><span class="line">E488: Trailing characters: number^M</span><br><span class="line">line    9:</span><br><span class="line">E488: Trailing characters: wildmenu^M</span><br><span class="line">line   10:</span><br><span class="line">E488: Trailing characters: autoread^M</span><br><span class="line">line   11:</span><br><span class="line">E488: Trailing characters: autoindent^M</span><br><span class="line">line   13:</span><br><span class="line">E474: Invalid argument: tabstop=4^M</span><br><span class="line">line   14:</span><br><span class="line">E539: Illegal character &lt;^M&gt;: mouse=a^M</span><br><span class="line">line   15:</span><br><span class="line">E492: Not an editor command: ^M</span><br><span class="line">line   18:</span><br><span class="line">E15: Invalid expression: has(&quot;autocmd&quot;)                                                          ^M</span><br><span class="line">line   22:</span><br><span class="line">E171: Missing :endif</span><br><span class="line">Press ENTER or type command to continue</span><br></pre></td></tr></table></figure>
+
 <p>看来关键错误在于 ^M ，Google 一下，很快就发现问题所在了。因为用 gitee 创建的文件，使用的 <code>fileformat</code> 是 dos ，为了验证这个，我后来又在 gitee 创建一个 <code>.alias</code> 文件，拉取到 Linux 后，用 vim 打开这个文件，后看到底部显示</p>
 <blockquote>
 <p>“.alias” [noeol] [dos] 3L, 68C</p>
@@ -195,11 +198,13 @@
 <p>也可以使用 <code>set ff?</code> 命令来查看，在默认状态下，输入 <code>:</code>，再输入这条命令即可看到。</p>
 <p>知道问题所在了，解决方法也很简单，用 vim 打开这个文件，将 <code>fileformat</code> 改为 <code>unix</code> 即可。</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">:<span class="builtin-name">set</span> <span class="attribute">ff</span>=unix</span><br></pre></td></tr></table></figure>
+
 <p>保存，退出。</p>
 <p>此时 vim 就可以正常读取配置文件了。但是这么搞也不是办法啊，每台设备都去转换一下格式？那也够累的。于是我尝试在 GitHub 上创建文件看看，结果发现直接在 GitHub 网页上面创建的文件，<code>fileformat</code>  默认就是 <code>unix</code> ，看来还是切换到 GitHub 吧。</p>
-<p>项目：<a href="https://github.com/powersee/dotfiles.git" target="_blank" rel="noopener">https://github.com/powersee/dotfiles.git</a></p>
+<p>项目：<a target="_blank" rel="noopener" href="https://github.com/powersee/dotfiles.git">https://github.com/powersee/dotfiles.git</a></p>
 <p><code>.alias</code>文件也可以像 <code>.vimrc</code> 那样软链接到用户目录下，也可以不用，在 <code>.zshrc</code> or <code>.bashrc</code> 中，添加</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source /home/dotfiles/.alias</span><br></pre></td></tr></table></figure>
+
 <p>即可。</p>
 <p>这个的作用是自定义一些命令，少打些字。例如用 d 代替 docker，用 di 代替 docker images 。</p>
 <p>完</p>

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -180,30 +180,35 @@
   <article class="passage-article">
     <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>我家云，又名掉盘云，众多矿渣中的一款。其配置还算不错，但由于有一个严重的缺点——掉盘，即机器内的硬盘时不时地，就自动断开连接，导致获得【掉盘云】这个荣称。也因此而难以获得垃圾佬们的芳心，二手价格长期维持在百元以下。</p>
 <p>不过现今有大佬开发了比较好用的固件，据说很多人解决了掉盘的问题，因此价格开始逐渐上升了。</p>
-<p>恩山固件发布贴：<a href="https://www.right.com.cn/forum/thread-976714-1-1.html" target="_blank" rel="noopener">粒子云，我家云omv自用备份稳定性佳</a></p>
-<p>固件作者：Ride_Wind，<a href="https://www.right.com.cn/forum/space-uid-155217.html" target="_blank" rel="noopener">恩山链接</a></p>
-<p>博客：<a href="https://blog.windtech.cf/" target="_blank" rel="noopener">https://blog.windtech.cf/</a></p>
+<p>恩山固件发布贴：<a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-976714-1-1.html">粒子云，我家云omv自用备份稳定性佳</a></p>
+<p>固件作者：Ride_Wind，<a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/space-uid-155217.html">恩山链接</a></p>
+<p>博客：<a target="_blank" rel="noopener" href="https://blog.windtech.cf/">https://blog.windtech.cf/</a></p>
 <h2 id="刷机相关"><a href="#刷机相关" class="headerlink" title="刷机相关"></a>刷机相关</h2><blockquote>
-<p>这里放置一个刷机所需工具和固件的备份：<br><a href="https://pan.baidu.com/s/1YTlrbDDN9p11CayfaD6vIQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1YTlrbDDN9p11CayfaD6vIQ</a></p>
+<p>这里放置一个刷机所需工具和固件的备份：<br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1YTlrbDDN9p11CayfaD6vIQ">https://pan.baidu.com/s/1YTlrbDDN9p11CayfaD6vIQ</a></p>
 </blockquote>
-<p>【webpad】大佬的刷机教程 <a href="https://www.right.com.cn/forum/thread-341574-1-1.html" target="_blank" rel="noopener">联想粒子矿云/我家云 线刷OMV（Open Media Vault），图文教程</a></p>
-<p>推荐文章教程：来自 smzdm 的【阿文菌】 <a href="https://post.smzdm.com/p/az50epz5/" target="_blank" rel="noopener">我家云 保姆级教程：完美OMV固件</a></p>
+<p>【webpad】大佬的刷机教程 <a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-341574-1-1.html">联想粒子矿云/我家云 线刷OMV（Open Media Vault），图文教程</a></p>
+<p>推荐文章教程：来自 smzdm 的【阿文菌】 <a target="_blank" rel="noopener" href="https://post.smzdm.com/p/az50epz5/">我家云 保姆级教程：完美OMV固件</a></p>
 <p>第一次刷机如果只显示【发现一个 loader 设备】，可以点击高级功能，里面可以点【进入 maskrom】</p>
-<p><img src="/img/2020/高级功能.png" alt="高级功能"></p>
+<p><img src="/img/2020/%E9%AB%98%E7%BA%A7%E5%8A%9F%E8%83%BD.png" alt="高级功能"></p>
 <p>不过我刷机的时候并不知道这个，我是把机器拆开，然后找一根很短的电线，短接主板后面的两个点。</p>
-<p><img src="/img/2020/短接.jpg" alt="短接"></p>
+<p><img src="/img/2020/%E7%9F%AD%E6%8E%A5.jpg" alt="短接"></p>
 <p>一手按住，一手通电，机器一启动就自动进入 maskrom 了，然后便可以愉快地刷机，这种方法也是终极的救砖方法。</p>
 <h2 id="docker相关"><a href="#docker相关" class="headerlink" title="docker相关"></a>docker相关</h2><p>乘风大佬的固件，本身就修改好 docker 的镜像源了，因此我们可以直接拉取镜像。</p>
-<h3 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h3><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -p <span class="number">9000</span>:<span class="number">9000</span> -v <span class="regexp">/var/</span>run<span class="regexp">/docker.sock:/</span>var<span class="regexp">/run/</span>docker.sock -v <span class="string">portainer_data:</span><span class="regexp">/data --restart always portainer/</span><span class="string">portainer:</span>linux-arm</span><br></pre></td></tr></table></figure>
+<h3 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h3><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -p <span class="number">9000</span>:<span class="number">9000</span> -v <span class="regexp">/var/</span>run<span class="regexp">/docker.sock:/</span>var<span class="regexp">/run/</span>docker.sock -v portainer_data:<span class="regexp">/data --restart always portainer/</span>portainer:linux-arm</span><br></pre></td></tr></table></figure>
+
 <h3 id="qbittorrent"><a href="#qbittorrent" class="headerlink" title="qbittorrent"></a>qbittorrent</h3><p>自带的 qb 是 4.1.7 ，它好像有个问题，没法通过链接的方式来下载种子。所以我想把它停了，改用 docker 来创建一个最新版的 qb 。</p>
 <p>那么我需要先把自带的 qb 的开机自起取消，这个比较容易，改个名字它就不会启动了。</p>
-<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">mv</span> /<span class="meta">opt</span>/<span class="keyword">bin/qbittorrent-nox </span>/<span class="meta">opt</span>/<span class="keyword">bin/1qbittorrent-nox</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mv <span class="regexp">/opt/</span>bin<span class="regexp">/qbittorrent-nox /</span>opt<span class="regexp">/bin/</span><span class="number">1</span>qbittorrent-nox</span><br></pre></td></tr></table></figure>
+
 <p>qb最重要的两个文件夹 <code>.config</code> 和 <code>.local</code> ，自带的 qb 是将其放在 <code>/root</code> 里，如果你使用 docker 版的 qb 后，想保留之前的种子信息，下方的 -v 参数自己修改一下。我就不保留了。</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line"><span class="comment">#这里我原本的默认下载路径是 /sharedfolders/wjy/ 你应该改成自己的</span></span><br><span class="line"><span class="attribute">DOWNLOAD_PATH</span>=/sharedfolders/wjy/</span><br><span class="line"><span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="string">"127.0.0.1"</span></span><br><span class="line"></span><br><span class="line">docker <span class="builtin-name">run</span> -d --name qbittorrent \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=8080 \</span><br><span class="line">        -e <span class="attribute">BT_PORT</span>=8998 \</span><br><span class="line">        -e <span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v /var/lib/qbittorrent/.config/qBittorrent:<span class="built_in">/config </span>\</span><br><span class="line">        -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:/downloads \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:<span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span> \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line"><span class="comment">#这里我原本的默认下载路径是 /sharedfolders/wjy/ 你应该改成自己的</span></span><br><span class="line"><span class="attribute">DOWNLOAD_PATH</span>=/sharedfolders/wjy/</span><br><span class="line"><span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line"></span><br><span class="line">docker <span class="builtin-name">run</span> -d --name qbittorrent \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=8080 \</span><br><span class="line">        -e <span class="attribute">BT_PORT</span>=8998 \</span><br><span class="line">        -e <span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v /var/lib/qbittorrent/.config/qBittorrent:<span class="built_in">/config </span>\</span><br><span class="line">        -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v <span class="string">&quot;<span class="variable">$DOWNLOAD_PATH</span>&quot;</span>:/downloads \</span><br><span class="line">        -v <span class="string">&quot;<span class="variable">$DOWNLOAD_PATH</span>&quot;</span>:<span class="string">&quot;<span class="variable">$DOWNLOAD_PATH</span>&quot;</span> \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure>
+
 <p>之后可能会出现文件夹权限问题，将会导致 qb 无法启动，给予 777 权限</p>
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">chmod -R <span class="number">777</span> /var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span>/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">chmod -R <span class="number">777</span> <span class="regexp">/var/</span>lib<span class="regexp">/qbittorrent/</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="导航相关"><a href="#导航相关" class="headerlink" title="导航相关"></a>导航相关</h2><p>在web导航页面添加或者删除图标，修改 /opt/wwwroot/navi/index.php</p>
-<h2 id="杂七杂八"><a href="#杂七杂八" class="headerlink" title="杂七杂八"></a>杂七杂八</h2><h3 id="查看-CPU-温度"><a href="#查看-CPU-温度" class="headerlink" title="查看 CPU 温度"></a>查看 CPU 温度</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">cpu=<span class="variable">$(</span>&lt;<span class="regexp">/sys/class</span><span class="regexp">/thermal/thermal</span>_zone<span class="number">0</span>/temp)</span><br><span class="line">echo <span class="string">"$((cpu/1000)) c"</span></span><br></pre></td></tr></table></figure>
+<h2 id="杂七杂八"><a href="#杂七杂八" class="headerlink" title="杂七杂八"></a>杂七杂八</h2><h3 id="查看-CPU-温度"><a href="#查看-CPU-温度" class="headerlink" title="查看 CPU 温度"></a>查看 CPU 温度</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">cpu=$(&lt;/sys/<span class="keyword">class</span>/<span class="symbol">thermal</span>/<span class="symbol">thermal_zone0</span>/<span class="symbol">temp</span>)</span><br><span class="line"><span class="symbol">echo</span> &quot;$((<span class="symbol">cpu</span>/<span class="symbol">1000</span>)) <span class="symbol">c</span>&quot;</span><br></pre></td></tr></table></figure>
+
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -232,9 +237,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

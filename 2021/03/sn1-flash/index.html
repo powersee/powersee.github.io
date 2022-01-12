@@ -178,19 +178,20 @@
   </h1>
   
   <article class="passage-article">
-    <p>刷机关键点，绿联读卡器，<a href="https://detail.tmall.com/item.htm?id=595545521913&amp;skuId=4539873880456" target="_blank" rel="noopener">淘宝购买链接</a></p>
+    <p>刷机关键点，绿联读卡器，<a target="_blank" rel="noopener" href="https://detail.tmall.com/item.htm?id=595545521913&skuId=4539873880456">淘宝购买链接</a></p>
 <p>@<strong>88841807849_bili</strong> 这位老哥告诉我的，他说他使用这款读卡器成功刷机了，于是我也就去买来试试看。果然是这样，用其它的读卡器和 U 盘一直不行，用了这款读卡器一下子就成功了。</p>
 <p>另外还要买两样东西：</p>
-<p><a href="https://item.taobao.com/item.htm?id=565486361121&amp;_u=rod6isk7e40" target="_blank" rel="noopener">单头电子线 端子线</a></p>
+<p><a target="_blank" rel="noopener" href="https://item.taobao.com/item.htm?id=565486361121&_u=rod6isk7e40">单头电子线 端子线</a></p>
 <p>要选择 4P 的</p>
 <p>usb 转 ttl，我是在拼多多买的，CH340G普通版，价格 6.3 包邮。</p>
 <h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>建议还是先备份一下源系统比较好，可以先使用 <code>df -h</code> 看一下硬盘的挂载情况，然后再使用 dd 命令把 emmc 备份出来</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/dev/mmcblk0 <span class="attribute">of</span>=你的硬盘或U盘路径/lecheng.img</span><br></pre></td></tr></table></figure>
-<h3 id="固件"><a href="#固件" class="headerlink" title="固件"></a>固件</h3><p>固件可以到 GitHub 上面下载，<a href="https://github.com/hanwckf/build-imou-sn1/releases" target="_blank" rel="noopener">https://github.com/hanwckf/build-imou-sn1/releases</a></p>
+
+<h3 id="固件"><a href="#固件" class="headerlink" title="固件"></a>固件</h3><p>固件可以到 GitHub 上面下载，<a target="_blank" rel="noopener" href="https://github.com/hanwckf/build-imou-sn1/releases">https://github.com/hanwckf/build-imou-sn1/releases</a></p>
 <p>为了方便访问不了 GitHub 的朋友，我也把它们备份到网盘里。</p>
-<p>链接：<a href="https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w" target="_blank" rel="noopener">https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w</a><br>提取码：psee</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w">https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w</a><br>提取码：psee</p>
 <p>7z b 分数</p>
-<p><img src="\img\2021\乐橙 sn1 7z b.jpg" alt="乐橙 sn1 7z b"></p>
+<p>![乐橙 sn1 7z b](/img/2021/乐橙 sn1 7z b.jpg)</p>
 <p>总分 4283</p>
 <p>参考另外两台设备</p>
 <blockquote>
@@ -199,8 +200,9 @@
 </blockquote>
 <p>之后如果想刷回安卓系统，可以进入 U 盘中的 alpine 恢复系统，先用 mount 命令挂载硬盘或者U盘，然后使用 dd 命令讲安卓系统恢复到 mmcblk0 </p>
 <p>例如我是这样的</p>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">mount <span class="string">/dev/sda1</span> <span class="string">/mnt</span></span><br><span class="line">dd <span class="keyword">if</span>=<span class="string">/mnt/lecheng.img</span> of=<span class="string">/dev/mmcblk0</span></span><br></pre></td></tr></table></figure>
-<p>刷机教程文章：<a href="https://www.jianshu.com/p/695fa3b0dab5" target="_blank" rel="noopener">https://www.jianshu.com/p/695fa3b0dab5</a></p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mount <span class="regexp">/dev/</span>sda1 /mnt</span><br><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/mnt/</span>lecheng.img of=<span class="regexp">/dev/mm</span>cblk0</span><br></pre></td></tr></table></figure>
+
+<p>刷机教程文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/695fa3b0dab5">https://www.jianshu.com/p/695fa3b0dab5</a></p>
 
   </article>
   <aside class="table-content" id="site-toc">
