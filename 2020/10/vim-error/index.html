@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>记一次 vim 报错 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Linux," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-10-02
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    记一次 vim 报错
+  </h1>
+  
+  <article class="passage-article">
+    <p>vim 是我在 Linux 上面最常用的编辑器，如果想要更好地使用它，需要对它进行一些设置。具体的方法是修改用户目录下的 <code>.vimrc</code> ，默认情况下需要自己创建这个文件。</p>
+<p>在里面添加这些设置，下次打开 vim 就能看到效果。例如（ <code>&quot;</code> 是注释符号）</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span> <span class="comment">"显示行数</span></span><br><span class="line"><span class="keyword">set</span> showmatch <span class="comment">"显示匹配的括号([&#123;和&#125;])</span></span><br><span class="line"><span class="keyword">set</span> hlsearch <span class="comment">"高亮显示搜索的内容</span></span><br><span class="line"><span class="comment">"...</span></span><br></pre></td></tr></table></figure>
+<p>但是我有很多台 Linux 设备，每一台都自己去写一遍配置就太累了吧。于是我想把这个文件放在 gitee 上（ GitHub 有时连接不太上），之后其它的机器，只需要把这个文件下载下来即可。当然我还想放一些其它的配置，所以我新建一个 dotfiles 仓库，在里面放一些配置文件。</p>
+<p>我直接在 gitee 上面新建仓库，用 readme 初始化，然后新建文件，将 vim 配置复制粘贴进去。</p>
+<p>此时我在新设备上，就不只是单纯下载 <code>.vimrc</code> 这个文件了，我把整个 dotfiles 仓库克隆的 <code>/home</code> 目录下。然后用软链接的方式，将用户目录下的 <code>.vimrc</code> 指向 <code>/home/dotfiles/.vimrc</code> </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /home/dotfiles/.vimrc ~/.vimrc</span><br></pre></td></tr></table></figure>
+<p> 之后如果我这个仓库更新了，我直接在 <code>/home/dotfiles/</code> 这个目录下用 <code>git pull</code> 更新即可。</p>
+<p>但是这时我发现用 vim 报错了，每次使用都会输出</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Error detected while processing /root/.vimrc:</span><br><span class="line">line    3:</span><br><span class="line">E474: Invalid argument: encoding=utf-8^M</span><br><span class="line">line    8:</span><br><span class="line">E488: Trailing characters: number^M</span><br><span class="line">line    9:</span><br><span class="line">E488: Trailing characters: wildmenu^M</span><br><span class="line">line   10:</span><br><span class="line">E488: Trailing characters: autoread^M</span><br><span class="line">line   11:</span><br><span class="line">E488: Trailing characters: autoindent^M</span><br><span class="line">line   13:</span><br><span class="line">E474: Invalid argument: tabstop=4^M</span><br><span class="line">line   14:</span><br><span class="line">E539: Illegal character &lt;^M&gt;: mouse=a^M</span><br><span class="line">line   15:</span><br><span class="line">E492: Not an editor command: ^M</span><br><span class="line">line   18:</span><br><span class="line">E15: Invalid expression: has("autocmd")                                                          ^M</span><br><span class="line">line   22:</span><br><span class="line">E171: Missing :endif</span><br><span class="line">Press ENTER or type command to continue</span><br></pre></td></tr></table></figure>
+<p>看来关键错误在于 ^M ，Google 一下，很快就发现问题所在了。因为用 gitee 创建的文件，使用的 <code>fileformat</code> 是 dos ，为了验证这个，我后来又在 gitee 创建一个 <code>.alias</code> 文件，拉取到 Linux 后，用 vim 打开这个文件，后看到底部显示</p>
+<blockquote>
+<p>“.alias” [noeol] [dos] 3L, 68C</p>
+</blockquote>
+<p>也可以使用 <code>set ff?</code> 命令来查看，在默认状态下，输入 <code>:</code>，再输入这条命令即可看到。</p>
+<p>知道问题所在了，解决方法也很简单，用 vim 打开这个文件，将 <code>fileformat</code> 改为 <code>unix</code> 即可。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">:<span class="builtin-name">set</span> <span class="attribute">ff</span>=unix</span><br></pre></td></tr></table></figure>
+<p>保存，退出。</p>
+<p>此时 vim 就可以正常读取配置文件了。但是这么搞也不是办法啊，每台设备都去转换一下格式？那也够累的。于是我尝试在 GitHub 上创建文件看看，结果发现直接在 GitHub 网页上面创建的文件，<code>fileformat</code>  默认就是 <code>unix</code> ，看来还是切换到 GitHub 吧。</p>
+<p>项目：<a href="https://github.com/powersee/dotfiles.git" target="_blank" rel="noopener">https://github.com/powersee/dotfiles.git</a></p>
+<p><code>.alias</code>文件也可以像 <code>.vimrc</code> 那样软链接到用户目录下，也可以不用，在 <code>.zshrc</code> or <code>.bashrc</code> 中，添加</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source /home/dotfiles/.alias</span><br></pre></td></tr></table></figure>
+<p>即可。</p>
+<p>这个的作用是自定义一些命令，少打些字。例如用 d 代替 docker，用 di 代替 docker images 。</p>
+<p>完</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/10/vim-error/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2020/11/wankeyun-flash/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/10/mount-nfs-in-linux/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

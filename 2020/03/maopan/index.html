@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>猫盘群晖折腾记录 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="设备,Linux," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-03-27
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    猫盘群晖折腾记录
+  </h1>
+  
+  <article class="passage-article">
+    <p>最近研究猫盘这台设备，恩山上面谈论这个好像不多。所以我找到了其它几个好去处。</p>
+<ol>
+<li><a href="https://www.huakings.cn/category/maopan/" target="_blank" rel="noopener">花王网络</a></li>
+<li><a href="http://bbs.nas66.com/forum-38-1.html" target="_blank" rel="noopener">矿渣论坛</a></li>
+</ol>
+<p>这两个地方可以学到很多东西，感谢各位大佬的付出。</p>
+<p>记录一些教程文章</p>
+<p><a href="https://zhuanlan.zhihu.com/p/104139410" target="_blank" rel="noopener">将猫盘固件从 DS119J 升级为 DS120J</a></p>
+<p><a href="https://www.cnblogs.com/housestudy/p/11968726.html" target="_blank" rel="noopener">猫盘群辉装qbittorrent和aria2</a></p>
+<hr>
+<p>由于我的机器是卖家帮我刷好群晖系统，再给我发过来的，所以我没有去折腾刷机这些东西。</p>
+<h2 id="一、开启LED灯"><a href="#一、开启LED灯" class="headerlink" title="一、开启LED灯"></a>一、开启LED灯</h2><p>上面的花王网络的博主，写了一个脚本可以控制 LED 灯的颜色，有人把它转载到 什么值得买 上面了。<a href="https://post.smzdm.com/p/aqn96mx2/" target="_blank" rel="noopener">万能的脚本让猫盘变完美</a> ，通过添加任务计划，我们就可以实现开机后，显示绿灯，关机后显示红灯。（因为猫盘关机只是系统关了而已，风扇其实还是在转的……所以有时不知道机器，是处于开机还是关机状态）</p>
+<p>脚本的下载链接是这个</p>
+<p><a href="https://www.huakings.cn/mp202003/aw2013_led_syno.sh" target="_blank" rel="noopener">https://www.huakings.cn/mp202003/aw2013_led_syno.sh</a></p>
+<p><a href="/misc/2020/aw2013_led_syno.sh">本人备份</a></p>
+<h2 id="二、关于掉-ip-的问题"><a href="#二、关于掉-ip-的问题" class="headerlink" title="二、关于掉 ip 的问题"></a>二、关于掉 ip 的问题</h2><p>这台机器掉 ip 严重。指的是，机器启动后，有时候会获取不到 ip，这个是硬件问题，所以有些设备用得一直很稳，有的就频频掉 ip 。例如论坛中有人说，机器启动五次，只有一次可以获取到 ip 。</p>
+<p>我自己的也有这个问题，有时候也获取不到 ip 。解决的方法只有重启，还是获取不到，那就等断电等十分钟，再启动一般就可以获取到了。</p>
+<h2 id="三、掉盘"><a href="#三、掉盘" class="headerlink" title="三、掉盘"></a>三、掉盘</h2><p>机器刚到手时，急切想了解它。于是把 N1 上面的硬盘拆下来，放到里面安装群晖系统。进入系统后发现，硬盘有坏道，时不时地就发出 “ 吱、吱、吱 ” 的异响。再过一会就发现掉盘了，就是硬盘明明连接着，却显示找不到硬盘，重启也没用。而我拿连接电脑却可以识别……</p>
+<p>那估计群晖对硬盘的要求比较高吧，而我这块硬盘已经买了好几年了，而且有坏道，估计它被群晖嫌弃了。没法，就到闲鱼再买一块。</p>
+<p>小猫盘只能用 2.5 寸的硬盘，这个在闲鱼比较贵，500G 的要一百块，唉，买不起。最终找了一款 320G 的，59 块包邮。卖家写全新零通电。</p>
+<p>买来就可以愉快地使用群晖系统了。下载、共享、备份相册、安装 Python ……</p>
+<p>然而第二天就发生悲剧了，开机几分钟后，就会掉盘。硬盘又时不时地就发出 “ 吱、吱、吱 ” 的异响。然而我这硬盘是新买的啊，难到闲鱼卖家坑我？于是我把硬盘拿到电脑扫一下。</p>
+<p><img src="/img/2020/硬盘全绿.jpg" alt="硬盘全绿"></p>
+<p>发现并没法坏道啊，怎么昨天还好好的，今天就不能用了呢？郁闷。难道这硬盘不够高档，又被群晖嫌弃了？那这群晖系统也太难伺候了吧。</p>
+<h2 id="四、九曲十八弯的拯救大行动"><a href="#四、九曲十八弯的拯救大行动" class="headerlink" title="四、九曲十八弯的拯救大行动"></a>四、九曲十八弯的拯救大行动</h2><p>本打算把系统充 119j 升级 120j ，看看能否解决这个问题。如果不行再试试把系统刷程 one space XP3 ，如果刷成这个系统也有问题，就证明是硬件的问题，估计就没救了。</p>
+<p>正当我准备刷机的时候，突然想到，有时候我打开插排的电源，猫盘这个机器并没有启动，风扇并没有转，需要我碰一下猫盘的电线才会转，那难道是电线接触不良的问题？</p>
+<p>于是我把之前淘宝 1.5 包邮买的 USB 转 DC 5.5 拿出来，想用这条线试一下。（之前买这条线是想试一下能否用这来给 N1 供电，结果发现机器的灯会亮，但是无法进入系统。）结果发现，这条线无法插入猫盘……明明可以插入 N1 的……</p>
+<p>不过我还有另外一条线，是淘宝 9.9 包邮买的，叫【诱骗激活线9-12V充电宝移动电源路由器USB供电】，输出12V的，我用这个加我那个12V的小米手机充电头，就可以给 N1 供电，并正常使用，不过这成本太高了。9.9 + 19.9 = 29.8 ，还是老实用斐讯自身的电源适配器吧。</p>
+<p>那么这条用不到的线，拿来给猫盘供电，配合猫盘自带的 5V3A 的充电头。就发现机器可以正常使用了。</p>
+<p>其实真的很意外的，因为一开始线接触不良，机器是无法启动的，我轻轻碰一下线就可以启动了。但是使用中电线如果接触不良，不应该是整台机器断电吗？怎么只是硬盘异响，然后掉盘而已呢？机器风扇依然转动着，如果不是刚好手上有这台多余的电线，估计我还得为刷机去折腾很久吧。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>玩矿渣很废时间。</p>
+<h2 id="折腾升级-120j"><a href="#折腾升级-120j" class="headerlink" title="折腾升级 120j"></a>折腾升级 120j</h2><p>群晖的 119j 这台机器，是 256M 内存。我们的猫盘是 512M ，所以有些人觉得，刷 119j 的固件，可能只能用一半的内存而已。而 120j 就和猫盘一样是 512M 的内存，那把固件升级到 120j 是否就可以，发挥猫盘真正的性能呢？</p>
+<p>没升级前，内存最高只能用到 53%，平时大多维持在 48%</p>
+<p><img src="/img/2020/最高53.jpg" alt="最高53%"></p>
+<p>于是根据这篇文章：<a href="https://zhuanlan.zhihu.com/p/104139410" target="_blank" rel="noopener">将猫盘固件从 DS119J 升级为 DS120J</a> 升级一下 ，升级后内容不会丢失，可以放心升级。</p>
+<p>然后我发现最高能到 60%，但是平时大多也是维持在 48%</p>
+<p>所以，我认为升不升级，应该是一样的。原先的 119j 应该是没有限制内存的，因为白群晖本来就是可以升级内存的。</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ol>
+<li><p>群晖里面的下载器，ds station 是可以用 transdroid 来控制的。</p>
+</li>
+<li><p>使用 ipv6 来远程访问群晖效果还不错。</p>
+</li>
+<li><p>moments 来管理相册感觉不习惯，还是 photo station 好。</p>
+</li>
+<li><p>刚才又把 k2p 拿过来了，然后我就顺便测试一下 smb 的读写速度。</p>
+<ul>
+<li>读取在 65 M/S 左右</li>
+</ul>
+<p><img src="/img/2020/cat-read.jpg" alt="cat-read"></p>
+<ul>
+<li>写入在 7 M/S 左右……</li>
+</ul>
+<p><img src="/img/2020/cat-write.jpg" alt="cat-write"></p>
+<p>直接把文件拖浏览器中，也差不多是这个速度，不太懂……</p>
+</li>
+</ol>
+<h3 id="USB-扩展"><a href="#USB-扩展" class="headerlink" title="USB 扩展"></a>USB 扩展</h3><p>后来又在淘宝买了个USB扩展版，直接套在主板的 TTL 线上面，就可以连接USB设备了。如果长期使用，就得自己把猫盘的后壳打孔了。</p>
+<p>东西我拿到手后，插上猫盘带主板，然后接一个U盘，确实可以识别到。但是，一下子就出问题了。一两分钟就断开一次，感觉像是接触不良，检查一下发现我插得挺紧的。问了一下淘宝客服，直接回复，东西接触上能显示，就是能用，要是不能用就是不能用……</p>
+<p>总之也没给出这问题怎么解决，估计他也不知道吧，想想还挺气的，想给他个中评，看他小店只卖出过几样东西，还是于心不忍，算了算了，确认收货等系统自动好评就是了，这东西就当丢了吧。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%BC%80%E5%90%AFLED%E7%81%AF"><span class="toc-text">一、开启LED灯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%85%B3%E4%BA%8E%E6%8E%89-ip-%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">二、关于掉 ip 的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8E%89%E7%9B%98"><span class="toc-text">三、掉盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B9%9D%E6%9B%B2%E5%8D%81%E5%85%AB%E5%BC%AF%E7%9A%84%E6%8B%AF%E6%95%91%E5%A4%A7%E8%A1%8C%E5%8A%A8"><span class="toc-text">四、九曲十八弯的拯救大行动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%98%E8%85%BE%E5%8D%87%E7%BA%A7-120j"><span class="toc-text">折腾升级 120j</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-text">其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#USB-%E6%89%A9%E5%B1%95"><span class="toc-text">USB 扩展</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/03/maopan/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2020/03/about-nps/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/03/wjy-python/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

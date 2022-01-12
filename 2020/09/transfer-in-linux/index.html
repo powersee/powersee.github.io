@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>如何将文件传输到另外一台 Linux 设备上 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Linux," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-09-23
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    如何将文件传输到另外一台 Linux 设备上
+  </h1>
+  
+  <article class="passage-article">
+    <p>在 Linux 中，如何将文件从当前机器，传输到另外一台机器呢？用 U 盘、移动硬盘、网盘？可以是可以，不过要是用的是服务器，而且要传输的文件数量比较多，这样操作起来就比较麻烦了。还有其它方法吗？</p>
+<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>或许用 <code>tar</code> 先将文件打包成一个压缩包，传输到另外一台机器后，再解压也是不错的选择。</p>
+<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>也可以使用 <code>scp</code> 来传输。例如，我现在有两台机器</p>
+<ul>
+<li>A：192.168.1.4</li>
+<li>B：192.168.1.5</li>
+</ul>
+<p>我先通过 <code>ssh</code> 连接到 A 这台机器上，我想把 <code>/tmp/a.txt</code> 这个文件，传输到 B 这台机器上的 <code>/tmp</code> 文件夹中，我可以用这个命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp /tmp/a.txt root@192.168.1.5:/tmp</span><br></pre></td></tr></table></figure>
+<p>这里我是用 root 这个身份登录 B 这台机器。而且用的是 <code>22</code> 这个默认端口，如果机器的 ssh 是使用其它端口，得用 -p 这个参数。变成这样</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">scp -<span class="selector-tag">p</span> <span class="number">6655</span> /tmp/<span class="selector-tag">a</span><span class="selector-class">.txt</span> root@<span class="number">192.168</span>.<span class="number">1.5</span>:/tmp</span><br></pre></td></tr></table></figure>
+<p>如果传输的是文件夹，则需要加 <code>-r</code> 参数</p>
+<h3 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h3><p>rsync 是更好的选择，它把整个文件夹复制过去时，可以同步其所有者和用户组，而不需要像 scp 那样复制后再自己用 <code>chown</code> 和 <code>chgrp</code> 去修改。同时它也会同步文件的属性，如创建日期这些信息过去。</p>
+<p>使用方法如下</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">rsync -av /tmp/one root<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">5</span><span class="symbol">:/tmp</span></span><br></pre></td></tr></table></figure>
+<p>便可以将当前机器的 <code>one</code> 这个文件或者文件夹，传输到 B 这台机器的 <code>/tmp</code> 文件夹下，而且其文件属性不会改变。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#tar"><span class="toc-text">tar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scp"><span class="toc-text">scp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rsync"><span class="toc-text">rsync</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/09/transfer-in-linux/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2020/10/mount-nfs-in-linux/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/09/GetCookies-for-qiandao/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

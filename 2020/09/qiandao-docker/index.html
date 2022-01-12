@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>搭建自动签到平台——qiandao | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="设备,Linux,docker," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-09-05
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    搭建自动签到平台——qiandao
+  </h1>
+  
+  <article class="passage-article">
+    <p>Github 项目：<a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p>
+<p>本文主要介绍 docker 安装法</p>
+<p>不定时上传一些模板到网盘中，网盘地址：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p>
+<h3 id="一、导入镜像"><a href="#一、导入镜像" class="headerlink" title="一、导入镜像"></a>一、导入镜像</h3><p>直接拉取镜像，可以使用下面这行命令</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
+<p>拉取不了镜像的，可以使用我放到网盘中的镜像 <a href="http://pan-yz.chaoxing.com/share/info/b63ab64054fc6e0a" target="_blank" rel="noopener">超星网盘地址</a></p>
+<p>百度网盘链接：<a href="https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw" target="_blank" rel="noopener">https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw</a><br>提取码：6666</p>
+<p>下载后是一个 tar 结尾的文件，可以通过 portainer 将它导入机器里。如果你的机器里没有装 portainer ，就得在命令行中导入了。可以通过 smb 、ftp 、scp 等方式，将文件传入到机器里，之后，在终端中，cd 到文件所在的目录。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">docker load -<span class="selector-tag">i</span> qiandao.tar</span><br></pre></td></tr></table></figure>
+<p>就可以导入镜像。</p>
+<h3 id="二、创建和启动容器"><a href="#二、创建和启动容器" class="headerlink" title="二、创建和启动容器"></a>二、创建和启动容器</h3><ol>
+<li>在 portainer 中创建容器</li>
+</ol>
+<p><img src="\img\2020\创建容器.png" alt="创建容器"></p>
+<ol start="2">
+<li>在群晖中创建容器</li>
+</ol>
+<p>打开【docker】图标，【映像】，选择 qiandao ，【启动】，【高级设置】</p>
+<p><img src="\img\2020\群晖创建qiandao容器.png" alt="群晖创建qiandao容器">设置一下端口就行，之后 【下一步】，【应用】。</p>
+<h3 id="三、使用服务器创建容器"><a href="#三、使用服务器创建容器" class="headerlink" title="三、使用服务器创建容器"></a>三、使用服务器创建容器</h3><blockquote>
+<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a href="https://www.vultr.com/?ref=8161953-4F" target="_blank" rel="noopener">点此链接注册充值 10 美元送 50 美元</a><br>送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧）</p>
+</blockquote>
+<blockquote>
+<p>使用这家的服务器，是因为它可以随时的删除，不像其它的，一买就得一年。而且，这家还可以选择自动安装 docker ，又节省了一些时间。</p>
+</blockquote>
+<ol>
+<li>点击左边的 billing</li>
+<li>充值方式支持 <strong>支付宝</strong> <strong>微信</strong>（但最少 10 美元）</li>
+<li>充值好后 ，点右边那个 <strong>+</strong> 的圆圈</li>
+<li>然后选择服务器的<strong>地区</strong>（日本和新加坡会比较快，不过有可能连接不上，选美国也可以。韩国好像是最近才有的，可以试试。）</li>
+<li><strong>Server Type</strong>点 <strong>application</strong> ，里面就有 <strong>docker</strong></li>
+<li><strong>Server Size</strong> 就是服务器的配置，越高就越贵。（如果有赠送的 50 美元，那就选那个 40 美元的吧，反正你不花，下个月也没了）</li>
+<li>把下面的 <strong>Enable IPv6</strong> 前面的 框 打钩✅（可以使我们下载时连接到更多的用户）</li>
+<li>然后点击右下角的 deploy now<ol start="9">
+<li>等待几分钟……</li>
+<li>就可以看到服务器部署好了，给了一个 ip 地址。</li>
+</ol>
+</li>
+</ol>
+<p>等待服务器装好系统，然后可以用 xshell 之类的工具，连接服务器。主要用到服务器的 ip ，用户名，密码。</p>
+<p>连接服务器后，我们便可以在终端中拉取镜像</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
+<p>建立容器</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">run</span> -d <span class="comment">--name qiandao -p 9527:80 asdaragon/qiandao</span></span><br></pre></td></tr></table></figure>
+<p>此时用的端口是 9527，然后在浏览器中输入 ip:9527，例如 <code>132.123.22.33:9527</code> 这样的格式，就可以访问签到平台。</p>
+<p>使用服务器的好处是，你订阅公共模板应该不会出现什么问题。而已，你可以将你搭建的签到网站，分享给你的朋友，这样这个平台就可以多人使用。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最简单的使用方法是用别人写好的模板，然后根据要求，看是要 cookie ，还是要账号密码，根据要求给对应的内容即可。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F"><span class="toc-text">一、导入镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E5%92%8C%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-text">二、创建和启动容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%9B%E5%BB%BA%E5%AE%B9%E5%99%A8"><span class="toc-text">三、使用服务器创建容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/09/qiandao-docker/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2020/09/discuz-in-N1/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/08/about-zyjx/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

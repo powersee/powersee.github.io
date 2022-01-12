@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>小钢炮又被折腾坏记录，最终成功用上 zsh | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Hexo, Theme-AD" />
+  
+
+  
+  <meta name="description" content="刚才给小钢炮安装了 zsh ，这个过程还是有点复杂的，不过好在都能找到教程。">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-26
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    小钢炮又被折腾坏记录，最终成功用上 zsh
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="1、先去看灯大的这个文章"><a href="#1、先去看灯大的这个文章" class="headerlink" title="1、先去看灯大的这个文章"></a>1、先去看灯大的这个文章</h2><p><a href="https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793" target="_blank" rel="noopener">https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793</a></p>
+<ol>
+<li>编辑 /etc/opkg/entware.conf<br>取消行首的 # 符号</li>
+<li>opkg2 update</li>
+<li>查找包 opkg2 find xxxx</li>
+<li>opkg2 install xxxxx</li>
+</ol>
+<h2 id="2、安装-zsh-与配置集"><a href="#2、安装-zsh-与配置集" class="headerlink" title="2、安装 zsh 与配置集"></a>2、安装 zsh 与配置集</h2><p>于是我就安装了 zsh 以及 oh my zsh 为的就是用这个自动补全插件 zsh-autosuggestions</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">opkg2 <span class="keyword">install</span> zsh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone git:<span class="regexp">//gi</span>thub.com<span class="regexp">/zsh-users/</span>zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+<h2 id="3、遇坑部分，无法-ssh-连接"><a href="#3、遇坑部分，无法-ssh-连接" class="headerlink" title="3、遇坑部分，无法 ssh 连接"></a>3、遇坑部分，无法 ssh 连接</h2><p>顺利地安装成功了，然后，我想将 zsh 设置为默认的 shell ，使用 chsh -s /opt/bin/zsh 却失败了。</p>
+<p>然后网上找其它方法，看到有个是修改 /etc/passwd 这个文件，第一行就是 root 用户的默认 shell 路径，于是用 vim 修改这个文件，改为 zsh 的路径，然后退出，再重新 ssh 连接，就登录不了了……</p>
+<p><img src="/img/2019/can&#39;t login after edit the passwd.jpg" alt></p>
+<p>本想这次扑街了，又得重装系统了，可惜 qb 的配置没有备份……</p>
+<h2 id="4、想办法备份"><a href="#4、想办法备份" class="headerlink" title="4、想办法备份"></a>4、想办法备份</h2><p>于是想办法看看能不能备份出来，不然重装系统后所有记录都没了。想到 qb 的配置文件是放在 /var/lib/qbittorrent 这个文件夹里的，之前我是 ssh 之后，把复制到自己的硬盘的。现在无法 ssh，得另寻方法。</p>
+<p>于是想到小钢炮的 web 界面有个定时任务的功能 Scheduled Tasks ，在这个我也可以执行命令啊，那我在这里备份这个文件夹不就行了。</p>
+<p>同时灯大的 wiki 里也有写备份 qb 和 tr 的方法，他是用 tar 来打包这个文件夹的，这种可能更好吧。</p>
+<p>于是我添加了这条任务，每十五分钟就将这两个文件夹打包备份到我这个叫 one 的硬盘里。</p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="number">15</span> * * * * tar cvf /media/one/qb.tar /var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span> &amp;&amp; <span class="title">tar</span> <span class="title">cvf</span> /<span class="title">media</span>/<span class="title">one</span>/<span class="title">tr</span>.<span class="title">tar</span> /<span class="title">var</span>/<span class="title">lib</span>/<span class="title">transmission</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="5、曲线救国"><a href="#5、曲线救国" class="headerlink" title="5、曲线救国"></a>5、曲线救国</h2><p>所以这样打包好后，就可以重装系统了嘛。不过我突然想到，既然这里可以执行命令，那我在这里修改 passwd 这个文件，改回去不就行了？</p>
+<p>于是我将 passwd 这个文件的内容，输出到硬盘里</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cat <span class="regexp">/etc/</span>passwd &gt; <span class="regexp">/media/</span>one<span class="regexp">/pass.txt</span></span><br></pre></td></tr></table></figure>
+<p>接着我用 filebrowser 修改这个文档里面的内容，再把它输入回 passwd</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cat <span class="regexp">/media/</span>one<span class="regexp">/pass.txt &gt; /</span>etc<span class="regexp">/passwd</span></span><br></pre></td></tr></table></figure>
+<p>完成，再来 ssh ，就成功登录上了。</p>
+<p>但是我的 zsh 还是没办法设置为默认 shell ……</p>
+<p>怎么办呢？</p>
+<h2 id="6、用上-zsh"><a href="#6、用上-zsh" class="headerlink" title="6、用上 zsh"></a>6、用上 zsh</h2><p>我想到，当我们用 ssh 连接上小钢炮的 sh 时，它会去执行 /etc/prifile 这个文件里面的内容，那我直接在这里面添加一行</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">zsh</span></span><br></pre></td></tr></table></figure>
+<p>我将它放在环境变量之后，在 13 行这个位置。这样之后用 ssh 连接，系统就会先启动 sh ，然后读取 /etc/prifile 的内容，读到 13 行，执行了 zsh 这个命令，然后 shell 就自动切换到 zsh 了。</p>
+<p>由于这个过程很快，我们不可能看到，所以一连接上看到的就是 zsh 了。完美！</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%85%88%E5%8E%BB%E7%9C%8B%E7%81%AF%E5%A4%A7%E7%9A%84%E8%BF%99%E4%B8%AA%E6%96%87%E7%AB%A0"><span class="toc-text">1、先去看灯大的这个文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85-zsh-%E4%B8%8E%E9%85%8D%E7%BD%AE%E9%9B%86"><span class="toc-text">2、安装 zsh 与配置集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E9%81%87%E5%9D%91%E9%83%A8%E5%88%86%EF%BC%8C%E6%97%A0%E6%B3%95-ssh-%E8%BF%9E%E6%8E%A5"><span class="toc-text">3、遇坑部分，无法 ssh 连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E6%83%B3%E5%8A%9E%E6%B3%95%E5%A4%87%E4%BB%BD"><span class="toc-text">4、想办法备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%9B%B2%E7%BA%BF%E6%95%91%E5%9B%BD"><span class="toc-text">5、曲线救国</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E7%94%A8%E4%B8%8A-zsh"><span class="toc-text">6、用上 zsh</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2019/10/nano-zsh/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2019/10/about-wankeyun/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2019/09/MIUI-adb/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

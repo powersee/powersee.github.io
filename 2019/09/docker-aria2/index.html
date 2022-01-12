@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker） | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="docker,下载,BT," />
+  
+
+  
+  <meta name="description" content="本文将利用 docker 一键安装 Aria2 和 filebrowser。">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-09-16
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker）
+  </h1>
+  
+  <article class="passage-article">
+    <p>建议搭配之前的文章来观看：<a href="/2019/08/docker-qb">用服务器来离线下载 BT 种子，体验千兆网络的魅力</a></p>
+<p><a href="https://github.com/wahyd4/aria2-ariang-docker/blob/master/README.CN.md" target="_blank" rel="noopener">项目 GitHub 地址</a></p>
+<h3 id="安装-docker-如果机器没有的话）"><a href="#安装-docker-如果机器没有的话）" class="headerlink" title="安装 docker(如果机器没有的话）"></a>安装 docker(如果机器没有的话）</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">curl -sSL http<span class="variable">s:</span>//<span class="built_in">get</span>.docker.<span class="keyword">com</span>/ | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+<h3 id="最快速启动"><a href="#最快速启动" class="headerlink" title="最快速启动"></a>最快速启动</h3><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker run -d --name aria2-ui -v <span class="regexp">/home/</span><span class="string">down:</span><span class="regexp">/data -p 80:80 wahyd4/</span>aria2-ui</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Aria2: <a href="http://yourip/ui/" target="_blank" rel="noopener">http://yourip/ui/</a><ul>
+<li>假如你的 IP 是 123.123.123.123 ，这里你可以在浏览器输入 <a href="http://123.123.123.123/ui/" target="_blank" rel="noopener">http://123.123.123.123/ui/</a></li>
+</ul>
+</li>
+<li>FileManger: <a href="http://yourip" target="_blank" rel="noopener">http://yourip</a><ul>
+<li>假如你的 IP 是 123.123.123.123 ，这里你可以在浏览器输入 <a href="http://123.123.123.123" target="_blank" rel="noopener">http://123.123.123.123</a></li>
+</ul>
+</li>
+<li>访问文件管理器的默认账号和密码都是 admin</li>
+</ul>
+<p>这样下载的文件都放在 <code>/home/down</code> 这个文件夹里面</p>
+<p>文件夹没有写入权限，有兴趣看这篇文章了解 <a href="https://note.qidong.name/2018/01/docker-volume-permission/" target="_blank" rel="noopener">文章链接</a><br>不管原理，无脑给予 777</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">chmod <span class="number">777</span> /<span class="built_in">home</span>/down</span><br></pre></td></tr></table></figure>
+<p>强制删除容器</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> rm -f aria2-ui</span><br></pre></td></tr></table></figure>
+<h3 id="加密下载界面"><a href="#加密下载界面" class="headerlink" title="加密下载界面"></a>加密下载界面</h3><p>由于前面的容器使用了 80 端口，所以想创建下面这个容器的话，要把前面的容器先删除了，有的小伙伴忘记删除前面的容器，导致下面这个容器一直无法建立。</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d --name ariang \</span><br><span class="line">  -<span class="ruby">p <span class="number">80</span><span class="symbol">:</span><span class="number">80</span> \</span></span><br><span class="line"><span class="ruby">  -e PUID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e PGID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e ENABLE_AUTH=<span class="literal">true</span> \</span></span><br><span class="line"><span class="ruby">  -e RPC_SECRET=Hello \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_SSL=<span class="literal">false</span> \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_USER=user \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_PWD=pwd \</span></span><br><span class="line"><span class="ruby">  -v /home/<span class="symbol">down:</span>/data \</span></span><br><span class="line"><span class="ruby">  wahyd4/aria2-ui</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>用户名：user</li>
+<li>密码：pwd</li>
+</ul>
+<h3 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h3><p>根据个人的需求来选择，如果觉得不需要加密 Aria2 的管理界面的，其实用第一种方式就行了。非常简单，一行命令即可。</p>
+<p>同时也可以结合 APP ：Transdrone_2.5.17.apk 来使用，这个我放在网盘里（在【手机软件】文件夹中），使用它来管理多个下载工具也是比较方便的。</p>
+<p><a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p>
+<p><img src="https://i.loli.net/2019/09/30/SZ4jLRqiB5dzNgF.png" alt="transdrone"></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-docker-%E5%A6%82%E6%9E%9C%E6%9C%BA%E5%99%A8%E6%B2%A1%E6%9C%89%E7%9A%84%E8%AF%9D%EF%BC%89"><span class="toc-text">安装 docker(如果机器没有的话）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8"><span class="toc-text">最快速启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E4%B8%8B%E8%BD%BD%E7%95%8C%E9%9D%A2"><span class="toc-text">加密下载界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E8%A1%A5%E5%85%85"><span class="toc-text">后续补充</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2019/09/docker-aria2/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
+     
+      <a href="/tags/%E4%B8%8B%E8%BD%BD/"><i class="fa fa-tags"></i>下载</a>
+     
+      <a href="/tags/BT/"><i class="fa fa-tags"></i>BT</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2019/09/MIUI-adb/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2019/09/transmission-docker/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

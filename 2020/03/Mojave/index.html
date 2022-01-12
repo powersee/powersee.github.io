@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>装好 Mojave 之后要做的事 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="mac," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-03-08
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    装好 Mojave 之后要做的事
+  </h1>
+  
+  <article class="passage-article">
+    <p>最近越来越觉得 macOS 的 10.15 版本很不好用，刚好手边也有一块闲置的硬盘，于是我想用它装 10.14 的 macOS 。</p>
+<p>重新下载镜像，写入 U 盘，修改 config ，重启写入硬盘，完成。由于装过很多次，对此也算是轻车熟路。麻烦的是之后的驱动，以及常用软件的下载。</p>
+<h2 id="0，声卡驱动"><a href="#0，声卡驱动" class="headerlink" title="0，声卡驱动"></a>0，声卡驱动</h2><p>github 下载最新的 applealc ，放入 kexts 里的 other ，把里面的万能声卡移出来。clover configurator 里注入 id，重启完成。</p>
+<h2 id="1，调整按键"><a href="#1，调整按键" class="headerlink" title="1，调整按键"></a>1，调整按键</h2><p>由于使用 macOS 时，最主要用到的按键是 command ，在普通键盘上就是 Windows 键。为了能够和平时一样使用 ctrl + c , ctrl + v 来复制粘贴。可以在【系统偏好设置】–【键盘】–【修饰键…】里面将两者的位置换一下。</p>
+<h2 id="2，开启-hidpi"><a href="#2，开启-hidpi" class="headerlink" title="2，开启 hidpi"></a>2，开启 hidpi</h2><p>如果使用原生的分辨率，字体会非常的小，而且还会模糊。这种情况在 Windows 上面也有，不过 Windows 上我们可以开启屏幕缩放，比如我的 1080P 显示器，我就比较喜欢开启 115% 的缩放。但是在 macOS 上，官方的设定是用 4K 的显示器时，就可以在【系统偏好设置】–【显示器】开启。然而我并没有 4K 的显示器……<br>这时就只能自己来手动开启了。</p>
+<p><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">https://github.com/xzhih/one-key-hidpi</a></p>
+<p>用 GitHub 上的这个脚本很容易就可以开启。（在 Catalina 里面的会复杂一些，因为一些权限的问题）<br>然后，此时在【系统偏好设置】–【显示器】的缩放里面就能看到选项了。但是能选的并不多，这时可以下载一个工具，RDM</p>
+<p><a href="http://www.pc6.com/mac/441275.html" target="_blank" rel="noopener">http://www.pc6.com/mac/441275.html</a></p>
+<p>这个工具提供更多的选择，比如我的显示器是 1920 × 1200 的，在系统里有 1280 × 800 和 1650 × 1050 的选项，但是用这个工具后，我可以选择 1440 × 900 。这个分辨率我个人觉得更加合适。</p>
+<h2 id="3，oh-my-zsh-与-iterm2"><a href="#3，oh-my-zsh-与-iterm2" class="headerlink" title="3，oh my zsh 与 iterm2"></a>3，oh my zsh 与 iterm2</h2><p>由于系统本身就自带有 zsh 这个 shell 了，所以我只需要再装一下 oh-my-zsh ，然后在其装好时会询问【是否将 zsh 设置为默认的 shell】，选择是即可。<br>之后安装 iterm2 替代 terminal 。</p>
+<p>然后我还可以把之前系统的用户目录下的【.zshrc】和【.zsh_history】复制过来。</p>
+<h2 id="4，复制-ssh-文件夹"><a href="#4，复制-ssh-文件夹" class="headerlink" title="4，复制 .ssh 文件夹"></a>4，复制 .ssh 文件夹</h2><p>这个文件夹里存放着私钥，直接复制过来我就可以 ssh 连接其它终端，以及 GitHub 之类。</p>
+<h2 id="5，导入-fcpx-的设定"><a href="#5，导入-fcpx-的设定" class="headerlink" title="5，导入 fcpx 的设定"></a>5，导入 fcpx 的设定</h2><p>主要是自定义的键盘设置，还有 compressor 中的自定义的预设。</p>
+<blockquote>
+<p>暂时写到这……</p>
+</blockquote>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0%EF%BC%8C%E5%A3%B0%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-text">0，声卡驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%8C%E8%B0%83%E6%95%B4%E6%8C%89%E9%94%AE"><span class="toc-text">1，调整按键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%8C%E5%BC%80%E5%90%AF-hidpi"><span class="toc-text">2，开启 hidpi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%8Coh-my-zsh-%E4%B8%8E-iterm2"><span class="toc-text">3，oh my zsh 与 iterm2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%8C%E5%A4%8D%E5%88%B6-ssh-%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-text">4，复制 .ssh 文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%8C%E5%AF%BC%E5%85%A5-fcpx-%E7%9A%84%E8%AE%BE%E5%AE%9A"><span class="toc-text">5，导入 fcpx 的设定</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/03/Mojave/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/mac/"><i class="fa fa-tags"></i>mac</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2020/03/wojiayun/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/02/more-about-hexo/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

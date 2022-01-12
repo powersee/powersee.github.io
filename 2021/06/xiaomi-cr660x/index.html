@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>小米WiFi6路由器--cr660x | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="路由器,openwrt," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-06-22
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    小米WiFi6路由器--cr660x
+  </h1>
+  
+  <article class="passage-article">
+    <ul>
+<li>6606 — 联通</li>
+<li>6608 — 移动</li>
+<li>6609 — 电信</li>
+</ul>
+<p>配置</p>
+<blockquote>
+<p>soc mt7621 双核 880mhz</p>
+<p>rom 128M</p>
+<p>ram 256M</p>
+<p>全千兆 1 WAN   3 LAN</p>
+<p>支持 WiFi6、mesh</p>
+</blockquote>
+<p>刷机的难点在于解锁 ssh ，不同于其它的小米路由器，这台解锁需要用到一台 openwrt 路由器来辅助，比较麻烦点。</p>
+<p>xqsystem.lua</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">module(<span class="string">"luci.controller.admin.xqsystem"</span>, package.seeall)</span><br><span class="line"></span><br><span class="line">function index()</span><br><span class="line">    local<span class="built_in"> page </span>  = node(<span class="string">"api"</span>)</span><br><span class="line">    page.target  = firstchild()</span><br><span class="line">    page.title   = (<span class="string">""</span>)</span><br><span class="line">    page.order   = 100</span><br><span class="line">    page.index = <span class="literal">true</span></span><br><span class="line">   <span class="built_in"> page </span>  = node(<span class="string">"api"</span>,<span class="string">"xqsystem"</span>)</span><br><span class="line">    page.target  = firstchild()</span><br><span class="line">    page.title   = (<span class="string">""</span>)</span><br><span class="line">    page.order   = 100</span><br><span class="line">    page.index = <span class="literal">true</span></span><br><span class="line">    entry(&#123;<span class="string">"api"</span>, <span class="string">"xqsystem"</span>, <span class="string">"token"</span>&#125;, call(<span class="string">"getToken"</span>), (<span class="string">""</span>), 103, 0x08)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">local LuciHttp = require(<span class="string">"luci.http"</span>)</span><br><span class="line"></span><br><span class="line">function getToken()</span><br><span class="line">    local result = &#123;&#125;</span><br><span class="line">    result[<span class="string">"code"</span>] = 0</span><br><span class="line">    result[<span class="string">"token"</span>] = <span class="string">"; nvram set ssh_en=1; nvram commit; sed -i 's/channel=.*/channel=\"debug\"/g' /etc/init.d/dropbear; /etc/init.d/dropbear start;"</span></span><br><span class="line">    LuciHttp.write_json(result)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>如果会用 vi 的话，自己 ssh 进去之后，创建文件，将内容粘贴进去即可。</p>
+<p>不会的话，可以使用 winscp 连接旧路由器，将 <code>xqsystem.lua</code> 文件拖进去，放在这个目录里</p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">/usr/<span class="class"><span class="keyword">lib</span>/<span class="title">lua</span>/<span class="title">luci</span>/<span class="title">controller</span>/<span class="title">admin</span>/</span></span><br></pre></td></tr></table></figure>
+<p>之后修改修改旧路由器的 ip 地址为 <code>169.254.31.1</code> ，并且把 dhcp 关闭</p>
+<p>用浏览器访问：<a href="http://169.254.31.1/cgi-bin/luci/api/xqsystem/token" target="_blank" rel="noopener">http://169.254.31.1/cgi-bin/luci/api/xqsystem/token</a></p>
+
+
+	<script type="text/javascript">
+	    function mergeText()
+	    {
+	        document.getElementById('link1').innerText = 
+	        	'http://192.168.10.1/cgi-bin/luci/;stok=' +
+	            document.getElementById('stok').value + 
+	            '/api/misystem/extendwifi_connect?ssid='+
+	            document.getElementById('ssid').value +
+	            '&password='+
+	            document.getElementById('passwd').value;
+	         document.getElementById('link2').innerText = 
+	        	'http://192.168.10.1/cgi-bin/luci/;stok=' +
+	        	document.getElementById('stok').value + 
+	        	'/api/xqsystem/oneclick_get_remote_token?username=xxx&password=xxx&nonce=xxx';
+	    }
+	</script>
+你的 stok         <input type="text" id="stok" onkeyup="mergeText()"><br>
+
+你的 wifi 名     <input type="text" id="ssid" onkeyup="mergeText()"><br>
+
+你的 wifi 密码 <input type="text" id="passwd" onkeyup="mergeText()"><br>
+
+<pre id="link1">填好自动生成链接</pre>
+
+第二个链接
+
+<pre id="link2">填好自动生成链接</pre>
+
+<p>之后使用 winscp 连接小米路由器，将 <code>pb-boot.img</code> 放到 <code>tmp</code> 目录中，接着使用命令将它写入 Bootloader</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">mtd <span class="keyword">write</span> <span class="regexp">/tmp/</span>pb-boot.img Bootloader</span><br></pre></td></tr></table></figure>
+<p>到此路由器的原系统就没了，现在断电重启，机器会自动进入 pb-boot ，在浏览器访问 192.168.1.1，可以进入刷机界面，如果要刷 openwrt 的话，需要先刷入 factory.bin 结尾的固件。</p>
+<p><img src="\img\2021\cr6608.jpg" alt="cr6608"></p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2021/06/xiaomi-cr660x/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"><i class="fa fa-tags"></i>路由器</a>
+     
+      <a href="/tags/openwrt/"><i class="fa fa-tags"></i>openwrt</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2021/07/router-speed/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2021/06/github-clone-error/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

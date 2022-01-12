@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>树莓派 4B 变身 NAS 服务器 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="设备,Linux,树莓派," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-12-08
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    树莓派 4B 变身 NAS 服务器
+  </h1>
+  
+  <article class="passage-article">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>树莓派由于体积非常小，只有一张银行卡的大小，而且还支持 WiFi ，所以拿它当服务器也是一个不错的选择。只要找一个有电源的地方，丢在那里就行。</p>
+<p>如果只是当成服务器来使用，可以感兴趣的人会比较少，如果能够在上面装些下载软件，再开启 smb 共享，那么树莓派也是可以当成一台的简单的 NAS 来使用的。</p>
+<h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><p>个人推荐先使用官方系统 raspios , 不建议使用以前的 raspbian ，raspbian 是 32 位的系统，如果有使用 docker 的话，就会知道，32 位的 docker 镜像非常的少。如果可以的话，一定要装 64 位的系统，不管是官方的 raspios 还是 Ubuntu 都行。</p>
+<p>这里我以官方的 raspios 来作为演示。</p>
+<p>下载来源：<a href="https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/" target="_blank" rel="noopener">清华镜像站</a></p>
+<p>由于是当 NAS 使用，建议使用 <a href="https://mirrors.tuna.tsinghua.edu.cn/raspberry-pi-os-images/raspios_lite_arm64/images/raspios_lite_arm64-2020-08-24/2020-08-20-raspios-buster-arm64-lite.zip" target="_blank" rel="noopener">lite 版</a></p>
+<p>下载后将里面的 img 镜像解压出来，然后使用镜像写入工具。我使用的是 usb image tools （我的网盘里面有），也可以使用其它的工具，例如 Etcher ，win32diskimager 等等。</p>
+<h3 id="开启-ssh"><a href="#开启-ssh" class="headerlink" title="开启 ssh"></a>开启 ssh</h3><p>镜像写入完成后，如果直接弹出读卡器，然后启动树莓派的话，会发现无法用 ssh 连接。解决的方法也很简单，将内存卡重新插回电脑，在里面建立一个文件夹，名字为 <code>ssh</code></p>
+<p>这样系统启动后就开启 ssh 了。</p>
+<h3 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h3><p>备份原来的</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">cp /etc/apt/source<span class="selector-class">.list</span> /etc/apt/source<span class="selector-class">.list</span><span class="selector-class">.bak</span></span><br></pre></td></tr></table></figure>
+<p>/etc/apt/source.list</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian/ buster main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian/ buster main contrib non-free</span><br><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian/ buster-updates main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian/ buster-updates main contrib non-free</span><br><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian/ buster-backports main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian/ buster-backports main contrib non-free</span><br><span class="line"><span class="keyword">deb</span> http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian-security buster/updates main contrib non-free</span><br><span class="line"><span class="keyword">deb</span>-src http<span class="variable">s:</span>//mirrors.tuna.tsinghua.edu.<span class="keyword">cn</span>/debian-security buster/updates main contrib non-free</span><br></pre></td></tr></table></figure>
+<p>/etc/apt/source.list.d/raspi.list</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">deb http:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/raspberrypi/</span> buster main ui</span><br></pre></td></tr></table></figure>
+<p>我使用的是 nano 编辑器，对文本内容进行修改之后，想保存退出，需要按 <code>ctrl + X</code> 退出，然后编辑器会问，是否要保存，按 <code>Y</code> 选择 yes ，再让你确认保存的文件名，按回车键即可。</p>
+<p>更改好源之后，输入</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">apt update</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装常用应用"><a href="#安装常用应用" class="headerlink" title="安装常用应用"></a>安装常用应用</h3><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">apt install vim samba zsh docker<span class="selector-class">.io</span> -y</span><br></pre></td></tr></table></figure>
+<h3 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h3><p>将硬盘通过 usb 连接到树莓派，在终端输入</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">lsblk</span></span><br></pre></td></tr></table></figure>
+<p>列出所有可用块设备的信息，例如我的显示</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">NAME        MAJ:MIN RM  SIZE RO<span class="built_in"> TYPE </span>MOUNTPOINT</span><br><span class="line">sda           8:0    0 55.9G  0 disk </span><br><span class="line">├─sda1        8:1    0 53.9G  0 part </span><br><span class="line">├─sda2        8:2    0    1K  0 part </span><br><span class="line">└─sda5        8:5    0    2G  0 part </span><br><span class="line">mmcblk0     179:0    0 14.7G  0 disk </span><br><span class="line">├─mmcblk0p1 179:1    0  256M  0 part /boot/firmware</span><br><span class="line">└─mmcblk0p2 179:2    0 14.5G  0 part /</span><br></pre></td></tr></table></figure>
+<p>我需要挂载 sda1 这个分区，想将它挂载到 /mnt/to 这个目录下，所以我先创建这个文件夹，再进行挂载</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir <span class="regexp">/mnt/</span>to</span><br><span class="line">mount <span class="regexp">/dev/</span>sda1 <span class="regexp">/mnt/</span>to</span><br></pre></td></tr></table></figure>
+<p>这种情况下，如果我们重启了机器，那么就得重新挂载硬盘，如果你并不频繁重启机器，这样或许还可以接受。若不是的话，可以了解一下自动挂载。</p>
+<p>首先查看硬盘的 UUID ，可以使用 <code>blkid</code> 命令</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># blkid     </span></span><br><span class="line">/dev/mmcblk0p1: <span class="attribute">LABEL</span>=<span class="string">"system-boot"</span> <span class="attribute">UUID</span>=<span class="string">"85F3-CC2B"</span> <span class="attribute">TYPE</span>=<span class="string">"vfat"</span> <span class="attribute">PARTUUID</span>=<span class="string">"da84cd12-01"</span></span><br><span class="line">/dev/mmcblk0p2: <span class="attribute">LABEL</span>=<span class="string">"writable"</span> <span class="attribute">UUID</span>=<span class="string">"b96d647f-679e-4582-87d0-2d8c7afc91f4"</span> <span class="attribute">TYPE</span>=<span class="string">"ext4"</span> <span class="attribute">PARTUUID</span>=<span class="string">"da84cd12-02"</span></span><br><span class="line">/dev/sda1: <span class="attribute">UUID</span>=<span class="string">"041ff92b-0a5c-49f4-b965-0d3a55ef8284"</span> <span class="attribute">TYPE</span>=<span class="string">"ext4"</span> <span class="attribute">PARTUUID</span>=<span class="string">"0eff14f3-01"</span></span><br><span class="line">/dev/sda5: <span class="attribute">UUID</span>=<span class="string">"b82db7cf-756f-4109-8800-9c0d9bb58810"</span> <span class="attribute">TYPE</span>=<span class="string">"swap"</span> <span class="attribute">PARTUUID</span>=<span class="string">"0eff14f3-05"</span></span><br><span class="line">/dev/mmcblk0: <span class="attribute">PTUUID</span>=<span class="string">"da84cd12"</span> <span class="attribute">PTTYPE</span>=<span class="string">"dos"</span></span><br></pre></td></tr></table></figure>
+<p>这里我想挂载的是 <code>/dev/sda1</code> ，所以我复制它的 UUID <code>041ff92b-0a5c-49f4-b965-0d3a55ef8284</code> 记住它的 type 是 ext4 ，你的有可能是其它的，例如 ntfs 之类。</p>
+<p>编辑 <code>/etc/fstab</code> </p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">nano <span class="regexp">/etc/</span>fstab</span><br></pre></td></tr></table></figure>
+<p>在最下面添加一行</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">UUID=<span class="number">041</span>ff92b<span class="number">-0</span>a5c<span class="number">-49</span>f4-b965<span class="number">-0</span>d3a55ef8284 /mnt/to ext4 defaults     <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p><img src="\img\2020\fstab-nano.png" alt="fstab-nano"></p>
+<p>填好后，按 <code>ctrl + o</code> 保存，回车键确认，再按 <code>ctrl + x</code> 退出。</p>
+<h3 id="设置-smb-共享"><a href="#设置-smb-共享" class="headerlink" title="设置 smb 共享"></a>设置 smb 共享</h3><p>此时我想通过 smb 的方式将硬盘中的内容共享出来，我需要先编辑 samba 的配置文件</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">vim</span> /etc/samba/smb.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<p>然后在最后添加这么几行</p>
+<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">[<span class="keyword">to</span>]</span><br><span class="line">    path = /mnt/<span class="keyword">to</span></span><br><span class="line">    browseable = <span class="literal">yes</span> </span><br><span class="line">    guest ok = <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+<p>保存退出，然后重启 smbd</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">service smbd restart</span></span><br></pre></td></tr></table></figure>
+<p>此时在 资源管理器 的 网络 中，点击树莓派对应的设备名，应该就可以看到一个名字为 to 的共享文件夹。由于上面是设置 guest ok ，所以不用身份验证就可以直接打开。</p>
+<p>但这样可能不是你想要的，毕竟任何人都可以直接访问，不安全。能否添加账号密码来验证呢？答案是可以的。</p>
+<p>如果你装的是树莓派的 raspbian 或者 raspios ，默认就有一个 pi 用户，如果你安装的是 Ubuntu ，默认情况下就有一个 ubuntu 用户。那么现在就到 samba 里面添加这个同名用户。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">smbpasswd -<span class="keyword">a</span> <span class="literal">pi</span></span><br></pre></td></tr></table></figure>
+<p>用 Ubuntu 的</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">smbpasswd -<span class="selector-tag">a</span> ubuntu</span><br></pre></td></tr></table></figure>
+<p>之后会让你设置密码，需要设置两次。会如下面这样显示。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">New<span class="built_in"> SMB </span>password:</span><br><span class="line">Retype new<span class="built_in"> SMB </span>password:</span><br><span class="line">Added<span class="built_in"> user </span>ubuntu.</span><br></pre></td></tr></table></figure>
+<p>然后我们可以再来修改 smb 配置文件。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">vim</span> /etc/samba/smb.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<p>在最后面添加这么几行</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">[test]</span><br><span class="line">    path = /mnt/<span class="keyword">to</span>/test</span><br><span class="line">    writable =<span class="literal">yes</span></span><br><span class="line">    valid<span class="built_in"> users </span>= ubuntu</span><br><span class="line">    force create mode = 0644</span><br></pre></td></tr></table></figure>
+<p>保存退出，然后重启 smbd</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">service smbd restart</span></span><br></pre></td></tr></table></figure>
+<p>然后在网络中应该就可以看到名字为 test 的共享文件夹，直接双击打开的话，会要求你输入账号和密码。账号就是 pi 或者 ubuntu ，密码是你刚才自己设置的。</p>
+<p><img src="\img\2020\samba-test-dir.png" alt="samba-test-dir"></p>
+<h3 id="安装我家云导航"><a href="#安装我家云导航" class="headerlink" title="安装我家云导航"></a>安装我家云导航</h3><p>导航下载，在网盘中的【不仅限于盒子】、【贝壳云and我家云】文件夹中。我使用的是 2019 年的旧版导航，用新的应该也可以。</p>
+<p>先进入 <code>/opt</code> 这个目录</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/opt</span></span><br></pre></td></tr></table></figure>
+<p>想安装需要先把导航压缩包传进树莓派，达到这个目的的方法有很多。我使用的终端是 xshell ，我先在树莓派里安装一个 lrzsz</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> lrzsz</span><br></pre></td></tr></table></figure>
+<p>安装完成后，使用 <code>rz</code> 命令，就可以把电脑里的文件，传输到树莓派里面了。</p>
+<p>把 <code>entware_navi.tgz</code> 和 <code>install_navi.sh</code> 这两个文件，传到 <code>/opt</code> 目录下，然后安装脚本执行权限，再执行安装</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">chmod +x install_navi.<span class="keyword">sh</span></span><br><span class="line">./install_navi.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+<p>然后等一段时间……</p>
+<p>完成后就可以在浏览器输入树莓派的 ip 来访问这个导航界面了。</p>
+<p><img src="\img\2020\树莓派导航界面.png" alt="树莓派导航界面"></p>
+<p>实测 qb 启动不了，控制台那个是给我家云的 omv 用的，装在其它设备上本来就是没法用的。其它的功能好像都还可以用吧。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-text">安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF-ssh"><span class="toc-text">开启 ssh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90"><span class="toc-text">换源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E5%BA%94%E7%94%A8"><span class="toc-text">安装常用应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98"><span class="toc-text">挂载硬盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE-smb-%E5%85%B1%E4%BA%AB"><span class="toc-text">设置 smb 共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%88%91%E5%AE%B6%E4%BA%91%E5%AF%BC%E8%88%AA"><span class="toc-text">安装我家云导航</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/12/raspberrypi-nas/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"><i class="fa fa-tags"></i>树莓派</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2020/12/ios-backup-photos/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/12/raspberrypi-install-transmission/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

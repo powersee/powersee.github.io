@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>IOS 设备备份相册与文件到 NAS | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Linux,docker,ios," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-12-18
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    IOS 设备备份相册与文件到 NAS
+  </h1>
+  
+  <article class="passage-article">
+    <p>一直以来，我都是用安卓手机，特别是小米的手机，已经用了很多年了。一开始的照片也不多，用小米自带的云服务备份即可。后来照片有点多了，小米云服务免费的 5G 空间已经不够用了。</p>
+<p>我开始尝试其它的备份方案，比如电脑和手机都安装 handshaker 这个软件，可以自动将图片备份到电脑里。电脑里现在还存放着两年多前备份的手机图片。</p>
+<p><img src="\img\2020\handshaker-photos.png" alt="handshaker-photos"></p>
+<p>好像备份了一两次我就不用了，不是我想要的备份方案。后来我还尝试使用 Google photos 备份，也觉得不好用。都不是我想要的。</p>
+<p>后来我接触到 syncthing 这个开源软件。感觉它才是最符合我需求的，它其实是一个同步软件，网上有很多人称它为网盘并不准确。其原理是这样，我手机上面选中一个文件夹，通过这个软件，就可以把里面的文件备份到其它的设备，比如其它的手机、电脑或者 NAS。</p>
+<p>所以在安卓手机上，我只要选中 DCIM 这个文件夹，就可以把手机里面拍摄的图片、视频以及截图备份到其它设备。但是有一些图片，是通过微信保存到手机里的，并不在 DCIM 这个文件夹中。这也不难解决，再选中一个文件夹即可 <code>tencent\MircoMsg\WeiXin</code> 。但是，这款应用并没有 IOS 版……</p>
+<p>所以当我买了台二手的 ipad 后，我发现没法用 syncthing 来备份里面文件，我只能去寻找替代品。于是我找到了这么一款——微力同步（verysync）。这是一款国产的应用，也是支持多平台的同步应用。当我第一次接触它时，我严重怀疑它是拿开源的 syncthing 去换皮的。</p>
+<p><img src="\img\2020\syncthing-and-verysync.png" alt="syncthing-and-verysync"></p>
+<p>它的使用方法和 syncthing 差不多，不过它有一个不错的地方，就是它分享文件夹，不需要像 syncthing 那样先让两台设备建立关系（有点像微信互相添加好友），微力同步可以将要分享的文件夹通过密钥或者链接分享出去。比如我手机里想将相册这个文件夹同步到电脑，那么我只要让它生成一个链接，将链接发到电脑，电脑点击后就可以将文件同步过来了。</p>
+<p>如果是电脑想分享给手机，除了上述的链接和密钥，还可以通过二维码分享，只要扫这个二维码，就可以将电脑的文件同步到手机里。</p>
+<p><img src="\img\2020\verysync-share.png" alt="verysync-share"></p>
+<p>所以我后来就慢慢的使用微力同步代替 syncthing 了，感觉它用起来方便点，而且也都是免费的。然后我还了解到它还有 IOS 版，就想用它来备份 iPad 的相册到 NAS 里。结果却发现，它在其它所有平台都是免费的，唯独在 ios 上是收费的，价格 12 块。</p>
+<p>抱着价格也不贵的心态，而我也使用了有一段时间了，我也就买一份支持一下。</p>
+<p><img src="\img\2020\ios-appstore-verysync.PNG" alt="ios-appstore-verysync"></p>
+<p>不过后来我又发现了一款功能差不多，而且可以免费用的 app —— resilio sync 。并且我这时才知道，原来微力同步的那些功能都是从这里学来的。</p>
+<p><img src="\img\2020\resilio-option.png" alt="resilio-option"></p>
+<p>这软件以前叫 btsync ，感觉像是 BT 的变种。最早的 BT 是，比如我有一部电影想分享给朋友，我可以为这部电影制作一个种子（torrent 文件），我只要电脑不关，保持做种状态，并把这个种子文件发给其他人。其他人只要能连接到我的电脑，就能下载我电脑里的这部电影。</p>
+<p>而这个 btsync 可以省去制作种子和传播种子文件的过程，直接发给别人一个链接或一个密钥就行。但其实 BT 也可以省去传播种子文件的过程，发磁力链接就行呗。但是有一点 BT 就做不到了，那就是更新，btsync 可以分享一个文件夹，比如现在里面是一个文件 <code>xxxS01E01.mp4</code> ，是某部电视剧的第一集，其他人得到这个分享链接或密钥，就可以下载到。但如果下个星期出第二集了，其他人不需要进行任何操作，就可以下载到第二集 <code>xxxS01E02.mp4</code> ，因为这个分享文件夹更新了。</p>
+<p>但是用 BT 就做不到，只能等出第二集了，再做一个 BT 种子，分享给其他人才行。所以听说以前这个 btsync 挺火的，那后来怎么不火的呢？因为官方觉得使用 dht 技术自己管控不了这个软件，所以在 1.4.111 版本后，就把 dht 功能去掉了。之后的版本如果想通过 bysync 下载资源的话，就得通过官方的服务器，才可以查询到其他用户 IP ，从而进行下载。而再之后，它的服务器在国内被墙了，因此在国内也就基本凉了。</p>
+<p>不过它只是作为资源下载这方面凉了，用来局域网同步还是可以用的，使用的方法都一样，因为这三个软件的关系很微妙。我在 <a href="https://www.appinn.com/verysync/" target="_blank" rel="noopener">小众软件</a> 看到了网友 <strong>哆哆爱焱垚</strong> 的这样一段留言</p>
+<blockquote>
+<p><strong>这个软件我知道，在Resilio Sync时代，发现不能使用时，微力同步的作者一直以小资源站的形式进行着Resilio Sync再度能用的努力，但是后来实在经不住这么折腾就在开源软件Syncthing的基础上自己开发了这款微力同步，而界面的相似真的是为了让当初一批Resilio Sync用户减少适应的难度而高度相似。后来，也是看着作者一步步因为论坛及QQ群网友的要求开发出了适应各个平台的版本。作者一路走来也真的是不容易，也挺高兴他的软件被小编收录到了主站！</strong></p>
+</blockquote>
+<p>这三款应用，简单的同步功能，都可以免费使用。</p>
+<ul>
+<li>syncthing 由于是开源软件，完全免费，但是它没有 IOS 端，而且同步之前需要设备互相添加好友，感觉有点不方便。</li>
+<li>verysync 基于 syncthing 开发的国产闭源软件，IOS 端需要付费购买才可以使用，现在的价格是 ￥12。其它平台可以免费使用，但是有些高级功能，如电脑和 Linux 端的选择同步，需要 Pro 才可以使用，想拥有 Pro 资格，需要 ￥99.</li>
+<li>resilio sync 是闭源商业软件，除了同步功能之外，还可以下载资源。免费版对于个人使用应该也是足够的。</li>
+</ul>
+<p>为了写这篇文章，我把三款应用都通过 docker 装在 N1 上了。</p>
+<p><img src="\img\2020\3-sync-app.png" alt="3-sync-app"></p>
+<p>体验下来还是觉得 verysync 用着比较顺手。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/12/ios-backup-photos/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
+     
+      <a href="/tags/ios/"><i class="fa fa-tags"></i>ios</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2021/01/wankeyun-server/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/12/raspberrypi-nas/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

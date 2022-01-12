@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>使用 syncthing 同步多台设备的文件 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="服务器," />
+  
+
+  
+  <meta name="description" content="又来折腾 syncthing 了，毕竟买了个 10T 的大硬盘，得好好利用起来才行。syncthing 是一个跨平台、开源的数据同步工具。它可以让你的文件夹，在多台设备保持同步。">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-11-30
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    使用 syncthing 同步多台设备的文件
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="Syncthing-支持平台"><a href="#Syncthing-支持平台" class="headerlink" title="Syncthing 支持平台"></a>Syncthing 支持平台</h2><p>Syncthing 官方支持 Linux、Windows、OS X、FreeBSD、Solaris 等系统，并且有第三方的 <a href="https://geo.itunes.apple.com/cn/app/fsync/id964427882?mt=8&amp;at=1000l7mq&amp;ct=appinnpost" target="_blank" rel="noopener">iOS</a>、<a href="https://play.google.com/store/apps/details?id=com.nutomic.syncthingandroid" target="_blank" rel="noopener">Android</a> 应用。</p>
+<p>所以利用它，我可以让我手机（Android）的文件，同步到电脑（macOS，Windows）。同时它还可以在 Linux 上用，所以我可以把文件同步到服务器上，也可以同步到刷了<code>小钢炮系统</code>的斐讯 N1 上（系统自带 syncthing）。甚至我可以这些设备全部都使用，确保我的某个文件夹，同步到所有的设备上。（虽然现在没有重要到这样的文件……）</p>
+<p>总之，它是一款很强大的软件，并且还免费开源，很了不起。其实我一年半之前就折腾过了 <a href="/2018/05/syncthing/">之前的文章</a> ，不过说来惭愧，当时折腾了一阵子，就没有再使用它了。因为当时的版本是 0.14 ，很多功能还不完善，并且在 Mac 上面，要使用只能<code>二进制执行文件</code>，并没有做出一个 app ，感觉不太方便。不过我的手机上面一直都有保留着它，即使不怎么使用了。</p>
+<h2 id="现在的变化"><a href="#现在的变化" class="headerlink" title="现在的变化"></a>现在的变化</h2><p>时间过去这么久，这个应用现在更新了很多次，变得越来越好用了。例如：</p>
+<ol>
+<li>有 docker 版本，Linux 上安装起来更加方便</li>
+<li>Windows 和 macOS 都有了 GUI 版本，使用门槛降低</li>
+<li>同步的时候可以选择 仅发送，（而不接收，可以防止对方误操作而导致己方的文件也丢失）</li>
+</ol>
+<p>可能其它的功能我还没有用到，所以并不能更好地体验这个应用，不过就上面这几点，我就挺满意了。</p>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>在其官网： <a href="https://syncthing.net/" target="_blank" rel="noopener">syncthing.net</a> 上面可以看到下载链接，不过都是放在 GitHub 上的，可能得用代理才能下载。</p>
+<ul>
+<li><strong>Windows</strong> tray utility, filesystem watcher &amp; launcher: <a href="https://github.com/canton7/SyncTrayzor/releases/latest" target="_blank" rel="noopener">SyncTrayzor</a></li>
+<li><strong>macOS</strong> application bundle: <a href="https://github.com/syncthing/syncthing-macos/releases/latest" target="_blank" rel="noopener">syncthing-macos</a></li>
+<li><strong>Cross-platform</strong> GUI wrapper: <a href="https://github.com/syncthing/syncthing-gtk/releases/latest" target="_blank" rel="noopener">Syncthing-GTK</a></li>
+</ul>
+<p>安卓手机可以去 Google play 搜索。</p>
+<p>我这里主要介绍用 docker 将它装在服务器上面。</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">  -<span class="ruby">-name=syncthing \</span></span><br><span class="line"><span class="ruby">  -e PUID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e PGID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e TZ=Asia/Shanghai \</span></span><br><span class="line"><span class="ruby">  -e UMASK_SET=<span class="number">022</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">8384</span><span class="symbol">:</span><span class="number">8384</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">22000</span><span class="symbol">:</span><span class="number">22000</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">21027</span><span class="symbol">:</span><span class="number">21027</span>/udp \</span></span><br><span class="line"><span class="ruby">  -v /home/syncthing/appdata/<span class="symbol">config:</span>/config \</span></span><br><span class="line"><span class="ruby">  -v /home/syncthing/<span class="symbol">data1:</span>/data1 \</span></span><br><span class="line"><span class="ruby">  -v /home/syncthing/<span class="symbol">data2:</span>/data2 \</span></span><br><span class="line"><span class="ruby">  --restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby">  linuxserver/syncthing</span></span><br></pre></td></tr></table></figure>
+<p>这里开放的 webUI 端口为 8384，所以启动成功后到浏览器输入 <code>IP:8384</code> 即可进入管理界面。因为我们是在服务器上使用，一定要设置用户，不然别人随便输入你的 IP:8384 就可以来管理你的设备了，很不安全。如果是在家里使用的话，例如群晖，或者和我一样使用 小钢炮 ，那不用设置也没多大问题。</p>
+<h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><p>这里的添加用户，可以理解成和微信的添加好友相似。两台设备需要添加好友了才能互相发送文件，而要添加可以使用 <strong>二维码</strong> ，也可以使用 <strong>ID</strong> 。这里我以服务器作为被添加的设备。</p>
+<p>点击右上角的 【操作】➡️【显示 ID 】即可看到。如果手机想添加这台设备，打开应用后，向左滑来到设备这里，点右上角的 ➕ ，然后点击二维码就可以扫码了。如果是电脑，就只能用 ID 的方式来添加了。点右下角的【添加远程设备】然后输入服务器的 ID 即可。</p>
+<h2 id="同步文件"><a href="#同步文件" class="headerlink" title="同步文件"></a>同步文件</h2><p>这里我以手机文件同步到服务器为例。在手机上向右滑来到左边的 文件夹 这里。点击右上角的 ➕ 。文件夹标签可以随便起，目录选择要同步的文件夹，要同步到哪台设备，就把那台设备的开关打开。这样手机端的设置就完成了。</p>
+<p>然后过一会服务器的就会收到通知，我们可以在浏览器的 webUI 里看到，提示某某人分享一个某某文件夹给你，是否接受。接受时可以设置要把这个文件夹放在哪里。</p>
+<p>这样设置好后，就只需要等待了，手机会慢慢地把文件上传到服务器里。因为这个应用是使用 端–端 加密的，所以不用怕被中间人知道你在传输什么，不过可能也是因为这个原因吧，感觉传输的速度不是那么快，最高好像只能达到 2M/s 。</p>
+<p>当然这个过程也是可以反过来的，把服务器的文件同步到手机上。</p>
+<p>我本来是打算尝试一下，把服务器里 qbittorrent 下载好的文件，利用这个应用取回手机。但是，速度实在太慢了，虽然最大时能有 2M/s ，但是大部分时间都是几百 k 的速度。如果设置成服务器下载完，让它同步到我的小钢炮里面就还行，毕竟两台设备都是 24 小时开机。但是手机就没必要了，非要把文件取回手机，我还是选择开启一个临时的 HTTP 服务。</p>
+<h2 id="暂时我的使用方案"><a href="#暂时我的使用方案" class="headerlink" title="暂时我的使用方案"></a>暂时我的使用方案</h2><p>我目前的使用有两个</p>
+<ol>
+<li>把手机的微信下载内容，同步到小钢炮。</li>
+<li>把手机里用 vue 这个软件拍的视频，同步到电脑（用于在电脑剪辑）</li>
+</ol>
+<p>以后想到其它玩法再来更新。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Syncthing-%E6%94%AF%E6%8C%81%E5%B9%B3%E5%8F%B0"><span class="toc-text">Syncthing 支持平台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E7%9A%84%E5%8F%98%E5%8C%96"><span class="toc-text">现在的变化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="toc-text">开始安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-text">添加用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6"><span class="toc-text">同步文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%82%E6%97%B6%E6%88%91%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%A1%88"><span class="toc-text">暂时我的使用方案</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2019/11/syncthing-better/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><i class="fa fa-tags"></i>服务器</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2019/12/N1-armbian/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2019/11/nds2desmume/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>用服务器来离线下载 BT 种子，体验千兆网络的魅力——docker 安装 qBittorrent，以及把文件取回手机 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="docker,下载,BT," />
+  
+
+  
+  <meta name="description" content="此教程并不难，只要你会复制粘贴即可。🌟🌟🌟搭配视频：用服务器来离线下载 BT 种子，体验千兆网络的魅力利用免费CDN加速取回BT资源">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-08-29
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    用服务器来离线下载 BT 种子，体验千兆网络的魅力——docker 安装 qBittorrent，以及把文件取回手机
+  </h1>
+  
+  <article class="passage-article">
+    <blockquote>
+<p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a href="https://www.vultr.com/?ref=8161953-4F" target="_blank" rel="noopener">点此链接注册充值 10 美元送 50 美元</a><br>送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧）</p>
+</blockquote>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><blockquote>
+<p>使用这家的服务器，是因为它可以随时的删除，不像其它的，一买就得一年。而且，这家还可以选择自动安装 docker ，又节省了一些时间。</p>
+</blockquote>
+<ol>
+<li>点击左边的 billing</li>
+<li>充值方式支持 <strong>支付宝</strong> <strong>微信</strong>（但最少 10 美元）</li>
+<li>充值好后 ，点右边那个 <strong>+</strong> 的圆圈</li>
+<li>然后选择服务器的<strong>地区</strong>（日本和新加坡会比较快，不过有可能连接不上，选美国也可以）</li>
+<li><strong>Server Type</strong>点 <strong>application</strong> ，里面就有 <strong>docker</strong></li>
+<li><strong>Server Size</strong> 就是服务器的配置，越高就越贵。（如果有赠送的 50 美元，那就选那个 40 美元的吧，反正你不花，下个月也没了）</li>
+<li>把下面的 <strong>Enable IPv6</strong> 前面的 框 打钩✅（可以使我们下载时连接到更多的用户）</li>
+<li>然后点击右下角的 deploy now</li>
+<li>等待几分钟……<br>10.就可以看到服务器部署好了，给了一个 ip 地址。</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p> 我们要控制这台服务器，需要用 ssh 工具，这里我用 putty 来演示。</p>
+<blockquote>
+<p>如果用安卓手机的话，可以下载个 <strong>JuiceSSH</strong></p>
+</blockquote>
+<p>有能力的可以去 GitHub 下载：<a href="https://github.com/larryli/PuTTY/releases" target="_blank" rel="noopener">地址</a><br>无法在 GitHub 下载的，可以到我的网盘里下载：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">地址</a>（在『电脑软件』里）</p>
+<p>下载后解压，打开 putty<br><img src="/img/2019/putty-config.webp" alt="putty 连接.png"><br><a href="https://i.loli.net/2019/08/29/QwXt5dyAIofNHMW.png" target="_blank" rel="noopener"></a><br>填上 IP 地址连接</p>
+<p>接着输入用户名和密码。（密码输入时不会显示的）</p>
+<p>连接后输入<br><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull linuxserver/qbittorrent</span><br></pre></td></tr></table></figure></p>
+<p>完成后输入</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker create \</span><br><span class="line">  -<span class="ruby">-name=qbittorrent \</span></span><br><span class="line"><span class="ruby">  -e PUID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e PGID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e TZ=Aisa/Shanghai \</span></span><br><span class="line"><span class="ruby">  -e UMASK_SET=<span class="number">022</span> \</span></span><br><span class="line"><span class="ruby">  -e WEBUI_PORT=<span class="number">8080</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">8999</span><span class="symbol">:</span><span class="number">8999</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">8999</span><span class="symbol">:</span><span class="number">8999</span>/udp \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">8080</span><span class="symbol">:</span><span class="number">8080</span> \</span></span><br><span class="line"><span class="ruby">  -v /path/to/appdata/<span class="symbol">config:</span>/config \</span></span><br><span class="line"><span class="ruby">  -v /path/to/<span class="symbol">downloads:</span>/downloads \</span></span><br><span class="line"><span class="ruby">  --restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby">  linuxserver/qbittorrent</span></span><br></pre></td></tr></table></figure>
+<p>创建好后再启动<br><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qbittorrent</span><br></pre></td></tr></table></figure></p>
+<p>完成后就可以在浏览器里，输入 <code>IP:8080</code> 来访问 qB 了。</p>
+<blockquote>
+<p>补充，还需要到设置里面，在【连接】中，将【监听端口】改为 8999 才行。如图</p>
+</blockquote>
+<p><img src="\img\2020\qb监听端口.png" alt="qb监听端口"></p>
+<h2 id="取回本地"><a href="#取回本地" class="headerlink" title="取回本地"></a>取回本地</h2><p>但是下载好后文件是在服务器里，我想把它取回到电脑或者手机。那么，开启一个 http 服务即可。</p>
+<p>我在后期还写了这篇文章：<a href="/2020/01/three-ways-to-retrieve-the-file/">关于服务器资源取回本地的几种方法</a> 想通过浏览器将文件取回本地的朋友，可以了解一下。</p>
+<h3 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h3><p>看到有些人评论说用服务器下载会有风险，这个我也是知道的。因为国外的版权保护比较严格，所以有时会监控到你在下载 BT ，如果发现你下载的内容是盗版视频之类的，有可能会对你发出警告⚠️！</p>
+<p>但是，我已经用了两年多了，没有碰到过，所以才敢出这个教程。我认为可能和上传有关吧，不用上传太多应该就不太容易被查水表吧。所以我的分享率就设置为 2 而已。</p>
+<blockquote>
+<p>就算你真的被警告了，一般也就是叫你把视频删了而已。如果再严重点，我大不了就把这台服务器删了，然后重新开一台。（就跟我们在网吧里一样，这也是用 vultr 的好处。）</p>
+</blockquote>
+<p>而且，有的人问这个流量的问题，像视频中演示的，最便宜的套餐都有 1000G 流量，而且是上传 1000G，下载也 1000G ，正常使用一般是用不完的，只要设置一下这个分享率，按理是不会用超过的。</p>
+<p><img src="https://i.loli.net/2019/08/30/tVnbi6zFp8SIED4.png" alt="bandi.png"><br>像我这一个月才用 200G ……</p>
+<p>总之一般用户下载是用不完的。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E5%9B%9E%E6%9C%AC%E5%9C%B0"><span class="toc-text">取回本地</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="toc-text">补充：</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2019/08/docker-qb/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
+     
+      <a href="/tags/%E4%B8%8B%E8%BD%BD/"><i class="fa fa-tags"></i>下载</a>
+     
+      <a href="/tags/BT/"><i class="fa fa-tags"></i>BT</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2019/09/transmission-docker/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2019/04/push-to-kindle/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
