@@ -627,8 +627,10 @@ main {
       display: block;
       margin: 0 auto;
       max-width: 90%;
-      border-radius: 5px;
+      border-radius: 1em;
       cursor: zoom-in;
+      border: .15em solid #e0dfcc;  /* 给文章中的图片添加边框 */
+      box-shadow: 10px 10px 10px rgba(0,0,0,.5);  /* 给文章中的图片添加阴影 */
       transition: all .3s linear; }
       .passage-article img:hover {
         box-shadow: 0 0 3px #9E9E9E; }
