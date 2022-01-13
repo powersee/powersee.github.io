@@ -717,19 +717,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>关于章鱼星球</title>
-    <url>/2021/02/about-zhangyuxingqiu/</url>
-    <content><![CDATA[<p>1</p>
-<h3 id="固件介绍"><a href="#固件介绍" class="headerlink" title="固件介绍"></a>固件介绍</h3><p><img src="C:\Users\ver\hexobackup\source/img/2021/2021-02-14_16-56-47.jpg" alt="2021-02-14_16-56-47"></p>
-<p>打开 win10 主题是这样的</p>
-<p><img src="C:\Users\ver\hexobackup\source/img/2021/2021-02-14_16-57-25.jpg" alt="2021-02-14_16-57-25"></p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>设备</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于迅雷赚钱宝二代一些小记录</title>
     <url>/2021/03/about-zhuanqianbao2/</url>
     <content><![CDATA[<p>最近买了台 赚钱宝2代，闲鱼买的，30块包邮，有包装，电源适配器，网线。</p>
@@ -2486,7 +2473,7 @@
 <p>为了方便访问不了 GitHub 的朋友，我也把它们备份到网盘里。</p>
 <p>链接：<a href="https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w">https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w</a><br>提取码：psee</p>
 <p>7z b 分数</p>
-<p>![乐橙 sn1 7z b](/img/2021/乐橙 sn1 7z b.jpg)</p>
+<p><img src="/img/2021/%E4%B9%90%E6%A9%99_sn1_7z_b.jpg" alt="乐橙_sn1_7z_b"></p>
 <p>总分 4283</p>
 <p>参考另外两台设备</p>
 <blockquote>
@@ -2903,7 +2890,7 @@
 <p>这个自动签到平台我以前也有做过视频，有兴趣可以去翻翻看。</p>
 <hr>
 <h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p>
-<p>![挂载 sd 卡](/img/2021/挂载 sd 卡.png)</p>
+<p><img src="/img/2021/%E6%8C%82%E8%BD%BDsd%E5%8D%A1.png" alt="挂载sd卡"></p>
 <h3 id="如何挂载硬盘"><a href="#如何挂载硬盘" class="headerlink" title="如何挂载硬盘"></a>如何挂载硬盘</h3><p>其实视频里有讲了，先输入 <code>lsblk</code> 查看一下硬盘连接上没，一般会显示 sda 或者 sdb 这样。</p>
 <p>假设显示的是 sda ，那么它下面应该有个 sda1 这个才对。这个 sda1 指的是分区，就像你在电脑上，你添加了一块硬盘，你可能把分为 D、E、F　三个盘。但是它都是属于同一块物理硬盘。而这里的 sda 就是指物理硬盘，你不能挂载它，只能挂载它里面的分区。</p>
 <p>所以你应该使用的命令是</p>
