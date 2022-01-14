@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2022-01-14T06:09:20.696Z</updated>
+  <updated>2022-01-14T08:49:19.680Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://powersee.github.io/2022/01/pisen-router/"/>
     <id>https://powersee.github.io/2022/01/pisen-router/</id>
     <published>2022-01-14T05:54:39.000Z</published>
-    <updated>2022-01-14T06:09:20.696Z</updated>
+    <updated>2022-01-14T08:49:19.680Z</updated>
     
     <content type="html"><![CDATA[<p>最近从小黄鱼收了台路由器，挺特别的，带耳机孔。</p><p>不过我买的是 WPR001N ，这款只有的 WiFi 速率只有 150M，而另外有一款外形和它一样的，但是速率是 300M。</p><p><img src="/img/2022/001N.jpg" alt="001N"></p><p>原本以为它们就这点区别而已，买来后才发现并不是，区别还是挺多的。</p><p>首先它们的外形还有一点不同的，就是 300M 这款是有两个网口的，而我的这款 150M 的，它的网口只有一个。其次它们的型号也不同，我这个是 WPR001N ，而那款是 WPR003N，所以导致了，它们的固件是不通用的。</p><p><img src="/img/2022/001N-rj45.jpg" alt="001N"></p><p>所以如果你是为了刷机，那么应该多花点钱买 300M 那款。不过其实我个人并不建议买这玩意来刷 openwrt，毕竟它最大的价值是那个 3.5mm 耳机接口，而刷机之后，接口就没法用了。只能作为普通的路由器使用。</p><p>但是作为普通路由器，它在目前看来，又太弱了。比它更好的选择有太多了，例如同样百兆的路由器有：斐讯 k2、极路由、小米路由器等等，这些都是几十块就能买到的，而且网上的固件也很多，很容易找。</p><p>如果价格升到 50 块，那中兴 e8820s 是一个非常好的选择，千兆，带 USB 接口。</p><p>然后说回来，目前我手里的这款，刷机方法教程应该只有恩山的这个帖子：<a href="https://www.right.com.cn/forum/thread-7717621-1-1.html">https://www.right.com.cn/forum/thread-7717621-1-1.html</a></p><p>里面并没有提供 breed ，我自己网上搜了下。</p><hr><p>hackpascal自建的http服务器：<a href="http://breed.hackpascal.net/">http://breed.hackpascal.net/</a></p><p>breed 备份下载地址：</p><p><a href="https://pan.powersee.top/">https://pan.powersee.top/</a></p><p><a href="http://veger.ysepan.com/">http://veger.ysepan.com/</a></p><p>在 【路由器】【品胜路由器wrp001N-breed】里面</p><hr><p>不过目前没找到它可以用的固件，可能得自己去编译才行……</p><h3 id="更奇葩的路由器"><a href="#更奇葩的路由器" class="headerlink" title="更奇葩的路由器"></a>更奇葩的路由器</h3><p>后来我又买了品胜的另外一款路由器——净 音 云路由</p><p><img src="/img/2022/%E5%93%81%E8%83%9C%E8%B7%AF%E7%94%B1%E5%99%A8.jpg" alt="两款路由器"></p><p>这款里面内置风扇，配有海绵，可以用当空气净化器……脑洞非常的大</p><p>当然，它同样有音频输出接口，所以可以连接一个音响，然后使用它配套的 APP——Pisen Cloud，使用这个 APP 可以访问到，插在路由器上面的 U 盘，或者移动硬盘中的文件。它这个 APP 应该是相当古老的，在现在的全面屏手机上面使用时，下面的一节是黑的，不显示内容。</p><p><img src="/img/2022/pisen_cloud_app.png" alt="APP底部"></p><p>我记得下载时官网好像提示要求 Android 版本要在 4.0 及以上。然后我还发现了，这款 APP 似乎完全没要求过权限。如果是其它的 APP，想要获取定位、访问相册、访问手机里的其它文件，手机应该会弹出一个提示权限要求才对。但是这个 APP 完全没有，直接就可以访问了。原来只要保持 APP 兼容旧版本的 Android，就可以无视这些权限要求，还是挺可怕的，陌生 APP 安装要谨慎点。</p><p>对了，这款 APP 想要识别到路由器，需要手机连接到【净 音 云路由】的 WiFi 上，同时还要把手机的定位功能打开，这点是 Android 6 之后的要求，可能这个 APP 诞生时 Android 6 还没发布吧，所以它也没有提示什么的。</p><p>在 APP 里面的闪电互传里，可以播放手机里面的音乐，点击右上角可以将音乐推送到路由器上，也就可以让连接在路由器上的音响出声。其实它就是 dlna 而且，用 网易云音乐 也可以推送，点击歌词界面的右上角就行。但是手机必须连接在品胜路由器的 WiFi 下才行，才可以识别并推送。如果手机和连接在品胜路由器的上级路由，此时是发现不了 dlna 信号的。</p><p><img src="/img/2022/pisen-dlna.jpg" alt="dlna"></p><p>总体体验下来，不是什么好东西，并不实用，不建议购买。</p>]]></content>
     
