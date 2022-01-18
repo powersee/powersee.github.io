@@ -30,7 +30,7 @@ main {
   margin: 0 auto;
   padding-top: 60px;
   min-height: calc(100vh - 50px);
-  max-width: 1024px; }
+  max-width: 800px; }
   @media screen and (max-width: 768px) {
     main {
       margin: 0 20px; } }
@@ -437,7 +437,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   padding: 30px 0;
-  max-width: 1024px;
+  max-width: 800px;
   margin: 0 auto;
   font-size: 15px; }
   @media screen and (max-width: 768px) {
@@ -502,7 +502,7 @@ main {
   transition: all .3s ease;
   background: white;
   width: 100%;
-  padding: 60px 60px 40px;
+  padding: 30px 50px 20px;
   border-radius: 10px; }
   @media screen and (max-width: 768px) {
     .home-article-inner {
@@ -538,13 +538,14 @@ main {
     margin-top: 10px;
     font-size: 16px; }
   .home-article-read {
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;  /* 不显示 read more */
     /* 去掉 readmore 的顶部边缘距离 */
     /* margin-top: 15px; */
     margin-left: 0;
     color: #9E9E9E;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 10px;  /* read more 字体大小*/
     font-style: italic;
     transition: all .1s linear; }
     .home-article-read:hover {
@@ -627,6 +628,7 @@ main {
       display: block;
       margin: 0 auto;
       max-width: 90%;
+      max-height: 40em;
       border-radius: 1em;
       cursor: zoom-in;
       border: .15em solid #e0dfcc;  /* 给文章中的图片添加边框 */
