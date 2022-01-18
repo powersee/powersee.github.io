@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="本文主要介绍如何在服务器上安装 docker，并安装 transmission 来下载 BT 种子任务。并且取回本地。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,11 +178,11 @@
   </h1>
   
   <article class="passage-article">
-    <blockquote>
+    <p>本文主要介绍如何在服务器上安装 docker，并安装 transmission 来下载 BT 种子任务。并且取回本地。</p>
+<blockquote>
 <p>要想进行下面的操作，需要有一个服务器，如果你没有的话， <a target="_blank" rel="noopener" href="https://www.vultr.com/?ref=8161953-4F">点此链接注册充值 10 美元送 50 美元</a><br>送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧）</p>
 </blockquote>
 <p>上次已经用 docker 安装了 qbittorrent，这是一个非常强大的 BT 软件，我个人是非常喜欢的。但是，它占的内存比较大，如果服务器还要做一些其它的工作，用这个可能就不太合适了。</p>
-<p><img src="https://i.loli.net/2019/09/10/lJAEmdBpbHKe4u5.png" alt="qb speed"></p>
 <p>于是， transmission 是一个不错的选择。它对硬件的配置要求非常的低，甚至在路由器上面都可以运行。</p>
 <blockquote>
 <p>这次使用一台纯净系统的服务器来装。</p>
@@ -211,6 +211,7 @@
 <p>开放服务器 80 端口</p>
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">ufw</span> <span class="literal">allow</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
 <p>完成后就可以在浏览器里，输入 <code>IP地址</code> 来访问下载好的文件了。如果是 MP4 文件的话，还可以支持在线播放。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -276,7 +277,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

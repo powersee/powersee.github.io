@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="修复 git 仓库内，有另一个仓库，而产生冲突的问题。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,7 +178,8 @@
   </h1>
   
   <article class="passage-article">
-    <p>用 hexo 来部署博客，只是把生成的静态网页给发布上去。但完整的备份是需要备份博客源码的，很多人会新建一个项目来放置博客源码。这样每次写好文章更新博客后，再把源码更新到远程仓库，例如 github 就行。完美备份。</p>
+    <p>修复 git 仓库内，有另一个仓库，而产生冲突的问题。</p>
+<p>用 hexo 来部署博客，只是把生成的静态网页给发布上去。但完整的备份是需要备份博客源码的，很多人会新建一个项目来放置博客源码。这样每次写好文章更新博客后，再把源码更新到远程仓库，例如 github 就行。完美备份。</p>
 <p>但是，我发现我的 Next 主题下的文件全部无法上传，官方自带的主题就行。于是想到，当前这整个博客文件夹都是一个 git 仓库，而 next 主题是从 github 上克隆下来的，也是一个仓库，估计是会产生冲突。</p>
 <p>于是，进入到 next 目录下，用命令行</p>
 <figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">rm -rf <span class="string">.git</span></span><br></pre></td></tr></table></figure>
@@ -192,6 +193,7 @@
 <p>此时再输入</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git <span class="builtin-name">add</span> .</span><br></pre></td></tr></table></figure>
 <p>就可以了。<br>之后再 commit，并成功同步到远程仓库。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -253,7 +255,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>
@@ -285,7 +287,7 @@
     <a href="/2018/08/one-day-computer-no-network/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2018/08/child-of-light/" data-enable="true">
+    <a href="/2018/08/offline-download/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>

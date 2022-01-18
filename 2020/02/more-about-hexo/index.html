@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="前言个人使用 hexo 搭建博客已经有一年多的时间了。但是说实在，对其了解并不多，我只知道用它，可以把我的 markdown 文档渲染成 html 文件，之后放到 GitHub 上就可以搭建博客。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,7 +178,8 @@
   </h1>
   
   <article class="passage-article">
-    <p>一开始的使用是看别人的教程，网上一堆人写了用 hexo 来搭建免费博客的文章。其官网 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a> 上面也有教程，几条命令就可以在电脑上弄好一个博客。</p>
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>个人使用 hexo 搭建博客已经有一年多的时间了。但是说实在，对其了解并不多，我只知道用它，可以把我的 markdown 文档渲染成 html 文件，之后放到 GitHub 上就可以搭建博客。</p>
+<p>一开始的使用是看别人的教程，网上一堆人写了用 hexo 来搭建免费博客的文章。其官网 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a> 上面也有教程，几条命令就可以在电脑上弄好一个博客。</p>
 <p>之后便是将文章推送到 GitHub 上面，进行设置，使用 GitHub page 建立博客网站。在这时我了解到，我们还可以搭建在国内的网站上面，如 gitee ，coding 。可以让我们的访问速度更快。而且之前还了解到有位老哥有一个不错的方法，可以让国外的 ip 就访问 github 的博客，国内的 ip 就访问 gitee 或者 coding 的博客。好像是利用域名解析来达到目的的，具体我没有去尝试。</p>
 <h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>不像　wordpress ，所有文件都是在服务器上。hexo 的博客源文件都是在我们自己的电脑上面的，如果我们的电脑出问题，如硬盘坏了，被偷了，那么我们的博客就没法更新和修改。因此我们需要自己来备份这些文件。</p>
 <p>如果只是想备份文章而已，那么同步网盘如 onedrive 、坚果云 也足够的。当然你想同步整个博客文件夹也可以，不过我不建议这么做，因为里面的文件实在太多了，之前　git push　的时候看到，好像有几万个文件。而且，这样也太 low 了。</p>
@@ -197,6 +198,7 @@
 <figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line"><span class="meta">public</span></span><br><span class="line"><span class="built_in">db</span><span class="number">.</span>json</span><br><span class="line"><span class="meta">.deploy_git</span></span><br><span class="line"><span class="meta">.DS_Store</span></span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure>
 
 <p>之后 <code>git add .</code> ，再 commit ，然后将其推送到远程仓库即可。之后换电脑，只需把这个仓库 clone 到电脑，进入仓库， <code>npm i</code> 一下，npm 就会根据两个 package 开头的文件，去帮我们安装相对应的模块，之后我们便可以看到 <code>node_modules</code> 文件夹又回来了。此时我们的博客便已搭建成功，可以继续写博客了。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -204,7 +206,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD"><span class="toc-text">备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-text">备份前准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E5%89%8D%E7%9A%84%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88"><span class="toc-text">以前的备份方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E7%9A%84%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88"><span class="toc-text">现在的备份方案</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD"><span class="toc-text">备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-text">备份前准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E5%89%8D%E7%9A%84%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88"><span class="toc-text">以前的备份方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E7%9A%84%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88"><span class="toc-text">现在的备份方案</span></a></li></ol>
   </div>
 </aside>
   
@@ -260,7 +262,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

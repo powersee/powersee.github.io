@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="如果我的路由器的管理地址为 192.168.1.1 如果我开放外网访问，当在外网输入我的公网IP，那么默认是访问 公网IP:80 然后进入路由器的管理界面 192.168.1.1">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,8 +178,9 @@
   </h1>
   
   <article class="passage-article">
-    <p><strong>端口映射</strong></p>
-<p>端口映射，可以设置不同的端口来访问路由器内不同的设备。例如我的电脑连接路由器，然后分配的IP是192.168.1.2，此时我可以通过设置一个端口（8888）来映射到电脑，设置完成后输入公网IP:8888 访问的就是电脑了而不是路由器。通过这种方法,可以让电脑开启web服务，然后从外网访问。此处必须输入外网ip来访问，通过内网像 192.168.1.1:8888 这样是没用的。</p>
+    <p>如果我的路由器的管理地址为 <code>192.168.1.1</code> 如果我开放外网访问，当在外网输入我的公网IP，那么默认是访问 公网IP:80 然后进入路由器的管理界面 <code>192.168.1.1</code></p>
+<p><strong>端口映射</strong></p>
+<p>端口映射，可以设置不同的端口来访问路由器内不同的设备。例如我的电脑连接路由器，然后分配的IP是<code>192.168.1.2</code>，此时我可以通过设置一个端口（8888）来映射到电脑，设置完成后输入公网IP:8888 访问的就是电脑了而不是路由器。通过这种方法,可以让电脑开启web服务，然后从外网访问。此处必须输入外网ip来访问，通过内网像 <code>192.168.1.1:8888</code> 这样是没用的。</p>
 <p><strong>内网穿透</strong></p>
 <p>当然上面的那样明显只适合有公网IP的情况，像我的话就没有公网IP。所以外网访问内网就需要内网穿透了，这里使用 ngrok 和<code>老毛子固件</code>。</p>
 <p>我使用的路由器固件为恩山的hiboyhiboy大神的固件，路由器为斐讯K2。</p>
@@ -190,6 +191,7 @@
 <p>之后再把启动 【ngrok 内网穿透】的的开关打开，再应用本页面设置，此时通过访问域名</p>
 <p>如上面的<span style="background-color: #ffff00;">123.free.ngrok.cc</span></p>
 <p>应该就可以进入路由器管理界面了。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -251,7 +253,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

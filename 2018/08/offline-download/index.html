@@ -11,11 +11,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="服务器,服务器," />
+    <meta name="keywords" content="服务器," />
   
 
   
-  <meta name="description" content="所使用的工具：Aria2caddyAriaNg">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -167,10 +167,6 @@
       <i class="fa fa-calendar"></i>2018-08-04
     </span>
     
-      <span>
-        | <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><i class="fa fa-bookmark"></i>服务器</a>
-      </span>
-    
     
       <span>
         | <i class="fa fa-unlock-alt"></i>UNLOCK
@@ -182,7 +178,10 @@
   </h1>
   
   <article class="passage-article">
-    </li>
+    <h3 id="所使用的工具："><a href="#所使用的工具：" class="headerlink" title="所使用的工具："></a>所使用的工具：</h3><ul>
+<li>Aria2</li>
+<li>caddy</li>
+<li>AriaNg</li>
 </ul>
 <p>脚本来自<strong>逗比根据地</strong></p>
 <h3 id="首先安装-下载工具–-Aria2"><a href="#首先安装-下载工具–-Aria2" class="headerlink" title="首先安装 下载工具– Aria2"></a>首先安装 下载工具– Aria2</h3><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget -N --no-check-certificate https:<span class="regexp">//</span>raw.githubusercontent.com<span class="regexp">/ToyoDAdoubi/</span>doubi<span class="regexp">/master/</span>aria2.sh &amp;&amp; chmod +x aria2.sh &amp;&amp; bash aria2.sh</span><br></pre></td></tr></table></figure>
@@ -223,6 +222,7 @@
 </blockquote>
 <p>来删除所有的文件。</p>
 <p>因此也就不去搞那些需要 PHP 的了。也因为下载完就删除，所以也没必要设置需要密码才能访问文件列表。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -230,7 +230,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E5%AE%89%E8%A3%85-%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7%E2%80%93-Aria2"><span class="toc-text">首先安装 下载工具– Aria2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E7%95%8C%E9%9D%A2"><span class="toc-text">安装使用界面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-web-%E6%9C%8D%E5%8A%A1%E5%99%A8-caddy"><span class="toc-text">安装 web 服务器 caddy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%85%A5%E9%85%8D%E7%BD%AE%E5%88%B0-Caddy-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">写入配置到 Caddy 配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-AriaNg"><span class="toc-text">下载 AriaNg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-caddy"><span class="toc-text">启动 caddy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%B9%B6%E5%8F%96%E5%9B%9E%E6%9C%AC%E5%9C%B0"><span class="toc-text">下载文件并取回本地</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="toc-text">所使用的工具：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E5%AE%89%E8%A3%85-%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7%E2%80%93-Aria2"><span class="toc-text">首先安装 下载工具– Aria2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E7%95%8C%E9%9D%A2"><span class="toc-text">安装使用界面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-web-%E6%9C%8D%E5%8A%A1%E5%99%A8-caddy"><span class="toc-text">安装 web 服务器 caddy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%85%A5%E9%85%8D%E7%BD%AE%E5%88%B0-Caddy-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">写入配置到 Caddy 配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-AriaNg"><span class="toc-text">下载 AriaNg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-caddy"><span class="toc-text">启动 caddy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%B9%B6%E5%8F%96%E5%9B%9E%E6%9C%AC%E5%9C%B0"><span class="toc-text">下载文件并取回本地</span></a></li></ol>
   </div>
 </aside>
   
@@ -284,7 +284,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>
@@ -313,7 +313,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2018/08/child-of-light/" data-enable="true">
+    <a href="/2018/08/about-git-cache/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
     <a href="/2018/08/savemgr/" data-enable="true">

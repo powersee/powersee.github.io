@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="可以在一台机器上放置多个网站，若是静态网站的话，理论上可以放置无限多个。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,7 +178,8 @@
   </h1>
   
   <article class="passage-article">
-    <h3 id="本操作基于Ubuntu"><a href="#本操作基于Ubuntu" class="headerlink" title="本操作基于Ubuntu"></a>本操作基于Ubuntu</h3><p>我的nginx访问的根目录 </p>
+    <p>可以在一台机器上放置多个网站，若是静态网站的话，理论上可以放置无限多个。</p>
+<h3 id="本操作基于Ubuntu"><a href="#本操作基于Ubuntu" class="headerlink" title="本操作基于Ubuntu"></a>本操作基于Ubuntu</h3><p>我的nginx访问的根目录 </p>
 <figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/home/</span>wwwroot/<span class="keyword">default</span></span><br></pre></td></tr></table></figure>
 <p>创建一个”vhost”目录</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo mkdir <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf/vhost</span><br></pre></td></tr></table></figure>
@@ -237,6 +238,7 @@
 <figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf<span class="regexp">/vhost/</span>*.conf;</span><br></pre></td></tr></table></figure>
 
 <p>重启 nginx 即可。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -298,7 +300,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

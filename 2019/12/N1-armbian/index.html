@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="斐讯 N1 这台设备，我之前一直是使用小钢炮这个系统。因为它非常强大了，可以下载，可以共享硬盘里的文件，还可以玩 docker。不过其实这台设备还可以装 Debian 和 Ubuntu 系统的，装好之后就可以变成一台电脑主机了，这想想都兴奋。所以我一直想来尝试一下装 armbian 系统。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,7 +178,9 @@
   </h1>
   
   <article class="passage-article">
-    <p>镜像下载地址：<a target="_blank" rel="noopener" href="https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/">https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/</a></p>
+    <p>斐讯 N1 这台设备，我之前一直是使用小钢炮这个系统。因为它非常强大了，可以下载，可以共享硬盘里的文件，还可以玩 docker。</p>
+<p>不过其实这台设备还可以装 Debian 和 Ubuntu 系统的，装好之后就可以变成一台电脑主机了，这想想都兴奋。所以我一直想来尝试一下装 armbian 系统。</p>
+<p>镜像下载地址：<a target="_blank" rel="noopener" href="https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/">https://yadi.sk/d/srrtn6kpnsKz2/Linux/ARMBIAN/</a></p>
 <p>但是，其实我之前折腾过很久，一直没法进入启动界面，一次又一次的放弃。早上突然想到会不会是我的写入工具有问题？</p>
 <p>所以改用另外一个将镜像写入 U盘的工具，再试一下。</p>
 <p>结果，还是不行……</p>
@@ -214,6 +216,10 @@
 <p>vim /etc/apt/sources.list.d/armbian.list</p>
 <p>将里面的那行注释掉（在前面添加 # ）然后添加这行</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/armbian stretch main stretch-utils stretch-desktop</span><br></pre></td></tr></table></figure>
+
+
+
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -277,7 +283,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

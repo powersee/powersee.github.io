@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="对于 Linux 上的 qBittorrent，它不同于我们在 Windows 和 Mac 上的桌面版，我们只能通过 web 来管理，基本的功能都一样，但是有一个问题比较麻烦，就是无法打开高级设置里的【总是向所有等级的 Tracker 汇报】。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,7 +178,8 @@
   </h1>
   
   <article class="passage-article">
-    <p>❗️❗️注意，qb 4.2 以及之后的版本，webUI 已经可以管理<strong>高级设置</strong>了，所以想简单的，可以升级版本即可。我个人的建议也是直接升级即可，不过如果因为有特殊原因没法升级，可以继续看下面的方法折腾。</p>
+    <p>对于 Linux 上的 qBittorrent，它不同于我们在 Windows 和 Mac 上的桌面版，我们只能通过 web 来管理，基本的功能都一样，但是有一个问题比较麻烦，就是无法打开<strong>高级设置</strong>里的【总是向所有等级的 Tracker 汇报】。</p>
+<p>❗️❗️注意，qb 4.2 以及之后的版本，webUI 已经可以管理<strong>高级设置</strong>了，所以想简单的，可以升级版本即可。我个人的建议也是直接升级即可，不过如果因为有特殊原因没法升级，可以继续看下面的方法折腾。</p>
 <p>这对于我们下载 BT 任务，影响就比较大了。</p>
 <p>但是在研究一番之后，我还是成功的开启了这个功能。</p>
 <p>我的思路是这样的，Linux 上的 qb，它有一个配置文件：<code>qBittorrent.conf</code> ，我通过修改这个文件，应该也是可以开启这个功能的。但是，我不知道添加什么语句，才能开启。所以我想到看一下我电脑的 qb 配置文件，来参考一下。</p>
@@ -197,6 +198,7 @@
 
 <p>保存，重启 qb（不会的话就重启机器）</p>
 <p>然后就成功了，此时 qb 在下 BT 任务时，就可以连接多个 tracker 了。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -262,7 +264,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

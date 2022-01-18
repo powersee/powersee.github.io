@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="记录在 armbian 上安装 omv 失败的过程。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,7 +178,8 @@
   </h1>
   
   <article class="passage-article">
-    <p>omv 好像不支持在 Debian bust 上面安装，我直接安装后报错了。然后也没法卸载，并且 apt 也没法用了，一用就会提示<code>E: 软件包 openmediavault-omvextrasorg 需要重新安装，但是我无法找到相应的安装文件。</code>苦恼。</p>
+    <p>记录在 armbian 上安装 omv 失败的过程。</p>
+<p>omv 好像不支持在 Debian bust 上面安装，我直接安装后报错了。然后也没法卸载，并且 apt 也没法用了，一用就会提示<code>E: 软件包 openmediavault-omvextrasorg 需要重新安装，但是我无法找到相应的安装文件。</code>苦恼。</p>
 <p>最终解决方法：</p>
 <ol>
 <li><p><code>rm -rf /var/lib/dpkg/info/openmediavault-omvextrasorg*</code></p>
@@ -188,6 +189,7 @@
 <li><p>之后再使用 apt 就不会出现问题了。</p>
 </li>
 </ol>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -249,7 +251,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

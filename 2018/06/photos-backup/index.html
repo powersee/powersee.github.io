@@ -11,11 +11,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="手机,手机," />
+    <meta name="keywords" content="手机," />
   
 
   
-  <meta name="description" content="由于之前小米所提供的5G云空间提示我说不够了，要充钱买更大的空间。这怎么可能，想让我花钱去买空间，呵呵。 于是我寻找备份相册的方案。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -167,10 +167,6 @@
       <i class="fa fa-calendar"></i>2018-06-08
     </span>
     
-      <span>
-        | <a href="/categories/%E6%89%8B%E6%9C%BA/"><i class="fa fa-bookmark"></i>手机</a>
-      </span>
-    
     
       <span>
         | <i class="fa fa-unlock-alt"></i>UNLOCK
@@ -182,12 +178,14 @@
   </h1>
   
   <article class="passage-article">
-    <h2 id="1-百度云"><a href="#1-百度云" class="headerlink" title="1  百度云"></a>1  百度云</h2><p>因为空间不足，那么想到的就是百度云2T的大空间。（至于说隐私问题，觉得百度云不安全之类的，我一直觉得很奇怪，难道你们相册里面都是一堆自己的裸照？反正我的话涉及隐私也就自拍的照片而已，也没什么见不得人的。） 用手机APP里面就有图片备份功能，设置要备份的相册文件夹就行了。在有WIFI的环境下就会备份到网盘。 <strong>缺点</strong>：只能自动备份，无法自动恢复，比如我换了新手机，它无法自动将相片恢复到新的手机。 还有，备份后是在网盘根目录有一个 来自:MI MAX2 这里就是我这台小米max2备份的数据了，不能自定义路径。。。所以我的解决方法是，把这个文件夹重命名，在前面加个符号，如逗号，然后就可以把这个文件夹移动到隐藏空间。保险一点。</p>
+    <p>由于之前小米所提供的5G云空间提示我说不够了，要充钱买更大的空间。这怎么可能，想让我花钱去买空间，呵呵。 于是我寻找备份相册的方案。</p>
+<h2 id="1-百度云"><a href="#1-百度云" class="headerlink" title="1  百度云"></a>1  百度云</h2><p>因为空间不足，那么想到的就是百度云2T的大空间。（至于说隐私问题，觉得百度云不安全之类的，我一直觉得很奇怪，难道你们相册里面都是一堆自己的裸照？反正我的话涉及隐私也就自拍的照片而已，也没什么见不得人的。） 用手机APP里面就有图片备份功能，设置要备份的相册文件夹就行了。在有WIFI的环境下就会备份到网盘。 <strong>缺点</strong>：只能自动备份，无法自动恢复，比如我换了新手机，它无法自动将相片恢复到新的手机。 还有，备份后是在网盘根目录有一个 来自:MI MAX2 这里就是我这台小米max2备份的数据了，不能自定义路径。。。所以我的解决方法是，把这个文件夹重命名，在前面加个符号，如逗号，然后就可以把这个文件夹移动到隐藏空间。保险一点。</p>
 <h2 id="2-谷歌相册"><a href="#2-谷歌相册" class="headerlink" title="2  谷歌相册"></a>2  谷歌相册</h2><p>以高质量的方式备份照片和视频可以无限空间。在手机上基本看不出压缩前后的差别。通过此我把相册都备份到Google，即使把本地照片删除了还可以通过这APP来查看，点击时会通过联网加载图片。 那如果我换新手机了，想把照片都下载到新手机里面，这个就有点复杂，首先得在Google photos里面开启 Google 云端硬盘 ，这样备份的图片才会显示在Google drive里面，然后可以在Google drive的网页或者客户端把图片下载下来，再传入手机，还是挺麻烦的。 当然啦，这一切都建立在能科学上网的基础之上。所以我仅是把它当多一份备份而已。</p>
 <h2 id="3-Handshaker"><a href="#3-Handshaker" class="headerlink" title="3  Handshaker"></a>3  Handshaker</h2><p>锤子开发的一款电脑端管理安卓手机的工具，平时我也用它在电脑与手机间传输文件，还是挺方便的。在它的设置里，可以设置自动同步，这样每次连接后就会自动同步所有照片到电脑，如果换新手机，可以在这个软件把电脑里的照片复制到新手机。比较不错。 缺点：同步到电脑的相册无法选择，所有的照片都会同步。（不过电脑复制到手机就可以选择哪些相册要哪些不要） mac版的无法像win版那样选择文件存储路劲，所以我只用win版来备份。</p>
 <h2 id="4-Syncthing"><a href="#4-Syncthing" class="headerlink" title="4  Syncthing"></a>4  Syncthing</h2><p>这关联到我之前的  <a target="_blank" rel="noopener" href="https://jungui.powersee.pw/?p=194">搭建个人网盘——syncthing</a>  这篇文章。通过此把要备份的相册文件夹备份到其它设备，可以是电脑、另一台手机、电脑上的虚拟机、远程vps，这些都可以，只要两台设备同时在线就能自动备份。那么我vps的  syncthing  一直开着，这样当我需要备份时就打开手机的APP，扫描一下就能同步。 假如我手机丢了，那么此时我的vps或者电脑里还有保存这些，我可以在新手机也安装syncthing来把vps或者电脑里的照片同步到新手机里面。</p>
 <h2 id="5-小米云服务"><a href="#5-小米云服务" class="headerlink" title="5  小米云服务"></a>5  小米云服务</h2><p>其实我发现我手机里的照片加视频也就2G而已，小米提供的5G我是够用的，之前说空间不足是因为它默认开启了桌面云备份，会把我手机的app都备份上传云端，用了接近1G，所以把它删了，还是可以放很多照片的。然后如果换手机了，依然是MIUI的话直接登录小米账号同步相册就行。如果是其它手机，可以电脑下载小米云服务，把照片下载到本地，在传入新手机。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>平时的话我同步功能都是关闭的，不想随便截张图，保存张照片就自动同步到云端，我会每隔一段时间就清理相册，清理完成再打开同步，同步完就又关闭。感觉现在照片空间还不算多，用小米云优先。但毕竟这段时间研究了挺久这个相片备份问题的，就记录一下吧。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -249,7 +247,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

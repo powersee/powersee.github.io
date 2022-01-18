@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="内容来自：CSDN">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -178,13 +178,15 @@
   </h1>
   
   <article class="passage-article">
-    <p>先找到配置文件的位置，如我这里是</p>
+    <p>内容来自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/csdn1161851523/article/details/52942404">CSDN</a></p>
+<p>先找到配置文件的位置，如我这里是</p>
 <figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf/nginx.conf</span><br></pre></td></tr></table></figure>
 <p>用 vim 来修改，在server{}  字段   中的  “root /websit/wwwroot/;”(这行就是指定网站所在目录的)  这一行的下面 ，添加下面的内容：</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="operator">-f</span> <span class="variable">$request_filename</span>/index.html)&#123;</span><br><span class="line">rewrite (.*) <span class="variable">$1</span>/index.html <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="operator">-f</span> <span class="variable">$request_filename</span>/index.php)&#123;</span><br><span class="line">rewrite (.*) <span class="variable">$1</span>/index.php;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!<span class="operator">-f</span> <span class="variable">$request_filename</span>)&#123;</span><br><span class="line">rewrite (.*) /index.php;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rewrite /wp<span class="literal">-admin</span><span class="variable">$</span> <span class="variable">$scheme:</span>//<span class="variable">$host</span><span class="variable">$uri</span>/ permanent;</span><br></pre></td></tr></table></figure>
 <p>然后重启 Nginx ，如果和我一样是用 lnmp 的，可以输入</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">lnmp nginx restart</span></span><br></pre></td></tr></table></figure>
 <p>之后就可以访问了文章了。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -246,7 +248,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>

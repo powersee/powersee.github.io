@@ -6,16 +6,16 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>光之子 去年录制游戏全程 | Powersee的博客</title>
+  <title>品胜 WPR001N 折腾与刷机 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="游戏," />
+    <meta name="keywords" content="设备,路由器," />
   
 
   
-  <meta name="description" content="这个游戏是去年这个时候录的，是我第一个全程录完的游戏。当时是在 PSV 上先玩一段，再到 PS4 上重玩这一段并录制下来的。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -164,7 +164,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2018-08-05
+      <i class="fa fa-calendar"></i>2022-01-17
     </span>
     
     
@@ -174,34 +174,33 @@
     
   </div>
   <h1 class="passage-title">
-    光之子 去年录制游戏全程
+    品胜 WPR001N 折腾与刷机
   </h1>
   
   <article class="passage-article">
-    <p>下面的视频是用这样的代码的。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">315</span> <span class="attr">width</span>=<span class="string">560</span> <span class="attr">src</span>=<span class="string">&#x27;https://player.youku.com/embed/视频的ID在这里替换==&#x27;</span> <span class="attr">frameborder</span>=<span class="string">0</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    <p>之前买了台品胜路由器，买来之后系统是有缺陷的，没法进入 web 管理界面，最终没办法，只能刷机，于是刷了个 breed 进去。</p>
+<p>但是只有 breed，没有系统固件可以用……所以就放着吃灰了。</p>
+<p>今天有网友说可以帮我编译固件，所以又来折腾它了。</p>
+<p>因为不知道编译好的固件，刷入后会不会出问题，为了避免待会完全变砖，无法挽回。所以先研究一下怎么 ttl 串口连接。</p>
+<p>首先需要拆机，带二维码的为背面，沿着缝隙撬开，有三颗螺丝，拧开后再撬正面的外壳。</p>
+<p>主板上面有三个金属接触点，分别是 RXD, TXD, GND</p>
+<p><img src="/img/2022/Snipaste_22-01-17_22-14-57.jpg" alt="主板"></p>
+<p>一开始我拿杜邦线将它与 CH340G 模块进行连接（GND–GND, TX–RX, RX–TX），我是直接用手按着，然而我还需要接通电源以及操控鼠标，所以一直没法按稳。</p>
+<p>没办法，还是拿出了电烙铁，焊点锡上去吧。结果成了这样（其实也没多牢固，不过比用手按着好很多了）</p>
+<p><img src="/img/2022/Snipaste_22-01-17_22-18-01.jpg" alt="焊锡好"></p>
+<p>之后连接好模块，电脑上可以适用 putty 或者 xshell 来进行串口调试。由于我之前以及刷好 breed 进去了，所以给路由器通电，然后在几秒内按回车键，就可以进入 breed，在浏览器可以通过 <code>192.168.1.1</code> 来访问。</p>
+<p>如果不按回车键的话，就会启动闪存中的系统。然后我就发现了，原来我之前刷进去的 openwrt 固件，是可以启动的</p>
+<p><img src="/img/2022/2022-01-17_19-04-24.jpg" alt="2022-01-17_19-04-24"></p>
+<p><img src="/img/2022/2022-01-17_19-10-16.jpg" alt="2022-01-17_19-10-16"></p>
+<p>通过 ttl 我才知道的，不过它的 web 服务和 wifi 都没有开启，系统能启动成功也没什么用。</p>
+<p>那么 ttl 连接没问题，就可以来折腾看看了。于是我将 @<strong>大电视姬</strong>  发过来的固件，在 breed 中刷入路由器。</p>
+<p>之后路由器自动重启，成功了。</p>
+<p><img src="/img/2022/2022-01-17_20-06-28.jpg" alt="2022-01-17_20-06-28"></p>
+<p>然后，索然无味……就算刷机成功了，又怎样呢？我又不会去使用它，家里面基本所有路由器都比它强，没什么意思。</p>
+<p>固件放到网盘和下载站里，在【路由器】【品胜路由器】中，再次感谢 @<strong>大电视姬</strong></p>
+<p>网盘：<a target="_blank" rel="noopener" href="http://veger.ysepan.com/">http://veger.ysepan.com/</a></p>
+<p>下载站：<a target="_blank" rel="noopener" href="https://pan.powersee.top/">https://pan.powersee.top/</a></p>
 
-
-<h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk4MjgyMDk3Mg==' frameborder=0 allowfullscreen></iframe>
-
-
-<h3 id="02"><a href="#02" class="headerlink" title="02"></a>02</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk4Mjg1MDM4NA==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="03"><a href="#03" class="headerlink" title="03"></a>03</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk4NjMxOTc4NA==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="04"><a href="#04" class="headerlink" title="04"></a>04</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk4NjQ1NTAwNA==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="05"><a href="#05" class="headerlink" title="05"></a>05</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk4Nzk4NjU3Mg==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="06"><a href="#06" class="headerlink" title="06"></a>06</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk4OTI5MzY3Ng==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="07"><a href="#07" class="headerlink" title="07"></a>07</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk4OTU4NDgxMg==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="08"><a href="#08" class="headerlink" title="08"></a>08</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk5Mjc4ODgyOA==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="09"><a href="#09" class="headerlink" title="09"></a>09</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk5NDgwMjQzMg==' frameborder=0 allowfullscreen></iframe>
-
-<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><iframe height=315 width=560 src='https://player.youku.com/embed/XMjk5ODgyMTMxMg==' frameborder=0 allowfullscreen></iframe>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -209,7 +208,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#01"><span class="toc-text">01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02"><span class="toc-text">02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03"><span class="toc-text">03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04"><span class="toc-text">04</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05"><span class="toc-text">05</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#06"><span class="toc-text">06</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#07"><span class="toc-text">07</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#08"><span class="toc-text">08</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#09"><span class="toc-text">09</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10"><span class="toc-text">10</span></a></li></ol>
+    
   </div>
 </aside>
   
@@ -218,7 +217,7 @@
       
         <div>
           原文链接: 
-          <a href="" target="_blank">https://powersee.github.io/2018/08/child-of-light/</a>
+          <a href="" target="_blank">https://powersee.github.io/2022/01/pisen-wpr001n/</a>
         </div>
       
       <div>
@@ -229,7 +228,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E6%B8%B8%E6%88%8F/"><i class="fa fa-tags"></i>游戏</a>
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"><i class="fa fa-tags"></i>路由器</a>
     
     </div>
   
@@ -263,7 +264,7 @@
     
     <div class="site-footer-info">
       <i class="fa fa-copyright"></i> 
-      2018-2021 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
       Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
       All rights reserved.
     </div>
@@ -292,10 +293,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2018/08/about-git-cache/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2018/08/offline-download/" data-enable="true">
+    <a href="/2022/01/pisen-router/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
