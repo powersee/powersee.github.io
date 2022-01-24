@@ -179,7 +179,7 @@
   
   <article class="passage-article">
     <p>刚才给小钢炮安装了 zsh ，这个过程还是有点复杂的，不过好在都能找到教程。</p>
-<h2 id="1、先去看灯大的这个文章"><a href="#1、先去看灯大的这个文章" class="headerlink" title="1、先去看灯大的这个文章"></a>1、先去看灯大的这个文章</h2><p><a target="_blank" rel="noopener" href="https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793">https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793</a></p>
+<h2 id="1、先去看灯大的这个文章"><a href="#1、先去看灯大的这个文章" class="headerlink" title="1、先去看灯大的这个文章"></a>1、先去看灯大的这个文章</h2><p><a target="_blank" rel="noopener" href="https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793">gitee wiki 上的教程</a></p>
 <ol>
 <li>编辑 /etc/opkg/entware.conf<br>取消行首的 # 符号</li>
 <li>opkg2 update</li>
@@ -194,7 +194,7 @@
 
 <h2 id="3、遇坑部分，无法-ssh-连接"><a href="#3、遇坑部分，无法-ssh-连接" class="headerlink" title="3、遇坑部分，无法 ssh 连接"></a>3、遇坑部分，无法 ssh 连接</h2><p>顺利地安装成功了，然后，我想将 zsh 设置为默认的 shell ，使用 chsh -s /opt/bin/zsh 却失败了。</p>
 <p>然后网上找其它方法，看到有个是修改 /etc/passwd 这个文件，第一行就是 root 用户的默认 shell 路径，于是用 vim 修改这个文件，改为 zsh 的路径，然后退出，再重新 ssh 连接，就登录不了了……</p>
-<p>![](/img/2019/can’t login after edit the passwd.jpg)</p>
+<p><img src="/img/2019/ssh.jpg"></p>
 <p>本想这次扑街了，又得重装系统了，可惜 qb 的配置没有备份……</p>
 <h2 id="4、想办法备份"><a href="#4、想办法备份" class="headerlink" title="4、想办法备份"></a>4、想办法备份</h2><p>于是想办法看看能不能备份出来，不然重装系统后所有记录都没了。想到 qb 的配置文件是放在 /var/lib/qbittorrent 这个文件夹里的，之前我是 ssh 之后，把复制到自己的硬盘的。现在无法 ssh，得另寻方法。</p>
 <p>于是想到小钢炮的 web 界面有个定时任务的功能 Scheduled Tasks ，在这个我也可以执行命令啊，那我在这里备份这个文件夹不就行了。</p>
