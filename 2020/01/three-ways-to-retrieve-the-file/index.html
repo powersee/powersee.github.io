@@ -186,9 +186,13 @@
 <p>下载完成后，用 dkpg 来安装</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg -i caddy_2.2.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
 
+<p>此时 caddy 会自动启动，我们先把它关了</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">systemctl stop caddy</span><br></pre></td></tr></table></figure>
+
 <p>写入配置</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo &quot;:80 &#123;  </span><br><span class="line"> root * /path/to/downloads</span><br><span class="line"> file_server browse  </span><br><span class="line">&#125;&quot; &gt; Caddyfile</span><br></pre></td></tr></table></figure>
 
+<p>注意！！！此处的 <code>/path/to/downloads</code> 就是要共享的文件夹路径，可以自行修改。</p>
 <p>启动 caddy</p>
 <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">caddy <span class="literal">start</span></span><br></pre></td></tr></table></figure>
 
@@ -202,6 +206,7 @@
 <p>需要想要关闭 caddy 服务，可以用</p>
 <figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">caddy stop</span><br></pre></td></tr></table></figure>
 
+<p>stop 之后，我们可以使用 <code>vim</code> 或者 <code>nano</code> 编辑 <code>Caddyfile</code>，这两个编辑器的使用可以网上搜一下，我们可以修改端口，文件夹的路径这些内容，保存后再来启动 caddy 就行。</p>
 <p>如果想卸载，用</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">dpkg -r caddy</span></span><br></pre></td></tr></table></figure>
 
