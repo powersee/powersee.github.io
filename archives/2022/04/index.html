@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>蜗牛星际驱动核显，使用 jellyfin 和 qbittorrent | Powersee的博客</title>
+  <title>归档: 2022/4 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备,nas," />
+    <meta name="keywords" content="Hexo, Theme-AD" />
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: true,
+    is_post: false,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
@@ -160,90 +160,18 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      
-  <div class="passage">
-  <div class="passage-meta">
-    <span>
-      <i class="fa fa-calendar"></i>2020-06-29
-    </span>
-    
-    
-      <span>
-        | <i class="fa fa-unlock-alt"></i>UNLOCK
-      </span>
-    
-  </div>
-  <h1 class="passage-title">
-    蜗牛星际驱动核显，使用 jellyfin 和 qbittorrent
-  </h1>
+      <div class="timeline">
+  <h2 class="timeline-title">归档: 84篇</h2>
   
-  <article class="passage-article">
-    <p>最近入手了一台蜗牛星际，这里记录一些自己踩过的坑。</p>
-<h2 id="驱动核显"><a href="#驱动核显" class="headerlink" title="驱动核显"></a>驱动核显</h2><h3 id="如何替换-lzma-文件"><a href="#如何替换-lzma-文件" class="headerlink" title="如何替换 lzma 文件"></a>如何替换 lzma 文件</h3><p>需要用到 pe ，这里我用的是 wepe</p>
-<p>将pe系统写入U盘，插入蜗牛的usb口，连接键盘鼠标，开机一直按 del 键，进入bios，在最右边选择U盘，进入 pe。</p>
-<p>之后打开桌面的 DG ，选中引导所在的硬盘或者U盘（我的话是将引导放在16G的 msata 硬盘里的）。选择分区1，点右边的浏览文件，可以看到里面有两个文件 <code>extra.lzma</code> 和 <code>extra2.lzma</code> </p>
-<p><img src="/img/2020/%E9%A9%B1%E5%8A%A8%E6%A0%B8%E6%98%BE%E9%9C%80%E8%A6%81%E6%9B%BF%E6%8D%A2%E7%9A%84%E6%96%87%E4%BB%B6.jpg" alt="驱动核显需要替换的文件"></p>
-<p>将这两个文件替换为网盘中的那两个即可。</p>
-<p>网盘：<a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a></p>
-<p>可以右键然后选择【复制文件到当前分区】。</p>
-<p>然后关机，拔掉 pe U盘，再次进入群晖系统，应该就能驱动核显了。</p>
-<h3 id="如何判断已经驱动核显了？"><a href="#如何判断已经驱动核显了？" class="headerlink" title="如何判断已经驱动核显了？"></a>如何判断已经驱动核显了？</h3><p>用 ssh 连接群晖，输入</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">ls <span class="regexp">/dev/</span>dri/</span><br></pre></td></tr></table></figure>
-
-<p>如果能够看到 renderD128 就是驱动了。</p>
-<h2 id="搭建媒体仓库——-jellyfin"><a href="#搭建媒体仓库——-jellyfin" class="headerlink" title="搭建媒体仓库—— jellyfin"></a>搭建媒体仓库—— jellyfin</h2><p>相比于 plex 和 emby ，jellyfin 的优势是调用硬件转码不用钱。</p>
-<p>这里我是使用 docker 来安装的，容器建立时需要有这个命令，才能调用核显</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--device=/dev/dri/renderD128</span><br></pre></td></tr></table></figure>
-
-<h2 id="BT下载器——qbittorent"><a href="#BT下载器——qbittorent" class="headerlink" title="BT下载器——qbittorent"></a>BT下载器——qbittorent</h2><p>用手动安装的 qb ，没法正常在 chrome 浏览器打开，只能在隐身模式下才能打开。所以我采用 docker   的方式来安装。</p>
-<p>一开始老是没法设置好 /config 映射到宿主机的文件夹的权限，导致 qb 的 web 界面打开后残缺，而且也没法登录。明明我已经把映射的文件夹权限设置为 everyone 了，还是不行。。。</p>
-<p>最后发现最简单的应该是不管 /config 了，只设置 /downloads 的映射就行。就可以正常使用 qb 。</p>
-<p>但是，我不喜欢这样的方式，我还是喜欢把 /config 映射到宿主机的文件夹中。所以我采用命令行的方式来建立 docker 容器。</p>
-<p>需要先确认文件夹的权限，也可以</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod -R 777 /xxx</span><br></pre></td></tr></table></figure>
-
-<p>来更改文件夹 xxx 的权限。</p>
-<p>如果想要 qb 能连接 ipv6 用户的话，得使用 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--network host</span><br></pre></td></tr></table></figure>
-
-
-  </article>
-  <aside class="table-content" id="site-toc">
-  <div class="table-content-title">
-    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
-    <span>目录</span>
-  </div>
-  <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8%E6%A0%B8%E6%98%BE"><span class="toc-text">驱动核显</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9B%BF%E6%8D%A2-lzma-%E6%96%87%E4%BB%B6"><span class="toc-text">如何替换 lzma 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%B7%B2%E7%BB%8F%E9%A9%B1%E5%8A%A8%E6%A0%B8%E6%98%BE%E4%BA%86%EF%BC%9F"><span class="toc-text">如何判断已经驱动核显了？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E5%AA%92%E4%BD%93%E4%BB%93%E5%BA%93%E2%80%94%E2%80%94-jellyfin"><span class="toc-text">搭建媒体仓库—— jellyfin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BT%E4%B8%8B%E8%BD%BD%E5%99%A8%E2%80%94%E2%80%94qbittorent"><span class="toc-text">BT下载器——qbittorent</span></a></li></ol>
-  </div>
-</aside>
-  
-    <aside class="passage-copyright">
-      <div>本文作者: powersee</div>
-      
-        <div>
-          原文链接: 
-          <a href="" target="_blank">https://powersee.github.io/2020/06/xingjiwoniu/</a>
-        </div>
-      
-      <div>
-        
-      </div>
-    </aside>
-  
-  
-    <div class="passage-tags">
-     
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
-     
-      <a href="/tags/nas/"><i class="fa fa-tags"></i>nas</a>
     
+      <h3 class="timeline-subtitle">2022</h3>
+    
+    <div class="timeline-item">
+      <time>2022-04-09</time>
+      <a target="_self" href="/2022/04/pve-remove-notice/">pve去除订阅提示</a>
     </div>
   
 </div>
-
     </main>
     
     <div class="site-footer-wrapper">
@@ -301,15 +229,15 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2020/07/about-s905/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2020/06/migu-kindle/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
