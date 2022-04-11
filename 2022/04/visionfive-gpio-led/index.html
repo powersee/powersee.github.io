@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>visionfive 开发板通过 gpio 控制 led 灯 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Linux,设备,python," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-04-11
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    visionfive 开发板通过 gpio 控制 led 灯
+  </h1>
+  
+  <article class="passage-article">
+    <p>visionfive 是赛昉科技推出的一款开发板，使用的处理器是他们自家研发的【惊鸿 7100】（JH7100），这是一颗 risc-v 架构的处理器，双核 U74，U74 对标的是 ARM 的 Cortex-A55 。</p>
+<p><img src="/img/2022/visionfive1.jpg" alt="visionfive1"></p>
+<h3 id="写入镜像"><a href="#写入镜像" class="headerlink" title="写入镜像"></a>写入镜像</h3><p>这块板子的系统运行和树莓派一样，需要先将系统镜像写入内存卡，再插到板子上来运行。目前官方提供的只有 Fedora 这个发行版，可以在 GitHub 上找到下载链接。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/starfive-tech/Fedora_on_StarFive">https://github.com/starfive-tech/Fedora_on_StarFive</a></p>
+<p>下载完是一个特殊的压缩格式，zst，我搜了一下</p>
+<blockquote>
+<p>当前这种 ZST 格式是一种 压缩文件 ，是由 ZStandard 研发，作为一种 ZStandard压缩文件使用，此文件流行程度是 50 分（0-100满分）。</p>
+</blockquote>
+<p>还得使用专门的工具才能解压，稍微麻烦了点。工具在这里有提供</p>
+<p><a target="_blank" rel="noopener" href="https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide">https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide</a></p>
+<p>点击网页左侧的 <strong>Flashing Fedora OS to a Micro-SD Card</strong> 可以快速达到。</p>
+<p><img src="/img/2022/Snipaste_22-04-11_09-21-44.jpg" alt="Snipaste_22-04-11_09-21-44"></p>
+<p>我是在 win10 进行操作的，将下载好的解压工具，从压缩包里解压出来，和 zst 文件放在一起。</p>
+<p><img src="/img/2022/2022-04-11_09-57-19.jpg" alt="2022-04-11_09-57-19"></p>
+<p>此时在这个文件夹里的空白处，一只手按住键盘上的 shift 键，另一只手按一下鼠标的右键，在此处打开 powershell，就可以快速在当前文件夹打开一个命令行窗口。（此处我的 powershell 是自己升级过的，系统自带的是没有带 preview 的。）</p>
+<p><img src="/img/2022/2022-04-11_09-58-00.jpg" alt="2022-04-11_09-58-00"></p>
+<p>执行这条命令就可以解压了</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">./zstd<span class="selector-class">.exe</span> -d Fedora-riscv64-jh7100-developer-xfce-Rawhide-<span class="number">20211226</span>-<span class="number">214100</span><span class="selector-class">.n</span>.<span class="number">0</span>-sda.raw\<span class="selector-class">.zst</span> -o Fedora-riscv64-jh7100-developer-xfce-Rawhide-<span class="number">20211226</span>-<span class="number">214100</span><span class="selector-class">.n</span>.<span class="number">0</span>-sda.raw</span><br></pre></td></tr></table></figure>
+
+<p>解压出来的文件差不多 13G，可以使用写盘工具将它写入内存卡中，例如 etcher。</p>
+<h3 id="开机"><a href="#开机" class="headerlink" title="开机"></a>开机</h3><p>之后将内存卡插入开发板，使用 HDMI 线连接显示器，通电开机，便可进入 Fedora 了。</p>
+<p>默认的用户名是 riscv</p>
+<p>密码是 starfive</p>
+<p>这台设备的桌面体验，我感觉还是比较差的，毕竟没有 GPU，而已本身也只是双核而已，所以桌面体验会有一些卡顿。很快我就放弃用鼠标来控制它了，我选择在电脑上通过 ssh 来控制它。</p>
+<p><img src="/img/2022/visionfive-neofetch.jpg" alt="visionfive-neofetch"></p>
+<h3 id="如何通过-gpio-控制-LED-灯？"><a href="#如何通过-gpio-控制-LED-灯？" class="headerlink" title="如何通过 gpio 控制 LED 灯？"></a>如何通过 gpio 控制 LED 灯？</h3><p>通过这个网页，我们可以了解到这块板子的 GPIO 信息</p>
+<p><a target="_blank" rel="noopener" href="https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide">https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide</a></p>
+<p><img src="/img/2022/visionfive-gpio.jpg" alt="img"></p>
+<p>准备一颗 LED 灯，一头连接 34 号的 GND，一头连接 40 号的 GPIO0</p>
+<p><img src="/img/2022/LED-off.jpg" alt="LED-off"></p>
+<p>在终端里进行如下的操作（需要 root 身份来执行）</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /sys/class/gpio</span><br><span class="line">echo 448 &gt; export</span><br><span class="line">cd gpio448</span><br><span class="line">echo out &gt; direction</span><br><span class="line">echo 1 &gt; value</span><br></pre></td></tr></table></figure>
+
+<p>这样便可以点亮 LED 灯</p>
+<p><img src="/img/2022/LED-on.jpg" alt="LED-on"></p>
+<p>如果想熄灭它，只需执行</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">echo</span> <span class="number">0</span> &gt; value</span><br></pre></td></tr></table></figure>
+
+<p>官方文档里的这个表格非常重要，刚才我们控制 GPIO0，操作的是 448，如果现在我们想控制 GPIO4，从表格可以查到是 452，那么只需将刚才的 448 换成 452 即可让 GPIO4 输出高电平。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>dts</strong></td>
+<td><strong>sys</strong></td>
+<td><strong>Pin Name</strong></td>
+<td><strong>Num</strong></td>
+<td><strong>Num</strong></td>
+<td><strong>Pin Name</strong></td>
+<td><strong>sys</strong></td>
+<td><strong>dts</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>3.3V Power</td>
+<td>1</td>
+<td>2</td>
+<td>5V Power</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>i2c1</td>
+<td>i2c-1</td>
+<td>GPIO48 (I2C SDA)</td>
+<td>3</td>
+<td>4</td>
+<td>5V Power</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>i2c1</td>
+<td>i2c-1</td>
+<td>GPIO47 (I2C SCL)</td>
+<td>5</td>
+<td>6</td>
+<td>GND</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>494</td>
+<td>GPIO46</td>
+<td>7</td>
+<td>8</td>
+<td>GPIO14 (UART TX)</td>
+<td>ttyS0</td>
+<td>uart3</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GND</td>
+<td>9</td>
+<td>10</td>
+<td>GPIO13 (UART RX)</td>
+<td>ttyS0</td>
+<td>uart3</td>
+</tr>
+<tr>
+<td></td>
+<td>492</td>
+<td>GPIO44</td>
+<td>11</td>
+<td>12</td>
+<td>GPIO45</td>
+<td>PWM2</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>470</td>
+<td>GPIO22</td>
+<td>13</td>
+<td>14</td>
+<td>GND</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>468</td>
+<td>GPIO20</td>
+<td>15</td>
+<td>16</td>
+<td>GPIO21</td>
+<td>469</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>3.3V Power</td>
+<td>17</td>
+<td>18</td>
+<td>GPIO19</td>
+<td>467</td>
+<td></td>
+</tr>
+<tr>
+<td>spi2</td>
+<td>spidev0.0</td>
+<td>GPIO18 (SPI MOSI)</td>
+<td>19</td>
+<td>20</td>
+<td>GND</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>spi2</td>
+<td>spidev0.0</td>
+<td>GPIO16 (SPI MISO)</td>
+<td>21</td>
+<td>22</td>
+<td>GPIO17</td>
+<td>465</td>
+<td></td>
+</tr>
+<tr>
+<td>spi2</td>
+<td>spidev0.0</td>
+<td>GPIO12 (SPI SCLK)</td>
+<td>23</td>
+<td>24</td>
+<td>GPIO15 (SPI CE0)</td>
+<td>spidev0.0</td>
+<td>spi2</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GND</td>
+<td>25</td>
+<td>26</td>
+<td>GPIO11 (SPI CE1)</td>
+<td>spidev0.0</td>
+<td>spi2</td>
+</tr>
+<tr>
+<td></td>
+<td>457</td>
+<td>GPIO9</td>
+<td>27</td>
+<td>28</td>
+<td>GPIO10</td>
+<td>458</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>456</td>
+<td>GPIO8</td>
+<td>29</td>
+<td>30</td>
+<td>GND</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>454</td>
+<td>GPIO6</td>
+<td>31</td>
+<td>32</td>
+<td>GPIO7 (PWM0)</td>
+<td>PWM0</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>PWM1</td>
+<td>GPIO5 (PWM1)</td>
+<td>33</td>
+<td>34</td>
+<td>GND</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>451</td>
+<td>GPIO3</td>
+<td>35</td>
+<td>36</td>
+<td>GPIO4</td>
+<td>452</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>449</td>
+<td>GPIO1</td>
+<td>37</td>
+<td>38</td>
+<td>GPIO2</td>
+<td>450</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GND</td>
+<td>39</td>
+<td>40</td>
+<td>GPIO0</td>
+<td>448</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>对此我写了一个 Python 脚本，作用是监控哔哩哔哩上面是否有人给我发私信，也就是我是否有未读消息，如果有的话，则点亮 LED 灯。而当我看完消息后，脚本检测到目前没有未读消息了，则会将 LED 灯熄灭。</p>
+<p>脚本已放在 GitHub 上面，有兴趣的朋友可以参考一下。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py">https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py</a></p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%85%A5%E9%95%9C%E5%83%8F"><span class="toc-text">写入镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA"><span class="toc-text">开机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87-gpio-%E6%8E%A7%E5%88%B6-LED-%E7%81%AF%EF%BC%9F"><span class="toc-text">如何通过 gpio 控制 LED 灯？</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2022/04/visionfive-gpio-led/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/python/"><i class="fa fa-tags"></i>python</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2022/04/pve-remove-notice/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
