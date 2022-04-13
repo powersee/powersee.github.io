@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>visionfive 串口调试与编译内核 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Linux,设备," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-04-12
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    visionfive 串口调试与编译内核
+  </h1>
+  
+  <article class="passage-article">
+    <h3 id="串口调试"><a href="#串口调试" class="headerlink" title="串口调试"></a>串口调试</h3><p>开发板除了通过 HDMI 连接显示器，然后通过 usb 键盘来控制之外，还可以通过串口与电脑进行连接，将它的输出信息显示在电脑上，并且还可以直接用电脑键盘来控制。<br>想要进行这样的操作，需要买一个 USB 转 TTL， 我使用的是 CH340G，拼多多上面 6.3 包邮买的，平时也可以用来给路由器或者机顶盒刷机。</p>
+<p><img src="/img/2022/ch340.jpg" alt="ch340"></p>
+<p>另外我还有一个 CH341A，这个看起来就比较高级一点，两年前淘宝 18 块买的。</p>
+<p><img src="/img/2022/image-20220411135344552.png" alt="image-20220411135344552"></p>
+<p>不过只是用来调试开发板的话，它们用起来都一样的，连接到电脑的 usb 口之后，安装店家提供的驱动，顺利的话就可以在【设备管理器】的【端口】看到了。我们需要记住的是它对应的 com 口是多少，例如我图中的 12 和 13</p>
+<p><img src="/img/2022/image-20220411132651192.png" alt="image-20220411132651192"></p>
+<p>注：设备管理器可以通过点击，开始菜单旁边的放大镜，在里面搜索来打开。</p>
+<p><img src="/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p>
+<p>接下来需要它与开发板进行连接，这时就需要使用杜邦线，这个一般购买模块时都会赠送的，如果没有的话，也可以自己购买。拼多多或者淘宝搜【杜邦线母对母】就可以找到相对应的商品（个人建议购买比较长一点的，我之前用买模块送的杜邦线，只有十几厘米，有时候不太方面，所以后来我重新买了一排30厘米的）</p>
+<p>连接的话只需要 3 根线，接序是这样的</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">GND <span class="comment">--- GND</span></span><br><span class="line">TX <span class="comment">---- RX</span></span><br><span class="line">RX <span class="comment">---- TX</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p>
+<p>按照这样连接好后，将模块插到电脑上，确认在设备管理器里可以看到。</p>
+<p>然后我们还需要软件，才可以显示模块输出的信息。可以选择的软件非常多，我个人用过的有 putty、友善串口调试助手、以及我个人最常用的 xshell。我个人比较推荐 xshell，平时可以用来 ssh 连接开发板，需要串口调试时也可以用它。而且 xshell 个人在家庭或者学校使用的话，是完全免费的，到它的官网 <a target="_blank" rel="noopener" href="https://www.xshell.com/zh/free-for-home-school/">https://www.xshell.com/zh/free-for-home-school/</a> 填写邮箱后，收到邮件就可以下载。</p>
+<p>下载安装后，进行如下操作</p>
+<p><img src="/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p>
+<p><img src="/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p>
+<p>顺利的话应该会看到这个</p>
+<figure class="highlight erlang"><table><tr><td class="code"><pre><span class="line">Connecting to COM12...</span><br><span class="line">Connected.</span><br></pre></td></tr></table></figure>
+
+<p>此时就可以给开发板接通电源开机了。然后我们可以看到 bootloader 的加载信息，以及不断出现的系统启动信息。</p>
+<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">bootloader version:211102-0b86f96</span><br><span class="line">ddr 0x00000000, 1M test</span><br><span class="line">ddr 0x00100000, 2M test</span><br><span class="line">DDR clk 2133M,Version: 211102-d086aee                                                  </span><br><span class="line">0 crc flash: 5595e732, crc ddr: 5595e732</span><br><span class="line">crc check PASSED</span><br><span class="line"></span><br><span class="line">bootloader.</span><br><span class="line"></span><br><span class="line">OpenSBI v1.0</span><br><span class="line">   ____                    _____ ____ _____</span><br><span class="line">  / __ \                  / ____|<span class="string">  _ \_   _</span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">  </span>|<span class="string"> </span>|<span class="string">_ __   ___ _ __ </span>|<span class="string"> (___ </span>|<span class="string"> </span>|<span class="string">_) </span>||<span class="string"> </span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">  </span>|<span class="string"> </span>|<span class="string"> &#x27;_ \ / _ \ &#x27;_ \ \___ \</span>|<span class="string">  _ &lt; </span>|<span class="string"> </span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">__</span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string">_) </span>|<span class="string">  __/ </span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string">____) </span>|<span class="string"> </span>|<span class="string">_) </span>||<span class="string"> </span>|_</span><br><span class="line">  \____/|<span class="string"> .__/ \___</span>|<span class="string">_</span>|<span class="string"> </span>|<span class="string">_</span>|<span class="string">_____/</span>|<span class="string">____/_____</span>|</span><br><span class="line">        |<span class="string"> </span>|</span><br><span class="line">        |<span class="string">_</span>|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>等到开机完成，会出现这样的界面，在这里我们可以用电脑键盘输入用户名和密码来进行登录。</p>
+<p><img src="/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p>
+<h3 id="编译-Linux-内核"><a href="#编译-Linux-内核" class="headerlink" title="编译 Linux 内核"></a>编译 Linux 内核</h3><p>目前官方提供的 Fedora 镜像是</p>
+<p><strong>2021-December-26:</strong> <a target="_blank" rel="noopener" href="https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst">Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst</a></p>
+<p>使用的内核是 5.15，如果我们想要使用更新的内核，可以选择自己编译。</p>
+<p>首先下载源代码</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone --depth=<span class="number">1</span> https:<span class="regexp">//gi</span>thub.com<span class="regexp">/starfive-tech/</span>linux.git</span><br></pre></td></tr></table></figure>
+
+<p>这时就得分情况了，我们是要在哪里进行编译呢？如果是在 x86 架构的机器编译，需要通过交叉编译。因为我们的开发板是 risc-v 架构的，如果直接在开发板编译就不需要。这两种我都又尝试过，分别讲一下。</p>
+<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>按照 GitHub 上的文档操作即可。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/starfive-tech/linux">https://github.com/starfive-tech/linux</a></p>
+<p>先下载源代码，之后安装编译所需的工具</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Debian/Ubuntu</span></span><br><span class="line">sudo apt-get <span class="keyword">install </span>libncurses-dev libssl-dev <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc gcc-riscv64-linux-gnu</span><br><span class="line"><span class="comment"># Fedora</span></span><br><span class="line">sudo dnf <span class="keyword">install </span>ncurses-devel openssl openssl-devel <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc gcc-riscv64-linux-gnu</span><br><span class="line"><span class="comment"># Archlinux</span></span><br><span class="line">sudo pacman -S --needed ncurses openssl <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc riscv64-linux-gnu-gcc</span><br></pre></td></tr></table></figure>
+
+<p>配置与编译</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu- visionfive_defconfig</span><br><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu- nconfig</span><br><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu-</span><br></pre></td></tr></table></figure>
+
+<p>我使用的处理器是 i5 8259U，四核八线程，第一次编译 3、4分钟就搞定了。</p>
+<h4 id="原生编译"><a href="#原生编译" class="headerlink" title="原生编译"></a>原生编译</h4><p>同样下载源代码到设备上</p>
+<p>安装编译所需的工具</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo dnf <span class="keyword">install </span>ncurses-devel openssl openssl-devel <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc</span><br></pre></td></tr></table></figure>
+
+<p>配置与编译</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">make</span> -j<span class="number">2</span> visionfive_defconfig</span><br><span class="line"><span class="attribute">make</span> -j<span class="number">2</span> nconfig</span><br><span class="line"><span class="attribute">make</span> -j<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>由于板子是双核双线程的，所以这里就改为 -j2 了。耗费的时间是两个半小时左右。</p>
+<p>不管是交叉编译还是原生编译，编译完成我们都可以得到内核 <code>arch/riscv/boot/Image</code> 以及 dtb <code>arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dtb</code></p>
+<p>那么要怎么使用它们呢？</p>
+<p>我个人是这样操作的，在 /boot 里新建一个文件夹，然后将这两个文件放到里面。我现在新编译的内核版本是 5.18，所以我新建一个 518 的文件夹，再将内核与 dtb 复制进去。</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir <span class="regexp">/boot/</span><span class="number">518</span></span><br><span class="line">cp arch<span class="regexp">/riscv/</span>boot<span class="regexp">/Image /</span>boot<span class="regexp">/518/</span></span><br><span class="line">cp arch<span class="regexp">/riscv/</span>boot<span class="regexp">/dts/</span>starfive<span class="regexp">/jh7100-starfive-visionfive-v1.dtb /</span>boot<span class="regexp">/518/</span></span><br></pre></td></tr></table></figure>
+
+<p>然后修改 <code>/boot/grub.cfg</code> ，在里面添加多一个 menuentry</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">menuentry <span class="string">&#x27;5.18&#x27;</span> &#123;</span><br><span class="line">    linux /518/Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dd</span><br><span class="line">ev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改后这个文件前面 22 行的内容是这样的</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">set</span> <span class="attribute">default</span>=0</span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">timeout_style</span>=menu</span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">timeout</span>=2</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">debug</span>=<span class="string">&quot;linux,loader,mm&quot;</span></span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">term</span>=<span class="string">&quot;vt100&quot;</span></span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;5.18&#x27;</span> &#123;</span><br><span class="line">    linux /518/Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;Fedora vmlinux-5.17.0&#x27;</span> &#123;</span><br><span class="line">    linux /Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;Fedora vmlinux-5.15.10+ visionfive&#x27;</span> &#123;</span><br><span class="line">    linux /vmlinuz-5.15.10+ ro <span class="attribute">root</span>=UUID=59fcd098-2f22-441a-ba45-4f7185baf23f rhgb <span class="attribute">console</span>=tty0 <span class="attribute">console</span>=ttyS0,115200 earlycon rootwait <span class="attribute">stmmaceth</span>=chain_mode:1 <span class="attribute">selinux</span>=0 <span class="attribute">LANG</span>=en_US.UTF-8</span><br><span class="line">    devicetree /dtbs/5.15.10+/starfive/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">        initrd /initramfs-5.15.10+.img</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>里面的 5.17 也是我之前自己添加的。此时重启机器</p>
+<p>在启动过程中会出现一个选择菜单界面</p>
+<p><img src="/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p>
+<p>可以按上下键来选择不同的内核版本，如果不手动选的话，就会自动加载第一个。</p>
+<p>进入系统后输入 <code>uname -sr</code> 可以查看当前的内核版本。</p>
+<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$uname</span> -sr   </span></span><br><span class="line">Linux <span class="number">5.18</span><span class="number">.0</span>-rc1-visionfive-g7ff84520cb68</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E8%B0%83%E8%AF%95"><span class="toc-text">串口调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91-Linux-%E5%86%85%E6%A0%B8"><span class="toc-text">编译 Linux 内核</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91"><span class="toc-text">交叉编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E7%BC%96%E8%AF%91"><span class="toc-text">原生编译</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2022/04/visionfive-ttl-linux/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2022/04/riscv-apps/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2022/04/visionfive-gpio-led/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

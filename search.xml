@@ -3256,4 +3256,173 @@
         <tag>python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>visionfive 串口调试与编译内核</title>
+    <url>/2022/04/visionfive-ttl-linux/</url>
+    <content><![CDATA[<h3 id="串口调试"><a href="#串口调试" class="headerlink" title="串口调试"></a>串口调试</h3><p>开发板除了通过 HDMI 连接显示器，然后通过 usb 键盘来控制之外，还可以通过串口与电脑进行连接，将它的输出信息显示在电脑上，并且还可以直接用电脑键盘来控制。<br>想要进行这样的操作，需要买一个 USB 转 TTL， 我使用的是 CH340G，拼多多上面 6.3 包邮买的，平时也可以用来给路由器或者机顶盒刷机。</p>
+<p><img src="/img/2022/ch340.jpg" alt="ch340"></p>
+<p>另外我还有一个 CH341A，这个看起来就比较高级一点，两年前淘宝 18 块买的。</p>
+<p><img src="/img/2022/image-20220411135344552.png" alt="image-20220411135344552"></p>
+<p>不过只是用来调试开发板的话，它们用起来都一样的，连接到电脑的 usb 口之后，安装店家提供的驱动，顺利的话就可以在【设备管理器】的【端口】看到了。我们需要记住的是它对应的 com 口是多少，例如我图中的 12 和 13</p>
+<p><img src="/img/2022/image-20220411132651192.png" alt="image-20220411132651192"></p>
+<p>注：设备管理器可以通过点击，开始菜单旁边的放大镜，在里面搜索来打开。</p>
+<p><img src="/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p>
+<p>接下来需要它与开发板进行连接，这时就需要使用杜邦线，这个一般购买模块时都会赠送的，如果没有的话，也可以自己购买。拼多多或者淘宝搜【杜邦线母对母】就可以找到相对应的商品（个人建议购买比较长一点的，我之前用买模块送的杜邦线，只有十几厘米，有时候不太方面，所以后来我重新买了一排30厘米的）</p>
+<p>连接的话只需要 3 根线，接序是这样的</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">GND <span class="comment">--- GND</span></span><br><span class="line">TX <span class="comment">---- RX</span></span><br><span class="line">RX <span class="comment">---- TX</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p>
+<p>按照这样连接好后，将模块插到电脑上，确认在设备管理器里可以看到。</p>
+<p>然后我们还需要软件，才可以显示模块输出的信息。可以选择的软件非常多，我个人用过的有 putty、友善串口调试助手、以及我个人最常用的 xshell。我个人比较推荐 xshell，平时可以用来 ssh 连接开发板，需要串口调试时也可以用它。而且 xshell 个人在家庭或者学校使用的话，是完全免费的，到它的官网 <a href="https://www.xshell.com/zh/free-for-home-school/">https://www.xshell.com/zh/free-for-home-school/</a> 填写邮箱后，收到邮件就可以下载。</p>
+<p>下载安装后，进行如下操作</p>
+<p><img src="/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p>
+<p><img src="/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p>
+<p>顺利的话应该会看到这个</p>
+<figure class="highlight erlang"><table><tr><td class="code"><pre><span class="line">Connecting to COM12...</span><br><span class="line">Connected.</span><br></pre></td></tr></table></figure>
+
+<p>此时就可以给开发板接通电源开机了。然后我们可以看到 bootloader 的加载信息，以及不断出现的系统启动信息。</p>
+<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">bootloader version:211102-0b86f96</span><br><span class="line">ddr 0x00000000, 1M test</span><br><span class="line">ddr 0x00100000, 2M test</span><br><span class="line">DDR clk 2133M,Version: 211102-d086aee                                                  </span><br><span class="line">0 crc flash: 5595e732, crc ddr: 5595e732</span><br><span class="line">crc check PASSED</span><br><span class="line"></span><br><span class="line">bootloader.</span><br><span class="line"></span><br><span class="line">OpenSBI v1.0</span><br><span class="line">   ____                    _____ ____ _____</span><br><span class="line">  / __ \                  / ____|<span class="string">  _ \_   _</span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">  </span>|<span class="string"> </span>|<span class="string">_ __   ___ _ __ </span>|<span class="string"> (___ </span>|<span class="string"> </span>|<span class="string">_) </span>||<span class="string"> </span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">  </span>|<span class="string"> </span>|<span class="string"> &#x27;_ \ / _ \ &#x27;_ \ \___ \</span>|<span class="string">  _ &lt; </span>|<span class="string"> </span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">__</span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string">_) </span>|<span class="string">  __/ </span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string">____) </span>|<span class="string"> </span>|<span class="string">_) </span>||<span class="string"> </span>|_</span><br><span class="line">  \____/|<span class="string"> .__/ \___</span>|<span class="string">_</span>|<span class="string"> </span>|<span class="string">_</span>|<span class="string">_____/</span>|<span class="string">____/_____</span>|</span><br><span class="line">        |<span class="string"> </span>|</span><br><span class="line">        |<span class="string">_</span>|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>等到开机完成，会出现这样的界面，在这里我们可以用电脑键盘输入用户名和密码来进行登录。</p>
+<p><img src="/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p>
+<h3 id="编译-Linux-内核"><a href="#编译-Linux-内核" class="headerlink" title="编译 Linux 内核"></a>编译 Linux 内核</h3><p>目前官方提供的 Fedora 镜像是</p>
+<p><strong>2021-December-26:</strong> <a href="https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst">Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst</a></p>
+<p>使用的内核是 5.15，如果我们想要使用更新的内核，可以选择自己编译。</p>
+<p>首先下载源代码</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone --depth=<span class="number">1</span> https:<span class="regexp">//gi</span>thub.com<span class="regexp">/starfive-tech/</span>linux.git</span><br></pre></td></tr></table></figure>
+
+<p>这时就得分情况了，我们是要在哪里进行编译呢？如果是在 x86 架构的机器编译，需要通过交叉编译。因为我们的开发板是 risc-v 架构的，如果直接在开发板编译就不需要。这两种我都又尝试过，分别讲一下。</p>
+<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>按照 GitHub 上的文档操作即可。</p>
+<p><a href="https://github.com/starfive-tech/linux">https://github.com/starfive-tech/linux</a></p>
+<p>先下载源代码，之后安装编译所需的工具</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Debian/Ubuntu</span></span><br><span class="line">sudo apt-get <span class="keyword">install </span>libncurses-dev libssl-dev <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc gcc-riscv64-linux-gnu</span><br><span class="line"><span class="comment"># Fedora</span></span><br><span class="line">sudo dnf <span class="keyword">install </span>ncurses-devel openssl openssl-devel <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc gcc-riscv64-linux-gnu</span><br><span class="line"><span class="comment"># Archlinux</span></span><br><span class="line">sudo pacman -S --needed ncurses openssl <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc riscv64-linux-gnu-gcc</span><br></pre></td></tr></table></figure>
+
+<p>配置与编译</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu- visionfive_defconfig</span><br><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu- nconfig</span><br><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu-</span><br></pre></td></tr></table></figure>
+
+<p>我使用的处理器是 i5 8259U，四核八线程，第一次编译 3、4分钟就搞定了。</p>
+<h4 id="原生编译"><a href="#原生编译" class="headerlink" title="原生编译"></a>原生编译</h4><p>同样下载源代码到设备上</p>
+<p>安装编译所需的工具</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo dnf <span class="keyword">install </span>ncurses-devel openssl openssl-devel <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc</span><br></pre></td></tr></table></figure>
+
+<p>配置与编译</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">make</span> -j<span class="number">2</span> visionfive_defconfig</span><br><span class="line"><span class="attribute">make</span> -j<span class="number">2</span> nconfig</span><br><span class="line"><span class="attribute">make</span> -j<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>由于板子是双核双线程的，所以这里就改为 -j2 了。耗费的时间是两个半小时左右。</p>
+<p>不管是交叉编译还是原生编译，编译完成我们都可以得到内核 <code>arch/riscv/boot/Image</code> 以及 dtb <code>arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dtb</code></p>
+<p>那么要怎么使用它们呢？</p>
+<p>我个人是这样操作的，在 /boot 里新建一个文件夹，然后将这两个文件放到里面。我现在新编译的内核版本是 5.18，所以我新建一个 518 的文件夹，再将内核与 dtb 复制进去。</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir <span class="regexp">/boot/</span><span class="number">518</span></span><br><span class="line">cp arch<span class="regexp">/riscv/</span>boot<span class="regexp">/Image /</span>boot<span class="regexp">/518/</span></span><br><span class="line">cp arch<span class="regexp">/riscv/</span>boot<span class="regexp">/dts/</span>starfive<span class="regexp">/jh7100-starfive-visionfive-v1.dtb /</span>boot<span class="regexp">/518/</span></span><br></pre></td></tr></table></figure>
+
+<p>然后修改 <code>/boot/grub.cfg</code> ，在里面添加多一个 menuentry</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">menuentry <span class="string">&#x27;5.18&#x27;</span> &#123;</span><br><span class="line">    linux /518/Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dd</span><br><span class="line">ev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改后这个文件前面 22 行的内容是这样的</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">set</span> <span class="attribute">default</span>=0</span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">timeout_style</span>=menu</span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">timeout</span>=2</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">debug</span>=<span class="string">&quot;linux,loader,mm&quot;</span></span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">term</span>=<span class="string">&quot;vt100&quot;</span></span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;5.18&#x27;</span> &#123;</span><br><span class="line">    linux /518/Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;Fedora vmlinux-5.17.0&#x27;</span> &#123;</span><br><span class="line">    linux /Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;Fedora vmlinux-5.15.10+ visionfive&#x27;</span> &#123;</span><br><span class="line">    linux /vmlinuz-5.15.10+ ro <span class="attribute">root</span>=UUID=59fcd098-2f22-441a-ba45-4f7185baf23f rhgb <span class="attribute">console</span>=tty0 <span class="attribute">console</span>=ttyS0,115200 earlycon rootwait <span class="attribute">stmmaceth</span>=chain_mode:1 <span class="attribute">selinux</span>=0 <span class="attribute">LANG</span>=en_US.UTF-8</span><br><span class="line">    devicetree /dtbs/5.15.10+/starfive/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">        initrd /initramfs-5.15.10+.img</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>里面的 5.17 也是我之前自己添加的。此时重启机器</p>
+<p>在启动过程中会出现一个选择菜单界面</p>
+<p><img src="/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p>
+<p>可以按上下键来选择不同的内核版本，如果不手动选的话，就会自动加载第一个。</p>
+<p>进入系统后输入 <code>uname -sr</code> 可以查看当前的内核版本。</p>
+<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$uname</span> -sr   </span></span><br><span class="line">Linux <span class="number">5.18</span><span class="number">.0</span>-rc1-visionfive-g7ff84520cb68</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>设备</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>risc-v 开源软件安装与自行编译</title>
+    <url>/2022/04/riscv-apps/</url>
+    <content><![CDATA[<p>risc-v 开发板虽然可以运行 Linux 发行版，但是毕竟还是处于起步阶段，生态是没法跟 arm 以及 x86 相比的。</p>
+<p>这段时间在研究这台 visionfive，在软件这方面也折腾了不少，本文记录一下心得。</p>
+<p>以前拿到开发板或者可以运行 Linux 的机顶盒时，我喜欢在上面装下载软件，以及开启 smb 共享，让它作为一台简易 NAS 来使用。这次在 visionfive 上面我也有进行尝试。</p>
+<p>首先 BT 下载软件 transmission 和 qbittorrent 在这上面想要安装都非常简单，直接用 dnf 就行</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">dnf <span class="keyword">install</span> transmission-daemon</span><br><span class="line">dnf <span class="keyword">install</span> qbittorrent-nox</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2022/image-20220412155348270.png" alt="image-20220412155348270"></p>
+<p><img src="/img/2022/image-20220412155459647.png" alt="image-20220412155459647"></p>
+<p>samba 也可以直接用 dnf 安装</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">dnf <span class="keyword">install</span> samba</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2022/image-20220412160053966.png" alt="image-20220412160053966"></p>
+<p>这种是比较简单的，这里就不多细讲了。</p>
+<p>像有些开源软件，它是托管在 GitHub 上面的，这类软件，我们可以到它的 GitHub release 里面，下载 riscv 架构的可执行文件。这里举两个例子</p>
+<h4 id="syncthing"><a href="#syncthing" class="headerlink" title="syncthing"></a>syncthing</h4><p>这是一个多平台同步软件，之前有一段时间，我经常使用它将我手机里的照片、视频，同步到电脑上面。</p>
+<p>想要让它在 visionfive 上面运行，需要到 <a href="https://github.com/syncthing/syncthing/releases">https://github.com/syncthing/syncthing/releases</a> 里面找名字带 riscv64 的，目前最新的是这个</p>
+<p><a href="https://github.com/syncthing/syncthing/releases/download/v1.19.2/syncthing-linux-riscv64-v1.19.2.tar.gz">https://github.com/syncthing/syncthing/releases/download/v1.19.2/syncthing-linux-riscv64-v1.19.2.tar.gz</a></p>
+<p>我们可以通过 wget 将它下载到本地，然后使用 tar 解压</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">wget</span> https://github.com/syncthing/syncthing/releases/download/v<span class="number">1</span>.<span class="number">19</span>.<span class="number">2</span>/syncthing-linux-riscv<span class="number">64</span>-v<span class="number">1</span>.<span class="number">19</span>.<span class="number">2</span>.tar.gz</span><br><span class="line"><span class="attribute">tar</span> xf syncthing-linux-riscv<span class="number">64</span>-v<span class="number">1</span>.<span class="number">19</span>.<span class="number">2</span>.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>此时我们得到的是一个文件夹</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">l syncthing-linux-riscv64-v1.19.1</span></span><br><span class="line">total 23M</span><br><span class="line">drwxr-xr-x   5 riscv riscv 4.0K Mar  1 14:45 .</span><br><span class="line">drwx------. 19 riscv riscv 4.0K Apr 10 10:45 ..</span><br><span class="line">-rw-r--r--   1 riscv riscv  14K Mar  1 14:38 AUTHORS.txt</span><br><span class="line">drwxr-xr-x  11 riscv riscv 4.0K Mar  1 14:45 etc</span><br><span class="line">drwxr-xr-x   2 riscv riscv 4.0K Mar  1 14:45 extra</span><br><span class="line">-rw-r--r--   1 riscv riscv  17K Mar  1 14:38 LICENSE.txt</span><br><span class="line">drwxr-xr-x   2 riscv riscv 4.0K Mar  1 14:45 .metadata</span><br><span class="line">-rw-r--r--   1 riscv riscv 4.7K Mar  1 14:38 README.txt</span><br><span class="line">-rwxr-xr-x   1 riscv riscv  23M Mar  1 14:44 syncthing</span><br></pre></td></tr></table></figure>
+
+<p>执行文件夹里的 syncthing 即可启动这个软件，然后它会输出一些启动信息</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">➜ cd syncthing-linux-riscv64-v1.19.1 </span><br><span class="line">➜ syncthing-linux-riscv64-v1.19.1 ./syncthing </span><br><span class="line">[start] 16:13:15 INFO: syncthing v1.19.1 <span class="string">&quot;Fermium Flea&quot;</span> (go1.17.7 linux-riscv64) teamcity@build.syncthing.net 2022-02-21 13:57:21 UTC</span><br><span class="line">[start] 16:13:15 INFO: Generating ECDSA key<span class="built_in"> and </span>certificate for syncthing...</span><br><span class="line">[start] 16:13:16 INFO: Default folder created<span class="built_in"> and/or </span>linked to<span class="built_in"> new </span>config</span><br><span class="line">[start] 16:13:16 INFO: Default config saved. Edit /root/.config/syncthing/config.xml to taste (with Syncthing stopped)<span class="built_in"> or </span>use the GUI</span><br><span class="line">[start] 16:13:16 INFO: Archiving a copy of old config file format at: /root/.config/syncthing/config.xml.v0</span><br></pre></td></tr></table></figure>
+
+<p>等一会会出现一条比较重要的信息</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">[<span class="number">6</span>RXV3] <span class="number">16</span>:<span class="number">13</span>:<span class="number">32</span> <span class="keyword">INFO</span>: <span class="keyword">Access</span> the GUI via the <span class="keyword">following</span> URL: http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8384</span>/</span><br></pre></td></tr></table></figure>
+
+<p>它表示我们只能在 visionfive 上面使用浏览器访问这个网址，才可以打开 syncthing 的图形化界面。如果你像我一样，并没有给 visionfive 接显示器，一直都是 ssh 连接来操作的。此时这一步就没有进行下去了。</p>
+<p>所以我们需要先停止软件，改一下配置文件后，再来启动。按 <code>ctrl + c</code> 这两个按键可以退出软件，然后我们使用 nano 来修改配置文件。</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">nano ~<span class="regexp">/.config/</span>syncthing/config.xml</span><br></pre></td></tr></table></figure>
+
+<p>找到 <code>&lt;address&gt;127.0.0.1:8384&lt;/address&gt;</code> 这一行，改为 <code>&lt;address&gt;0.0.0.0:8384&lt;/address&gt;</code> ，再次输入 <code>./syncthing</code> 启动软件</p>
+<p>此时就可以用电脑的浏览器来访问运行在 visionfive 上面的 syncthing 了。</p>
+<p><img src="/img/2022/image-20220412162500139.png" alt="image-20220412162500139"></p>
+<h4 id="miniserve"><a href="#miniserve" class="headerlink" title="miniserve"></a>miniserve</h4><p>这个软件是我个人非常喜欢的文件展示应用，它的主要功能就是将某个文件夹通过 web 的方式共享出来，但是功能远不止于此。它还是支持上传功能，以及添加用户名密码验证，所以也可以把它当一个简易网盘来使用。</p>
+<p>项目：<a href="https://github.com/svenstaro/miniserve">https://github.com/svenstaro/miniserve</a></p>
+<p>安装方法：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget https:<span class="regexp">//gi</span>thub.com<span class="regexp">/svenstaro/mi</span>niserve<span class="regexp">/releases/</span>download<span class="regexp">/v0.19.4/mi</span>niserve-v0.<span class="number">19.4</span>-riscv64gc-unknown-linux-gnu</span><br><span class="line">mv miniserve-* miniserve</span><br><span class="line">chmod +x miniserve</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="string">./miniserve</span></span><br></pre></td></tr></table></figure>
+
+<p>非常简单，下载后赋予它可执行权限，然后直接 <code>./</code> 就可以运行了。这样它会将你当前所在的文件夹，通过 <code>8080</code> 端口共享出来。</p>
+<p>如果想使用其它端口，可以使用 <code>-p</code> 来指定，想添加上传功能，使用 <code>-u</code> ，想共享其它的文件夹，直接将文件夹路径写上去即可。</p>
+<p>示例：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">➜ .<span class="regexp">/miniserve -u -p 9527 /</span>tmp/test</span><br><span class="line">miniserve v0.<span class="number">19.3</span></span><br><span class="line">Bound to [::]:<span class="number">9527</span>, <span class="number">0.0</span>.<span class="number">0.0</span>:<span class="number">9527</span></span><br><span class="line">Serving path <span class="regexp">/tmp/</span>test</span><br><span class="line">Available at (non-exhaustive list):</span><br><span class="line">    http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9527</span></span><br><span class="line">    http:<span class="regexp">//</span><span class="number">192.168</span>.<span class="number">68.178</span>:<span class="number">9527</span></span><br><span class="line">    http:<span class="regexp">//</span>[::<span class="number">1</span>]:<span class="number">9527</span></span><br><span class="line"></span><br><span class="line">Quit by pressing CTRL-C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2022/image-20220412163658298.png" alt="image-20220412163658298"></p>
+<h3 id="自行编译"><a href="#自行编译" class="headerlink" title="自行编译"></a>自行编译</h3><p>上面讲到的 syncthing 和 miniserve，它们的 release 里都有提供 riscv 的可执行文件，所以我们使用起来还算是比较容易。</p>
+<p>但这类还是比较少数的，其它开源软件大多数目前都是没有提供 riscv 版的，所以如果我们想要使用的话，就需要自行编译。</p>
+<p>先来一个简单的——<a href="https://github.com/zerotier/ZeroTierOne">zerotier</a></p>
+<p>这个软件的功能是组虚拟局域网，让家里没有公网 ip 的用户，也可以远程访问家里设备。</p>
+<p>想让它在 visionfive 上面运行我们需要自行编译，很简单，下载源代码到本地，进入项目文件夹，执行 make 编译就行</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone --depth=<span class="number">1</span> https:<span class="regexp">//gi</span>thub.com<span class="regexp">/zerotier/</span>ZeroTierOne.git</span><br><span class="line">cd ZeroTierOne</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>编译完成后当前目前下多出 <code>zerotier-one</code> 和 <code>zerotier-cli</code></p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line">./zerotier-<span class="keyword">cli</span> -v                   </span><br><span class="line"><span class="number">1.8</span><span class="number">.8</span></span><br></pre></td></tr></table></figure>
+
+<p>另外我还尝试编译 <a href="https://github.com/fatedier/frp">frp</a> 这款软件，这个耗费了我不少的时间。由于它是用 go 写的，想要编译它需要有 go 环境，然后我就想到 golang 的官网下载，却发现并没有提供 riscv 版的。</p>
+<p>走了一堆弯路之后，我才发现 visionfive 的 Fedora 里竟然自带 go</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="keyword">go</span> <span class="keyword">version</span></span><br><span class="line"><span class="keyword">go</span> <span class="keyword">version</span> go1.<span class="number">14.6</span> gccgo (GCC) <span class="number">10.3</span>.<span class="number">1</span> <span class="number">20210422</span> (Red Hat <span class="number">10.3</span>.<span class="number">1</span>-<span class="number">1</span>) linux/riscv64</span><br></pre></td></tr></table></figure>
+
+<p>不过我使用它并没法成功编译 frp，想使用自带的 go1.14.6 编译现在最新的 go1.18 也没成功。</p>
+<p>之后又发现在 x86 上面是可以使用 go 设定交叉编译，来编译 riscv64 的可执行文件的。</p>
+<p>最终我使用这两条命令，成功编译出 riscv 版的 frp 服务器端和客户端</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">go</span> env -<span class="keyword">w</span> GOPROXY=http<span class="variable">s:</span>//goproxy.<span class="keyword">cn</span></span><br></pre></td></tr></table></figure>
+
+<p>网络问题，先设置代理</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">CGO_ENABLE</span>=0 <span class="attribute">GOOS</span>=linux <span class="attribute">GOARCH</span>=riscv64 go build ./cmd/frpc</span><br><span class="line"><span class="attribute">CGO_ENABLE</span>=0 <span class="attribute">GOOS</span>=linux <span class="attribute">GOARCH</span>=riscv64 go build ./cmd/frps</span><br></pre></td></tr></table></figure>
+
+<p>这样编译出来的文件是在当前目录下的，想存放在其它地方，应该使用 -o 参数</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">CGO_ENABLE</span>=0 <span class="attribute">GOOS</span>=linux <span class="attribute">GOARCH</span>=riscv64 go build -o bin/frpc-riscv64 ./cmd/frpc</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">➜ frpc -v         </span><br><span class="line"><span class="number">0.41</span>.<span class="number">0</span></span><br><span class="line">➜ <span class="keyword">file</span> frpc       </span><br><span class="line">frpc: ELF <span class="number">64</span>-bit LSB executable, UCB RISC-V, version <span class="number">1</span> (SYSV), statically linked, Go BuildID=Pwh5MYcPoYJ1E09FI1rO<span class="regexp">/vrYuoTbR0yxAguZ0ck9D/</span>DeYARJeTJfCF72R2PXOv/<span class="number">9</span>mZ673VwFshYBrO5Grjy, not stripped</span><br></pre></td></tr></table></figure>
+
+<p>那么用同样的方法，也可以编译 <a href="https://github.com/filebrowser/filebrowser">filebrowser</a> 的后端部分</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">GOOS</span>=linux <span class="attribute">GOARCH</span>=riscv64 go build</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">➜ <span class="keyword">file</span> filebrowser</span><br><span class="line">filebrowser: ELF <span class="number">64</span>-bit LSB executable, UCB RISC-V, version <span class="number">1</span> (SYSV), statically linked, Go BuildID=<span class="number">8</span>ohLL6OaYPgPR1ZtkIRd<span class="regexp">/d9lcK8Ocz9YIDVZqMFFv/</span>cB4dn0G6WtNCIXUJsvX-/Xo17t9_I87svg4x4zqx_, not stripped</span><br></pre></td></tr></table></figure>
+
+<p>前端部分需要 nodejs 和 npm ，这个官方没有提供 riscv 版，GitHub 上面有修改版，说是可以给 riscv 用，不过我没弄成功。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>设备</tag>
+      </tags>
+  </entry>
 </search>
