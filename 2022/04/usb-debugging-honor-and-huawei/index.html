@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>归档: 2020/6 | Powersee的博客</title>
+  <title>荣耀平板V7Pro 与华为 matepad paper USB 调试开启教程 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD" />
+    <meta name="keywords" content="手机,Android," />
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
@@ -160,24 +160,92 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 88篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-04-21
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    荣耀平板V7Pro 与华为 matepad paper USB 调试开启教程
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2020</h3>
-    
-    <div class="timeline-item">
-      <time>2020-06-29</time>
-      <a target="_self" href="/2020/06/xingjiwoniu/">蜗牛星际驱动核显，使用 jellyfin 和 qbittorrent</a>
-    </div>
+  <article class="passage-article">
+    <p>手头上有一台荣耀的平板，以及一台华为的墨水屏平板，我发现它们想要和其它的设备一样开启 USB 调试，然后在电脑上使用 adb 来控制，似乎没那么容易。本文记录我折腾的过程，方便有同样需求的小伙伴。</p>
+<h3 id="荣耀"><a href="#荣耀" class="headerlink" title="荣耀"></a>荣耀</h3><p>首先到【设置】【关于平板电脑】里，连续点击 5 次【版本号】，可以开启开发者模式。</p>
+<p>然后到【系统和更新】【开发人员选项】打开【usb调试】以及 【“仅充电”模式下允许 ADB 调试】</p>
+<p>最后用数据线连接平板与 windows 电脑，将会发现，它不按套路出牌，执行 <code>adb devices</code> 后并不能显示设备。</p>
+<p><img src="/img/2022/2022-04-12_13-11-26.jpg" alt="2022-04-12_13-11-26"></p>
+<p>打开 Android studio 也一样识别不到</p>
+<p><img src="/img/2022/2022-04-12_13-16-38.jpg" alt="2022-04-12_13-16-38"></p>
+<p>怎么搞呢？那么试试装一下此时显示在【此电脑】里面，多出来的那个盘符里的手机助理吧。装好后我发现可以连接了，而且这个过程中，平板上会弹出提示，它这个叫 HDB 验证。。。而平时我们在其他安卓手机、平板上的叫 ADB 验证。</p>
+<p>那么它们是否都一样，只是荣耀这里改个名字而已呢？并不是，HDB 连接好后，可以通过电脑的手机助理来管理平板上的文件，应用等，好像还可以刷机。</p>
+<p>但是这个时候如果我们再执行 <code>adb devices</code> ，会出现这个</p>
+<p><img src="/img/2022/image-20220412134348799.png" alt="image-20220412134348799"></p>
+<p>unauthorized ，adb 这边还是没有授权，依然没法使用 Android studio</p>
+<p>我网上搜，别人有说手机上的怎么操作，需要在拨号界面输入 <code>*#*#2846579#*#*</code>，进入工程菜单</p>
+<p>但问题是，我这是平板，没有拨号界面……</p>
+<p>然后继续找，最后找到了。WIFI版平板进入计算器，横屏（科学计算器）模式下输入()()2846579()()即可进入工程模式。</p>
+<p>来源：<a target="_blank" rel="noopener" href="https://club.huawei.com/forum.php?mod=viewthread&tid=30717452&extra=page=1">花粉俱乐部</a></p>
+<p>不过按照教程，应该把【USB端口设置】从 【Hisuite模式】改为 【生产模式】，但是我这台平板好像改不了，只能改为【默认模式】。不过好像不影响开启 adb，反正最后是成功了。</p>
+<p><img src="/img/2022/2022-04-12_13-23-13.jpg" alt="2022-04-12_13-23-13"></p>
+<p><img src="/img/2022/image-20220412134858390.png" alt="image-20220412134858390"></p>
+<p>看来手机助理这个软件是完全没有必要安装的，关键点在于进入工程菜单。</p>
+<h3 id="华为"><a href="#华为" class="headerlink" title="华为"></a>华为</h3><p>操作上基本一样。</p>
+<p>点击版本号 5 次，打开开发者选项</p>
+<p><img src="/img/2022/image-20220421153431809.png" alt="image-20220421153431809"></p>
+<p>然后在【系统和更新】【开发人员选项】中打开 USB 调试</p>
+<p><img src="/img/2022/image-20220421153531693.png" alt="image-20220421153531693"></p>
+<p>到应用菜单里打开【计算机】，点击右上角进入【科学计算器】模式，输入 <code>()()2846579()()</code> 即可进入工程模式。</p>
+<p><img src="/img/2022/image-20220421153730565.png" alt="image-20220421153730565"></p>
+<p>此时在工程菜单里，点击【后台设置】【USB端口设置】，选择【生产模式】即可。</p>
+<p><img src="/img/2022/image-20220421154105540.png" alt="image-20220421154105540"></p>
+<p><img src="/img/2022/image-20220421154145072.png" alt="image-20220421154145072"></p>
+<p>在 Android studio 里面也可以识别到了</p>
+<p><img src="/img/2022/image-20220421154252687.png" alt="image-20220421154252687"></p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8D%A3%E8%80%80"><span class="toc-text">荣耀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8E%E4%B8%BA"><span class="toc-text">华为</span></a></li></ol>
+  </div>
+</aside>
   
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2022/04/usb-debugging-honor-and-huawei/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E6%89%8B%E6%9C%BA/"><i class="fa fa-tags"></i>手机</a>
+     
+      <a href="/tags/Android/"><i class="fa fa-tags"></i>Android</a>
     
-    <div class="timeline-item">
-      <time>2020-06-15</time>
-      <a target="_self" href="/2020/06/migu-kindle/">关于咪咕 kindle 打卡版</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -238,12 +306,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2022/04/riscv-apps/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
