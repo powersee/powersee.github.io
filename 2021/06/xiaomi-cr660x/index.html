@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -193,11 +193,11 @@
 </blockquote>
 <p>刷机的难点在于解锁 ssh ，不同于其它的小米路由器，这台解锁需要用到一台 openwrt 路由器来辅助，比较麻烦点。</p>
 <p>xqsystem.lua</p>
-<figure class="highlight sas"><table><tr><td class="code"><pre><span class="line">module(<span class="string">&quot;luci.controller.admin.xqsystem&quot;</span>, package.seeall)</span><br><span class="line"></span><br><span class="line">function<span class="meta"> index(</span>)</span><br><span class="line">    local <span class="meta">page</span>   = node(<span class="string">&quot;api&quot;</span>)</span><br><span class="line">    <span class="meta">page</span>.target  = firstchild()</span><br><span class="line">    <span class="meta">page</span>.<span class="meta">title</span>   = (<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="meta">page</span>.<span class="meta">order</span>   = 100</span><br><span class="line">    <span class="meta">page</span>.<span class="meta">index</span> = true</span><br><span class="line">    <span class="meta">page</span>   = node(<span class="string">&quot;api&quot;</span>,<span class="string">&quot;xqsystem&quot;</span>)</span><br><span class="line">    <span class="meta">page</span>.target  = firstchild()</span><br><span class="line">    <span class="meta">page</span>.<span class="meta">title</span>   = (<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="meta">page</span>.<span class="meta">order</span>   = 100</span><br><span class="line">    <span class="meta">page</span>.<span class="meta">index</span> = true</span><br><span class="line">    entry(&#123;<span class="string">&quot;api&quot;</span>, <span class="string">&quot;xqsystem&quot;</span>, <span class="string">&quot;token&quot;</span>&#125;, <span class="meta">call</span>(<span class="string">&quot;getToken&quot;</span>), (<span class="string">&quot;&quot;</span>), 103, 0x08)</span><br><span class="line"><span class="meta">end</span></span><br><span class="line"></span><br><span class="line">local LuciHttp = require(<span class="string">&quot;luci.http&quot;</span>)</span><br><span class="line"></span><br><span class="line">function getTok<span class="meta">en(</span>)</span><br><span class="line">    local result = &#123;&#125;</span><br><span class="line">    result[<span class="string">&quot;code&quot;</span>] = 0</span><br><span class="line">    result[<span class="string">&quot;token&quot;</span>] = <span class="string">&quot;; nvram set ssh_en=1; nvram commit; sed -i &#x27;s/channel=.*/channel=\&quot;debug\&quot;/g&#x27; /etc/init.d/dropbear; /etc/init.d/dropbear start;&quot;</span></span><br><span class="line">    LuciHttp.write_js<span class="meta">on(</span>result)</span><br><span class="line"><span class="meta">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module(&quot;luci.controller.admin.xqsystem&quot;, package.seeall)</span><br><span class="line"></span><br><span class="line">function index()</span><br><span class="line">    local page   = node(&quot;api&quot;)</span><br><span class="line">    page.target  = firstchild()</span><br><span class="line">    page.title   = (&quot;&quot;)</span><br><span class="line">    page.order   = 100</span><br><span class="line">    page.index = true</span><br><span class="line">    page   = node(&quot;api&quot;,&quot;xqsystem&quot;)</span><br><span class="line">    page.target  = firstchild()</span><br><span class="line">    page.title   = (&quot;&quot;)</span><br><span class="line">    page.order   = 100</span><br><span class="line">    page.index = true</span><br><span class="line">    entry(&#123;&quot;api&quot;, &quot;xqsystem&quot;, &quot;token&quot;&#125;, call(&quot;getToken&quot;), (&quot;&quot;), 103, 0x08)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">local LuciHttp = require(&quot;luci.http&quot;)</span><br><span class="line"></span><br><span class="line">function getToken()</span><br><span class="line">    local result = &#123;&#125;</span><br><span class="line">    result[&quot;code&quot;] = 0</span><br><span class="line">    result[&quot;token&quot;] = &quot;; nvram set ssh_en=1; nvram commit; sed -i &#x27;s/channel=.*/channel=\&quot;debug\&quot;/g&#x27; /etc/init.d/dropbear; /etc/init.d/dropbear start;&quot;</span><br><span class="line">    LuciHttp.write_json(result)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
 <p>如果会用 vi 的话，自己 ssh 进去之后，创建文件，将内容粘贴进去即可。</p>
 <p>不会的话，可以使用 winscp 连接旧路由器，将 <code>xqsystem.lua</code> 文件拖进去，放在这个目录里</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>lib<span class="regexp">/lua/</span>luci<span class="regexp">/controller/</span>admin/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/lib/lua/luci/controller/admin/</span><br></pre></td></tr></table></figure>
 
 <p>之后修改修改旧路由器的 ip 地址为 <code>169.254.31.1</code> ，并且把 dhcp 关闭</p>
 <p>用浏览器访问：<a target="_blank" rel="noopener" href="http://169.254.31.1/cgi-bin/luci/api/xqsystem/token">http://169.254.31.1/cgi-bin/luci/api/xqsystem/token</a></p>
@@ -235,7 +235,7 @@
 
 
 <p>之后使用 winscp 连接小米路由器，将 <code>pb-boot.img</code> 放到 <code>tmp</code> 目录中，接着使用命令将它写入 Bootloader</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">mtd <span class="keyword">write</span> <span class="regexp">/tmp/</span>pb-boot.img Bootloader</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mtd write /tmp/pb-boot.img Bootloader</span><br></pre></td></tr></table></figure>
 
 <p>到此路由器的原系统就没了，现在断电重启，机器会自动进入 pb-boot ，在浏览器访问 192.168.1.1，可以进入刷机界面，如果要刷 openwrt 的话，需要先刷入 factory.bin 结尾的固件。</p>
 <p><img src="/img/2021/cr6608.jpg" alt="cr6608"></p>
@@ -298,7 +298,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -357,19 +358,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备," />
+    <meta name="keywords" content="设备,Linux," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -184,11 +184,11 @@
 <p>collisions:0 txqueuelen:100</p>
 </blockquote>
 <p>以及通过 <code>dmesg</code> 命令查到这个</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[687120.156847]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line"><span class="string">[687122.156839]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br><span class="line"><span class="string">[687126.156737]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line"><span class="string">[687139.156393]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">100</span>Mbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[687120.156847] rk_gmac-dwmac ff540000.ethernet eth0: Link is Down</span><br><span class="line">[687122.156839] rk_gmac-dwmac ff540000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx</span><br><span class="line">[687126.156737] rk_gmac-dwmac ff540000.ethernet eth0: Link is Down</span><br><span class="line">[687139.156393] rk_gmac-dwmac ff540000.ethernet eth0: Link is Up - 100Mbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
 
 <p>看来确实是在某一时刻，以太网的网速从千兆降为百兆了。</p>
 <p>解决方案是，拔网线重插。速度就又恢复千兆了。<code>dmesg</code> 里面也有显示新的日志。</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="string">[1736677.257293]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Down</span><br><span class="line"><span class="string">[1736681.257229]</span> rk_gmac-dwmac ff540000.ethernet eth0: Link <span class="keyword">is</span> Up - <span class="number">1</span>Gbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[1736677.257293] rk_gmac-dwmac ff540000.ethernet eth0: Link is Down</span><br><span class="line">[1736681.257229] rk_gmac-dwmac ff540000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx</span><br></pre></td></tr></table></figure>
 
 <p>我拔下两秒后插回去，ssh 连接没断，smb 也可以继续访问。因此也没什么影响。</p>
 <p>这个问题好像在我家云上面更为明显，我记得之前用我家云的时候也碰到几次，当时还在论坛找到可以恢复千兆的命令，不过现在找不到了。</p>
@@ -221,9 +221,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
     </div>
   
@@ -252,7 +252,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -311,19 +312,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备," />
+    <meta name="keywords" content="设备,Linux," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -210,7 +210,7 @@
 <h3 id="改源"><a href="#改源" class="headerlink" title="改源"></a>改源</h3><p>默认的软件源可以连接到，但是慢到怀疑人生。把它改为国内的源，这样我们安装或更新软件会快很多。</p>
 <p><strong>改软件源</strong> <a target="_blank" rel="noopener" href="https://www.jiayie.xyz/2019/06/26/N1%E5%88%B7%E5%85%A5Armbian%E5%90%8E%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90%E3%80%81%E5%AE%89%E8%A3%85Docker%E5%B9%B6%E6%8F%90%E9%80%9F/">文章链接</a></p>
 <p>vim /etc/apt/sources.list</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/debian stretch main contrib non-free</span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/debian stretch-updates main contrib non-free</span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn/debian stretch-backports main contrib non-free</span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.ustc.edu.cn<span class="regexp">/debian-security/</span> stretch/updates main contrib non-free</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.ustc.edu.cn/debian stretch main contrib non-free</span><br><span class="line">deb http://mirrors.ustc.edu.cn/debian stretch-updates main contrib non-free</span><br><span class="line">deb http://mirrors.ustc.edu.cn/debian stretch-backports main contrib non-free</span><br><span class="line">deb http://mirrors.ustc.edu.cn/debian-security/ stretch/updates main contrib non-free</span><br></pre></td></tr></table></figure>
 
 <p><strong>改 armbian 源</strong></p>
 <p>vim /etc/apt/sources.list.d/armbian.list</p>
@@ -247,9 +247,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
     </div>
   
@@ -278,7 +278,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -337,19 +338,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

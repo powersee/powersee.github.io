@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备,docker," />
+    <meta name="keywords" content="设备,Linux,docker," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -187,13 +187,13 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
 
 <p>将里面的内容改为这样</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;storage-driver&quot;</span>: <span class="string">&quot;overlay2&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://dockerhub.azk8s.cn&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;storage-driver&quot;: &quot;overlay2&quot;,</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://dockerhub.azk8s.cn&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>改完去 system 里的 Startup 将 docker 停止，再启动。</p>
 <p>之后我们安装 docker UI 应该就可以成功了。</p>
-<h2 id="filebrowser"><a href="#filebrowser" class="headerlink" title="filebrowser"></a>filebrowser</h2><figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull <span class="number">80</span>x<span class="number">86</span>/filebrowser:arm<span class="number">64</span></span><br></pre></td></tr></table></figure>
+<h2 id="filebrowser"><a href="#filebrowser" class="headerlink" title="filebrowser"></a>filebrowser</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull 80x86/filebrowser:arm64</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/filebrowser</span><br><span class="line"></span><br><span class="line"><span class="attribute">WEB_PORT</span>=8082</span><br><span class="line"><span class="attribute">FB_AUTH_SERVER_ADDR</span>=<span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line">docker <span class="builtin-name">run</span> -d \</span><br><span class="line">        -e <span class="attribute">PUID</span>=<span class="variable">$UID</span> \</span><br><span class="line">        -e <span class="attribute">PGID</span>=<span class="variable">$GID</span> \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=<span class="variable">$WEB_PORT</span> \</span><br><span class="line">        -e <span class="attribute">FB_AUTH_SERVER_ADDR</span>=<span class="variable">$FB_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        -p <span class="variable">$WEB_PORT</span>:<span class="variable">$WEB_PORT</span> \</span><br><span class="line">        -v /media:/myfiles \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span>:arm64</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">IMAGE_NAME=80x86/filebrowser</span><br><span class="line"></span><br><span class="line">WEB_PORT=8082</span><br><span class="line">FB_AUTH_SERVER_ADDR=&quot;127.0.0.1&quot;</span><br><span class="line">docker run -d \</span><br><span class="line">        -e PUID=$UID \</span><br><span class="line">        -e PGID=$GID \</span><br><span class="line">        -e WEB_PORT=$WEB_PORT \</span><br><span class="line">        -e FB_AUTH_SERVER_ADDR=$FB_AUTH_SERVER_ADDR \</span><br><span class="line">        -p $WEB_PORT:$WEB_PORT \</span><br><span class="line">        -v /media:/myfiles \</span><br><span class="line">        --mount type=tmpfs,destination=/tmp \</span><br><span class="line">        $&#123;IMAGE_NAME&#125;:arm64</span><br></pre></td></tr></table></figure>
 
 <p>这个应该大家都可以通用的。</p>
 <p>接下来到浏览器打开<code>IP:8082</code>来访问，看看是否能正常使用。</p>
@@ -201,19 +201,19 @@
 <blockquote>
 <p>勘误，视频中讲将S92qbittorrent改个名字，这种方法并不行。得将其移动到其它位置。</p>
 </blockquote>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/etc/init.d/</span></span><br><span class="line">mv S92qbittorrent <span class="string">..</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/init.d/</span><br><span class="line">mv S92qbittorrent ..</span><br></pre></td></tr></table></figure>
 
 <p>这样S92qbittorrent就会待在 /etc 这个目录下了。</p>
 <p>拉去镜像</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull <span class="number">80</span>x<span class="number">86</span>/qbittorrent:<span class="number">4</span>.<span class="number">2</span>.<span class="number">1</span>-arm<span class="number">64</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull 80x86/qbittorrent:4.2.1-arm64</span><br></pre></td></tr></table></figure>
 
 <p>建立容器</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">IMAGE_NAME=<span class="number">80</span>x86/qbittorrent:<span class="number">4.2</span>.<span class="number">1</span>-arm64</span><br><span class="line"><span class="comment">#WEB_PORT=$(nvram get app.qb.listen_port)</span></span><br><span class="line"><span class="comment">#这里我原本的默认下载路径是 /media/one/qb 你应该改成自己的</span></span><br><span class="line">DOWNLOAD_PATH=<span class="regexp">/media/</span>one/qb</span><br><span class="line">BT_PORT=$(cat <span class="regexp">/var/</span>lib<span class="regexp">/qbittorrent/</span>.config<span class="regexp">/qBittorrent/</span>qBittorrent.conf | grep -i <span class="string">&#x27;Connection\\PortRangeMin&#x27;</span> | cut -d<span class="string">&#x27;=&#x27;</span> -f2)</span><br><span class="line">QBT_AUTH_SERVER_ADDR=<span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;$DOWNLOAD_PATH&quot;</span> = <span class="string">&quot;/downloads&quot;</span> ] || [ <span class="string">&quot;$DOWNLOAD_PATH&quot;</span> = <span class="string">&quot;/downloads/&quot;</span> ]; then</span><br><span class="line">    echo <span class="string">&quot;please set correct DOWNLOAD_PATH&quot;</span></span><br><span class="line">    <span class="keyword">exit</span> -<span class="number">1</span></span><br><span class="line">fi</span><br><span class="line">docker run -d --name qbittorrent \</span><br><span class="line">        -e PUID=$(id -u qbittorrent) \</span><br><span class="line">        -e PGID=$(cat <span class="regexp">/etc/g</span>roup | grep -e <span class="string">&#x27;^users&#x27;</span> | cut -d<span class="string">&#x27;:&#x27;</span> -f3) \</span><br><span class="line">        -e WEB_PORT=<span class="number">8088</span> \</span><br><span class="line">        -e BT_PORT=<span class="variable">$BT_PORT</span> \</span><br><span class="line">        -e QBT_AUTH_SERVER_ADDR=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v <span class="regexp">/var/</span>lib<span class="regexp">/qbittorrent/</span>.config<span class="regexp">/qBittorrent:/</span>config \</span><br><span class="line">        -v <span class="regexp">/var/</span>lib<span class="regexp">/qbittorrent/</span>.local<span class="regexp">/share/</span>data<span class="regexp">/qBittorrent:/</span>data \</span><br><span class="line">        -v <span class="string">&quot;$DOWNLOAD_PATH&quot;</span>:/downloads \</span><br><span class="line">        -v <span class="string">&quot;$DOWNLOAD_PATH&quot;</span>:<span class="string">&quot;$DOWNLOAD_PATH&quot;</span> \</span><br><span class="line">        --mount type=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">IMAGE_NAME=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line">#WEB_PORT=$(nvram get app.qb.listen_port)</span><br><span class="line">#这里我原本的默认下载路径是 /media/one/qb 你应该改成自己的</span><br><span class="line">DOWNLOAD_PATH=/media/one/qb</span><br><span class="line">BT_PORT=$(cat /var/lib/qbittorrent/.config/qBittorrent/qBittorrent.conf | grep -i &#x27;Connection\\PortRangeMin&#x27; | cut -d&#x27;=&#x27; -f2)</span><br><span class="line">QBT_AUTH_SERVER_ADDR=&quot;127.0.0.1&quot;</span><br><span class="line">if [ &quot;$DOWNLOAD_PATH&quot; = &quot;/downloads&quot; ] || [ &quot;$DOWNLOAD_PATH&quot; = &quot;/downloads/&quot; ]; then</span><br><span class="line">    echo &quot;please set correct DOWNLOAD_PATH&quot;</span><br><span class="line">    exit -1</span><br><span class="line">fi</span><br><span class="line">docker run -d --name qbittorrent \</span><br><span class="line">        -e PUID=$(id -u qbittorrent) \</span><br><span class="line">        -e PGID=$(cat /etc/group | grep -e &#x27;^users&#x27; | cut -d&#x27;:&#x27; -f3) \</span><br><span class="line">        -e WEB_PORT=8088 \</span><br><span class="line">        -e BT_PORT=$BT_PORT \</span><br><span class="line">        -e QBT_AUTH_SERVER_ADDR=$QBT_AUTH_SERVER_ADDR \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v /var/lib/qbittorrent/.config/qBittorrent:/config \</span><br><span class="line">        -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v &quot;$DOWNLOAD_PATH&quot;:/downloads \</span><br><span class="line">        -v &quot;$DOWNLOAD_PATH&quot;:&quot;$DOWNLOAD_PATH&quot; \</span><br><span class="line">        --mount type=tmpfs,destination=/tmp \</span><br><span class="line">        $&#123;IMAGE_NAME&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里的端口我改为 8088 ，也可以改为和原来一样的 8083</p>
 <p>之后就可以通过 <code>IP:8088</code>来访问 qb 了。设置没错的话，应该可以看到之前的种子信息的。</p>
 <h2 id="微力同步-verysync"><a href="#微力同步-verysync" class="headerlink" title="微力同步 verysync"></a>微力同步 verysync</h2><p>这是一款和 syncthing 类似的同步工具。<code>/media/one/verysync</code>是我自己的路径，其它人使用前需要更改一下。</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">docker run -d <span class="string">\</span></span><br><span class="line">  --name verysync <span class="string">\</span></span><br><span class="line">  --restart=always <span class="string">\</span></span><br><span class="line">  -p <span class="number">8886</span>:<span class="number">8886</span> <span class="string">\</span></span><br><span class="line">  -v /media/one/verysync:/media <span class="string">\</span></span><br><span class="line">  lstcml/n1_verysync</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name verysync \</span><br><span class="line">  --restart=always \</span><br><span class="line">  -p 8886:8886 \</span><br><span class="line">  -v /media/one/verysync:/media \</span><br><span class="line">  lstcml/n1_verysync</span><br></pre></td></tr></table></figure>
 
 <p>这个应用的功能是，可以把一个文件夹，在多台设备之间保持内容同步。</p>
 
@@ -244,9 +244,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
      
       <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
     
@@ -277,7 +277,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -336,19 +337,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

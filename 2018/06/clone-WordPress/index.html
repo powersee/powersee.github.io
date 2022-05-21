@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -185,7 +185,7 @@
 <p><strong>缺点：</strong>不能像上面那个插件那样，克隆网站，它只是支持数据丢失后的恢复。如果要实现网站克隆，需要花钱购买它的专业版。</p>
 <h3 id="四-免费让-UpdraftPlus-支持网站克隆"><a href="#四-免费让-UpdraftPlus-支持网站克隆" class="headerlink" title="四 免费让 UpdraftPlus 支持网站克隆"></a>四 免费让 UpdraftPlus 支持网站克隆</h3><p>这是我无意发现的。那天是在查让 WordPress 绑定多个域名。</p>
 <p>在 WordPress 程序根目录 wp-config.php 文件中加上下面代码</p>
-<figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">define(&#x27;WP_SITEURL&#x27;, &#x27;http<span class="symbol">://</span>&#x27; . $_SERVER[&#x27;HTTP_HOST&#x27;])<span class="comment">;</span></span><br><span class="line">define(&#x27;WP_HOME&#x27;, &#x27;http<span class="symbol">://</span>&#x27; . $_SERVER[&#x27;HTTP_HOST&#x27;])<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">define(&#x27;WP_SITEURL&#x27;, &#x27;http://&#x27; . $_SERVER[&#x27;HTTP_HOST&#x27;]);</span><br><span class="line">define(&#x27;WP_HOME&#x27;, &#x27;http://&#x27; . $_SERVER[&#x27;HTTP_HOST&#x27;]);</span><br></pre></td></tr></table></figure>
 
 <p>这样只要是解析进来的域名都可以打开且不会看到串联到其他域名</p>
 <p>这样修改后再就可以用 UpdraftPlus 来克隆网站了</p>
@@ -247,7 +247,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -306,19 +307,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

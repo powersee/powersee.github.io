@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备,docker," />
+    <meta name="keywords" content="设备,Linux,docker," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -182,12 +182,12 @@
 <p>本文主要介绍 docker 安装法</p>
 <p>不定时上传一些模板到网盘中，网盘地址：<a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a></p>
 <h3 id="一、导入镜像"><a href="#一、导入镜像" class="headerlink" title="一、导入镜像"></a>一、导入镜像</h3><p>直接拉取镜像，可以使用下面这行命令</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
 
 <p>拉取不了镜像的，可以使用我放到网盘中的镜像 <a target="_blank" rel="noopener" href="http://pan-yz.chaoxing.com/share/info/b63ab64054fc6e0a">超星网盘地址</a></p>
 <p>百度网盘链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw">https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw</a><br>提取码：6666</p>
 <p>下载后是一个 tar 结尾的文件，可以通过 portainer 将它导入机器里。如果你的机器里没有装 portainer ，就得在命令行中导入了。可以通过 smb 、ftp 、scp 等方式，将文件传入到机器里，之后，在终端中，cd 到文件所在的目录。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">docker load -<span class="selector-tag">i</span> qiandao<span class="selector-class">.tar</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker load -i qiandao.tar</span><br></pre></td></tr></table></figure>
 
 <p>就可以导入镜像。</p>
 <h3 id="二、创建和启动容器"><a href="#二、创建和启动容器" class="headerlink" title="二、创建和启动容器"></a>二、创建和启动容器</h3><ol>
@@ -219,10 +219,10 @@
 </ol>
 <p>等待服务器装好系统，然后可以用 xshell 之类的工具，连接服务器。主要用到服务器的 ip ，用户名，密码。</p>
 <p>连接服务器后，我们便可以在终端中拉取镜像</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull asdaragon/qiandao</span><br></pre></td></tr></table></figure>
 
 <p>建立容器</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d --name qiandao -p <span class="number">9527</span>:<span class="number">80</span> asdaragon/qiandao</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name qiandao -p 9527:80 asdaragon/qiandao</span><br></pre></td></tr></table></figure>
 
 <p>此时用的端口是 9527，然后在浏览器中输入 ip:9527，例如 <code>132.123.22.33:9527</code> 这样的格式，就可以访问签到平台。</p>
 <p>使用服务器的好处是，你订阅公共模板应该不会出现什么问题。而已，你可以将你搭建的签到网站，分享给你的朋友，这样这个平台就可以多人使用。</p>
@@ -255,9 +255,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
      
       <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
     
@@ -288,7 +288,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -347,19 +348,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

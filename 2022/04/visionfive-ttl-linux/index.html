@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备," />
+    <meta name="keywords" content="设备,Linux," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -188,7 +188,7 @@
 <p><img src="/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p>
 <p>接下来需要它与开发板进行连接，这时就需要使用杜邦线，这个一般购买模块时都会赠送的，如果没有的话，也可以自己购买。拼多多或者淘宝搜【杜邦线母对母】就可以找到相对应的商品（个人建议购买比较长一点的，我之前用买模块送的杜邦线，只有十几厘米，有时候不太方面，所以后来我重新买了一排30厘米的）</p>
 <p>连接的话只需要 3 根线，接序是这样的</p>
-<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">GND <span class="comment">--- GND</span></span><br><span class="line">TX <span class="comment">---- RX</span></span><br><span class="line">RX <span class="comment">---- TX</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GND --- GND</span><br><span class="line">TX ---- RX</span><br><span class="line">RX ---- TX</span><br></pre></td></tr></table></figure>
 
 <p><img src="/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p>
 <p>按照这样连接好后，将模块插到电脑上，确认在设备管理器里可以看到。</p>
@@ -197,10 +197,10 @@
 <p><img src="/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p>
 <p><img src="/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p>
 <p>顺利的话应该会看到这个</p>
-<figure class="highlight erlang"><table><tr><td class="code"><pre><span class="line">Connecting to COM12...</span><br><span class="line">Connected.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connecting to COM12...</span><br><span class="line">Connected.</span><br></pre></td></tr></table></figure>
 
 <p>此时就可以给开发板接通电源开机了。然后我们可以看到 bootloader 的加载信息，以及不断出现的系统启动信息。</p>
-<figure class="highlight gherkin"><table><tr><td class="code"><pre><span class="line">bootloader version:211102-0b86f96</span><br><span class="line">ddr 0x00000000, 1M test</span><br><span class="line">ddr 0x00100000, 2M test</span><br><span class="line">DDR clk 2133M,Version: 211102-d086aee                                                  </span><br><span class="line">0 crc flash: 5595e732, crc ddr: 5595e732</span><br><span class="line">crc check PASSED</span><br><span class="line"></span><br><span class="line">bootloader.</span><br><span class="line"></span><br><span class="line">OpenSBI v1.0</span><br><span class="line">   ____                    _____ ____ _____</span><br><span class="line">  / __ \                  / ____|<span class="string">  _ \_   _</span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">  </span>|<span class="string"> </span>|<span class="string">_ __   ___ _ __ </span>|<span class="string"> (___ </span>|<span class="string"> </span>|<span class="string">_) </span>||<span class="string"> </span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">  </span>|<span class="string"> </span>|<span class="string"> &#x27;_ \ / _ \ &#x27;_ \ \___ \</span>|<span class="string">  _ &lt; </span>|<span class="string"> </span>|</span><br><span class="line"> |<span class="string"> </span>|<span class="string">__</span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string">_) </span>|<span class="string">  __/ </span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string">____) </span>|<span class="string"> </span>|<span class="string">_) </span>||<span class="string"> </span>|_</span><br><span class="line">  \____/|<span class="string"> .__/ \___</span>|<span class="string">_</span>|<span class="string"> </span>|<span class="string">_</span>|<span class="string">_____/</span>|<span class="string">____/_____</span>|</span><br><span class="line">        |<span class="string"> </span>|</span><br><span class="line">        |<span class="string">_</span>|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bootloader version:211102-0b86f96</span><br><span class="line">ddr 0x00000000, 1M test</span><br><span class="line">ddr 0x00100000, 2M test</span><br><span class="line">DDR clk 2133M,Version: 211102-d086aee                                                  </span><br><span class="line">0 crc flash: 5595e732, crc ddr: 5595e732</span><br><span class="line">crc check PASSED</span><br><span class="line"></span><br><span class="line">bootloader.</span><br><span class="line"></span><br><span class="line">OpenSBI v1.0</span><br><span class="line">   ____                    _____ ____ _____</span><br><span class="line">  / __ \                  / ____|  _ \_   _|</span><br><span class="line"> | |  | |_ __   ___ _ __ | (___ | |_) || |</span><br><span class="line"> | |  | | &#x27;_ \ / _ \ &#x27;_ \ \___ \|  _ &lt; | |</span><br><span class="line"> | |__| | |_) |  __/ | | |____) | |_) || |_</span><br><span class="line">  \____/| .__/ \___|_| |_|_____/|____/_____|</span><br><span class="line">        | |</span><br><span class="line">        |_|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>等到开机完成，会出现这样的界面，在这里我们可以用电脑键盘输入用户名和密码来进行登录。</p>
 <p><img src="/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p>
@@ -208,43 +208,43 @@
 <p><strong>2021-December-26:</strong> <a target="_blank" rel="noopener" href="https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst">Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst</a></p>
 <p>使用的内核是 5.15，如果我们想要使用更新的内核，可以选择自己编译。</p>
 <p>首先下载源代码</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone --depth=<span class="number">1</span> https:<span class="regexp">//gi</span>thub.com<span class="regexp">/starfive-tech/</span>linux.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth=1 https://github.com/starfive-tech/linux.git</span><br></pre></td></tr></table></figure>
 
 <p>这时就得分情况了，我们是要在哪里进行编译呢？如果是在 x86 架构的机器编译，需要通过交叉编译。因为我们的开发板是 risc-v 架构的，如果直接在开发板编译就不需要。这两种我都又尝试过，分别讲一下。</p>
 <h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>按照 GitHub 上的文档操作即可。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/starfive-tech/linux">https://github.com/starfive-tech/linux</a></p>
 <p>先下载源代码，之后安装编译所需的工具</p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Debian/Ubuntu</span></span><br><span class="line">sudo apt-get <span class="keyword">install </span>libncurses-dev libssl-dev <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc gcc-riscv64-linux-gnu</span><br><span class="line"><span class="comment"># Fedora</span></span><br><span class="line">sudo dnf <span class="keyword">install </span>ncurses-devel openssl openssl-devel <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc gcc-riscv64-linux-gnu</span><br><span class="line"><span class="comment"># Archlinux</span></span><br><span class="line">sudo pacman -S --needed ncurses openssl <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc riscv64-linux-gnu-gcc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Debian/Ubuntu</span><br><span class="line">sudo apt-get install libncurses-dev libssl-dev bc flex bison make gcc gcc-riscv64-linux-gnu</span><br><span class="line"># Fedora</span><br><span class="line">sudo dnf install ncurses-devel openssl openssl-devel bc flex bison make gcc gcc-riscv64-linux-gnu</span><br><span class="line"># Archlinux</span><br><span class="line">sudo pacman -S --needed ncurses openssl bc flex bison make gcc riscv64-linux-gnu-gcc</span><br></pre></td></tr></table></figure>
 
 <p>配置与编译</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu- visionfive_defconfig</span><br><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu- nconfig</span><br><span class="line">make -j8 <span class="attribute">ARCH</span>=riscv <span class="attribute">CROSS_COMPILE</span>=riscv64-linux-gnu-</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- visionfive_defconfig</span><br><span class="line">make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- nconfig</span><br><span class="line">make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-</span><br></pre></td></tr></table></figure>
 
 <p>我使用的处理器是 i5 8259U，四核八线程，第一次编译 3、4分钟就搞定了。</p>
 <h4 id="原生编译"><a href="#原生编译" class="headerlink" title="原生编译"></a>原生编译</h4><p>同样下载源代码到设备上</p>
 <p>安装编译所需的工具</p>
-<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">sudo dnf <span class="keyword">install </span>ncurses-devel openssl openssl-devel <span class="keyword">bc </span>flex <span class="keyword">bison </span>make gcc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo dnf install ncurses-devel openssl openssl-devel bc flex bison make gcc</span><br></pre></td></tr></table></figure>
 
 <p>配置与编译</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">make</span> -j<span class="number">2</span> visionfive_defconfig</span><br><span class="line"><span class="attribute">make</span> -j<span class="number">2</span> nconfig</span><br><span class="line"><span class="attribute">make</span> -j<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j2 visionfive_defconfig</span><br><span class="line">make -j2 nconfig</span><br><span class="line">make -j2</span><br></pre></td></tr></table></figure>
 
 <p>由于板子是双核双线程的，所以这里就改为 -j2 了。耗费的时间是两个半小时左右。</p>
 <p>不管是交叉编译还是原生编译，编译完成我们都可以得到内核 <code>arch/riscv/boot/Image</code> 以及 dtb <code>arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dtb</code></p>
 <p>那么要怎么使用它们呢？</p>
 <p>我个人是这样操作的，在 /boot 里新建一个文件夹，然后将这两个文件放到里面。我现在新编译的内核版本是 5.18，所以我新建一个 518 的文件夹，再将内核与 dtb 复制进去。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir <span class="regexp">/boot/</span><span class="number">518</span></span><br><span class="line">cp arch<span class="regexp">/riscv/</span>boot<span class="regexp">/Image /</span>boot<span class="regexp">/518/</span></span><br><span class="line">cp arch<span class="regexp">/riscv/</span>boot<span class="regexp">/dts/</span>starfive<span class="regexp">/jh7100-starfive-visionfive-v1.dtb /</span>boot<span class="regexp">/518/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /boot/518</span><br><span class="line">cp arch/riscv/boot/Image /boot/518/</span><br><span class="line">cp arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dtb /boot/518/</span><br></pre></td></tr></table></figure>
 
 <p>然后修改 <code>/boot/grub.cfg</code> ，在里面添加多一个 menuentry</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">menuentry <span class="string">&#x27;5.18&#x27;</span> &#123;</span><br><span class="line">    linux /518/Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dd</span><br><span class="line">ev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menuentry &#x27;5.18&#x27; &#123;</span><br><span class="line">    linux /518/Image earlycon console=ttyS0,115200n8 stmmac.chain_mode=1 root=/dd</span><br><span class="line">ev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>修改后这个文件前面 22 行的内容是这样的</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">set</span> <span class="attribute">default</span>=0</span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">timeout_style</span>=menu</span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">timeout</span>=2</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">debug</span>=<span class="string">&quot;linux,loader,mm&quot;</span></span><br><span class="line"><span class="builtin-name">set</span> <span class="attribute">term</span>=<span class="string">&quot;vt100&quot;</span></span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;5.18&#x27;</span> &#123;</span><br><span class="line">    linux /518/Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;Fedora vmlinux-5.17.0&#x27;</span> &#123;</span><br><span class="line">    linux /Image earlycon <span class="attribute">console</span>=ttyS0,115200n8 stmmac.<span class="attribute">chain_mode</span>=1 <span class="attribute">root</span>=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry <span class="string">&#x27;Fedora vmlinux-5.15.10+ visionfive&#x27;</span> &#123;</span><br><span class="line">    linux /vmlinuz-5.15.10+ ro <span class="attribute">root</span>=UUID=59fcd098-2f22-441a-ba45-4f7185baf23f rhgb <span class="attribute">console</span>=tty0 <span class="attribute">console</span>=ttyS0,115200 earlycon rootwait <span class="attribute">stmmaceth</span>=chain_mode:1 <span class="attribute">selinux</span>=0 <span class="attribute">LANG</span>=en_US.UTF-8</span><br><span class="line">    devicetree /dtbs/5.15.10+/starfive/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">        initrd /initramfs-5.15.10+.img</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set default=0</span><br><span class="line">set timeout_style=menu</span><br><span class="line">set timeout=2</span><br><span class="line"></span><br><span class="line">set debug=&quot;linux,loader,mm&quot;</span><br><span class="line">set term=&quot;vt100&quot;</span><br><span class="line"></span><br><span class="line">menuentry &#x27;5.18&#x27; &#123;</span><br><span class="line">    linux /518/Image earlycon console=ttyS0,115200n8 stmmac.chain_mode=1 root=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry &#x27;Fedora vmlinux-5.17.0&#x27; &#123;</span><br><span class="line">    linux /Image earlycon console=ttyS0,115200n8 stmmac.chain_mode=1 root=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry &#x27;Fedora vmlinux-5.15.10+ visionfive&#x27; &#123;</span><br><span class="line">    linux /vmlinuz-5.15.10+ ro root=UUID=59fcd098-2f22-441a-ba45-4f7185baf23f rhgb console=tty0 console=ttyS0,115200 earlycon rootwait stmmaceth=chain_mode:1 selinux=0 LANG=en_US.UTF-8</span><br><span class="line">    devicetree /dtbs/5.15.10+/starfive/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">        initrd /initramfs-5.15.10+.img</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>里面的 5.17 也是我之前自己添加的。此时重启机器</p>
 <p>在启动过程中会出现一个选择菜单界面</p>
 <p><img src="/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p>
 <p>可以按上下键来选择不同的内核版本，如果不手动选的话，就会自动加载第一个。</p>
 <p>进入系统后输入 <code>uname -sr</code> 可以查看当前的内核版本。</p>
-<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$uname</span> -sr   </span></span><br><span class="line">Linux <span class="number">5.18</span><span class="number">.0</span>-rc1-visionfive-g7ff84520cb68</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$uname -sr   </span><br><span class="line">Linux 5.18.0-rc1-visionfive-g7ff84520cb68</span><br></pre></td></tr></table></figure>
 
 
   </article>
@@ -274,9 +274,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
     </div>
   
@@ -305,7 +305,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -364,19 +365,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="服务器,Linux,网络,设备," />
+    <meta name="keywords" content="设备,Linux,服务器,网络," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -188,22 +188,22 @@
 </blockquote>
 <h3 id="二、上传到设备内"><a href="#二、上传到设备内" class="headerlink" title="二、上传到设备内"></a>二、上传到设备内</h3><p>需要用到的是压缩包中的 upload 文件夹，你可以选择在电脑上解压，然后再传入 N1，可以用 smb 、ftp、scp 等方式传输。</p>
 <p>也可以直接将压缩包先传到 N1 里面。然后使用 unzip 命令解压（建议先建立一个空文件夹，将压缩包放里面），之前再用 mv 命令将 upload 文件夹移动到你想要放的位置。这里顺便改一下文件夹名。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mv upload <span class="regexp">/opt/</span>wwwroot/discuz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mv upload /opt/wwwroot/discuz</span><br></pre></td></tr></table></figure>
 
 <h3 id="三、修改-nginx-的配置文件"><a href="#三、修改-nginx-的配置文件" class="headerlink" title="三、修改 nginx 的配置文件"></a>三、修改 nginx 的配置文件</h3><p>先进入配置所在的位置</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cd <span class="regexp">/opt/</span>etc<span class="regexp">/nginx/</span>vhost</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /opt/etc/nginx/vhost</span><br></pre></td></tr></table></figure>
 
 <p>把 h5ai 的配置文件复制一份给 discuz 用，然后手动编辑这份配置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cp</span> h5ai.<span class="keyword">conf</span> discuz.<span class="keyword">conf</span></span><br><span class="line"><span class="keyword">vim</span> discuz.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp h5ai.conf discuz.conf</span><br><span class="line">vim discuz.conf</span><br></pre></td></tr></table></figure>
 
 <p>我将它修改为这样</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">     listen <span class="number">8188</span>;</span><br><span class="line">     server_name localhost;</span><br><span class="line">     root <span class="regexp">/opt/</span>wwwroot<span class="regexp">/discuz/</span>;</span><br><span class="line">     index  index.html  index.php  <span class="regexp">/_h5ai/</span><span class="keyword">public</span>/index.php;</span><br><span class="line">     <span class="keyword">include</span> <span class="regexp">/opt/</span>etc<span class="regexp">/nginx/</span>conf/php-fpm.conf;</span><br><span class="line">    #otherconf</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">     listen 8188;</span><br><span class="line">     server_name localhost;</span><br><span class="line">     root /opt/wwwroot/discuz/;</span><br><span class="line">     index  index.html  index.php  /_h5ai/public/index.php;</span><br><span class="line">     include /opt/etc/nginx/conf/php-fpm.conf;</span><br><span class="line">    #otherconf</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>主要就是修改第二和第四行</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">listen <span class="number">8188</span>; <span class="comment">#端口可以自己设置，但是不能和其它重复</span></span><br><span class="line">server_name localhost; <span class="comment">#有域名的话是在这里设置</span></span><br><span class="line">root <span class="regexp">/opt/</span>wwwroot<span class="regexp">/discuz/</span>; <span class="comment"># 网站源码所在的文件夹路径</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">listen 8188; #端口可以自己设置，但是不能和其它重复</span><br><span class="line">server_name localhost; #有域名的话是在这里设置</span><br><span class="line">root /opt/wwwroot/discuz/; # 网站源码所在的文件夹路径</span><br></pre></td></tr></table></figure>
 
 <p>改好后，让 Nginx 重新读取一下配置</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/opt/</span>sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/opt/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
 
 <h3 id="四、安装"><a href="#四、安装" class="headerlink" title="四、安装"></a>四、安装</h3><p>然后你到浏览器打开 N1 的 IP:8188</p>
 <p>就可以看到 discuz 的安装界面。</p>
@@ -211,7 +211,7 @@
 <p>但是你有可能会碰到提示不可写的情况</p>
 <p><img src="/img/2020/%E4%B8%8D%E5%8F%AF%E5%86%99.png" alt="不可写"></p>
 <p>这时就需要修改权限了</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">chmod -R <span class="number">777</span> <span class="regexp">/opt/</span>wwwroot/discuz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod -R 777 /opt/wwwroot/discuz</span><br></pre></td></tr></table></figure>
 
 <p>然后再刷新一下网页应该就可以了</p>
 <p>接着来到这一步，数据库密码改为 <code>123456</code></p>
@@ -219,10 +219,10 @@
 <p>然后就可以按下一步安装了。</p>
 <p>这样应该就可以顺利使用了。</p>
 <h3 id="五、卸载"><a href="#五、卸载" class="headerlink" title="五、卸载"></a>五、卸载</h3><p>删除 nginx 配置和网站源码</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">rm <span class="regexp">/opt/</span>etc<span class="regexp">/nginx/</span>vhost/discuz.conf</span><br><span class="line">rm -rf <span class="regexp">/opt/</span>wwwroot/discuz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm /opt/etc/nginx/vhost/discuz.conf</span><br><span class="line">rm -rf /opt/wwwroot/discuz</span><br></pre></td></tr></table></figure>
 
 <p>删除数据库</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/opt/</span>bin/mysql -uroot -p</span><br><span class="line"><span class="comment"># 输入密码 123456</span></span><br><span class="line">drop database ultrax;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/opt/bin/mysql -uroot -p</span><br><span class="line"># 输入密码 123456</span><br><span class="line">drop database ultrax;</span><br></pre></td></tr></table></figure>
 
 <p>完成。</p>
 
@@ -253,13 +253,13 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><i class="fa fa-tags"></i>服务器</a>
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
      
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
      
-      <a href="/tags/%E7%BD%91%E7%BB%9C/"><i class="fa fa-tags"></i>网络</a>
+      <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><i class="fa fa-tags"></i>服务器</a>
      
-      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+      <a href="/tags/%E7%BD%91%E7%BB%9C/"><i class="fa fa-tags"></i>网络</a>
     
     </div>
   
@@ -288,7 +288,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -347,19 +348,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -182,16 +182,16 @@
 <p>用 hexo 来部署博客，只是把生成的静态网页给发布上去。但完整的备份是需要备份博客源码的，很多人会新建一个项目来放置博客源码。这样每次写好文章更新博客后，再把源码更新到远程仓库，例如 github 就行。完美备份。</p>
 <p>但是，我发现我的 Next 主题下的文件全部无法上传，官方自带的主题就行。于是想到，当前这整个博客文件夹都是一个 git 仓库，而 next 主题是从 github 上克隆下来的，也是一个仓库，估计是会产生冲突。</p>
 <p>于是，进入到 next 目录下，用命令行</p>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">rm -rf <span class="string">.git</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf .git</span><br></pre></td></tr></table></figure>
 <p>删除掉 <code>.git</code> 这个文件夹。这样应该就把这个仓库变成一个普通的文件夹了吧。于是再来把它添加到博客源码这个项目里吧</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git <span class="builtin-name">add</span> .</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
 <p>结果不行，报错了，显示：</p>
-<figure class="highlight sml"><table><tr><td class="code"><pre><span class="line">fatal: <span class="keyword">in</span> unpopulated subnodule <span class="symbol">&#x27;themes</span>/next&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: in unpopulated subnodule &#x27;themes/next&#x27;</span><br></pre></td></tr></table></figure>
 <p>看来不只是删除一个文件夹就行。好像还得再清除下，先返回上一级目录，<code>cd ..</code> 后就是在 themes 这个目录下咯，再执行</p>
-<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">git rm -r –cached /<span class="keyword">next</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rm -r –cached /next</span><br></pre></td></tr></table></figure>
 <p>去掉已经托管的文件，然后提交即可。</p>
 <p>此时再输入</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git <span class="builtin-name">add</span> .</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
 <p>就可以了。<br>之后再 commit，并成功同步到远程仓库。</p>
 
   </article>
@@ -250,7 +250,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -309,19 +310,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

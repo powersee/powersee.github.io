@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备," />
+    <meta name="keywords" content="设备,Linux," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -192,18 +192,18 @@
 <p>在 Ubuntu 上面没有像 Windows 一样的 gui 烧录程序，只能通过脚本来烧录。我一开始在 win10 上面通过虚拟机，执行脚本，将镜像烧录进机器，却一直报错。即使已经设置了 usb 默认连接到虚拟机里面，也不行。尝试了 virtual box 和 VMware，都没有成功。</p>
 <p>后来 radxa 这边的大哥告诉我，他烧录成功是在物理机上面执行的。那么我就抱着最后的希望，我用 t48e 这台小主机，装了一个 ubuntu 20.04 server 版，之后在 win10 上通过 ssh 控制它。</p>
 <p>安装 lrzsz 后将固件传入机器，下载和安装刷机工具。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git clone flash tool</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/radxa/</span>aml-flash-tool.git</span><br><span class="line"><span class="comment"># install dependency</span></span><br><span class="line">cd aml-flash-tool</span><br><span class="line">./INSTALL</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># git clone flash tool</span><br><span class="line">git clone https://github.com/radxa/aml-flash-tool.git</span><br><span class="line"># install dependency</span><br><span class="line">cd aml-flash-tool</span><br><span class="line">./INSTALL</span><br></pre></td></tr></table></figure>
 
 <p>传入固件后，解压（如果电脑没下载固件的话，也可以在 Ubuntu 里面下载）</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="comment">#下载，看情况</span></span><br><span class="line">wget https:<span class="regexp">//</span>dl.radxa.com<span class="regexp">/zero/im</span>ages<span class="regexp">/android/</span>radxa_zero_android_9_20210708-amlupdate.img.gz</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -xzvf radxa_zero_android_9_20210708-amlupdate.img.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#下载，看情况</span><br><span class="line">wget https://dl.radxa.com/zero/images/android/radxa_zero_android_9_20210708-amlupdate.img.gz</span><br><span class="line"># 解压</span><br><span class="line">tar -xzvf radxa_zero_android_9_20210708-amlupdate.img.gz</span><br></pre></td></tr></table></figure>
 
 <p><img src="/img/2021/radxa-zero-2.jpg" alt="radxa-zero-2"></p>
 <p>之后按住机器背后的按键，使用数据线连接运行着 Ubuntu 的电脑，通过 <code>lsusb</code> 查看是否有识别到名字带 Amlogic 的设备。</p>
 <p>有的话可以进行下一步，执行刷机命令，由于此时固件和脚本放在同一个目录下，所以可以这样执行</p>
-<figure class="highlight autohotkey"><table><tr><td class="code"><pre><span class="line">./aml-flash-tool.sh radx<span class="built_in">a_zero</span>_android_9_20210708-amlupdate.img</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./aml-flash-tool.sh radxa_zero_android_9_20210708-amlupdate.img</span><br></pre></td></tr></table></figure>
 
 <p>我的执行过程是这样的</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">ver@t48e:~/aml-flash-tool$ ./aml-flash-tool.<span class="keyword">sh</span> radxa_zero_android_9_20210717-amlupdate.img</span><br><span class="line">Unpacking image [OK]</span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">awk: cmd. <span class="built_in">line</span>:<span class="number">1</span>: warnin<span class="variable">g:</span> regexp <span class="built_in">escape</span> sequence `\<span class="comment">&quot;&#x27; is not a known regexp operator</span></span><br><span class="line">Initializing ddr ........[OK]</span><br><span class="line">Running <span class="keyword">u</span>-boot ........[OK]</span><br><span class="line">Create partitions [OK]</span><br><span class="line">Writing device tree [OK]</span><br><span class="line">Writing bootloader [OK]</span><br><span class="line">Wiping  data partition [OK]</span><br><span class="line">Wiping  cache partition [OK]</span><br><span class="line">Writing boot partition [OK]</span><br><span class="line">Writing dtbo partition [OK]</span><br><span class="line">Writing logo partition [OK]</span><br><span class="line">Writing odm partition [OK]</span><br><span class="line">Writing product partition [OK]</span><br><span class="line">Writing recovery partition [OK]</span><br><span class="line">Writing <span class="built_in">system</span> partition [OK]</span><br><span class="line">Writing vbmeta partition [OK]</span><br><span class="line">Writing vendor partition [OK]</span><br><span class="line">Resetting board [OK]</span><br><span class="line">ver@t48e:~/aml-flash-tool$</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ver@t48e:~/aml-flash-tool$ ./aml-flash-tool.sh radxa_zero_android_9_20210717-amlupdate.img</span><br><span class="line">Unpacking image [OK]</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">Initializing ddr ........[OK]</span><br><span class="line">Running u-boot ........[OK]</span><br><span class="line">Create partitions [OK]</span><br><span class="line">Writing device tree [OK]</span><br><span class="line">Writing bootloader [OK]</span><br><span class="line">Wiping  data partition [OK]</span><br><span class="line">Wiping  cache partition [OK]</span><br><span class="line">Writing boot partition [OK]</span><br><span class="line">Writing dtbo partition [OK]</span><br><span class="line">Writing logo partition [OK]</span><br><span class="line">Writing odm partition [OK]</span><br><span class="line">Writing product partition [OK]</span><br><span class="line">Writing recovery partition [OK]</span><br><span class="line">Writing system partition [OK]</span><br><span class="line">Writing vbmeta partition [OK]</span><br><span class="line">Writing vendor partition [OK]</span><br><span class="line">Resetting board [OK]</span><br><span class="line">ver@t48e:~/aml-flash-tool$</span><br></pre></td></tr></table></figure>
 
 <p>那么就成功刷好了，之后重启机器就进入 Android 9 了。</p>
 
@@ -234,9 +234,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
     </div>
   
@@ -265,7 +265,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -324,19 +325,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

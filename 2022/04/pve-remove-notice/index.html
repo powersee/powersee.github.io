@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -185,7 +185,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sed -Ezi.bak &quot;s/(Ext.Msg.show\(\&#123;\s+title: gettext\(&#x27;No valid sub)/void\(\&#123; \/\/\1/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js</span><br></pre></td></tr></table></figure>
 
 <p>上面这一步是备份 <code>proxmoxlib.js</code> 为 <code>proxmoxlib.js.bak</code>，然后修改 <code>proxmoxlib.js</code> 里的 “Ext.Msg.show” 为 “void”</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">restart</span> pveproxy.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart pveproxy.service</span><br></pre></td></tr></table></figure>
 
 <p>之后重启一下服务即可。</p>
 <p>这里记录一个坑，之前看到另外一个教程，是修改 <code>/usr/share/pve-manager/js/pvemanagerlib.js</code> 这个文件的，但是要修改的内容我找不到，然后我自己摸索，看到可能是这个提示相关的代码，我就用 <code>#</code>将它注释掉。结果悲剧了。</p>
@@ -251,7 +251,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -310,19 +311,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

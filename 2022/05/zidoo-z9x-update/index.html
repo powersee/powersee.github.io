@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>芝杜 z9x 手动升级固件，体验不错 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="设备," />
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"wechat":false},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="https://pan.powersee.top/" target="_blank">
+            下载站
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-05-21
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    芝杜 z9x 手动升级固件，体验不错
+  </h1>
+  
+  <article class="passage-article">
+    <p>我的芝杜 z9x 有些问题，通过 smb 访问使用 d2550 搭建的黑群晖，经常提示“未知错误”，我在 smb 那里是弄了两个连接方式，一种是直接通过局域网主机名 <strong>d2550</strong> 这样来访问，另外一种是通过局域网 IP 地址 <strong>192.168.68.171</strong> 这样。</p>
+<p>它也不是说完全不能访问，有时候我先点击 ip 的访问到第一层目录，然后就无法访问第二层目录了，之后我切换到主机名这种，就可以访问进去了，很烦人。</p>
+<p>那么就尝试 NFS 吧，结果是 homes 文件夹里的可以显示出来，而我另外一个专门放影视资源的共享文件夹，是无法显示的，点进去后就是空白。挺难受的，之前用蜗牛星际当 nas 明明不会这样，难道是 d2550 的问题？可是我下载个当贝播放器，在里面用 smb 来播放 nas 里的视频却一直正常。</p>
+<p>我一直在等芝杜推送系统更新，却一直没等到，昨晚实在烦了，就上网搜一下，到了芝杜的官方论坛，也没看到什么解决方案，接着又搜到了芝杜的贴吧 <strong>芝杜吧</strong> ，发现系统固件已经升级了很多次了，但是需要我们下载 ota 后自己去手动升级。</p>
+<p><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7841671022">【图片】【220519 | 固件下载】芝杜Z9X 升级固件 v6.4.05 全量包_芝杜吧_百度贴吧 (baidu.com)</a></p>
+<p>很新鲜，而且我从贴吧里了解到，目前新的固件是支持 webdav 的，而刚好我的 nas 就有启动 webdav 服务，所以我想的是，即使它没有修复 smb 和 NFS 的问题，那我还可以尝试通过 webdav 来播放 nas 里的视频，于是点击帖子中的链接，跳转到一个腾讯文档，里面有教程与下载链接</p>
+<p><a target="_blank" rel="noopener" href="https://docs.qq.com/doc/DSnhEdU10dkpvQVFN">芝杜Z9X 升级固件v6.4.05 v6.4.05G全量包 (qq.com)</a></p>
+<p>用电脑网页版无法得到这个链接，我是在手机客服端点击才行的。</p>
+<p>从文档里点击链接下载固件，放到 U 盘里，然后插到芝杜上面，点击桌面右边的“关于”，手动升级，选择 U 盘中的固件，会进行验证，然后将固件复制到机身内存，复制完再点一下升级。</p>
+<p><a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7127393998">【图片】【201203 | 教程攻略】芝杜播放器本地OTA升级教程_芝杜吧_百度贴吧 (baidu.com)</a></p>
+<p><img src="/img/2022/image-20220521104308870.png" alt="image-20220521104308870"></p>
+<p>系统升级完成后，打开文件管理器，此时在左侧可以看到一个 <strong>其它网络</strong> ，里面就有新的连接方式 webdav，我赶紧尝试通过它来连接 nas，很顺利，播放高清电影也很流畅。</p>
+<p><img src="/img/2022/image-20220521114412831.png" alt="image-20220521114412831"></p>
+<p><img src="/img/2022/image-20220521114437123.png" alt="image-20220521114437123"></p>
+<p>不过我发现它不能像 smb 以及 NFS 那样，把某个文件夹收藏起来，方便下次直接访问。那也就是说，我每次访问 webdav 都得这样一层一层去打开文件夹，确实有点麻烦。</p>
+<p>除了 webdav 之外，现在还可以直接访问 <strong>百度网盘</strong>、<strong>阿里云盘</strong> 里面的内容，这点感觉也不错嘛，如果平时收藏的视频是保存在网盘里的，现在可以直接播放还是挺方便的。不过我个人目前用不上这个功能，我的视频主要还是放在 nas 里的。</p>
+<p><img src="/img/2022/rYDPf3z47r9GlCStnh3QMA.png" alt="img">        </p>
+<p>接着最让我高兴的是，现在 smb 的问题好像都解决了，不会出现“未知错误”这样的提示了，直接点击就可以访问 nas 里的内容，NFS 这边也正常了，之前未升级的时候，点击后是显示空白的，现在可以正常显示 nas 的内容了。</p>
+<p>其它的更新内容还挺多的，我就不想在这里重复了，有些更新的内容其实我也用不上，所以也不关心，我现在看到芝杜可以通过 smb、NFS、webdav 来访问 nas 里的文件，而且体验确实不错，就很满意了。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2022/05/zidoo-z9x-update/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 欢迎大家可以给我的视频点赞，以及关注我。
+    </div>
+    <div class="site-footer-info">
+      <!-- <i class="fa fa-ad"></i> -->
+      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
+    </div>
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2022 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2022/04/usb-debugging-honor-and-huawei/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

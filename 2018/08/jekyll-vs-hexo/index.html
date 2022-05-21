@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -183,7 +183,7 @@
 <p>也因为这样，hexo 的备份会比较麻烦一点。而 jekyll 则可以说本来就自带备份（针对于像我这种使用 git pages 的人来说）。因为 jekyll 本身就是把整个博客都上传的。</p>
 <p>不仅备份方便，编辑修改也方便，因为文件都在 GitHub 上，可以直接用浏览器登录 GitHub ，直接更改文章源文件就能修改博客文章，在上面新增 Markdown 文件就能往博客添加新文章。</p>
 <p>但是呢，jekyll 不能像 hexo 一样使用命令行 <code>hexo new &#39;title&#39;</code> 来生成文章模板。因此用这个来写文章的话，就得自己打文章开头的那些设置，如这些</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">jekyll</span> <span class="string">与</span> <span class="string">hexo</span> <span class="string">的对比</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018-08-05 21:02:07</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">layout: post</span><br><span class="line">title: jekyll 与 hexo 的对比</span><br><span class="line">date: 2018-08-05 21:02:07</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
 <p>因此这个感觉也算是劣势吧。当然复制粘贴上一篇文章的，然后修改一下也不会用太久的时间。但还是能自动生成方便啊。</p>
 <p>因此在这上面写好像也没见得有多爽……</p>
@@ -246,7 +246,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -305,19 +306,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

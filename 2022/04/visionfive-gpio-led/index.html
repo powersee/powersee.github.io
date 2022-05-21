@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备,python," />
+    <meta name="keywords" content="设备,Linux,python," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -195,7 +195,7 @@
 <p>此时在这个文件夹里的空白处，一只手按住键盘上的 shift 键，另一只手按一下鼠标的右键，在此处打开 powershell，就可以快速在当前文件夹打开一个命令行窗口。（此处我的 powershell 是自己升级过的，系统自带的是没有带 preview 的。）</p>
 <p><img src="/img/2022/2022-04-11_09-58-00.jpg" alt="2022-04-11_09-58-00"></p>
 <p>执行这条命令就可以解压了</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">./zstd<span class="selector-class">.exe</span> -d Fedora-riscv64-jh7100-developer-xfce-Rawhide-<span class="number">20211226</span>-<span class="number">214100</span><span class="selector-class">.n</span>.<span class="number">0</span>-sda.raw\<span class="selector-class">.zst</span> -o Fedora-riscv64-jh7100-developer-xfce-Rawhide-<span class="number">20211226</span>-<span class="number">214100</span><span class="selector-class">.n</span>.<span class="number">0</span>-sda.raw</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./zstd.exe -d Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw\.zst -o Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw</span><br></pre></td></tr></table></figure>
 
 <p>解压出来的文件差不多 13G，可以使用写盘工具将它写入内存卡中，例如 etcher。</p>
 <h3 id="开机"><a href="#开机" class="headerlink" title="开机"></a>开机</h3><p>之后将内存卡插入开发板，使用 HDMI 线连接显示器，通电开机，便可进入 Fedora 了。</p>
@@ -209,12 +209,12 @@
 <p>准备一颗 LED 灯，一头连接 34 号的 GND，一头连接 40 号的 GPIO0</p>
 <p><img src="/img/2022/LED-off.jpg" alt="LED-off"></p>
 <p>在终端里进行如下的操作（需要 root 身份来执行）</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">cd /sys/<span class="keyword">class</span>/<span class="symbol">gpio</span></span><br><span class="line"><span class="symbol">echo</span> <span class="symbol">448</span> &gt; <span class="symbol">export</span></span><br><span class="line"><span class="symbol">cd</span> <span class="symbol">gpio448</span></span><br><span class="line"><span class="symbol">echo</span> <span class="symbol">out</span> &gt; <span class="symbol">direction</span></span><br><span class="line"><span class="symbol">echo</span> <span class="symbol">1</span> &gt; <span class="symbol">value</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /sys/class/gpio</span><br><span class="line">echo 448 &gt; export</span><br><span class="line">cd gpio448</span><br><span class="line">echo out &gt; direction</span><br><span class="line">echo 1 &gt; value</span><br></pre></td></tr></table></figure>
 
 <p>这样便可以点亮 LED 灯</p>
 <p><img src="/img/2022/LED-on.jpg" alt="LED-on"></p>
 <p>如果想熄灭它，只需执行</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">echo</span> <span class="number">0</span> &gt; value</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo 0 &gt; value</span><br></pre></td></tr></table></figure>
 
 <p>官方文档里的这个表格非常重要，刚才我们控制 GPIO0，操作的是 448，如果现在我们想控制 GPIO4，从表格可以查到是 452，那么只需将刚才的 448 换成 452 即可让 GPIO4 输出高电平。</p>
 <p><img src="/img/2022/gpio%E8%A1%A8%E6%88%AA%E5%9B%BE.jpg" alt="gpio"></p>
@@ -249,9 +249,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
      
       <a href="/tags/python/"><i class="fa fa-tags"></i>python</a>
     
@@ -282,7 +282,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -341,19 +342,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

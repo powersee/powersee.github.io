@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -200,7 +200,7 @@
 </ul>
 <p>安卓手机可以去 Google play 搜索。</p>
 <p>我这里主要介绍用 docker 将它装在服务器上面。</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">docker run <span class="string">\</span></span><br><span class="line">  --name=syncthing <span class="string">\</span></span><br><span class="line">  -e PUID=<span class="number">1000</span> <span class="string">\</span></span><br><span class="line">  -e PGID=<span class="number">1000</span> <span class="string">\</span></span><br><span class="line">  -e TZ=Asia/Shanghai <span class="string">\</span></span><br><span class="line">  -e UMASK_SET=<span class="number">022</span> <span class="string">\</span></span><br><span class="line">  -p <span class="number">8384</span>:<span class="number">8384</span> <span class="string">\</span></span><br><span class="line">  -p <span class="number">22000</span>:<span class="number">22000</span> <span class="string">\</span></span><br><span class="line">  -p <span class="number">21027</span>:<span class="number">21027</span>/udp <span class="string">\</span></span><br><span class="line">  -v /home/syncthing/appdata/config:/config <span class="string">\</span></span><br><span class="line">  -v /home/syncthing/data1:/data1 <span class="string">\</span></span><br><span class="line">  -v /home/syncthing/data2:/data2 <span class="string">\</span></span><br><span class="line">  --restart <span class="keyword">unless</span>-stopped <span class="string">\</span></span><br><span class="line">  linuxserver/syncthing</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">  --name=syncthing \</span><br><span class="line">  -e PUID=1000 \</span><br><span class="line">  -e PGID=1000 \</span><br><span class="line">  -e TZ=Asia/Shanghai \</span><br><span class="line">  -e UMASK_SET=022 \</span><br><span class="line">  -p 8384:8384 \</span><br><span class="line">  -p 22000:22000 \</span><br><span class="line">  -p 21027:21027/udp \</span><br><span class="line">  -v /home/syncthing/appdata/config:/config \</span><br><span class="line">  -v /home/syncthing/data1:/data1 \</span><br><span class="line">  -v /home/syncthing/data2:/data2 \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  linuxserver/syncthing</span><br></pre></td></tr></table></figure>
 
 <p>这里开放的 webUI 端口为 8384，所以启动成功后到浏览器输入 <code>IP:8384</code> 即可进入管理界面。因为我们是在服务器上使用，一定要设置用户，不然别人随便输入你的 IP:8384 就可以来管理你的设备了，很不安全。如果是在家里使用的话，例如群晖，或者和我一样使用 小钢炮 ，那不用设置也没多大问题。</p>
 <h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><p>这里的添加用户，可以理解成和微信的添加好友相似。两台设备需要添加好友了才能互相发送文件，而要添加可以使用 <strong>二维码</strong> ，也可以使用 <strong>ID</strong> 。这里我以服务器作为被添加的设备。</p>
@@ -273,7 +273,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -332,19 +333,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

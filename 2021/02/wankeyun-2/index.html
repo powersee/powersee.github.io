@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备," />
+    <meta name="keywords" content="设备,Linux," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -203,7 +203,7 @@
 <h3 id="led-灯的控制"><a href="#led-灯的控制" class="headerlink" title="led 灯的控制"></a>led 灯的控制</h3><p>开机之后，系统会执行 <code>ledoff blue</code> 来关闭灯光。</p>
 <p>如果想自己控制灯光，可以用 <code>ledon blue</code> 来打开蓝灯。打开绿灯就是 <code>ledon green</code>，红灯 <code>ledon red</code> 。关闭的话，就是将 <code>ledon</code> 换为 <code>ledoff</code></p>
 <p>如果想要在 python 脚本中控制它，可以这样用</p>
-<figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="built_in">os</span></span><br><span class="line"><span class="built_in">os</span>.system(<span class="string">&quot;ledon green&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import os</span><br><span class="line">os.system(&quot;ledon green&quot;)</span><br></pre></td></tr></table></figure>
 
 <p>来自 B友 @<strong>猫肆音Moshin</strong> 反馈的问题：</p>
 <blockquote>
@@ -241,9 +241,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
     </div>
   
@@ -272,7 +272,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -331,19 +332,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

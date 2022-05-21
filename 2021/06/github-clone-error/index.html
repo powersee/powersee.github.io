@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -179,14 +179,14 @@
   
   <article class="passage-article">
     <p>今天拉取 GitHub 上面的项目时，发现一直出错。</p>
-<figure class="highlight vhdl"><table><tr><td class="code"><pre><span class="line">fatal: unable <span class="keyword">to</span> <span class="keyword">access</span> <span class="symbol">&#x27;https</span>://github.com/xxxx/xxxxx/&#x27;: gnutls_handshake() failed: <span class="literal">Error</span> <span class="keyword">in</span> the pull <span class="keyword">function</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/xxxx/xxxxx/&#x27;: gnutls_handshake() failed: Error in the pull function.</span><br></pre></td></tr></table></figure>
 
 <p>最终发现，开代理就行，唉</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">url=http:<span class="comment">//192.168.123.69:7890</span></span><br><span class="line">alias pon=<span class="string">&#x27;export http_proxy=<span class="subst">$url</span>; export https_proxy=<span class="subst">$url</span>&#x27;</span></span><br><span class="line">pon</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">url=http://192.168.123.69:7890</span><br><span class="line">alias pon=&#x27;export http_proxy=$url; export https_proxy=$url&#x27;</span><br><span class="line">pon</span><br></pre></td></tr></table></figure>
 
 <p>我电脑的 ip 是 192.168.123.69 ，使用的代理软件是 clash ，把 allow lan 的开关打开后，局域网的其它设备就能使用电脑的代理。7890 是 clash 默认的端口，如果使用 ssr 默认是 1080。</p>
 <p>另外一种方法</p>
-<figure class="highlight verilog"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> http<span class="variable">.proxy</span> http:<span class="comment">//127.0.0.1:10809</span></span><br><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> https<span class="variable">.proxy</span> https:<span class="comment">//127.0.0.1:10809</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:10809</span><br><span class="line">git config --global https.proxy https://127.0.0.1:10809</span><br></pre></td></tr></table></figure>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -243,7 +243,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -302,19 +303,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备,nas," />
+    <meta name="keywords" content="设备,Linux,nas," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -188,7 +188,7 @@
 <p>可以右键然后选择【复制文件到当前分区】。</p>
 <p>然后关机，拔掉 pe U盘，再次进入群晖系统，应该就能驱动核显了。</p>
 <h3 id="如何判断已经驱动核显了？"><a href="#如何判断已经驱动核显了？" class="headerlink" title="如何判断已经驱动核显了？"></a>如何判断已经驱动核显了？</h3><p>用 ssh 连接群晖，输入</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">ls <span class="regexp">/dev/</span>dri/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls /dev/dri/</span><br></pre></td></tr></table></figure>
 
 <p>如果能够看到 renderD128 就是驱动了。</p>
 <h2 id="搭建媒体仓库——-jellyfin"><a href="#搭建媒体仓库——-jellyfin" class="headerlink" title="搭建媒体仓库—— jellyfin"></a>搭建媒体仓库—— jellyfin</h2><p>相比于 plex 和 emby ，jellyfin 的优势是调用硬件转码不用钱。</p>
@@ -234,9 +234,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
      
       <a href="/tags/nas/"><i class="fa fa-tags"></i>nas</a>
     
@@ -267,7 +267,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -326,19 +327,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

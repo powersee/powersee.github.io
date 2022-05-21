@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -185,7 +185,7 @@
 <p>要选择 4P 的</p>
 <p>usb 转 ttl，我是在拼多多买的，CH340G普通版，价格 6.3 包邮。</p>
 <h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>建议还是先备份一下源系统比较好，可以先使用 <code>df -h</code> 看一下硬盘的挂载情况，然后再使用 dd 命令把 emmc 备份出来</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/dev/mmcblk0 <span class="attribute">of</span>=你的硬盘或U盘路径/lecheng.img</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dd if=/dev/mmcblk0 of=你的硬盘或U盘路径/lecheng.img</span><br></pre></td></tr></table></figure>
 
 <h3 id="固件"><a href="#固件" class="headerlink" title="固件"></a>固件</h3><p>固件可以到 GitHub 上面下载，<a target="_blank" rel="noopener" href="https://github.com/hanwckf/build-imou-sn1/releases">https://github.com/hanwckf/build-imou-sn1/releases</a></p>
 <p>为了方便访问不了 GitHub 的朋友，我也把它们备份到网盘里。</p>
@@ -200,7 +200,7 @@
 </blockquote>
 <p>之后如果想刷回安卓系统，可以进入 U 盘中的 alpine 恢复系统，先用 mount 命令挂载硬盘或者U盘，然后使用 dd 命令讲安卓系统恢复到 mmcblk0</p>
 <p>例如我是这样的</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mount <span class="regexp">/dev/</span>sda1 /mnt</span><br><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/mnt/</span>lecheng.img of=<span class="regexp">/dev/mm</span>cblk0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount /dev/sda1 /mnt</span><br><span class="line">dd if=/mnt/lecheng.img of=/dev/mmcblk0</span><br></pre></td></tr></table></figure>
 
 <p>刷机教程文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/695fa3b0dab5">https://www.jianshu.com/p/695fa3b0dab5</a></p>
 
@@ -260,7 +260,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -319,19 +320,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

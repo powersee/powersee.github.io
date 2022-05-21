@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -180,12 +180,12 @@
   <article class="passage-article">
     <p>可以在一台机器上放置多个网站，若是静态网站的话，理论上可以放置无限多个。</p>
 <h3 id="本操作基于Ubuntu"><a href="#本操作基于Ubuntu" class="headerlink" title="本操作基于Ubuntu"></a>本操作基于Ubuntu</h3><p>我的nginx访问的根目录 </p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/home/</span>wwwroot/<span class="keyword">default</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/home/wwwroot/default</span><br></pre></td></tr></table></figure>
 <p>创建一个”vhost”目录</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo mkdir <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf/vhost</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir /usr/local/nginx/conf/vhost</span><br></pre></td></tr></table></figure>
 <hr>
 <p><span style="color: #ff0000;">创建siteA的配置文件</span></p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf<span class="regexp">/vhost/</span>vhost_siteA.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vi /usr/local/nginx/conf/vhost/vhost_siteA.conf</span><br></pre></td></tr></table></figure>
 <pre class="lang:default decode:true">    server {
     listen       80;                        # 监听端口
     server_name www.siteA.com siteA.com;    # 站点域名
@@ -209,7 +209,7 @@
 
 <hr>
 <p><span style="color: #ff0000;">创建siteB的配置文件</span></p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/etc/</span>nginx<span class="regexp">/vhost/</span>vhost_siteB.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/nginx/vhost/vhost_siteB.conf</span><br></pre></td></tr></table></figure>
 <pre class="lang:default decode:true ">    server {
     listen       80;                        # 监听端口
     server_name www.siteA.com siteA.com;    # 站点域名
@@ -233,9 +233,9 @@
 
 <hr>
 <p>修改nginx.conf</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">sudo vi <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf/nginx.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vi /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
 <p>在http里加入这段</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="regexp">/usr/</span>local<span class="regexp">/nginx/</span>conf<span class="regexp">/vhost/</span>*.conf;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">include /usr/local/nginx/conf/vhost/*.conf;</span><br></pre></td></tr></table></figure>
 
 <p>重启 nginx 即可。</p>
 
@@ -295,7 +295,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -354,19 +355,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -198,7 +198,7 @@
 <h3 id="现在的"><a href="#现在的" class="headerlink" title="现在的"></a>现在的</h3><p>我直接开启 padavan 系统的路由器里面的 ss_server ，之后我在外面要访问内网的设备时，就用 ss 连接我的路由器，这时就相当于把它当 VPN 来使用。我想要管理路由器，可以直接在浏览器输入 <code>192.168.123.1</code> 而不用去输入域名，管理其它设备也一样，直接输入局域网 IP 即可。</p>
 <p>但是，这一切，还是建立在我把防火墙关闭了的情景下，这样我的宽带还是有被封的风险。我想要开启防火墙，但同时我还可以连接到内网的设备。所以，我了解了一下 <code>ip6tables</code> ，这个是管理 ipv6 的防火墙软件，详情可以看这里 <a target="_blank" rel="noopener" href="https://man.linuxde.net/ip6tables">ip6tables详细使用说明</a></p>
 <p>但我用到不多，现在外界访问只通过一个端口，就是 ss_server 开放的那个端口，默认为 8388 ，所以我只需要开放这个端口即可。需要做的，是通过 ssh 连接路由器，或者直接在 高级设置，系统管理，控制台 输入这 3 条命令。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">ip6tables -<span class="selector-tag">A</span> FORWARD -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br><span class="line">ip6tables -<span class="selector-tag">A</span> <span class="selector-tag">INPUT</span> -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br><span class="line">ip6tables -<span class="selector-tag">A</span> OUTPUT -<span class="selector-tag">p</span> tcp --dport <span class="number">8388</span> -j ACCEPT</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip6tables -A FORWARD -p tcp --dport 8388 -j ACCEPT</span><br><span class="line">ip6tables -A INPUT -p tcp --dport 8388 -j ACCEPT</span><br><span class="line">ip6tables -A OUTPUT -p tcp --dport 8388 -j ACCEPT</span><br></pre></td></tr></table></figure>
 
 <p>这样外网就只能通过 8388 这个端口来访问内网，而且只能用 ss 连接才行，直接在浏览器输入我 IP 加 8388 肯定不行，因为我根本没有开启 web 服务。所以应该是不会有宽带被封的风险。</p>
 <p>但是这样有一个问题，就是当我路由器重启之后，就失效了，只能重新到控制台再输入一次。能否让它开机后自动执行呢？</p>
@@ -262,7 +262,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -321,19 +322,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

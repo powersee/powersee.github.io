@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -195,7 +195,7 @@
 <h3 id="以前的备份方案"><a href="#以前的备份方案" class="headerlink" title="以前的备份方案"></a>以前的备份方案</h3><p>我之前是根据这篇文章　<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/beb8d611340a">Hexo博客从一台电脑迁移到其他电脑</a>　将博客源文件备份到 GitHub 上面。这个方法是让渲染文件和博客源文件，都放在同一个仓库里面的不同分支。但我个人觉得到不如放两个仓库好。</p>
 <h3 id="现在的备份方案"><a href="#现在的备份方案" class="headerlink" title="现在的备份方案"></a>现在的备份方案</h3><p>首先我们如果想备份主题的话，需要把主题文件夹里的 <code>.git</code> 给删除了，让它变成一个普通的文件夹。比如很多人使用的 <code>next</code> 主题，就进入 <code>themes/next</code> 里面将 .git 文件夹给删除了就行。</p>
 <p>在博客根目录下 <code>git init</code> ,让其变成一个 git 仓库。将那些不需要备份的文件和文件夹添加到 <code>.gitignore</code> 中，我的里面有这些内容。</p>
-<figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line"><span class="meta">public</span></span><br><span class="line"><span class="built_in">db</span><span class="number">.</span>json</span><br><span class="line"><span class="meta">.deploy_git</span></span><br><span class="line"><span class="meta">.DS_Store</span></span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public</span><br><span class="line">db.json</span><br><span class="line">.deploy_git</span><br><span class="line">.DS_Store</span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure>
 
 <p>之后 <code>git add .</code> ，再 commit ，然后将其推送到远程仓库即可。之后换电脑，只需把这个仓库 clone 到电脑，进入仓库， <code>npm i</code> 一下，npm 就会根据两个 package 开头的文件，去帮我们安装相对应的模块，之后我们便可以看到 <code>node_modules</code> 文件夹又回来了。此时我们的博客便已搭建成功，可以继续写博客了。</p>
 
@@ -257,7 +257,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -316,19 +317,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

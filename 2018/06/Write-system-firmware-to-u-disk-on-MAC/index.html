@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -184,11 +184,11 @@
   <article class="passage-article">
     <p>苹果官方文章:<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT201372">如何创建可引导的 macOS 安装器</a></p>
 <p>最终我执行的是这一段命令</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">sudo /Volumes/Install<span class="string">\</span> macOS<span class="string">\</span> High<span class="string">\</span> Sierra/Install<span class="string">\</span> macOS<span class="string">\</span> High<span class="string">\</span> Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/installMacOS --applicationpath /Volumes/Install<span class="string">\</span> macOS<span class="string">\</span> High<span class="string">\</span> Sierra/Install<span class="string">\</span> macOS<span class="string">\</span> High<span class="string">\</span> Sierra.app --nointeraction</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo /Volumes/Install\ macOS\ High\ Sierra/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/installMacOS --applicationpath /Volumes/Install\ macOS\ High\ Sierra/Install\ macOS\ High\ Sierra.app --nointeraction</span><br></pre></td></tr></table></figure>
 
 <p>分析：<code>（以下内容是在双击固件，将其挂载，在桌面看得到其快捷方式下进行的）</code></p>
 <p>一，这一段为固件的位置（前面到.app这一段可以通过双击打开桌面的固件，然后将里面的安装程序拖进来，而来得到地址）</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/Volumes/</span>Install\macOS\High\Sierra<span class="regexp">/Install\macOS\High\Sierra.app/</span>Contents<span class="regexp">/Resources/</span>createinstallmedia</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/Volumes/Install\macOS\High\Sierra/Install\macOS\High\Sierra.app/Contents/Resources/createinstallmedia</span><br></pre></td></tr></table></figure>
 
 <p>二，这一段为写入的地址，即此时我命名为 installMacOS 的U盘</p>
 <blockquote>
@@ -256,7 +256,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -315,19 +316,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

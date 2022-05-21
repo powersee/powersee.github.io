@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -188,14 +188,14 @@
 
 <p>这样服务器就启动 nps 这个服务了，在浏览器输入 ip:8080 就可以进行管理。</p>
 <h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>像 N1 ，我家云，猫盘 这些设备，都是 arm64 ，因此它的使用方法都是一样的。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">wget https:<span class="regexp">//gi</span>thub.com<span class="regexp">/ehang-io/</span>nps<span class="regexp">/releases/</span>download<span class="regexp">/v0.26.6/</span>linux_arm64_client.tar.gz</span><br><span class="line">tar -zxvf linux_arm64_client.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://github.com/ehang-io/nps/releases/download/v0.26.6/linux_arm64_client.tar.gz</span><br><span class="line">tar -zxvf linux_arm64_client.tar.gz</span><br></pre></td></tr></table></figure>
 
 <p>然后需要到管理面板，添加客户端，这样会生成一个密钥。有了这个才能和服务器建立连接。</p>
 <p>建立的命令是这样的。</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">./npc <span class="attribute">-server</span>=ip:port <span class="attribute">-vkey</span>=web界面中显示的密钥</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./npc -server=ip:port -vkey=web界面中显示的密钥</span><br></pre></td></tr></table></figure>
 
 <p>例如我的就是这样</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">./npc <span class="attribute">-server</span>=45.32.126.224:8024 <span class="attribute">-vkey</span>=4vv7n1p7u584an64</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./npc -server=45.32.126.224:8024 -vkey=4vv7n1p7u584an64</span><br></pre></td></tr></table></figure>
 
 <p>此时就与服务器建立好连接了，之后的操作只需在管理面板，进行端口映射即可。</p>
 <h2 id="建立隧道"><a href="#建立隧道" class="headerlink" title="建立隧道"></a>建立隧道</h2><p>点击左边的【TCP 隧道】，【新增】，填写【ID】，服务器访问端口，目标端口。</p>
@@ -261,7 +261,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -320,19 +321,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

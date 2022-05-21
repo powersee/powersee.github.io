@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -208,11 +208,11 @@
 <p>下载后解压，打开 putty<br><img src="/img/2019/putty-config.webp" alt="putty 连接.png"><br>填上 IP 地址连接</p>
 <p>接着输入用户名和密码。（密码输入时不会显示的）</p>
 <p>连接后输入</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
 <p>完成后输入</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">\</span></span><br><span class="line">  --name=qbittorrent <span class="string">\</span></span><br><span class="line">  -e PUID=<span class="number">1000</span> <span class="string">\</span></span><br><span class="line">  -e PGID=<span class="number">1000</span> <span class="string">\</span></span><br><span class="line">  -e TZ=Aisa/Shanghai <span class="string">\</span></span><br><span class="line">  -e UMASK_SET=<span class="number">022</span> <span class="string">\</span></span><br><span class="line">  -e WEBUI_PORT=<span class="number">8080</span> <span class="string">\</span></span><br><span class="line">  -p <span class="number">8999</span>:<span class="number">8999</span> <span class="string">\</span></span><br><span class="line">  -p <span class="number">8999</span>:<span class="number">8999</span>/udp <span class="string">\</span></span><br><span class="line">  -p <span class="number">8080</span>:<span class="number">8080</span> <span class="string">\</span></span><br><span class="line">  -v /path/<span class="keyword">to</span>/appdata/config:/config <span class="string">\</span></span><br><span class="line">  -v /path/<span class="keyword">to</span>/downloads:/downloads <span class="string">\</span></span><br><span class="line">  --restart <span class="keyword">unless</span>-stopped <span class="string">\</span></span><br><span class="line">  linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker create \</span><br><span class="line">  --name=qbittorrent \</span><br><span class="line">  -e PUID=1000 \</span><br><span class="line">  -e PGID=1000 \</span><br><span class="line">  -e TZ=Aisa/Shanghai \</span><br><span class="line">  -e UMASK_SET=022 \</span><br><span class="line">  -e WEBUI_PORT=8080 \</span><br><span class="line">  -p 8999:8999 \</span><br><span class="line">  -p 8999:8999/udp \</span><br><span class="line">  -p 8080:8080 \</span><br><span class="line">  -v /path/to/appdata/config:/config \</span><br><span class="line">  -v /path/to/downloads:/downloads \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
 <p>创建好后再启动</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qbittorrent</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start qbittorrent</span><br></pre></td></tr></table></figure>
 <p>完成后就可以在浏览器里，输入 <code>IP:8080</code> 来访问 qB 了。</p>
 <blockquote>
 <p>补充，还需要到设置里面，在【连接】中，将【监听端口】改为 8999 才行。如图</p>
@@ -289,7 +289,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -348,19 +349,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

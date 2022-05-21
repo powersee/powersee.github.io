@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -182,17 +182,17 @@
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xv411573B/">https://www.bilibili.com/video/BV1xv411573B/</a></p>
 <p>两个 Docker 容器的搭建</p>
 <p>transmission</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">docker run <span class="string">\</span></span><br><span class="line">    -d <span class="string">\</span></span><br><span class="line">    --name transmission <span class="string">\</span></span><br><span class="line">    -p <span class="number">9091</span>:<span class="number">9091</span> <span class="string">\</span></span><br><span class="line">    -p <span class="number">51413</span>:<span class="number">51413</span> <span class="string">\</span></span><br><span class="line">    -v /mnt/tr_data:/data <span class="string">\</span></span><br><span class="line">    -e USERNAME=admin <span class="string">\</span></span><br><span class="line">    -e PASSWORD=admin <span class="string">\</span></span><br><span class="line">    gists/transmission</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -d \</span><br><span class="line">    --name transmission \</span><br><span class="line">    -p 9091:9091 \</span><br><span class="line">    -p 51413:51413 \</span><br><span class="line">    -v /mnt/tr_data:/data \</span><br><span class="line">    -e USERNAME=admin \</span><br><span class="line">    -e PASSWORD=admin \</span><br><span class="line">    gists/transmission</span><br></pre></td></tr></table></figure>
 
 <p>aria2</p>
-<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    -<span class="ruby">-name aria2-pro \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">-restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">-network host \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e PUID=<span class="variable">$UID</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e PGID=<span class="variable">$GID</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e RPC_SECRET=<span class="number">12345</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e RPC_PORT=<span class="number">6800</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e LISTEN_PORT=<span class="number">6888</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">v ~<span class="regexp">/aria2-config:/config</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">v /mnt/<span class="symbol">aria2:</span>/downloads \</span></span><br><span class="line"><span class="ruby"></span>    p3terx/aria2-pro</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name aria2-pro \</span><br><span class="line">    --restart unless-stopped \</span><br><span class="line">    --network host \</span><br><span class="line">    -e PUID=$UID \</span><br><span class="line">    -e PGID=$GID \</span><br><span class="line">    -e RPC_SECRET=12345 \</span><br><span class="line">    -e RPC_PORT=6800 \</span><br><span class="line">    -e LISTEN_PORT=6888 \</span><br><span class="line">    -v ~/aria2-config:/config \</span><br><span class="line">    -v /mnt/aria2:/downloads \</span><br><span class="line">    p3terx/aria2-pro</span><br></pre></td></tr></table></figure>
 
 <p>使用 python 开启一个简单的文件分享服务</p>
-<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line">python3 -m http.<span class="keyword">server</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure>
 
 <p>此时默认使用 8000 端口</p>
 <p>更好的文件展示服务—— h5ai</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d -p <span class="number">5555</span>:<span class="number">80</span> -v /mnt:/h<span class="number">5</span>ai --name h<span class="number">5</span>ai ilemonrain/h<span class="number">5</span>ai:full</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5555:80 -v /mnt:/h5ai --name h5ai ilemonrain/h5ai:full</span><br></pre></td></tr></table></figure>
 
 <p>最后记得防火墙放行。</p>
 <p>如果你有购买腾讯云轻量服务器的需求，可以点击我的链接进行购买</p>
@@ -254,7 +254,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -313,19 +314,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

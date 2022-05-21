@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -186,14 +186,14 @@
 <h3 id="更改过程"><a href="#更改过程" class="headerlink" title="更改过程"></a>更改过程</h3><p>首先需要把插件下载到电脑，可以通过 git clone ，也可以直接 download 。之后需要修改两个地方：</p>
 <p>·<strong>mainfest.json</strong></p>
 <p>将第 8 行的</p>
-<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;matches&quot;</span>: [ <span class="string">&quot;https://qiandao.today/*&quot;</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;matches&quot;: [ &quot;https://qiandao.today/*&quot;]</span><br></pre></td></tr></table></figure>
 
 <p>修改为自己的网站，如果有多个的话，可以使用 <code>,</code> 区分，例如</p>
-<figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;matches&quot;</span>: [ <span class="string">&quot;https://qiandao.powersee.top/*&quot;</span>,<span class="string">&quot;http://192.168.123.242:9527/*&quot;</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;matches&quot;: [ &quot;https://qiandao.powersee.top/*&quot;,&quot;http://192.168.123.242:9527/*&quot;]</span><br></pre></td></tr></table></figure>
 
 <p>·<strong>background.js</strong></p>
 <p>去掉第 3 行中判断网址是否包含 qiandao.today 的语句，即改为</p>
-<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">if</span> (changeInfo.status === <span class="string">&#x27;loading&#x27;</span>) &#123;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (changeInfo.status === &#x27;loading&#x27;) &#123;</span><br></pre></td></tr></table></figure>
 
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>修改完成后，在浏览器中选择【扩展程序】，【加载已解压的扩展程序】，选择插件所在的文件夹即可。</p>
 <p>判断插件有没有成功加载，可以通过查看 console 中有没有打印出 onload 来判断。</p>
@@ -202,12 +202,12 @@
 <hr>
 <p>这次的排查过程挺特别的，之前我尝试过，直接将网址改为 * ，这样所有网站都可以使用这个插件，但结果发现没效果。</p>
 <p>于是尝试改为配置局域网的网站，即</p>
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">192</span>.<span class="number">168</span>.*</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">192.168.*</span><br></pre></td></tr></table></figure>
 
 <p>也没有效果……</p>
 <p>想不出原因，就搁置了。今天装门下载了个 360 极速浏览器，来测试一下是不是修改后在 chrome 浏览器里面没效果，其它浏览器里就有呢？</p>
 <p>一番折腾后发现，只有网址写完整，才有效果，可以在网址后用 * ，但是不能在网址中用。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">http:<span class="regexp">//</span><span class="number">192.168</span>.<span class="number">123.242</span>:<span class="number">9527</span>/*   <span class="comment"># 可</span></span><br><span class="line">http:<span class="regexp">//</span><span class="number">192.168</span>.<span class="number">123</span>.*		   <span class="comment"># 不可</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://192.168.123.242:9527/*   # 可</span><br><span class="line">http://192.168.123.*		   # 不可</span><br></pre></td></tr></table></figure>
 
 
   </article>
@@ -266,7 +266,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -325,19 +326,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

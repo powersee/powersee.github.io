@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -184,7 +184,7 @@
   <article class="passage-article">
     <p>syncthing 是一款开源免费的同步工具，而且除了 iOS，其它的平台基本都有客服端可以下载。它的作用是，可以让一个文件夹，在多台设备上保持同步。</p>
 <h3 id="一-下载"><a href="#一-下载" class="headerlink" title="一  下载"></a>一  下载</h3><p>到其官网下载对应的客户端：<a target="_blank" rel="noopener" href="https://syncthing.net/">官网链接</a>  例如我下载Android版和Ubuntu版 Ubuntu版链接：<a target="_blank" rel="noopener" href="https://apt.syncthing.net/">点我</a><br>安卓安装就不用说了，Ubuntu则根据其页面的这段命令输入就行。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">\<span class="comment"># Add the release PGP keys:</span></span><br><span class="line">curl -s https:<span class="regexp">//</span>syncthing.net/release-key.txt | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">\<span class="comment"># Add the &quot;stable&quot; channel to your APT sources:</span></span><br><span class="line">echo <span class="string">&quot;deb https://apt.syncthing.net/ syncthing stable&quot;</span> | sudo tee <span class="regexp">/etc/</span>apt<span class="regexp">/sources.list.d/</span>syncthing.list</span><br><span class="line"></span><br><span class="line">\<span class="comment"># Update and install syncthing:</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install syncthing</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\# Add the release PGP keys:</span><br><span class="line">curl -s https://syncthing.net/release-key.txt | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">\# Add the &quot;stable&quot; channel to your APT sources:</span><br><span class="line">echo &quot;deb https://apt.syncthing.net/ syncthing stable&quot; | sudo tee /etc/apt/sources.list.d/syncthing.list</span><br><span class="line"></span><br><span class="line">\# Update and install syncthing:</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install syncthing</span><br></pre></td></tr></table></figure>
 <h3 id="二-运行"><a href="#二-运行" class="headerlink" title="二  运行"></a>二  运行</h3><p>此时在Ubuntu终端输入命令：<code>syncthing</code> 来运行它 等待看到<br><code>GUI and API listening on 127.0.0.1:8384</code><br>同时按<code>ctrl 和 C</code> 来取消命令 运行此命令的目的时为了生成配文件</p>
 <h3 id="三-修改"><a href="#三-修改" class="headerlink" title="三  修改"></a>三  修改</h3><p>此时我们即可修改配文件<br><code>vim ~/.config/syncthing/config.xml</code><br>然后找到 <code>127.0.0.1:8384</code> 将之改为 <code>0.0.0.0:8384</code><br>更改方法为找到此处 按键盘的 <code>i</code> 便可以修改，改完按 <code>Esc</code> 退出编辑状态，输入 <code>:wq</code> (保存并退出的意思)</p>
 <h3 id="四-配置"><a href="#四-配置" class="headerlink" title="四  配置"></a>四  配置</h3><p>这时就可以输入<code>IP:8384</code> (例如 <code>192.168.123.184:8384</code> )进入管理页面了 我们可以设置账号密码，以免随便他人登录这个界面 点击右上角的 操作 显示ID 将会出现一张二维码，用手机扫描这即可添加关联 然后设置想要同步的文件夹，当两个客户端都运行时就会自动同步</p>
@@ -246,7 +246,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -305,19 +306,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

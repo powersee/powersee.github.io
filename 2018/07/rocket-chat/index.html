@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -182,16 +182,16 @@
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>我是在 Ubuntu 18.04 纯净系统下使用的<br>用 snap 安装</p>
 <pre>snap install rocketchat-server</pre>
 
-<h4 id="联结-caddy"><a href="#联结-caddy" class="headerlink" title="联结 caddy"></a>联结 caddy</h4><figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line">sudo rocketchat-<span class="keyword">server</span>.initcaddy</span><br></pre></td></tr></table></figure>
+<h4 id="联结-caddy"><a href="#联结-caddy" class="headerlink" title="联结 caddy"></a>联结 caddy</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo rocketchat-server.initcaddy</span><br></pre></td></tr></table></figure>
 
 <p>编辑 Caddyfile 文件</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">nano <span class="regexp">/var/</span>snap<span class="regexp">/rocketchat-server/</span>current/Caddyfile</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nano /var/snap/rocketchat-server/current/Caddyfile</span><br></pre></td></tr></table></figure>
 
 <p>将  http://:8080 为你的网站,如 powersee.tk</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">http:<span class="regexp">//</span>powersee.tk</span><br><span class="line">proxy / localhost:<span class="number">3000</span> &#123;</span><br><span class="line">  websocket</span><br><span class="line">  transparent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://powersee.tk</span><br><span class="line">proxy / localhost:3000 &#123;</span><br><span class="line">  websocket</span><br><span class="line">  transparent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>再重启</p>
-<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">sudo systemctl <span class="keyword">restart</span> snap.rocketchat-<span class="keyword">server</span>.rocketchat-caddy</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart snap.rocketchat-server.rocketchat-caddy</span><br></pre></td></tr></table></figure>
 
 <p>那么此时访问网址就能进入聊天室了<br> 因为此处用 SSL 的话，我试了好多次，只能搞自签证书，而这样在手机客户端又没办法连接，因此不演示。</p>
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>第一次进入注册的账号会成为管理账号。<br>进入后是英文的，可以设置为中文。<br>点击导航栏的三个点，进入管理界面</p>
@@ -255,7 +255,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -314,19 +315,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

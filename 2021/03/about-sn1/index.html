@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -187,9 +187,9 @@
 <p><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/aoo8oqzn/">乐橙SN1 扩展 Transmission插件， 内置硬盘充分利用 PT必备</a></p>
 <p>由于我依然还是无法刷机，所以只能改为研究怎么折腾原生系统了。</p>
 <h4 id="自带的远程下载软件"><a href="#自带的远程下载软件" class="headerlink" title="自带的远程下载软件"></a>自带的远程下载软件</h4><p>与其它 bt 软件连接的端口，似乎每次都变化。我通过在电脑使用 qb 做种，然后 sn1 下载这个种子资源，了解到 sn1 在 qb 中显示的 客户端 信息为 client_test/1.1.1.0，估计是他们自己搞的一个 BT 软件吧。</p>
-<h4 id="硬盘的路径"><a href="#硬盘的路径" class="headerlink" title="硬盘的路径"></a>硬盘的路径</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/linux/m</span>nt<span class="regexp">/lv/</span></span><br></pre></td></tr></table></figure>
+<h4 id="硬盘的路径"><a href="#硬盘的路径" class="headerlink" title="硬盘的路径"></a>硬盘的路径</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/linux/mnt/lv/</span><br></pre></td></tr></table></figure>
 
-<h4 id="web-网页的路径"><a href="#web-网页的路径" class="headerlink" title="web 网页的路径"></a>web 网页的路径</h4><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/linux/m</span>nt/web</span><br></pre></td></tr></table></figure>
+<h4 id="web-网页的路径"><a href="#web-网页的路径" class="headerlink" title="web 网页的路径"></a>web 网页的路径</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/linux/mnt/web</span><br></pre></td></tr></table></figure>
 
 <p>我是先 root ，然后通过 ttl 备份原本的系统。再来折腾其它的，建议大家也这么做，这个非常重要，因为这机器现在是没有线刷包的，要是自己搞坏了系统，估计就变砖了。</p>
 <p>root 后是可以恢复出厂设置的，不用担心，而且恢复之后功能都还能用，远程访问、下载这些都在，并且 root 权限依旧，不会因为恢复出厂而丢失。</p>
@@ -197,14 +197,14 @@
 <p><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/aoo8oqzn/">乐橙SN1 扩展 Transmission插件， 内置硬盘充分利用 PT必备</a></p>
 <p>这个过程中，需要安装 <strong>busybox</strong> ，我这里安装的是 1.20.2，使用这个版本才可以用 wget 。安装包我上传到网盘里 <a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a> 在 【手机软件】里面。</p>
 <p>代理可以参考这样</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">url=http:<span class="comment">//192.168.123.69:7890</span></span><br><span class="line">alias pon=<span class="string">&#x27;export http_proxy=<span class="subst">$url</span>; export https_proxy=<span class="subst">$url</span>&#x27;</span></span><br><span class="line">pon</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">url=http://192.168.123.69:7890</span><br><span class="line">alias pon=&#x27;export http_proxy=$url; export https_proxy=$url&#x27;</span><br><span class="line">pon</span><br></pre></td></tr></table></figure>
 
 <p>192.168.123.69 是我电脑的 ip ，不细讲了。</p>
 <p>配置好 entware 之后，还可以装 qb</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">opkg <span class="keyword">install</span> qbittorrent</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">opkg install qbittorrent</span><br></pre></td></tr></table></figure>
 
 <p>安装完成应用在 /opt/bin 里面，可以通过 /opt/bin/qbittorrent-nox 来运行。</p>
-<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">/opt/bin # qbittorrent-nox </span><br><span class="line">QtSingleCoreApplication: listen <span class="keyword">on</span> <span class="keyword">local</span> socket failed, QLocalServer::listen: <span class="keyword">Name</span> error</span><br><span class="line"></span><br><span class="line">*** Legal Notice ***</span><br><span class="line">qBittorrent <span class="keyword">is</span> a <span class="keyword">file</span> sharing <span class="keyword">program</span>. When you run a torrent, its data will be made available <span class="keyword">to</span> others by means <span class="keyword">of</span> upload. Any content you share <span class="keyword">is</span> your sole responsibility.</span><br><span class="line"></span><br><span class="line">No further notices will be issued.</span><br><span class="line"></span><br><span class="line">Press <span class="string">&#x27;y&#x27;</span> key <span class="keyword">to</span> accept <span class="keyword">and</span> <span class="keyword">continue</span>...</span><br><span class="line">y</span><br><span class="line"></span><br><span class="line">******** Information ********</span><br><span class="line"><span class="keyword">To</span> control qBittorrent, access the Web UI at http:<span class="comment">//localhost:8080</span></span><br><span class="line">The Web UI administrator username <span class="keyword">is</span>: admin</span><br><span class="line">The Web UI administrator password <span class="keyword">is</span> still the <span class="keyword">default</span> one: adminadmin</span><br><span class="line">This <span class="keyword">is</span> a security risk, please consider changing your password from <span class="keyword">program</span> preferences.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/opt/bin # qbittorrent-nox </span><br><span class="line">QtSingleCoreApplication: listen on local socket failed, QLocalServer::listen: Name error</span><br><span class="line"></span><br><span class="line">*** Legal Notice ***</span><br><span class="line">qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</span><br><span class="line"></span><br><span class="line">No further notices will be issued.</span><br><span class="line"></span><br><span class="line">Press &#x27;y&#x27; key to accept and continue...</span><br><span class="line">y</span><br><span class="line"></span><br><span class="line">******** Information ********</span><br><span class="line">To control qBittorrent, access the Web UI at http://localhost:8080</span><br><span class="line">The Web UI administrator username is: admin</span><br><span class="line">The Web UI administrator password is still the default one: adminadmin</span><br><span class="line">This is a security risk, please consider changing your password from program preferences.</span><br></pre></td></tr></table></figure>
 
 <p>第一次运行需要按 y 同意一下。</p>
 <p>想知道能装什么，可以浏览器访问 <a target="_blank" rel="noopener" href="http://bin.entware.net/armv7sf-k3.2/">http://bin.entware.net/armv7sf-k3.2/</a></p>
@@ -267,7 +267,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -326,19 +327,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

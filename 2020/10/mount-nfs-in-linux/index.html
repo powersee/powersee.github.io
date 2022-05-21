@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -190,20 +190,20 @@
 </ul>
 <p>nfs 和 smb 不同，不能设置用账号密码访问，只能设置让某个 IP 访问。如果想让局域网的所有人都可以访问，假设路由器的 IP 是 <code>192.168.1.1</code>，那么这里可以填 <code>192.168.1.0/24</code>，指的是 IP 地址以 <code>192.168.1</code> 开头的用户都可以访问。</p>
 <p>设置好后，切换的 armbian ，用 ssh 连接设备，查看一下 贝壳云 nfs 的共享权限</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">showmount -e beikeyun</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">showmount -e beikeyun</span><br></pre></td></tr></table></figure>
 
 <p>这里的 <code>beikeyun</code> 也可以使用内网 IP</p>
 <p>确定 N1 拥有访问权限之后，便可以开始挂载了。此时我想把 贝壳云 上的 <code>/media/x</code> 挂载到 N1 的 <code>/media/x</code> 上，我需要先在 N1 上创建这个文件夹</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir <span class="regexp">/media/</span>x</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /media/x</span><br></pre></td></tr></table></figure>
 
 <p>之后在 N1 上安装 nfs 客户端</p>
-<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">sudo</span> apt install nfs-<span class="meta">common</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install nfs-common</span><br></pre></td></tr></table></figure>
 
 <p>之后挂载</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mount -t nfs beikeyun:<span class="regexp">/media/</span>x <span class="regexp">/media/</span>x</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mount -t nfs beikeyun:/media/x /media/x</span><br></pre></td></tr></table></figure>
 
 <p>没有报错便是挂载成功。此时已经可以查看 10T 硬盘里面的内容</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">ls <span class="regexp">/media/</span>x</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls /media/x</span><br></pre></td></tr></table></figure>
 
 <p>完</p>
 
@@ -263,7 +263,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -322,19 +323,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

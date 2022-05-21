@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="服务器,设备," />
+    <meta name="keywords" content="设备,服务器," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -187,9 +187,9 @@
 <li>opkg2 install xxxxx</li>
 </ol>
 <h2 id="2、安装-zsh-与配置集"><a href="#2、安装-zsh-与配置集" class="headerlink" title="2、安装 zsh 与配置集"></a>2、安装 zsh 与配置集</h2><p>于是我就安装了 zsh 以及 oh my zsh 为的就是用这个自动补全插件 zsh-autosuggestions</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">opkg2 <span class="keyword">install</span> zsh</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone git:<span class="regexp">//gi</span>thub.com<span class="regexp">/zsh-users/</span>zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">opkg2 install zsh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="3、遇坑部分，无法-ssh-连接"><a href="#3、遇坑部分，无法-ssh-连接" class="headerlink" title="3、遇坑部分，无法 ssh 连接"></a>3、遇坑部分，无法 ssh 连接</h2><p>顺利地安装成功了，然后，我想将 zsh 设置为默认的 shell ，使用 chsh -s /opt/bin/zsh 却失败了。</p>
@@ -200,23 +200,23 @@
 <p>于是想到小钢炮的 web 界面有个定时任务的功能 Scheduled Tasks ，在这个我也可以执行命令啊，那我在这里备份这个文件夹不就行了。</p>
 <p>同时灯大的 wiki 里也有写备份 qb 和 tr 的方法，他是用 tar 来打包这个文件夹的，这种可能更好吧。</p>
 <p>于是我添加了这条任务，每十五分钟就将这两个文件夹打包备份到我这个叫 one 的硬盘里。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="number">15</span> * * * * tar cvf <span class="regexp">/media/</span>one<span class="regexp">/qb.tar /</span>var<span class="regexp">/lib/</span>qbittorrent &amp;&amp; tar cvf <span class="regexp">/media/</span>one<span class="regexp">/tr.tar /</span>var<span class="regexp">/lib/</span>transmission</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">15 * * * * tar cvf /media/one/qb.tar /var/lib/qbittorrent &amp;&amp; tar cvf /media/one/tr.tar /var/lib/transmission</span><br></pre></td></tr></table></figure>
 
 
 <h2 id="5、曲线救国"><a href="#5、曲线救国" class="headerlink" title="5、曲线救国"></a>5、曲线救国</h2><p>所以这样打包好后，就可以重装系统了嘛。不过我突然想到，既然这里可以执行命令，那我在这里修改 passwd 这个文件，改回去不就行了？</p>
 <p>于是我将 passwd 这个文件的内容，输出到硬盘里</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cat <span class="regexp">/etc/</span>passwd &gt; <span class="regexp">/media/</span>one/pass.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /etc/passwd &gt; /media/one/pass.txt</span><br></pre></td></tr></table></figure>
 
 
 <p>接着我用 filebrowser 修改这个文档里面的内容，再把它输入回 passwd</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cat <span class="regexp">/media/</span>one<span class="regexp">/pass.txt &gt; /</span>etc/passwd</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /media/one/pass.txt &gt; /etc/passwd</span><br></pre></td></tr></table></figure>
 
 
 <p>完成，再来 ssh ，就成功登录上了。</p>
 <p>但是我的 zsh 还是没办法设置为默认 shell ……</p>
 <p>怎么办呢？</p>
 <h2 id="6、用上-zsh"><a href="#6、用上-zsh" class="headerlink" title="6、用上 zsh"></a>6、用上 zsh</h2><p>我想到，当我们用 ssh 连接上小钢炮的 sh 时，它会去执行 /etc/prifile 这个文件里面的内容，那我直接在这里面添加一行</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">zsh</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zsh</span><br></pre></td></tr></table></figure>
 
 
 <p>我将它放在环境变量之后，在 13 行这个位置。这样之后用 ssh 连接，系统就会先启动 sh ，然后读取 /etc/prifile 的内容，读到 13 行，执行了 zsh 这个命令，然后 shell 就自动切换到 zsh 了。</p>
@@ -249,9 +249,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><i class="fa fa-tags"></i>服务器</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><i class="fa fa-tags"></i>服务器</a>
     
     </div>
   
@@ -280,7 +280,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -339,19 +340,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

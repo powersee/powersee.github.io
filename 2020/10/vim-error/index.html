@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -180,7 +180,7 @@
   <article class="passage-article">
     <p>vim 是我在 Linux 上面最常用的编辑器，如果想要更好地使用它，需要对它进行一些设置。具体的方法是修改用户目录下的 <code>.vimrc</code> ，默认情况下需要自己创建这个文件。</p>
 <p>在里面添加这些设置，下次打开 vim 就能看到效果。例如（ <code>&quot;</code> 是注释符号）</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span> <span class="comment">&quot;显示行数</span></span><br><span class="line"><span class="keyword">set</span> showmatch <span class="comment">&quot;显示匹配的括号([&#123;和&#125;])</span></span><br><span class="line"><span class="keyword">set</span> hlsearch <span class="comment">&quot;高亮显示搜索的内容</span></span><br><span class="line"><span class="comment">&quot;...</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set nu &quot;显示行数</span><br><span class="line">set showmatch &quot;显示匹配的括号([&#123;和&#125;])</span><br><span class="line">set hlsearch &quot;高亮显示搜索的内容</span><br><span class="line">&quot;...</span><br></pre></td></tr></table></figure>
 
 <p>但是我有很多台 Linux 设备，每一台都自己去写一遍配置就太累了吧。于是我想把这个文件放在 gitee 上（ GitHub 有时连接不太上），之后其它的机器，只需要把这个文件下载下来即可。当然我还想放一些其它的配置，所以我新建一个 dotfiles 仓库，在里面放一些配置文件。</p>
 <p>我直接在 gitee 上面新建仓库，用 readme 初始化，然后新建文件，将 vim 配置复制粘贴进去。</p>
@@ -197,7 +197,7 @@
 </blockquote>
 <p>也可以使用 <code>set ff?</code> 命令来查看，在默认状态下，输入 <code>:</code>，再输入这条命令即可看到。</p>
 <p>知道问题所在了，解决方法也很简单，用 vim 打开这个文件，将 <code>fileformat</code> 改为 <code>unix</code> 即可。</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">:<span class="builtin-name">set</span> <span class="attribute">ff</span>=unix</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:set ff=unix</span><br></pre></td></tr></table></figure>
 
 <p>保存，退出。</p>
 <p>此时 vim 就可以正常读取配置文件了。但是这么搞也不是办法啊，每台设备都去转换一下格式？那也够累的。于是我尝试在 GitHub 上创建文件看看，结果发现直接在 GitHub 网页上面创建的文件，<code>fileformat</code>  默认就是 <code>unix</code> ，看来还是切换到 GitHub 吧。</p>
@@ -265,7 +265,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -324,19 +325,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

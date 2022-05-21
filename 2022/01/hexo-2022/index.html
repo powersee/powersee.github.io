@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -187,7 +187,7 @@
 <h3 id="本次迁移过程中遇到的问题"><a href="#本次迁移过程中遇到的问题" class="headerlink" title="本次迁移过程中遇到的问题"></a>本次迁移过程中遇到的问题</h3><p>步骤是安装 nodejs 先，我是直接下载 tar 压缩包，解压后将 bin 文件夹路径添加到环境变量中的，执行 node -v 和 npm -v 查看版本，成功显示既可。</p>
 <p>之后参考 hexo 官网安装，然后把之前备份的 hexo 博客项目拉取回来，进入博客根目录，执行 npm install 安装依赖。</p>
 <h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>完成后就碰到问题了，执行 hexo d 无法将内容部署到 GitHub 上面。显示</p>
-<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">Copying <span class="built_in">files</span> <span class="built_in">from</span> public <span class="built_in">folder</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Copying files from public folder</span><br></pre></td></tr></table></figure>
 
 <p>后就报错了</p>
 <p>那么就网上搜搜看别人的解决方法，于是找到了。</p>
@@ -198,22 +198,22 @@
 </blockquote>
 <h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>接着遇到了第二个问题，就是 public 文件夹内的 html 文件，内容都是空白的。</p>
 <p>那么这个具体是怎么解决的呢？其实我也不太清楚，我的操作过程是，升级看看。</p>
-<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> audit fix</span><br><span class="line"></span><br><span class="line"><span class="built_in">npm</span> audit fix --force</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm audit fix</span><br><span class="line"></span><br><span class="line">npm audit fix --force</span><br></pre></td></tr></table></figure>
 
 <p>然后查看 <code>package.json</code> 发现里的 hexo 版本是 3.7，对比一下 hexo 官网，最新的好像已经是 6 点几了，于是我执行一下</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">hexo <span class="built_in">version</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo version</span><br></pre></td></tr></table></figure>
 
 <p>然后它就自动变为 6.0.0 了</p>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;hexo&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;6.0.0&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;hexo&quot;: &#123;</span><br><span class="line">  &quot;version&quot;: &quot;6.0.0&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>那么看来已经把 hexo 升级了，于是再来试试 <code>hexo g</code></p>
 <p>这一次生成的 html 文件就又内容了，在执行 <code>hexo d</code> 部署到 GitHub pages，就完成了。</p>
 <h4 id="3"><a href="#3" class="headerlink" title="3"></a>3</h4><p>然后部署到 GitHub pages 的内容，打开后发现图片没法加载。</p>
 <p>原因是我的博客文章里，图片链接都是以这种方式</p>
-<figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">![Mac_M1_kcc](<span class="symbol">\i</span>mg<span class="symbol">\2</span>021<span class="symbol">\M</span>ac_M1_kcc.png)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![Mac_M1_kcc](\img\2021\Mac_M1_kcc.png)</span><br></pre></td></tr></table></figure>
 
 <p>之所以是反斜杠 <code>\</code> ，是因为我之前用的是 win10 ，Windows 里面文件的路径就是用反斜杠的，而在 Linux 或者 macOS 里面，文件路径则是 <code>/</code> ，所以导致现在在浏览器里面，图片的加载路径变为像</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>powersee.github.io<span class="regexp">/2021/</span><span class="number">07</span><span class="regexp">/zte-e8820s/</span>\img\<span class="number">2021</span>\e8820s-ttl.jpg</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://powersee.github.io/2021/07/zte-e8820s/\img\2021\e8820s-ttl.jpg</span><br></pre></td></tr></table></figure>
 
 <p>这样的了，自然就没法加载出来图片。不过也是很奇怪，我刚才没有升级 hexo 的时候，明明图片是可以加载出来的（刚才在电脑里通过 hexo s 访问 localhost:4000 的时候，图片什么的都是正常的……）</p>
 <p>然后我又查看了一下我的备份博客，我设置它每天凌晨同步 GitHub 上的网页，所以刚才更新的内容，它还没同步过去。然后我发现，其实之前的图片也是有反斜杠的，并且图片可以正常加载。</p>
@@ -277,7 +277,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -336,19 +337,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     

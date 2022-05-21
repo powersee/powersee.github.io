@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linux,设备," />
+    <meta name="keywords" content="设备,Linux," />
   
 
   
@@ -43,7 +43,7 @@
     is_post: true,
     lock: false,
     author: "Powersee",
-    share: {"weibo":true,"qq":true,"wechat":true},
+    share: {"wechat":false},
     mathjax: false,
     page_type: "",
     root: "/"
@@ -188,26 +188,26 @@
 <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>既然刷入了 armbian 了，那它可以和 N1 一样来使用吗？并不能，因为玩客云的 cpu 是 32 位的 ，能用的 docker 镜像相比于 N1 这种 64 位的，会少很多。</p>
 <p>在 docker hub 上面搜镜像时，可以注意一下那些有标 arm 的才可以用。</p>
 <p>玩客云安装 docker 也比较简单，可以直接在终端中输入</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">armbian-config</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">armbian-config</span><br></pre></td></tr></table></figure>
 
 <p>来安装 docker 、samba、transmission 等应用。</p>
 <p>不过有时候好像会装不了，可以试一下用</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> docker.io</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install docker.io</span><br></pre></td></tr></table></figure>
 
 <p>想知道有没有安装成功，可以用这个命令</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> <span class="literal">info</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker info</span><br></pre></td></tr></table></figure>
 
 <p>我在玩客云上面尝试了这些 docker 镜像。</p>
 <h3 id="1、博客——typecho"><a href="#1、博客——typecho" class="headerlink" title="1、博客——typecho"></a>1、博客——typecho</h3><p>typecho 是一款国产的 php 博客系统，开源免费，占用资源少，我个人挺喜欢的。不过之前灯大制作的 typecho 镜像不能用在玩客云上，我重新找了一个。</p>
 <p>建议自己建立一个文件夹，用来存放 typecho 的相关文件，方便管理以及以后迁移。我建立在 /root/tyepcho</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">mkdir <span class="regexp">/root/</span>tyepcho</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /root/tyepcho</span><br></pre></td></tr></table></figure>
 
 <p>然后便可以建立容器了</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">docker run -d -p <span class="number">80</span><span class="symbol">:</span><span class="number">80</span> --name typecho -v <span class="string">&quot;/root/tyepcho&quot;</span><span class="symbol">:/var/www/html</span> yangxuan8282/<span class="symbol">typecho:</span>php-arm</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 80:80 --name typecho -v &quot;/root/tyepcho&quot;:/var/www/html yangxuan8282/typecho:php-arm</span><br></pre></td></tr></table></figure>
 
 <p>此时便可以通过 ip 访问在玩客云里面建立好的博客。</p>
 <h3 id="2、aria2"><a href="#2、aria2" class="headerlink" title="2、aria2"></a>2、aria2</h3><p>这是一个多线程的下载器，也是开源免费的，我们可以使用它来下载一些东西。</p>
-<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    -<span class="ruby">-name aria2-pro \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">-restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">-log-opt max-size=1m \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">-network host \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e PUID=<span class="variable">$UID</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e PGID=<span class="variable">$GID</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e RPC_SECRET=<span class="number">12345</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e RPC_PORT=<span class="number">6800</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">e LISTEN_PORT=<span class="number">6888</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">v ~<span class="regexp">/aria2-config:/config</span> \</span></span><br><span class="line"><span class="ruby"></span>    -<span class="ruby">v /home/<span class="symbol">powersee:</span>/downloads \</span></span><br><span class="line"><span class="ruby"></span>    p3terx/aria2-pro</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name aria2-pro \</span><br><span class="line">    --restart unless-stopped \</span><br><span class="line">    --log-opt max-size=1m \</span><br><span class="line">    --network host \</span><br><span class="line">    -e PUID=$UID \</span><br><span class="line">    -e PGID=$GID \</span><br><span class="line">    -e RPC_SECRET=12345 \</span><br><span class="line">    -e RPC_PORT=6800 \</span><br><span class="line">    -e LISTEN_PORT=6888 \</span><br><span class="line">    -v ~/aria2-config:/config \</span><br><span class="line">    -v /home/powersee:/downloads \</span><br><span class="line">    p3terx/aria2-pro</span><br></pre></td></tr></table></figure>
 
 <p>我将下载的文件存放在 <code>/home/powersee</code> 中，之后只需要将这个文件夹通过 smb 共享出来，便可以在电脑、手机上面访问里面的内容了。</p>
 <p>此时 aria2 已经在运行了，但是默认情况下，只能使用命令行的方式控制它，这种比较麻烦了。大多数人还是使用网页的来控制的。使用人数比较多是 AriaNg<strong>（如果有打算装浏览器插件的，这部分可以不看）</strong></p>
@@ -223,21 +223,21 @@
 <p>使用这个插件，可以让平时用浏览器下载的文件，发送到 aria2 下载，很 idm 很像，都是多线程下载工具，很多时候可以让下载速度快一些。</p>
 <p>但是 idm 只能在 windows 上面使用，而 aira2 大多数平台都可以安装，这样有一个好处，就是假如我的 aria2 是安装在 LInux 服务器上的，例如 N1 、我家云、贝壳云、玩客云 这样的设备上面，那么当我下载速度非常慢的资源，例如没有开会员的百度网盘文件，或者城通网盘文件。我可以将下载发送到 Linux 服务器后，电脑就可以关机了，让任务在 Linux 服务器上面慢慢下载就行。</p>
 <h3 id="3、verysync"><a href="#3、verysync" class="headerlink" title="3、verysync"></a>3、verysync</h3><p>这是一个同步工具，这里使用 docker 来安装</p>
-<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">back_path=/mnt/verysync</span><br><span class="line">docker run -d \</span><br><span class="line">-<span class="ruby">-restart=<span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby"></span>-<span class="ruby">-name verysync \</span></span><br><span class="line"><span class="ruby"></span>-<span class="ruby">v <span class="variable">$back_path</span><span class="symbol">:/data</span> \</span></span><br><span class="line"><span class="ruby"></span>-<span class="ruby">p <span class="number">8886</span><span class="symbol">:</span><span class="number">8886</span> \</span></span><br><span class="line"><span class="ruby"></span>unwenliu/verysync:armv7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">back_path=/mnt/verysync</span><br><span class="line">docker run -d \</span><br><span class="line">--restart=unless-stopped \</span><br><span class="line">--name verysync \</span><br><span class="line">-v $back_path:/data \</span><br><span class="line">-p 8886:8886 \</span><br><span class="line">unwenliu/verysync:armv7</span><br></pre></td></tr></table></figure>
 
 <p>请将里面的 <code>/mnt/verysync</code> 修改为你自己的</p>
 <h3 id="4、transmission"><a href="#4、transmission" class="headerlink" title="4、transmission"></a>4、transmission</h3><p>这是一个轻量级的 BT 下载工具，有些路由器里面也有内置它，可见其轻量</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">docker run <span class="string">\</span></span><br><span class="line">    -d <span class="string">\</span></span><br><span class="line">    --name transmission <span class="string">\</span></span><br><span class="line">    -p <span class="number">9091</span>:<span class="number">9091</span> <span class="string">\</span></span><br><span class="line">    -p <span class="number">51413</span>:<span class="number">51413</span> <span class="string">\</span></span><br><span class="line">    -v /mnt/tr_data:/data <span class="string">\</span></span><br><span class="line">    -e USERNAME=admin <span class="string">\</span></span><br><span class="line">    -e PASSWORD=admin <span class="string">\</span></span><br><span class="line">    gists/transmission</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -d \</span><br><span class="line">    --name transmission \</span><br><span class="line">    -p 9091:9091 \</span><br><span class="line">    -p 51413:51413 \</span><br><span class="line">    -v /mnt/tr_data:/data \</span><br><span class="line">    -e USERNAME=admin \</span><br><span class="line">    -e PASSWORD=admin \</span><br><span class="line">    gists/transmission</span><br></pre></td></tr></table></figure>
 
 <p>这里我装了 3.0 版，如果想装 2.94 ，可以将最后一行后面添加标签 <code>:2.94</code> ，变成</p>
-<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">docker run <span class="string">\</span></span><br><span class="line">    -d <span class="string">\</span></span><br><span class="line">    --name transmission <span class="string">\</span></span><br><span class="line">    -p <span class="number">9091</span>:<span class="number">9091</span> <span class="string">\</span></span><br><span class="line">    -p <span class="number">51413</span>:<span class="number">51413</span> <span class="string">\</span></span><br><span class="line">    -v /mnt/tr_data:/data <span class="string">\</span></span><br><span class="line">    -e USERNAME=admin <span class="string">\</span></span><br><span class="line">    -e PASSWORD=admin <span class="string">\</span></span><br><span class="line">    gists/transmission:<span class="number">2.94</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -d \</span><br><span class="line">    --name transmission \</span><br><span class="line">    -p 9091:9091 \</span><br><span class="line">    -p 51413:51413 \</span><br><span class="line">    -v /mnt/tr_data:/data \</span><br><span class="line">    -e USERNAME=admin \</span><br><span class="line">    -e PASSWORD=admin \</span><br><span class="line">    gists/transmission:2.94</span><br></pre></td></tr></table></figure>
 
-<h3 id="5、qbittorrent"><a href="#5、qbittorrent" class="headerlink" title="5、qbittorrent"></a>5、qbittorrent</h3><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d \</span><br><span class="line">  <span class="attribute">--name</span>=qbittorrent \</span><br><span class="line">  -e <span class="attribute">PUID</span>=1000 \</span><br><span class="line">  -e <span class="attribute">PGID</span>=1000 \</span><br><span class="line">  -e <span class="attribute">TZ</span>=Aisa/Shanghai \</span><br><span class="line">  -e <span class="attribute">WEBUI_PORT</span>=8080 \</span><br><span class="line">  --network host \</span><br><span class="line">  -v /opt/docker/qb/config:<span class="built_in">/config </span>\</span><br><span class="line">  -v /mnt/qb_downloads:/downloads \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  ghcr.io/linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
+<h3 id="5、qbittorrent"><a href="#5、qbittorrent" class="headerlink" title="5、qbittorrent"></a>5、qbittorrent</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name=qbittorrent \</span><br><span class="line">  -e PUID=1000 \</span><br><span class="line">  -e PGID=1000 \</span><br><span class="line">  -e TZ=Aisa/Shanghai \</span><br><span class="line">  -e WEBUI_PORT=8080 \</span><br><span class="line">  --network host \</span><br><span class="line">  -v /opt/docker/qb/config:/config \</span><br><span class="line">  -v /mnt/qb_downloads:/downloads \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  ghcr.io/linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>后来我还在上面安装了 nginx 和 php ，可以搭建一些简单的网站。</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> nginx php-fpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install nginx php-fpm</span><br></pre></td></tr></table></figure>
 
 <p>想让 nginx 可以解析 php 网页，需要修改 <code>/etc/nginx/sites-enabled/default</code> 这个配置文件。</p>
 <p>默认情况下，nignx 的站点文件位置在 <code>/var/www/html/</code></p>
@@ -269,9 +269,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
-     
       <a href="/tags/%E8%AE%BE%E5%A4%87/"><i class="fa fa-tags"></i>设备</a>
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
     </div>
   
@@ -300,7 +300,8 @@
     
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
+        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
       </div>
     
     <div class="site-footer-info">
@@ -359,19 +360,7 @@
   
   
   
-    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-weibo"></i>
-    </a>
   
-  
-    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-qq"></i>
-    </a>
-  
-  
-    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
-      <i class="fa fa-wechat"></i>
-    </a>
   
 </div>
     
