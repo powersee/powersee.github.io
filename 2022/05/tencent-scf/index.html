@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>归档: 2022/5 | Powersee的博客</title>
+  <title>腾讯云云函数要收费了 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD" />
+    <meta name="keywords" content="网络," />
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"wechat":false},
@@ -160,24 +160,92 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 90篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-05-31
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    腾讯云云函数要收费了
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2022</h3>
-    
-    <div class="timeline-item">
-      <time>2022-05-31</time>
-      <a target="_self" href="/2022/05/tencent-scf/">腾讯云云函数要收费了</a>
-    </div>
+  <article class="passage-article">
+    <p>前几天腾讯云发布了通知，以后云函数不能免费使用了。我之前有从网上看到消息，今天还收到了腾讯云的短信通知。</p>
+<blockquote>
+<p>【腾讯云】腾讯云云函数免费额度和计费方式将于2022年6月1日 起正式调整，届时新用户将获得三个月更多的用量的免费额度，第四个月开始不再享受免费额度，同时从第四个月开始，系统每月会自动发放基础套餐额度并扣除基础套餐费用 12.8 元，详情请查看：<a target="_blank" rel="noopener" href="https://mc.tencent.com/qpgtGc9H">https://mc.tencent.com/qpgtGc9H</a> ，如您有任何疑问可以登录（账号 ID：9527，昵称：powersee）提交工单与我们联系。</p>
+</blockquote>
+<p>我还在网上搜了一下，看看别人是怎么讨论这个的，不过看来讨论的好像不多。知乎上面有一个相关的提问，到目前 5 月 31 号才 11 个回答。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/533580659">如何看待腾讯云函数（SCF）取消免费额度，每月必须 12.8 元最低消费？ - 知乎 (zhihu.com)</a></p>
+<p>总而言之，以后可能就没法白嫖云函数了。</p>
+<p>我登录电脑网页版了解看看，一来到云函数的界面，就有明显的提示</p>
+<blockquote>
+<h4 id="计费模式和免费额度变更通知"><a href="#计费模式和免费额度变更通知" class="headerlink" title="计费模式和免费额度变更通知"></a>计费模式和免费额度变更通知</h4><ol>
+<li>SCF计费模式和免费额度于 2022 年 6 月 1 日进行调整，用户开通使用云函数三个月后每月不再享受免费额度，系统每月会发放基础套餐额度，同时自动扣除 12.8 元，详见<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/583/12282">免费额度</a>文档。</li>
+<li>新用户前三个月免费额度中资源使用量、外网出流量较此前免费额度的量将提升一倍，通过 0 元购买套餐包的形式享受免费额度，函数并发配额也将提升一倍。</li>
+<li>学生用户可通过<a target="_blank" rel="noopener" href="https://cloud.tencent.com/act/campus?utm_source=qcloud&utm_medium=navigation&utm_campaign=campus">云+校园</a>购买专属超低折扣套餐，活动长期有效。</li>
+<li>如果您暂时不使用 SCF 的服务，可以<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/583/12283#.E6.89.8B.E5.8A.A8.E5.86.BB.E7.BB.93">手动冻结</a>云函数。</li>
+</ol>
+</blockquote>
+<p>按照它这个意思，也就是 6、7、8 这三个月还是可以免费使用的，之后到了 9 月，应该就开始每个月收 12.8 了。</p>
+<p>我里面只有一个服务在运行着，每天自动运行一次来签到，使用的资源非常的少，我一个月就调用 30 次，而免费用户是可以一个月调用 5 万次的。腾讯云看来玩不起呀，那对于我这种情况，我肯定不会去付费使用的，所以我就打算停用了。</p>
+<p>它这里也挺贴心的，还有教怎么冻结，这样以后应该就不会被扣费了。</p>
+<p>手动冻结</p>
+<p><img src="/img/2022/image-20220531203309383.png" alt="image-20220531203309383"></p>
+<p>冻结的时候有提示</p>
+<blockquote>
+<p><strong>服务冻结须知冻结后，该账户下所有地域的函数将会有以下限制，是否确认冻结?</strong></p>
+<ul>
+<li>函数无法被调用，通过云 API 等方式的调用，函数将报错并无法执行。</li>
+<li>预置的函数实例将会被回收。</li>
+<li>函数代码及相关配置会继续保留。</li>
+<li>函数服务不会继续产生费用。</li>
+</ul>
+</blockquote>
+<p><img src="/img/2022/image-20220531205635345.png" alt="image-20220531205635345"></p>
+<p>根据了解阿里云好像也有云函数可以免费使用，但是网上好像没什么教程，不知道什么情况，是可以免费白嫖呢？还是至少每个月有付一块钱呢？这个我还没去了解，等其他人研究后我再去抄作业吧，目前签到服务还是运行在家里的服务器吧。</p>
+<p>看到有人分享用华为云免费运行云函数了：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28778001/article/details/124891438">https://blog.csdn.net/qq_28778001/article/details/124891438</a></p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E8%B4%B9%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%85%8D%E8%B4%B9%E9%A2%9D%E5%BA%A6%E5%8F%98%E6%9B%B4%E9%80%9A%E7%9F%A5"><span class="toc-text">计费模式和免费额度变更通知</span></a></li></ol>
+  </div>
+</aside>
   
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2022/05/tencent-scf/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E7%BD%91%E7%BB%9C/"><i class="fa fa-tags"></i>网络</a>
     
-    <div class="timeline-item">
-      <time>2022-05-21</time>
-      <a target="_self" href="/2022/05/zidoo-z9x-update/">芝杜 z9x 手动升级固件，体验不错</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -239,12 +307,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2022/05/zidoo-z9x-update/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
