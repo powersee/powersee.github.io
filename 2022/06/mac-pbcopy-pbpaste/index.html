@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>归档: 2019/10 | Powersee的博客</title>
+  <title>Mac 命令行中复制粘贴 pbcopy 与 pbpaste | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD" />
+    <meta name="keywords" content="Mac," />
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"wechat":false},
@@ -160,24 +160,76 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 91篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-06-10
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Mac 命令行中复制粘贴 pbcopy 与 pbpaste
+  </h1>
   
+  <article class="passage-article">
+    <p>发现两个有用的命令</p>
+<ul>
+<li>pbcopy 可以将文本复制（写入）到剪贴板</li>
+<li>pbpaste 可以读取剪贴板中的内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;powersee&#x27; | pbcopy</span><br></pre></td></tr></table></figure>
+
+<p>此时就将字符串 <code>powersee</code> 写入剪贴板，可以找个地方粘贴试试看。</p>
+<p>另外一种用法，将文件中的文本内容复制到剪贴板</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$cat test.txt</span><br><span class="line">hehe</span><br><span class="line">$pbcopy &lt; test.txt</span><br></pre></td></tr></table></figure>
+
+<p>现在有一个 txt 文件，里面的内容是 hehe，使用 <code>&lt;</code> 将里面的内容输入给 <code>pbcopy</code> ，这样就可以将内容复制到剪贴板。当然也可以用 <code>cat</code> 命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$cat test.txt | pbcopy</span><br></pre></td></tr></table></figure>
+
+<p>读取剪贴板的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pbpaste</span><br><span class="line">hehe%</span><br><span class="line">$ echo `pbpaste`</span><br><span class="line">hehe</span><br></pre></td></tr></table></figure>
+
+<p>直接执行 <code>pbpaste</code> 也可以输出内容，不过在最后会跟一个 <code>%</code> </p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
     
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-10-30</time>
-      <a target="_self" href="/2019/10/about-wankeyun/">关于玩客云的一些资料</a>
-    </div>
+  </div>
+</aside>
   
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2022/06/mac-pbcopy-pbpaste/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Mac/"><i class="fa fa-tags"></i>Mac</a>
     
-    <div class="timeline-item">
-      <time>2019-10-26</time>
-      <a target="_self" href="/2019/10/nano-zsh/">小钢炮又被折腾坏记录，最终成功用上 zsh</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -239,12 +291,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2022/05/tencent-scf/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     

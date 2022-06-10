@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2022-05-31T13:08:23.237Z</updated>
+  <updated>2022-06-10T03:29:40.100Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 命令行中复制粘贴 pbcopy 与 pbpaste</title>
+    <link href="https://powersee.github.io/2022/06/mac-pbcopy-pbpaste/"/>
+    <id>https://powersee.github.io/2022/06/mac-pbcopy-pbpaste/</id>
+    <published>2022-06-10T03:28:56.000Z</published>
+    <updated>2022-06-10T03:29:40.100Z</updated>
+    
+    <content type="html"><![CDATA[<p>发现两个有用的命令</p><ul><li>pbcopy 可以将文本复制（写入）到剪贴板</li><li>pbpaste 可以读取剪贴板中的内容</li></ul><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;powersee&#x27; | pbcopy</span><br></pre></td></tr></table></figure><p>此时就将字符串 <code>powersee</code> 写入剪贴板，可以找个地方粘贴试试看。</p><p>另外一种用法，将文件中的文本内容复制到剪贴板</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$cat test.txt</span><br><span class="line">hehe</span><br><span class="line">$pbcopy &lt; test.txt</span><br></pre></td></tr></table></figure><p>现在有一个 txt 文件，里面的内容是 hehe，使用 <code>&lt;</code> 将里面的内容输入给 <code>pbcopy</code> ，这样就可以将内容复制到剪贴板。当然也可以用 <code>cat</code> 命令。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$cat test.txt | pbcopy</span><br></pre></td></tr></table></figure><p>读取剪贴板的内容</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pbpaste</span><br><span class="line">hehe%</span><br><span class="line">$ echo `pbpaste`</span><br><span class="line">hehe</span><br></pre></td></tr></table></figure><p>直接执行 <code>pbpaste</code> 也可以输出内容，不过在最后会跟一个 <code>%</code> </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;发现两个有用的命令&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pbcopy 可以将文本复制（写入）到剪贴板&lt;/li&gt;
+&lt;li&gt;pbpaste 可以读取剪贴板中的内容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td 
+      
+    
+    </summary>
+    
+    
+      <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>腾讯云云函数要收费了</title>
@@ -507,31 +535,6 @@
     
     
       <category term="python" scheme="https://powersee.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 Docker 将服务器打造成全能下载机</title>
-    <link href="https://powersee.github.io/2021/05/docker-download-server/"/>
-    <id>https://powersee.github.io/2021/05/docker-download-server/</id>
-    <published>2021-05-16T00:41:53.000Z</published>
-    <updated>2022-01-12T02:42:43.023Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文建议搭配视频观看：</p><p><a href="https://www.bilibili.com/video/BV1xv411573B/">https://www.bilibili.com/video/BV1xv411573B/</a></p><p>两个 Docker 容器的搭建</p><p>transmission</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -d \</span><br><span class="line">    --name transmission \</span><br><span class="line">    -p 9091:9091 \</span><br><span class="line">    -p 51413:51413 \</span><br><span class="line">    -v /mnt/tr_data:/data \</span><br><span class="line">    -e USERNAME=admin \</span><br><span class="line">    -e PASSWORD=admin \</span><br><span class="line">    gists/transmission</span><br></pre></td></tr></table></figure><p>aria2</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name aria2-pro \</span><br><span class="line">    --restart unless-stopped \</span><br><span class="line">    --network host \</span><br><span class="line">    -e PUID=$UID \</span><br><span class="line">    -e PGID=$GID \</span><br><span class="line">    -e RPC_SECRET=12345 \</span><br><span class="line">    -e RPC_PORT=6800 \</span><br><span class="line">    -e LISTEN_PORT=6888 \</span><br><span class="line">    -v ~/aria2-config:/config \</span><br><span class="line">    -v /mnt/aria2:/downloads \</span><br><span class="line">    p3terx/aria2-pro</span><br></pre></td></tr></table></figure><p>使用 python 开启一个简单的文件分享服务</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure><p>此时默认使用 8000 端口</p><p>更好的文件展示服务—— h5ai</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5555:80 -v /mnt:/h5ai --name h5ai ilemonrain/h5ai:full</span><br></pre></td></tr></table></figure><p>最后记得防火墙放行。</p><p>如果你有购买腾讯云轻量服务器的需求，可以点击我的链接进行购买</p><p><a href="https://curl.qcloud.com/i4FBqtLH">https://curl.qcloud.com/i4FBqtLH</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;本文建议搭配视频观看：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1xv411573B/&quot;&gt;https://www.bilibili.com/video/BV1xv411573B/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;两个 Dock
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   

@@ -3535,4 +3535,30 @@
         <tag>网络</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mac 命令行中复制粘贴 pbcopy 与 pbpaste</title>
+    <url>/2022/06/mac-pbcopy-pbpaste/</url>
+    <content><![CDATA[<p>发现两个有用的命令</p>
+<ul>
+<li>pbcopy 可以将文本复制（写入）到剪贴板</li>
+<li>pbpaste 可以读取剪贴板中的内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;powersee&#x27; | pbcopy</span><br></pre></td></tr></table></figure>
+
+<p>此时就将字符串 <code>powersee</code> 写入剪贴板，可以找个地方粘贴试试看。</p>
+<p>另外一种用法，将文件中的文本内容复制到剪贴板</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$cat test.txt</span><br><span class="line">hehe</span><br><span class="line">$pbcopy &lt; test.txt</span><br></pre></td></tr></table></figure>
+
+<p>现在有一个 txt 文件，里面的内容是 hehe，使用 <code>&lt;</code> 将里面的内容输入给 <code>pbcopy</code> ，这样就可以将内容复制到剪贴板。当然也可以用 <code>cat</code> 命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$cat test.txt | pbcopy</span><br></pre></td></tr></table></figure>
+
+<p>读取剪贴板的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ pbpaste</span><br><span class="line">hehe%</span><br><span class="line">$ echo `pbpaste`</span><br><span class="line">hehe</span><br></pre></td></tr></table></figure>
+
+<p>直接执行 <code>pbpaste</code> 也可以输出内容，不过在最后会跟一个 <code>%</code> </p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
