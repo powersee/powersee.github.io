@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>归档: 2019/10 | Powersee的博客</title>
+  <title>edge 浏览器访问不安全内容 https 报错没有强制访问 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD" />
+    <meta name="keywords" content="网络," />
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"wechat":false},
@@ -160,24 +160,66 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 92篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-11-18
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    edge 浏览器访问不安全内容 https 报错没有强制访问
+  </h1>
   
+  <article class="passage-article">
+    <p>如今我的主力浏览器已经换位 edge 了，使用了很久，感觉挺好的。</p>
+<p>最近发现，如果使用它访问证书已经失效的 https 网站，会报错，并且点击高级之后，没有继续访问的按钮了。</p>
+<p>例如这样，我访问我局域网的 nas <code>https://192.168.68.172/</code></p>
+<p><img src="/img/2022/link-unsafe.jpg"></p>
+<p>那么要怎样才能继续访问呢？方法是，点击网页中空白的地方，然后键盘输入 <code>thisisunsafe</code> ，注意是在英文输入法的情况下，正常的话，输入完就自动访问了。</p>
+<p>另外也可以在浏览器输入 <code>edge://settings/content/insecureContent</code> 来打开设置，将你想要访问的域名添加进去。</p>
+<p><img src="/img/2022/edge-settings-insecureContent.jpg"></p>
+<p>感觉现在就是限制更多了，不像以前那样方便，不过还好问题是可以解决的。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
     
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-10-30</time>
-      <a target="_self" href="/2019/10/about-wankeyun/">关于玩客云的一些资料</a>
-    </div>
+  </div>
+</aside>
   
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2022/11/edge-unsafe/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/%E7%BD%91%E7%BB%9C/"><i class="fa fa-tags"></i>网络</a>
     
-    <div class="timeline-item">
-      <time>2019-10-26</time>
-      <a target="_self" href="/2019/10/nano-zsh/">小钢炮又被折腾坏记录，最终成功用上 zsh</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -239,12 +281,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2022/06/mac-pbcopy-pbpaste/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
