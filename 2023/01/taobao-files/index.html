@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>归档: 2019 | Powersee的博客</title>
+  <title>如何找到手机淘宝 APP 保存的文件？ | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD" />
+    <meta name="keywords" content="随笔," />
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"wechat":false},
@@ -160,96 +160,75 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 93篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-01-13
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    如何找到手机淘宝 APP 保存的文件？
+  </h1>
   
+  <article class="passage-article">
+    <p>淘宝的店家发了个文件给我，我需要把文件弄到电脑上使用。结果没想到过程还挺曲折的。</p>
+<p>在手机淘宝app上可以接收文件，但是文件没法打开。不过在底部显示【使用其它应用打开】的按钮，点击后会弹出一堆 app 可以选择，但是我实测没用。</p>
+<p>店家给我的是 <code>HEX</code> 结尾的文件，手机里应该没有 app 可以打开它，我想尝试用手机自带的文件管理器、ES 文件管理器，来将文件保存到其他位置，但是都不行。</p>
+<p>选择用浏览器打开，会自动下载这个文件，哦，那这样也行，但结果却是下载失败了。。。</p>
+<p>然后我注意到，刚点击【使用其它应用打开】的按钮时，会弹出一个文件存放在哪里的提示，我注意到是在 <code>Android/data/com.taobao.taobao</code> </p>
+<p>那既然这样，我自己去这里找找看吧。</p>
+<p>结果我发现，使用手机自带的文件管理器、ES 文件管理器打开 <code>Android/data/</code> 后，里面是空白的。</p>
+<p>我网上搜一下，发现这是 Android11 之后的改变，现在不给 data 文件夹的权限了。我是真没想到，miui 居然连自带的文件管理器都访问不了这个文件夹。</p>
+<p>知乎网友的一段话我觉得挺认同的，<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/dong-jie-rong-59">来源</a></p>
+<blockquote>
+<p>非常后悔更新了11,这可能是我见过最恶心的设计了，完全意义不明。能轻松管理所有文件一直是我觉得安卓比ios好的一点</p>
+</blockquote>
+<p>那么最后我是怎么解决的呢？其实在自带文件管理器里，它有提示可以【前往安卓存储访问框架查看文件】，点击后使用框架还是可以查看文件的。</p>
+<p>淘宝的文件是在 <code>Android/data/com.taobao.taobao/files/file/filetransfer/</code> 里面，之后我把文件复制出来，然后复制到 nas 里，电脑上再访问 nas 的共享文件夹，将文件复制到电脑。</p>
+<p>而且完成后我网上搜一下，才知道用新版的 es 文件管理器，授权之后还是可以访问 data 文件夹的，我手机之前有下载一个 【ESuper文件】的app，应该是改版的 es 吧，确实授权后就可以访问。</p>
+<p>不过，淘宝还真是够烂的，就不能给个选项，让把文件保存到手机的其它目录吗，费了我这么多时间。问店家，他居然告诉我自己去电脑上下载个阿里旺旺……</p>
+<p>淘宝这么搞下去，迟早得被拼多多干倒。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
     
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-12-11</time>
-      <a target="_self" href="/2019/12/remove-omv/">OMV 安装失败如何卸载</a>
-    </div>
+  </div>
+</aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-12-11</time>
-      <a target="_self" href="/2019/12/N1-armbian/">斐讯 N1、P1 安装 armbian 变身电脑主机</a>
-    </div>
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2023/01/taobao-files/</a>
+        </div>
+      
+      <div>
+        
+      </div>
+    </aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-11-30</time>
-      <a target="_self" href="/2019/11/syncthing-better/">使用 syncthing 同步多台设备的文件</a>
-    </div>
   
+    <div class="passage-tags">
+     
+      <a href="/tags/%E9%9A%8F%E7%AC%94/"><i class="fa fa-tags"></i>随笔</a>
     
-    <div class="timeline-item">
-      <time>2019-11-27</time>
-      <a target="_self" href="/2019/11/nds2desmume/">nds 游戏存档导入到电脑的模拟器玩</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-11-25</time>
-      <a target="_self" href="/2019/11/ip6tables-and-ss/">即使是使用 ipv6 也最好做好防范，ip6tables 与 ss</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-11-10</time>
-      <a target="_self" href="/2019/11/qb-more-tracker/">如何让 qBittorrent 在 Linux 上连接更多的 tracker</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-30</time>
-      <a target="_self" href="/2019/10/about-wankeyun/">关于玩客云的一些资料</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-26</time>
-      <a target="_self" href="/2019/10/nano-zsh/">小钢炮又被折腾坏记录，最终成功用上 zsh</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-18</time>
-      <a target="_self" href="/2019/09/MIUI-adb/">小米手机免 root 去除广告以及卸载系统应用</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-16</time>
-      <a target="_self" href="/2019/09/docker-aria2/">服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker）</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-07</time>
-      <a target="_self" href="/2019/09/transmission-docker/">BT挂机利器 transmission docker 安装法</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-08-29</time>
-      <a target="_self" href="/2019/08/docker-qb/">用服务器来离线下载 BT 种子，体验千兆网络的魅力——docker 安装 qBittorrent，以及把文件取回手机</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-04-28</time>
-      <a target="_self" href="/2019/04/push-to-kindle/">将文章推送到 kindle 上阅读</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-03-12</time>
-      <a target="_self" href="/2019/03/Nginx-WordPress-link-error/">Nginx下修改WordPress固定链接导致无法访问</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -311,12 +290,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2022/11/edge-unsafe/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     

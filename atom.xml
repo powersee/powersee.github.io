@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2022-11-18T02:31:54.299Z</updated>
+  <updated>2023-01-13T05:57:12.019Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何找到手机淘宝 APP 保存的文件？</title>
+    <link href="https://powersee.github.io/2023/01/taobao-files/"/>
+    <id>https://powersee.github.io/2023/01/taobao-files/</id>
+    <published>2023-01-13T05:54:42.000Z</published>
+    <updated>2023-01-13T05:57:12.019Z</updated>
+    
+    <content type="html"><![CDATA[<p>淘宝的店家发了个文件给我，我需要把文件弄到电脑上使用。结果没想到过程还挺曲折的。</p><p>在手机淘宝app上可以接收文件，但是文件没法打开。不过在底部显示【使用其它应用打开】的按钮，点击后会弹出一堆 app 可以选择，但是我实测没用。</p><p>店家给我的是 <code>HEX</code> 结尾的文件，手机里应该没有 app 可以打开它，我想尝试用手机自带的文件管理器、ES 文件管理器，来将文件保存到其他位置，但是都不行。</p><p>选择用浏览器打开，会自动下载这个文件，哦，那这样也行，但结果却是下载失败了。。。</p><p>然后我注意到，刚点击【使用其它应用打开】的按钮时，会弹出一个文件存放在哪里的提示，我注意到是在 <code>Android/data/com.taobao.taobao</code> </p><p>那既然这样，我自己去这里找找看吧。</p><p>结果我发现，使用手机自带的文件管理器、ES 文件管理器打开 <code>Android/data/</code> 后，里面是空白的。</p><p>我网上搜一下，发现这是 Android11 之后的改变，现在不给 data 文件夹的权限了。我是真没想到，miui 居然连自带的文件管理器都访问不了这个文件夹。</p><p>知乎网友的一段话我觉得挺认同的，<a href="https://www.zhihu.com/people/dong-jie-rong-59">来源</a></p><blockquote><p>非常后悔更新了11,这可能是我见过最恶心的设计了，完全意义不明。能轻松管理所有文件一直是我觉得安卓比ios好的一点</p></blockquote><p>那么最后我是怎么解决的呢？其实在自带文件管理器里，它有提示可以【前往安卓存储访问框架查看文件】，点击后使用框架还是可以查看文件的。</p><p>淘宝的文件是在 <code>Android/data/com.taobao.taobao/files/file/filetransfer/</code> 里面，之后我把文件复制出来，然后复制到 nas 里，电脑上再访问 nas 的共享文件夹，将文件复制到电脑。</p><p>而且完成后我网上搜一下，才知道用新版的 es 文件管理器，授权之后还是可以访问 data 文件夹的，我手机之前有下载一个 【ESuper文件】的app，应该是改版的 es 吧，确实授权后就可以访问。</p><p>不过，淘宝还真是够烂的，就不能给个选项，让把文件保存到手机的其它目录吗，费了我这么多时间。问店家，他居然告诉我自己去电脑上下载个阿里旺旺……</p><p>淘宝这么搞下去，迟早得被拼多多干倒。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;淘宝的店家发了个文件给我，我需要把文件弄到电脑上使用。结果没想到过程还挺曲折的。&lt;/p&gt;
+&lt;p&gt;在手机淘宝app上可以接收文件，但是文件没法打开。不过在底部显示【使用其它应用打开】的按钮，点击后会弹出一堆 app 可以选择，但是我实测没用。&lt;/p&gt;
+&lt;p&gt;店家给我的是 &lt;c
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>edge 浏览器访问不安全内容 https 报错没有强制访问</title>
@@ -512,30 +537,6 @@
       <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
     
       <category term="openwrt" scheme="https://powersee.github.io/tags/openwrt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>github 拉取项目出错</title>
-    <link href="https://powersee.github.io/2021/06/github-clone-error/"/>
-    <id>https://powersee.github.io/2021/06/github-clone-error/</id>
-    <published>2021-06-07T08:19:09.000Z</published>
-    <updated>2022-01-12T02:42:43.023Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天拉取 GitHub 上面的项目时，发现一直出错。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/xxxx/xxxxx/&#x27;: gnutls_handshake() failed: Error in the pull function.</span><br></pre></td></tr></table></figure><p>最终发现，开代理就行，唉</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">url=http://192.168.123.69:7890</span><br><span class="line">alias pon=&#x27;export http_proxy=$url; export https_proxy=$url&#x27;</span><br><span class="line">pon</span><br></pre></td></tr></table></figure><p>我电脑的 ip 是 192.168.123.69 ，使用的代理软件是 clash ，把 allow lan 的开关打开后，局域网的其它设备就能使用电脑的代理。7890 是 clash 默认的端口，如果使用 ssr 默认是 1080。</p><p>另外一种方法</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:10809</span><br><span class="line">git config --global https.proxy https://127.0.0.1:10809</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天拉取 GitHub 上面的项目时，发现一直出错。&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;fatal: unable to a
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
