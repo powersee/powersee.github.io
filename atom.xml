@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-01-13T05:57:12.019Z</updated>
+  <updated>2023-02-02T11:16:46.424Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>统计 Windows 电脑应用使用时长</title>
+    <link href="https://powersee.github.io/2023/02/windows-tai/"/>
+    <id>https://powersee.github.io/2023/02/windows-tai/</id>
+    <published>2023-02-02T11:07:16.000Z</published>
+    <updated>2023-02-02T11:16:46.424Z</updated>
+    
+    <content type="html"><![CDATA[<p>前段时间发现一个可以统计电脑上，各个应用的使用时长的开源应用</p><p><a href="https://github.com/Planshit/Tai">https://github.com/Planshit/Tai</a></p><p><img src="/img/2023/2023-02-01_17-52-08.png"></p><p>我也使用了一段时间了，感觉还不错。平时占用的系统内存是 44MB 左右，在电脑的右下角状态栏会有图标，双击就可以打开软件界面。</p><p><img src="/img/2023/2023-02-02_15-14-47.png"></p><p>一月份我使用了 20 天，里面记录我电脑的使用时长是 132 个小时，其中使用最长的是原神，有 31 个小时。</p><p>切换到【按月】可以看到每天的统计时长。</p><blockquote><p><strong>需要注意的是，使用时长并不是软件的存活时间，而是软件从获得焦点时开始到失去焦点后这段时间</strong></p></blockquote><p>其中有一天，steam 被统计到使用了 13 个小时，估计是我电脑息屏的时候，steam 突然弹到前台，然后又是夜晚，所以被统计下来。虽然后来我们可以通过右键【忽略此应用】来让 tai 不再记录某些应用，但是之前记录的 steam 时长好像没法去掉。</p><p><img src="/img/2023/2023-02-02_15-20-41.png"></p><p>还有就是 steam 的游戏，有时候统计并不准确，像我这里 Beat Saber 这个游戏，我每天都是有玩的，而且都是超过半个小时的，但是在这里，统计出来的数据是这样的。</p><p><img src="/img/2023/2023-02-02_15-31-36.png"></p><p><a href="https://github.com/Planshit/Tai/issues/40">tai对steam里的游戏统计时长有问题 · Issue #40 · Planshit/Tai (github.com)</a></p><p>虽然问题已经关闭了，但是问题好像并没有解决。</p><p>不过我认为瑕不掩瑜吧，我之后还是会继续使用它的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;前段时间发现一个可以统计电脑上，各个应用的使用时长的开源应用&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Planshit/Tai&quot;&gt;https://github.com/Planshit/Tai&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>如何找到手机淘宝 APP 保存的文件？</title>
@@ -495,40 +520,6 @@
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th align=&quot;l
-      
-    
-    </summary>
-    
-    
-      <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
-    
-      <category term="openwrt" scheme="https://powersee.github.io/tags/openwrt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小米WiFi6路由器--cr660x</title>
-    <link href="https://powersee.github.io/2021/06/xiaomi-cr660x/"/>
-    <id>https://powersee.github.io/2021/06/xiaomi-cr660x/</id>
-    <published>2021-06-22T03:07:40.000Z</published>
-    <updated>2022-01-12T08:34:59.925Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>6606 — 联通</li><li>6608 — 移动</li><li>6609 — 电信</li></ul><p>配置</p><blockquote><p>soc mt7621 双核 880mhz</p><p>rom 128M</p><p>ram 256M</p><p>全千兆 1 WAN   3 LAN</p><p>支持 WiFi6、mesh</p></blockquote><p>刷机的难点在于解锁 ssh ，不同于其它的小米路由器，这台解锁需要用到一台 openwrt 路由器来辅助，比较麻烦点。</p><p>xqsystem.lua</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">module(&quot;luci.controller.admin.xqsystem&quot;, package.seeall)</span><br><span class="line"></span><br><span class="line">function index()</span><br><span class="line">    local page   = node(&quot;api&quot;)</span><br><span class="line">    page.target  = firstchild()</span><br><span class="line">    page.title   = (&quot;&quot;)</span><br><span class="line">    page.order   = 100</span><br><span class="line">    page.index = true</span><br><span class="line">    page   = node(&quot;api&quot;,&quot;xqsystem&quot;)</span><br><span class="line">    page.target  = firstchild()</span><br><span class="line">    page.title   = (&quot;&quot;)</span><br><span class="line">    page.order   = 100</span><br><span class="line">    page.index = true</span><br><span class="line">    entry(&#123;&quot;api&quot;, &quot;xqsystem&quot;, &quot;token&quot;&#125;, call(&quot;getToken&quot;), (&quot;&quot;), 103, 0x08)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">local LuciHttp = require(&quot;luci.http&quot;)</span><br><span class="line"></span><br><span class="line">function getToken()</span><br><span class="line">    local result = &#123;&#125;</span><br><span class="line">    result[&quot;code&quot;] = 0</span><br><span class="line">    result[&quot;token&quot;] = &quot;; nvram set ssh_en=1; nvram commit; sed -i &#x27;s/channel=.*/channel=\&quot;debug\&quot;/g&#x27; /etc/init.d/dropbear; /etc/init.d/dropbear start;&quot;</span><br><span class="line">    LuciHttp.write_json(result)</span><br><span class="line">end</span><br></pre></td></tr></table></figure><p>如果会用 vi 的话，自己 ssh 进去之后，创建文件，将内容粘贴进去即可。</p><p>不会的话，可以使用 winscp 连接旧路由器，将 <code>xqsystem.lua</code> 文件拖进去，放在这个目录里</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/lib/lua/luci/controller/admin/</span><br></pre></td></tr></table></figure><p>之后修改修改旧路由器的 ip 地址为 <code>169.254.31.1</code> ，并且把 dhcp 关闭</p><p>用浏览器访问：<a href="http://169.254.31.1/cgi-bin/luci/api/xqsystem/token">http://169.254.31.1/cgi-bin/luci/api/xqsystem/token</a></p><script type="text/javascript">    function mergeText()    {        document.getElementById('link1').innerText =         'http://192.168.10.1/cgi-bin/luci/;stok=' +            document.getElementById('stok').value +             '/api/misystem/extendwifi_connect?ssid='+            document.getElementById('ssid').value +            '&password='+            document.getElementById('passwd').value;         document.getElementById('link2').innerText =         'http://192.168.10.1/cgi-bin/luci/;stok=' +        document.getElementById('stok').value +         '/api/xqsystem/oneclick_get_remote_token?username=xxx&password=xxx&nonce=xxx';    }</script>你的 stok         <input type="text" id="stok" onkeyup="mergeText()" /><br/>你的 wifi 名     <input type="text" id="ssid" onkeyup="mergeText()" /><br/>你的 wifi 密码 <input type="text" id="passwd" onkeyup="mergeText()" /><br/><pre id="link1">填好自动生成链接</pre>第二个链接<pre id="link2">填好自动生成链接</pre><p>之后使用 winscp 连接小米路由器，将 <code>pb-boot.img</code> 放到 <code>tmp</code> 目录中，接着使用命令将它写入 Bootloader</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mtd write /tmp/pb-boot.img Bootloader</span><br></pre></td></tr></table></figure><p>到此路由器的原系统就没了，现在断电重启，机器会自动进入 pb-boot ，在浏览器访问 192.168.1.1，可以进入刷机界面，如果要刷 openwrt 的话，需要先刷入 factory.bin 结尾的固件。</p><p><img src="/img/2021/cr6608.jpg" alt="cr6608"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;6606 — 联通&lt;/li&gt;
-&lt;li&gt;6608 — 移动&lt;/li&gt;
-&lt;li&gt;6609 — 电信&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;配置&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;soc mt7621 双核 880mhz&lt;/p&gt;
-&lt;p&gt;rom 128M&lt;/p&gt;
-&lt;p&gt;ra
       
     
     </summary>
