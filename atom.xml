@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-02-02T11:16:46.424Z</updated>
+  <updated>2023-02-19T04:13:50.666Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个不错的 css 框架 Boltcss</title>
+    <link href="https://powersee.github.io/2023/02/boltcss/"/>
+    <id>https://powersee.github.io/2023/02/boltcss/</id>
+    <published>2023-02-19T04:00:08.000Z</published>
+    <updated>2023-02-19T04:13:50.666Z</updated>
+    
+    <content type="html"><![CDATA[<p>发现一个不错的 css 框架 boltcss <a href="https://boltcss.com/">Bolt.css (boltcss.com)</a></p><p>是从阮一峰老师的博客推荐发现的，看了官方的 demo，感觉挺不错，里面很多样式自己挺喜欢的。</p><p>于是我下载来研究看看，之后看看能否引入自己的博客里面。</p><p><a href="https://raw.githubusercontent.com/tbolt/boltcss/main/bolt.css">https://raw.githubusercontent.com/tbolt/boltcss/main/bolt.css</a></p><p>喜欢的点：</p><ul><li>支持日夜模式（会根据系统自动切换）</li><li>details – summary 标签不错，在博客中可以用来收起一些内容</li></ul><p>例如这样</p><details>呵呵哒🙂  <summary>点击展开  </summary></details><p>直接在 markdown 里面写标签即可。</p><p>如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;呵呵哒🙂</span><br><span class="line">  &lt;summary&gt;点击展开</span><br><span class="line">  &lt;/summary&gt;</span><br><span class="line">&lt;/details&gt;</span><br></pre></td></tr></table></figure><p>由于直接把这个 css 引入博客，会和原来样式冲突，所以我目前只能，复制里面的代码到我博客自身的 css 里面。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* Interactive elements */</span><br><span class="line">details &#123;</span><br><span class="line">  border: 1px solid #aaa;</span><br><span class="line">  border-radius: 7px;</span><br><span class="line">  padding: 0.5em 0.5em 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">summary &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  margin: -0.5em -0.5em 0;</span><br><span class="line">  padding: 0.5em;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">details[open] &#123;</span><br><span class="line">  padding: 0.5em;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">details[open] summary &#123;</span><br><span class="line">  border-bottom: 1px solid #aaa;</span><br><span class="line">  margin-bottom: 0.5em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;发现一个不错的 css 框架 boltcss &lt;a href=&quot;https://boltcss.com/&quot;&gt;Bolt.css (boltcss.com)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;是从阮一峰老师的博客推荐发现的，看了官方的 demo，感觉挺不错，里面很多样式自己挺喜欢的。&lt;/p
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>统计 Windows 电脑应用使用时长</title>
@@ -498,36 +522,6 @@
     
     
       <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>路由器和软路由速度记录</title>
-    <link href="https://powersee.github.io/2021/07/router-speed/"/>
-    <id>https://powersee.github.io/2021/07/router-speed/</id>
-    <published>2021-07-05T01:25:59.000Z</published>
-    <updated>2022-01-12T02:42:43.025Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文记录测试过的路由器和软路由设备，它们的出国速度表现。</p><p>由于家里的移动宽带，目前最高只能跑到 440-450 mbps 左右，所以有些性能较强的设备，目前没有条件测出它的极限，见谅。</p><table><thead><tr><th align="left">设备型号</th><th>出国速度（Mbps）</th></tr></thead><tbody><tr><td align="left">章鱼星球 S912</td><td>440（已达到宽带极限，未知上限）</td></tr><tr><td align="left">小米 CR6608 （mt7621）</td><td>80</td></tr><tr><td align="left">JCG Q20</td><td>80</td></tr><tr><td align="left">我家云 rk3328</td><td>300</td></tr><tr><td align="left">D2550</td><td>210（ssr 可以到 390）</td></tr><tr><td align="left">k2p</td><td>80</td></tr><tr><td align="left">树莓派4B</td><td>415</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;本文记录测试过的路由器和软路由设备，它们的出国速度表现。&lt;/p&gt;
-&lt;p&gt;由于家里的移动宽带，目前最高只能跑到 440-450 mbps 左右，所以有些性能较强的设备，目前没有条件测出它的极限，见谅。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&quot;l
-      
-    
-    </summary>
-    
-    
-      <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
-    
-      <category term="openwrt" scheme="https://powersee.github.io/tags/openwrt/"/>
     
   </entry>
   
