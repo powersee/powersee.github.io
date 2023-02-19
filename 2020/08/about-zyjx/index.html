@@ -1,182 +1,62 @@
 <!DOCTYPE html>
-<html>
-  
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="author" content="Powersee" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
   
   
-  <title>对于掌阅精选的一些研究 | Powersee的博客</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
   
-    <meta name="keywords" content="随笔,阅读," />
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/favicon.ico" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>对于掌阅精选的一些研究</title>
   
-
-  
-  <meta name="description" content="Powersee blog">
-
-  
-    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
-  
-
-  
-
-  
-
-  
-
-  
-
-  <script>
-  // theme-ad's config script
-  // it can be used in every script
-  
-  window.AD_CONFIG = {
-    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":false},
-    welcome: {"enable":false,"interval":30},
-    start_time: "2018-05-20",
-    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: true,
-    lock: false,
-    author: "Powersee",
-    share: {"wechat":false},
-    mathjax: false,
-    page_type: "",
-    root: "/"
-  };
-</script>
-
-  
-<script src="/vendor/sha256.min.js"></script>
-<script src="/js/auth.js"></script>
-<script src="/js/index.js"></script>
-<script src="/vendor/qrcode.min.js"></script>
-
-
-  
-    <link rel="icon" href="/images/favicon.ico">
-    <link rel="apple-touch-icon" href="/images/touch-icon.png">
-  
-
-  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-
-  
-<link rel="stylesheet" href="/css/index.css">
-<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
-
-
   
 <meta name="generator" content="Hexo 6.0.0"></head>
-  <body>
-    <header class="site-header">
-  <div class="site-header-brand">
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
     
-      <span class="site-header-brand-title">
-        <a href="/">Powersee</a>
-      </span>
-    
-    
-  </div>
-  <div class="site-header-right">
-    <nav class="site-header-navigation">
-      
-        <a href="/" target="_self">首页</a>
-      
-        <a href="/archives/" target="_self">归档</a>
-      
-        <a href="/tags/" target="_self">标签</a>
-      
-        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
-      
-        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
-      
-        <a href="/atom.xml" target="_self">RSS</a>
-      
-    </nav>
-    <div class="site-header-btn">
-      
-        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
-          <i class="fa fa-youtube-play"></i>
-        </a>
-      
-      <a href="javascript:void(0);" id="site-search">
-        <i class="fa fa-search"></i>
-      </a>
-      <a href="javascript:void(0);" id="site-nav-btn">
-        <i class="fa fa-ellipsis-v"></i>
-      </a>
-    </div>
-  </div>
-</header>
-<nav class="table-content" id="site-nav">
-  <div class="table-content-title">
-    <span>导航</span>
-  </div>
-  <div class="table-content-main">
-    <ol class="toc">
-      
-        <li class="toc-item">
-          <a href="/" target="_self">
-            首页
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/archives/" target="_self">
-            归档
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/tags/" target="_self">
-            标签
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="http://veger.ys168.com/" target="_blank">
-            网盘
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="https://pan.powersee.top/" target="_blank">
-            下载站
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/atom.xml" target="_self">
-            RSS
-          </a>
-        </li>
-      
-    </ol>
-  </div>
-</nav>
-<div id="site-process"></div>
-    <main>
-      
-  <div class="passage">
-  <div class="passage-meta">
-    <span>
-      <i class="fa fa-calendar"></i>2020-08-05
-    </span>
-    
-    
-      <span>
-        | <i class="fa fa-unlock-alt"></i>UNLOCK
-      </span>
-    
-  </div>
-  <h1 class="passage-title">
+  
+  <h1 class="title">
     对于掌阅精选的一些研究
   </h1>
   
-  <article class="passage-article">
-    <p>由于我购买了两台掌阅F1手机，来参加阅读 180 天，购买金额全返回的活动。所以最近也就接触了 掌阅精选 这款app，使用了也有一段时间了，也算有了一些了解。</p>
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2020-08-05T14:33:23.000Z" itemprop="datePublished">2020-08-05</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2022-01-12T02:42:43.021Z" itemprop="dateUpdated">2022-01-12</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>由于我购买了两台掌阅F1手机，来参加阅读 180 天，购买金额全返回的活动。所以最近也就接触了 掌阅精选 这款app，使用了也有一段时间了，也算有了一些了解。</p>
 <p>首先，它的账号和掌阅的账号是不通用的，不过如果你之前的手机号注册过掌阅，现在注册掌阅精选，系统监测到你是掌阅老用户，会赠送一些虚拟币给你购买书籍。像我的话是赠送了 50 个，相当于人民币 50 块。加上新用户福利，有 10 个币，一共就 60 个了。我用它买了好几本书。</p>
 <p>新用户刚注册的前七天，每天登录可以领取虚拟币，七天一共能领 10 个。而且新人还有购书优惠，第一本书不用钱，所以很多人都去挑选那些很贵的书，卖三四百的那种。像我就有买《世界名著合集》、《银河帝国》。然后第二本书还是有优惠，只需要一分钱，所以感觉掌阅精选为了拉取新用户，下的力度还是挺大的。</p>
 <p>我之前以为掌阅精选也可以每天签到，靠签到得到的赠送币来购买书，这样不就可以一直不花钱来看书了吗？不过。。。只有新人的前七天才有，七天后就只剩下一种方式来获取赠送币了– <strong>阅读时长</strong>。每个星期，星期一开始、星期日结束，只要你阅读30分钟，就可以兑换一个赠送币，<strong>每周最多10个</strong>，也就是阅读5个小时。</p>
@@ -194,129 +74,83 @@
 <hr>
 <p>不过这些我都没有多大的兴趣的去注册，我购买了两台掌阅 F1 ，每台需要打卡 180 天，每天半个小时，我接下来将会花费很多时间，在掌阅精选这个 app 上面。所以利用好时长兑换赠书币这个活动，一般也就够用了。</p>
 
-  </article>
-  <aside class="table-content" id="site-toc">
-  <div class="table-content-title">
-    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
-    <span>目录</span>
-  </div>
-  <div class="table-content-main">
-    
-  </div>
-</aside>
-  
-    <aside class="passage-copyright">
-      <div>本文作者: powersee</div>
-      
-        <div>
-          原文链接: 
-          <a href="" target="_blank">https://powersee.github.io/2020/08/about-zyjx/</a>
+      </div>
+        <div class="support-author">
+          <p>原文链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
         </div>
-      
-      <div>
-        
-      </div>
-    </aside>
-  
-  
-    <div class="passage-tags">
-     
-      <a href="/tags/%E9%9A%8F%E7%AC%94/"><i class="fa fa-tags"></i>随笔</a>
-     
-      <a href="/tags/%E9%98%85%E8%AF%BB/"><i class="fa fa-tags"></i>阅读</a>
-    
-    </div>
-  
-</div>
-
-    </main>
-    
-    <div class="site-footer-wrapper">
-  <footer class="site-footer">
-    
-    <div class="site-footer-info">
-      <!-- <i class="fa fa-ad"></i> -->
-      <i class="fa fa-user-circle"></i> 欢迎大家给我的视频点赞，以及关注我。
-    </div>
-    <div class="site-footer-info">
-      <!-- <i class="fa fa-ad"></i> -->
-      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
-    </div>
-    <div class="site-footer-info">
-      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
-    </div>
-    
-    
-      <div class="site-footer-info">
-        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
-        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
-      </div>
-    
-    <div class="site-footer-info">
-      <i class="fa fa-copyright"></i> 
-      2018-2023 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
-      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
-      All rights reserved.
-    </div>
-  </footer>
-</div>
-    <div id="site-layer" style="display:none;">
-  <div class="site-layer-content">
-    <div class="site-layer-header">
-      <span class="site-layer-header-title" id="site-layer-title"></span>
-      <i class="fa fa-close" id="site-layer-close"></i>
-    </div>
-    <div class="site-layer-body" id="site-layer-container">
-      <div class="site-layer-input" id="site-layer-search" style="display: none;">
-        <div class="site-layer-input-choose">
-          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
         </div>
-        <input type="text">
-        <i class="fa fa-search"></i>
+        <div class="comments" id="comments">
+          
+
+        </div>
       </div>
-      
-      <div id="site-layer-welcome" style="display:none;"></div>
     </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
   </div>
 </div>
-    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<div class="bottom-bar">
-  <div class="bottom-bar-left">
-    <a href="/2020/09/qiandao-docker/" data-enable="true">
-      <i class="fa fa-arrow-left"></i>
-    </a>
-    <a href="/2020/07/about-s905/" data-enable="true">
-      <i class="fa fa-arrow-right"></i>
-    </a>
-  </div>
-  <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
-      <i class="fa fa-bars"></i>
-    </a>
-    
-    <a href="javascript:void(0);" id="site-toggle-share-btn">
-      <i class="fa fa-share-alt"></i>
-    </a>
-    
-    <a href="javascript:void(0);" id="back-top-btn">
-      <i class="fa fa-chevron-up"></i>
-    </a>
-  </div>
-</div>
-    <div id="share-btn">
-  
-  
-  
-  
-  
-</div>
-    
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
 
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
 
-
-
-
-    
-  </body>
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
 </html>

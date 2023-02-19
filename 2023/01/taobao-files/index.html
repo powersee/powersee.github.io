@@ -1,182 +1,62 @@
 <!DOCTYPE html>
-<html>
-  
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="author" content="Powersee" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
   
   
-  <title>如何找到手机淘宝 APP 保存的文件？ | Powersee的博客</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
   
-    <meta name="keywords" content="随笔," />
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/favicon.ico" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>如何找到手机淘宝 APP 保存的文件？</title>
   
-
-  
-  <meta name="description" content="Powersee blog">
-
-  
-    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
-  
-
-  
-
-  
-
-  
-
-  
-
-  <script>
-  // theme-ad's config script
-  // it can be used in every script
-  
-  window.AD_CONFIG = {
-    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":false},
-    welcome: {"enable":false,"interval":30},
-    start_time: "2018-05-20",
-    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: true,
-    lock: false,
-    author: "Powersee",
-    share: {"wechat":false},
-    mathjax: false,
-    page_type: "",
-    root: "/"
-  };
-</script>
-
-  
-<script src="/vendor/sha256.min.js"></script>
-<script src="/js/auth.js"></script>
-<script src="/js/index.js"></script>
-<script src="/vendor/qrcode.min.js"></script>
-
-
-  
-    <link rel="icon" href="/images/favicon.ico">
-    <link rel="apple-touch-icon" href="/images/touch-icon.png">
-  
-
-  <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-
-  
-<link rel="stylesheet" href="/css/index.css">
-<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
-
-
   
 <meta name="generator" content="Hexo 6.0.0"></head>
-  <body>
-    <header class="site-header">
-  <div class="site-header-brand">
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
     
-      <span class="site-header-brand-title">
-        <a href="/">Powersee</a>
-      </span>
-    
-    
-  </div>
-  <div class="site-header-right">
-    <nav class="site-header-navigation">
-      
-        <a href="/" target="_self">首页</a>
-      
-        <a href="/archives/" target="_self">归档</a>
-      
-        <a href="/tags/" target="_self">标签</a>
-      
-        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
-      
-        <a href="https://pan.powersee.top/" target="_blank">下载站</a>
-      
-        <a href="/atom.xml" target="_self">RSS</a>
-      
-    </nav>
-    <div class="site-header-btn">
-      
-        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
-          <i class="fa fa-youtube-play"></i>
-        </a>
-      
-      <a href="javascript:void(0);" id="site-search">
-        <i class="fa fa-search"></i>
-      </a>
-      <a href="javascript:void(0);" id="site-nav-btn">
-        <i class="fa fa-ellipsis-v"></i>
-      </a>
-    </div>
-  </div>
-</header>
-<nav class="table-content" id="site-nav">
-  <div class="table-content-title">
-    <span>导航</span>
-  </div>
-  <div class="table-content-main">
-    <ol class="toc">
-      
-        <li class="toc-item">
-          <a href="/" target="_self">
-            首页
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/archives/" target="_self">
-            归档
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/tags/" target="_self">
-            标签
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="http://veger.ys168.com/" target="_blank">
-            网盘
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="https://pan.powersee.top/" target="_blank">
-            下载站
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/atom.xml" target="_self">
-            RSS
-          </a>
-        </li>
-      
-    </ol>
-  </div>
-</nav>
-<div id="site-process"></div>
-    <main>
-      
-  <div class="passage">
-  <div class="passage-meta">
-    <span>
-      <i class="fa fa-calendar"></i>2023-01-13
-    </span>
-    
-    
-      <span>
-        | <i class="fa fa-unlock-alt"></i>UNLOCK
-      </span>
-    
-  </div>
-  <h1 class="passage-title">
+  
+  <h1 class="title">
     如何找到手机淘宝 APP 保存的文件？
   </h1>
   
-  <article class="passage-article">
-    <p>淘宝的店家发了个文件给我，我需要把文件弄到电脑上使用。结果没想到过程还挺曲折的。</p>
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-01-13T05:54:42.000Z" itemprop="datePublished">2023-01-13</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-01-13T05:57:12.019Z" itemprop="dateUpdated">2023-01-13</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>淘宝的店家发了个文件给我，我需要把文件弄到电脑上使用。结果没想到过程还挺曲折的。</p>
 <p>在手机淘宝app上可以接收文件，但是文件没法打开。不过在底部显示【使用其它应用打开】的按钮，点击后会弹出一堆 app 可以选择，但是我实测没用。</p>
 <p>店家给我的是 <code>HEX</code> 结尾的文件，手机里应该没有 app 可以打开它，我想尝试用手机自带的文件管理器、ES 文件管理器，来将文件保存到其他位置，但是都不行。</p>
 <p>选择用浏览器打开，会自动下载这个文件，哦，那这样也行，但结果却是下载失败了。。。</p>
@@ -194,127 +74,83 @@
 <p>不过，淘宝还真是够烂的，就不能给个选项，让把文件保存到手机的其它目录吗，费了我这么多时间。问店家，他居然告诉我自己去电脑上下载个阿里旺旺……</p>
 <p>淘宝这么搞下去，迟早得被拼多多干倒。</p>
 
-  </article>
-  <aside class="table-content" id="site-toc">
-  <div class="table-content-title">
-    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
-    <span>目录</span>
-  </div>
-  <div class="table-content-main">
-    
-  </div>
-</aside>
-  
-    <aside class="passage-copyright">
-      <div>本文作者: powersee</div>
-      
-        <div>
-          原文链接: 
-          <a href="" target="_blank">https://powersee.github.io/2023/01/taobao-files/</a>
+      </div>
+        <div class="support-author">
+          <p>原文链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
         </div>
-      
-      <div>
-        
-      </div>
-    </aside>
-  
-  
-    <div class="passage-tags">
-     
-      <a href="/tags/%E9%9A%8F%E7%AC%94/"><i class="fa fa-tags"></i>随笔</a>
-    
-    </div>
-  
-</div>
-
-    </main>
-    
-    <div class="site-footer-wrapper">
-  <footer class="site-footer">
-    
-    <div class="site-footer-info">
-      <!-- <i class="fa fa-ad"></i> -->
-      <i class="fa fa-user-circle"></i> 欢迎大家给我的视频点赞，以及关注我。
-    </div>
-    <div class="site-footer-info">
-      <!-- <i class="fa fa-ad"></i> -->
-      <i class="fa fa-user-circle"></i> 博客镜像：<a href="https://blog.powersee.top" target="_blank">https://blog.powersee.top</a>
-    </div>
-    <div class="site-footer-info">
-      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
-    </div>
-    
-    
-      <div class="site-footer-info">
-        <!-- <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a> -->
-        <i class="fa fa-at"></i>联系邮箱 ：powersee@powersee.top
-      </div>
-    
-    <div class="site-footer-info">
-      <i class="fa fa-copyright"></i> 
-      2018-2023 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
-      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
-      All rights reserved.
-    </div>
-  </footer>
-</div>
-    <div id="site-layer" style="display:none;">
-  <div class="site-layer-content">
-    <div class="site-layer-header">
-      <span class="site-layer-header-title" id="site-layer-title"></span>
-      <i class="fa fa-close" id="site-layer-close"></i>
-    </div>
-    <div class="site-layer-body" id="site-layer-container">
-      <div class="site-layer-input" id="site-layer-search" style="display: none;">
-        <div class="site-layer-input-choose">
-          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
         </div>
-        <input type="text">
-        <i class="fa fa-search"></i>
+        <div class="comments" id="comments">
+          
+
+        </div>
       </div>
-      
-      <div id="site-layer-welcome" style="display:none;"></div>
     </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
   </div>
 </div>
-    
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<div class="bottom-bar">
-  <div class="bottom-bar-left">
-    <a href="/2023/02/windows-tai/" data-enable="true">
-      <i class="fa fa-arrow-left"></i>
-    </a>
-    <a href="/2022/11/edge-unsafe/" data-enable="true">
-      <i class="fa fa-arrow-right"></i>
-    </a>
-  </div>
-  <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
-      <i class="fa fa-bars"></i>
-    </a>
-    
-    <a href="javascript:void(0);" id="site-toggle-share-btn">
-      <i class="fa fa-share-alt"></i>
-    </a>
-    
-    <a href="javascript:void(0);" id="back-top-btn">
-      <i class="fa fa-chevron-up"></i>
-    </a>
-  </div>
-</div>
-    <div id="share-btn">
-  
-  
-  
-  
-  
-</div>
-    
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
 
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
 
-
-
-
-    
-  </body>
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
 </html>

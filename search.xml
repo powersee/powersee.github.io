@@ -3632,7 +3632,7 @@
   <entry>
     <title>一个不错的 css 框架 Boltcss</title>
     <url>/2023/02/boltcss/</url>
-    <content><![CDATA[<p>发现一个不错的 css 框架 boltcss <a href="https://boltcss.com/">Bolt.css (boltcss.com)</a></p>
+    <content><![CDATA[<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><h2 id="标题-1"><a href="#标题-1" class="headerlink" title="标题"></a>标题</h2><h3 id="标题-2"><a href="#标题-2" class="headerlink" title="标题"></a>标题</h3><h4 id="标题-3"><a href="#标题-3" class="headerlink" title="标题"></a>标题</h4><p>发现一个不错的 css 框架 boltcss <a href="https://boltcss.com/">Bolt.css (boltcss.com)</a></p>
 <p>是从阮一峰老师的博客推荐发现的，看了官方的 demo，感觉挺不错，里面很多样式自己挺喜欢的。</p>
 <p>于是我下载来研究看看，之后看看能否引入自己的博客里面。</p>
 <p><a href="https://raw.githubusercontent.com/tbolt/boltcss/main/bolt.css">https://raw.githubusercontent.com/tbolt/boltcss/main/bolt.css</a></p>
