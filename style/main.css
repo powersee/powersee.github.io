@@ -419,8 +419,8 @@ svg.icon {
     .article blockquote p:last-child {
       margin-bottom: 0; }
   .article code {
-    padding: 2px 4px;
-    font-size: 13px;
+    padding: 3px 5px;
+    /* font-size: 13px; */
     color: #c7254e;
     background-color: #f9f2f4;
     border-radius: 4px; }
