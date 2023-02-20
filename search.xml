@@ -3657,4 +3657,60 @@
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Docker 搭建留言板 sayhello 进阶使用教程</title>
+    <url>/2023/02/about-sayhello/</url>
+    <content><![CDATA[<p>项目源码：<a href="https://github.com/powersee/sayhello">https://github.com/powersee/sayhello</a></p>
+<p>用 docker 的话，一条命令即可运行起来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5000:5000 --name sayhello powersee/sayhello</span><br></pre></td></tr></table></figure>
+
+<p>第一个 5000 可以换为其它的端口，例如 6000，7000 等等，之后在浏览器通过 <code>IP:端口</code> 的形式来访问即可。</p>
+<p><img src="/img/2023/sayhello10086.jpg"></p>
+<h3 id="删除内容"><a href="#删除内容" class="headerlink" title="删除内容"></a>删除内容</h3><p>先来说说，怎么删除内容。需要做的是，进入 docker 容器里的，使用命令行对 sqlite 数据库的内容进行删除。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker ps                                                    </span><br><span class="line">CONTAINER ID   IMAGE               COMMAND                  CREATED        STATUS        PORTS                                         NAMES</span><br><span class="line">1888c7d98fe8   powersee/sayhello   &quot;python3 -m flask ru…&quot;   2 months ago   Up 2 months   0.0.0.0:10086-&gt;5000/tcp, :::10086-&gt;5000/tcp   sayhello</span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>docker ps</code> 命令，可以查询到目前正在运行的容器有哪些。</p>
+<p>进入容器内的交互终端</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it sayhello /bin/sh</span><br></pre></td></tr></table></figure>
+
+<p>由于这个程序使用的是 sqlite 的数据库，所以需要先安装 sqlite，才能够对 <code>data.db</code> 进行修改。</p>
+<p><strong>安装</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add sqlite</span><br></pre></td></tr></table></figure>
+
+<p><strong>查询</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sqlite3 data.db</span><br><span class="line"></span><br><span class="line">select * from message;</span><br></pre></td></tr></table></figure>
+
+<p>此时就会将所有的留言都显示出来，这里我随便找几条</p>
+<blockquote>
+<p>452|p|1|2023-02-14 14:55:37.930067<br>453|p|1|2023-02-14 14:55:38.022029<br>454|p|b 站旅游团路过|2023-02-14 15:18:19.983384</p>
+</blockquote>
+<p>可以看到，它的格式是这样的</p>
+<blockquote>
+<p>id | username | content | time</p>
+</blockquote>
+<p>所以我们要删除的话，可以使用它的 id，例如这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">delete from message where id=452;</span><br></pre></td></tr></table></figure>
+
+<p>删除多条，可以使用 in，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">delete from message where id in(23,26,29);</span><br></pre></td></tr></table></figure>
+
+<p>如果要删除大范围的，例如 id 从 200 到 450 都要删除掉</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">delete FROM message where id &gt; 199 and id &lt; 451;</span><br><span class="line">#或者</span><br><span class="line">delete FROM message where id &gt;= 200 and id &lt;= 450;</span><br></pre></td></tr></table></figure>
+
+<p>如果要清空所有内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE FROM message;</span><br></pre></td></tr></table></figure>
+
+<h3 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h3><p>如果你现在是在容器里，也就是终端里左边是显示 <code>/sayhello #</code> ，想要退出可以按 <code>ctrl + D</code> （是两个按键同时按）</p>
+<p>由于数据都是存放在 <code>data.db</code> 这个数据库里的，所以我们只要备份它就可以了。此时我们可以使用 <code>docker cp</code> 命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp sayhello:/sayhello/data.db .</span><br></pre></td></tr></table></figure>
+
+<p>此处的点 <code>.</code> 代表当前目录，也就是把数据库复制出来，放到当前目录，你也可以改为其它的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp sayhello:/sayhello/data.db /home/powersee</span><br></pre></td></tr></table></figure>
+
+<p>这样就会把 <code>data.db</code> 放到 <code>/home/powersee</code> 这个目录下。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>
