@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-	<title>用Python创建HTTP服务</title>
+	<title>Google Play Store 自动更新如何关闭？</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -32,7 +32,7 @@
     
   
   <h1 class="title">
-    用Python创建HTTP服务
+    Google Play Store 自动更新如何关闭？
   </h1>
   
 
@@ -40,11 +40,11 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2018-05-27T08:50:38.000Z" itemprop="datePublished">2018-05-27</time>
+        <time datetime="2023-03-03T03:38:00.000Z" itemprop="datePublished">2023-03-03</time>
       </li>
       <li>
         
-    更新 <time datetime="2023-03-03T03:29:29.234Z" itemprop="dateUpdated">2023-03-03</time>
+    更新 <time datetime="2023-03-03T10:21:48.236Z" itemprop="dateUpdated">2023-03-03</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -56,20 +56,12 @@
     <div class="article">
       <div class="content">
         
-        <p>一般的Linux都带有python</p>
-<p>有时我们想要把文件，通过网页的方式来共享，但是又不想去搭建像 Nginx 或者 caddy 这样的 web 服务器，此时用 Python 一行命令即可解决。</p>
-<p>通过命令进入所要共享的文件夹</p>
-<p>输入这个命令</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m SimpleHTTPServer <span class="number">80</span></span><br></pre></td></tr></table></figure>
-<p>后面的80为端口，这种适合没有搭建其它web服务的</p>
-<p>如果是 Python3 的话，是用这个</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m http.server</span><br></pre></td></tr></table></figure>
-
-<p>这时我后面并没有加端口，默认会使用 8000 端口</p>
-<p>若已经有搭建类似 nginx 的服务 可以通过修改端口数字，例如改为88，或者不输入端口，则会默认采用8000端口</p>
-<p>此时输入 <span style="color: #000000;"><strong>IP:8000</strong></span> 或者 <strong>域名:8000</strong></p>
-<p>即可访问当前目录下的文件，如果有 <code>index.html</code> 则会默认加载。</p>
-<p>然后想要停止时，按<code>CTRL + C</code> 取消。</p>
+        <p>我的手机里有两个 App Store，一个是 MIUI 自带的应用商店。另外一个是 Google 的 Play Store。</p>
+<p>两者的设置中，我都把应用自动更新给关了，我并不喜欢更新 APP，特别是之前被一款国产记账软件「松鼠记账」给恶心到之后，<a href="/2022/01/songshujizhang/">之前的文章</a></p>
+<p>但是当我现在的 Play Store，在我打开代理之后，老是自动给我更新 APP。我想按照以前的方法，关闭掉自动更新，但是没找到。我用中文到网上搜也没找到方法，最后还是用英文搜索，才找到的。位置在「设置」「网络偏好」「自动更新应用」里。</p>
+<p><img src="/img/2023/auto-update-apps.jpg" alt="auto-update-apps"></p>
+<p>其实也很容易发现，不过之前怎么老是忽略它了呢？</p>
+<p>还有我发现，我的手机系统用的是中文，但是 Play Store 里显示的都是英文的，设置里好像也没地方改，不过这个不重要了，懒得去搜了。</p>
 
       </div>
         <div class="support-author">

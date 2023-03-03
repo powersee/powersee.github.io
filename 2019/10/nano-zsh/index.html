@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-01-18T15:35:44.871Z" itemprop="dateUpdated">2022-01-18</time>
+    更新 <time datetime="2023-03-03T03:32:09.924Z" itemprop="dateUpdated">2023-03-03</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -57,13 +57,15 @@
       <div class="content">
         
         <p>刚才给小钢炮安装了 zsh ，这个过程还是有点复杂的，不过好在都能找到教程。</p>
-<h2 id="1、先去看灯大的这个文章"><a href="#1、先去看灯大的这个文章" class="headerlink" title="1、先去看灯大的这个文章"></a>1、先去看灯大的这个文章</h2><p><a target="_blank" rel="noopener" href="https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793">gitee wiki 上的教程</a></p>
+<h2 id="1、先去看灯大的文章"><a href="#1、先去看灯大的文章" class="headerlink" title="1、先去看灯大的文章"></a>1、先去看灯大的文章</h2><p><a target="_blank" rel="noopener" href="https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793">gitee wiki 上的教程</a></p>
+<blockquote>
 <ol>
 <li>编辑 /etc/opkg/entware.conf<br>取消行首的 # 符号</li>
 <li>opkg2 update</li>
 <li>查找包 opkg2 find xxxx</li>
 <li>opkg2 install xxxxx</li>
 </ol>
+</blockquote>
 <h2 id="2、安装-zsh-与配置集"><a href="#2、安装-zsh-与配置集" class="headerlink" title="2、安装 zsh 与配置集"></a>2、安装 zsh 与配置集</h2><p>于是我就安装了 zsh 以及 oh my zsh 为的就是用这个自动补全插件 zsh-autosuggestions</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">opkg2 install zsh</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>

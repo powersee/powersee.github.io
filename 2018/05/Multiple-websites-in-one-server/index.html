@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-01-18T02:02:13.333Z" itemprop="dateUpdated">2022-01-18</time>
+    更新 <time datetime="2023-03-03T03:22:51.367Z" itemprop="dateUpdated">2023-03-03</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -62,52 +62,14 @@
 <p>创建一个”vhost”目录</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir /usr/local/nginx/conf/vhost</span><br></pre></td></tr></table></figure>
 <hr>
-<p><span style="color: #ff0000;">创建siteA的配置文件</span></p>
+<p>创建siteA的配置文件</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vi /usr/local/nginx/conf/vhost/vhost_siteA.conf</span><br></pre></td></tr></table></figure>
-<pre class="lang:default decode:true">    server {
-    listen       80;                        # 监听端口
-    server_name www.siteA.com siteA.com;    # 站点域名
-    root  /home/wwwroot/default;              # 站点根目录
-    index index.html index.htm index.php;   # 默认导航页
-
-    location / {
-        # WordPress固定链接URL重写
-        if (!-e $request_filename) {
-            rewrite (.*) /index.php;
-        }
-    }
-
-    # PHP配置
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
-        fastcgi_index index.php;
-        include fastcgi_params;
-    }
-}</pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;                        # 监听端口</span><br><span class="line">    server_name www.siteA.com siteA.com;    # 站点域名</span><br><span class="line">    root  /home/wwwroot/default;              # 站点根目录</span><br><span class="line">    index index.html index.htm index.php;   # 默认导航页</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        # WordPress固定链接URL重写</span><br><span class="line">        if (!-e $request_filename) &#123;</span><br><span class="line">            rewrite (.*) /index.php;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # PHP配置</span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p><span style="color: #ff0000;">创建siteB的配置文件</span></p>
+<p>创建siteB的配置文件</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/nginx/vhost/vhost_siteB.conf</span><br></pre></td></tr></table></figure>
-<pre class="lang:default decode:true ">    server {
-    listen       80;                        # 监听端口
-    server_name www.siteA.com siteA.com;    # 站点域名
-    root  /home/wwwroot/old;              # 站点根目录
-    index index.html index.htm index.php;   # 默认导航页
-
-    location / {
-        # WordPress固定链接URL重写
-        if (!-e $request_filename) {
-            rewrite (.*) /index.php;
-        }
-    }
-
-    # PHP配置
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
-        fastcgi_index index.php;
-        include fastcgi_params;
-    }
-}</pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;                        # 监听端口</span><br><span class="line">    server_name www.siteA.com siteA.com;    # 站点域名</span><br><span class="line">    root  /home/wwwroot/old;              # 站点根目录</span><br><span class="line">    index index.html index.htm index.php;   # 默认导航页</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        # WordPress固定链接URL重写</span><br><span class="line">        if (!-e $request_filename) &#123;</span><br><span class="line">            rewrite (.*) /index.php;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # PHP配置</span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>修改nginx.conf</p>
@@ -116,6 +78,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">include /usr/local/nginx/conf/vhost/*.conf;</span><br></pre></td></tr></table></figure>
 
 <p>重启 nginx 即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
 
       </div>
         <div class="support-author">

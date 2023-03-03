@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-02-22T16:36:09.739Z</updated>
+  <updated>2023-03-03T10:21:48.236Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Google Play Store 自动更新如何关闭？</title>
+    <link href="https://powersee.github.io/2023/03/google-play-store-auto-update/"/>
+    <id>https://powersee.github.io/2023/03/google-play-store-auto-update/</id>
+    <published>2023-03-03T03:38:00.000Z</published>
+    <updated>2023-03-03T10:21:48.236Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的手机里有两个 App Store，一个是 MIUI 自带的应用商店。另外一个是 Google 的 Play Store。</p><p>两者的设置中，我都把应用自动更新给关了，我并不喜欢更新 APP，特别是之前被一款国产记账软件「松鼠记账」给恶心到之后，<a href="/2022/01/songshujizhang/">之前的文章</a></p><p>但是当我现在的 Play Store，在我打开代理之后，老是自动给我更新 APP。我想按照以前的方法，关闭掉自动更新，但是没找到。我用中文到网上搜也没找到方法，最后还是用英文搜索，才找到的。位置在「设置」「网络偏好」「自动更新应用」里。</p><p><img src="/img/2023/auto-update-apps.jpg" alt="auto-update-apps"></p><p>其实也很容易发现，不过之前怎么老是忽略它了呢？</p><p>还有我发现，我的手机系统用的是中文，但是 Play Store 里显示的都是英文的，设置里好像也没地方改，不过这个不重要了，懒得去搜了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我的手机里有两个 App Store，一个是 MIUI 自带的应用商店。另外一个是 Google 的 Play Store。&lt;/p&gt;
+&lt;p&gt;两者的设置中，我都把应用自动更新给关了，我并不喜欢更新 APP，特别是之前被一款国产记账软件「松鼠记账」给恶心到之后，&lt;a href=
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>关于我收到许多诈骗邮件</title>
@@ -496,33 +520,6 @@
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="kindle" scheme="https://powersee.github.io/tags/kindle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于 radxa-zero</title>
-    <link href="https://powersee.github.io/2021/09/radxa-zero/"/>
-    <id>https://powersee.github.io/2021/09/radxa-zero/</id>
-    <published>2021-09-17T13:40:18.000Z</published>
-    <updated>2022-01-12T08:34:59.833Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近搞来了一台 radxa zero</p><p><img src="/img/2021/radxa-zero-1.jpg" alt="radxa-zero-1"></p><p>产品信息：<a href="https://forum.radxa.com/t/introduce-the-radxa-zero/6550/">https://forum.radxa.com/t/introduce-the-radxa-zero/6550/</a></p><p>从论坛可以了解到，目前可以在这台机器上运行 TwisterOS、emuelec、coreelec、Android 9、MiniMyth2、Manjaro</p><p>机器到手时，emmc 自带的是 Android 9，之后我开始尝试运行其它的系统。使用 sd 卡成功运行了 TwisterOS 和 EmuELEC，其它的没有启动成功。</p><p>看论坛有人说需要把 emmc 的内容擦除掉，这样机器启动时就会自动加载 sd 卡的系统。那么我也尝试了，没有效果。</p><p>之后又看到有人说要把 uboot 写入烧录了镜像的 sd 中，我也尝试了，还是没法启动。</p><p>那就算了，我还是刷回 Android 9 吧，不然现在 emmc 浪费着有点可惜。</p><p>但是这时我发现，这机器并不能像以往的晶晨机器那样，使用 usb burning tool 来将安卓固件烧录到 emmc 里面。</p><p>然后我又耗费了很多时间去折腾，中间也联系了 radxa 的工作人员，最终发现，只能使用 Ubuntu 物理机才行。</p><p>教程在官方的 wiki 这里：<a href="https://wiki.radxa.com/Zero/install/eMMC_aml_tool">https://wiki.radxa.com/Zero/install/eMMC_aml_tool</a></p><p>在 Ubuntu 上面没有像 Windows 一样的 gui 烧录程序，只能通过脚本来烧录。我一开始在 win10 上面通过虚拟机，执行脚本，将镜像烧录进机器，却一直报错。即使已经设置了 usb 默认连接到虚拟机里面，也不行。尝试了 virtual box 和 VMware，都没有成功。</p><p>后来 radxa 这边的大哥告诉我，他烧录成功是在物理机上面执行的。那么我就抱着最后的希望，我用 t48e 这台小主机，装了一个 ubuntu 20.04 server 版，之后在 win10 上通过 ssh 控制它。</p><p>安装 lrzsz 后将固件传入机器，下载和安装刷机工具。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># git clone flash tool</span><br><span class="line">git clone https://github.com/radxa/aml-flash-tool.git</span><br><span class="line"># install dependency</span><br><span class="line">cd aml-flash-tool</span><br><span class="line">./INSTALL</span><br></pre></td></tr></table></figure><p>传入固件后，解压（如果电脑没下载固件的话，也可以在 Ubuntu 里面下载）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#下载，看情况</span><br><span class="line">wget https://dl.radxa.com/zero/images/android/radxa_zero_android_9_20210708-amlupdate.img.gz</span><br><span class="line"># 解压</span><br><span class="line">tar -xzvf radxa_zero_android_9_20210708-amlupdate.img.gz</span><br></pre></td></tr></table></figure><p><img src="/img/2021/radxa-zero-2.jpg" alt="radxa-zero-2"></p><p>之后按住机器背后的按键，使用数据线连接运行着 Ubuntu 的电脑，通过 <code>lsusb</code> 查看是否有识别到名字带 Amlogic 的设备。</p><p>有的话可以进行下一步，执行刷机命令，由于此时固件和脚本放在同一个目录下，所以可以这样执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./aml-flash-tool.sh radxa_zero_android_9_20210708-amlupdate.img</span><br></pre></td></tr></table></figure><p>我的执行过程是这样的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ver@t48e:~/aml-flash-tool$ ./aml-flash-tool.sh radxa_zero_android_9_20210717-amlupdate.img</span><br><span class="line">Unpacking image [OK]</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">awk: cmd. line:1: warning: regexp escape sequence `\&quot;&#x27; is not a known regexp operator</span><br><span class="line">Initializing ddr ........[OK]</span><br><span class="line">Running u-boot ........[OK]</span><br><span class="line">Create partitions [OK]</span><br><span class="line">Writing device tree [OK]</span><br><span class="line">Writing bootloader [OK]</span><br><span class="line">Wiping  data partition [OK]</span><br><span class="line">Wiping  cache partition [OK]</span><br><span class="line">Writing boot partition [OK]</span><br><span class="line">Writing dtbo partition [OK]</span><br><span class="line">Writing logo partition [OK]</span><br><span class="line">Writing odm partition [OK]</span><br><span class="line">Writing product partition [OK]</span><br><span class="line">Writing recovery partition [OK]</span><br><span class="line">Writing system partition [OK]</span><br><span class="line">Writing vbmeta partition [OK]</span><br><span class="line">Writing vendor partition [OK]</span><br><span class="line">Resetting board [OK]</span><br><span class="line">ver@t48e:~/aml-flash-tool$</span><br></pre></td></tr></table></figure><p>那么就成功刷好了，之后重启机器就进入 Android 9 了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近搞来了一台 radxa zero&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2021/radxa-zero-1.jpg&quot; alt=&quot;radxa-zero-1&quot;&gt;&lt;/p&gt;
-&lt;p&gt;产品信息：&lt;a href=&quot;https://forum.radxa.com/t/introd
-      
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
