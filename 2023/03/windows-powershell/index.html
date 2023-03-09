@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>powershell 的别名与函数</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    powershell 的别名与函数
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-09T06:13:11.000Z" itemprop="datePublished">2023-03-09</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-09T06:16:20.679Z" itemprop="dateUpdated">2023-03-09</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>alias 别名，使用它我们可以提高使用命令行的效率。</p>
+<p>例如在 Linux 中，我喜欢把 <code>d</code> 设置为 <code>docker</code>的别名。只需要在终端中执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias d=&#x27;docker&#x27;</span><br><span class="line">d ps</span><br></pre></td></tr></table></figure>
+
+<p>那么此时 <code>d ps</code> 的作用就等于 <code>docker ps</code></p>
+<p>那么在 Windows 上面要怎么使用呢？我现在<code>终端</code>这个程序一打开，默认使用的是 <code>powershell</code>，所以我也主要用它了。</p>
+<h3 id="New-Alias"><a href="#New-Alias" class="headerlink" title="New-Alias"></a>New-Alias</h3><p>在这上面使用别名的命令是 <code>New-Alias</code>，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Alias d docker</span><br></pre></td></tr></table></figure>
+
+<p>详细说明可看 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_aliases?view=powershell-7.2">官方文档</a></p>
+<p>像有些程序，它的路径比较长，我们也可以通过别名的方式，来较快速地使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Alias whisper &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>但是，New-Alias 的值是不能包含空格的，还是用 docker 来举例子。</p>
+<p>如果我在 Linux，我可以这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias di=&#x27;docker images&#x27;</span><br><span class="line">di</span><br></pre></td></tr></table></figure>
+
+<p>后面的值只需要用引号包裹就行。但是在 <code>powershell</code> 里，alias 不能这样设置，此时得用函数 <code>function</code>。</p>
+<h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/09-functions?view=powershell-7.2">官方文档</a>，示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function di &#123; docker images &#125;</span><br></pre></td></tr></table></figure>
+
+<p>按我的理解，别名就是用来缩短命令的，因为 powershell 的命令都比较长，而且还用 <code>-</code> 连接，例如 <code>Get-ChildItem</code>。可读性确实比较强，但是敲起来就不是那么方便了。</p>
+<p>函数就可以把长命令封装起来，其实相比 alias 也就多了花括号。</p>
+<p>我这边想的是，缩短我使用 whisper 时需要输入的字符。所以我定义了一个函数 wme 意思是 whisper medium english。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English &#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么按理来说，我之后只要执行 <code>wme xxx.mp3</code> 就等同于</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English xxx.mp3</span><br></pre></td></tr></table></figure>
+
+<p>然而在 Windows 这边它不是这么用的，后面的 xxx.mp3 它其实是算一个参数。正确的写法应该是这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &amp; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English $args[0]&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="powershell-的配置文件"><a href="#powershell-的配置文件" class="headerlink" title="powershell 的配置文件"></a>powershell 的配置文件</h3><p>我们定义的别名和函数，应该怎么保存下来，让我们下次打开 <code>powershell</code> 时，就自动加载呢？在 Linux 上面我们是将它们写入用户目录下的 <code>.bashrc</code> 或者 <code>.zshrc</code> 来实现的。</p>
+<p>那么 powershell 里面，有没有类似 <code>.bashrc</code> 的文件呢？也是有的，但是默认情况下没有这个文件。可以先执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Test-Path $profile</span><br></pre></td></tr></table></figure>
+
+<p>判断一下有没有这个文件，有的话会输出 True。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$profile  # 查看它的路径</span><br><span class="line">notepad $profile  # 用记事本打开这个文件</span><br></pre></td></tr></table></figure>
+
+<p>如果没有这个配置文件，可以使用命令来创建它</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Item -path $profile -type file –force</span><br></pre></td></tr></table></figure>
+
+<p>它一般的路径在用户目录下的 <code>Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</code></p>
+<p>之后我们只需将别名和函数粘贴到里面，下次启动 <code>powershell</code> 就会自动加载的。</p>
+
+      </div>
+        <div class="support-author">
+          <p>原文链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

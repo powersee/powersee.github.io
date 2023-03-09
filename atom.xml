@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-04T08:15:14.593Z</updated>
+  <updated>2023-03-09T06:16:20.679Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>powershell 的别名与函数</title>
+    <link href="https://powersee.github.io/2023/03/windows-powershell/"/>
+    <id>https://powersee.github.io/2023/03/windows-powershell/</id>
+    <published>2023-03-09T06:13:11.000Z</published>
+    <updated>2023-03-09T06:16:20.679Z</updated>
+    
+    <content type="html"><![CDATA[<p>alias 别名，使用它我们可以提高使用命令行的效率。</p><p>例如在 Linux 中，我喜欢把 <code>d</code> 设置为 <code>docker</code>的别名。只需要在终端中执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias d=&#x27;docker&#x27;</span><br><span class="line">d ps</span><br></pre></td></tr></table></figure><p>那么此时 <code>d ps</code> 的作用就等于 <code>docker ps</code></p><p>那么在 Windows 上面要怎么使用呢？我现在<code>终端</code>这个程序一打开，默认使用的是 <code>powershell</code>，所以我也主要用它了。</p><h3 id="New-Alias"><a href="#New-Alias" class="headerlink" title="New-Alias"></a>New-Alias</h3><p>在这上面使用别名的命令是 <code>New-Alias</code>，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Alias d docker</span><br></pre></td></tr></table></figure><p>详细说明可看 <a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_aliases?view=powershell-7.2">官方文档</a></p><p>像有些程序，它的路径比较长，我们也可以通过别名的方式，来较快速地使用</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Alias whisper &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot;</span><br></pre></td></tr></table></figure><p>但是，New-Alias 的值是不能包含空格的，还是用 docker 来举例子。</p><p>如果我在 Linux，我可以这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias di=&#x27;docker images&#x27;</span><br><span class="line">di</span><br></pre></td></tr></table></figure><p>后面的值只需要用引号包裹就行。但是在 <code>powershell</code> 里，alias 不能这样设置，此时得用函数 <code>function</code>。</p><h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><p><a href="https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/09-functions?view=powershell-7.2">官方文档</a>，示例如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function di &#123; docker images &#125;</span><br></pre></td></tr></table></figure><p>按我的理解，别名就是用来缩短命令的，因为 powershell 的命令都比较长，而且还用 <code>-</code> 连接，例如 <code>Get-ChildItem</code>。可读性确实比较强，但是敲起来就不是那么方便了。</p><p>函数就可以把长命令封装起来，其实相比 alias 也就多了花括号。</p><p>我这边想的是，缩短我使用 whisper 时需要输入的字符。所以我定义了一个函数 wme 意思是 whisper medium english。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English &#125;</span><br></pre></td></tr></table></figure><p>那么按理来说，我之后只要执行 <code>wme xxx.mp3</code> 就等同于</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English xxx.mp3</span><br></pre></td></tr></table></figure><p>然而在 Windows 这边它不是这么用的，后面的 xxx.mp3 它其实是算一个参数。正确的写法应该是这样：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &amp; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English $args[0]&#125;</span><br></pre></td></tr></table></figure><h3 id="powershell-的配置文件"><a href="#powershell-的配置文件" class="headerlink" title="powershell 的配置文件"></a>powershell 的配置文件</h3><p>我们定义的别名和函数，应该怎么保存下来，让我们下次打开 <code>powershell</code> 时，就自动加载呢？在 Linux 上面我们是将它们写入用户目录下的 <code>.bashrc</code> 或者 <code>.zshrc</code> 来实现的。</p><p>那么 powershell 里面，有没有类似 <code>.bashrc</code> 的文件呢？也是有的，但是默认情况下没有这个文件。可以先执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Test-Path $profile</span><br></pre></td></tr></table></figure><p>判断一下有没有这个文件，有的话会输出 True。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$profile  # 查看它的路径</span><br><span class="line">notepad $profile  # 用记事本打开这个文件</span><br></pre></td></tr></table></figure><p>如果没有这个配置文件，可以使用命令来创建它</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Item -path $profile -type file –force</span><br></pre></td></tr></table></figure><p>它一般的路径在用户目录下的 <code>Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</code></p><p>之后我们只需将别名和函数粘贴到里面，下次启动 <code>powershell</code> 就会自动加载的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;alias 别名，使用它我们可以提高使用命令行的效率。&lt;/p&gt;
+&lt;p&gt;例如在 Linux 中，我喜欢把 &lt;code&gt;d&lt;/code&gt; 设置为 &lt;code&gt;docker&lt;/code&gt;的别名。只需要在终端中执行&lt;/p&gt;
+&lt;figure class=&quot;highlight plai
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 环境变量</title>
+    <link href="https://powersee.github.io/2023/03/windows-path/"/>
+    <id>https://powersee.github.io/2023/03/windows-path/</id>
+    <published>2023-03-08T15:31:04.000Z</published>
+    <updated>2023-03-08T15:37:56.688Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天，我在一台 win11 的电脑下载了 <code>git</code> <code>ffmpeg</code>，我选择的是免安装版本。所以下载完我需要自己去添加环境变量。</p><p>在 win11 上面，我右键资源管理器的 <code>此电脑</code>，属性。会自动跳转到 <code>设置</code>、<code>系统信息</code> 里面。</p><p>需要点击【高级系统设置】，就可以在下方看到【环境变量】了。</p><p>双击【用户变量】里面的 <code>Path</code>，会弹出一个【编辑环境变量】的窗口，在里面添加多一行即可，例如我这里添加 git 的</p><blockquote><p>用户变量只对当前用户有效，系统变量对所有用户有效，由于我电脑就我一个用户，所以添加到用户变量就行了</p></blockquote><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\xxx\xxx\git\bin</span><br></pre></td></tr></table></figure><p>这时我就发现 Windows 和 Mac、Linux 的不同了，在 Windows 的终端，我新建一个标签，是识别不到我刚才添加的环境变量的。必须得新建一个【终端】窗口才行，这点我们可以在 <code>cmd</code> 里，通过</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo %PATH%</span><br><span class="line"># 直接执行 path 也行</span><br></pre></td></tr></table></figure><p>来判断。</p><p>在 <code>powershell</code> 里则是执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$env:path</span><br></pre></td></tr></table></figure><p>来查看环境变量。</p><p>而在 Mac、Linux 上面，我们甚至连新建一个标签都可以不用。因为可以使用使用 <code>source ~/.zshrc</code> 来加载新的环境变量。所以看到 Windows 需要新建窗口才行，感觉有点麻烦。</p><p>但是当我切换到 pycharm 里面，明明在【终端】里用 cmd 和 powershell 都可以识别到 git，在这里却怎么折腾都识别不到。</p><p>最终我选择了重启电脑，然后再次打开 pycharm，才终于可以在 pycharm 的终端识别到 git 。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天，我在一台 win11 的电脑下载了 &lt;code&gt;git&lt;/code&gt; &lt;code&gt;ffmpeg&lt;/code&gt;，我选择的是免安装版本。所以下载完我需要自己去添加环境变量。&lt;/p&gt;
+&lt;p&gt;在 win11 上面，我右键资源管理器的 &lt;code&gt;此电脑&lt;/code&gt;，属性。会
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 Python 读写剪贴板中的内容 pyperclip</title>
@@ -468,56 +517,6 @@
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>买了两款品胜路由器</title>
-    <link href="https://powersee.github.io/2022/01/pisen-router/"/>
-    <id>https://powersee.github.io/2022/01/pisen-router/</id>
-    <published>2022-01-14T05:54:39.000Z</published>
-    <updated>2022-01-14T09:24:36.305Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近从小黄鱼收了台路由器，挺特别的，带耳机孔。</p><p>不过我买的是 WPR001N ，这款只有的 WiFi 速率只有 150M，而另外有一款外形和它一样的，但是速率是 300M。</p><p><img src="/img/2022/001N.jpg" alt="001N"></p><p>原本以为它们就这点区别而已，买来后才发现并不是，区别还是挺多的。</p><p>首先它们的外形还有一点不同的，就是 300M 这款是有两个网口的，而我的这款 150M 的，它的网口只有一个。其次它们的型号也不同，我这个是 WPR001N ，而那款是 WPR003N，所以导致了，它们的固件是不通用的。</p><p><img src="/img/2022/001N-rj45.jpg" alt="001N"></p><p>所以如果你是为了刷机，那么应该多花点钱买 300M 那款。不过其实我个人并不建议买这玩意来刷 openwrt，毕竟它最大的价值是那个 3.5mm 耳机接口，而刷机之后，接口就没法用了。只能作为普通的路由器使用。</p><p>但是作为普通路由器，它在目前看来，又太弱了。比它更好的选择有太多了，例如同样百兆的路由器有：斐讯 k2、极路由、小米路由器等等，这些都是几十块就能买到的，而且网上的固件也很多，很容易找。</p><p>如果价格升到 50 块，那中兴 e8820s 是一个非常好的选择，千兆，带 USB 接口。</p><p>然后说回来，目前我手里的这款，刷机方法教程应该只有恩山的这个帖子：<a href="https://www.right.com.cn/forum/thread-7717621-1-1.html">https://www.right.com.cn/forum/thread-7717621-1-1.html</a></p><p>里面并没有提供 breed ，我自己网上搜了下。</p><hr><p>hackpascal自建的http服务器：<a href="http://breed.hackpascal.net/">http://breed.hackpascal.net/</a></p><p>breed 备份下载地址：</p><p><a href="https://pan.powersee.top/">https://pan.powersee.top/</a></p><p><a href="http://veger.ysepan.com/">http://veger.ysepan.com/</a></p><p>在 【路由器】【品胜路由器wrp001N-breed】里面</p><hr><p>不过目前没找到它可以用的固件，可能得自己去编译才行……</p><h3 id="更奇葩的路由器"><a href="#更奇葩的路由器" class="headerlink" title="更奇葩的路由器"></a>更奇葩的路由器</h3><p>后来我又买了品胜的另外一款路由器——净 音 云路由</p><p><img src="/img/2022/%E5%93%81%E8%83%9C%E8%B7%AF%E7%94%B1%E5%99%A8.jpg" alt="两款路由器"></p><p>这款里面内置风扇，配有海绵，可以用当空气净化器……脑洞非常的大</p><p>当然，它同样有音频输出接口，所以可以连接一个音响，然后使用它配套的 APP——Pisen Cloud，使用这个 APP 可以访问到，插在路由器上面的 U 盘，或者移动硬盘中的文件。它这个 APP 应该是相当古老的，在现在的全面屏手机上面使用时，下面的一节是黑的，不显示内容。</p><p><img src="/img/2022/pisen_cloud_app.png" alt="APP底部"></p><p>我记得下载时官网好像提示要求 Android 版本要在 4.0 及以上。然后我还发现了，这款 APP 似乎完全没要求过权限。如果是其它的 APP，想要获取定位、访问相册、访问手机里的其它文件，手机应该会弹出一个提示权限要求才对。但是这个 APP 完全没有，直接就可以访问了。原来只要保持 APP 兼容旧版本的 Android，就可以无视这些权限要求，还是挺可怕的，陌生 APP 安装要谨慎点。</p><p>对了，这款 APP 想要识别到路由器，需要手机连接到【净 音 云路由】的 WiFi 上，同时还要把手机的定位功能打开，这点是 Android 6 之后的要求，可能这个 APP 诞生时 Android 6 还没发布吧，所以它也没有提示什么的。</p><p>在 APP 里面的闪电互传里，可以播放手机里面的音乐，点击右上角可以将音乐推送到路由器上，也就可以让连接在路由器上的音响出声。其实它就是 dlna 而且，用 网易云音乐 也可以推送，点击歌词界面的右上角就行。但是手机必须连接在品胜路由器的 WiFi 下才行，才可以识别并推送。如果手机和连接在品胜路由器的上级路由，此时是发现不了 dlna 信号的。</p><p><img src="/img/2022/pisen-dlna.jpg" alt="dlna"></p><p>总体体验下来，不是什么好东西，并不实用，不建议购买。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近从小黄鱼收了台路由器，挺特别的，带耳机孔。&lt;/p&gt;
-&lt;p&gt;不过我买的是 WPR001N ，这款只有的 WiFi 速率只有 150M，而另外有一款外形和它一样的，但是速率是 300M。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2022/001N.jpg&quot; alt=&quot;0
-      
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客2022年瞎折腾</title>
-    <link href="https://powersee.github.io/2022/01/hexo-2022/"/>
-    <id>https://powersee.github.io/2022/01/hexo-2022/</id>
-    <published>2022-01-12T03:21:54.000Z</published>
-    <updated>2022-01-12T08:40:27.245Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>我的博客一直使用 hexo 部署的，之前还有同步到 gitee 上，后来 gitee 提示我说有内容违规，把 gitee page 给我关了，还要我自己去审查我哪里违规。。。</p><p>那就算了，不用 gitee 了，现在主要部署在 GitHub 上面。</p><h3 id="为什么使用-hexo？"><a href="#为什么使用-hexo？" class="headerlink" title="为什么使用 hexo？"></a>为什么使用 hexo？</h3><p>主要原因有，文档可以使用 Markdown，博客可以部署到 GitHub pages（免费），迁移不难（相对于 WordPress 来说）。说起来我这博客还真的迁移了好几次了，之前在黑苹果上，后来迁移到 win7，之后到 win10，现在迁移到 Mac mini M1</p><p>前段时间也了解到有一个和 hexo 差不多的，可以将 Markdown 渲染为 HTML，然后可以部署到 GitHub pages 的项目——<a href="https://vuepress.vuejs.org/zh/">VuePress (vuejs.org)</a></p><p>不过我还没去深入了解，毕竟 hexo 我也用了好几年了，其实主题方面也花了不少时间去折腾，才达到了自己勉强满意的效果，如果换其它的，之前的时间感觉就白费了，而且可以又得花时间去了解、去调整到自己满意的效果。</p><p>所以既然现在 hexo 还能用，就继续用就行了。</p><h3 id="本次迁移过程中遇到的问题"><a href="#本次迁移过程中遇到的问题" class="headerlink" title="本次迁移过程中遇到的问题"></a>本次迁移过程中遇到的问题</h3><p>步骤是安装 nodejs 先，我是直接下载 tar 压缩包，解压后将 bin 文件夹路径添加到环境变量中的，执行 node -v 和 npm -v 查看版本，成功显示既可。</p><p>之后参考 hexo 官网安装，然后把之前备份的 hexo 博客项目拉取回来，进入博客根目录，执行 npm install 安装依赖。</p><h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>完成后就碰到问题了，执行 hexo d 无法将内容部署到 GitHub 上面。显示</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Copying files from public folder</span><br></pre></td></tr></table></figure><p>后就报错了</p><p>那么就网上搜搜看别人的解决方法，于是找到了。</p><p><a href="https://www.zhihu.com/question/443396119">求解hexo d把文件复制到deploy文件夹就没用然后了？ - 知乎 (zhihu.com)</a></p><blockquote><p>我也遇到了这个问题，这是我在GitHub上看到的某位大佬的办法，先把原来的hexo-deployer-git插件卸载了，然后直接从 master 分支安装<br>npm un hexo-deployer-git<br>npm i hexojs/hexo-deployer-git</p><p>作者：cc666<br>链接：<a href="https://www.zhihu.com/question/443396119/answer/1721530396">https://www.zhihu.com/question/443396119/answer/1721530396</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p></blockquote><h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>接着遇到了第二个问题，就是 public 文件夹内的 html 文件，内容都是空白的。</p><p>那么这个具体是怎么解决的呢？其实我也不太清楚，我的操作过程是，升级看看。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm audit fix</span><br><span class="line"></span><br><span class="line">npm audit fix --force</span><br></pre></td></tr></table></figure><p>然后查看 <code>package.json</code> 发现里的 hexo 版本是 3.7，对比一下 hexo 官网，最新的好像已经是 6 点几了，于是我执行一下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo version</span><br></pre></td></tr></table></figure><p>然后它就自动变为 6.0.0 了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;hexo&quot;: &#123;</span><br><span class="line">  &quot;version&quot;: &quot;6.0.0&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p>那么看来已经把 hexo 升级了，于是再来试试 <code>hexo g</code></p><p>这一次生成的 html 文件就又内容了，在执行 <code>hexo d</code> 部署到 GitHub pages，就完成了。</p><h4 id="3"><a href="#3" class="headerlink" title="3"></a>3</h4><p>然后部署到 GitHub pages 的内容，打开后发现图片没法加载。</p><p>原因是我的博客文章里，图片链接都是以这种方式</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![Mac_M1_kcc](\img\2021\Mac_M1_kcc.png)</span><br></pre></td></tr></table></figure><p>之所以是反斜杠 <code>\</code> ，是因为我之前用的是 win10 ，Windows 里面文件的路径就是用反斜杠的，而在 Linux 或者 macOS 里面，文件路径则是 <code>/</code> ，所以导致现在在浏览器里面，图片的加载路径变为像</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://powersee.github.io/2021/07/zte-e8820s/\img\2021\e8820s-ttl.jpg</span><br></pre></td></tr></table></figure><p>这样的了，自然就没法加载出来图片。不过也是很奇怪，我刚才没有升级 hexo 的时候，明明图片是可以加载出来的（刚才在电脑里通过 hexo s 访问 localhost:4000 的时候，图片什么的都是正常的……）</p><p>然后我又查看了一下我的备份博客，我设置它每天凌晨同步 GitHub 上的网页，所以刚才更新的内容，它还没同步过去。然后我发现，其实之前的图片也是有反斜杠的，并且图片可以正常加载。</p><p><img src="/img/2022/%E4%BD%BF%E7%94%A8%E5%8F%8D%E6%96%9C%E6%9D%A0%E7%9A%84%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5.jpg"></p><p>等了一会之后，我再去刷新 GitHub pages 搭建的博客，图片大多数也可以加载了。有点莫名其妙。不过我还是使用 vscode 里的查找替换功能，将 <code>\img\2021\</code> 全部替换为 <code>/img/2021/</code> ，以及 2020 年的。</p><p>其实想想也不怎么省心呀，不过还好问题能够解决。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我的博客一直使用 hexo 部署的，之前还有同步到 gitee 上，后来 gitee 提示我说有内容违规，把 gitee page 给我关了
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
