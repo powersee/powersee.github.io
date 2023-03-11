@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-09T06:16:20.679Z</updated>
+  <updated>2023-03-11T02:19:02.975Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>群晖建立永久 root 账号</title>
+    <link href="https://powersee.github.io/2023/03/synology-root-ssh/"/>
+    <id>https://powersee.github.io/2023/03/synology-root-ssh/</id>
+    <published>2023-03-11T02:15:47.000Z</published>
+    <updated>2023-03-11T02:19:02.975Z</updated>
+    
+    <content type="html"><![CDATA[<p>每次 ssh 登录群晖，我们只能以管理员的身份登录。虽然输入</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure><p>可以临时切换到 root 账号，但是需要输入一次管理员密码，还是麻烦了点。如果能够直接用 root 账号 ssh 登录就好了。</p><p>具体的操作如下：</p><p>先 ssh 连接上，输入 <code>sudo -i</code> 切换到 root 账号。</p><p>接着编辑 ssh 的配置文件</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><p>找到这一行（大概在 44 行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#PermitRootLogin yes</span><br></pre></td></tr></table></figure><p>把光标放到 <code>#</code> 上面，然后按一下 del 键可以删除掉这个井号。</p><p>另一种删除方法是，按键盘的 <code>i</code> 键，进入编辑模式，此时左下方会显示 <code>-- INSERT --</code>，然后按 退格键来删除（需要先把光标移动到 P），删除完成按 <code>ESC</code>  来退出编辑模式。</p><p><img src="/img/2023/image-20230310165517949.png" alt="PermitRootLogin"></p><p>两种方法都一样的，希望对不懂 vim 的小伙伴有帮助。删除之后，需要保存。方法是，在英文输入法的状态下，输入 <code>:</code>，先按住 <code>Shift</code> 键，再按一下 <code>;:</code> 键，应该可以看到左下角出现一个冒号 : 了。</p><p>接着输入 <code>wq</code> ，意思是保存并退出，再按回车键就可以了。</p><p>之后需要重启群晖</p><p>然后再一次 ssh 登录进来，执行 <code>sudo -i</code>，然后执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synouser --setpw root password</span><br></pre></td></tr></table></figure><p>意思是群晖用户，设置密码，把 root 用户的密码设置为 password，你可以把 password 改为自己想设置的密码。</p><p>执行完就可以直接用 root 账号登录了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;每次 ssh 登录群晖，我们只能以管理员的身份登录。虽然输入&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo -i&lt;/span&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MIUI13 如何添加桌面小部件？</title>
+    <link href="https://powersee.github.io/2023/03/MIUI13-Android-widget/"/>
+    <id>https://powersee.github.io/2023/03/MIUI13-Android-widget/</id>
+    <published>2023-03-10T06:07:36.000Z</published>
+    <updated>2023-03-10T06:12:25.864Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天我想在手机上面，添加一个应用的小部件。但是，我死活找不到怎么添加。明明前段时间我还把 “原神战绩”这个小部件，添加到桌面过的。</p><p>一番搜索后，发现关键点在于【断网】。下面是详细的添加步骤：</p><p>在手机桌面，我们可以通过双指捏合、或长按桌面空白处，来呼出【添加小部件】按钮。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-13-56-014-edit_com.miui.home.jpg" alt="添加小部件"></p><p>点击之后，有两个选项，【推荐】和【分类】，里面都是 MIUI 推荐的小部件，我们自己装的 app 的小部件，大多数是不会显示在这里的。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-14-29-909-edit_com.miui.personalassistant.jpg" alt="推荐与分类"></p><p>那么不是还有个搜索吗？我直接搜呢？不好意思，也是搜不到的。这让我觉得非常恶心。</p><p>网上搜索了解之后，我找到了解决方案。先让手机处于断网状态，开飞行模式最直接，不过也可以关闭 WiFi 和数据就行了。此时再点击搜索，就会发现底部有一行【安卓小部件】。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-58-19-696_com.miui.personalassistant.jpg" alt="断网下的搜索"></p><p>点击之后就可以看到我们自己装的 app 所带的小部件了。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-58-52-006_com.miui.home.jpg" alt="其它应用的小部件"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天我想在手机上面，添加一个应用的小部件。但是，我死活找不到怎么添加。明明前段时间我还把 “原神战绩”这个小部件，添加到桌面过的。&lt;/p&gt;
+&lt;p&gt;一番搜索后，发现关键点在于【断网】。下面是详细的添加步骤：&lt;/p&gt;
+&lt;p&gt;在手机桌面，我们可以通过双指捏合、或长按桌面空白处，来
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>powershell 的别名与函数</title>
@@ -466,57 +515,6 @@
     
     
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>千万别用松鼠记账</title>
-    <link href="https://powersee.github.io/2022/01/songshujizhang/"/>
-    <id>https://powersee.github.io/2022/01/songshujizhang/</id>
-    <published>2022-01-24T08:43:35.000Z</published>
-    <updated>2022-01-24T08:46:30.279Z</updated>
-    
-    <content type="html"><![CDATA[<p>松鼠记账，这是一款记账app，我平时主要用来记录日常支出与收入，使用的时间也不短了。到现在应该有一年多了。</p><p>由于我的手机取消了应用商店自动更新 app 的功能，所以一直都是使用旧版本，感觉还不错，没有广告，而且 APP 的推送通知功能，也被我屏蔽了，平时根本不会被打扰到。</p><p>有一天，我心血来潮，试着将它的一个权限【读写手机存储】给关闭了，因为这个功能是用来读取手机里的相片，或者内部存储空间的其它文件的。作为一款记账软件，我记账并不需要上传图片，所以我就把它关了。</p><p>然后就悲剧了，再次打开软件，所有的记账记录全部丢失了。。。一年多快两年的记录，全部都没了。。。</p><p>其实这款软件也是可以注册账号的，登录之后就可以将数据同步在服务器里，不过我之前看到它要求必须用手机号注册才行，就没有注册账号，一直都是单机使用，所以现在数据丢失，也就完全没法找回了，全没了。</p><p>那么是因为关闭这个权限，导致软件没法正常运行吗？其实并不是，因为我丢失数据之后，继续关闭这个权限使用，是可以正常用的，这个权限并不是必须的。总之这点我就当作是它的一个 bug 吧，之后我就老老实实用手机号注册一个账号，避免以后又发现数据丢失的情况。</p><p>那么就这样使用了一段时间，然后又发生了一件事。我的手机一直提示我，可以升级 miui12.5 稳定版了，快点升级快点升级，但是我不想升级，因为我没看到升级后能给我带来什么新的功能。</p><p>然而它也不会放任我不升级，它每天都会给我来一条推送，我想禁止它的通知功能，但是因为【系统升级】是系统级应用，没法禁止。我只能每天都手动把这条升级通知给清除掉。</p><p>终于有一天，我忍受不了了，我想砸手机，但是舍不得，所以还是被逼得只能去升级系统了，垃圾 MIUI。</p><p>那么回到主线，升级之后，松鼠记账这个 APP 会闪退。那么我想到的是，可能是 APP 版本太老了吧，毕竟我一直没去升级 APP 版本，可能和现在的 MIUI 12.5 有冲突吧。于是我就升级 APP 到最新的。</p><p>于是我升级完 APP 回来了，然后我震惊了。现在打开 APP 有开屏广告了，APP 底部多了返利的标签页，记账页面显示开通 VIP 可以无广告，你不开通的话，每记一次帐，就给你弹一次广告。那么就开通 VIP 吧，毕竟人开发一款 APP 也不容易嘛。</p><p>价格是多少呢？</p><p>11.9 元，每个月，每个月，<strong>每个月</strong></p><p>我他妈震惊了，人家 B 站会员，打折的时候一年一百出头，购买后大量动漫、电影、电视剧可以观看。人家百度网盘每年 11 月购买会员有优惠，一年 svip 价格不到 200 ，购买后可以扩大网盘空间，可以高速下载从网上转存的大量资源。</p><p>而你一个记账软件，一个月会员费收 12 块，主要作用是去掉记账时的广告…… 我觉得我要是去充值那我肯定就是智障了。而且我也后悔了，升级之前为什么没有看看应用商店里，其它网友的评论呢？要是早看到我肯定不会去升级的。</p><p><img src="/img/2022/Screenshot_2022-01-24-13-14-37-156_com.xiaomi.market.jpg" alt="com.xiaomi.market"></p><p>不过也好，越早知道它们吃相这么难看，才能够越早转移。于是我开始寻找其它的记账 APP 来替代它。然而我并没有立刻找到，所以暂时还是需要用到它，于是我把这款软件的联网功能禁止了，不能联网它也没广告了，不过每次打开 APP 到可以记账的页面，大概需要 10 秒才行，因为它好像设定了开屏时会定住几秒，用来显示开屏广告，如果没法联网加载广告图片，会停在那里显示 APP 的开屏页面。</p><h3 id="替代方案——那样记账"><a href="#替代方案——那样记账" class="headerlink" title="替代方案——那样记账"></a>替代方案——那样记账</h3><p>了解来源——GitHub</p><p>我之前在搜索引擎里找，没找到合适的，感觉大多数都是商业公司的产品，我是再也不想 APP 用着用着就给我来一堆广告了，所以那些我都不太想去尝试。然后今天我尝试在 GitHub 上面搜索，因为我想可能也会有人和我一样，只需要一个简单的记录收入和支出的应用而已，并不需要那些花里胡哨的功能。那么应该也有人会尝试自己写一个吧。</p><p>果然，在 GitHub 搜索记账后，出来很多的项目，而第一个结果就是我想要的了</p><p><a href="https://github.com/purezhi/MoneyKeeper">https://github.com/purezhi/MoneyKeeper</a></p><p>不过它最后的更新在 2018 年的 6 月，距今都快 4 年了。然后我根据 readme 跳转到酷安，发现原来作者是一直有更新的，最近的更新是 2021-12-20，版本 6.8.5</p><p><a href="https://www.coolapk.com/apk/188475">那样记账 - 纯粹的记账软件(me.bakumon.moneykeeper) - 6.8.5 - 应用 - 酷安 (coolapk.com)</a></p><p>应用介绍里有这么一段话</p><blockquote><p>没有任何多余的权限，没有广告，没有用户系统，不保存用户任何信息，只是单纯的记录收支情况，做一些明了的统计，通过清楚的了解钱花在了哪，来建立起良好的消费习惯。 </p></blockquote><p>我很喜欢这样的软件，很纯粹，很轻量，安装包只有 5.3M，里面不会弹广告，备份可以使用本地备份和云备份，数据都是备份为 zip 压缩包的。云备份是通过 webdav 来实现的，使用我非常熟悉的坚果云就行。里面可以开通永久会员，价格是 21 元，不是一个月，也不是一年，而是 21 元买断。承诺永久无广告，不过目前这个 APP 好像也没有广告，所以目前会员的作用是可以使用不同的主题和图标包。不过我认为默认的图标就挺好看的了。</p><p>设置里面可以把【快速记账】的设置勾选上，这样打开 APP 时就自动进入记账页面了，填上金额和选择一个类别就行。软件的速度也很快，从桌面点击打开到记账页面，耗时不到一秒，对比松鼠记账的 10 秒，呵呵。</p><p>我的手机里还有另外一款 APP，也是在 GitHub 了解到的，是一款日记软件，模仿电影《你的名字》里面的 APP 开发的，这款是完全开源的。</p><p><a href="https://github.com/DaxiaK/MyDiary">DaxiaK/MyDiary: In the Movie “-your name.-“ (君の名は。, 你的名字) , “My Diary” of android version. (github.com)</a></p><p>它的备份方式也是通过将数据导出为 zip 压缩包，然后到其它的手机上，导入这个 zip 压缩包就可以恢复数据。也挺好的，开源软件虽然后续就没人维护了，但是只要基本功能都有，不更新也无所谓了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;松鼠记账，这是一款记账app，我平时主要用来记录日常支出与收入，使用的时间也不短了。到现在应该有一年多了。&lt;/p&gt;
-&lt;p&gt;由于我的手机取消了应用商店自动更新 app 的功能，所以一直都是使用旧版本，感觉还不错，没有广告，而且 APP 的推送通知功能，也被我屏蔽了，平时根本不
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>品胜 WPR001N 折腾与刷机</title>
-    <link href="https://powersee.github.io/2022/01/pisen-wpr001n/"/>
-    <id>https://powersee.github.io/2022/01/pisen-wpr001n/</id>
-    <published>2022-01-17T14:19:44.000Z</published>
-    <updated>2022-01-18T03:19:05.461Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前买了台品胜路由器，买来之后系统是有缺陷的，没法进入 web 管理界面，最终没办法，只能刷机，于是刷了个 breed 进去。</p><p>但是只有 breed，没有系统固件可以用……所以就放着吃灰了。</p><p>今天有网友说可以帮我编译固件，所以又来折腾它了。</p><p>因为不知道编译好的固件，刷入后会不会出问题，为了避免待会完全变砖，无法挽回。所以先研究一下怎么 ttl 串口连接。</p><p>首先需要拆机，带二维码的为背面，沿着缝隙撬开，有三颗螺丝，拧开后再撬正面的外壳。</p><p>主板上面有三个金属接触点，分别是 RXD, TXD, GND</p><p><img src="/img/2022/Snipaste_22-01-17_22-14-57.jpg" alt="主板"></p><p>一开始我拿杜邦线将它与 CH340G 模块进行连接（GND–GND, TX–RX, RX–TX），我是直接用手按着，然而我还需要接通电源以及操控鼠标，所以一直没法按稳。</p><p>没办法，还是拿出了电烙铁，焊点锡上去吧。结果成了这样（其实也没多牢固，不过比用手按着好很多了）</p><p><img src="/img/2022/Snipaste_22-01-17_22-18-01.jpg" alt="焊锡好"></p><p>之后连接好模块，电脑上可以使用 putty 或者 xshell 来进行串口调试。由于我之前以及刷好 breed 进去了，所以给路由器通电，然后在几秒内按回车键，就可以进入 breed，在浏览器可以通过 <code>192.168.1.1</code> 来访问。</p><p>如果不按回车键的话，就会启动闪存中的系统。然后我就发现了，原来我之前刷进去的 openwrt 固件，是可以启动的</p><p><img src="/img/2022/2022-01-17_19-04-24.jpg" alt="2022-01-17_19-04-24"></p><p><img src="/img/2022/2022-01-17_19-10-16.jpg" alt="2022-01-17_19-10-16"></p><p>通过 ttl 我才知道的，不过它的 web 服务和 wifi 都没有开启，系统能启动成功也没什么用。</p><p>那么 ttl 连接没问题，就可以来折腾看看了。于是我将 @<strong>大电视姬</strong>  发过来的固件，在 breed 中刷入路由器。</p><p>之后路由器自动重启，成功了。</p><p><img src="/img/2022/2022-01-17_20-06-28.jpg" alt="2022-01-17_20-06-28"></p><p>然后，索然无味……就算刷机成功了，又怎样呢？我又不会去使用它，家里面基本所有路由器都比它强，没什么意思。</p><p>固件放到网盘和下载站里，在【路由器】【品胜路由器】中，再次感谢 @<strong>大电视姬</strong></p><p>网盘：<a href="http://veger.ysepan.com/">http://veger.ysepan.com/</a></p><p>下载站：<a href="https://pan.powersee.top/">https://pan.powersee.top/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;之前买了台品胜路由器，买来之后系统是有缺陷的，没法进入 web 管理界面，最终没办法，只能刷机，于是刷了个 breed 进去。&lt;/p&gt;
-&lt;p&gt;但是只有 breed，没有系统固件可以用……所以就放着吃灰了。&lt;/p&gt;
-&lt;p&gt;今天有网友说可以帮我编译固件，所以又来折腾它了。&lt;/p
-      
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
     
   </entry>
   
