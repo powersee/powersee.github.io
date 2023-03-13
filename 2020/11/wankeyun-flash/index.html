@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-01-12T08:35:31.593Z" itemprop="dateUpdated">2022-01-12</time>
+    更新 <time datetime="2023-03-13T09:24:25.384Z" itemprop="dateUpdated">2023-03-13</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -58,9 +58,9 @@
         
         <h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>玩客云原本的系统是 Android ，想要刷成 Linux 需要使用双公头 USB 线连接电脑，进行线刷。</p>
 <p>而且似乎还不是直接连接就能刷，需要拆机，短接主板上的两个点。</p>
-<p><img src="/img/2020/%E7%8E%A9%E5%AE%A2%E4%BA%91%E7%9F%AD%E6%8E%A5.png" alt="玩客云短接"></p>
+<p><img src="/img/2020/%E7%8E%A9%E5%AE%A2%E4%BA%91%E7%9F%AD%E6%8E%A5.jpg" alt="玩客云短接"></p>
 <p>我的刷机步骤是先连接双公头 USB 线，然后用镊子按住主板上的两个短接点，电脑打开 USB Burning Tool ，然后玩客云通电。</p>
-<p><img src="/img/2020/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%88%B7%E6%9C%BA%E6%A8%A1%E5%BC%8F.png" alt="玩客云刷机模式"></p>
+<p><img src="/img/2020/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%88%B7%E6%9C%BA%E6%A8%A1%E5%BC%8F.jpg" alt="玩客云刷机模式"></p>
 <p>虽然网上也能找到可以直接线刷的 armbian 固件，不过我个人还是喜欢先线刷 s805_flash_snail.img 这个镜像。刷入这个之后，玩客云便可以从 U 盘启动系统，因此只要你有多个 U 盘，便可以拥有多个系统。更多的系统镜像可以到 <a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/forum-175-1.html">恩山</a> 上找。</p>
 <p>我目前使用的固件是 <a target="_blank" rel="noopener" href="https://www.right.com.cn/forum/thread-4057492-1-1.html">Armbian 20.10 Buster with Linux 5.9.0-rc7 hdmi docker可用</a> ，先用 U 盘运行，没什么问题之后，再执行 <code>/boot/install/install.sh</code> 将固件写入 emmc 。</p>
 <h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>既然刷入了 armbian 了，那它可以和 N1 一样来使用吗？并不能，因为玩客云的 cpu 是 32 位的 ，能用的 docker 镜像相比于 N1 这种 64 位的，会少很多。</p>
@@ -77,7 +77,7 @@
 
 <p>我在玩客云上面尝试了这些 docker 镜像。</p>
 <h3 id="1、博客——typecho"><a href="#1、博客——typecho" class="headerlink" title="1、博客——typecho"></a>1、博客——typecho</h3><p>typecho 是一款国产的 php 博客系统，开源免费，占用资源少，我个人挺喜欢的。不过之前灯大制作的 typecho 镜像不能用在玩客云上，我重新找了一个。</p>
-<p>建议自己建立一个文件夹，用来存放 typecho 的相关文件，方便管理以及以后迁移。我建立在 /root/tyepcho</p>
+<p>建议自己建立一个文件夹，用来存放 typecho 的相关文件，方便管理以及以后迁移。我建立在 &#x2F;root&#x2F;tyepcho</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /root/tyepcho</span><br></pre></td></tr></table></figure>
 
 <p>然后便可以建立容器了</p>

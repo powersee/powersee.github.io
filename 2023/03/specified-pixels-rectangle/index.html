@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>如何创建一个指定像素的矩形？Photoshop 和 Affinity Photo</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    如何创建一个指定像素的矩形？Photoshop 和 Affinity Photo
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-12T15:23:05.000Z" itemprop="datePublished">2023-03-12</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-12T15:37:25.695Z" itemprop="dateUpdated">2023-03-12</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U</p>
+<p><img src="/img/2023/image-20230312232057058.png" alt="矩形工具"></p>
+<p>然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性里面修改它的宽高值就行，例如我这里改成 1920 和 1080</p>
+<p><img src="/img/2023/image-20230312231507993.png" alt="属性"></p>
+<p>Affinity Photo 的方法差不多，左边选择矩形工具，快捷键为 U，画出矩形后，选中矩形，在右下角的「变换」里可以更改。</p>
+<p><img src="/img/2023/Snipaste_23-03-09_23-07-19.jpg" alt="变换"></p>
+<p>下面这张图，就是通过这种方式制作出来的，其实有一些不足，就是蓝色的有点偏右。想要它们对齐的，只要 X Y 保持一样的数值就可以了。</p>
+<p><img src="/img/2023/720vs1296.jpg" alt="720vs1296"></p>
+
+      </div>
+        <div class="support-author">
+          <p>原文链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

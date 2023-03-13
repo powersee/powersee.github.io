@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-01-12T08:35:31.593Z" itemprop="dateUpdated">2022-01-12</time>
+    更新 <time datetime="2023-03-13T09:22:48.886Z" itemprop="dateUpdated">2023-03-13</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -68,10 +68,10 @@
 <h3 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h3><p>备份原来的</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /etc/apt/source.list /etc/apt/source.list.bak</span><br></pre></td></tr></table></figure>
 
-<p>/etc/apt/source.list</p>
+<p>&#x2F;etc&#x2F;apt&#x2F;source.list</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster main contrib non-free</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-updates main contrib non-free</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ buster-backports main contrib non-free</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security buster/updates main contrib non-free</span><br></pre></td></tr></table></figure>
 
-<p>/etc/apt/source.list.d/raspi.list</p>
+<p>&#x2F;etc&#x2F;apt&#x2F;source.list.d&#x2F;raspi.list</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui</span><br></pre></td></tr></table></figure>
 
 <p>我使用的是 nano 编辑器，对文本内容进行修改之后，想保存退出，需要按 <code>ctrl + X</code> 退出，然后编辑器会问，是否要保存，按 <code>Y</code> 选择 yes ，再让你确认保存的文件名，按回车键即可。</p>
@@ -88,7 +88,7 @@
 <p>列出所有可用块设备的信息，例如我的显示</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda           8:0    0 55.9G  0 disk </span><br><span class="line">├─sda1        8:1    0 53.9G  0 part </span><br><span class="line">├─sda2        8:2    0    1K  0 part </span><br><span class="line">└─sda5        8:5    0    2G  0 part </span><br><span class="line">mmcblk0     179:0    0 14.7G  0 disk </span><br><span class="line">├─mmcblk0p1 179:1    0  256M  0 part /boot/firmware</span><br><span class="line">└─mmcblk0p2 179:2    0 14.5G  0 part /</span><br></pre></td></tr></table></figure>
 
-<p>我需要挂载 sda1 这个分区，想将它挂载到 /mnt/to 这个目录下，所以我先创建这个文件夹，再进行挂载</p>
+<p>我需要挂载 sda1 这个分区，想将它挂载到 &#x2F;mnt&#x2F;to 这个目录下，所以我先创建这个文件夹，再进行挂载</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /mnt/to</span><br><span class="line">mount /dev/sda1 /mnt/to</span><br></pre></td></tr></table></figure>
 
 <p>这种情况下，如果我们重启了机器，那么就得重新挂载硬盘，如果你并不频繁重启机器，这样或许还可以接受。若不是的话，可以了解一下自动挂载。</p>
@@ -148,7 +148,7 @@
 
 <p>然后等一段时间……</p>
 <p>完成后就可以在浏览器输入树莓派的 ip 来访问这个导航界面了。</p>
-<p><img src="/img/2020/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AF%BC%E8%88%AA%E7%95%8C%E9%9D%A2.png" alt="树莓派导航界面"></p>
+<p><img src="/img/2020/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AF%BC%E8%88%AA%E7%95%8C%E9%9D%A2.jpg" alt="树莓派导航界面"></p>
 <p>实测 qb 启动不了，控制台那个是给我家云的 omv 用的，装在其它设备上本来就是没法用的。其它的功能好像都还可以用吧。</p>
 
       </div>

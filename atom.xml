@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-11T02:19:02.975Z</updated>
+  <updated>2023-03-12T15:37:25.695Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何创建一个指定像素的矩形？Photoshop 和 Affinity Photo</title>
+    <link href="https://powersee.github.io/2023/03/specified-pixels-rectangle/"/>
+    <id>https://powersee.github.io/2023/03/specified-pixels-rectangle/</id>
+    <published>2023-03-12T15:23:05.000Z</published>
+    <updated>2023-03-12T15:37:25.695Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U</p><p><img src="/img/2023/image-20230312232057058.png" alt="矩形工具"></p><p>然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性里面修改它的宽高值就行，例如我这里改成 1920 和 1080</p><p><img src="/img/2023/image-20230312231507993.png" alt="属性"></p><p>Affinity Photo 的方法差不多，左边选择矩形工具，快捷键为 U，画出矩形后，选中矩形，在右下角的「变换」里可以更改。</p><p><img src="/img/2023/Snipaste_23-03-09_23-07-19.jpg" alt="变换"></p><p>下面这张图，就是通过这种方式制作出来的，其实有一些不足，就是蓝色的有点偏右。想要它们对齐的，只要 X Y 保持一样的数值就可以了。</p><p><img src="/img/2023/720vs1296.jpg" alt="720vs1296"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/image-20230312232057058.png&quot; alt=&quot;矩形工具&quot;&gt;&lt;/p&gt;
+&lt;p&gt;然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>群晖建立永久 root 账号</title>
@@ -490,31 +515,6 @@
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="python" scheme="https://powersee.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>pve去除订阅提示</title>
-    <link href="https://powersee.github.io/2022/04/pve-remove-notice/"/>
-    <id>https://powersee.github.io/2022/04/pve-remove-notice/</id>
-    <published>2022-04-09T13:45:14.000Z</published>
-    <updated>2022-04-09T13:48:21.063Z</updated>
-    
-    <content type="html"><![CDATA[<p>pve 每次登录时，都会弹出一个提示</p><p><img src="/img/2022/pve-subscription-notice.jpg"></p><p>看着挺烦的，如何去掉它呢？网上一搜很容易就找到解决方案，这里记录一下。我目前使用的版本是 7.1-7</p><p>参考文章：<a href="https://johnscs.com/remove-proxmox51-subscription-notice/">Remove Proxmox Subscription Notice (Tested to 7.1-10) | John’s Computer Services (johnscs.com)</a></p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sed -Ezi.bak &quot;s/(Ext.Msg.show\(\&#123;\s+title: gettext\(&#x27;No valid sub)/void\(\&#123; \/\/\1/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js</span><br></pre></td></tr></table></figure><p>上面这一步是备份 <code>proxmoxlib.js</code> 为 <code>proxmoxlib.js.bak</code>，然后修改 <code>proxmoxlib.js</code> 里的 “Ext.Msg.show” 为 “void”</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart pveproxy.service</span><br></pre></td></tr></table></figure><p>之后重启一下服务即可。</p><p>这里记录一个坑，之前看到另外一个教程，是修改 <code>/usr/share/pve-manager/js/pvemanagerlib.js</code> 这个文件的，但是要修改的内容我找不到，然后我自己摸索，看到可能是这个提示相关的代码，我就用 <code>#</code>将它注释掉。结果悲剧了。</p><p>本来打算修改 js 文件，去掉 pve 的订阅提示，却不小心在 js 里面用 # 来注释，导致了重启 pve 的管理面板服务之后，web 端打开时一片空白，什么都不显示，重启机器也没用。</p><p>好在 ssh 还可以连接进去，所以我再次修改 js 文件，将之前的 <code>#</code> 去掉，再执行</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart pveproxy.service</span><br></pre></td></tr></table></figure><p>就救回来了。看来 pve 的版本不同，js 内容也会不同的，大家找教程的时候记得留意一下版本是否对应。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;pve 每次登录时，都会弹出一个提示&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2022/pve-subscription-notice.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;看着挺烦的，如何去掉它呢？网上一搜很容易就找到解决方案，这里记录一下。我目前使用的版本是 7.1-7&lt;/p&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
