@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>群晖 NAS 里怎么更新 Docker 容器</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    群晖 NAS 里怎么更新 Docker 容器
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-13T11:25:36.000Z" itemprop="datePublished">2023-03-13</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-13T11:36:56.801Z" itemprop="dateUpdated">2023-03-13</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>我在使用一款自建的开源备忘录应用 memos，我把它运行中群晖里面。使用的是 docker，一条命令即可运行起来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:latest</span><br></pre></td></tr></table></figure>
+
+<p>我在群晖里面，网络直接使用 host，因此不需要填写端口，只需在「存储空间」里选择一个目录，来映射到容器内的 <code>/var/opt/memos</code>。</p>
+<p>目前使用了两周多了，感觉还挺不错的。</p>
+<p>现在的问题是，我运行的是 <code>0.10.3</code> 的版本，目前最新的版本已经到 <code>0.11.2</code> 了，我想要升级到最新的版本。</p>
+<p>下面是我的实际操作。</p>
+<p>首先我们要拉取最新的镜像，依旧到注册表搜 memos，右键然后点「下载此映像」，或者直接双击也可以。</p>
+<p><img src="/img/2023/image-20230313180358859.png" alt="search-memos"></p>
+<p>镜像下载完成之后，我们把容器停掉，再重新打开，是没有效果的，依然还是旧版本的。此时应该做的是，创建一个新的容器。但是在群晖里面，我们不需要重新填写容器的配置，因为它可以直接复制。选中一个容器，然后上方的设置里面，有个「复制设置」的选项。</p>
+<p><img src="/img/2023/image-20230313181037438.png" alt="copy-settings"></p>
+<p>点击之后，它会让我们「输入新容器的名称」，我给它起名为 「memos-0.11.2」，因为我估计过段时间又得来升级的，那就每次复制后都填一下当前的版本吧。</p>
+<p>然后我们可以启动这个新的容器，看看运行正不正常，正常的话，就可以删掉旧的容器了。</p>
+<p>我这个容器比较简单，而且网络方面直接用 host，所以不用设置端口。</p>
+<p>但是我发现其它需要设置端口的容器，复制之后，端口会发生变化的。例如我有一个容器的端口是 10086，复制之后，群晖自动给新的容器生成一个随机端口，如 <code>49155</code> ，所以看来，带端口的容器，复制之后，还得修改一下。</p>
+<p><img src="/img/2023/image-20230313190505946.png" alt="port-10086"></p>
+<p>但是我们不能直接修改新容器的端口，因为不能两个容器同时使用一个端口。例如我这里的 <code>10086 </code>已经被就容器占用了，新的容器就没法用。虽然直接把旧容器删除了，新容器就可以使用 <code>10086</code> 这个端口，但是现在并不清楚新容器，是否能正常运行，所以不建议删。</p>
+<p>我们可以先修改旧容器的端口，例如改为 <code>10087</code>，然后再修改新容器的。这样新的容器应该就可以运行起来了。</p>
+<p>不过，此时如果你用命令行或者 portainer 查询镜像，应该会发现，多出一个 TAG 为 none 的镜像。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker images</span><br><span class="line">REPOSITORY                TAG               IMAGE ID       CREATED         SIZE</span><br><span class="line">neosmemo/memos            latest            8b795254a96c   2 days ago      34.5MB</span><br><span class="line">neosmemo/memos            &lt;none&gt;            50d503594da5   4 weeks ago     24.8MB</span><br></pre></td></tr></table></figure>
+
+<p>从日期我们也可以判断出，none 就是那个旧的版本。想要删除它，我们需要把旧的容器删除掉。</p>
+<p>之后如果你是用 portainer 的话，勾选然后删除即可。如果没装 portainer，那就用命令行来删除吧，因为群晖的 docker 面板里，在映像中是找不到它的。</p>
+<p>先 ssh 连接群晖，执行 <code>sudo i</code> 切换到 root 用户。如果你也为每次都要这样操作一次而感到困扰，可以参考一下我之前的文章：<a href="/2023/03/synology-root-ssh/">群晖建立永久 root 账号</a></p>
+<p>需要先列出设备中所有 docker 镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>然后找到 none 的 IMAGE ID，像我这里是 <code>50d503594da5</code>，然后可以像这样来删除它</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi 50d503594da5</span><br></pre></td></tr></table></figure>
+
+
+      </div>
+        <div class="support-author">
+          <p>原文链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

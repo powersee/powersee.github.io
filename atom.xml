@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-12T15:37:25.695Z</updated>
+  <updated>2023-03-14T06:08:26.250Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次清理服务器硬盘空间</title>
+    <link href="https://powersee.github.io/2023/03/clean-up-the-server-disk/"/>
+    <id>https://powersee.github.io/2023/03/clean-up-the-server-disk/</id>
+    <published>2023-03-14T06:06:45.000Z</published>
+    <updated>2023-03-14T06:08:26.250Z</updated>
+    
+    <content type="html"><![CDATA[<p>服务器的硬盘空间告急，只剩下 100 多 M 可用。</p><p>我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。</p><p>排查的话可以用 <code>nudu</code> ，如果没有这个命令可以用 <code>apt</code> 装一下。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nudu /</span><br></pre></td></tr></table></figure><p>让它直接分析整个根目录。完成后它会按占用空间从大到小排序</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">13.2 GiB [##########] /home                   </span><br><span class="line"> 3.8 GiB [##        ] /usr</span><br><span class="line"> 2.6 GiB [#         ] /var</span><br><span class="line">81.3 MiB [          ] /boot</span><br><span class="line">77.5 MiB [          ] /root</span><br><span class="line"> 9.0 MiB [          ] /etc</span><br></pre></td></tr></table></figure><p>我们可以很直观地看出哪些目录占用的空间大，然后根据实际情况清理。home 目录就比较简单了，不用的东西删掉就行。</p><p>而我这边发现</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/var/log/journal/</span><br></pre></td></tr></table></figure><p>居然占用了 1.4G 的空间，从名字也可以知道它是日志文件。</p><p>执行一下 <code>journalctl</code> 我发现了这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Scheduled restart job, restart counter is at 10194343.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Starting tat_agent...</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1632911]: tat_agent.service: Changing to the requested working directory failed: No such file or&gt;</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1632911]: tat_agent.service: Failed at step CHDIR spawning /usr/local/qcloud/tat_agent/tat_agent&gt;</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Control process exited, code=exited, status=200/CHDIR</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Failed with result &#x27;exit-code&#x27;.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Failed to start tat_agent.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Scheduled restart job, restart counter is at 10194344.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Starting tat_agent...</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1632929]: tat_agent.service: Changing to the requested working directory failed: No such file or&gt;</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1632929]: tat_agent.service: Failed at step CHDIR spawning /usr/local/qcloud/tat_agent/tat_agent&gt;</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Control process exited, code=exited, status=200/CHDIR</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Failed with result &#x27;exit-code&#x27;.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Failed to start tat_agent.</span><br></pre></td></tr></table></figure><p>这个 <code>tat_agent.service</code> 5、6 秒就执行一下，由于我使用的是腾讯的云服务器，而我之前把 <code>/usr/local/qcloud/</code> 这个目录给删除了，所它一直报错，一直重试……</p><p>解决方法：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl stop tat_agent</span><br><span class="line">systemctl disable tat_agent</span><br><span class="line">rm -f /etc/systemd/system/tat_agent.service</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Mar 14 10:36:41 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br></pre></td></tr></table></figure><p>至于 <code>/var/log/journal/</code> 我直接 <code>rm -r</code> 给删除了。</p><p>然后再清理一下 home 目录中的文件，硬盘可用空间变成了 8.8G 了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;服务器的硬盘空间告急，只剩下 100 多 M 可用。&lt;/p&gt;
+&lt;p&gt;我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。&lt;/p&gt;
+&lt;p&gt;排查的话可以用 &lt;code&gt;nudu&lt;/code&gt; ，如果没有这个命令可以用 &lt;code&gt;apt&lt;/code&gt; 
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>群晖 NAS 里怎么更新 Docker 容器</title>
+    <link href="https://powersee.github.io/2023/03/synology-update-docker-container/"/>
+    <id>https://powersee.github.io/2023/03/synology-update-docker-container/</id>
+    <published>2023-03-13T11:25:36.000Z</published>
+    <updated>2023-03-13T11:36:56.801Z</updated>
+    
+    <content type="html"><![CDATA[<p>我在使用一款自建的开源备忘录应用 memos，我把它运行中群晖里面。使用的是 docker，一条命令即可运行起来</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:latest</span><br></pre></td></tr></table></figure><p>我在群晖里面，网络直接使用 host，因此不需要填写端口，只需在「存储空间」里选择一个目录，来映射到容器内的 <code>/var/opt/memos</code>。</p><p>目前使用了两周多了，感觉还挺不错的。</p><p>现在的问题是，我运行的是 <code>0.10.3</code> 的版本，目前最新的版本已经到 <code>0.11.2</code> 了，我想要升级到最新的版本。</p><p>下面是我的实际操作。</p><p>首先我们要拉取最新的镜像，依旧到注册表搜 memos，右键然后点「下载此映像」，或者直接双击也可以。</p><p><img src="/img/2023/image-20230313180358859.png" alt="search-memos"></p><p>镜像下载完成之后，我们把容器停掉，再重新打开，是没有效果的，依然还是旧版本的。此时应该做的是，创建一个新的容器。但是在群晖里面，我们不需要重新填写容器的配置，因为它可以直接复制。选中一个容器，然后上方的设置里面，有个「复制设置」的选项。</p><p><img src="/img/2023/image-20230313181037438.png" alt="copy-settings"></p><p>点击之后，它会让我们「输入新容器的名称」，我给它起名为 「memos-0.11.2」，因为我估计过段时间又得来升级的，那就每次复制后都填一下当前的版本吧。</p><p>然后我们可以启动这个新的容器，看看运行正不正常，正常的话，就可以删掉旧的容器了。</p><p>我这个容器比较简单，而且网络方面直接用 host，所以不用设置端口。</p><p>但是我发现其它需要设置端口的容器，复制之后，端口会发生变化的。例如我有一个容器的端口是 10086，复制之后，群晖自动给新的容器生成一个随机端口，如 <code>49155</code> ，所以看来，带端口的容器，复制之后，还得修改一下。</p><p><img src="/img/2023/image-20230313190505946.png" alt="port-10086"></p><p>但是我们不能直接修改新容器的端口，因为不能两个容器同时使用一个端口。例如我这里的 <code>10086 </code>已经被就容器占用了，新的容器就没法用。虽然直接把旧容器删除了，新容器就可以使用 <code>10086</code> 这个端口，但是现在并不清楚新容器，是否能正常运行，所以不建议删。</p><p>我们可以先修改旧容器的端口，例如改为 <code>10087</code>，然后再修改新容器的。这样新的容器应该就可以运行起来了。</p><p>不过，此时如果你用命令行或者 portainer 查询镜像，应该会发现，多出一个 TAG 为 none 的镜像。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker images</span><br><span class="line">REPOSITORY                TAG               IMAGE ID       CREATED         SIZE</span><br><span class="line">neosmemo/memos            latest            8b795254a96c   2 days ago      34.5MB</span><br><span class="line">neosmemo/memos            &lt;none&gt;            50d503594da5   4 weeks ago     24.8MB</span><br></pre></td></tr></table></figure><p>从日期我们也可以判断出，none 就是那个旧的版本。想要删除它，我们需要把旧的容器删除掉。</p><p>之后如果你是用 portainer 的话，勾选然后删除即可。如果没装 portainer，那就用命令行来删除吧，因为群晖的 docker 面板里，在映像中是找不到它的。</p><p>先 ssh 连接群晖，执行 <code>sudo i</code> 切换到 root 用户。如果你也为每次都要这样操作一次而感到困扰，可以参考一下我之前的文章：<a href="/2023/03/synology-root-ssh/">群晖建立永久 root 账号</a></p><p>需要先列出设备中所有 docker 镜像</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><p>然后找到 none 的 IMAGE ID，像我这里是 <code>50d503594da5</code>，然后可以像这样来删除它</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi 50d503594da5</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我在使用一款自建的开源备忘录应用 memos，我把它运行中群晖里面。使用的是 docker，一条命令即可运行起来&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span c
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="群晖" scheme="https://powersee.github.io/tags/%E7%BE%A4%E6%99%96/"/>
+    
+  </entry>
   
   <entry>
     <title>如何创建一个指定像素的矩形？Photoshop 和 Affinity Photo</title>
@@ -462,59 +515,6 @@
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>visionfive 串口调试与编译内核</title>
-    <link href="https://powersee.github.io/2022/04/visionfive-ttl-linux/"/>
-    <id>https://powersee.github.io/2022/04/visionfive-ttl-linux/</id>
-    <published>2022-04-12T09:36:52.000Z</published>
-    <updated>2022-04-12T10:23:56.994Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="串口调试"><a href="#串口调试" class="headerlink" title="串口调试"></a>串口调试</h3><p>开发板除了通过 HDMI 连接显示器，然后通过 usb 键盘来控制之外，还可以通过串口与电脑进行连接，将它的输出信息显示在电脑上，并且还可以直接用电脑键盘来控制。<br>想要进行这样的操作，需要买一个 USB 转 TTL， 我使用的是 CH340G，拼多多上面 6.3 包邮买的，平时也可以用来给路由器或者机顶盒刷机。</p><p><img src="/img/2022/ch340.jpg" alt="ch340"></p><p>另外我还有一个 CH341A，这个看起来就比较高级一点，两年前淘宝 18 块买的。</p><p><img src="/img/2022/image-20220411135344552.png" alt="image-20220411135344552"></p><p>不过只是用来调试开发板的话，它们用起来都一样的，连接到电脑的 usb 口之后，安装店家提供的驱动，顺利的话就可以在【设备管理器】的【端口】看到了。我们需要记住的是它对应的 com 口是多少，例如我图中的 12 和 13</p><p><img src="/img/2022/image-20220411132651192.png" alt="image-20220411132651192"></p><p>注：设备管理器可以通过点击，开始菜单旁边的放大镜，在里面搜索来打开。</p><p><img src="/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p><p>接下来需要它与开发板进行连接，这时就需要使用杜邦线，这个一般购买模块时都会赠送的，如果没有的话，也可以自己购买。拼多多或者淘宝搜【杜邦线母对母】就可以找到相对应的商品（个人建议购买比较长一点的，我之前用买模块送的杜邦线，只有十几厘米，有时候不太方面，所以后来我重新买了一排30厘米的）</p><p>连接的话只需要 3 根线，接序是这样的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GND --- GND</span><br><span class="line">TX ---- RX</span><br><span class="line">RX ---- TX</span><br></pre></td></tr></table></figure><p><img src="/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p><p>按照这样连接好后，将模块插到电脑上，确认在设备管理器里可以看到。</p><p>然后我们还需要软件，才可以显示模块输出的信息。可以选择的软件非常多，我个人用过的有 putty、友善串口调试助手、以及我个人最常用的 xshell。我个人比较推荐 xshell，平时可以用来 ssh 连接开发板，需要串口调试时也可以用它。而且 xshell 个人在家庭或者学校使用的话，是完全免费的，到它的官网 <a href="https://www.xshell.com/zh/free-for-home-school/">https://www.xshell.com/zh/free-for-home-school/</a> 填写邮箱后，收到邮件就可以下载。</p><p>下载安装后，进行如下操作</p><p><img src="/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p><p><img src="/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p><p>顺利的话应该会看到这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connecting to COM12...</span><br><span class="line">Connected.</span><br></pre></td></tr></table></figure><p>此时就可以给开发板接通电源开机了。然后我们可以看到 bootloader 的加载信息，以及不断出现的系统启动信息。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bootloader version:211102-0b86f96</span><br><span class="line">ddr 0x00000000, 1M test</span><br><span class="line">ddr 0x00100000, 2M test</span><br><span class="line">DDR clk 2133M,Version: 211102-d086aee                                                  </span><br><span class="line">0 crc flash: 5595e732, crc ddr: 5595e732</span><br><span class="line">crc check PASSED</span><br><span class="line"></span><br><span class="line">bootloader.</span><br><span class="line"></span><br><span class="line">OpenSBI v1.0</span><br><span class="line">   ____                    _____ ____ _____</span><br><span class="line">  / __ \                  / ____|  _ \_   _|</span><br><span class="line"> | |  | |_ __   ___ _ __ | (___ | |_) || |</span><br><span class="line"> | |  | | &#x27;_ \ / _ \ &#x27;_ \ \___ \|  _ &lt; | |</span><br><span class="line"> | |__| | |_) |  __/ | | |____) | |_) || |_</span><br><span class="line">  \____/| .__/ \___|_| |_|_____/|____/_____|</span><br><span class="line">        | |</span><br><span class="line">        |_|</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>等到开机完成，会出现这样的界面，在这里我们可以用电脑键盘输入用户名和密码来进行登录。</p><p><img src="/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p><h3 id="编译-Linux-内核"><a href="#编译-Linux-内核" class="headerlink" title="编译 Linux 内核"></a>编译 Linux 内核</h3><p>目前官方提供的 Fedora 镜像是</p><p><strong>2021-December-26:</strong> <a href="https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst">Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst</a></p><p>使用的内核是 5.15，如果我们想要使用更新的内核，可以选择自己编译。</p><p>首先下载源代码</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone --depth=1 https://github.com/starfive-tech/linux.git</span><br></pre></td></tr></table></figure><p>这时就得分情况了，我们是要在哪里进行编译呢？如果是在 x86 架构的机器编译，需要通过交叉编译。因为我们的开发板是 risc-v 架构的，如果直接在开发板编译就不需要。这两种我都又尝试过，分别讲一下。</p><h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><p>按照 GitHub 上的文档操作即可。</p><p><a href="https://github.com/starfive-tech/linux">https://github.com/starfive-tech/linux</a></p><p>先下载源代码，之后安装编译所需的工具</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Debian/Ubuntu</span><br><span class="line">sudo apt-get install libncurses-dev libssl-dev bc flex bison make gcc gcc-riscv64-linux-gnu</span><br><span class="line"># Fedora</span><br><span class="line">sudo dnf install ncurses-devel openssl openssl-devel bc flex bison make gcc gcc-riscv64-linux-gnu</span><br><span class="line"># Archlinux</span><br><span class="line">sudo pacman -S --needed ncurses openssl bc flex bison make gcc riscv64-linux-gnu-gcc</span><br></pre></td></tr></table></figure><p>配置与编译</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- visionfive_defconfig</span><br><span class="line">make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- nconfig</span><br><span class="line">make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu-</span><br></pre></td></tr></table></figure><p>我使用的处理器是 i5 8259U，四核八线程，第一次编译 3、4分钟就搞定了。</p><h4 id="原生编译"><a href="#原生编译" class="headerlink" title="原生编译"></a>原生编译</h4><p>同样下载源代码到设备上</p><p>安装编译所需的工具</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo dnf install ncurses-devel openssl openssl-devel bc flex bison make gcc</span><br></pre></td></tr></table></figure><p>配置与编译</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -j2 visionfive_defconfig</span><br><span class="line">make -j2 nconfig</span><br><span class="line">make -j2</span><br></pre></td></tr></table></figure><p>由于板子是双核双线程的，所以这里就改为 -j2 了。耗费的时间是两个半小时左右。</p><p>不管是交叉编译还是原生编译，编译完成我们都可以得到内核 <code>arch/riscv/boot/Image</code> 以及 dtb <code>arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dtb</code></p><p>那么要怎么使用它们呢？</p><p>我个人是这样操作的，在 /boot 里新建一个文件夹，然后将这两个文件放到里面。我现在新编译的内核版本是 5.18，所以我新建一个 518 的文件夹，再将内核与 dtb 复制进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir /boot/518</span><br><span class="line">cp arch/riscv/boot/Image /boot/518/</span><br><span class="line">cp arch/riscv/boot/dts/starfive/jh7100-starfive-visionfive-v1.dtb /boot/518/</span><br></pre></td></tr></table></figure><p>然后修改 <code>/boot/grub.cfg</code> ，在里面添加多一个 menuentry</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">menuentry &#x27;5.18&#x27; &#123;</span><br><span class="line">    linux /518/Image earlycon console=ttyS0,115200n8 stmmac.chain_mode=1 root=/dd</span><br><span class="line">ev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>修改后这个文件前面 22 行的内容是这样的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">set default=0</span><br><span class="line">set timeout_style=menu</span><br><span class="line">set timeout=2</span><br><span class="line"></span><br><span class="line">set debug=&quot;linux,loader,mm&quot;</span><br><span class="line">set term=&quot;vt100&quot;</span><br><span class="line"></span><br><span class="line">menuentry &#x27;5.18&#x27; &#123;</span><br><span class="line">    linux /518/Image earlycon console=ttyS0,115200n8 stmmac.chain_mode=1 root=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /518/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry &#x27;Fedora vmlinux-5.17.0&#x27; &#123;</span><br><span class="line">    linux /Image earlycon console=ttyS0,115200n8 stmmac.chain_mode=1 root=/dev/mmcblk0p4 rootwait</span><br><span class="line">    devicetree /jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">menuentry &#x27;Fedora vmlinux-5.15.10+ visionfive&#x27; &#123;</span><br><span class="line">    linux /vmlinuz-5.15.10+ ro root=UUID=59fcd098-2f22-441a-ba45-4f7185baf23f rhgb console=tty0 console=ttyS0,115200 earlycon rootwait stmmaceth=chain_mode:1 selinux=0 LANG=en_US.UTF-8</span><br><span class="line">    devicetree /dtbs/5.15.10+/starfive/jh7100-starfive-visionfive-v1.dtb</span><br><span class="line">        initrd /initramfs-5.15.10+.img</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>里面的 5.17 也是我之前自己添加的。此时重启机器</p><p>在启动过程中会出现一个选择菜单界面</p><p><img src="/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p><p>可以按上下键来选择不同的内核版本，如果不手动选的话，就会自动加载第一个。</p><p>进入系统后输入 <code>uname -sr</code> 可以查看当前的内核版本。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$uname -sr   </span><br><span class="line">Linux 5.18.0-rc1-visionfive-g7ff84520cb68</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;串口调试&quot;&gt;&lt;a href=&quot;#串口调试&quot; class=&quot;headerlink&quot; title=&quot;串口调试&quot;&gt;&lt;/a&gt;串口调试&lt;/h3&gt;&lt;p&gt;开发板除了通过 HDMI 连接显示器，然后通过 usb 键盘来控制之外，还可以通过串口与电脑进行连接，将它的输出信息显示在电
-      
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>visionfive 开发板通过 gpio 控制 led 灯</title>
-    <link href="https://powersee.github.io/2022/04/visionfive-gpio-led/"/>
-    <id>https://powersee.github.io/2022/04/visionfive-gpio-led/</id>
-    <published>2022-04-11T01:14:38.000Z</published>
-    <updated>2022-04-13T01:16:35.450Z</updated>
-    
-    <content type="html"><![CDATA[<p>visionfive 是赛昉科技推出的一款开发板，使用的处理器是他们自家研发的【惊鸿 7100】（JH7100），这是一颗 risc-v 架构的处理器，双核 U74，U74 对标的是 ARM 的 Cortex-A55 。</p><p><img src="/img/2022/visionfive1.jpg" alt="visionfive1"></p><h3 id="写入镜像"><a href="#写入镜像" class="headerlink" title="写入镜像"></a>写入镜像</h3><p>这块板子的系统运行和树莓派一样，需要先将系统镜像写入内存卡，再插到板子上来运行。目前官方提供的只有 Fedora 这个发行版，可以在 GitHub 上找到下载链接。</p><p><a href="https://github.com/starfive-tech/Fedora_on_StarFive">https://github.com/starfive-tech/Fedora_on_StarFive</a></p><p>下载完是一个特殊的压缩格式，zst，我搜了一下</p><blockquote><p>当前这种 ZST 格式是一种 压缩文件 ，是由 ZStandard 研发，作为一种 ZStandard压缩文件使用，此文件流行程度是 50 分（0-100满分）。</p></blockquote><p>还得使用专门的工具才能解压，稍微麻烦了点。工具在这里有提供</p><p><a href="https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide">https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide</a></p><p>点击网页左侧的 <strong>Flashing Fedora OS to a Micro-SD Card</strong> 可以快速达到。</p><p><img src="/img/2022/Snipaste_22-04-11_09-21-44.jpg" alt="Snipaste_22-04-11_09-21-44"></p><p>我是在 win10 进行操作的，将下载好的解压工具，从压缩包里解压出来，和 zst 文件放在一起。</p><p><img src="/img/2022/2022-04-11_09-57-19.jpg" alt="2022-04-11_09-57-19"></p><p>此时在这个文件夹里的空白处，一只手按住键盘上的 shift 键，另一只手按一下鼠标的右键，在此处打开 powershell，就可以快速在当前文件夹打开一个命令行窗口。（此处我的 powershell 是自己升级过的，系统自带的是没有带 preview 的。）</p><p><img src="/img/2022/2022-04-11_09-58-00.jpg" alt="2022-04-11_09-58-00"></p><p>执行这条命令就可以解压了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./zstd.exe -d Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw\.zst -o Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw</span><br></pre></td></tr></table></figure><p>解压出来的文件差不多 13G，可以使用写盘工具将它写入内存卡中，例如 etcher。</p><h3 id="开机"><a href="#开机" class="headerlink" title="开机"></a>开机</h3><p>之后将内存卡插入开发板，使用 HDMI 线连接显示器，通电开机，便可进入 Fedora 了。</p><p>默认的用户名是 riscv</p><p>密码是 starfive</p><p>这台设备的桌面体验，我感觉还是比较差的，毕竟没有 GPU，而已本身也只是双核而已，所以桌面体验会有一些卡顿。很快我就放弃用鼠标来控制它了，而是选择在电脑上通过 ssh 来控制它。</p><p><img src="/img/2022/visionfive-neofetch.jpg" alt="visionfive-neofetch"></p><h3 id="如何通过-gpio-控制-LED-灯？"><a href="#如何通过-gpio-控制-LED-灯？" class="headerlink" title="如何通过 gpio 控制 LED 灯？"></a>如何通过 gpio 控制 LED 灯？</h3><p>通过这个网页，我们可以了解到这块板子的 GPIO 信息</p><p><a href="https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide">https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide</a></p><p><img src="/img/2022/visionfive-gpio.jpg" alt="img"></p><p>准备一颗 LED 灯，一头连接 34 号的 GND，一头连接 40 号的 GPIO0</p><p><img src="/img/2022/LED-off.jpg" alt="LED-off"></p><p>在终端里进行如下的操作（需要 root 身份来执行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /sys/class/gpio</span><br><span class="line">echo 448 &gt; export</span><br><span class="line">cd gpio448</span><br><span class="line">echo out &gt; direction</span><br><span class="line">echo 1 &gt; value</span><br></pre></td></tr></table></figure><p>这样便可以点亮 LED 灯</p><p><img src="/img/2022/LED-on.jpg" alt="LED-on"></p><p>如果想熄灭它，只需执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo 0 &gt; value</span><br></pre></td></tr></table></figure><p>官方文档里的这个表格非常重要，刚才我们控制 GPIO0，操作的是 448，如果现在我们想控制 GPIO4，从表格可以查到是 452，那么只需将刚才的 448 换成 452 即可让 GPIO4 输出高电平。</p><p><img src="/img/2022/gpio%E8%A1%A8%E6%88%AA%E5%9B%BE.jpg" alt="gpio"></p><p>对此我写了一个 Python 脚本，作用是监控哔哩哔哩上面是否有人给我发私信，也就是我是否有未读消息，如果有的话，则点亮 LED 灯。而当我看完消息后，脚本检测到目前没有未读消息了，则会将 LED 灯熄灭。</p><p>脚本已放在 GitHub 上面，有兴趣的朋友可以参考一下。</p><p><a href="https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py">https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;visionfive 是赛昉科技推出的一款开发板，使用的处理器是他们自家研发的【惊鸿 7100】（JH7100），这是一颗 risc-v 架构的处理器，双核 U74，U74 对标的是 ARM 的 Cortex-A55 。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2022
-      
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-      <category term="python" scheme="https://powersee.github.io/tags/python/"/>
     
   </entry>
   
