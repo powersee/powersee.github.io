@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>在 docker 中使用 Golang 编译 RISC-V 应用</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    在 docker 中使用 Golang 编译 RISC-V 应用
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-15T07:14:38.000Z" itemprop="datePublished">2023-03-15</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-15T07:18:10.335Z" itemprop="dateUpdated">2023-03-15</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>我想给 vision five 2 装个 web 服务器 caddy，结果发现它不提供 RISC-V 版的可执行文件下载。</p>
+<p>那就只能自己编译咯，毕竟是开源应用嘛。</p>
+<p>由于机器上也没有装 Go，所以我选择用其它的设备来交叉编译。</p>
+<p>我编译的设备是 d2550，没想到它还能在这种地方发光发热。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it golang:alpine3.17</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/go # go version</span><br><span class="line">go version go1.20.2 linux/amd64</span><br></pre></td></tr></table></figure>
+
+<p>用 docker 可以很方便就拥有一个可编译的环境，那么接着需要下载代码，下载需要使用到 wget，由于我下载了 zip 压缩包，所以还得装一个 unzip，如果下载 tar 包就不用了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add wget upzip</span><br><span class="line">wget https://github.com/caddyserver/caddy/archive/refs/tags/v2.6.4.zip</span><br><span class="line">unzip v2.6.4.zip</span><br></pre></td></tr></table></figure>
+
+<p>解压出来一个 caddy-2.6.4 的目录，那么进入这个目录，再进入 cmd&#x2F;caddy</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GOPROXY=https://goproxy.cn</span><br><span class="line">go build</span><br></pre></td></tr></table></figure>
+
+<p>编译完成就会多出一个名为 caddy 的文件，不过这样编译的是 amd64 版的，我想要编译 RISC-V 版。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CGO_ENABLE=0 GOOS=linux GOARCH=riscv64 go build</span><br></pre></td></tr></table></figure>
+
+<p>这样编译之后，caddy 这个文件就变成 RISC-V 版的了，使用 file 命令可以查看</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add file</span><br><span class="line"># file caddy</span><br><span class="line">caddy: ELF 64-bit LSB executable, UCB RISC-V, double-float ABI, version 1 (SYSV), statically linked, Go BuildID=Sl5DFjHtcm44runPVDQz/PtAVfjFrZ7ix6z2eqOtp/bjeL6tdqc9Bu0ZnsWsXf/--2q9FfQEXqHen90fHNn, with debug_info, not stripped</span><br></pre></td></tr></table></figure>
+
+<p>此时这个文件是在 docker 容器中的，我们可以使用 docker cp 命令将它复制出来。这里我是多开一个 ssh 标签。</p>
+<p>需要先去查一下容器的 ID，用 docker ps，我这里查到是 <code>bb95e6bfb7e9</code>，然后像这样复制出来。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp bb95e6bfb7e9:/go/caddy-2.6.4/cmd/caddy/caddy .</span><br></pre></td></tr></table></figure>
+
+<p>之后再想办法将它传到 RISC-V 开发板上。这一切完成之后，可以直接把容器删掉，甚至把镜像也删掉也行，不会生出多余的文件，很不错。</p>
+
+      </div>
+        <div class="support-author">
+          <p>原文链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

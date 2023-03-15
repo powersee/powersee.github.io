@@ -4014,7 +4014,7 @@ border-radius: 4px;
   <entry>
     <title>群晖 NAS 里怎么更新 Docker 容器</title>
     <url>/2023/03/synology-update-docker-container/</url>
-    <content><![CDATA[<p>我在使用一款自建的开源备忘录应用 memos，我把它运行中群晖里面。使用的是 docker，一条命令即可运行起来</p>
+    <content><![CDATA[<p>我在使用一款自建的开源备忘录应用 memos，我把它运行在群晖里面。使用的是 docker，一条命令即可运行起来</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:latest</span><br></pre></td></tr></table></figure>
 
 <p>我在群晖里面，网络直接使用 host，因此不需要填写端口，只需在「存储空间」里选择一个目录，来映射到容器内的 <code>/var/opt/memos</code>。</p>
@@ -4055,8 +4055,8 @@ border-radius: 4px;
     <url>/2023/03/clean-up-the-server-disk/</url>
     <content><![CDATA[<p>服务器的硬盘空间告急，只剩下 100 多 M 可用。</p>
 <p>我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。</p>
-<p>排查的话可以用 <code>nudu</code> ，如果没有这个命令可以用 <code>apt</code> 装一下。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nudu /</span><br></pre></td></tr></table></figure>
+<p>排查的话可以用 <code>ncdu</code> ，如果没有这个命令可以用 <code>apt</code> 装一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ncdu /</span><br></pre></td></tr></table></figure>
 
 <p>让它直接分析整个根目录。完成后它会按占用空间从大到小排序</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">13.2 GiB [##########] /home                   </span><br><span class="line"> 3.8 GiB [##        ] /usr</span><br><span class="line"> 2.6 GiB [#         ] /var</span><br><span class="line">81.3 MiB [          ] /boot</span><br><span class="line">77.5 MiB [          ] /root</span><br><span class="line"> 9.0 MiB [          ] /etc</span><br></pre></td></tr></table></figure>
@@ -4081,6 +4081,39 @@ border-radius: 4px;
       <tags>
         <tag>随笔</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 docker 中使用 Golang 编译 RISC-V 应用</title>
+    <url>/2023/03/docker-golang-compile-riscv-app/</url>
+    <content><![CDATA[<p>我想给 vision five 2 装个 web 服务器 caddy，结果发现它不提供 RISC-V 版的可执行文件下载。</p>
+<p>那就只能自己编译咯，毕竟是开源应用嘛。</p>
+<p>由于机器上也没有装 Go，所以我选择用其它的设备来交叉编译。</p>
+<p>我编译的设备是 d2550，没想到它还能在这种地方发光发热。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it golang:alpine3.17</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/go # go version</span><br><span class="line">go version go1.20.2 linux/amd64</span><br></pre></td></tr></table></figure>
+
+<p>用 docker 可以很方便就拥有一个可编译的环境，那么接着需要下载代码，下载需要使用到 wget，由于我下载了 zip 压缩包，所以还得装一个 unzip，如果下载 tar 包就不用了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add wget upzip</span><br><span class="line">wget https://github.com/caddyserver/caddy/archive/refs/tags/v2.6.4.zip</span><br><span class="line">unzip v2.6.4.zip</span><br></pre></td></tr></table></figure>
+
+<p>解压出来一个 caddy-2.6.4 的目录，那么进入这个目录，再进入 cmd&#x2F;caddy</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GOPROXY=https://goproxy.cn</span><br><span class="line">go build</span><br></pre></td></tr></table></figure>
+
+<p>编译完成就会多出一个名为 caddy 的文件，不过这样编译的是 amd64 版的，我想要编译 RISC-V 版。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CGO_ENABLE=0 GOOS=linux GOARCH=riscv64 go build</span><br></pre></td></tr></table></figure>
+
+<p>这样编译之后，caddy 这个文件就变成 RISC-V 版的了，使用 file 命令可以查看</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add file</span><br><span class="line"># file caddy</span><br><span class="line">caddy: ELF 64-bit LSB executable, UCB RISC-V, double-float ABI, version 1 (SYSV), statically linked, Go BuildID=Sl5DFjHtcm44runPVDQz/PtAVfjFrZ7ix6z2eqOtp/bjeL6tdqc9Bu0ZnsWsXf/--2q9FfQEXqHen90fHNn, with debug_info, not stripped</span><br></pre></td></tr></table></figure>
+
+<p>此时这个文件是在 docker 容器中的，我们可以使用 docker cp 命令将它复制出来。这里我是多开一个 ssh 标签。</p>
+<p>需要先去查一下容器的 ID，用 docker ps，我这里查到是 <code>bb95e6bfb7e9</code>，然后像这样复制出来。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp bb95e6bfb7e9:/go/caddy-2.6.4/cmd/caddy/caddy .</span><br></pre></td></tr></table></figure>
+
+<p>之后再想办法将它传到 RISC-V 开发板上。这一切完成之后，可以直接把容器删掉，甚至把镜像也删掉也行，不会生出多余的文件，很不错。</p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
 </search>

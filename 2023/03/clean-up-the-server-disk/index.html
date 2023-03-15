@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2023-03-14T06:08:26.250Z" itemprop="dateUpdated">2023-03-14</time>
+    更新 <time datetime="2023-03-15T17:30:39.052Z" itemprop="dateUpdated">2023-03-16</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -58,8 +58,8 @@
         
         <p>服务器的硬盘空间告急，只剩下 100 多 M 可用。</p>
 <p>我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。</p>
-<p>排查的话可以用 <code>nudu</code> ，如果没有这个命令可以用 <code>apt</code> 装一下。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nudu /</span><br></pre></td></tr></table></figure>
+<p>排查的话可以用 <code>ncdu</code> ，如果没有这个命令可以用 <code>apt</code> 装一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ncdu /</span><br></pre></td></tr></table></figure>
 
 <p>让它直接分析整个根目录。完成后它会按占用空间从大到小排序</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">13.2 GiB [##########] /home                   </span><br><span class="line"> 3.8 GiB [##        ] /usr</span><br><span class="line"> 2.6 GiB [#         ] /var</span><br><span class="line">81.3 MiB [          ] /boot</span><br><span class="line">77.5 MiB [          ] /root</span><br><span class="line"> 9.0 MiB [          ] /etc</span><br></pre></td></tr></table></figure>
