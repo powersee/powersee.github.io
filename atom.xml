@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-15T07:18:10.335Z</updated>
+  <updated>2023-03-17T15:26:49.296Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自动纠正文章中的格式 autocorrect</title>
+    <link href="https://powersee.github.io/2023/03/auto-correct/"/>
+    <id>https://powersee.github.io/2023/03/auto-correct/</id>
+    <published>2023-03-17T05:58:56.000Z</published>
+    <updated>2023-03-17T15:26:49.296Z</updated>
+    
+    <content type="html"><![CDATA[<p>发现一个好用的工具 <a href="https://github.com/huacnlee/autocorrect">autocorrect</a> ，是 GitHub 上一个开源项目。官方介绍：</p><blockquote><p>AutoCorrect 是一个基于 Rust 编写的工具，用于「自动纠正」或「检查并建议」文案，给 CJK（中文、日语、韩语）与英文混写的场景，补充正确的空格，纠正单词，同时尝试以安全的方式自动纠正标点符号等等。</p></blockquote><p>感觉好像挺不错的，我可以使用它，自动给文字中的英文加空格。</p><p>看了下 <a href="https://github.com/huacnlee/autocorrect/releases">https://github.com/huacnlee/autocorrect/releases</a> ，里面有提供 Windows 的可执行文件，当然是命令行版本的，这工具并没有 GUI 的程序。于是我下载来体验看看。</p><h4 id="基础用法-–lint"><a href="#基础用法-–lint" class="headerlink" title="基础用法 –lint"></a>基础用法 –lint</h4><p>lint 这个单词我查了一下</p><blockquote><p>n. 软麻布；线头；棉绒<br>vi. 飞散出棉线</p></blockquote><p>这里难道是指，我们文章中那些不规范的地方，就像是线头？</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect.exe --lint C:\text.md</span><br></pre></td></tr></table></figure><p>使用起来很简单，命令名 参数 文件路径，执行后会快速检查文本中的内容。我使用的是一个 markdown 文件，里面的字数有 2 万 3（由 typora 统计的）</p><p><img src="/img/2023/image-20230316204751544.png" alt="autocorrect"></p><p>检测只用了不到 55 毫秒，确实很快。红色的就是我原本的内容，绿色的就是它建议修改后的格式。<code>--lint</code> 只是显示建议而已，不会直接修改文件的。</p><p>感觉还不错：</p><ul><li>中英混写的，它会建议加空格。</li><li>汉字和阿拉伯数字也是建议加空格。</li><li>多余的空格会建议删掉</li></ul><p>我建立了个 txt 文件，写下这些内容</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line"></span><br><span class="line">javascript</span><br><span class="line"></span><br><span class="line">你好，haha。。。。</span><br></pre></td></tr></table></figure><p>检测后是没有错误，我还预期它会改正写法呢，改为 Python，JavaScript。按理说这个应该不难，可能是有其它方面的考虑吧，例如改到代码之类。</p><p>不过我这四个句号 <code>。。。。</code>，肯定是不规范吧，我还期待看它会怎么改呢。</p><h4 id="完整参数"><a href="#完整参数" class="headerlink" title="完整参数"></a>完整参数</h4><p>通过执行 -h 可以查看说明</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect -h</span><br><span class="line">A linter and formatter for help you improve copywriting, to correct spaces, words, punctuations between CJK (Chinese, Japanese, Korean).</span><br><span class="line"></span><br><span class="line">Usage: autocorrect.exe [OPTIONS] [FILE]... [COMMAND]</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  init    Initialize AutoCorrect config file.</span><br><span class="line">  update  Update AutoCorrect to latest version.</span><br><span class="line">  help    Print this message or the help of the given subcommand(s)</span><br><span class="line"></span><br><span class="line">Arguments:</span><br><span class="line">  [FILE]...  Target filepath or dir for format. [default: .]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">      --lint               Lint and output problems.</span><br><span class="line">      --fix                Automatically fix problems and rewrite file.</span><br><span class="line">      --debug              Print debug information.</span><br><span class="line">      --format &lt;FORMAT&gt;    Output format. [default: diff] [possible values: diff, json]</span><br><span class="line">      --threads &lt;THREADS&gt;  Number of threads, 0 - use number of CPU. [default: 0]</span><br><span class="line">  -c, --config &lt;CONFIG&gt;    Special config file. [default: .autocorrectrc]</span><br><span class="line">      --type &lt;FILETYPE&gt;    Directly use set file type.</span><br><span class="line">      --stdin              Input text from &lt;STDIN&gt;</span><br><span class="line">      --no-diff-bg-color   Disable diff background color for diff output.</span><br><span class="line">  -h, --help               Print help</span><br><span class="line">  -V, --version            Print version</span><br></pre></td></tr></table></figure><p>我们可以先使用 <code>lint</code>检测问题，确认之后，使用 <code>fix</code>来改正。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect.exe --fix C:\text.md</span><br></pre></td></tr></table></figure><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>使用 <code>--config</code> 还能使用配置文件，需要先初始化一下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS C:\bin&gt; .\autocorrect.exe init</span><br><span class="line">Fetching https://github.com/huacnlee/autocorrect/raw/main/.autocorrectrc.template</span><br><span class="line">AutoCorrect init config: .autocorrectrc</span><br><span class="line">PS C:\bin&gt; ls</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    目录: C:\bin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Mode                 LastWriteTime         Length Name</span><br><span class="line">----                 -------------         ------ ----</span><br><span class="line">-a----         2023/3/16     21:10           2025 .autocorrectrc</span><br><span class="line">-a----          2023/2/9      0:19        9476096 autocorrect.exe</span><br></pre></td></tr></table></figure><p>这样它就会从 GitHub 下载模板，然后在当前目录下保存为 <code>.autocorrectrc</code>。此时我再来执行检测</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\powersee\Downloads\test.txt:3:1</span><br><span class="line">-javascript</span><br><span class="line">+JavaScript</span><br><span class="line"></span><br><span class="line">C:\Users\powersee\Downloads\test.txt:7:1</span><br><span class="line">-Youtube</span><br><span class="line">+YouTube</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Error: 0, Warning: 2</span><br></pre></td></tr></table></figure><p>下载模板之后，再来检测，就会出建议了。不过这里是 Warning，执行 fix 是不会改正的。</p><p>此时我只要修改配置文件，改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spellcheck: 1</span><br></pre></td></tr></table></figure><p>再次检测，刚才的两个 Warning，就变成 Error 了。再使用 fix 就可以改正了。</p><p>因为这个配置，是使用数字来控制的。</p><blockquote><p>0 - off, 1 - error, 2 - warning</p></blockquote><p>如果我不想要它检查英文的大小写，直接设置为 0 就行。</p><p>之所以之前检查 javascript 没问题，下载好配置文件后，就发现问题。是因为配置文件里有这部分</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spellcheck:</span><br><span class="line">  words:</span><br><span class="line">    # Please do not add a general English word (eg. apple, python) here.</span><br><span class="line">    # Users can add their special words to their .autocorrectrc file by their need.</span><br><span class="line">    - ActiveMQ</span><br><span class="line">    - AirPods</span><br><span class="line">    - Aliyun</span><br><span class="line">    ……</span><br><span class="line">    - JavaScript</span><br></pre></td></tr></table></figure><p>里面定义了 JavaScript 为正确写法。（看来这里我才意识到，python 是一个英文单词，蟒蛇，所以不应该被添加进配置文件里面。）</p><p>那在这个配置文件里，我们应该可以自己添加单词，例如我想把文章中，<code>powersee</code> 改为 <code>Powersee</code>，那我只需要把 <code>Powersee</code>添加进去就行。</p><p>然而当我添加进去之后，我发现，检查不出任何错误了……不管我添加了在开头，还是在结尾，都不行。甚至在中间也不行，反正只要我添加任何单词进去，这个配置文件就好像失效了。</p><p>所以目前我还没弄懂怎么回事，以后要是弄明白自己自定义这部分，再来更新吧。</p><h4 id="不用命令行"><a href="#不用命令行" class="headerlink" title="不用命令行"></a>不用命令行</h4><p>如果只是想改正一篇文章而已，那可以不用去下载这个命令行工具，直接访问 <a href="https://huacnlee.github.io/autocorrect">https://huacnlee.github.io/autocorrect</a> ，把文章内容粘贴进去，在网页里修改就行了。</p><p>而且它还有 <a href="https://marketplace.visualstudio.com/items?itemName=huacnlee.autocorrect">vscode 的插件</a>，我安装好后，直接用 vscode 打开我的文章就行了。</p><p>事实上，刚装好，我就把插件给停用了。</p><p>原因是我文章里有这么一段</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">看了下 https://github.com/huacnlee/autocorrect/releases ，里面有提供 Windows 的可执行文件</span><br></pre></td></tr></table></figure><p>我的链接后面是加了空格，再用逗号的。那么使用插件的话，会检测到这个空格，它觉得是多余的，要求我删掉。那么删掉之后，我的链接就错误了，因为会把逗号以及后面的汉字，一起识别为 url 的一部分。也就是说这个空格是必须要有的。</p><p>但是，此时我没法把它加回来，因为加回空格之后，再保存，插件会自动把空格去掉……看来我这种情况，不适合使用这个插件。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;发现一个好用的工具 &lt;a href=&quot;https://github.com/huacnlee/autocorrect&quot;&gt;autocorrect&lt;/a&gt; ，是 GitHub 上一个开源项目。官方介绍：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AutoCorrect 是一个基于
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么使用 apt 安装某些应用的时候，不需要按 y 确认？</title>
+    <link href="https://powersee.github.io/2023/03/why-apt-no-need-for-confirm/"/>
+    <id>https://powersee.github.io/2023/03/why-apt-no-need-for-confirm/</id>
+    <published>2023-03-16T02:33:21.000Z</published>
+    <updated>2023-03-16T02:34:28.454Z</updated>
+    
+    <content type="html"><![CDATA[<p>例如我在 Ubuntu 18.04 里面，安装 ncdu</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install ncdu</span><br></pre></td></tr></table></figure><p>它不需要我按 y，就可以直接安装完成。但如果我安装个 php，它就需要询问我，在我按 y 确认之后，才会进入安装。虽然我们可以通过在命令中加入 <code>-y</code> 参数来自动确认，例如这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install php -y</span><br></pre></td></tr></table></figure><p>但是我好奇的是，为什么有些时候需要确认，有些时候不需要？</p><p>这是来自 ChatGPT 的回答</p><blockquote><p>对于某些较小的软件包，apt 安装时不需要确认是因为它们没有与其他软件包发生依赖关系或冲突。这些软件包通常只包含一些脚本、配置文件或其他小型组件，因此安装它们不会对系统的其他部分造成影响。</p><p>当 apt 安装一个包时，它会检查该包是否需要依赖其他包或冲突于已安装的包。如果没有，则 apt 不会询问用户是否确认安装该包，并自动安装。</p><p>因此，在某些情况下，如果软件包非常小并且没有与其他包发生依赖关系或冲突，则在安装过程中不需要手动确认安装。但是，在安装任何软件包之前，最好检查其详细信息，以确保其不会对系统造成不良影响。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;例如我在 Ubuntu 18.04 里面，安装 ncdu&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt install ncdu
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="Ubuntu" scheme="https://powersee.github.io/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>在 docker 中使用 Golang 编译 RISC-V 应用</title>
@@ -465,55 +516,6 @@
     
     
       <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>芝杜 z9x 手动升级固件，体验不错</title>
-    <link href="https://powersee.github.io/2022/05/zidoo-z9x-update/"/>
-    <id>https://powersee.github.io/2022/05/zidoo-z9x-update/</id>
-    <published>2022-05-21T02:40:20.000Z</published>
-    <updated>2022-05-21T03:48:00.392Z</updated>
-    
-    <content type="html"><![CDATA[<p>我的芝杜 z9x 有些问题，通过 smb 访问使用 d2550 搭建的黑群晖，经常提示“未知错误”，我在 smb 那里是弄了两个连接方式，一种是直接通过局域网主机名 <strong>d2550</strong> 这样来访问，另外一种是通过局域网 IP 地址 <strong>192.168.68.171</strong> 这样。</p><p>它也不是说完全不能访问，有时候我先点击 ip 的访问到第一层目录，然后就无法访问第二层目录了，之后我切换到主机名这种，就可以访问进去了，很烦人。</p><p>那么就尝试 NFS 吧，结果是 homes 文件夹里的可以显示出来，而我另外一个专门放影视资源的共享文件夹，是无法显示的，点进去后就是空白。挺难受的，之前用蜗牛星际当 nas 明明不会这样，难道是 d2550 的问题？可是我下载个当贝播放器，在里面用 smb 来播放 nas 里的视频却一直正常。</p><p>我一直在等芝杜推送系统更新，却一直没等到，昨晚实在烦了，就上网搜一下，到了芝杜的官方论坛，也没看到什么解决方案，接着又搜到了芝杜的贴吧 <strong>芝杜吧</strong> ，发现系统固件已经升级了很多次了，但是需要我们下载 ota 后自己去手动升级。</p><p><a href="https://tieba.baidu.com/p/7841671022">【图片】【220519 | 固件下载】芝杜Z9X 升级固件 v6.4.05 全量包_芝杜吧_百度贴吧 (baidu.com)</a></p><p>很新鲜，而且我从贴吧里了解到，目前新的固件是支持 webdav 的，而刚好我的 nas 就有启动 webdav 服务，所以我想的是，即使它没有修复 smb 和 NFS 的问题，那我还可以尝试通过 webdav 来播放 nas 里的视频，于是点击帖子中的链接，跳转到一个腾讯文档，里面有教程与下载链接</p><p><a href="https://docs.qq.com/doc/DSnhEdU10dkpvQVFN">芝杜Z9X 升级固件v6.4.05 v6.4.05G全量包 (qq.com)</a></p><p>用电脑网页版无法得到这个链接，我是在手机客服端点击才行的。</p><p>从文档里点击链接下载固件，放到 U 盘里，然后插到芝杜上面，点击桌面右边的“关于”，手动升级，选择 U 盘中的固件，会进行验证，然后将固件复制到机身内存，复制完再点一下升级。</p><p><a href="https://tieba.baidu.com/p/7127393998">【图片】【201203 | 教程攻略】芝杜播放器本地OTA升级教程_芝杜吧_百度贴吧 (baidu.com)</a></p><p><img src="/img/2022/image-20220521104308870.png" alt="image-20220521104308870"></p><p>系统升级完成后，打开文件管理器，此时在左侧可以看到一个 <strong>其它网络</strong> ，里面就有新的连接方式 webdav，我赶紧尝试通过它来连接 nas，很顺利，播放高清电影也很流畅。</p><p><img src="/img/2022/image-20220521114412831.png" alt="image-20220521114412831"></p><p><img src="/img/2022/image-20220521114437123.png" alt="image-20220521114437123"></p><p>不过我发现它不能像 smb 以及 NFS 那样，把某个文件夹收藏起来，方便下次直接访问。那也就是说，我每次访问 webdav 都得这样一层一层去打开文件夹，确实有点麻烦。</p><p>除了 webdav 之外，现在还可以直接访问 <strong>百度网盘</strong>、<strong>阿里云盘</strong> 里面的内容，这点感觉也不错嘛，如果平时收藏的视频是保存在网盘里的，现在可以直接播放还是挺方便的。不过我个人目前用不上这个功能，我的视频主要还是放在 nas 里的。</p><p><img src="/img/2022/rYDPf3z47r9GlCStnh3QMA.png" alt="img">        </p><p>接着最让我高兴的是，现在 smb 的问题好像都解决了，不会出现“未知错误”这样的提示了，直接点击就可以访问 nas 里的内容，NFS 这边也正常了，之前未升级的时候，点击后是显示空白的，现在可以正常显示 nas 的内容了。</p><p>其它的更新内容还挺多的，我就不想在这里重复了，有些更新的内容其实我也用不上，所以也不关心，我现在看到芝杜可以通过 smb、NFS、webdav 来访问 nas 里的文件，而且体验确实不错，就很满意了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;我的芝杜 z9x 有些问题，通过 smb 访问使用 d2550 搭建的黑群晖，经常提示“未知错误”，我在 smb 那里是弄了两个连接方式，一种是直接通过局域网主机名 &lt;strong&gt;d2550&lt;/strong&gt; 这样来访问，另外一种是通过局域网 IP 地址 &lt;strong&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>荣耀平板V7Pro 与华为 matepad paper USB 调试开启教程</title>
-    <link href="https://powersee.github.io/2022/04/usb-debugging-honor-and-huawei/"/>
-    <id>https://powersee.github.io/2022/04/usb-debugging-honor-and-huawei/</id>
-    <published>2022-04-21T08:52:15.000Z</published>
-    <updated>2022-04-21T08:59:06.284Z</updated>
-    
-    <content type="html"><![CDATA[<p>手头上有一台荣耀的平板，以及一台华为的墨水屏平板，我发现它们想要和其它的设备一样开启 USB 调试，然后在电脑上使用 adb 来控制，似乎没那么容易。本文记录我折腾的过程，方便有同样需求的小伙伴。</p><h3 id="荣耀"><a href="#荣耀" class="headerlink" title="荣耀"></a>荣耀</h3><p>首先到【设置】【关于平板电脑】里，连续点击 5 次【版本号】，可以开启开发者模式。</p><p>然后到【系统和更新】【开发人员选项】打开【usb调试】以及 【“仅充电”模式下允许 ADB 调试】</p><p>最后用数据线连接平板与 windows 电脑，将会发现，它不按套路出牌，执行 <code>adb devices</code> 后并不能显示设备。</p><p><img src="/img/2022/2022-04-12_13-11-26.jpg" alt="2022-04-12_13-11-26"></p><p>打开 Android studio 也一样识别不到</p><p><img src="/img/2022/2022-04-12_13-16-38.jpg" alt="2022-04-12_13-16-38"></p><p>怎么搞呢？那么试试装一下此时显示在【此电脑】里面，多出来的那个盘符里的手机助理吧。装好后我发现可以连接了，而且这个过程中，平板上会弹出提示，它这个叫 HDB 验证。。。而平时我们在其他安卓手机、平板上的叫 ADB 验证。</p><p>那么它们是否都一样，只是荣耀这里改个名字而已呢？并不是，HDB 连接好后，可以通过电脑的手机助理来管理平板上的文件，应用等，好像还可以刷机。</p><p>但是这个时候如果我们再执行 <code>adb devices</code> ，会出现这个</p><p><img src="/img/2022/image-20220412134348799.png" alt="image-20220412134348799"></p><p>unauthorized ，adb 这边还是没有授权，依然没法使用 Android studio</p><p>我网上搜，别人有说手机上的怎么操作，需要在拨号界面输入 <code>*#*#2846579#*#*</code>，进入工程菜单</p><p>但问题是，我这是平板，没有拨号界面……</p><p>然后继续找，最后找到了。WIFI版平板进入计算器，横屏（科学计算器）模式下输入()()2846579()()即可进入工程模式。</p><p>来源：<a href="https://club.huawei.com/forum.php?mod=viewthread&tid=30717452&extra=page=1">花粉俱乐部</a></p><p>不过按照教程，应该把【USB端口设置】从 【Hisuite模式】改为 【生产模式】，但是我这台平板好像改不了，只能改为【默认模式】。不过好像不影响开启 adb，反正最后是成功了。</p><p><img src="/img/2022/2022-04-12_13-23-13.jpg" alt="2022-04-12_13-23-13"></p><p><img src="/img/2022/image-20220412134858390.png" alt="image-20220412134858390"></p><p>看来手机助理这个软件是完全没有必要安装的，关键点在于进入工程菜单。</p><h3 id="华为"><a href="#华为" class="headerlink" title="华为"></a>华为</h3><p>操作上基本一样。</p><p>点击版本号 5 次，打开开发者选项</p><p><img src="/img/2022/image-20220421153431809.png" alt="image-20220421153431809"></p><p>然后在【系统和更新】【开发人员选项】中打开 USB 调试</p><p><img src="/img/2022/image-20220421153531693.png" alt="image-20220421153531693"></p><p>到应用菜单里打开【计算机】，点击右上角进入【科学计算器】模式，输入 <code>()()2846579()()</code> 即可进入工程模式。</p><p><img src="/img/2022/image-20220421153730565.png" alt="image-20220421153730565"></p><p>此时在工程菜单里，点击【后台设置】【USB端口设置】，选择【生产模式】即可。</p><p><img src="/img/2022/image-20220421154105540.png" alt="image-20220421154105540"></p><p><img src="/img/2022/image-20220421154145072.png" alt="image-20220421154145072"></p><p>在 Android studio 里面也可以识别到了</p><p><img src="/img/2022/image-20220421154252687.png" alt="image-20220421154252687"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;手头上有一台荣耀的平板，以及一台华为的墨水屏平板，我发现它们想要和其它的设备一样开启 USB 调试，然后在电脑上使用 adb 来控制，似乎没那么容易。本文记录我折腾的过程，方便有同样需求的小伙伴。&lt;/p&gt;
-&lt;h3 id=&quot;荣耀&quot;&gt;&lt;a href=&quot;#荣耀&quot; class=&quot;h
-      
-    
-    </summary>
-    
-    
-      <category term="手机" scheme="https://powersee.github.io/tags/%E6%89%8B%E6%9C%BA/"/>
-    
-      <category term="Android" scheme="https://powersee.github.io/tags/Android/"/>
     
   </entry>
   
