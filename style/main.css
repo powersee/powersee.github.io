@@ -361,12 +361,12 @@ svg.icon {
   padding: 0px 30px 20px 20px;
   word-break: break-word; }
   .article h1 {
-    font-size: 3rem; }
+    font-size: 2.3rem; }
   .article h2 {
     border-bottom: 1px solid #8d8d8d;
-    font-size: 2.5rem; }
-  .article h3 {
     font-size: 2rem; }
+  .article h3 {
+    font-size: 1.65rem; }
   .article h4 {
     font-size: 1.5rem; }
   .article h5 {
@@ -421,8 +421,9 @@ svg.icon {
   .article code {
     padding: 3px 5px;
     /* font-size: 13px; */
+    font-size: .8em;
     color: #c7254e;
-    background-color: #f9f2f4;
+    background-color: #e5e5e5;
     border-radius: 4px; }
   .article .content .overdue-remind {
     background-color: #fdf8ea;
@@ -559,6 +560,7 @@ svg.icon {
   border-color: #f6cec7; }
 
 .footer {
+  display: none;  /* 隐藏底部 */
   background-color: #EFEFEF;
   border-top: 1px solid #d9d9d9;
   margin: 10px auto 0;

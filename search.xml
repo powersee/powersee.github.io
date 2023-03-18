@@ -4193,7 +4193,7 @@ border-radius: 4px;
 <p>之所以之前检查 javascript 没问题，下载好配置文件后，就发现问题。是因为配置文件里有这部分</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spellcheck:</span><br><span class="line">  words:</span><br><span class="line">    # Please do not add a general English word (eg. apple, python) here.</span><br><span class="line">    # Users can add their special words to their .autocorrectrc file by their need.</span><br><span class="line">    - ActiveMQ</span><br><span class="line">    - AirPods</span><br><span class="line">    - Aliyun</span><br><span class="line">    ……</span><br><span class="line">    - JavaScript</span><br></pre></td></tr></table></figure>
 
-<p>里面定义了 JavaScript 为正确写法。（看来这里我才意识到，python 是一个英文单词，蟒蛇，所以不应该被添加进配置文件里面。）</p>
+<p>里面定义了 JavaScript 为正确写法。（看到这里我才意识到，python 是一个英文单词，蟒蛇，所以不应该被添加进配置文件里面。）</p>
 <p>那在这个配置文件里，我们应该可以自己添加单词，例如我想把文章中，<code>powersee</code> 改为 <code>Powersee</code>，那我只需要把 <code>Powersee</code>添加进去就行。</p>
 <p>然而当我添加进去之后，我发现，检查不出任何错误了……不管我添加了在开头，还是在结尾，都不行。甚至在中间也不行，反正只要我添加任何单词进去，这个配置文件就好像失效了。</p>
 <p>所以目前我还没弄懂怎么回事，以后要是弄明白自己自定义这部分，再来更新吧。</p>
@@ -4205,6 +4205,49 @@ border-radius: 4px;
 
 <p>我的链接后面是加了空格，再用逗号的。那么使用插件的话，会检测到这个空格，它觉得是多余的，要求我删掉。那么删掉之后，我的链接就错误了，因为会把逗号以及后面的汉字，一起识别为 url 的一部分。也就是说这个空格是必须要有的。</p>
 <p>但是，此时我没法把它加回来，因为加回空格之后，再保存，插件会自动把空格去掉……看来我这种情况，不适合使用这个插件。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>都什么年代了，还在手动修改 Linux 软件源？APT Proxy 使用体验</title>
+    <url>/2023/03/apt-proxy/</url>
+    <content><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>APT Proxy 是一款轻量的、可靠的 APT &#x2F; YUM &#x2F; APK 包（Ubuntu &#x2F; Debian &#x2F; CentOS &#x2F; ALPINE ）缓存工具，能够在各种不同的操作系统环境中运行。</p>
+</blockquote>
+<p>这是来自 <a href="https://github.com/soulteary/apt-proxy/blob/main/README_CN.md">官方文档</a> 开头的介绍，现在的作者 <a href="https://soulteary.com/">苏洋</a> 是一位能力很强的博主，他对停留在 2015 年的原项目进行修改，有了现在这个版本。</p>
+<p>而且已经不只是给 apt 用而已了，还可以给 centos 和 alpine 用，更加强大的了。</p>
+<p>想要更深入的了解，可以观看苏洋大佬的两篇文章：</p>
+<p><a href="https://soulteary.com/2022/06/14/lightweight-and-small-zero-configuration-apt-acceleration-tool-apt-proxy.html">轻量小巧的零配置 APT 加速工具：APT Proxy - 苏洋博客 (soulteary.com)</a></p>
+<p><a href="https://soulteary.com/2022/11/20/linux-package-download-acceleration-tool-apt-proxy.html">Linux 软件包下载加速工具：APT Proxy - 苏洋博客 (soulteary.com)</a></p>
+<p>现在使用它，我们在本地装好服务器后，可以不用去修改软件源了。</p>
+<p>平时我得到一个纯净的 Ubuntu 系统后，一般都会去修改 <code>/etc/apt/source.list</code> ，将里面的内容改为清华或者阿里云的镜像源。现在使用这个工具，我们就可以不用去修改了。只要在使用 apt 的时间设置代理，指向这个工具，就会自动使用最快的镜像源。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>运行起来也很简单，用 docker 一条命令即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=apt-proxy -p 3142:3142 soulteary/apt-proxy</span><br></pre></td></tr></table></figure>
+
+<p>只需要映射一个端口 <code>3142</code> 而已。查看容器的 log 可以看到这些。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2023/03/14 06:15:43 running apt-proxy </span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Ubuntu mirror http://ftp.sjtu.edu.cn/ubuntu/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Debian mirror http://repo.huaweicloud.com/debian/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest CentOS mirror https://mirrors.aliyun.com/centos/</span><br><span class="line">2023/03/14 06:15:45 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest Alpine mirror http://mirrors.aliyun.com/alpine/</span><br><span class="line">2023/03/14 06:15:45 proxy listening on 0.0.0.0:3142</span><br><span class="line">2023/03/14 06:15:45 Program has been started 🚀</span><br></pre></td></tr></table></figure>
+
+<p>从日志可以看到，它会自动测出速度最快的镜像站。而且此时我们访问 3142 端口，还可以看到 web 界面。</p>
+<p><img src="/img/2023/image-20230314141943091.png" alt="apt-proxy-web"></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>我运行 apt-proxy 的机器 IP 是 192.168.68.172，所以我可以这样这样来使用它。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># `apt-get update` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true update </span><br><span class="line"># `apt-get install vim -y` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true install vim -y</span><br></pre></td></tr></table></figure>
+
+<p>虽然执行之后输出的信息依然显示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]</span><br><span class="line">Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]</span><br><span class="line">Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]</span><br><span class="line">Get:4 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [829 kB]</span><br></pre></td></tr></table></figure>
+
+<p>但是它因为使用了代理，其实是用了 <a href="http://ftp.sjtu.edu.cn/ubuntu/">http://ftp.sjtu.edu.cn/ubuntu/</a> 这个镜像源，从速度我们也可以明显感受到。或者直接查看 apt-proxy 的日志也能看到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2023/03/18 03:01:30 rewrote &quot;http://archive.ubuntu.com/ubuntu/dists/jammy/InRelease&quot; to &quot;http://ftp.sjtu.edu.cn/ubuntu/dists/jammy/InRelease&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后它另一个优势，就是它会缓存。如果我们有多台服务器的话，那么第一台安装 vim，apt-proxy 会将 vim 的安装文件缓存下来，而之后的第二台，它就可以直接使用缓存了，不需要去镜像源下载了，速度会快很多。</p>
+<h3 id="缩短命令"><a href="#缩短命令" class="headerlink" title="缩短命令"></a>缩短命令</h3><p>不过它这命令也太长了吧，每次都得复制粘贴。我的解决方法是，使用 alias</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias aptp=&quot;http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>我把这么一串命令，起个别名为 <code>aptp</code>，之后我可以这样来使用它</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aptp update</span><br><span class="line">aptp install zsh</span><br></pre></td></tr></table></figure>
+
+<p>非常好用的一款工具，推荐经常在本地折腾服务器的朋友，都可以去尝试一下。</p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
