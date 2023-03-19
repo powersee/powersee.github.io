@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2023-03-18T03:13:38.968Z" itemprop="dateUpdated">2023-03-18</time>
+    更新 <time datetime="2023-03-18T13:15:16.470Z" itemprop="dateUpdated">2023-03-18</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -60,12 +60,12 @@
 <p>APT Proxy 是一款轻量的、可靠的 APT &#x2F; YUM &#x2F; APK 包（Ubuntu &#x2F; Debian &#x2F; CentOS &#x2F; ALPINE ）缓存工具，能够在各种不同的操作系统环境中运行。</p>
 </blockquote>
 <p>这是来自 <a target="_blank" rel="noopener" href="https://github.com/soulteary/apt-proxy/blob/main/README_CN.md">官方文档</a> 开头的介绍，现在的作者 <a target="_blank" rel="noopener" href="https://soulteary.com/">苏洋</a> 是一位能力很强的博主，他对停留在 2015 年的原项目进行修改，有了现在这个版本。</p>
-<p>而且已经不只是给 apt 用而已了，还可以给 centos 和 alpine 用，更加强大的了。</p>
+<p>而且已经不只是给 apt 用而已了，还可以给 centos 和 alpine 用，更加强大了。</p>
 <p>想要更深入的了解，可以观看苏洋大佬的两篇文章：</p>
 <p><a target="_blank" rel="noopener" href="https://soulteary.com/2022/06/14/lightweight-and-small-zero-configuration-apt-acceleration-tool-apt-proxy.html">轻量小巧的零配置 APT 加速工具：APT Proxy - 苏洋博客 (soulteary.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://soulteary.com/2022/11/20/linux-package-download-acceleration-tool-apt-proxy.html">Linux 软件包下载加速工具：APT Proxy - 苏洋博客 (soulteary.com)</a></p>
 <p>现在使用它，我们在本地装好服务器后，可以不用去修改软件源了。</p>
-<p>平时我得到一个纯净的 Ubuntu 系统后，一般都会去修改 <code>/etc/apt/source.list</code> ，将里面的内容改为清华或者阿里云的镜像源。现在使用这个工具，我们就可以不用去修改了。只要在使用 apt 的时间设置代理，指向这个工具，就会自动使用最快的镜像源。</p>
+<p>平时我得到一个纯净的 Ubuntu 系统后，一般都会去修改 <code>/etc/apt/sources.list</code> ，将里面的内容改为清华或者阿里云的镜像源。现在使用这个工具，我们就可以不用去修改了。只要在使用 apt 的时间设置代理，指向这个工具，就会自动使用最快的镜像源。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>运行起来也很简单，用 docker 一条命令即可。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=apt-proxy -p 3142:3142 soulteary/apt-proxy</span><br></pre></td></tr></table></figure>
 
@@ -94,8 +94,12 @@
 
       </div>
         <div class="support-author">
-          <p>原文链接:
+          <p>博客链接:
           <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
             <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
           </p>
         </div>

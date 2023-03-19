@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>使用油猴脚本实现自动点击签到按钮</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    使用油猴脚本实现自动点击签到按钮
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-19T13:14:27.000Z" itemprop="datePublished">2023-03-19</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-19T13:17:58.789Z" itemprop="dateUpdated">2023-03-19</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>有很多网站，需要我们打开网页之后，点击上面的签到按钮，来完成当天的签到。</p>
+<p>如果利用油猴脚本，我们可以实现打开网页后，查找按钮，如果找到了，就自动点击。</p>
+<p>首先打开想签到的网页，然后点击油猴插件，点击「添加新脚本」，给的默认模板是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// ==UserScript==</span><br><span class="line">// @name         New Userscript</span><br><span class="line">// @namespace    http://tampermonkey.net/</span><br><span class="line">// @version      0.1</span><br><span class="line">// @description  try to take over the world!</span><br><span class="line">// @author       You</span><br><span class="line">// @match        https://www.xxx.com/</span><br><span class="line">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=xxx.com</span><br><span class="line">// @grant        none</span><br><span class="line">// ==/UserScript==</span><br><span class="line"></span><br><span class="line">(function() &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    // Your code here...</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>由于我们需要等网页加载完成，再来查找按钮，所以需要添加一行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// @run-at       document-idle</span><br></pre></td></tr></table></figure>
+
+<p>可以加在 <code>// ==/UserScript==</code> 的上方，变成这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// @grant        none</span><br><span class="line">// @run-at       document-idle</span><br><span class="line">// ==/UserScript==</span><br></pre></td></tr></table></figure>
+
+<p>感觉也找不到合适网站来作为案例，就拿百度的那个「百度一下」来讲解吧，反正弄懂了原理，换其它网站也就没问题。</p>
+<p>在浏览器按 F12，弹出来的开发者工具，按 <code>ctrl + shift + c</code> 这三颗按键，然后选中「百度一下」</p>
+<p>可以发现它是一个 input</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;百度一下&quot;</span> <span class="attr">id</span>=<span class="string">&quot;su&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn self-btn bg s_btn&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种有 id 的最简单，因为网页中的 id 是唯一的。用 js 来选中它，然后点击</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById(&#x27;su&#x27;).click()</span><br></pre></td></tr></table></figure>
+
+<p>在「控制台」执行这行代码，就跟我们手动去点击「百度一下」的作用是一样的。</p>
+<p>如果你要签到的网站也是这么简单，签到按钮有 id，那只需要把上面的 su 换为你找到的 id 就行。例如我有个网站，它的签到按钮 id 是 <code>sign_title</code> ，那我只需要改为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById(&#x27;sign_title&#x27;).click()</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>// ==/UserScript==</code> 的下方，我们可以改为这样</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Your code here...</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;sign_title&#x27;</span>).<span class="title function_">click</span>()</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>很简单就可以实现一个自动点击的脚本了。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
