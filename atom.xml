@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-19T13:17:58.789Z</updated>
+  <updated>2023-03-20T13:31:46.475Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>油猴脚本——先判断文本内容</title>
+    <link href="https://powersee.github.io/2023/03/tampermonkey-judge-text/"/>
+    <id>https://powersee.github.io/2023/03/tampermonkey-judge-text/</id>
+    <published>2023-03-20T13:29:34.000Z</published>
+    <updated>2023-03-20T13:31:46.475Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时候，一些签到按钮，签到完成之后是依然可以点击的。如果只是用 id 来获取到元素，然后点击，就会导致明明签到完成了，还继续点击按钮。</p><p>此时我们可以加入一个判断条件。看来还是得拿个实际例子，<a href="https://xiage.yy.com/forum-234-1.html">王者荣耀 - 虾哥论坛</a></p><p>这个网站，我们没有账号也可以访问，我们可以看到它有一个「签到」按钮。</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:to_sign(fid, uid)&quot;</span> <span class="attr">class</span>=<span class="string">&quot;checkin-btn follow-show&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkin-btn&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>签到<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><p>由于它有 id ，所以获取起来很简单</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;checkin-btn&#x27;</span>)</span><br></pre></td></tr></table></figure><p>我有这个论坛的账号，我知道点击之后，按钮的文字，会从<code>签到</code> 变成 <code>已签到</code>。</p><p>那么我们要做的就是，在执行点击之前，判断一下，里面的文字是否 <code>签到</code></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         王者荣耀-虾哥-点击签到</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       Powersee</span></span><br><span class="line"><span class="comment">// @match        https://xiage.yy.com/forum-234-1.html</span></span><br><span class="line"><span class="comment">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=yy.com</span></span><br><span class="line"><span class="comment">// @grant        none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;checkin-btn&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (btn.<span class="property">textContent</span> == <span class="string">&#x27;签到&#x27;</span>) btn.<span class="title function_">click</span>()</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><p>完整的代码如下，我发现用 <code>// @run-at       document-idle</code> 似乎有些问题，所以改成了事件监听。</p><p>有些签到按钮，点击之后文字就会发生变化。</p><table><thead><tr><th align="left">签到前</th><th align="left">签到后</th></tr></thead><tbody><tr><td align="left">签到</td><td align="left">已签到</td></tr><tr><td align="left">签到</td><td align="left">已签</td></tr></tbody></table><p>像这种我们可以直接用 <code>==</code> 来判断里面的字符串，但是有的时候，我们想要的是，判断里面的文字，是否包含某些字符串。</p><p>例如，有些网站，它的签到按钮文字是 <code>领取今日的登录奖励</code> </p><p>我们可以用 <code>includes()</code> 方法来判断。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (btn.<span class="property">textContent</span>.<span class="title function_">includes</span>(<span class="string">&#x27;领取今日&#x27;</span>)) btn.<span class="title function_">click</span>()</span><br></pre></td></tr></table></figure><p>这行代码，就是判断是否包含 <code>领取今日</code> 这几个字，如果是，就点击。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有时候，一些签到按钮，签到完成之后是依然可以点击的。如果只是用 id 来获取到元素，然后点击，就会导致明明签到完成了，还继续点击按钮。&lt;/p&gt;
+&lt;p&gt;此时我们可以加入一个判断条件。看来还是得拿个实际例子，&lt;a href=&quot;https://xiage.yy.com/forum
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>使用油猴脚本实现自动点击签到按钮</title>
@@ -488,31 +512,6 @@
     
     
       <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>edge 浏览器访问不安全内容 https 报错没有强制访问</title>
-    <link href="https://powersee.github.io/2022/11/edge-unsafe/"/>
-    <id>https://powersee.github.io/2022/11/edge-unsafe/</id>
-    <published>2022-11-18T02:18:08.000Z</published>
-    <updated>2022-11-18T02:31:54.299Z</updated>
-    
-    <content type="html"><![CDATA[<p>如今我的主力浏览器已经换位 edge 了，使用了很久，感觉挺好的。</p><p>最近发现，如果使用它访问证书已经失效的 https 网站，会报错，并且点击高级之后，没有继续访问的按钮了。</p><p>例如这样，我访问我局域网的 nas <code>https://192.168.68.172/</code></p><p><img src="/img/2022/link-unsafe.jpg"></p><p>那么要怎样才能继续访问呢？方法是，点击网页中空白的地方，然后键盘输入 <code>thisisunsafe</code> ，注意是在英文输入法的情况下，正常的话，输入完就自动访问了。</p><p>另外也可以在浏览器输入 <code>edge://settings/content/insecureContent</code> 来打开设置，将你想要访问的域名添加进去。</p><p><img src="/img/2022/edge-settings-insecureContent.jpg"></p><p>感觉现在就是限制更多了，不像以前那样方便，不过还好问题是可以解决的。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;如今我的主力浏览器已经换位 edge 了，使用了很久，感觉挺好的。&lt;/p&gt;
-&lt;p&gt;最近发现，如果使用它访问证书已经失效的 https 网站，会报错，并且点击高级之后，没有继续访问的按钮了。&lt;/p&gt;
-&lt;p&gt;例如这样，我访问我局域网的 nas &lt;code&gt;https://192
-      
-    
-    </summary>
-    
-    
-      <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
