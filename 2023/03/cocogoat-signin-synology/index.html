@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>椰羊签到——群晖自动完成米游社任务</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    椰羊签到——群晖自动完成米游社任务
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-22T02:36:34.000Z" itemprop="datePublished">2023-03-22</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-22T02:52:41.582Z" itemprop="dateUpdated">2023-03-22</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>发现一个不错的项目，可以自动到米游社完成每日签到。</p>
+<p>项目：<a target="_blank" rel="noopener" href="https://github.com/Akegarasu/cocogoat-signin">椰羊签到 - 年轻人的第一款米游社签到工具</a></p>
+<p>使用 Go 写的工具，我们直接运行可执行文件即可。程序用的是米游社的 cookie，获取方法可以看项目的 readme。</p>
+<p>我打算把它放到群晖里，然后设置每天定时运行。</p>
+<blockquote>
+<p>经过测试，目前似乎无法签到，能做到的只有自动阅读，点赞，分享帖子。米游社签到和原神签到，还是得手动去做……</p>
+</blockquote>
+<p>下面开始教程</p>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>先到 <a target="_blank" rel="noopener" href="https://github.com/Akegarasu/cocogoat-signin/releases">https://github.com/Akegarasu/cocogoat-signin/releases</a> 下载程序，群晖 x86_64 的下载名字为 <code>cocogoat-signin_linux_amd64.tar.gz</code> 的，这是一个压缩包，可以用电脑解压。</p>
+<p>电脑上我用 Bandizip 是可以打开的，把里面的 <code>cocogoat-signin</code> 解压出来。</p>
+<p>也可以直接把压缩包传到群晖里，然后在 <code>File Station</code> 里面，右键压缩包，「解压缩」，「解压缩至此目录」。我们得到了一个 tar 结尾的压缩包，对这个新的压缩包，右键，「解压缩」，「解压缩至此目录」。就可以把里面的 <code>cocogoat-signin</code> 解压出来。</p>
+<p><img src="/img/2023/d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive.png" alt="d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive"></p>
+<p>我是在 docker 目录下，建立了一个 cocogoat 的目录，程序就放在里面。</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>要运行它，需要有一个配置文件 <code>config.yml</code></p>
+<p>这个配置文件，如果我们 ssh 连接群晖，然后执行一下程序，就会自动生成的。但是这里考虑到小白用户，我写个不用 ssh 的方法。</p>
+<p>我们可以到群晖套件里面，安装一下「文本编辑器」。安装好后，打开它。新建，然后把下面的内容粘贴进去。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">accounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">tickets:</span></span><br><span class="line">        <span class="attr">cookie:</span> <span class="comment"># 在这个地方井号之前填写你按照教程获取的 cookie</span></span><br><span class="line">        <span class="attr">stuid:</span> <span class="comment"># 不用管 由程序自动填写</span></span><br><span class="line">        <span class="attr">stoken:</span> <span class="comment"># 不用管 由程序自动填写</span></span><br><span class="line">        <span class="attr">loginTicket:</span> <span class="comment"># 不用管 由程序自动填写</span></span><br><span class="line">      <span class="attr">BBSTaskConfig:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment"># 是否启用米游社任务 true为启用 false为禁用 下面一样</span></span><br><span class="line">        <span class="attr">readPosts:</span> <span class="literal">true</span> <span class="comment"># 阅读帖子任务</span></span><br><span class="line">        <span class="attr">likePosts:</span> <span class="literal">true</span> <span class="comment"># 点赞帖子任务</span></span><br><span class="line">        <span class="attr">unlike:</span> <span class="literal">true</span> <span class="comment"># 点赞完毕后取消</span></span><br><span class="line">        <span class="attr">share:</span> <span class="literal">true</span> <span class="comment"># 分享任务</span></span><br><span class="line">      <span class="attr">SignTask:</span></span><br><span class="line">        <span class="attr">genshin:</span> <span class="literal">true</span> <span class="comment"># 原神签到</span></span><br></pre></td></tr></table></figure>
+
+<p>然后选择保存，注意文件名改一下，位置选择程序所在的目录。这样程序和配置文件就都有了，还需要填写一下 cookie，只需要修改第三行就好</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">accounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">tickets:</span></span><br><span class="line">        <span class="attr">cookie:</span> <span class="string">aaaa……</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>如果你会 ssh，可以在终端执行，看看有没有问题。不会也没关系，先看，我待会讲不用 ssh 的方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat</span><br><span class="line">./cocogoat-signin</span><br></pre></td></tr></table></figure>
+
+<p>这是我第一次执行的输出内容</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 加载配置文件成功<span class="punctuation">:</span> 共 <span class="number">1</span> 个账户 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 欢迎使用椰羊签到~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行米游社任务 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 账户 <span class="number">0</span> loginTicket 未配置<span class="punctuation">,</span> 尝试从 cookie 中读取 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">55</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 登录成功<span class="punctuation">,</span> 正在保存相关 ticket 至配置文件 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">55</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取任务列表 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">55</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 获取帖子成功<span class="punctuation">,</span> 共获取 <span class="number">18</span> 个帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日米游社任务<span class="punctuation">:</span> 点赞 (<span class="number">0</span>/<span class="number">5</span>) 看帖子 (<span class="number">2</span>/<span class="number">3</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享 (<span class="number">0</span>/<span class="number">1</span>) 签到 (<span class="number">1</span>/<span class="number">1</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞任务开始 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享任务开始 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 阅读帖子任务开始 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享帖子成功~ 帖子主题<span class="punctuation">:</span> 话说公子这种天赋分技能 命座莫名其妙是靠什么成为平民T0的 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 看第 <span class="number">1</span> 个帖子成功~ 帖子主题<span class="punctuation">:</span> 可恶啊！摆明骗我抽绫华嘛 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 求组！<span class="number">40</span>岁阿姨萌新让我叫她姐姐怎么办，急 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">59</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 我和大佬的恋与提瓦特 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">02</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 大佬们，融神一定要二命吗 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">05</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 可恶啊！摆明骗我抽绫华嘛 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">09</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 话说公子这种天赋分技能 命座莫名其妙是靠什么成为平民T0的 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日任务已经完成 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行原神签到 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 共获取到 <span class="number">1</span> 个绑定的原神账号 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>ERROR<span class="punctuation">]</span><span class="punctuation">:</span> UID<span class="punctuation">:</span> xxxx<span class="punctuation">,</span> 昵称<span class="punctuation">:</span> powersee 签到失败 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 运行完毕~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 按回车退出...</span><br></pre></td></tr></table></figure>
+
+<p>第二次执行</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 加载配置文件成功<span class="punctuation">:</span> 共 <span class="number">1</span> 个账户 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 欢迎使用椰羊签到~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行米游社任务 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取任务列表 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 获取帖子成功<span class="punctuation">,</span> 共获取 <span class="number">20</span> 个帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日米游社任务<span class="punctuation">:</span> 点赞 (<span class="number">5</span>/<span class="number">5</span>) 看帖子 (<span class="number">3</span>/<span class="number">3</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享 (<span class="number">1</span>/<span class="number">1</span>) 签到 (<span class="number">1</span>/<span class="number">1</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日任务已经完成 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行原神签到 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>ERROR<span class="punctuation">]</span><span class="punctuation">:</span> 获取原神账号列表失败米游社 cookie 错误 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 共获取到 <span class="number">0</span> 个绑定的原神账号 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>ERROR<span class="punctuation">]</span><span class="punctuation">:</span> 账户 <span class="number">0</span> 没有绑定原神账号 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 运行完毕~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 按回车退出..</span><br></pre></td></tr></table></figure>
+
+<p>运行起来是没问题，不过目前这样，似乎不适合让它定时运行，因为每次执行完之后，需要按回车来退出。</p>
+<h3 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h3><p>我看了一下代码，<code>main.go</code> 的最后是这么写的</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Exit</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> os.Getenv(<span class="string">&quot;TENCENTCLOUD_RUNENV&quot;</span>) != <span class="string">&quot;SCF&quot;</span> &#123;</span><br><span class="line">		<span class="keyword">var</span> input <span class="type">string</span></span><br><span class="line">		log.Infoln(<span class="string">&quot;按回车退出...&quot;</span>)</span><br><span class="line">		_, _ = fmt.Scanln(&amp;input)</span><br><span class="line">	&#125;</span><br><span class="line">	os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>作者估计之前是在腾讯云函数里面跑的吧，如果发现不是云函数，就会要求按回车才能退出。应该是打算给 Windows 用比较方便吧。</p>
+<p>现在我要在群晖里运行，我想运行完直接退出，那么直接改代码吧，把 <code>if</code> 这一段去掉。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Exit</span><span class="params">()</span></span> &#123;</span><br><span class="line">	os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用 docker 拉取一个 golang 环境，然后代码放进去，<code>go build</code> 一下就行了。</p>
+<p>那么不改代码行不行？其实也可以，设置一个环境变量呗。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin</span><br></pre></td></tr></table></figure>
+
+<p>我们在运行程序之前，设置了变量 <code>TENCENTCLOUD_RUNENV</code> 的值为 <code>SCF</code>，就可以运行完直接退出了。</p>
+<p>现在弄明白了，就可以来设置它每天定时运行了。</p>
+<h3 id="添加定时任务"><a href="#添加定时任务" class="headerlink" title="添加定时任务"></a>添加定时任务</h3><p>打开群晖的「控制面板」，点击「任务计划」，「新增」，「计划的任务」，「用户定义的脚本」</p>
+<p><img src="/img/2023/image-20230320171130893.png" alt="新增-用户定义的脚本"></p>
+<p>常规里面填写任务名，随便都行。计划设置每天几点运行，可以设置 3 点、7点之类的，最好不要设置 0 点运行。重点来到「任务设置」里，我们填写上这样的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat/ &amp;&amp; TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin</span><br></pre></td></tr></table></figure>
+
+<p>这样应该就 ok 了。</p>
+<p>原本是打算保存一下日志的，像这样。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat/ &amp;&amp; TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin &gt; $(date +%Y%m%d).log.txt</span><br></pre></td></tr></table></figure>
+
+<p>但是测试了一下，发现日志无法保存下来。了解一番之后，发现代码里使用 <code>log.Infoln</code> 来输出日志的，这样的输出是没法使用 <code>&gt;</code> 或者 <code>tee</code> 来保存到日志里的。所以日志保存这部分暂时搞不定。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
