@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-22T02:52:41.582Z</updated>
+  <updated>2023-03-24T02:25:13.996Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 使用命令行进行拍照</title>
+    <link href="https://powersee.github.io/2023/03/mac-command-line-take-photos/"/>
+    <id>https://powersee.github.io/2023/03/mac-command-line-take-photos/</id>
+    <published>2023-03-24T02:23:09.000Z</published>
+    <updated>2023-03-24T02:25:13.996Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p><p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure><p>装好之后，直接执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap</span><br></pre></td></tr></table></figure><p>就可以生成一张图片，名为 <code>snapshot.jpg</code>，保存在当前目录下。</p><p>参考：<a href="https://davidwalsh.name/mac-camera">Access Mac Camera by Command Line (davidwalsh.name)</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。&lt;/p&gt;
+&lt;p&gt;摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。&lt;/p&gt;
+&lt;p&gt;&lt;im
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS 中文字体名称</title>
+    <link href="https://powersee.github.io/2023/03/css-chinese-font/"/>
+    <id>https://powersee.github.io/2023/03/css-chinese-font/</id>
+    <published>2023-03-22T16:16:31.000Z</published>
+    <updated>2023-03-22T16:24:46.884Z</updated>
+    
+    <content type="html"><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。</p><p>有时候我会把它们的字号调大一点</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span>: <span class="number">1.3em</span>;</span><br></pre></td></tr></table></figure><p>更改字体</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>在这过程中，我发现怎么有些中文字体，名称打上去后并不生效。例如我写 <code>霞骛文楷</code> 是不生效的，如果我写 <code>LXGW WenKai</code> 就可以生效。</p><p>后来我了解到这个 <a href="https://www.zhangxinxu.com/study/201703/font-family-chinese-english.html">CSS font-family中文字体对应的英文名称整理表 </a></p><p>原因是有些字体在字体应用这里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span>, <span class="string">&#x27;思源宋体&#x27;</span>, <span class="string">&#x27;文泉驿微米黑&#x27;</span>, <span class="string">&#x27;楷体&#x27;</span>, <span class="string">&#x27;宋体&#x27;</span>, <span class="string">&#x27;黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p><p>不过我可不想每次都来查表。目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p><p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p><p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里我装这款字体，我却没法直接查到它的名称。</p><p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p><p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p><p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p><p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。&lt;/p&gt;
+&lt;p&gt;有时候我会把它们的字号调大一点&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;t
+      
+    
+    </summary>
+    
+    
+      <category term="web" scheme="https://powersee.github.io/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title>椰羊签到——群晖自动完成米游社任务</title>
@@ -456,55 +506,6 @@
         &lt;p&gt;我的电子邮箱地址，一直放在 YouTube 和我的博客上面，所以我经常收到英文的邮件。例如这样的&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Good afternoon! Warner Bros. Interactive Entertainment is pleased to
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 搭建留言板 sayhello 进阶使用教程</title>
-    <link href="https://powersee.github.io/2023/02/about-sayhello/"/>
-    <id>https://powersee.github.io/2023/02/about-sayhello/</id>
-    <published>2023-02-20T03:59:48.000Z</published>
-    <updated>2023-02-20T04:04:40.269Z</updated>
-    
-    <content type="html"><![CDATA[<p>项目源码：<a href="https://github.com/powersee/sayhello">https://github.com/powersee/sayhello</a></p><p>用 docker 的话，一条命令即可运行起来</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5000:5000 --name sayhello powersee/sayhello</span><br></pre></td></tr></table></figure><p>第一个 5000 可以换为其它的端口，例如 6000，7000 等等，之后在浏览器通过 <code>IP:端口</code> 的形式来访问即可。</p><p><img src="/img/2023/sayhello10086.jpg"></p><h3 id="删除内容"><a href="#删除内容" class="headerlink" title="删除内容"></a>删除内容</h3><p>先来说说，怎么删除内容。需要做的是，进入 docker 容器里的，使用命令行对 sqlite 数据库的内容进行删除。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker ps                                                    </span><br><span class="line">CONTAINER ID   IMAGE               COMMAND                  CREATED        STATUS        PORTS                                         NAMES</span><br><span class="line">1888c7d98fe8   powersee/sayhello   &quot;python3 -m flask ru…&quot;   2 months ago   Up 2 months   0.0.0.0:10086-&gt;5000/tcp, :::10086-&gt;5000/tcp   sayhello</span><br></pre></td></tr></table></figure><p>通过 <code>docker ps</code> 命令，可以查询到目前正在运行的容器有哪些。</p><p>进入容器内的交互终端</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it sayhello /bin/sh</span><br></pre></td></tr></table></figure><p>由于这个程序使用的是 sqlite 的数据库，所以需要先安装 sqlite，才能够对 <code>data.db</code> 进行修改。</p><p><strong>安装</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add sqlite</span><br></pre></td></tr></table></figure><p><strong>查询</strong></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sqlite3 data.db</span><br><span class="line"></span><br><span class="line">select * from message;</span><br></pre></td></tr></table></figure><p>此时就会将所有的留言都显示出来，这里我随便找几条</p><blockquote><p>452|p|1|2023-02-14 14:55:37.930067<br>453|p|1|2023-02-14 14:55:38.022029<br>454|p|b 站旅游团路过|2023-02-14 15:18:19.983384</p></blockquote><p>可以看到，它的格式是这样的</p><blockquote><p>id | username | content | time</p></blockquote><p>所以我们要删除的话，可以使用它的 id，例如这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">delete from message where id=452;</span><br></pre></td></tr></table></figure><p>删除多条，可以使用 in，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">delete from message where id in(23,26,29);</span><br></pre></td></tr></table></figure><p>如果要删除大范围的，例如 id 从 200 到 450 都要删除掉</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">delete FROM message where id &gt; 199 and id &lt; 451;</span><br><span class="line">#或者</span><br><span class="line">delete FROM message where id &gt;= 200 and id &lt;= 450;</span><br></pre></td></tr></table></figure><p>如果要清空所有内容</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE FROM message;</span><br></pre></td></tr></table></figure><h3 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h3><p>如果你现在是在容器里，也就是终端里左边是显示 <code>/sayhello #</code> ，想要退出可以按 <code>ctrl + D</code> （是两个按键同时按）</p><p>由于数据都是存放在 <code>data.db</code> 这个数据库里的，所以我们只要备份它就可以了。此时我们可以使用 <code>docker cp</code> 命令。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp sayhello:/sayhello/data.db .</span><br></pre></td></tr></table></figure><p>此处的点 <code>.</code> 代表当前目录，也就是把数据库复制出来，放到当前目录，你也可以改为其它的。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp sayhello:/sayhello/data.db /home/powersee</span><br></pre></td></tr></table></figure><p>这样就会把 <code>data.db</code> 放到 <code>/home/powersee</code> 这个目录下。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;项目源码：&lt;a href=&quot;https://github.com/powersee/sayhello&quot;&gt;https://github.com/powersee/sayhello&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;用 docker 的话，一条命令即可运行起来&lt;/p&gt;
-&lt;figure cl
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一个不错的 css 框架 Boltcss</title>
-    <link href="https://powersee.github.io/2023/02/boltcss/"/>
-    <id>https://powersee.github.io/2023/02/boltcss/</id>
-    <published>2023-02-19T04:00:08.000Z</published>
-    <updated>2023-02-20T04:53:56.325Z</updated>
-    
-    <content type="html"><![CDATA[<p>发现一个不错的 css 框架 boltcss <a href="https://boltcss.com/">Bolt.css (boltcss.com)</a></p><p>是从阮一峰老师的博客推荐发现的，看了官方的 demo，感觉挺不错，里面很多样式自己挺喜欢的。</p><p>于是我下载来研究看看，之后看看能否引入自己的博客里面。</p><p><a href="https://raw.githubusercontent.com/tbolt/boltcss/main/bolt.css">https://raw.githubusercontent.com/tbolt/boltcss/main/bolt.css</a></p><p>喜欢的点：</p><ul><li>支持日夜模式（会根据系统自动切换）</li><li>details – summary 标签不错，在博客中可以用来收起一些内容</li></ul><p>例如这样</p><details>呵呵哒🙂  <summary>点击展开  </summary></details><p>直接在 markdown 里面写标签即可。</p><p>如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;details&gt;呵呵哒🙂</span><br><span class="line">  &lt;summary&gt;点击展开</span><br><span class="line">  &lt;/summary&gt;</span><br><span class="line">&lt;/details&gt;</span><br></pre></td></tr></table></figure><p>由于直接把这个 css 引入博客，会和原来样式冲突，所以我目前只能，复制里面的代码到我博客自身的 css 里面。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/* Interactive elements */</span><br><span class="line">details &#123;</span><br><span class="line">  border: 1px solid #aaa;</span><br><span class="line">  border-radius: 7px;</span><br><span class="line">  padding: 0.5em 0.5em 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">summary &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  margin: -0.5em -0.5em 0;</span><br><span class="line">  padding: 0.5em;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">details[open] &#123;</span><br><span class="line">  padding: 0.5em;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">details[open] summary &#123;</span><br><span class="line">  border-bottom: 1px solid #aaa;</span><br><span class="line">  margin-bottom: 0.5em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;发现一个不错的 css 框架 boltcss &lt;a href=&quot;https://boltcss.com/&quot;&gt;Bolt.css (boltcss.com)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;是从阮一峰老师的博客推荐发现的，看了官方的 demo，感觉挺不错，里面很多样式自己挺喜欢的。&lt;/p
       
     
     </summary>
