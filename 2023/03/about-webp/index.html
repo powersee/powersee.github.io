@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="某某的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>省流好助手，webp 格式是真的强👍🏻</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    省流好助手，webp 格式是真的强👍🏻
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-24T16:23:32.000Z" itemprop="datePublished">2023-03-25</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-24T16:28:14.263Z" itemprop="dateUpdated">2023-03-25</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 webp 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p>
+<p>所以我目前会把博客中一些图片，转换为 webp 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p>
+<p>接下来介绍我是怎么处理 webp 图片的。</p>
+<p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p>
+<p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p>
+<p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure>
+
+<p>如果我把它压缩为 webp 格式（我电脑已经装好了 cwebp）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure>
+
+<p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure>
+
+<p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p>
+<p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
+<p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p>
+<p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p>
+<p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，还达到这个目的。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且还能这么用，先在终端输入 webp 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 webp 图片。</p>
+<p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p>
+<p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
+<p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p>
+<p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p>
+<p>现在我把它转换为 webp，就可以既保持小体积，又保留透明通道。</p>
+<p>其它参数：</p>
+<p><code>-quiet</code> 不打印任何内容</p>
+<p><code>-short</code> 仅输出文件大小和 PSNR</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure>
+
+<p>官方文档：<a target="_blank" rel="noopener" href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = '\n欢迎访问 https://hufangyun.com ，围观小猿大圣的博客(づ｡◕‿‿◕｡)づ！\n,\n本博客使用 %cHexo%c 搭建，博客主题为小猿大圣开发的 %chexo-themes-yearn%c ~~~ 🎉🎉🎉 \n\n源码 https://github.com/Youthink/hexo-themes-yearn \n\n如果喜欢可以 star 支持一下 ❤️~\n,\n扫描下面的二维码，在手机上查看博客！\n,https://static.hufangyun.com/blog-url-qrcode-180-180.png,\n 想知道这个效果如何实现的？博客内搜索 console 彩蛋 🚀 ！\n'.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

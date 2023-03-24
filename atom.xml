@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-24T02:25:13.996Z</updated>
+  <updated>2023-03-24T16:28:14.263Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>省流好助手，webp 格式是真的强👍🏻</title>
+    <link href="https://powersee.github.io/2023/03/about-webp/"/>
+    <id>https://powersee.github.io/2023/03/about-webp/</id>
+    <published>2023-03-24T16:23:32.000Z</published>
+    <updated>2023-03-24T16:28:14.263Z</updated>
+    
+    <content type="html"><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 webp 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p><p>所以我目前会把博客中一些图片，转换为 webp 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p><p>接下来介绍我是怎么处理 webp 图片的。</p><p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p><p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p><p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure><p>如果我把它压缩为 webp 格式（我电脑已经装好了 cwebp）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure><p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure><p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p><p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p><p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，还达到这个目的。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而且还能这么用，先在终端输入 webp 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 webp 图片。</p><p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p><p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p><p>现在我把它转换为 webp，就可以既保持小体积，又保留透明通道。</p><p>其它参数：</p><p><code>-quiet</code> 不打印任何内容</p><p><code>-short</code> 仅输出文件大小和 PSNR</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure><p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 webp 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
+&lt;p&gt;所以我目前会把博客中一些图片，转换为 webp 格式，主要是针对 png 格
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 使用命令行进行拍照</title>
@@ -46,9 +70,9 @@
     <link href="https://powersee.github.io/2023/03/css-chinese-font/"/>
     <id>https://powersee.github.io/2023/03/css-chinese-font/</id>
     <published>2023-03-22T16:16:31.000Z</published>
-    <updated>2023-03-22T16:24:46.884Z</updated>
+    <updated>2023-03-24T16:22:58.706Z</updated>
     
-    <content type="html"><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。</p><p>有时候我会把它们的字号调大一点</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span>: <span class="number">1.3em</span>;</span><br></pre></td></tr></table></figure><p>更改字体</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>在这过程中，我发现怎么有些中文字体，名称打上去后并不生效。例如我写 <code>霞骛文楷</code> 是不生效的，如果我写 <code>LXGW WenKai</code> 就可以生效。</p><p>后来我了解到这个 <a href="https://www.zhangxinxu.com/study/201703/font-family-chinese-english.html">CSS font-family中文字体对应的英文名称整理表 </a></p><p>原因是有些字体在字体应用这里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span>, <span class="string">&#x27;思源宋体&#x27;</span>, <span class="string">&#x27;文泉驿微米黑&#x27;</span>, <span class="string">&#x27;楷体&#x27;</span>, <span class="string">&#x27;宋体&#x27;</span>, <span class="string">&#x27;黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p><p>不过我可不想每次都来查表。目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p><p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p><p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里我装这款字体，我却没法直接查到它的名称。</p><p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p><p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p><p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p><p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>]]></content>
+    <content type="html"><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。</p><p>有时候我会把它们的字号调大一点</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span>: <span class="number">1.3em</span>;</span><br></pre></td></tr></table></figure><p>更改字体</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>在这过程中，我发现怎么有些中文字体，名称打上去后并不生效。例如我写 <code>霞骛文楷</code> 是不生效的，如果我写 <code>LXGW WenKai</code> 就可以生效。</p><p>后来我了解到这个 <a href="https://www.zhangxinxu.com/study/201703/font-family-chinese-english.html">CSS font-family中文字体对应的英文名称整理表 </a></p><p>原因是有些字体在字体应用这里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span>, <span class="string">&#x27;思源宋体&#x27;</span>, <span class="string">&#x27;文泉驿微米黑&#x27;</span>, <span class="string">&#x27;楷体&#x27;</span>, <span class="string">&#x27;宋体&#x27;</span>, <span class="string">&#x27;黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p><p>不过我可不想每次都来查表。目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p><p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p><p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的名称。</p><p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p><p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p><p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p><p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>]]></content>
     
     <summary type="html">
     
@@ -481,31 +505,6 @@
       
         &lt;p&gt;我的手机里有两个 App Store，一个是 MIUI 自带的应用商店。另外一个是 Google 的 Play Store。&lt;/p&gt;
 &lt;p&gt;两者的设置中，我都把应用自动更新给关了，我并不喜欢更新 APP，特别是之前被一款国产记账软件「松鼠记账」给恶心到之后，&lt;a href=
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于我收到许多诈骗邮件</title>
-    <link href="https://powersee.github.io/2023/02/scam-email/"/>
-    <id>https://powersee.github.io/2023/02/scam-email/</id>
-    <published>2023-02-22T15:44:41.000Z</published>
-    <updated>2023-02-22T16:36:09.739Z</updated>
-    
-    <content type="html"><![CDATA[<p>我的电子邮箱地址，一直放在 YouTube 和我的博客上面，所以我经常收到英文的邮件。例如这样的</p><blockquote><p>Good afternoon! Warner Bros. Interactive Entertainment is pleased to announce the release of a new game, Hogwarts Legacy.<br>I’ll tell you a little about the game. Set in the late 19th century, Hogwarts Legacy will tell the story of students of Hogwarts. The player will be allowed to choose their faculty at Hogwarts and attend classes at the school of wizardry and wizardry as well as explore the open world consisting of such locations as the village of Hogsmeade and the Forbidden Forest. In the game the character will learn to brew potions, cast various magical spells, tame magical beasts and master other combat abilities. Moral system will play an important role in the game. Players will also be able to customize their character’s voice, body type and whether they are a witch or a wizard.<br>We want to invite you to become a part of the story and dive into the universe of magic and enchantment together!<br>If you are interested, reply to this message!<br>I’m sure we’ll find common ground with you and become partners!</p></blockquote><p>翻译：</p><blockquote><p>下午好！华纳兄弟互动娱乐公司很高兴地宣布新游戏《霍格沃兹遗产》的发布。<br>我会告诉你一点关于这个游戏。《霍格华兹遗产》以19世纪末为背景，讲述的是霍格华兹学生的故事。玩家将被允许选择他们在霍格沃兹的院系，参加魔法学校的课程，以及探索开放的世界，包括霍格莫德村和禁林等地点。在游戏中，角色将学习调制药剂，施放各种魔法咒语，驯服魔法野兽，并掌握其他战斗能力。道德体系将在博弈中发挥重要作用。玩家还可以自定义角色的声音、身体类型以及他们是女巫还是巫师。<br>我们想邀请你成为故事的一部分，一起潜入魔法和魅力的宇宙！<br>有兴趣的话，回复此留言吧！<br>我相信我们会找到与你的共同点，成为合作伙伴！</p></blockquote><p>刚才翻了翻收件箱，发现里面居然还有魔咒之地 Forspored 的，邮件中部分内容的翻译：</p><blockquote><p>我们公司很高兴地宣布，你和你的YouTube频道，特别是已被选择来推广我们最新的游戏。</p><p>公司正在积极为我们即将发布的新游戏寻找推广人。2023年1月24日在PlayStation 5和Windows上发布。</p><p>Forspored讲述了一个纽约女孩Frey的故事，她发现自己在美丽而暴力的Atia中。</p><p>为了找到回家的路，弗雷必须穿越广阔的新世界，借助魔法与怪物战斗。</p><p>我们公司有兴趣与你合作。</p><p>我们希望你在视频剪辑的开头插入我们的预告片。</p><p>如果我们的合作成功，我们会给你30个Steam密钥，</p><p>这不仅让你可以访问我们的游戏，但也解锁绝对所有的官方插件的游戏。</p></blockquote><p>看着挺好的吧，给 30 个 steam 密钥。其实还有更吸引人的，说是要我接他们的广告，一次可以提供至少一千美元。当初我看到这样的邮件，不经感叹，还是外国的钱好赚呀。</p><p>不过随着我的了解，我发现这事实并非那么简单。</p><p>我记得之前有一封是 Opera 浏览器的邮件，搜了一下是去年 2 月份的邮件了。内容如下：</p><blockquote><p>Hello, I am the manager of OperaSoftware.</p><p>Our company has paid attention to your channel and decided to make an offer. Our OperaGX browser lacks popularity, so we offer you to cooperate with us.</p><p>If you agree to cooperate with our company, please let us know and we will send you our terms.</p><p>Best regards, manager of OperaSoftware.</p></blockquote><p>然后我就回复他了，之后他就给我发来了一个 PDF 文件，里面是这样的（下面是截图，不用担心👇🏻）</p><p><img src="/img/2023/2023-02-22_21-33-12.png" alt="骗子发的 PDF 文件内容"></p><p>我记得下方的链接那里，好像就是一个病毒链接，当然我没有点过，当时只是好奇他们发这些邮件的目的是什么。</p><p>总之呢，就是哪有那么好的事，不要整天想着天上会掉馅饼。</p><p>骗子一般都会假扮是大公司，然后给出丰厚的佣金，吸引人上钩，一旦有人点击了他们的链接，那电脑可能就中毒了。</p><p>之前还有一位讲技术的博主，好像就是中了这样的骗术，导致他 YouTube 上的所有视频被删了。</p><h2 id="对策1"><a href="#对策1" class="headerlink" title="对策1"></a>对策1</h2><p>在我知道这些都是骗局之后，我基本都不去点开这些邮件。但是，我却避免不了他们的骚扰，每隔几天就会收到一封。其中来自 BlueTwelve Studio 的非常多，我查了一下，这是一个游戏开发团队，有名的赛博猫咪《Stray》就是他们开发的。</p><p><img src="/img/2023/game-stray.jpeg" alt="Stray"></p><p>当然我收到的这些都是诈骗邮件，肯定不是这个游戏开发团队发的，因为我观察到，这些邮件的后缀都是 @vzonly.cz</p><p>我还搜到了一个 YouTube 视频：<a href="https://www.youtube.com/watch?v=G6S_KwiDTbs">volny.cz online.ua FRAUD email | SCAM alert - YouTube</a></p><p>里面是一位阿三哥在讲他也碰到诈骗邮件的事情，他除了收到来自 <code>@vzonly.cz</code> 的邮件，还有 <code>@online.ua</code> 的。并且他了解得更深入，骗子同样是发送一个 PDF 过来，里面也是有链接，如果点击这个链接，就会重定向然后下载 Windows 软件。大概就是这些内容吧。</p><p>同时我观察了他的视频说明，他也同样是把邮箱放在里面。所以骗子应该是用软件扫描 YouTube 视频，查到视频说明里有邮箱，就会发邮件过来之类吧。</p><p>这时我猜想，如果我把邮箱的 <code>@</code> 换成 <code>#</code> ，然后补充说明（请把 @ 换成 #）会不会降低收到这种诈骗邮件的频率？</p><p>毕竟如果是真人，真想发邮件的话，换个字符也不会带来多大的麻烦。</p><h2 id="对策2"><a href="#对策2" class="headerlink" title="对策2"></a>对策2</h2><p>其实我会来写这篇文章，是因为我突然想到，我能否把来自 @vzonly.cz 的所有邮件都拉黑？</p><p>由于我使用的是腾讯企业邮箱，所以用必应搜一下，很快就找到答案了。</p><p><a href="https://work.weixin.qq.com/help?person_id=0&doc_id=359&helpType=exmail">黑名单/域名黑名单有什么作用？如何设置？-帮助中心-企业邮 (qq.com)</a></p><p>那么按照说明</p><blockquote><p>在“邮箱设置”-&gt;“反垃圾”-&gt;“黑名单”栏目中，点击“设置黑名单”</p></blockquote><p>就可以成功把域名添加进去</p><p><img src="/img/2023/2023-02-22_21-14-24.png" alt="成功将域名加入邮箱黑名单"></p><p>这么一番操作之后，以后我应该就不会被这些垃圾邮件打扰了吧。或者说能减少打扰的次数吧，毕竟来自诈骗邮件也有来自其他域名的，像前面提到的 Opera 这封邮件，它的域名是 <code>laposte.net</code></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol><li>不要点击陌生链接</li><li>注意邮件的后缀</li><li>非必要的话，不要公开邮箱地址</li><li>或者把邮箱的 @ 换成 # 之类的</li><li>进入邮箱网站后台，设置域名黑名单</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;我的电子邮箱地址，一直放在 YouTube 和我的博客上面，所以我经常收到英文的邮件。例如这样的&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Good afternoon! Warner Bros. Interactive Entertainment is pleased to
       
     
     </summary>
