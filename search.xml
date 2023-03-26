@@ -4461,7 +4461,7 @@ border-radius: 4px;
     <content><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p>
 <p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p>
 <p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
-<p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p>
+<h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure>
 
 <p>装好之后，直接执行</p>
@@ -4469,6 +4469,32 @@ border-radius: 4px;
 
 <p>就可以生成一张图片，名为 <code>snapshot.jpg</code>，保存在当前目录下。</p>
 <p>参考：<a href="https://davidwalsh.name/mac-camera">Access Mac Camera by Command Line (davidwalsh.name)</a></p>
+<h2 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -h</span><br><span class="line">USAGE: imagesnap [options] [filename-or-dir]</span><br><span class="line">Version: 0.2.16</span><br><span class="line">Captures an image from a video device and saves it in a file.</span><br><span class="line">If no device is specified, the system default will be used.</span><br><span class="line">If no filename is specfied, snapshot.jpg will be used.</span><br><span class="line">If timelapse is used, the filename argument can be a directory where files will be saved.</span><br><span class="line">JPEG is the only supported output type.</span><br><span class="line">  -h          This help message</span><br><span class="line">  -v          Verbose mode</span><br><span class="line">  -l          List available video devices</span><br><span class="line">  -t x.xx     Take a picture every x.xx seconds</span><br><span class="line">  -n num      Limit to &lt;num&gt; snapshots in -t timelapse mode</span><br><span class="line">  -q          Quiet mode. Do not output any text</span><br><span class="line">  -w x.xx     Warmup. Delay snapshot x.xx seconds after turning on camera (default 3sec)</span><br><span class="line">  -d device   Use named video device</span><br></pre></td></tr></table></figure>
+
+<p>保存的图片命名为 powersee.jpg，可以这么写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap powersee.jpg</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h2><p>不加任何参数的情况下，默认是延迟 3 秒，我想它命令执行时立即拍</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -w 0.1</span><br></pre></td></tr></table></figure>
+
+<p>使用 0.01 也可以，0.001 都行。</p>
+<p>不过这样使用会有问题，因为摄像头如果发现没有程序在使用它，它会进入休眠状态，在有些设备上面的表现，就是摄像头上面的灯会熄灭。</p>
+<p>如果我们在摄像头休眠状态下，使用 -w 0.1 来拍照，那么得到的是一张全黑的图片。因为它还没有准备好，所以程序才设置默认 3 秒延迟。</p>
+<p>如果我们想快一点，那么延迟一秒应该就够了。那么 0.1、0.01 在什么情况下可以使用呢？在摄像头正在使用的情况下，例如 OBS 开着时。</p>
+<h2 id="其它参数"><a href="#其它参数" class="headerlink" title="其它参数"></a>其它参数</h2><p><code>-t</code> 参数可以用来连续拍照，例如每隔三秒拍一张。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -t 3</span><br><span class="line">Capturing image from device &quot;PC-W3 Camera&quot;...Saving images to .</span><br><span class="line">./snapshot-00001.jpg</span><br><span class="line">./snapshot-00002.jpg</span><br><span class="line">./snapshot-00003.jpg</span><br><span class="line">./snapshot-00004.jpg</span><br><span class="line">./snapshot-00005.jpg</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>-l</code> 可以列出所以摄像头。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -l</span><br><span class="line">Video Devices:</span><br><span class="line">=&gt; USB2.0 Camera #2</span><br><span class="line">=&gt; PC-W3 Camera</span><br></pre></td></tr></table></figure>
+
+<p>当电脑有多个摄像头时，可以用 <code>-d</code> 来指定要使用哪一个。如果不指定，它会使用第一个。注意上面这两个，它们的名称是 <code>USB2.0</code> 和 <code>PC-W3</code> ，使用如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3</span><br><span class="line">#或者</span><br><span class="line">imagesnap -d &quot;PC-W3 Camera&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h2><p>我想要，每隔 5 秒拍一张，一共拍一百张，然后终端不要输出信息，保持安静就好，拍好的图片保存到 Powersee 目录中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3 -w 1 -q -t 5 -n 100 Powersee</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>随笔</tag>
@@ -4495,7 +4521,7 @@ border-radius: 4px;
 <p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
 <p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p>
 <p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p>
-<p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，还达到这个目的。</p>
+<p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>而且还能这么用，先在终端输入 webp 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 webp 图片。</p>
@@ -4510,6 +4536,27 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure>
 
 <p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电脑无线网卡没有 WiFi 但是有蓝牙</title>
+    <url>/2023/03/WLAN-driver/</url>
+    <content><![CDATA[<p>突然发现，电脑没有 WiFi 选项了。右下角没有，进入设置里面也没有。难道是无线网卡坏了？</p>
+<p>但是如果坏了，蓝牙应该也没法用才对。现在蓝牙是可以使用的。</p>
+<p>于是我拔掉无线网卡，开机，蓝牙也没了。</p>
+<p>再插上，蓝牙回来了，但是依然没有 WiFi。</p>
+<p>打开设备管理器，发现网卡那里有个感叹号❕</p>
+<p><img src="/../img/2023/2023-03-25_12-12-17.webp" alt="旧驱动"></p>
+<p>看来是驱动问题，网卡驱动是一年前的了，可能需要升级。</p>
+<p>刚好电脑里有装 360，那看看它能否帮忙升级驱动，结果并不能，而且 360 检测居然发现不了问题，说驱动一切正常……</p>
+<p>没办法，只能到网上冲浪🏄🏻。然后在 B 站找到这篇文章：<a href="https://www.bilibili.com/read/cv15538455">https://www.bilibili.com/read/cv15538455</a></p>
+<p>从这里下载了驱动，我下的是这个压缩包：MT792xDriver_20221118.zip</p>
+<p>之后到设备管理器里面更新驱动，这样驱动版本就从 495 升级到了 713。</p>
+<p><img src="/../img/2023/2023-03-25_12-12-58.png" alt="RZ608"></p>
+<p>然后 WiFi 就可以用了。</p>
 ]]></content>
       <tags>
         <tag>随笔</tag>

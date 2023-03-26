@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2023-03-24T02:25:13.996Z" itemprop="dateUpdated">2023-03-24</time>
+    更新 <time datetime="2023-03-26T07:07:31.595Z" itemprop="dateUpdated">2023-03-26</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -59,7 +59,7 @@
         <p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p>
 <p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p>
 <p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
-<p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p>
+<h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure>
 
 <p>装好之后，直接执行</p>
@@ -67,6 +67,32 @@
 
 <p>就可以生成一张图片，名为 <code>snapshot.jpg</code>，保存在当前目录下。</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://davidwalsh.name/mac-camera">Access Mac Camera by Command Line (davidwalsh.name)</a></p>
+<h2 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -h</span><br><span class="line">USAGE: imagesnap [options] [filename-or-dir]</span><br><span class="line">Version: 0.2.16</span><br><span class="line">Captures an image from a video device and saves it in a file.</span><br><span class="line">If no device is specified, the system default will be used.</span><br><span class="line">If no filename is specfied, snapshot.jpg will be used.</span><br><span class="line">If timelapse is used, the filename argument can be a directory where files will be saved.</span><br><span class="line">JPEG is the only supported output type.</span><br><span class="line">  -h          This help message</span><br><span class="line">  -v          Verbose mode</span><br><span class="line">  -l          List available video devices</span><br><span class="line">  -t x.xx     Take a picture every x.xx seconds</span><br><span class="line">  -n num      Limit to &lt;num&gt; snapshots in -t timelapse mode</span><br><span class="line">  -q          Quiet mode. Do not output any text</span><br><span class="line">  -w x.xx     Warmup. Delay snapshot x.xx seconds after turning on camera (default 3sec)</span><br><span class="line">  -d device   Use named video device</span><br></pre></td></tr></table></figure>
+
+<p>保存的图片命名为 powersee.jpg，可以这么写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap powersee.jpg</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h2><p>不加任何参数的情况下，默认是延迟 3 秒，我想它命令执行时立即拍</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -w 0.1</span><br></pre></td></tr></table></figure>
+
+<p>使用 0.01 也可以，0.001 都行。</p>
+<p>不过这样使用会有问题，因为摄像头如果发现没有程序在使用它，它会进入休眠状态，在有些设备上面的表现，就是摄像头上面的灯会熄灭。</p>
+<p>如果我们在摄像头休眠状态下，使用 -w 0.1 来拍照，那么得到的是一张全黑的图片。因为它还没有准备好，所以程序才设置默认 3 秒延迟。</p>
+<p>如果我们想快一点，那么延迟一秒应该就够了。那么 0.1、0.01 在什么情况下可以使用呢？在摄像头正在使用的情况下，例如 OBS 开着时。</p>
+<h2 id="其它参数"><a href="#其它参数" class="headerlink" title="其它参数"></a>其它参数</h2><p><code>-t</code> 参数可以用来连续拍照，例如每隔三秒拍一张。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -t 3</span><br><span class="line">Capturing image from device &quot;PC-W3 Camera&quot;...Saving images to .</span><br><span class="line">./snapshot-00001.jpg</span><br><span class="line">./snapshot-00002.jpg</span><br><span class="line">./snapshot-00003.jpg</span><br><span class="line">./snapshot-00004.jpg</span><br><span class="line">./snapshot-00005.jpg</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>-l</code> 可以列出所以摄像头。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -l</span><br><span class="line">Video Devices:</span><br><span class="line">=&gt; USB2.0 Camera #2</span><br><span class="line">=&gt; PC-W3 Camera</span><br></pre></td></tr></table></figure>
+
+<p>当电脑有多个摄像头时，可以用 <code>-d</code> 来指定要使用哪一个。如果不指定，它会使用第一个。注意上面这两个，它们的名称是 <code>USB2.0</code> 和 <code>PC-W3</code> ，使用如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3</span><br><span class="line">#或者</span><br><span class="line">imagesnap -d &quot;PC-W3 Camera&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h2><p>我想要，每隔 5 秒拍一张，一共拍一百张，然后终端不要输出信息，保持安静就好，拍好的图片保存到 Powersee 目录中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3 -w 1 -q -t 5 -n 100 Powersee</span><br></pre></td></tr></table></figure>
+
 
       </div>
         <div class="support-author">

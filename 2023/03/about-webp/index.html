@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2023-03-24T16:28:14.263Z" itemprop="dateUpdated">2023-03-25</time>
+    更新 <time datetime="2023-03-25T02:31:15.968Z" itemprop="dateUpdated">2023-03-25</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -74,7 +74,7 @@
 <p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
 <p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p>
 <p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p>
-<p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，还达到这个目的。</p>
+<p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>而且还能这么用，先在终端输入 webp 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 webp 图片。</p>
