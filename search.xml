@@ -4486,7 +4486,7 @@ border-radius: 4px;
 <h2 id="其它参数"><a href="#其它参数" class="headerlink" title="其它参数"></a>其它参数</h2><p><code>-t</code> 参数可以用来连续拍照，例如每隔三秒拍一张。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -t 3</span><br><span class="line">Capturing image from device &quot;PC-W3 Camera&quot;...Saving images to .</span><br><span class="line">./snapshot-00001.jpg</span><br><span class="line">./snapshot-00002.jpg</span><br><span class="line">./snapshot-00003.jpg</span><br><span class="line">./snapshot-00004.jpg</span><br><span class="line">./snapshot-00005.jpg</span><br></pre></td></tr></table></figure>
 
-<p>使用 <code>-l</code> 可以列出所以摄像头。</p>
+<p>使用 <code>-l</code> 可以列出所有摄像头。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -l</span><br><span class="line">Video Devices:</span><br><span class="line">=&gt; USB2.0 Camera #2</span><br><span class="line">=&gt; PC-W3 Camera</span><br></pre></td></tr></table></figure>
 
 <p>当电脑有多个摄像头时，可以用 <code>-d</code> 来指定要使用哪一个。如果不指定，它会使用第一个。注意上面这两个，它们的名称是 <code>USB2.0</code> 和 <code>PC-W3</code> ，使用如下</p>
@@ -4501,17 +4501,17 @@ border-radius: 4px;
       </tags>
   </entry>
   <entry>
-    <title>省流好助手，webp 格式是真的强👍🏻</title>
+    <title>省流好助手，WebP 格式是真的强👍🏻</title>
     <url>/2023/03/about-webp/</url>
-    <content><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 webp 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p>
-<p>所以我目前会把博客中一些图片，转换为 webp 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p>
-<p>接下来介绍我是怎么处理 webp 图片的。</p>
+    <content><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p>
+<p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p>
+<p>接下来介绍我是怎么处理 WebP 图片的。</p>
 <p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p>
 <p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p>
 <p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure>
 
-<p>如果我把它压缩为 webp 格式（我电脑已经装好了 cwebp）</p>
+<p>如果我把它压缩为 WebP 格式（我电脑已经装好了 cwebp）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure>
 
 <p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p>
@@ -4524,12 +4524,12 @@ border-radius: 4px;
 <p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>而且还能这么用，先在终端输入 webp 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 webp 图片。</p>
+<p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p>
 <p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p>
 <p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
 <p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p>
 <p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p>
-<p>现在我把它转换为 webp，就可以既保持小体积，又保留透明通道。</p>
+<p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p>
 <p>其它参数：</p>
 <p><code>-quiet</code> 不打印任何内容</p>
 <p><code>-short</code> 仅输出文件大小和 PSNR</p>
@@ -4557,6 +4557,23 @@ border-radius: 4px;
 <p>之后到设备管理器里面更新驱动，这样驱动版本就从 495 升级到了 713。</p>
 <p><img src="/../img/2023/2023-03-25_12-12-58.png" alt="RZ608"></p>
 <p>然后 WiFi 就可以用了。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test-img</title>
+    <url>/2023/03/test-img/</url>
+    <content><![CDATA[<p>菜单标题要一样。</p>
+<p>很快啊，我就实现这个目的了。</p>
+<p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p>
+<p>实现起来也很简单</p>
+<p>![截屏2023-03-26 下午2.51.09](&#x2F;img&#x2F;2023&#x2F;截屏2023-03-26 下午2.51.09.webp)</p>
+<p>不过有些时候不生效，找不出什么原因。</p>
+<p><img src="/img/2023/vr2.webp" alt="新图片"></p>
+<p>这样也不行？why123456789</p>
+<p>12345</p>
 ]]></content>
       <tags>
         <tag>随笔</tag>

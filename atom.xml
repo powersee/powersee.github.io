@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-26T06:04:52.334Z</updated>
+  <updated>2023-03-27T12:37:38.647Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test-img</title>
+    <link href="https://powersee.github.io/2023/03/test-img/"/>
+    <id>https://powersee.github.io/2023/03/test-img/</id>
+    <published>2023-03-27T08:36:41.000Z</published>
+    <updated>2023-03-27T12:37:38.647Z</updated>
+    
+    <content type="html"><![CDATA[<p>菜单标题要一样。</p><p>很快啊，我就实现这个目的了。</p><p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p><p>实现起来也很简单</p><p>![截屏2023-03-26 下午2.51.09](&#x2F;img&#x2F;2023&#x2F;截屏2023-03-26 下午2.51.09.webp)</p><p>不过有些时候不生效，找不出什么原因。</p><p><img src="/img/2023/vr2.webp" alt="新图片"></p><p>这样也不行？why123456789</p><p>12345</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;菜单标题要一样。&lt;/p&gt;
+&lt;p&gt;很快啊，我就实现这个目的了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/webp-mac-app.webp&quot; alt=&quot;webp-mac-app&quot;&gt;&lt;/p&gt;
+&lt;p&gt;实现起来也很简单&lt;/p&gt;
+&lt;p&gt;![截屏2023-03-26 下午
+      
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>电脑无线网卡没有 WiFi 但是有蓝牙</title>
@@ -43,20 +70,20 @@
   </entry>
   
   <entry>
-    <title>省流好助手，webp 格式是真的强👍🏻</title>
+    <title>省流好助手，WebP 格式是真的强👍🏻</title>
     <link href="https://powersee.github.io/2023/03/about-webp/"/>
     <id>https://powersee.github.io/2023/03/about-webp/</id>
     <published>2023-03-24T16:23:32.000Z</published>
-    <updated>2023-03-25T02:31:15.968Z</updated>
+    <updated>2023-03-27T03:30:22.938Z</updated>
     
-    <content type="html"><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 webp 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p><p>所以我目前会把博客中一些图片，转换为 webp 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p><p>接下来介绍我是怎么处理 webp 图片的。</p><p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p><p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p><p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure><p>如果我把它压缩为 webp 格式（我电脑已经装好了 cwebp）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure><p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure><p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p><p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p><p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而且还能这么用，先在终端输入 webp 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 webp 图片。</p><p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p><p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p><p>现在我把它转换为 webp，就可以既保持小体积，又保留透明通道。</p><p>其它参数：</p><p><code>-quiet</code> 不打印任何内容</p><p><code>-short</code> 仅输出文件大小和 PSNR</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure><p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>]]></content>
+    <content type="html"><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p><p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p><p>接下来介绍我是怎么处理 WebP 图片的。</p><p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p><p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p><p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure><p>如果我把它压缩为 WebP 格式（我电脑已经装好了 cwebp）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure><p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure><p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p><p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p><p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p><p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p><p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p><p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p><p>其它参数：</p><p><code>-quiet</code> 不打印任何内容</p><p><code>-short</code> 仅输出文件大小和 PSNR</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure><p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 webp 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
-&lt;p&gt;所以我目前会把博客中一些图片，转换为 webp 格式，主要是针对 png 格
+        &lt;p&gt;webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
+&lt;p&gt;所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格
       
     
     </summary>
@@ -71,9 +98,9 @@
     <link href="https://powersee.github.io/2023/03/mac-command-line-take-photos/"/>
     <id>https://powersee.github.io/2023/03/mac-command-line-take-photos/</id>
     <published>2023-03-24T02:23:09.000Z</published>
-    <updated>2023-03-26T07:07:31.595Z</updated>
+    <updated>2023-03-26T15:53:52.622Z</updated>
     
-    <content type="html"><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p><p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure><p>装好之后，直接执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap</span><br></pre></td></tr></table></figure><p>就可以生成一张图片，名为 <code>snapshot.jpg</code>，保存在当前目录下。</p><p>参考：<a href="https://davidwalsh.name/mac-camera">Access Mac Camera by Command Line (davidwalsh.name)</a></p><h2 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -h</span><br><span class="line">USAGE: imagesnap [options] [filename-or-dir]</span><br><span class="line">Version: 0.2.16</span><br><span class="line">Captures an image from a video device and saves it in a file.</span><br><span class="line">If no device is specified, the system default will be used.</span><br><span class="line">If no filename is specfied, snapshot.jpg will be used.</span><br><span class="line">If timelapse is used, the filename argument can be a directory where files will be saved.</span><br><span class="line">JPEG is the only supported output type.</span><br><span class="line">  -h          This help message</span><br><span class="line">  -v          Verbose mode</span><br><span class="line">  -l          List available video devices</span><br><span class="line">  -t x.xx     Take a picture every x.xx seconds</span><br><span class="line">  -n num      Limit to &lt;num&gt; snapshots in -t timelapse mode</span><br><span class="line">  -q          Quiet mode. Do not output any text</span><br><span class="line">  -w x.xx     Warmup. Delay snapshot x.xx seconds after turning on camera (default 3sec)</span><br><span class="line">  -d device   Use named video device</span><br></pre></td></tr></table></figure><p>保存的图片命名为 powersee.jpg，可以这么写</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap powersee.jpg</span><br></pre></td></tr></table></figure><h2 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h2><p>不加任何参数的情况下，默认是延迟 3 秒，我想它命令执行时立即拍</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -w 0.1</span><br></pre></td></tr></table></figure><p>使用 0.01 也可以，0.001 都行。</p><p>不过这样使用会有问题，因为摄像头如果发现没有程序在使用它，它会进入休眠状态，在有些设备上面的表现，就是摄像头上面的灯会熄灭。</p><p>如果我们在摄像头休眠状态下，使用 -w 0.1 来拍照，那么得到的是一张全黑的图片。因为它还没有准备好，所以程序才设置默认 3 秒延迟。</p><p>如果我们想快一点，那么延迟一秒应该就够了。那么 0.1、0.01 在什么情况下可以使用呢？在摄像头正在使用的情况下，例如 OBS 开着时。</p><h2 id="其它参数"><a href="#其它参数" class="headerlink" title="其它参数"></a>其它参数</h2><p><code>-t</code> 参数可以用来连续拍照，例如每隔三秒拍一张。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -t 3</span><br><span class="line">Capturing image from device &quot;PC-W3 Camera&quot;...Saving images to .</span><br><span class="line">./snapshot-00001.jpg</span><br><span class="line">./snapshot-00002.jpg</span><br><span class="line">./snapshot-00003.jpg</span><br><span class="line">./snapshot-00004.jpg</span><br><span class="line">./snapshot-00005.jpg</span><br></pre></td></tr></table></figure><p>使用 <code>-l</code> 可以列出所以摄像头。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -l</span><br><span class="line">Video Devices:</span><br><span class="line">=&gt; USB2.0 Camera #2</span><br><span class="line">=&gt; PC-W3 Camera</span><br></pre></td></tr></table></figure><p>当电脑有多个摄像头时，可以用 <code>-d</code> 来指定要使用哪一个。如果不指定，它会使用第一个。注意上面这两个，它们的名称是 <code>USB2.0</code> 和 <code>PC-W3</code> ，使用如下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3</span><br><span class="line">#或者</span><br><span class="line">imagesnap -d &quot;PC-W3 Camera&quot;</span><br></pre></td></tr></table></figure><h2 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h2><p>我想要，每隔 5 秒拍一张，一共拍一百张，然后终端不要输出信息，保持安静就好，拍好的图片保存到 Powersee 目录中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3 -w 1 -q -t 5 -n 100 Powersee</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p><p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure><p>装好之后，直接执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap</span><br></pre></td></tr></table></figure><p>就可以生成一张图片，名为 <code>snapshot.jpg</code>，保存在当前目录下。</p><p>参考：<a href="https://davidwalsh.name/mac-camera">Access Mac Camera by Command Line (davidwalsh.name)</a></p><h2 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -h</span><br><span class="line">USAGE: imagesnap [options] [filename-or-dir]</span><br><span class="line">Version: 0.2.16</span><br><span class="line">Captures an image from a video device and saves it in a file.</span><br><span class="line">If no device is specified, the system default will be used.</span><br><span class="line">If no filename is specfied, snapshot.jpg will be used.</span><br><span class="line">If timelapse is used, the filename argument can be a directory where files will be saved.</span><br><span class="line">JPEG is the only supported output type.</span><br><span class="line">  -h          This help message</span><br><span class="line">  -v          Verbose mode</span><br><span class="line">  -l          List available video devices</span><br><span class="line">  -t x.xx     Take a picture every x.xx seconds</span><br><span class="line">  -n num      Limit to &lt;num&gt; snapshots in -t timelapse mode</span><br><span class="line">  -q          Quiet mode. Do not output any text</span><br><span class="line">  -w x.xx     Warmup. Delay snapshot x.xx seconds after turning on camera (default 3sec)</span><br><span class="line">  -d device   Use named video device</span><br></pre></td></tr></table></figure><p>保存的图片命名为 powersee.jpg，可以这么写</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap powersee.jpg</span><br></pre></td></tr></table></figure><h2 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h2><p>不加任何参数的情况下，默认是延迟 3 秒，我想它命令执行时立即拍</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -w 0.1</span><br></pre></td></tr></table></figure><p>使用 0.01 也可以，0.001 都行。</p><p>不过这样使用会有问题，因为摄像头如果发现没有程序在使用它，它会进入休眠状态，在有些设备上面的表现，就是摄像头上面的灯会熄灭。</p><p>如果我们在摄像头休眠状态下，使用 -w 0.1 来拍照，那么得到的是一张全黑的图片。因为它还没有准备好，所以程序才设置默认 3 秒延迟。</p><p>如果我们想快一点，那么延迟一秒应该就够了。那么 0.1、0.01 在什么情况下可以使用呢？在摄像头正在使用的情况下，例如 OBS 开着时。</p><h2 id="其它参数"><a href="#其它参数" class="headerlink" title="其它参数"></a>其它参数</h2><p><code>-t</code> 参数可以用来连续拍照，例如每隔三秒拍一张。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -t 3</span><br><span class="line">Capturing image from device &quot;PC-W3 Camera&quot;...Saving images to .</span><br><span class="line">./snapshot-00001.jpg</span><br><span class="line">./snapshot-00002.jpg</span><br><span class="line">./snapshot-00003.jpg</span><br><span class="line">./snapshot-00004.jpg</span><br><span class="line">./snapshot-00005.jpg</span><br></pre></td></tr></table></figure><p>使用 <code>-l</code> 可以列出所有摄像头。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -l</span><br><span class="line">Video Devices:</span><br><span class="line">=&gt; USB2.0 Camera #2</span><br><span class="line">=&gt; PC-W3 Camera</span><br></pre></td></tr></table></figure><p>当电脑有多个摄像头时，可以用 <code>-d</code> 来指定要使用哪一个。如果不指定，它会使用第一个。注意上面这两个，它们的名称是 <code>USB2.0</code> 和 <code>PC-W3</code> ，使用如下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3</span><br><span class="line">#或者</span><br><span class="line">imagesnap -d &quot;PC-W3 Camera&quot;</span><br></pre></td></tr></table></figure><h2 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h2><p>我想要，每隔 5 秒拍一张，一共拍一百张，然后终端不要输出信息，保持安静就好，拍好的图片保存到 Powersee 目录中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3 -w 1 -q -t 5 -n 100 Powersee</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -489,30 +516,6 @@
     
     
       <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 Python 读写剪贴板中的内容 pyperclip</title>
-    <link href="https://powersee.github.io/2023/03/pyperclip/"/>
-    <id>https://powersee.github.io/2023/03/pyperclip/</id>
-    <published>2023-03-04T07:50:18.000Z</published>
-    <updated>2023-03-04T08:15:14.593Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前了解到 Mac 上的两个命令 <a href="/2022/06/mac-pbcopy-pbpaste/">pbcopy &amp; pbpaste</a> ，我就在想，如果我把它整合到某些脚本里面，那就可以减少复制粘贴的步骤，节省一些时间。</p><p>此时我想到之前写的一个，用来下载贴吧图片的脚本。在之前介绍 <a href="/2021/12/about-kcc/">制作 kindle 漫画的文章</a> 里有提到它。</p><p><img src="/img/2021/tieba-img-download.jpg" alt="贴吧图片下载器"></p><p>在 Windows 上我是把它打包成一个图形应用，这样其他人使用它比较方便。但是同样的代码，我在 Mac 上打包后有一些问题，所以我就进行了一些修改。只通过命令行的方式来使用它，设置 alias 别名，我只需要在终端中执行 <code>tieba</code> 就可以启动，然后我需要把贴吧帖子的链接粘贴进去，就可以自动下载图片了。</p><p><img src="/img/2023/image-20230304160034037.png" alt="image-20230304160034037"></p><p>如果不需要下载就按回车直接退出程序。</p><p>现在为了节省粘贴这一步，我打算把 <code>pbpaste</code> 这个 Mac 命令整合进去。让程序运行时，自动读取剪贴板的内容，如果里面包含 tieba 这个词，就询问，例如这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ tieba</span><br><span class="line">您当前剪贴板的内容为： https://tieba.baidu.com/p/8288904408?frwh=index</span><br><span class="line">是否开始下载？是的话请按回车键，否则请输入新的链接。（退出输入 n）</span><br></pre></td></tr></table></figure><p>不过在这过程中，我发现其实 Python 可以引入 <code>pyperclip</code> 来进行读写剪贴板的操作。例如读写剪贴板</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import pyperclip</span><br><span class="line">&gt;&gt;&gt; str = pyperclip.paste()</span><br></pre></td></tr></table></figure><p>目前就是简单地判断一下，剪贴板中的字符串，是否包含 <code>tieba</code> 而已。是的话就打印出来，并询问是否下载。</p><p>这样修改后，我可以先在浏览器复制链接，然后再到终端执行程序，程序读取到我剪贴板的内容包含 <code>tieba</code> ，询问，我按一下回车键，就可以下载了。比起之前，少了一步 ctrl + v。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;之前了解到 Mac 上的两个命令 &lt;a href=&quot;/2022/06/mac-pbcopy-pbpaste/&quot;&gt;pbcopy &amp;amp; pbpaste&lt;/a&gt; ，我就在想，如果我把它整合到某些脚本里面，那就可以减少复制粘贴的步骤，节省一些时间。&lt;/p&gt;
-&lt;p&gt;此时我想到之
-      
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://powersee.github.io/tags/Python/"/>
     
   </entry>
   
