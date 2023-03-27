@@ -500,7 +500,7 @@ svg.icon {
   padding: 25px;
   /* margin-bottom: 40px; */
   background-color: whitesmoke;
-  border-left: 4px solid #49be38;
+  border-left: 4px solid #fbb360;
   border-radius: 3px;
   box-sizing: border-box;
   box-shadow: 0 0 1px #d9d9d9;
@@ -508,6 +508,7 @@ svg.icon {
 }
 
 .article .support-author p {
+  text-align: unset;
   margin: 0 auto 10px;
   font-size: 17px;
   font-weight: bold; }
@@ -632,6 +633,7 @@ svg.icon {
   font-size: 13px; }
 
 .otherLink {
+  display: none;
   border-bottom: 1px solid #eeeeee;
   border-top: 1px solid #eeeeee;
   padding: 15px;
@@ -887,5 +889,9 @@ svg.icon {
       transition: All ease-in-out 0.4s; }
   .navbar-header.fixed-header .blog-title {
     display: none; } }
+
+img[src$=".webp"], img[src$=".png"] {
+    border: none;
+}
 
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS9tYWluLmNzcyIsInNvdXJjZVJvb3QiOiIifQ==*/
