@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-	<title>test-img</title>
+	<title>将 Mac 上的 shell 脚本，变成原生 Mac 图形应用</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -32,7 +32,7 @@
     
   
   <h1 class="title">
-    test-img
+    将 Mac 上的 shell 脚本，变成原生 Mac 图形应用
   </h1>
   
 
@@ -40,11 +40,11 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2023-03-27T08:36:41.000Z" itemprop="datePublished">2023-03-27</time>
+        <time datetime="2023-03-27T04:09:13.000Z" itemprop="datePublished">2023-03-27</time>
       </li>
       <li>
         
-    更新 <time datetime="2023-03-27T12:37:38.647Z" itemprop="dateUpdated">2023-03-27</time>
+    更新 <time datetime="2023-03-27T12:52:15.486Z" itemprop="dateUpdated">2023-03-27</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -56,15 +56,28 @@
     <div class="article">
       <div class="content">
         
-        <p>菜单标题要一样。</p>
+        <p>之前讲到 <a href="/2023/03/about-webp/">WebP 图片格式</a>，目前我博客里一些比较大的图片，我都会转换为 WebP，这样图片的体积会缩小很多，访问的时候速度能提快一些。</p>
+<p>不过，每次要将图片转换为 WebP，我都需要打开终端，在 shell 里用 cwebp 来转换。如果能够把它变为一个 APP，我打开 APP 后，将图片拖进去，它就自动转换就好了。</p>
 <p>很快啊，我就实现这个目的了。</p>
 <p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p>
-<p>实现起来也很简单</p>
-<p>![截屏2023-03-26 下午2.51.09](&#x2F;img&#x2F;2023&#x2F;截屏2023-03-26 下午2.51.09.webp)</p>
-<p>不过有些时候不生效，找不出什么原因。</p>
-<p><img src="/img/2023/vr2.webp" alt="新图片"></p>
-<p>这样也不行？why123456789</p>
-<p>12345</p>
+<p>实现起来也很简单，使用一个开源应用：<a target="_blank" rel="noopener" href="https://github.com/sveinbjornt/Platypus">sveinbjornt&#x2F;Platypus: Create native Mac applications from command line scripts. (github.com)</a></p>
+<p>这个应用名字挺有趣的，叫「鸭嘴兽」，它的目的是把命令行脚本转换为 Mac 原生应用。在 GitHub 上面有非常详细的<a target="_blank" rel="noopener" href="https://github.com/sveinbjornt/Platypus/blob/master/Documentation/Documentation.md">说明文档</a>。</p>
+<p><img src="/img/2023/Platypus-webp.webp" alt="Platypus-webp"></p>
+<p>我是直接点击「+New」让它新建一个脚本的，里面写这些内容。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">/opt/homebrew/bin/cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Interface 就选 Droplet，这样 APP 打开后就是一个让我们把文件拖进去的界面。</p>
+<p><img src="/img/2023/Suffixes.webp" alt="Suffixes"></p>
+<p>然后在 <code>Accept dropped items</code> 后面的 settings 中，我们需要勾选 Accept dropped files。</p>
+<p>Suffixes 下面的框，就是设置支持的文件后缀。我是怎么将 jpeg 和 png 加进去的呢？它下面的 + - 都是没法点击的。因此我是直接拖一张 jpeg 图片，和一张 png 图片进来，后缀就加上去了。</p>
+<p><img src="/img/2023/only-264KB.webp" alt="only-264KB"></p>
+<p>如果不加 APP 图标的话，这样创建的应用只有 264KB。不过我还是加图标了，这样比较美观。</p>
+<p><img src="/img/2023/Platypus-webp.webp" alt="Platypus-webp"></p>
+<p>这个图标居然要 1.3MB，我是从 <a target="_blank" rel="noopener" href="https://macosicons.com/">https://macosicons.com/</a> 下载的，这网站也挺好的，本打算点击图标查看详情，没想到它直接就下载了。不仅免费，而且连注册账号都不用。见惯了国内的网站难看的吃相，遇到这种反到有点不习惯了。</p>
+<p>一切设置好后，点击一下「Create App」，选择保存在哪里，就生成了一个 Mac APP。</p>
+<p>我们可以把它放到「应用程序」里面，这样就可以在「启动台」里面找到它。而且只有这样，APP 打开后再退出，才会留在「程序坞」里面。</p>
+<p><img src="/img/2023/WebP-dock.jpg" alt="WebP-dock"></p>
+<p>如果经常使用，我们可以将它长期固定在「程序坞」。像我这种用来处理图片的，可以在不打开 APP 的情况下，直接将图片拖到 APP 上面，就会打开 APP 自动处理，确实提高了效率，很不错。</p>
 
       </div>
         <div class="support-author">
