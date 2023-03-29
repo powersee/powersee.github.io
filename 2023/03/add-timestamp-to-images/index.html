@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<title>给图片加时间戳水印</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    给图片加时间戳水印
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-03-29T00:12:33.000Z" itemprop="datePublished">2023-03-29</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-03-29T00:54:35.995Z" itemprop="dateUpdated">2023-03-29</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>在安装了 imageMagick 之后，可以使用命令来对图片进行修改。</p>
+<p>例如，给图片加时间戳水印。需要使用到 <code>convert</code> 这个命令。</p>
+<p>我在网上看到的教程，有教使用 <code>%[exif:datetime]</code>、<code>%[exif:dateTimeOriginal]</code>这些参数的。</p>
+<p>但是我尝试之后都失败了。因为并不是所有的图片都有这些信息。</p>
+<p>我们可以使用这个命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">identify -verbose your_image.jpg</span><br></pre></td></tr></table></figure>
+
+<p>来查看图片有哪些元数据，这是我的一张图片，是使用命令行捕获摄像头画面保存下来的，信息比用相机拍的图片少很多。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Properties:</span><br><span class="line">  date:create: 2023-03-26T06:45:38+00:00</span><br><span class="line">  date:modify: 2023-03-26T06:45:38+00:00</span><br><span class="line">  date:timestamp: 2023-03-28T07:43:40+00:00</span><br><span class="line">  jpeg:colorspace: 2</span><br></pre></td></tr></table></figure>
+
+<p>把 <code>2023-03-26T06:45:38+00:00</code> 这样的时间加到图片上，好像作用不大，因为我们这是 +08:00，弄个 0 时区的时间加上去……</p>
+<p>另外还可以不用图片的日期，我想要将当前的时间，直接加到图片上，可以这么写</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">convert snapshot.jpg -gravity SouthEast -fill yellow -pointsize 20 -annotate +1+1  <span class="string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;`&quot;</span> temp.jpg</span><br></pre></td></tr></table></figure>
+
+<p>这样的命令可以把当前时间印在图片上。不过这么用的应该很少，按理说，一般应该使用图片的创建时间，也就是照片拍摄的时间。</p>
+<p>如果使用相机、手机拍的照片，一般使用<code>DateTimeOriginal</code>会比较多。</p>
+<p>这是一张使用索尼相机拍的照片，它有这些信息。可以发现</p>
+<ul>
+<li>DateTime</li>
+<li>DateTimeDigitized</li>
+<li>DateTimeOriginal</li>
+</ul>
+<p>的时间都是一样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Properties:</span><br><span class="line">  date:create: 2022-11-23T09:29:46+00:00</span><br><span class="line">  date:modify: 2022-07-05T06:35:22+00:00</span><br><span class="line">  date:timestamp: 2023-03-28T13:22:40+00:00</span><br><span class="line">  exif:BrightnessValue: 13884/2560</span><br><span class="line">  exif:ColorSpace: 1</span><br><span class="line">  exif:ComponentsConfiguration: ...</span><br><span class="line">  exif:CompressedBitsPerPixel: 1/1</span><br><span class="line">  exif:Contrast: 0</span><br><span class="line">  exif:CustomRendered: 0</span><br><span class="line">  exif:DateTime: 2022:07:05 14:35:23</span><br><span class="line">  exif:DateTimeDigitized: 2022:07:05 14:35:23</span><br><span class="line">  exif:DateTimeOriginal: 2022:07:05 14:35:23</span><br><span class="line">  exif:DigitalZoomRatio: 16/16</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+
+<p>如果我们要加时间戳，直接使用这样的时间就行了。因此我建议先查看一下，图片有哪些元数据可以用，再看看选择哪个比较好。</p>
+<hr>
+<p>记录我遇到的一个坑，使用下面的命令，在 zsh 里面都会报错。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ convert snapshot.jpg -gravity SouthEast -fill yellow -pointsize 20 -annotate +1+1  %[<span class="built_in">date</span>:create] temp.jpg</span><br><span class="line"></span><br><span class="line">zsh: no matches found: %[<span class="built_in">date</span>:create]</span><br></pre></td></tr></table></figure>
+
+<p>这个错误是因为 zsh 默认开启了文件名通配符的功能，其中 <code>%[</code> 是 zsh 文件名通配符的一部分，所以它会认为 <code>%[</code> 是一个通配符，然后去尝试匹配文件名，但是找不到符合这个模式的文件，于是就报错了。</p>
+<p>为了解决这个问题，需要把 <code>%[</code> 用引号引起来，例如：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">convert snapshot.jpg -gravity SouthEast -fill yellow -pointsize 20 -annotate +1+1 <span class="string">&quot;%[date:create]&quot;</span> temp.jpg</span><br></pre></td></tr></table></figure>
+
+<p>这样，zsh 就不会把 <code>%[</code> 当成文件名通配符了，而是当成普通的字符串来处理，就不会报错了。</p>
+<p>如果你使用的是 bash，就可以不用加。但即使在 bash 里面加了引号，也可以执行的。</p>
+<h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><p>这条命令使用 ImageMagick 的 convert 工具对一张名为 snapshot.jpg 的图片进行操作，并将结果保存为 temp.jpg。</p>
+<p>具体的操作包括：</p>
+<ol>
+<li><code>-gravity SouthEast</code>：将文字水印放在东南方，也就是图片的右下角。</li>
+<li><code>-fill yellow</code>：将文字水印的颜色设置为黄色。</li>
+<li><code>-pointsize 20</code>：设置文字水印的字体大小为 20。</li>
+<li><code>-annotate +1+1</code>：往左和上偏移 1 个像素。</li>
+<li><code>&quot;%[date:create]&quot;</code>：将图片创建日期和时间作为文字水印的内容，这里使用了 ImageMagick 的内置变量 %[date:create]，它会从图片的元数据中读取日期和时间信息。</li>
+<li><code>temp.jpg</code>：保存处理后的图片为 temp.jpg。</li>
+</ol>
+<p>因此，这条命令的作用是在图片的右下角添加一个黄色文字水印，内容为该图片的创建日期和时间。</p>
+<p>我这条命令，是用在分辨率只有 640×480 的图片上的，如果是分辨率高的图片，得改改。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">convert DSC00097.JPG -gravity SouthEast -fill yellow -pointsize 200 -annotate +10+10  <span class="string">&quot;%[exif:DateTime]&quot;</span> temp.jpg</span><br></pre></td></tr></table></figure>
+
+<p>我这张图片的分辨率是 5472 × 3080，所以我把字体大小改为 200，偏移改为 10 像素，最终的效果是这样的。</p>
+<p><img src="/img/2023/vr-add-timestamp.webp" alt="vr-add-timestamp"></p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

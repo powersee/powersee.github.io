@@ -3,10 +3,10 @@
   <title>Powersee的博客</title>
   
   
-  <link href="/atom.xml" rel="self"/>
+  <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-27T12:52:15.486Z</updated>
+  <updated>2023-03-29T00:54:35.995Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -14,7 +14,54 @@
     
   </author>
   
-  <generator uri="http://hexo.io/">Hexo</generator>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>给图片加时间戳水印</title>
+    <link href="https://powersee.github.io/2023/03/add-timestamp-to-images/"/>
+    <id>https://powersee.github.io/2023/03/add-timestamp-to-images/</id>
+    <published>2023-03-29T00:12:33.000Z</published>
+    <updated>2023-03-29T00:54:35.995Z</updated>
+    
+    <content type="html"><![CDATA[<p>在安装了 imageMagick 之后，可以使用命令来对图片进行修改。</p><p>例如，给图片加时间戳水印。需要使用到 <code>convert</code> 这个命令。</p><p>我在网上看到的教程，有教使用 <code>%[exif:datetime]</code>、<code>%[exif:dateTimeOriginal]</code>这些参数的。</p><p>但是我尝试之后都失败了。因为并不是所有的图片都有这些信息。</p><p>我们可以使用这个命令</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">identify -verbose your_image.jpg</span><br></pre></td></tr></table></figure><p>来查看图片有哪些元数据，这是我的一张图片，是使用命令行捕获摄像头画面保存下来的，信息比用相机拍的图片少很多。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Properties:</span><br><span class="line">  date:create: 2023-03-26T06:45:38+00:00</span><br><span class="line">  date:modify: 2023-03-26T06:45:38+00:00</span><br><span class="line">  date:timestamp: 2023-03-28T07:43:40+00:00</span><br><span class="line">  jpeg:colorspace: 2</span><br></pre></td></tr></table></figure><p>把 <code>2023-03-26T06:45:38+00:00</code> 这样的时间加到图片上，好像作用不大，因为我们这是 +08:00，弄个 0 时区的时间加上去……</p><p>另外还可以不用图片的日期，我想要将当前的时间，直接加到图片上，可以这么写</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">convert snapshot.jpg -gravity SouthEast -fill yellow -pointsize 20 -annotate +1+1  <span class="string">&quot;`date +&#x27;%Y-%m-%d %H:%M:%S&#x27;`&quot;</span> temp.jpg</span><br></pre></td></tr></table></figure><p>这样的命令可以把当前时间印在图片上。不过这么用的应该很少，按理说，一般应该使用图片的创建时间，也就是照片拍摄的时间。</p><p>如果使用相机、手机拍的照片，一般使用<code>DateTimeOriginal</code>会比较多。</p><p>这是一张使用索尼相机拍的照片，它有这些信息。可以发现</p><ul><li>DateTime</li><li>DateTimeDigitized</li><li>DateTimeOriginal</li></ul><p>的时间都是一样的。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Properties:</span><br><span class="line">  date:create: 2022-11-23T09:29:46+00:00</span><br><span class="line">  date:modify: 2022-07-05T06:35:22+00:00</span><br><span class="line">  date:timestamp: 2023-03-28T13:22:40+00:00</span><br><span class="line">  exif:BrightnessValue: 13884/2560</span><br><span class="line">  exif:ColorSpace: 1</span><br><span class="line">  exif:ComponentsConfiguration: ...</span><br><span class="line">  exif:CompressedBitsPerPixel: 1/1</span><br><span class="line">  exif:Contrast: 0</span><br><span class="line">  exif:CustomRendered: 0</span><br><span class="line">  exif:DateTime: 2022:07:05 14:35:23</span><br><span class="line">  exif:DateTimeDigitized: 2022:07:05 14:35:23</span><br><span class="line">  exif:DateTimeOriginal: 2022:07:05 14:35:23</span><br><span class="line">  exif:DigitalZoomRatio: 16/16</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure><p>如果我们要加时间戳，直接使用这样的时间就行了。因此我建议先查看一下，图片有哪些元数据可以用，再看看选择哪个比较好。</p><hr><p>记录我遇到的一个坑，使用下面的命令，在 zsh 里面都会报错。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ convert snapshot.jpg -gravity SouthEast -fill yellow -pointsize 20 -annotate +1+1  %[<span class="built_in">date</span>:create] temp.jpg</span><br><span class="line"></span><br><span class="line">zsh: no matches found: %[<span class="built_in">date</span>:create]</span><br></pre></td></tr></table></figure><p>这个错误是因为 zsh 默认开启了文件名通配符的功能，其中 <code>%[</code> 是 zsh 文件名通配符的一部分，所以它会认为 <code>%[</code> 是一个通配符，然后去尝试匹配文件名，但是找不到符合这个模式的文件，于是就报错了。</p><p>为了解决这个问题，需要把 <code>%[</code> 用引号引起来，例如：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">convert snapshot.jpg -gravity SouthEast -fill yellow -pointsize 20 -annotate +1+1 <span class="string">&quot;%[date:create]&quot;</span> temp.jpg</span><br></pre></td></tr></table></figure><p>这样，zsh 就不会把 <code>%[</code> 当成文件名通配符了，而是当成普通的字符串来处理，就不会报错了。</p><p>如果你使用的是 bash，就可以不用加。但即使在 bash 里面加了引号，也可以执行的。</p><h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><p>这条命令使用 ImageMagick 的 convert 工具对一张名为 snapshot.jpg 的图片进行操作，并将结果保存为 temp.jpg。</p><p>具体的操作包括：</p><ol><li><code>-gravity SouthEast</code>：将文字水印放在东南方，也就是图片的右下角。</li><li><code>-fill yellow</code>：将文字水印的颜色设置为黄色。</li><li><code>-pointsize 20</code>：设置文字水印的字体大小为 20。</li><li><code>-annotate +1+1</code>：往左和上偏移 1 个像素。</li><li><code>&quot;%[date:create]&quot;</code>：将图片创建日期和时间作为文字水印的内容，这里使用了 ImageMagick 的内置变量 %[date:create]，它会从图片的元数据中读取日期和时间信息。</li><li><code>temp.jpg</code>：保存处理后的图片为 temp.jpg。</li></ol><p>因此，这条命令的作用是在图片的右下角添加一个黄色文字水印，内容为该图片的创建日期和时间。</p><p>我这条命令，是用在分辨率只有 640×480 的图片上的，如果是分辨率高的图片，得改改。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">convert DSC00097.JPG -gravity SouthEast -fill yellow -pointsize 200 -annotate +10+10  <span class="string">&quot;%[exif:DateTime]&quot;</span> temp.jpg</span><br></pre></td></tr></table></figure><p>我这张图片的分辨率是 5472 × 3080，所以我把字体大小改为 200，偏移改为 10 像素，最终的效果是这样的。</p><p><img src="/img/2023/vr-add-timestamp.webp" alt="vr-add-timestamp"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在安装了 imageMagick 之后，可以使用命令来对图片进行修改。&lt;/p&gt;
+&lt;p&gt;例如，给图片加时间戳水印。需要使用到 &lt;code&gt;convert&lt;/code&gt; 这个命令。&lt;/p&gt;
+&lt;p&gt;我在网上看到的教程，有教使用 &lt;code&gt;%[exif:datetime]&lt;/co</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 ffmpeg 将图片合并为视频</title>
+    <link href="https://powersee.github.io/2023/03/combine-pictures-into-a-video/"/>
+    <id>https://powersee.github.io/2023/03/combine-pictures-into-a-video/</id>
+    <published>2023-03-28T06:38:50.000Z</published>
+    <updated>2023-03-28T07:12:26.752Z</updated>
+    
+    <content type="html"><![CDATA[<p>我需要合并图片为一个视频。我有很多张图片，像这样的命名：<code>2023-03-24-105322.jpg</code> <code>2023-03-24-105352.jpg</code> … 也就是(年-月-日-时分秒.jpg) 这样的来命名的。</p><p>我可以使用这样的命令：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ffmpeg -pattern_type glob -i <span class="string">&#x27;*.jpg&#x27;</span> output.mp4</span><br></pre></td></tr></table></figure><p>没有指定帧率，默认使用 25 帧。直接使用 * 会将当前目录中的所有 jpg 文件都匹配到。</p><p>如果我目录中还有其它图片，不想合并到视频里面，那么也可以这么写：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ffmpeg -pattern_type glob -i <span class="string">&#x27;????-??-??-??????.jpg&#x27;</span> output.mp4</span><br></pre></td></tr></table></figure><p><code>?</code>通配符表示匹配任意一个字符。</p><p>这样合并出来的视频，是一帧一张图片。这样太快了，一秒播放了 25 张图片。我想要它慢一点，可以通过调整帧率来实现。</p><p>此时需要使用 <code>-r</code> 参数，设置帧数为 10，这样一秒就只播放 10 张图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -r 10 -pattern_type glob -i &#x27;????-??-??-??????.jpg&#x27; output.mp4</span><br></pre></td></tr></table></figure><p>注意要放在 <code>-i</code> 前面。如果放在 <code>-i</code> 后面，会导致跳帧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我需要合并图片为一个视频。我有很多张图片，像这样的命名：&lt;code&gt;2023-03-24-105322.jpg&lt;/code&gt; &lt;code&gt;2023-03-24-105352.jpg&lt;/code&gt; … 也就是(年-月-日-时分秒.jpg) 这样的来命名的。&lt;/p&gt;
+&lt;p&gt;我可</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>将 Mac 上的 shell 脚本，变成原生 Mac 图形应用</title>
@@ -25,18 +72,17 @@
     
     <content type="html"><![CDATA[<p>之前讲到 <a href="/2023/03/about-webp/">WebP 图片格式</a>，目前我博客里一些比较大的图片，我都会转换为 WebP，这样图片的体积会缩小很多，访问的时候速度能提快一些。</p><p>不过，每次要将图片转换为 WebP，我都需要打开终端，在 shell 里用 cwebp 来转换。如果能够把它变为一个 APP，我打开 APP 后，将图片拖进去，它就自动转换就好了。</p><p>很快啊，我就实现这个目的了。</p><p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p><p>实现起来也很简单，使用一个开源应用：<a href="https://github.com/sveinbjornt/Platypus">sveinbjornt&#x2F;Platypus: Create native Mac applications from command line scripts. (github.com)</a></p><p>这个应用名字挺有趣的，叫「鸭嘴兽」，它的目的是把命令行脚本转换为 Mac 原生应用。在 GitHub 上面有非常详细的<a href="https://github.com/sveinbjornt/Platypus/blob/master/Documentation/Documentation.md">说明文档</a>。</p><p><img src="/img/2023/Platypus-webp.webp" alt="Platypus-webp"></p><p>我是直接点击「+New」让它新建一个脚本的，里面写这些内容。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">/opt/homebrew/bin/cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br></pre></td></tr></table></figure><p>Interface 就选 Droplet，这样 APP 打开后就是一个让我们把文件拖进去的界面。</p><p><img src="/img/2023/Suffixes.webp" alt="Suffixes"></p><p>然后在 <code>Accept dropped items</code> 后面的 settings 中，我们需要勾选 Accept dropped files。</p><p>Suffixes 下面的框，就是设置支持的文件后缀。我是怎么将 jpeg 和 png 加进去的呢？它下面的 + - 都是没法点击的。因此我是直接拖一张 jpeg 图片，和一张 png 图片进来，后缀就加上去了。</p><p><img src="/img/2023/only-264KB.webp" alt="only-264KB"></p><p>如果不加 APP 图标的话，这样创建的应用只有 264KB。不过我还是加图标了，这样比较美观。</p><p><img src="/img/2023/Platypus-webp.webp" alt="Platypus-webp"></p><p>这个图标居然要 1.3MB，我是从 <a href="https://macosicons.com/">https://macosicons.com/</a> 下载的，这网站也挺好的，本打算点击图标查看详情，没想到它直接就下载了。不仅免费，而且连注册账号都不用。见惯了国内的网站难看的吃相，遇到这种反到有点不习惯了。</p><p>一切设置好后，点击一下「Create App」，选择保存在哪里，就生成了一个 Mac APP。</p><p>我们可以把它放到「应用程序」里面，这样就可以在「启动台」里面找到它。而且只有这样，APP 打开后再退出，才会留在「程序坞」里面。</p><p><img src="/img/2023/WebP-dock.jpg" alt="WebP-dock"></p><p>如果经常使用，我们可以将它长期固定在「程序坞」。像我这种用来处理图片的，可以在不打开 APP 的情况下，直接将图片拖到 APP 上面，就会打开 APP 自动处理，确实提高了效率，很不错。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;之前讲到 &lt;a href=&quot;/2023/03/about-webp/&quot;&gt;WebP 图片格式&lt;/a&gt;，目前我博客里一些比较大的图片，我都会转换为 WebP，这样图片的体积会缩小很多，访问的时候速度能提快一些。&lt;/p&gt;
-&lt;p&gt;不过，每次要将图片转换为 WebP，我都需要打开终端
+    <summary type="html">&lt;p&gt;之前讲到 &lt;a href=&quot;/2023/03/about-webp/&quot;&gt;WebP 图片格式&lt;/a&gt;，目前我博客里一些比较大的图片，我都会转换为 WebP，这样图片的体积会缩小很多，访问的时候速度能提快一些。&lt;/p&gt;
+&lt;p&gt;不过，每次要将图片转换为 WebP，我都需要打开终端</summary>
       
     
-    </summary>
     
     
-      <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
@@ -49,20 +95,19 @@
     
     <content type="html"><![CDATA[<p>突然发现，电脑没有 WiFi 选项了。右下角没有，进入设置里面也没有。难道是无线网卡坏了？</p><p>但是如果坏了，蓝牙应该也没法用才对。现在蓝牙是可以使用的。</p><p>于是我拔掉无线网卡，开机，蓝牙也没了。</p><p>再插上，蓝牙回来了，但是依然没有 WiFi。</p><p>打开设备管理器，发现网卡那里有个感叹号❕</p><p><img src="/../img/2023/2023-03-25_12-12-17.webp" alt="旧驱动"></p><p>看来是驱动问题，网卡驱动是一年前的了，可能需要升级。</p><p>刚好电脑里有装 360，那看看它能否帮忙升级驱动，结果并不能，而且 360 检测居然发现不了问题，说驱动一切正常……</p><p>没办法，只能到网上冲浪🏄🏻。然后在 B 站找到这篇文章：<a href="https://www.bilibili.com/read/cv15538455">https://www.bilibili.com/read/cv15538455</a></p><p>从这里下载了驱动，我下的是这个压缩包：MT792xDriver_20221118.zip</p><p>之后到设备管理器里面更新驱动，这样驱动版本就从 495 升级到了 713。</p><p><img src="/../img/2023/2023-03-25_12-12-58.png" alt="RZ608"></p><p>然后 WiFi 就可以用了。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;突然发现，电脑没有 WiFi 选项了。右下角没有，进入设置里面也没有。难道是无线网卡坏了？&lt;/p&gt;
+    <summary type="html">&lt;p&gt;突然发现，电脑没有 WiFi 选项了。右下角没有，进入设置里面也没有。难道是无线网卡坏了？&lt;/p&gt;
 &lt;p&gt;但是如果坏了，蓝牙应该也没法用才对。现在蓝牙是可以使用的。&lt;/p&gt;
 &lt;p&gt;于是我拔掉无线网卡，开机，蓝牙也没了。&lt;/p&gt;
-&lt;p&gt;再插上，蓝牙回来了，但是依然没有 WiF
+&lt;p&gt;再插上，蓝牙回来了，但是依然没有 WiF</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -75,18 +120,17 @@
     
     <content type="html"><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p><p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p><p>接下来介绍我是怎么处理 WebP 图片的。</p><p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p><p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p><p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure><p>如果我把它压缩为 WebP 格式（我电脑已经装好了 cwebp）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure><p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure><p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p><p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p><p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p><p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p><p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p><p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p><p>其它参数：</p><p><code>-quiet</code> 不打印任何内容</p><p><code>-short</code> 仅输出文件大小和 PSNR</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure><p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
-&lt;p&gt;所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格
+    <summary type="html">&lt;p&gt;webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
+&lt;p&gt;所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -99,19 +143,18 @@
     
     <content type="html"><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p><p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure><p>装好之后，直接执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap</span><br></pre></td></tr></table></figure><p>就可以生成一张图片，名为 <code>snapshot.jpg</code>，保存在当前目录下。</p><p>参考：<a href="https://davidwalsh.name/mac-camera">Access Mac Camera by Command Line (davidwalsh.name)</a></p><h2 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -h</span><br><span class="line">USAGE: imagesnap [options] [filename-or-dir]</span><br><span class="line">Version: 0.2.16</span><br><span class="line">Captures an image from a video device and saves it in a file.</span><br><span class="line">If no device is specified, the system default will be used.</span><br><span class="line">If no filename is specfied, snapshot.jpg will be used.</span><br><span class="line">If timelapse is used, the filename argument can be a directory where files will be saved.</span><br><span class="line">JPEG is the only supported output type.</span><br><span class="line">  -h          This help message</span><br><span class="line">  -v          Verbose mode</span><br><span class="line">  -l          List available video devices</span><br><span class="line">  -t x.xx     Take a picture every x.xx seconds</span><br><span class="line">  -n num      Limit to &lt;num&gt; snapshots in -t timelapse mode</span><br><span class="line">  -q          Quiet mode. Do not output any text</span><br><span class="line">  -w x.xx     Warmup. Delay snapshot x.xx seconds after turning on camera (default 3sec)</span><br><span class="line">  -d device   Use named video device</span><br></pre></td></tr></table></figure><p>保存的图片命名为 powersee.jpg，可以这么写</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap powersee.jpg</span><br></pre></td></tr></table></figure><h2 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h2><p>不加任何参数的情况下，默认是延迟 3 秒，我想它命令执行时立即拍</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -w 0.1</span><br></pre></td></tr></table></figure><p>使用 0.01 也可以，0.001 都行。</p><p>不过这样使用会有问题，因为摄像头如果发现没有程序在使用它，它会进入休眠状态，在有些设备上面的表现，就是摄像头上面的灯会熄灭。</p><p>如果我们在摄像头休眠状态下，使用 -w 0.1 来拍照，那么得到的是一张全黑的图片。因为它还没有准备好，所以程序才设置默认 3 秒延迟。</p><p>如果我们想快一点，那么延迟一秒应该就够了。那么 0.1、0.01 在什么情况下可以使用呢？在摄像头正在使用的情况下，例如 OBS 开着时。</p><h2 id="其它参数"><a href="#其它参数" class="headerlink" title="其它参数"></a>其它参数</h2><p><code>-t</code> 参数可以用来连续拍照，例如每隔三秒拍一张。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -t 3</span><br><span class="line">Capturing image from device &quot;PC-W3 Camera&quot;...Saving images to .</span><br><span class="line">./snapshot-00001.jpg</span><br><span class="line">./snapshot-00002.jpg</span><br><span class="line">./snapshot-00003.jpg</span><br><span class="line">./snapshot-00004.jpg</span><br><span class="line">./snapshot-00005.jpg</span><br></pre></td></tr></table></figure><p>使用 <code>-l</code> 可以列出所有摄像头。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -l</span><br><span class="line">Video Devices:</span><br><span class="line">=&gt; USB2.0 Camera #2</span><br><span class="line">=&gt; PC-W3 Camera</span><br></pre></td></tr></table></figure><p>当电脑有多个摄像头时，可以用 <code>-d</code> 来指定要使用哪一个。如果不指定，它会使用第一个。注意上面这两个，它们的名称是 <code>USB2.0</code> 和 <code>PC-W3</code> ，使用如下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3</span><br><span class="line">#或者</span><br><span class="line">imagesnap -d &quot;PC-W3 Camera&quot;</span><br></pre></td></tr></table></figure><h2 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h2><p>我想要，每隔 5 秒拍一张，一共拍一百张，然后终端不要输出信息，保持安静就好，拍好的图片保存到 Powersee 目录中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3 -w 1 -q -t 5 -n 100 Powersee</span><br></pre></td></tr></table></figure>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。&lt;/p&gt;
 &lt;p&gt;摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。&lt;/p&gt;
-&lt;p&gt;&lt;im
+&lt;p&gt;&lt;im</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -124,19 +167,18 @@
     
     <content type="html"><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。</p><p>有时候我会把它们的字号调大一点</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span>: <span class="number">1.3em</span>;</span><br></pre></td></tr></table></figure><p>更改字体</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>在这过程中，我发现怎么有些中文字体，名称打上去后并不生效。例如我写 <code>霞骛文楷</code> 是不生效的，如果我写 <code>LXGW WenKai</code> 就可以生效。</p><p>后来我了解到这个 <a href="https://www.zhangxinxu.com/study/201703/font-family-chinese-english.html">CSS font-family中文字体对应的英文名称整理表 </a></p><p>原因是有些字体在字体应用这里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span>, <span class="string">&#x27;思源宋体&#x27;</span>, <span class="string">&#x27;文泉驿微米黑&#x27;</span>, <span class="string">&#x27;楷体&#x27;</span>, <span class="string">&#x27;宋体&#x27;</span>, <span class="string">&#x27;黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p><p>不过我可不想每次都来查表。目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p><p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p><p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的名称。</p><p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p><p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p><p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p><p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。&lt;/p&gt;
 &lt;p&gt;有时候我会把它们的字号调大一点&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;t
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;t</summary>
       
     
-    </summary>
     
     
-      <category term="web" scheme="https://powersee.github.io/tags/web/"/>
+    
+    <category term="web" scheme="https://powersee.github.io/tags/web/"/>
     
   </entry>
   
@@ -149,19 +191,18 @@
     
     <content type="html"><![CDATA[<p>发现一个不错的项目，可以自动到米游社完成每日签到。</p><p>项目：<a href="https://github.com/Akegarasu/cocogoat-signin">椰羊签到 - 年轻人的第一款米游社签到工具</a></p><p>使用 Go 写的工具，我们直接运行可执行文件即可。程序用的是米游社的 cookie，获取方法可以看项目的 readme。</p><p>我打算把它放到群晖里，然后设置每天定时运行。</p><blockquote><p>经过测试，目前似乎无法签到，能做到的只有自动阅读，点赞，分享帖子。米游社签到和原神签到，还是得手动去做……</p></blockquote><p>下面开始教程</p><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>先到 <a href="https://github.com/Akegarasu/cocogoat-signin/releases">https://github.com/Akegarasu/cocogoat-signin/releases</a> 下载程序，群晖 x86_64 的下载名字为 <code>cocogoat-signin_linux_amd64.tar.gz</code> 的，这是一个压缩包，可以用电脑解压。</p><p>电脑上我用 Bandizip 是可以打开的，把里面的 <code>cocogoat-signin</code> 解压出来。</p><p>也可以直接把压缩包传到群晖里，然后在 <code>File Station</code> 里面，右键压缩包，「解压缩」，「解压缩至此目录」。我们得到了一个 tar 结尾的压缩包，对这个新的压缩包，右键，「解压缩」，「解压缩至此目录」。就可以把里面的 <code>cocogoat-signin</code> 解压出来。</p><p><img src="/img/2023/d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive.png" alt="d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive"></p><p>我是在 docker 目录下，建立了一个 cocogoat 的目录，程序就放在里面。</p><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>要运行它，需要有一个配置文件 <code>config.yml</code></p><p>这个配置文件，如果我们 ssh 连接群晖，然后执行一下程序，就会自动生成的。但是这里考虑到小白用户，我写个不用 ssh 的方法。</p><p>我们可以到群晖套件里面，安装一下「文本编辑器」。安装好后，打开它。新建，然后把下面的内容粘贴进去。</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">accounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">tickets:</span></span><br><span class="line">        <span class="attr">cookie:</span> <span class="comment"># 在这个地方井号之前填写你按照教程获取的 cookie</span></span><br><span class="line">        <span class="attr">stuid:</span> <span class="comment"># 不用管 由程序自动填写</span></span><br><span class="line">        <span class="attr">stoken:</span> <span class="comment"># 不用管 由程序自动填写</span></span><br><span class="line">        <span class="attr">loginTicket:</span> <span class="comment"># 不用管 由程序自动填写</span></span><br><span class="line">      <span class="attr">BBSTaskConfig:</span></span><br><span class="line">        <span class="attr">enable:</span> <span class="literal">true</span> <span class="comment"># 是否启用米游社任务 true为启用 false为禁用 下面一样</span></span><br><span class="line">        <span class="attr">readPosts:</span> <span class="literal">true</span> <span class="comment"># 阅读帖子任务</span></span><br><span class="line">        <span class="attr">likePosts:</span> <span class="literal">true</span> <span class="comment"># 点赞帖子任务</span></span><br><span class="line">        <span class="attr">unlike:</span> <span class="literal">true</span> <span class="comment"># 点赞完毕后取消</span></span><br><span class="line">        <span class="attr">share:</span> <span class="literal">true</span> <span class="comment"># 分享任务</span></span><br><span class="line">      <span class="attr">SignTask:</span></span><br><span class="line">        <span class="attr">genshin:</span> <span class="literal">true</span> <span class="comment"># 原神签到</span></span><br></pre></td></tr></table></figure><p>然后选择保存，注意文件名改一下，位置选择程序所在的目录。这样程序和配置文件就都有了，还需要填写一下 cookie，只需要修改第三行就好</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">accounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">tickets:</span></span><br><span class="line">        <span class="attr">cookie:</span> <span class="string">aaaa……</span></span><br></pre></td></tr></table></figure><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>如果你会 ssh，可以在终端执行，看看有没有问题。不会也没关系，先看，我待会讲不用 ssh 的方法。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat</span><br><span class="line">./cocogoat-signin</span><br></pre></td></tr></table></figure><p>这是我第一次执行的输出内容</p><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 加载配置文件成功<span class="punctuation">:</span> 共 <span class="number">1</span> 个账户 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 欢迎使用椰羊签到~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行米游社任务 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">54</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 账户 <span class="number">0</span> loginTicket 未配置<span class="punctuation">,</span> 尝试从 cookie 中读取 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">55</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 登录成功<span class="punctuation">,</span> 正在保存相关 ticket 至配置文件 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">55</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取任务列表 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">55</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 获取帖子成功<span class="punctuation">,</span> 共获取 <span class="number">18</span> 个帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日米游社任务<span class="punctuation">:</span> 点赞 (<span class="number">0</span>/<span class="number">5</span>) 看帖子 (<span class="number">2</span>/<span class="number">3</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享 (<span class="number">0</span>/<span class="number">1</span>) 签到 (<span class="number">1</span>/<span class="number">1</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞任务开始 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享任务开始 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 阅读帖子任务开始 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享帖子成功~ 帖子主题<span class="punctuation">:</span> 话说公子这种天赋分技能 命座莫名其妙是靠什么成为平民T0的 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 看第 <span class="number">1</span> 个帖子成功~ 帖子主题<span class="punctuation">:</span> 可恶啊！摆明骗我抽绫华嘛 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">56</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 求组！<span class="number">40</span>岁阿姨萌新让我叫她姐姐怎么办，急 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">16</span><span class="punctuation">:</span><span class="number">59</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 我和大佬的恋与提瓦特 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">02</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 大佬们，融神一定要二命吗 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">05</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 可恶啊！摆明骗我抽绫华嘛 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">09</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 点赞成功 帖子主题<span class="punctuation">:</span> 话说公子这种天赋分技能 命座莫名其妙是靠什么成为平民T0的 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日任务已经完成 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行原神签到 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 共获取到 <span class="number">1</span> 个绑定的原神账号 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>ERROR<span class="punctuation">]</span><span class="punctuation">:</span> UID<span class="punctuation">:</span> xxxx<span class="punctuation">,</span> 昵称<span class="punctuation">:</span> powersee 签到失败 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 运行完毕~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">14</span><span class="punctuation">:</span><span class="number">17</span><span class="punctuation">:</span><span class="number">12</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 按回车退出...</span><br></pre></td></tr></table></figure><p>第二次执行</p><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 加载配置文件成功<span class="punctuation">:</span> 共 <span class="number">1</span> 个账户 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 欢迎使用椰羊签到~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行米游社任务 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取任务列表 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">48</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 正在获取帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 获取帖子成功<span class="punctuation">,</span> 共获取 <span class="number">20</span> 个帖子 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日米游社任务<span class="punctuation">:</span> 点赞 (<span class="number">5</span>/<span class="number">5</span>) 看帖子 (<span class="number">3</span>/<span class="number">3</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 分享 (<span class="number">1</span>/<span class="number">1</span>) 签到 (<span class="number">1</span>/<span class="number">1</span>) </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 今日任务已经完成 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 开始进行原神签到 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>ERROR<span class="punctuation">]</span><span class="punctuation">:</span> 获取原神账号列表失败米游社 cookie 错误 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 共获取到 <span class="number">0</span> 个绑定的原神账号 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>ERROR<span class="punctuation">]</span><span class="punctuation">:</span> 账户 <span class="number">0</span> 没有绑定原神账号 </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 运行完毕~ </span><br><span class="line"><span class="punctuation">[</span>椰羊签到<span class="punctuation">]</span><span class="punctuation">[</span><span class="number">2023</span><span class="number">-03</span><span class="number">-20</span> <span class="number">16</span><span class="punctuation">:</span><span class="number">13</span><span class="punctuation">:</span><span class="number">49</span><span class="punctuation">]</span><span class="punctuation">[</span>INFO<span class="punctuation">]</span><span class="punctuation">:</span> 按回车退出..</span><br></pre></td></tr></table></figure><p>运行起来是没问题，不过目前这样，似乎不适合让它定时运行，因为每次执行完之后，需要按回车来退出。</p><h3 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h3><p>我看了一下代码，<code>main.go</code> 的最后是这么写的</p><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Exit</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> os.Getenv(<span class="string">&quot;TENCENTCLOUD_RUNENV&quot;</span>) != <span class="string">&quot;SCF&quot;</span> &#123;</span><br><span class="line"><span class="keyword">var</span> input <span class="type">string</span></span><br><span class="line">log.Infoln(<span class="string">&quot;按回车退出...&quot;</span>)</span><br><span class="line">_, _ = fmt.Scanln(&amp;input)</span><br><span class="line">&#125;</span><br><span class="line">os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>作者估计之前是在腾讯云函数里面跑的吧，如果发现不是云函数，就会要求按回车才能退出。应该是打算给 Windows 用比较方便吧。</p><p>现在我要在群晖里运行，我想运行完直接退出，那么直接改代码吧，把 <code>if</code> 这一段去掉。</p><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Exit</span><span class="params">()</span></span> &#123;</span><br><span class="line">os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>用 docker 拉取一个 golang 环境，然后代码放进去，<code>go build</code> 一下就行了。</p><p>那么不改代码行不行？其实也可以，设置一个环境变量呗。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin</span><br></pre></td></tr></table></figure><p>我们在运行程序之前，设置了变量 <code>TENCENTCLOUD_RUNENV</code> 的值为 <code>SCF</code>，就可以运行完直接退出了。</p><p>现在弄明白了，就可以来设置它每天定时运行了。</p><h3 id="添加定时任务"><a href="#添加定时任务" class="headerlink" title="添加定时任务"></a>添加定时任务</h3><p>打开群晖的「控制面板」，点击「任务计划」，「新增」，「计划的任务」，「用户定义的脚本」</p><p><img src="/img/2023/image-20230320171130893.png" alt="新增-用户定义的脚本"></p><p>常规里面填写任务名，随便都行。计划设置每天几点运行，可以设置 3 点、7点之类的，最好不要设置 0 点运行。重点来到「任务设置」里，我们填写上这样的命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat/ &amp;&amp; TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin</span><br></pre></td></tr></table></figure><p>这样应该就 ok 了。</p><p>原本是打算保存一下日志的，像这样。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat/ &amp;&amp; TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin &gt; $(date +%Y%m%d).log.txt</span><br></pre></td></tr></table></figure><p>但是测试了一下，发现日志无法保存下来。了解一番之后，发现代码里使用 <code>log.Infoln</code> 来输出日志的，这样的输出是没法使用 <code>&gt;</code> 或者 <code>tee</code> 来保存到日志里的。所以日志保存这部分暂时搞不定。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;发现一个不错的项目，可以自动到米游社完成每日签到。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;发现一个不错的项目，可以自动到米游社完成每日签到。&lt;/p&gt;
 &lt;p&gt;项目：&lt;a href=&quot;https://github.com/Akegarasu/cocogoat-signin&quot;&gt;椰羊签到 - 年轻人的第一款米游社签到工具&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;使用 Go 写的工具，我们
+&lt;p&gt;使用 Go 写的工具，我们</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -174,18 +215,17 @@
     
     <content type="html"><![CDATA[<p>最近给我的两台服务器，都升级了 Ubuntu 版本。个人感觉，如果服务器里的东西不多，还不如备份之后，重装系统，直接装个 22.04 可能会比一步一步升级快。</p><p>我目前有一台服务器用的是 Ubuntu 18.04 LTS，平时装应用有这样那样的问题，我打算给它升级一下。</p><p>平时 ssh 登录上之后，也经常能看到提示升级。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do-release-upgrade</span><br></pre></td></tr></table></figure><p>执行这个命令，就可以升级 Ubuntu 的版本。不过在此之前，我们需要先 update 和 upgrade。当我这些做完之后，却发现，执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do-release-upgrade</span><br></pre></td></tr></table></figure><p>后提示这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Please install all available updates for your release before upgrading</span><br></pre></td></tr></table></figure><p>可是我明明已经没东西可以再更新了……</p><p>网上搜索后，别人说试试这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br><span class="line">sudo apt dist-upgrade</span><br><span class="line">sudo do-release-upgrade</span><br></pre></td></tr></table></figure><p>结果试了也没用，最终发现，问题出现在第三方软件源上面。</p><p>因为之前直接用 apt 安装 nodejs，这样安装的是旧版本的。我现在运行的应用要求使用 node18。</p><p>所以之前根据教程，下载了这个脚本，执行后，会添加 node 的软件源。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh</span><br></pre></td></tr></table></figure><p>它就在 <code>/etc/apt/sources.list.d</code> 里面，执行下面的命令可以禁用第三方源</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt/sources.list.d </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> *.list; <span class="keyword">do</span> <span class="built_in">mv</span> <span class="variable">$&#123;i&#125;</span> <span class="variable">$&#123;i&#125;</span>.disabled; <span class="keyword">done</span> </span><br><span class="line">apt clean</span><br><span class="line">apt autoclean </span><br><span class="line">sudo do-release-upgrade </span><br></pre></td></tr></table></figure><p>不过我不是这么做的，我直接把里面的 node 源给删了，剩下的 docker 源没动它。之后再执行 <code>do-release-upgrade</code> 就可以继续进行了。</p><p>升级的过程中，有很多选项，还是挺麻烦的。不过好在最后升级成功了，从 18.04 升级到了 20.04.6。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;最近给我的两台服务器，都升级了 Ubuntu 版本。个人感觉，如果服务器里的东西不多，还不如备份之后，重装系统，直接装个 22.04 可能会比一步一步升级快。&lt;/p&gt;
-&lt;p&gt;我目前有一台服务器用的是 Ubuntu 18.04 LTS，平时装应用有这样那样的问题，我打算给它升
+    <summary type="html">&lt;p&gt;最近给我的两台服务器，都升级了 Ubuntu 版本。个人感觉，如果服务器里的东西不多，还不如备份之后，重装系统，直接装个 22.04 可能会比一步一步升级快。&lt;/p&gt;
+&lt;p&gt;我目前有一台服务器用的是 Ubuntu 18.04 LTS，平时装应用有这样那样的问题，我打算给它升</summary>
       
     
-    </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -198,18 +238,17 @@
     
     <content type="html"><![CDATA[<p>有时候，一些签到按钮，签到完成之后是依然可以点击的。如果只是用 id 来获取到元素，然后点击，就会导致明明签到完成了，还继续点击按钮。</p><p>此时我们可以加入一个判断条件。看来还是得拿个实际例子，<a href="https://xiage.yy.com/forum-234-1.html">王者荣耀 - 虾哥论坛</a></p><p>这个网站，我们没有账号也可以访问，我们可以看到它有一个「签到」按钮。</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:to_sign(fid, uid)&quot;</span> <span class="attr">class</span>=<span class="string">&quot;checkin-btn follow-show&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkin-btn&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>签到<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><p>由于它有 id ，所以获取起来很简单</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;checkin-btn&#x27;</span>)</span><br></pre></td></tr></table></figure><p>我有这个论坛的账号，我知道点击之后，按钮的文字，会从<code>签到</code> 变成 <code>已签到</code>。</p><p>那么我们要做的就是，在执行点击之前，判断一下，里面的文字是否 <code>签到</code></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         王者荣耀-虾哥-点击签到</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       Powersee</span></span><br><span class="line"><span class="comment">// @match        https://xiage.yy.com/forum-234-1.html</span></span><br><span class="line"><span class="comment">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=yy.com</span></span><br><span class="line"><span class="comment">// @grant        none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;checkin-btn&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (btn.<span class="property">textContent</span> == <span class="string">&#x27;签到&#x27;</span>) btn.<span class="title function_">click</span>()</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><p>完整的代码如下，我发现用 <code>// @run-at       document-idle</code> 似乎有些问题，所以改成了事件监听。</p><p>有些签到按钮，点击之后文字就会发生变化。</p><table><thead><tr><th align="left">签到前</th><th align="left">签到后</th></tr></thead><tbody><tr><td align="left">签到</td><td align="left">已签到</td></tr><tr><td align="left">签到</td><td align="left">已签</td></tr></tbody></table><p>像这种我们可以直接用 <code>==</code> 来判断里面的字符串，但是有的时候，我们想要的是，判断里面的文字，是否包含某些字符串。</p><p>例如，有些网站，它的签到按钮文字是 <code>领取今日的登录奖励</code> </p><p>我们可以用 <code>includes()</code> 方法来判断。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (btn.<span class="property">textContent</span>.<span class="title function_">includes</span>(<span class="string">&#x27;领取今日&#x27;</span>)) btn.<span class="title function_">click</span>()</span><br></pre></td></tr></table></figure><p>这行代码，就是判断是否包含 <code>领取今日</code> 这几个字，如果是，就点击。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;有时候，一些签到按钮，签到完成之后是依然可以点击的。如果只是用 id 来获取到元素，然后点击，就会导致明明签到完成了，还继续点击按钮。&lt;/p&gt;
-&lt;p&gt;此时我们可以加入一个判断条件。看来还是得拿个实际例子，&lt;a href=&quot;https://xiage.yy.com/forum
+    <summary type="html">&lt;p&gt;有时候，一些签到按钮，签到完成之后是依然可以点击的。如果只是用 id 来获取到元素，然后点击，就会导致明明签到完成了，还继续点击按钮。&lt;/p&gt;
+&lt;p&gt;此时我们可以加入一个判断条件。看来还是得拿个实际例子，&lt;a href=&quot;https://xiage.yy.com/forum</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -222,20 +261,19 @@
     
     <content type="html"><![CDATA[<p>有很多网站，需要我们打开网页之后，点击上面的签到按钮，来完成当天的签到。</p><p>如果利用油猴脚本，我们可以实现打开网页后，查找按钮，如果找到了，就自动点击。</p><p>首先打开想签到的网页，然后点击油猴插件，点击「添加新脚本」，给的默认模板是这样的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// ==UserScript==</span><br><span class="line">// @name         New Userscript</span><br><span class="line">// @namespace    http://tampermonkey.net/</span><br><span class="line">// @version      0.1</span><br><span class="line">// @description  try to take over the world!</span><br><span class="line">// @author       You</span><br><span class="line">// @match        https://www.xxx.com/</span><br><span class="line">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=xxx.com</span><br><span class="line">// @grant        none</span><br><span class="line">// ==/UserScript==</span><br><span class="line"></span><br><span class="line">(function() &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    // Your code here...</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><p>由于我们需要等网页加载完成，再来查找按钮，所以需要添加一行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// @run-at       document-idle</span><br></pre></td></tr></table></figure><p>可以加在 <code>// ==/UserScript==</code> 的上方，变成这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// @grant        none</span><br><span class="line">// @run-at       document-idle</span><br><span class="line">// ==/UserScript==</span><br></pre></td></tr></table></figure><p>感觉也找不到合适网站来作为案例，就拿百度的那个「百度一下」来讲解吧，反正弄懂了原理，换其它网站也就没问题。</p><p>在浏览器按 F12，弹出来的开发者工具，按 <code>ctrl + shift + c</code> 这三颗按键，然后选中「百度一下」</p><p>可以发现它是一个 input</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;百度一下&quot;</span> <span class="attr">id</span>=<span class="string">&quot;su&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn self-btn bg s_btn&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure><p>这种有 id 的最简单，因为网页中的 id 是唯一的。用 js 来选中它，然后点击</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById(&#x27;su&#x27;).click()</span><br></pre></td></tr></table></figure><p>在「控制台」执行这行代码，就跟我们手动去点击「百度一下」的作用是一样的。</p><p>如果你要签到的网站也是这么简单，签到按钮有 id，那只需要把上面的 su 换为你找到的 id 就行。例如我有个网站，它的签到按钮 id 是 <code>sign_title</code> ，那我只需要改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById(&#x27;sign_title&#x27;).click()</span><br></pre></td></tr></table></figure><p>在 <code>// ==/UserScript==</code> 的下方，我们可以改为这样</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Your code here...</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;sign_title&#x27;</span>).<span class="title function_">click</span>()</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><p>很简单就可以实现一个自动点击的脚本了。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;有很多网站，需要我们打开网页之后，点击上面的签到按钮，来完成当天的签到。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;有很多网站，需要我们打开网页之后，点击上面的签到按钮，来完成当天的签到。&lt;/p&gt;
 &lt;p&gt;如果利用油猴脚本，我们可以实现打开网页后，查找按钮，如果找到了，就自动点击。&lt;/p&gt;
 &lt;p&gt;首先打开想签到的网页，然后点击油猴插件，点击「添加新脚本」，给的默认模板是这样的&lt;/p&gt;
-&lt;f
+&lt;f</summary>
       
     
-    </summary>
     
     
-      <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
+    
+    <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
     
   </entry>
   
@@ -248,18 +286,17 @@
     
     <content type="html"><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote><p>APT Proxy 是一款轻量的、可靠的 APT &#x2F; YUM &#x2F; APK 包（Ubuntu &#x2F; Debian &#x2F; CentOS &#x2F; ALPINE ）缓存工具，能够在各种不同的操作系统环境中运行。</p></blockquote><p>这是来自 <a href="https://github.com/soulteary/apt-proxy/blob/main/README_CN.md">官方文档</a> 开头的介绍，现在的作者 <a href="https://soulteary.com/">苏洋</a> 是一位能力很强的博主，他对停留在 2015 年的原项目进行修改，有了现在这个版本。</p><p>而且已经不只是给 apt 用而已了，还可以给 centos 和 alpine 用，更加强大了。</p><p>想要更深入的了解，可以观看苏洋大佬的两篇文章：</p><p><a href="https://soulteary.com/2022/06/14/lightweight-and-small-zero-configuration-apt-acceleration-tool-apt-proxy.html">轻量小巧的零配置 APT 加速工具：APT Proxy - 苏洋博客 (soulteary.com)</a></p><p><a href="https://soulteary.com/2022/11/20/linux-package-download-acceleration-tool-apt-proxy.html">Linux 软件包下载加速工具：APT Proxy - 苏洋博客 (soulteary.com)</a></p><p>现在使用它，我们在本地装好服务器后，可以不用去修改软件源了。</p><p>平时我得到一个纯净的 Ubuntu 系统后，一般都会去修改 <code>/etc/apt/sources.list</code> ，将里面的内容改为清华或者阿里云的镜像源。现在使用这个工具，我们就可以不用去修改了。只要在使用 apt 的时候设置代理，指向这个工具，就会自动使用最快的镜像源。</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>运行起来也很简单，用 docker 一条命令即可。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=apt-proxy -p 3142:3142 soulteary/apt-proxy</span><br></pre></td></tr></table></figure><p>只需要映射一个端口 <code>3142</code> 而已。查看容器的 log 可以看到这些。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2023/03/14 06:15:43 running apt-proxy </span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Ubuntu mirror http://ftp.sjtu.edu.cn/ubuntu/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Debian mirror http://repo.huaweicloud.com/debian/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest CentOS mirror https://mirrors.aliyun.com/centos/</span><br><span class="line">2023/03/14 06:15:45 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest Alpine mirror http://mirrors.aliyun.com/alpine/</span><br><span class="line">2023/03/14 06:15:45 proxy listening on 0.0.0.0:3142</span><br><span class="line">2023/03/14 06:15:45 Program has been started 🚀</span><br></pre></td></tr></table></figure><p>从日志可以看到，它会自动测出速度最快的镜像站。而且此时我们访问 3142 端口，还可以看到 web 界面。</p><p><img src="/img/2023/image-20230314141943091.png" alt="apt-proxy-web"></p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>我运行 apt-proxy 的机器 IP 是 192.168.68.172，所以我可以这样这样来使用它。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># `apt-get update` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true update </span><br><span class="line"># `apt-get install vim -y` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true install vim -y</span><br></pre></td></tr></table></figure><p>虽然执行之后输出的信息依然显示</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]</span><br><span class="line">Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]</span><br><span class="line">Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]</span><br><span class="line">Get:4 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [829 kB]</span><br></pre></td></tr></table></figure><p>但是它因为使用了代理，其实是用了 <a href="http://ftp.sjtu.edu.cn/ubuntu/">http://ftp.sjtu.edu.cn/ubuntu/</a> 这个镜像源，从速度我们也可以明显感受到。或者直接查看 apt-proxy 的日志也能看到。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2023/03/18 03:01:30 rewrote &quot;http://archive.ubuntu.com/ubuntu/dists/jammy/InRelease&quot; to &quot;http://ftp.sjtu.edu.cn/ubuntu/dists/jammy/InRelease&quot;</span><br></pre></td></tr></table></figure><p>然后它另一个优势，就是它会缓存。如果我们有多台服务器的话，那么第一台安装 vim，apt-proxy 会将 vim 的安装文件缓存下来，而之后的第二台，它就可以直接使用缓存了，不需要去镜像源下载了，速度会快很多。</p><h3 id="缩短命令"><a href="#缩短命令" class="headerlink" title="缩短命令"></a>缩短命令</h3><p>不过它这命令也太长了吧，每次都得复制粘贴。我的解决方法是，使用 alias</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias aptp=&quot;http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true&quot;</span><br></pre></td></tr></table></figure><p>我把这么一串命令，起个别名为 <code>aptp</code>，之后我可以这样来使用它</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aptp update</span><br><span class="line">aptp install zsh</span><br></pre></td></tr></table></figure><p>非常好用的一款工具，推荐经常在本地折腾服务器的朋友，都可以去尝试一下。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;h3 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;APT Proxy 是一款轻量的、可靠的 APT &amp;#x2F; YUM &amp;#x2F; APK 包（Ubuntu &amp;
+    <summary type="html">&lt;h3 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;APT Proxy 是一款轻量的、可靠的 APT &amp;#x2F; YUM &amp;#x2F; APK 包（Ubuntu &amp;</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -272,19 +309,18 @@
     
     <content type="html"><![CDATA[<p>发现一个好用的工具 <a href="https://github.com/huacnlee/autocorrect">autocorrect</a> ，是 GitHub 上一个开源项目。官方介绍：</p><blockquote><p>AutoCorrect 是一个基于 Rust 编写的工具，用于「自动纠正」或「检查并建议」文案，给 CJK（中文、日语、韩语）与英文混写的场景，补充正确的空格，纠正单词，同时尝试以安全的方式自动纠正标点符号等等。</p></blockquote><p>感觉好像挺不错的，我可以使用它，自动给文字中的英文加空格。</p><p>看了下 <a href="https://github.com/huacnlee/autocorrect/releases">https://github.com/huacnlee/autocorrect/releases</a> ，里面有提供 Windows 的可执行文件，当然是命令行版本的，这工具并没有 GUI 的程序。于是我下载来体验看看。</p><h4 id="基础用法-–lint"><a href="#基础用法-–lint" class="headerlink" title="基础用法 –lint"></a>基础用法 –lint</h4><p>lint 这个单词我查了一下</p><blockquote><p>n. 软麻布；线头；棉绒<br>vi. 飞散出棉线</p></blockquote><p>这里难道是指，我们文章中那些不规范的地方，就像是线头？</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect.exe --lint C:\text.md</span><br></pre></td></tr></table></figure><p>使用起来很简单，命令名 参数 文件路径，执行后会快速检查文本中的内容。我使用的是一个 markdown 文件，里面的字数有 2 万 3（由 typora 统计的）</p><p><img src="/img/2023/image-20230316204751544.png" alt="autocorrect"></p><p>检测只用了不到 55 毫秒，确实很快。红色的就是我原本的内容，绿色的就是它建议修改后的格式。<code>--lint</code> 只是显示建议而已，不会直接修改文件的。</p><p>感觉还不错：</p><ul><li>中英混写的，它会建议加空格。</li><li>汉字和阿拉伯数字也是建议加空格。</li><li>多余的空格会建议删掉</li></ul><p>我建立了个 txt 文件，写下这些内容</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line"></span><br><span class="line">javascript</span><br><span class="line"></span><br><span class="line">你好，haha。。。。</span><br></pre></td></tr></table></figure><p>检测后是没有错误，我还预期它会改正写法呢，改为 Python，JavaScript。按理说这个应该不难，可能是有其它方面的考虑吧，例如改到代码之类。</p><p>不过我这四个句号 <code>。。。。</code>，肯定是不规范吧，我还期待看它会怎么改呢。</p><h4 id="完整参数"><a href="#完整参数" class="headerlink" title="完整参数"></a>完整参数</h4><p>通过执行 -h 可以查看说明</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect -h</span><br><span class="line">A linter and formatter for help you improve copywriting, to correct spaces, words, punctuations between CJK (Chinese, Japanese, Korean).</span><br><span class="line"></span><br><span class="line">Usage: autocorrect.exe [OPTIONS] [FILE]... [COMMAND]</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  init    Initialize AutoCorrect config file.</span><br><span class="line">  update  Update AutoCorrect to latest version.</span><br><span class="line">  help    Print this message or the help of the given subcommand(s)</span><br><span class="line"></span><br><span class="line">Arguments:</span><br><span class="line">  [FILE]...  Target filepath or dir for format. [default: .]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">      --lint               Lint and output problems.</span><br><span class="line">      --fix                Automatically fix problems and rewrite file.</span><br><span class="line">      --debug              Print debug information.</span><br><span class="line">      --format &lt;FORMAT&gt;    Output format. [default: diff] [possible values: diff, json]</span><br><span class="line">      --threads &lt;THREADS&gt;  Number of threads, 0 - use number of CPU. [default: 0]</span><br><span class="line">  -c, --config &lt;CONFIG&gt;    Special config file. [default: .autocorrectrc]</span><br><span class="line">      --type &lt;FILETYPE&gt;    Directly use set file type.</span><br><span class="line">      --stdin              Input text from &lt;STDIN&gt;</span><br><span class="line">      --no-diff-bg-color   Disable diff background color for diff output.</span><br><span class="line">  -h, --help               Print help</span><br><span class="line">  -V, --version            Print version</span><br></pre></td></tr></table></figure><p>我们可以先使用 <code>lint</code>检测问题，确认之后，使用 <code>fix</code>来改正。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect.exe --fix C:\text.md</span><br></pre></td></tr></table></figure><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>使用 <code>--config</code> 还能使用配置文件，需要先初始化一下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS C:\bin&gt; .\autocorrect.exe init</span><br><span class="line">Fetching https://github.com/huacnlee/autocorrect/raw/main/.autocorrectrc.template</span><br><span class="line">AutoCorrect init config: .autocorrectrc</span><br><span class="line">PS C:\bin&gt; ls</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    目录: C:\bin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Mode                 LastWriteTime         Length Name</span><br><span class="line">----                 -------------         ------ ----</span><br><span class="line">-a----         2023/3/16     21:10           2025 .autocorrectrc</span><br><span class="line">-a----          2023/2/9      0:19        9476096 autocorrect.exe</span><br></pre></td></tr></table></figure><p>这样它就会从 GitHub 下载模板，然后在当前目录下保存为 <code>.autocorrectrc</code>。此时我再来执行检测</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\powersee\Downloads\test.txt:3:1</span><br><span class="line">-javascript</span><br><span class="line">+JavaScript</span><br><span class="line"></span><br><span class="line">C:\Users\powersee\Downloads\test.txt:7:1</span><br><span class="line">-Youtube</span><br><span class="line">+YouTube</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Error: 0, Warning: 2</span><br></pre></td></tr></table></figure><p>下载模板之后，再来检测，就会出建议了。不过这里是 Warning，执行 fix 是不会改正的。</p><p>此时我只要修改配置文件，改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spellcheck: 1</span><br></pre></td></tr></table></figure><p>再次检测，刚才的两个 Warning，就变成 Error 了。再使用 fix 就可以改正了。</p><p>因为这个配置，是使用数字来控制的。</p><blockquote><p>0 - off, 1 - error, 2 - warning</p></blockquote><p>如果我不想要它检查英文的大小写，直接设置为 0 就行。</p><p>之所以之前检查 javascript 没问题，下载好配置文件后，就发现问题。是因为配置文件里有这部分</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spellcheck:</span><br><span class="line">  words:</span><br><span class="line">    # Please do not add a general English word (eg. apple, python) here.</span><br><span class="line">    # Users can add their special words to their .autocorrectrc file by their need.</span><br><span class="line">    - ActiveMQ</span><br><span class="line">    - AirPods</span><br><span class="line">    - Aliyun</span><br><span class="line">    ……</span><br><span class="line">    - JavaScript</span><br></pre></td></tr></table></figure><p>里面定义了 JavaScript 为正确写法。（看到这里我才意识到，python 是一个英文单词，蟒蛇，所以不应该被添加进配置文件里面。）</p><p>那在这个配置文件里，我们应该可以自己添加单词，例如我想把文章中，<code>powersee</code> 改为 <code>Powersee</code>，那我只需要把 <code>Powersee</code>添加进去就行。</p><p>然而当我添加进去之后，我发现，检查不出任何错误了……不管我添加了在开头，还是在结尾，都不行。甚至在中间也不行，反正只要我添加任何单词进去，这个配置文件就好像失效了。</p><p>所以目前我还没弄懂怎么回事，以后要是弄明白自己自定义这部分，再来更新吧。</p><h4 id="不用命令行"><a href="#不用命令行" class="headerlink" title="不用命令行"></a>不用命令行</h4><p>如果只是想改正一篇文章而已，那可以不用去下载这个命令行工具，直接访问 <a href="https://huacnlee.github.io/autocorrect">https://huacnlee.github.io/autocorrect</a> ，把文章内容粘贴进去，在网页里修改就行了。</p><p>而且它还有 <a href="https://marketplace.visualstudio.com/items?itemName=huacnlee.autocorrect">vscode 的插件</a>，我安装好后，直接用 vscode 打开我的文章就行了。</p><p>事实上，刚装好，我就把插件给停用了。</p><p>原因是我文章里有这么一段</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">看了下 https://github.com/huacnlee/autocorrect/releases ，里面有提供 Windows 的可执行文件</span><br></pre></td></tr></table></figure><p>我的链接后面是加了空格，再用逗号的。那么使用插件的话，会检测到这个空格，它觉得是多余的，要求我删掉。那么删掉之后，我的链接就错误了，因为会把逗号以及后面的汉字，一起识别为 url 的一部分。也就是说这个空格是必须要有的。</p><p>但是，此时我没法把它加回来，因为加回空格之后，再保存，插件会自动把空格去掉……看来我这种情况，不适合使用这个插件。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;发现一个好用的工具 &lt;a href=&quot;https://github.com/huacnlee/autocorrect&quot;&gt;autocorrect&lt;/a&gt; ，是 GitHub 上一个开源项目。官方介绍：&lt;/p&gt;
+    <summary type="html">&lt;p&gt;发现一个好用的工具 &lt;a href=&quot;https://github.com/huacnlee/autocorrect&quot;&gt;autocorrect&lt;/a&gt; ，是 GitHub 上一个开源项目。官方介绍：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;AutoCorrect 是一个基于
+&lt;p&gt;AutoCorrect 是一个基于</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -297,20 +333,19 @@
     
     <content type="html"><![CDATA[<p>例如我在 Ubuntu 18.04 里面，安装 ncdu</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install ncdu</span><br></pre></td></tr></table></figure><p>它不需要我按 y，就可以直接安装完成。但如果我安装个 php，它就需要询问我，在我按 y 确认之后，才会进入安装。虽然我们可以通过在命令中加入 <code>-y</code> 参数来自动确认，例如这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install php -y</span><br></pre></td></tr></table></figure><p>但是我好奇的是，为什么有些时候需要确认，有些时候不需要？</p><p>这是来自 ChatGPT 的回答</p><blockquote><p>对于某些较小的软件包，apt 安装时不需要确认是因为它们没有与其他软件包发生依赖关系或冲突。这些软件包通常只包含一些脚本、配置文件或其他小型组件，因此安装它们不会对系统的其他部分造成影响。</p><p>当 apt 安装一个包时，它会检查该包是否需要依赖其他包或冲突于已安装的包。如果没有，则 apt 不会询问用户是否确认安装该包，并自动安装。</p><p>因此，在某些情况下，如果软件包非常小并且没有与其他包发生依赖关系或冲突，则在安装过程中不需要手动确认安装。但是，在安装任何软件包之前，最好检查其详细信息，以确保其不会对系统造成不良影响。</p></blockquote>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;例如我在 Ubuntu 18.04 里面，安装 ncdu&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt install ncdu
+    <summary type="html">&lt;p&gt;例如我在 Ubuntu 18.04 里面，安装 ncdu&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt install ncdu</summary>
       
     
-    </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
-      <category term="Ubuntu" scheme="https://powersee.github.io/tags/Ubuntu/"/>
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://powersee.github.io/tags/Ubuntu/"/>
     
   </entry>
   
@@ -323,20 +358,19 @@
     
     <content type="html"><![CDATA[<p>我想给 vision five 2 装个 web 服务器 caddy，结果发现它不提供 RISC-V 版的可执行文件下载。</p><p>那就只能自己编译咯，毕竟是开源应用嘛。</p><p>由于机器上也没有装 Go，所以我选择用其它的设备来交叉编译。</p><p>我编译的设备是 d2550，没想到它还能在这种地方发光发热。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it golang:alpine3.17</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/go # go version</span><br><span class="line">go version go1.20.2 linux/amd64</span><br></pre></td></tr></table></figure><p>用 docker 可以很方便就拥有一个可编译的环境，那么接着需要下载代码，下载需要使用到 wget，由于我下载了 zip 压缩包，所以还得装一个 unzip，如果下载 tar 包就不用了。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add wget upzip</span><br><span class="line">wget https://github.com/caddyserver/caddy/archive/refs/tags/v2.6.4.zip</span><br><span class="line">unzip v2.6.4.zip</span><br></pre></td></tr></table></figure><p>解压出来一个 caddy-2.6.4 的目录，那么进入这个目录，再进入 cmd&#x2F;caddy</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GOPROXY=https://goproxy.cn</span><br><span class="line">go build</span><br></pre></td></tr></table></figure><p>编译完成就会多出一个名为 caddy 的文件，不过这样编译的是 amd64 版的，我想要编译 RISC-V 版。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CGO_ENABLE=0 GOOS=linux GOARCH=riscv64 go build</span><br></pre></td></tr></table></figure><p>这样编译之后，caddy 这个文件就变成 RISC-V 版的了，使用 file 命令可以查看</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add file</span><br><span class="line"># file caddy</span><br><span class="line">caddy: ELF 64-bit LSB executable, UCB RISC-V, double-float ABI, version 1 (SYSV), statically linked, Go BuildID=Sl5DFjHtcm44runPVDQz/PtAVfjFrZ7ix6z2eqOtp/bjeL6tdqc9Bu0ZnsWsXf/--2q9FfQEXqHen90fHNn, with debug_info, not stripped</span><br></pre></td></tr></table></figure><p>此时这个文件是在 docker 容器中的，我们可以使用 docker cp 命令将它复制出来。这里我是多开一个 ssh 标签。</p><p>需要先去查一下容器的 ID，用 docker ps，我这里查到是 <code>bb95e6bfb7e9</code>，然后像这样复制出来。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp bb95e6bfb7e9:/go/caddy-2.6.4/cmd/caddy/caddy .</span><br></pre></td></tr></table></figure><p>之后再想办法将它传到 RISC-V 开发板上。这一切完成之后，可以直接把容器删掉，甚至把镜像也删掉也行，不会生出多余的文件，很不错。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;我想给 vision five 2 装个 web 服务器 caddy，结果发现它不提供 RISC-V 版的可执行文件下载。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;我想给 vision five 2 装个 web 服务器 caddy，结果发现它不提供 RISC-V 版的可执行文件下载。&lt;/p&gt;
 &lt;p&gt;那就只能自己编译咯，毕竟是开源应用嘛。&lt;/p&gt;
 &lt;p&gt;由于机器上也没有装 Go，所以我选择用其它的设备来交叉编译。&lt;/p&gt;
-&lt;p&gt;我编译
+&lt;p&gt;我编译</summary>
       
     
-    </summary>
     
     
-      <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
+    
+    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
   </entry>
   
@@ -349,21 +383,20 @@
     
     <content type="html"><![CDATA[<p>服务器的硬盘空间告急，只剩下 100 多 M 可用。</p><p>我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。</p><p>排查的话可以用 <code>ncdu</code> ，如果没有这个命令可以用 <code>apt</code> 装一下。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ncdu /</span><br></pre></td></tr></table></figure><p>让它直接分析整个根目录。完成后它会按占用空间从大到小排序</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">13.2 GiB [##########] /home                   </span><br><span class="line"> 3.8 GiB [##        ] /usr</span><br><span class="line"> 2.6 GiB [#         ] /var</span><br><span class="line">81.3 MiB [          ] /boot</span><br><span class="line">77.5 MiB [          ] /root</span><br><span class="line"> 9.0 MiB [          ] /etc</span><br></pre></td></tr></table></figure><p>我们可以很直观地看出哪些目录占用的空间大，然后根据实际情况清理。home 目录就比较简单了，不用的东西删掉就行。</p><p>而我这边发现</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/var/log/journal/</span><br></pre></td></tr></table></figure><p>居然占用了 1.4G 的空间，从名字也可以知道它是日志文件。</p><p>执行一下 <code>journalctl</code> 我发现了这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Scheduled restart job, restart counter is at 10194343.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Starting tat_agent...</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1632911]: tat_agent.service: Changing to the requested working directory failed: No such file or&gt;</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1632911]: tat_agent.service: Failed at step CHDIR spawning /usr/local/qcloud/tat_agent/tat_agent&gt;</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Control process exited, code=exited, status=200/CHDIR</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Failed with result &#x27;exit-code&#x27;.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Failed to start tat_agent.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Scheduled restart job, restart counter is at 10194344.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Starting tat_agent...</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1632929]: tat_agent.service: Changing to the requested working directory failed: No such file or&gt;</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1632929]: tat_agent.service: Failed at step CHDIR spawning /usr/local/qcloud/tat_agent/tat_agent&gt;</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Control process exited, code=exited, status=200/CHDIR</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Failed with result &#x27;exit-code&#x27;.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Failed to start tat_agent.</span><br></pre></td></tr></table></figure><p>这个 <code>tat_agent.service</code> 5、6 秒就执行一下，由于我使用的是腾讯的云服务器，而我之前把 <code>/usr/local/qcloud/</code> 这个目录给删除了，所它一直报错，一直重试……</p><p>解决方法：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl stop tat_agent</span><br><span class="line">systemctl disable tat_agent</span><br><span class="line">rm -f /etc/systemd/system/tat_agent.service</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Mar 14 10:36:41 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br></pre></td></tr></table></figure><p>至于 <code>/var/log/journal/</code> 我直接 <code>rm -r</code> 给删除了。</p><p>然后再清理一下 home 目录中的文件，硬盘可用空间变成了 8.8G 了。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;服务器的硬盘空间告急，只剩下 100 多 M 可用。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;服务器的硬盘空间告急，只剩下 100 多 M 可用。&lt;/p&gt;
 &lt;p&gt;我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。&lt;/p&gt;
-&lt;p&gt;排查的话可以用 &lt;code&gt;ncdu&lt;/code&gt; ，如果没有这个命令可以用 &lt;code&gt;apt&lt;/code&gt; 
+&lt;p&gt;排查的话可以用 &lt;code&gt;ncdu&lt;/code&gt; ，如果没有这个命令可以用 &lt;code&gt;apt&lt;/code&gt; </summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -376,20 +409,19 @@
     
     <content type="html"><![CDATA[<p>我在使用一款自建的开源备忘录应用 memos，我把它运行在群晖里面。使用的是 docker，一条命令即可运行起来</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:latest</span><br></pre></td></tr></table></figure><p>我在群晖里面，网络直接使用 host，因此不需要填写端口，只需在「存储空间」里选择一个目录，来映射到容器内的 <code>/var/opt/memos</code>。</p><p>目前使用了两周多了，感觉还挺不错的。</p><p>现在的问题是，我运行的是 <code>0.10.3</code> 的版本，目前最新的版本已经到 <code>0.11.2</code> 了，我想要升级到最新的版本。</p><p>下面是我的实际操作。</p><p>首先我们要拉取最新的镜像，依旧到注册表搜 memos，右键然后点「下载此映像」，或者直接双击也可以。</p><p><img src="/img/2023/image-20230313180358859.png" alt="search-memos"></p><p>镜像下载完成之后，我们把容器停掉，再重新打开，是没有效果的，依然还是旧版本的。此时应该做的是，创建一个新的容器。但是在群晖里面，我们不需要重新填写容器的配置，因为它可以直接复制。选中一个容器，然后上方的设置里面，有个「复制设置」的选项。</p><p><img src="/img/2023/image-20230313181037438.png" alt="copy-settings"></p><p>点击之后，它会让我们「输入新容器的名称」，我给它起名为 「memos-0.11.2」，因为我估计过段时间又得来升级的，那就每次复制后都填一下当前的版本吧。</p><p>然后我们可以启动这个新的容器，看看运行正不正常，正常的话，就可以删掉旧的容器了。</p><p>我这个容器比较简单，而且网络方面直接用 host，所以不用设置端口。</p><p>但是我发现其它需要设置端口的容器，复制之后，端口会发生变化的。例如我有一个容器的端口是 10086，复制之后，群晖自动给新的容器生成一个随机端口，如 <code>49155</code> ，所以看来，带端口的容器，复制之后，还得修改一下。</p><p><img src="/img/2023/image-20230313190505946.png" alt="port-10086"></p><p>但是我们不能直接修改新容器的端口，因为不能两个容器同时使用一个端口。例如我这里的 <code>10086 </code>已经被就容器占用了，新的容器就没法用。虽然直接把旧容器删除了，新容器就可以使用 <code>10086</code> 这个端口，但是现在并不清楚新容器，是否能正常运行，所以不建议删。</p><p>我们可以先修改旧容器的端口，例如改为 <code>10087</code>，然后再修改新容器的。这样新的容器应该就可以运行起来了。</p><p>不过，此时如果你用命令行或者 portainer 查询镜像，应该会发现，多出一个 TAG 为 none 的镜像。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker images</span><br><span class="line">REPOSITORY                TAG               IMAGE ID       CREATED         SIZE</span><br><span class="line">neosmemo/memos            latest            8b795254a96c   2 days ago      34.5MB</span><br><span class="line">neosmemo/memos            &lt;none&gt;            50d503594da5   4 weeks ago     24.8MB</span><br></pre></td></tr></table></figure><p>从日期我们也可以判断出，none 就是那个旧的版本。想要删除它，我们需要把旧的容器删除掉。</p><p>之后如果你是用 portainer 的话，勾选然后删除即可。如果没装 portainer，那就用命令行来删除吧，因为群晖的 docker 面板里，在映像中是找不到它的。</p><p>先 ssh 连接群晖，执行 <code>sudo i</code> 切换到 root 用户。如果你也为每次都要这样操作一次而感到困扰，可以参考一下我之前的文章：<a href="/2023/03/synology-root-ssh/">群晖建立永久 root 账号</a></p><p>需要先列出设备中所有 docker 镜像</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><p>然后找到 none 的 IMAGE ID，像我这里是 <code>50d503594da5</code>，然后可以像这样来删除它</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi 50d503594da5</span><br></pre></td></tr></table></figure>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;我在使用一款自建的开源备忘录应用 memos，我把它运行在群晖里面。使用的是 docker，一条命令即可运行起来&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span c
+    <summary type="html">&lt;p&gt;我在使用一款自建的开源备忘录应用 memos，我把它运行在群晖里面。使用的是 docker，一条命令即可运行起来&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span c</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
-      <category term="群晖" scheme="https://powersee.github.io/tags/%E7%BE%A4%E6%99%96/"/>
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="群晖" scheme="https://powersee.github.io/tags/%E7%BE%A4%E6%99%96/"/>
     
   </entry>
   
@@ -402,19 +434,18 @@
     
     <content type="html"><![CDATA[<p>在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U</p><p><img src="/img/2023/image-20230312232057058.png" alt="矩形工具"></p><p>然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性里面修改它的宽高值就行，例如我这里改成 1920 和 1080</p><p><img src="/img/2023/image-20230312231507993.png" alt="属性"></p><p>Affinity Photo 的方法差不多，左边选择矩形工具，快捷键为 U，画出矩形后，选中矩形，在右下角的「变换」里可以更改。</p><p><img src="/img/2023/Snipaste_23-03-09_23-07-19.jpg" alt="变换"></p><p>下面这张图，就是通过这种方式制作出来的，其实有一些不足，就是蓝色的有点偏右。想要它们对齐的，只要 X Y 保持一样的数值就可以了。</p><p><img src="/img/2023/720vs1296.jpg" alt="720vs1296"></p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U&lt;/p&gt;
+    <summary type="html">&lt;p&gt;在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/2023/image-20230312232057058.png&quot; alt=&quot;矩形工具&quot;&gt;&lt;/p&gt;
-&lt;p&gt;然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性
+&lt;p&gt;然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -427,18 +458,17 @@
     
     <content type="html"><![CDATA[<p>每次 ssh 登录群晖，我们只能以管理员的身份登录。虽然输入</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -i</span><br></pre></td></tr></table></figure><p>可以临时切换到 root 账号，但是需要输入一次管理员密码，还是麻烦了点。如果能够直接用 root 账号 ssh 登录就好了。</p><p>具体的操作如下：</p><p>先 ssh 连接上，输入 <code>sudo -i</code> 切换到 root 账号。</p><p>接着编辑 ssh 的配置文件</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><p>找到这一行（大概在 44 行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#PermitRootLogin yes</span><br></pre></td></tr></table></figure><p>把光标放到 <code>#</code> 上面，然后按一下 del 键可以删除掉这个井号。</p><p>另一种删除方法是，按键盘的 <code>i</code> 键，进入编辑模式，此时左下方会显示 <code>-- INSERT --</code>，然后按 退格键来删除（需要先把光标移动到 P），删除完成按 <code>ESC</code>  来退出编辑模式。</p><p><img src="/img/2023/image-20230310165517949.png" alt="PermitRootLogin"></p><p>两种方法都一样的，希望对不懂 vim 的小伙伴有帮助。删除之后，需要保存。方法是，在英文输入法的状态下，输入 <code>:</code>，先按住 <code>Shift</code> 键，再按一下 <code>;:</code> 键，应该可以看到左下角出现一个冒号 : 了。</p><p>接着输入 <code>wq</code> ，意思是保存并退出，再按回车键就可以了。</p><p>之后需要重启群晖</p><p>然后再一次 ssh 登录进来，执行 <code>sudo -i</code>，然后执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">synouser --setpw root password</span><br></pre></td></tr></table></figure><p>意思是群晖用户，设置密码，把 root 用户的密码设置为 password，你可以把 password 改为自己想设置的密码。</p><p>执行完就可以直接用 root 账号登录了。</p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;每次 ssh 登录群晖，我们只能以管理员的身份登录。虽然输入&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo -i&lt;/span&gt;
+    <summary type="html">&lt;p&gt;每次 ssh 登录群晖，我们只能以管理员的身份登录。虽然输入&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo -i&lt;/span&gt;</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -451,68 +481,18 @@
     
     <content type="html"><![CDATA[<p>今天我想在手机上面，添加一个应用的小部件。但是，我死活找不到怎么添加。明明前段时间我还把 “原神战绩”这个小部件，添加到桌面过的。</p><p>一番搜索后，发现关键点在于【断网】。下面是详细的添加步骤：</p><p>在手机桌面，我们可以通过双指捏合、或长按桌面空白处，来呼出【添加小部件】按钮。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-13-56-014-edit_com.miui.home.jpg" alt="添加小部件"></p><p>点击之后，有两个选项，【推荐】和【分类】，里面都是 MIUI 推荐的小部件，我们自己装的 app 的小部件，大多数是不会显示在这里的。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-14-29-909-edit_com.miui.personalassistant.jpg" alt="推荐与分类"></p><p>那么不是还有个搜索吗？我直接搜呢？不好意思，也是搜不到的。这让我觉得非常恶心。</p><p>网上搜索了解之后，我找到了解决方案。先让手机处于断网状态，开飞行模式最直接，不过也可以关闭 WiFi 和数据就行了。此时再点击搜索，就会发现底部有一行【安卓小部件】。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-58-19-696_com.miui.personalassistant.jpg" alt="断网下的搜索"></p><p>点击之后就可以看到我们自己装的 app 所带的小部件了。</p><p><img src="/img/2023/Screenshot_2023-03-10-13-58-52-006_com.miui.home.jpg" alt="其它应用的小部件"></p>]]></content>
     
-    <summary type="html">
     
       
       
-        &lt;p&gt;今天我想在手机上面，添加一个应用的小部件。但是，我死活找不到怎么添加。明明前段时间我还把 “原神战绩”这个小部件，添加到桌面过的。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;今天我想在手机上面，添加一个应用的小部件。但是，我死活找不到怎么添加。明明前段时间我还把 “原神战绩”这个小部件，添加到桌面过的。&lt;/p&gt;
 &lt;p&gt;一番搜索后，发现关键点在于【断网】。下面是详细的添加步骤：&lt;/p&gt;
-&lt;p&gt;在手机桌面，我们可以通过双指捏合、或长按桌面空白处，来
+&lt;p&gt;在手机桌面，我们可以通过双指捏合、或长按桌面空白处，来</summary>
       
     
-    </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
-  </entry>
-  
-  <entry>
-    <title>powershell 的别名与函数</title>
-    <link href="https://powersee.github.io/2023/03/windows-powershell/"/>
-    <id>https://powersee.github.io/2023/03/windows-powershell/</id>
-    <published>2023-03-09T06:13:11.000Z</published>
-    <updated>2023-03-09T06:16:20.679Z</updated>
-    
-    <content type="html"><![CDATA[<p>alias 别名，使用它我们可以提高使用命令行的效率。</p><p>例如在 Linux 中，我喜欢把 <code>d</code> 设置为 <code>docker</code>的别名。只需要在终端中执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias d=&#x27;docker&#x27;</span><br><span class="line">d ps</span><br></pre></td></tr></table></figure><p>那么此时 <code>d ps</code> 的作用就等于 <code>docker ps</code></p><p>那么在 Windows 上面要怎么使用呢？我现在<code>终端</code>这个程序一打开，默认使用的是 <code>powershell</code>，所以我也主要用它了。</p><h3 id="New-Alias"><a href="#New-Alias" class="headerlink" title="New-Alias"></a>New-Alias</h3><p>在这上面使用别名的命令是 <code>New-Alias</code>，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Alias d docker</span><br></pre></td></tr></table></figure><p>详细说明可看 <a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_aliases?view=powershell-7.2">官方文档</a></p><p>像有些程序，它的路径比较长，我们也可以通过别名的方式，来较快速地使用</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Alias whisper &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot;</span><br></pre></td></tr></table></figure><p>但是，New-Alias 的值是不能包含空格的，还是用 docker 来举例子。</p><p>如果我在 Linux，我可以这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias di=&#x27;docker images&#x27;</span><br><span class="line">di</span><br></pre></td></tr></table></figure><p>后面的值只需要用引号包裹就行。但是在 <code>powershell</code> 里，alias 不能这样设置，此时得用函数 <code>function</code>。</p><h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><p><a href="https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/09-functions?view=powershell-7.2">官方文档</a>，示例如下：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function di &#123; docker images &#125;</span><br></pre></td></tr></table></figure><p>按我的理解，别名就是用来缩短命令的，因为 powershell 的命令都比较长，而且还用 <code>-</code> 连接，例如 <code>Get-ChildItem</code>。可读性确实比较强，但是敲起来就不是那么方便了。</p><p>函数就可以把长命令封装起来，其实相比 alias 也就多了花括号。</p><p>我这边想的是，缩短我使用 whisper 时需要输入的字符。所以我定义了一个函数 wme 意思是 whisper medium english。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English &#125;</span><br></pre></td></tr></table></figure><p>那么按理来说，我之后只要执行 <code>wme xxx.mp3</code> 就等同于</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English xxx.mp3</span><br></pre></td></tr></table></figure><p>然而在 Windows 这边它不是这么用的，后面的 xxx.mp3 它其实是算一个参数。正确的写法应该是这样：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &amp; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English $args[0]&#125;</span><br></pre></td></tr></table></figure><h3 id="powershell-的配置文件"><a href="#powershell-的配置文件" class="headerlink" title="powershell 的配置文件"></a>powershell 的配置文件</h3><p>我们定义的别名和函数，应该怎么保存下来，让我们下次打开 <code>powershell</code> 时，就自动加载呢？在 Linux 上面我们是将它们写入用户目录下的 <code>.bashrc</code> 或者 <code>.zshrc</code> 来实现的。</p><p>那么 powershell 里面，有没有类似 <code>.bashrc</code> 的文件呢？也是有的，但是默认情况下没有这个文件。可以先执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Test-Path $profile</span><br></pre></td></tr></table></figure><p>判断一下有没有这个文件，有的话会输出 True。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$profile  # 查看它的路径</span><br><span class="line">notepad $profile  # 用记事本打开这个文件</span><br></pre></td></tr></table></figure><p>如果没有这个配置文件，可以使用命令来创建它</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">New-Item -path $profile -type file –force</span><br></pre></td></tr></table></figure><p>它一般的路径在用户目录下的 <code>Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</code></p><p>之后我们只需将别名和函数粘贴到里面，下次启动 <code>powershell</code> 就会自动加载的。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;alias 别名，使用它我们可以提高使用命令行的效率。&lt;/p&gt;
-&lt;p&gt;例如在 Linux 中，我喜欢把 &lt;code&gt;d&lt;/code&gt; 设置为 &lt;code&gt;docker&lt;/code&gt;的别名。只需要在终端中执行&lt;/p&gt;
-&lt;figure class=&quot;highlight plai
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 环境变量</title>
-    <link href="https://powersee.github.io/2023/03/windows-path/"/>
-    <id>https://powersee.github.io/2023/03/windows-path/</id>
-    <published>2023-03-08T15:31:04.000Z</published>
-    <updated>2023-03-08T15:37:56.688Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天，我在一台 win11 的电脑下载了 <code>git</code> <code>ffmpeg</code>，我选择的是免安装版本。所以下载完我需要自己去添加环境变量。</p><p>在 win11 上面，我右键资源管理器的 <code>此电脑</code>，属性。会自动跳转到 <code>设置</code>、<code>系统信息</code> 里面。</p><p>需要点击【高级系统设置】，就可以在下方看到【环境变量】了。</p><p>双击【用户变量】里面的 <code>Path</code>，会弹出一个【编辑环境变量】的窗口，在里面添加多一行即可，例如我这里添加 git 的</p><blockquote><p>用户变量只对当前用户有效，系统变量对所有用户有效，由于我电脑就我一个用户，所以添加到用户变量就行了</p></blockquote><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\xxx\xxx\git\bin</span><br></pre></td></tr></table></figure><p>这时我就发现 Windows 和 Mac、Linux 的不同了，在 Windows 的终端，我新建一个标签，是识别不到我刚才添加的环境变量的。必须得新建一个【终端】窗口才行，这点我们可以在 <code>cmd</code> 里，通过</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo %PATH%</span><br><span class="line"># 直接执行 path 也行</span><br></pre></td></tr></table></figure><p>来判断。</p><p>在 <code>powershell</code> 里则是执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$env:path</span><br></pre></td></tr></table></figure><p>来查看环境变量。</p><p>而在 Mac、Linux 上面，我们甚至连新建一个标签都可以不用。因为可以使用使用 <code>source ~/.zshrc</code> 来加载新的环境变量。所以看到 Windows 需要新建窗口才行，感觉有点麻烦。</p><p>但是当我切换到 pycharm 里面，明明在【终端】里用 cmd 和 powershell 都可以识别到 git，在这里却怎么折腾都识别不到。</p><p>最终我选择了重启电脑，然后再次打开 pycharm，才终于可以在 pycharm 的终端识别到 git 。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天，我在一台 win11 的电脑下载了 &lt;code&gt;git&lt;/code&gt; &lt;code&gt;ffmpeg&lt;/code&gt;，我选择的是免安装版本。所以下载完我需要自己去添加环境变量。&lt;/p&gt;
-&lt;p&gt;在 win11 上面，我右键资源管理器的 &lt;code&gt;此电脑&lt;/code&gt;，属性。会
-      
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
