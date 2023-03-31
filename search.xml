@@ -4674,4 +4674,55 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>让 iTerm2 命令执行完之后，弹出通知</title>
+    <url>/2023/03/iterm2-notification/</url>
+    <content><![CDATA[<p>感觉这个功能超好用。</p>
+<p>有些命令可能需要很久才能执行完，主要是安装之类的，例如 brew 或者 npm，按下回车之后，都不知道它要多久才能装好，我们可能需要时不时就回来看看。</p>
+<p>而在 iTerm2 里面，我们可以设置命令执行完之后，弹出一条通知。这样一来，我们执行命令后，就可以去干其它事情了，等收到通知再回来就行。</p>
+<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p>想要实现这个功能，需要在顶部菜单里，先点击「iTerm2」，再点击「Install Shell Integration」，意思是安装 shell 集合。</p>
+<p>它会执行这样一条命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>安装好后多出这些功能</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You will also have these commands:</span><br><span class="line">imgcat filename</span><br><span class="line">  Displays the image inline.</span><br><span class="line">imgls</span><br><span class="line">  Shows a directory listing with image thumbnails.</span><br><span class="line">it2api</span><br><span class="line">  Command-line utility to manipulate iTerm2.</span><br><span class="line">it2attention start|stop|fireworks</span><br><span class="line">  Gets your attention.</span><br><span class="line">it2check</span><br><span class="line">  Checks if the terminal is iTerm2.</span><br><span class="line">it2copy [filename]</span><br><span class="line">  Copies to the pasteboard.</span><br><span class="line">it2dl filename</span><br><span class="line">  Downloads the specified file, saving it in your Downloads folder.</span><br><span class="line">it2setcolor ...</span><br><span class="line">  Changes individual color settings or loads a color preset.</span><br><span class="line">it2setkeylabel ...</span><br><span class="line">  Changes Touch Bar function key labels.</span><br><span class="line">it2tip</span><br><span class="line">  iTerm2 usage tips</span><br><span class="line">it2ul</span><br><span class="line">  Uploads a file.</span><br><span class="line">it2universion</span><br><span class="line">  Sets the current unicode version.</span><br><span class="line">it2profile</span><br><span class="line">  Change iTerm2 session profile on the fly.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p>
+<p>然后我们新开一个窗口或者 tab，在菜单里面选择 Edit 、 Marks and Annotations 、 Alerts，打开 Alert on next mark</p>
+<p><img src="/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p>
+<p>开启之后，就可以在右上角看到一个眼睛👁的图标。也可以使用快捷键 <code>cmd + alt + A</code> 来开启。</p>
+<p><img src="/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p>
+<p>之后再执行命令，只要命令完成了，就会弹出一条通知。</p>
+<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p>如果我们选择 「Show Modal Alert Box」，那么会出现这样一个提示窗口</p>
+<p><img src="/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p>
+<p>点击 Reveal 就会跳转到 iTerm2 里面。不过这个应该先执行命令，在设置 Mark 出现眼睛👁。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 截图的相关了解</title>
+    <url>/2023/03/mac-screenshot/</url>
+    <content><![CDATA[<h3 id="为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的"><a href="#为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的" class="headerlink" title="为什么 Mac 截图后，图片在 Finder 里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的"></a>为什么 Mac 截图后，图片在 Finder 里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的</h3><p>在 Mac OS 中，如果一个文件或文件夹的名称是灰色的，这通常表示该文件或文件夹已被标记为“不可用”，这意味着它已被删除、移动或重命名。</p>
+<p>但是，在截图之后，Finder 中显示的文件名虽然是灰色的，但文件本身并没有被标记为“不可用”。相反，灰色的名称在这种情况下表示该文件是新创建的，但尚未被编辑或重命名。当您对该文件进行任何编辑或更改文件名时，文件名将变为黑色。</p>
+<p>因此，无需担心截图文件名灰色的问题，这只是 Mac OS 的一种普遍表现形式，并不意味着该文件已被标记为“不可用”。</p>
+<h3 id="Mac-截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？"><a href="#Mac-截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？" class="headerlink" title="Mac 截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？"></a>Mac 截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？</h3><p>可以通过输入以下命令来更改截图的保存行为，并直接在桌面上显示它们，而无需等待几秒钟：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture show-thumbnail -bool FALSE &amp;&amp; killall SystemUIServer</span><br></pre></td></tr></table></figure>
+
+<p>这会禁用截图缩略图并立即使更改生效。现在，您在截图后将立即在桌面上看到它们，而不是在弹出的缩略图中等待数秒。</p>
+<p>请注意，在此更改生效后，您将无法通过双击屏幕截图缩略图来打开它。您需要手动打开存储截图的文件夹，然后找到并打开它们。但是，这个行为可以通过运行以下命令来恢复：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture show-thumbnail -bool TRUE &amp;&amp; killall SystemUIServer</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>-bool</code> 选项允许您将参数值设置为 <code>TRUE</code> 或 <code>FALSE</code>，以启用或禁用缩略图。</p>
+<h3 id="如何更改截图保存位置？"><a href="#如何更改截图保存位置？" class="headerlink" title="如何更改截图保存位置？"></a>如何更改截图保存位置？</h3><p>默认情况下是保存在「桌面」目录中</p>
+<p>我们可以按快捷键 <code>cmd + shift + 5</code> 来唤出截图界面，在「选项」里可以更改保存位置。</p>
+<p><img src="/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
