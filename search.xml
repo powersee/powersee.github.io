@@ -3894,7 +3894,7 @@ border-radius: 4px;
       </tags>
   </entry>
   <entry>
-    <title>powershell 的别名与函数</title>
+    <title>powershell 的别名、函数与配置文件</title>
     <url>/2023/03/windows-powershell/</url>
     <content><![CDATA[<p>alias 别名，使用它我们可以提高使用命令行的效率。</p>
 <p>例如在 Linux 中，我喜欢把 <code>d</code> 设置为 <code>docker</code>的别名。只需要在终端中执行</p>
@@ -3925,7 +3925,7 @@ border-radius: 4px;
 <p>那么按理来说，我之后只要执行 <code>wme xxx.mp3</code> 就等同于</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English xxx.mp3</span><br></pre></td></tr></table></figure>
 
-<p>然而在 Windows 这边它不是这么用的，后面的 xxx.mp3 它其实是算一个参数。正确的写法应该是这样：</p>
+<p>然而在 function 里就不是这么用了，后面的 xxx.mp3 它其实是算一个参数。正确的写法应该是这样：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &amp; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English $args[0]&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="powershell-的配置文件"><a href="#powershell-的配置文件" class="headerlink" title="powershell 的配置文件"></a>powershell 的配置文件</h3><p>我们定义的别名和函数，应该怎么保存下来，让我们下次打开 <code>powershell</code> 时，就自动加载呢？在 Linux 上面我们是将它们写入用户目录下的 <code>.bashrc</code> 或者 <code>.zshrc</code> 来实现的。</p>
@@ -3942,7 +3942,7 @@ border-radius: 4px;
 <p>之后我们只需将别名和函数粘贴到里面，下次启动 <code>powershell</code> 就会自动加载的。</p>
 ]]></content>
       <tags>
-        <tag>随笔</tag>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -4430,26 +4430,39 @@ border-radius: 4px;
   <entry>
     <title>CSS 中文字体名称</title>
     <url>/2023/03/css-chinese-font/</url>
-    <content><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。</p>
+    <content><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。看起来很不舒服。</p>
 <p>有时候我会把它们的字号调大一点</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span>: <span class="number">1.3em</span>;</span><br></pre></td></tr></table></figure>
 
-<p>更改字体</p>
+<p>有时会直接更改字体</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>在这过程中，我发现怎么有些中文字体，名称打上去后并不生效。例如我写 <code>霞骛文楷</code> 是不生效的，如果我写 <code>LXGW WenKai</code> 就可以生效。</p>
 <p>后来我了解到这个 <a href="https://www.zhangxinxu.com/study/201703/font-family-chinese-english.html">CSS font-family中文字体对应的英文名称整理表 </a></p>
-<p>原因是有些字体在字体应用这里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p>
+<p>这里面有些字体在「字体应用」里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span>, <span class="string">&#x27;思源宋体&#x27;</span>, <span class="string">&#x27;文泉驿微米黑&#x27;</span>, <span class="string">&#x27;楷体&#x27;</span>, <span class="string">&#x27;宋体&#x27;</span>, <span class="string">&#x27;黑体&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p>
-<p>不过我可不想每次都来查表。目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p>
+<p>难道要这样每次都来查表？目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p>
 <p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p>
-<p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的名称。</p>
+<p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的英文名称。</p>
 <p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p>
 <p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p>
 <p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p>
 <p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>
+<p>补充：</p>
+<p>后来又进一步了解了一些。</p>
+<p><img src="/img/2023/font-name.png" alt="font-name"></p>
+<p>打开一个字体的时候，里面第一行显示的「字体名称」，就是可以用在网页 css 中的。</p>
+<p>这样的名称，在设置的字体里面，也是可以看到的。</p>
+<p><img src="/img/2023/LXGW-WenKai-Bold.png" alt="LXGW-WenKai-Bold"></p>
+<p>之前 霞骛文楷 全称只显示英文，现有有些已经显示中文了。</p>
+<p><img src="/img/2023/image-20230331153928787.png" alt="image-20230331153928787"></p>
+<p>不过很奇怪，不管是「霞骛文楷」还是「霞骛文楷等宽」，都是只有 light 是显示中文，而且 Regular 和 Bold 都是英文的。</p>
+<p>在 Mac 上面也是这样。</p>
+<p><img src="/img/2023/mac-lxgw-wenkai-bold.webp" alt="mac-lxgw-wenkai-bold"></p>
+<p>使用 Firefox 的 DevTools，会比 chrome 或者 Edge 多一个「字体」，这个功能很不错，还可以拉动控制条，来调整字体。</p>
+<p><img src="/img/2023/Firefox-devtools-fonts.jpg" alt="Firefox-devtools-fonts"></p>
 ]]></content>
       <tags>
         <tag>web</tag>
@@ -4720,6 +4733,20 @@ border-radius: 4px;
 <h3 id="如何更改截图保存位置？"><a href="#如何更改截图保存位置？" class="headerlink" title="如何更改截图保存位置？"></a>如何更改截图保存位置？</h3><p>默认情况下是保存在「桌面」目录中</p>
 <p>我们可以按快捷键 <code>cmd + shift + 5</code> 来唤出截图界面，在「选项」里可以更改保存位置。</p>
 <p><img src="/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 打开 shell 之后，提示 You have new mail</title>
+    <url>/2023/04/mac-shell-you-have-new-mail/</url>
+    <content><![CDATA[<p>邮件？这里的邮件可不是指邮件 APP 里的邮件。而是指 <code>/var/mail</code> 里面的邮件，其实就 cron 计划任务的日志。</p>
+<p>可以在 shell 里执行 <code>mail</code> 来查看。也可以把 <code>/var/mail</code> 里的文件，直接拉到文本编辑器来查看，例如我直接放到 vscode 来查看。</p>
+<p>由于文件没有后缀名，（我的是我的账号名）所以 vscode 自动检测错，把它识别为 Python 文件。</p>
+<p>可以点击底部来更改，改成 log。</p>
+<p><img src="/img/2023/vscode-log.webp" alt="vscode-log"></p>
+<p>看完之后，发现也没什么，可以直接把这个文件删除了，这样再打开 shell 就不会有提示了。</p>
 ]]></content>
       <tags>
         <tag>Mac</tag>

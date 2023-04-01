@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
-	<title>powershell 的别名与函数</title>
+	<title>powershell 的别名、函数与配置文件</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -32,7 +32,7 @@
     
   
   <h1 class="title">
-    powershell 的别名与函数
+    powershell 的别名、函数与配置文件
   </h1>
   
 
@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2023-03-09T06:16:20.679Z" itemprop="dateUpdated">2023-03-09</time>
+    更新 <time datetime="2023-03-31T08:51:02.733Z" itemprop="dateUpdated">2023-03-31</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -85,7 +85,7 @@
 <p>那么按理来说，我之后只要执行 <code>wme xxx.mp3</code> 就等同于</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English xxx.mp3</span><br></pre></td></tr></table></figure>
 
-<p>然而在 Windows 这边它不是这么用的，后面的 xxx.mp3 它其实是算一个参数。正确的写法应该是这样：</p>
+<p>然而在 function 里就不是这么用了，后面的 xxx.mp3 它其实是算一个参数。正确的写法应该是这样：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function wme &#123; &amp; &quot;C:\Users\powersee\PycharmProjects\pythonProject\venv\Scripts\whisper.exe&quot; --model medium --language English $args[0]&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="powershell-的配置文件"><a href="#powershell-的配置文件" class="headerlink" title="powershell 的配置文件"></a>powershell 的配置文件</h3><p>我们定义的别名和函数，应该怎么保存下来，让我们下次打开 <code>powershell</code> 时，就自动加载呢？在 Linux 上面我们是将它们写入用户目录下的 <code>.bashrc</code> 或者 <code>.zshrc</code> 来实现的。</p>
