@@ -4786,11 +4786,15 @@ border-radius: 4px;
 
 <p>json 配置文件下载：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c?WT.mc_id=-blog-scottha">ohmyposhv3-v2 (github.com)</a></p>
 <p>直链：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json">https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json</a></p>
+<p>我也放一份到我的博客里面：<a href="/misc/ohmyposhv3-v2.json">ohmyposhv3-v2</a></p>
 <p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p>
 <p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p>
 <p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p>
 <p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p>
 <p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p>
+<p>然后还需要设置字体，不然这些图标加载不出来。可以到<a href="https://www.nerdfonts.com/">这里</a>下载字体，选择自己喜欢的，下载后是压缩包，解压出来，选中所有字体，右键安装即可。</p>
+<p><img src="/img/2023/win-terminal-font.png" alt="win-terminal-font"></p>
+<p>之后到「设置」「默认值」「外观」里面更改字体。</p>
 ]]></content>
       <tags>
         <tag>Windows</tag>
