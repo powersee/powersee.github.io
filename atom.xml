@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-02T07:35:05.061Z</updated>
+  <updated>2023-04-02T17:33:28.485Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的图片优化方案</title>
+    <link href="https://powersee.github.io/2023/04/blog-image-optimize/"/>
+    <id>https://powersee.github.io/2023/04/blog-image-optimize/</id>
+    <published>2023-04-02T17:26:05.000Z</published>
+    <updated>2023-04-02T17:33:28.485Z</updated>
+    
+    <content type="html"><![CDATA[<p>我现在的博客是用 hexo 生成的静态网页，部署在 GitHub pages。</p><p>而众所周知，国内访问 GitHub pages 一直不怎么好，所以优化非常重要。</p><p>我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等很久才能看到图标。再加上用久了，有点审美疲劳，所以最近换了个主题，现在速度快了很多。</p><p>改完主题后，我又注意到另一个影响访问速度的因素——图片。</p><p>我博客的图片，都是放在 source&#x2F;img 目录中，按照年份建立目录。</p><p><img src="/img/2023/blog-source-img.jpg" alt="blog-source-img"></p><p>我可以通过按大小排序，来查出哪些图片占用的空间比较大。</p><p><img src="/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p><p>现在看到的是我已经优化过的了，下面说说我的优化过程。</p><h3 id="Mac-自带「预览」"><a href="#Mac-自带「预览」" class="headerlink" title="Mac 自带「预览」"></a>Mac 自带「预览」</h3><p>在 Mac 上双击一张图片，会使用自带的「预览」来打开。可以点击「文件」「导出」，选择 JPEG 格式，可以更改它的质量来缩小图片体积。</p><p><img src="/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p><h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="/img/2023/affinity-photo.webp" alt="affinity-photo"></p><p>专业的图片处理软件，除非要修改图片内容，不然一般不会选择用它们来压缩图片。</p><h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="/img/2023/ImageOptim.webp" alt="ImageOptim"></p><p>一个开源的图片优化工具，直接把图片拖进来就行。它只有 <a href="https://imageoptim.com/mac">Mac 版本</a>，在 <a href="https://github.com/ImageOptim/ImageOptim">GitHub</a> 上面有 8.3K star。</p><p>上面我拖了一张图片进来，它处理后，图片大小变成原来的 65.1% 了。这是在我开启微量有损的情况，不开的话，压缩比并不高。</p><p>然后我觉得它有两个缺点：</p><ul><li>压缩后直接替换掉原文件</li><li>压缩时间太长</li></ul><p>所以我不怎么用它。</p><h3 id="使用-WebP-格式"><a href="#使用-WebP-格式" class="headerlink" title="使用 WebP 格式"></a>使用 WebP 格式</h3><p>之前的<a href="/2023/03/about-webp/">文章</a>我已经介绍过它了，我目前博客新添加的图片，如果体积比较大，我都尽量把它们转为 WebP 格式。它的压缩比超级强。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>你能想象这样一张分辨率为 5472×3080 的图片，它只有 87KB 吗？</p><p>它可以做到图片很小的情况下，还保持着不错的图片质量，真心不错。</p><p>由于经常转换格式，所以我后来将它弄成一个 APP，图片拖进去就会自动转换为 WebP 格式。</p><p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p><p>感兴趣的可以看<a href="/2023/03/create-mac-app-from-command-line-scripts/">之前的文章</a>。这么一番优化，我目前整个博客的图片，只有 34MB，我手机开数据的情况下访问我的博客，速度方面感觉也还不错。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我现在的博客是用 hexo 生成的静态网页，部署在 GitHub pages。&lt;/p&gt;
+&lt;p&gt;而众所周知，国内访问 GitHub pages 一直不怎么好，所以优化非常重要。&lt;/p&gt;
+&lt;p&gt;我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>安装 ohmyposh 来美化 powershell</title>
@@ -210,14 +234,14 @@
     <link href="https://powersee.github.io/2023/03/about-webp/"/>
     <id>https://powersee.github.io/2023/03/about-webp/</id>
     <published>2023-03-24T16:23:32.000Z</published>
-    <updated>2023-03-27T03:30:22.938Z</updated>
+    <updated>2023-04-02T17:35:48.738Z</updated>
     
-    <content type="html"><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p><p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p><p>接下来介绍我是怎么处理 WebP 图片的。</p><p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p><p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p><p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure><p>如果我把它压缩为 WebP 格式（我电脑已经装好了 cwebp）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure><p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure><p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p><p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p><p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p><p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p><p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p><p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p><p>其它参数：</p><p><code>-quiet</code> 不打印任何内容</p><p><code>-short</code> 仅输出文件大小和 PSNR</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure><p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>]]></content>
+    <content type="html"><![CDATA[<p>WebP 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p><p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p><p>接下来介绍我是怎么处理 WebP 图片的。</p><p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p><p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p><p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure><p>如果我把它压缩为 WebP 格式（我电脑已经装好了 cwebp）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure><p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure><p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p><p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p><p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p><p>WebP 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p><p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p><p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p><p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p><p>其它参数：</p><p><code>-quiet</code> 不打印任何内容</p><p><code>-short</code> 仅输出文件大小和 PSNR</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure><p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;WebP 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
 &lt;p&gt;所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格</summary>
       
     
@@ -465,32 +489,6 @@
     
     
     <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次清理服务器硬盘空间</title>
-    <link href="https://powersee.github.io/2023/03/clean-up-the-server-disk/"/>
-    <id>https://powersee.github.io/2023/03/clean-up-the-server-disk/</id>
-    <published>2023-03-14T06:06:45.000Z</published>
-    <updated>2023-03-15T17:30:39.052Z</updated>
-    
-    <content type="html"><![CDATA[<p>服务器的硬盘空间告急，只剩下 100 多 M 可用。</p><p>我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。</p><p>排查的话可以用 <code>ncdu</code> ，如果没有这个命令可以用 <code>apt</code> 装一下。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ncdu /</span><br></pre></td></tr></table></figure><p>让它直接分析整个根目录。完成后它会按占用空间从大到小排序</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">13.2 GiB [##########] /home                   </span><br><span class="line"> 3.8 GiB [##        ] /usr</span><br><span class="line"> 2.6 GiB [#         ] /var</span><br><span class="line">81.3 MiB [          ] /boot</span><br><span class="line">77.5 MiB [          ] /root</span><br><span class="line"> 9.0 MiB [          ] /etc</span><br></pre></td></tr></table></figure><p>我们可以很直观地看出哪些目录占用的空间大，然后根据实际情况清理。home 目录就比较简单了，不用的东西删掉就行。</p><p>而我这边发现</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/var/log/journal/</span><br></pre></td></tr></table></figure><p>居然占用了 1.4G 的空间，从名字也可以知道它是日志文件。</p><p>执行一下 <code>journalctl</code> 我发现了这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Scheduled restart job, restart counter is at 10194343.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Starting tat_agent...</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1632911]: tat_agent.service: Changing to the requested working directory failed: No such file or&gt;</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1632911]: tat_agent.service: Failed at step CHDIR spawning /usr/local/qcloud/tat_agent/tat_agent&gt;</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Control process exited, code=exited, status=200/CHDIR</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: tat_agent.service: Failed with result &#x27;exit-code&#x27;.</span><br><span class="line">Mar 14 10:30:14 VM-4-3-ubuntu systemd[1]: Failed to start tat_agent.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Scheduled restart job, restart counter is at 10194344.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Starting tat_agent...</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1632929]: tat_agent.service: Changing to the requested working directory failed: No such file or&gt;</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1632929]: tat_agent.service: Failed at step CHDIR spawning /usr/local/qcloud/tat_agent/tat_agent&gt;</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Control process exited, code=exited, status=200/CHDIR</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: tat_agent.service: Failed with result &#x27;exit-code&#x27;.</span><br><span class="line">Mar 14 10:30:20 VM-4-3-ubuntu systemd[1]: Failed to start tat_agent.</span><br></pre></td></tr></table></figure><p>这个 <code>tat_agent.service</code> 5、6 秒就执行一下，由于我使用的是腾讯的云服务器，而我之前把 <code>/usr/local/qcloud/</code> 这个目录给删除了，所它一直报错，一直重试……</p><p>解决方法：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl stop tat_agent</span><br><span class="line">systemctl disable tat_agent</span><br><span class="line">rm -f /etc/systemd/system/tat_agent.service</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Mar 14 10:36:41 VM-4-3-ubuntu systemd[1]: Stopped tat_agent.</span><br></pre></td></tr></table></figure><p>至于 <code>/var/log/journal/</code> 我直接 <code>rm -r</code> 给删除了。</p><p>然后再清理一下 home 目录中的文件，硬盘可用空间变成了 8.8G 了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;服务器的硬盘空间告急，只剩下 100 多 M 可用。&lt;/p&gt;
-&lt;p&gt;我好像也没怎么存东西在里面呀，估计又是哪些软件生成日志之类的，占满了硬盘空间。&lt;/p&gt;
-&lt;p&gt;排查的话可以用 &lt;code&gt;ncdu&lt;/code&gt; ，如果没有这个命令可以用 &lt;code&gt;apt&lt;/code&gt; </summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   

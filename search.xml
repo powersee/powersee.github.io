@@ -4516,7 +4516,7 @@ border-radius: 4px;
   <entry>
     <title>省流好助手，WebP 格式是真的强👍🏻</title>
     <url>/2023/03/about-webp/</url>
-    <content><![CDATA[<p>webp 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p>
+    <content><![CDATA[<p>WebP 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p>
 <p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p>
 <p>接下来介绍我是怎么处理 WebP 图片的。</p>
 <p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p>
@@ -4538,7 +4538,7 @@ border-radius: 4px;
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p>
-<p>webp 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p>
+<p>WebP 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p>
 <p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
 <p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p>
 <p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p>
@@ -4798,6 +4798,43 @@ border-radius: 4px;
 ]]></content>
       <tags>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的图片优化方案</title>
+    <url>/2023/04/blog-image-optimize/</url>
+    <content><![CDATA[<p>我现在的博客是用 hexo 生成的静态网页，部署在 GitHub pages。</p>
+<p>而众所周知，国内访问 GitHub pages 一直不怎么好，所以优化非常重要。</p>
+<p>我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等很久才能看到图标。再加上用久了，有点审美疲劳，所以最近换了个主题，现在速度快了很多。</p>
+<p>改完主题后，我又注意到另一个影响访问速度的因素——图片。</p>
+<p>我博客的图片，都是放在 source&#x2F;img 目录中，按照年份建立目录。</p>
+<p><img src="/img/2023/blog-source-img.jpg" alt="blog-source-img"></p>
+<p>我可以通过按大小排序，来查出哪些图片占用的空间比较大。</p>
+<p><img src="/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p>
+<p>现在看到的是我已经优化过的了，下面说说我的优化过程。</p>
+<h3 id="Mac-自带「预览」"><a href="#Mac-自带「预览」" class="headerlink" title="Mac 自带「预览」"></a>Mac 自带「预览」</h3><p>在 Mac 上双击一张图片，会使用自带的「预览」来打开。可以点击「文件」「导出」，选择 JPEG 格式，可以更改它的质量来缩小图片体积。</p>
+<p><img src="/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p>
+<h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="/img/2023/affinity-photo.webp" alt="affinity-photo"></p>
+<p>专业的图片处理软件，除非要修改图片内容，不然一般不会选择用它们来压缩图片。</p>
+<h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="/img/2023/ImageOptim.webp" alt="ImageOptim"></p>
+<p>一个开源的图片优化工具，直接把图片拖进来就行。它只有 <a href="https://imageoptim.com/mac">Mac 版本</a>，在 <a href="https://github.com/ImageOptim/ImageOptim">GitHub</a> 上面有 8.3K star。</p>
+<p>上面我拖了一张图片进来，它处理后，图片大小变成原来的 65.1% 了。这是在我开启微量有损的情况，不开的话，压缩比并不高。</p>
+<p>然后我觉得它有两个缺点：</p>
+<ul>
+<li>压缩后直接替换掉原文件</li>
+<li>压缩时间太长</li>
+</ul>
+<p>所以我不怎么用它。</p>
+<h3 id="使用-WebP-格式"><a href="#使用-WebP-格式" class="headerlink" title="使用 WebP 格式"></a>使用 WebP 格式</h3><p>之前的<a href="/2023/03/about-webp/">文章</a>我已经介绍过它了，我目前博客新添加的图片，如果体积比较大，我都尽量把它们转为 WebP 格式。它的压缩比超级强。</p>
+<p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
+<p>你能想象这样一张分辨率为 5472×3080 的图片，它只有 87KB 吗？</p>
+<p>它可以做到图片很小的情况下，还保持着不错的图片质量，真心不错。</p>
+<p>由于经常转换格式，所以我后来将它弄成一个 APP，图片拖进去就会自动转换为 WebP 格式。</p>
+<p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p>
+<p>感兴趣的可以看<a href="/2023/03/create-mac-app-from-command-line-scripts/">之前的文章</a>。这么一番优化，我目前整个博客的图片，只有 34MB，我手机开数据的情况下访问我的博客，速度方面感觉也还不错。</p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
       </tags>
   </entry>
 </search>
