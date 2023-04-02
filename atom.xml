@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-03-31T17:17:40.919Z</updated>
+  <updated>2023-04-02T07:15:00.418Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安装 ohmyposh 来美化 powershell</title>
+    <link href="https://powersee.github.io/2023/04/powershell-ohmyposh/"/>
+    <id>https://powersee.github.io/2023/04/powershell-ohmyposh/</id>
+    <published>2023-04-02T07:09:34.000Z</published>
+    <updated>2023-04-02T07:15:00.418Z</updated>
+    
+    <content type="html"><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p><p><img src="/img/2023/ohmyposh.png" alt="ohmyposh"></p><p>安装 Oh My Posh</p><p>可以到 Microsoft Store 安装</p><p><img src="/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p><p>或者通过命令行来安装，需要用管理员身份运行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure><p>不过，极大的可能会因为网络问题安装失败</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; winget install JanDeDobbeleer.OhMyPosh -s winget</span><br><span class="line">已找到 Oh My Posh [JanDeDobbeleer.OhMyPosh] 版本 14.24.0</span><br><span class="line">此应用程序由其所有者授权给你。</span><br><span class="line">Microsoft 对第三方程序包概不负责，也不向第三方程序包授予任何许可证。</span><br><span class="line">正在下载 https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.24.0/install-amd64.exe</span><br><span class="line">执行此命令时发生意外错误：</span><br><span class="line">InternetOpenUrl() failed.</span><br><span class="line">0x80072efd : unknown error</span><br></pre></td></tr></table></figure><p>我是通过设置命令行走代理来解决的。</p><p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure><p><img src="/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p><p>需要输入两次 y，大小写随便。</p><p>装好后可以尝试在终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>如果像这样报错了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">Import-Module : 无法加载文件 C:\Program Files\WindowsPowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。</span><br><span class="line"></span><br><span class="line">所在位置 行:1 字符: 1</span><br><span class="line"></span><br><span class="line">+ Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">+ ~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">+ CategoryInfo : SecurityError: (:) [Import-Module]，PSSecurityException</span><br><span class="line"></span><br><span class="line">+ FullyQualifiedErrorId : UnauthorizedAccess,Microsoft.PowerShell.Commands.ImportModuleCommand</span><br></pre></td></tr></table></figure><p>需要更改执行策略，执行命令后输入 y 再按回车。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; set-executionpolicy remotesigned</span><br><span class="line"></span><br><span class="line">执行策略更改</span><br><span class="line"></span><br><span class="line">执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170</span><br><span class="line"></span><br><span class="line">中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?</span><br><span class="line"></span><br><span class="line">[Y] 是(Y) [A] 全是(A) [N] 否(N) [L] 全否(L) [S] 暂停(S) [?] 帮助 (默认值为“N”): y</span><br></pre></td></tr></table></figure><p>打开 PowerShell profile，加入这两行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh --init --shell pwsh --config ~\Documents\WindowsPowerShell\ohmyposhv3-v2.json | Invoke-Expression</span><br><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>json 配置文件下载：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c?WT.mc_id=-blog-scottha">ohmyposhv3-v2 (github.com)</a></p><p>直链：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json">https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json</a></p><p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p><p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p><p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p><p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p><p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;通过安装 ohmyposh 来美化 powershell，最终效果如下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/ohmyposh.png&quot; alt=&quot;ohmyposh&quot;&gt;&lt;/p&gt;
+&lt;p&gt;安装 Oh My Posh&lt;/p&gt;
+&lt;p&gt;可以到 Microsoft S</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 打开 shell 之后，提示 You have new mail</title>
@@ -466,31 +491,6 @@
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>群晖 NAS 里怎么更新 Docker 容器</title>
-    <link href="https://powersee.github.io/2023/03/synology-update-docker-container/"/>
-    <id>https://powersee.github.io/2023/03/synology-update-docker-container/</id>
-    <published>2023-03-13T11:25:36.000Z</published>
-    <updated>2023-03-15T17:30:56.960Z</updated>
-    
-    <content type="html"><![CDATA[<p>我在使用一款自建的开源备忘录应用 memos，我把它运行在群晖里面。使用的是 docker，一条命令即可运行起来</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:latest</span><br></pre></td></tr></table></figure><p>我在群晖里面，网络直接使用 host，因此不需要填写端口，只需在「存储空间」里选择一个目录，来映射到容器内的 <code>/var/opt/memos</code>。</p><p>目前使用了两周多了，感觉还挺不错的。</p><p>现在的问题是，我运行的是 <code>0.10.3</code> 的版本，目前最新的版本已经到 <code>0.11.2</code> 了，我想要升级到最新的版本。</p><p>下面是我的实际操作。</p><p>首先我们要拉取最新的镜像，依旧到注册表搜 memos，右键然后点「下载此映像」，或者直接双击也可以。</p><p><img src="/img/2023/image-20230313180358859.png" alt="search-memos"></p><p>镜像下载完成之后，我们把容器停掉，再重新打开，是没有效果的，依然还是旧版本的。此时应该做的是，创建一个新的容器。但是在群晖里面，我们不需要重新填写容器的配置，因为它可以直接复制。选中一个容器，然后上方的设置里面，有个「复制设置」的选项。</p><p><img src="/img/2023/image-20230313181037438.png" alt="copy-settings"></p><p>点击之后，它会让我们「输入新容器的名称」，我给它起名为 「memos-0.11.2」，因为我估计过段时间又得来升级的，那就每次复制后都填一下当前的版本吧。</p><p>然后我们可以启动这个新的容器，看看运行正不正常，正常的话，就可以删掉旧的容器了。</p><p>我这个容器比较简单，而且网络方面直接用 host，所以不用设置端口。</p><p>但是我发现其它需要设置端口的容器，复制之后，端口会发生变化的。例如我有一个容器的端口是 10086，复制之后，群晖自动给新的容器生成一个随机端口，如 <code>49155</code> ，所以看来，带端口的容器，复制之后，还得修改一下。</p><p><img src="/img/2023/image-20230313190505946.png" alt="port-10086"></p><p>但是我们不能直接修改新容器的端口，因为不能两个容器同时使用一个端口。例如我这里的 <code>10086 </code>已经被就容器占用了，新的容器就没法用。虽然直接把旧容器删除了，新容器就可以使用 <code>10086</code> 这个端口，但是现在并不清楚新容器，是否能正常运行，所以不建议删。</p><p>我们可以先修改旧容器的端口，例如改为 <code>10087</code>，然后再修改新容器的。这样新的容器应该就可以运行起来了。</p><p>不过，此时如果你用命令行或者 portainer 查询镜像，应该会发现，多出一个 TAG 为 none 的镜像。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker images</span><br><span class="line">REPOSITORY                TAG               IMAGE ID       CREATED         SIZE</span><br><span class="line">neosmemo/memos            latest            8b795254a96c   2 days ago      34.5MB</span><br><span class="line">neosmemo/memos            &lt;none&gt;            50d503594da5   4 weeks ago     24.8MB</span><br></pre></td></tr></table></figure><p>从日期我们也可以判断出，none 就是那个旧的版本。想要删除它，我们需要把旧的容器删除掉。</p><p>之后如果你是用 portainer 的话，勾选然后删除即可。如果没装 portainer，那就用命令行来删除吧，因为群晖的 docker 面板里，在映像中是找不到它的。</p><p>先 ssh 连接群晖，执行 <code>sudo i</code> 切换到 root 用户。如果你也为每次都要这样操作一次而感到困扰，可以参考一下我之前的文章：<a href="/2023/03/synology-root-ssh/">群晖建立永久 root 账号</a></p><p>需要先列出设备中所有 docker 镜像</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><p>然后找到 none 的 IMAGE ID，像我这里是 <code>50d503594da5</code>，然后可以像这样来删除它</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi 50d503594da5</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我在使用一款自建的开源备忘录应用 memos，我把它运行在群晖里面。使用的是 docker，一条命令即可运行起来&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span c</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="群晖" scheme="https://powersee.github.io/tags/%E7%BE%A4%E6%99%96/"/>
     
   </entry>
   

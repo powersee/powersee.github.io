@@ -4752,4 +4752,48 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>安装 ohmyposh 来美化 powershell</title>
+    <url>/2023/04/powershell-ohmyposh/</url>
+    <content><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p>
+<p><img src="/img/2023/ohmyposh.png" alt="ohmyposh"></p>
+<p>安装 Oh My Posh</p>
+<p>可以到 Microsoft Store 安装</p>
+<p><img src="/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p>
+<p>或者通过命令行来安装，需要用管理员身份运行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure>
+
+<p>不过，极大的可能会因为网络问题安装失败</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; winget install JanDeDobbeleer.OhMyPosh -s winget</span><br><span class="line">已找到 Oh My Posh [JanDeDobbeleer.OhMyPosh] 版本 14.24.0</span><br><span class="line">此应用程序由其所有者授权给你。</span><br><span class="line">Microsoft 对第三方程序包概不负责，也不向第三方程序包授予任何许可证。</span><br><span class="line">正在下载 https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.24.0/install-amd64.exe</span><br><span class="line">执行此命令时发生意外错误：</span><br><span class="line">InternetOpenUrl() failed.</span><br><span class="line">0x80072efd : unknown error</span><br></pre></td></tr></table></figure>
+
+<p>我是通过设置命令行走代理来解决的。</p>
+<p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p>
+<p>需要输入两次 y，大小写随便。</p>
+<p>装好后可以尝试在终端执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure>
+
+<p>如果像这样报错了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">Import-Module : 无法加载文件 C:\Program Files\WindowsPowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。</span><br><span class="line"></span><br><span class="line">所在位置 行:1 字符: 1</span><br><span class="line"></span><br><span class="line">+ Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">+ ~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">+ CategoryInfo : SecurityError: (:) [Import-Module]，PSSecurityException</span><br><span class="line"></span><br><span class="line">+ FullyQualifiedErrorId : UnauthorizedAccess,Microsoft.PowerShell.Commands.ImportModuleCommand</span><br></pre></td></tr></table></figure>
+
+<p>需要更改执行策略，执行命令后输入 y 再按回车。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; set-executionpolicy remotesigned</span><br><span class="line"></span><br><span class="line">执行策略更改</span><br><span class="line"></span><br><span class="line">执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170</span><br><span class="line"></span><br><span class="line">中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?</span><br><span class="line"></span><br><span class="line">[Y] 是(Y) [A] 全是(A) [N] 否(N) [L] 全否(L) [S] 暂停(S) [?] 帮助 (默认值为“N”): y</span><br></pre></td></tr></table></figure>
+
+<p>打开 PowerShell profile，加入这两行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh --init --shell pwsh --config ~\Documents\WindowsPowerShell\ohmyposhv3-v2.json | Invoke-Expression</span><br><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure>
+
+<p>json 配置文件下载：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c?WT.mc_id=-blog-scottha">ohmyposhv3-v2 (github.com)</a></p>
+<p>直链：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json">https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json</a></p>
+<p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p>
+<p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p>
+<p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p>
+<p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p>
+<p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
 </search>
