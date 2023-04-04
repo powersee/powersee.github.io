@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-02T17:33:28.485Z</updated>
+  <updated>2023-04-04T03:52:54.646Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows 上 where 命令</title>
+    <link href="https://powersee.github.io/2023/04/windows-where/"/>
+    <id>https://powersee.github.io/2023/04/windows-where/</id>
+    <published>2023-04-04T03:52:13.000Z</published>
+    <updated>2023-04-04T03:52:54.646Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 Mac 和 Linux 我们可以使用 which 命令，来查看某个命令的绝对路径，例如：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">❯ <span class="built_in">which</span> go</span><br><span class="line">/usr/local/go/bin/go</span><br></pre></td></tr></table></figure><p>在 Windows 上我们可以使用 where</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; <span class="built_in">where</span> node</span><br><span class="line">C:\bin\node-v19.8.1-win-x64\node.exe</span><br></pre></td></tr></table></figure><p>我测试了下，发现只有 cmd 支持，我用 powershell 和 nu shell 都不支持。</p><p>解决方法是，使用 <code>where.exe</code></p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; where.exe node</span><br><span class="line">C:\bin\node-v19.8.1-win-x64\node.exe</span><br></pre></td></tr></table></figure><p>或者使用 <code>gcm</code></p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; gcm node</span><br><span class="line"></span><br><span class="line">CommandType     Name        Version    Source</span><br><span class="line">-----------     ----        -------    ------</span><br><span class="line">Application     node.exe    19.8.1.0   C:\bin\node-v19.8.1-win-x64\node.exe</span><br></pre></td></tr></table></figure><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在 Mac 和 Linux 我们可以使用 which 命令，来查看某个命令的绝对路径，例如：&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;❯ &lt;sp</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>我的图片优化方案</title>
@@ -45,9 +68,9 @@
     <link href="https://powersee.github.io/2023/04/powershell-ohmyposh/"/>
     <id>https://powersee.github.io/2023/04/powershell-ohmyposh/</id>
     <published>2023-04-02T07:09:34.000Z</published>
-    <updated>2023-04-02T07:35:05.061Z</updated>
+    <updated>2023-04-03T06:44:04.662Z</updated>
     
-    <content type="html"><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p><p><img src="/img/2023/ohmyposh.png" alt="ohmyposh"></p><p>安装 Oh My Posh</p><p>可以到 Microsoft Store 安装</p><p><img src="/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p><p>或者通过命令行来安装，需要用管理员身份运行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure><p>不过，极大的可能会因为网络问题安装失败</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; winget install JanDeDobbeleer.OhMyPosh -s winget</span><br><span class="line">已找到 Oh My Posh [JanDeDobbeleer.OhMyPosh] 版本 14.24.0</span><br><span class="line">此应用程序由其所有者授权给你。</span><br><span class="line">Microsoft 对第三方程序包概不负责，也不向第三方程序包授予任何许可证。</span><br><span class="line">正在下载 https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.24.0/install-amd64.exe</span><br><span class="line">执行此命令时发生意外错误：</span><br><span class="line">InternetOpenUrl() failed.</span><br><span class="line">0x80072efd : unknown error</span><br></pre></td></tr></table></figure><p>我是通过设置命令行走代理来解决的。</p><p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure><p><img src="/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p><p>需要输入两次 y，大小写随便。</p><p>装好后可以尝试在终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>如果像这样报错了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">Import-Module : 无法加载文件 C:\Program Files\WindowsPowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。</span><br><span class="line"></span><br><span class="line">所在位置 行:1 字符: 1</span><br><span class="line"></span><br><span class="line">+ Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">+ ~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">+ CategoryInfo : SecurityError: (:) [Import-Module]，PSSecurityException</span><br><span class="line"></span><br><span class="line">+ FullyQualifiedErrorId : UnauthorizedAccess,Microsoft.PowerShell.Commands.ImportModuleCommand</span><br></pre></td></tr></table></figure><p>需要更改执行策略，执行命令后输入 y 再按回车。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; set-executionpolicy remotesigned</span><br><span class="line"></span><br><span class="line">执行策略更改</span><br><span class="line"></span><br><span class="line">执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170</span><br><span class="line"></span><br><span class="line">中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?</span><br><span class="line"></span><br><span class="line">[Y] 是(Y) [A] 全是(A) [N] 否(N) [L] 全否(L) [S] 暂停(S) [?] 帮助 (默认值为“N”): y</span><br></pre></td></tr></table></figure><p>打开 PowerShell profile，加入这两行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh --init --shell pwsh --config ~\Documents\WindowsPowerShell\ohmyposhv3-v2.json | Invoke-Expression</span><br><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>json 配置文件下载：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c?WT.mc_id=-blog-scottha">ohmyposhv3-v2 (github.com)</a></p><p>直链：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json">https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json</a></p><p>我也放一份到我的博客里面：<a href="/misc/ohmyposhv3-v2.json">ohmyposhv3-v2</a></p><p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p><p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p><p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p><p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p><p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p><p>然后还需要设置字体，不然这些图标加载不出来。可以到<a href="https://www.nerdfonts.com/">这里</a>下载字体，选择自己喜欢的，下载后是压缩包，解压出来，选中所有字体，右键安装即可。</p><p><img src="/img/2023/win-terminal-font.png" alt="win-terminal-font"></p><p>之后到「设置」「默认值」「外观」里面更改字体。</p>]]></content>
+    <content type="html"><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p><p><img src="/img/2023/ohmyposh.png" alt="ohmyposh"></p><p>安装 Oh My Posh</p><p>可以到 Microsoft Store 安装</p><p><img src="/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p><p>或者通过命令行来安装，需要用管理员身份运行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure><p>不过，极大的可能会因为网络问题安装失败</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; winget install JanDeDobbeleer.OhMyPosh -s winget</span><br><span class="line">已找到 Oh My Posh [JanDeDobbeleer.OhMyPosh] 版本 14.24.0</span><br><span class="line">此应用程序由其所有者授权给你。</span><br><span class="line">Microsoft 对第三方程序包概不负责，也不向第三方程序包授予任何许可证。</span><br><span class="line">正在下载 https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.24.0/install-amd64.exe</span><br><span class="line">执行此命令时发生意外错误：</span><br><span class="line">InternetOpenUrl() failed.</span><br><span class="line">0x80072efd : unknown error</span><br></pre></td></tr></table></figure><p>我是通过设置命令行走代理来解决的。</p><p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure><p><img src="/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p><p>需要输入两次 y，大小写随便。</p><p>装好后可以尝试在终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>如果像这样报错了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">Import-Module : 无法加载文件 C:\Program Files\WindowsPowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。</span><br><span class="line"></span><br><span class="line">所在位置 行:1 字符: 1</span><br><span class="line"></span><br><span class="line">+ Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">+ ~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">+ CategoryInfo : SecurityError: (:) [Import-Module]，PSSecurityException</span><br><span class="line"></span><br><span class="line">+ FullyQualifiedErrorId : UnauthorizedAccess,Microsoft.PowerShell.Commands.ImportModuleCommand</span><br></pre></td></tr></table></figure><p>需要更改执行策略，执行命令后输入 y 再按回车。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; set-executionpolicy remotesigned</span><br><span class="line"></span><br><span class="line">执行策略更改</span><br><span class="line"></span><br><span class="line">执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170</span><br><span class="line"></span><br><span class="line">中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?</span><br><span class="line"></span><br><span class="line">[Y] 是(Y) [A] 全是(A) [N] 否(N) [L] 全否(L) [S] 暂停(S) [?] 帮助 (默认值为“N”): y</span><br></pre></td></tr></table></figure><p>打开 PowerShell profile，加入这两行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh --init --shell pwsh --config ~\Documents\WindowsPowerShell\ohmyposhv3-v2.json | Invoke-Expression</span><br><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>json 配置文件下载：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c?WT.mc_id=-blog-scottha">ohmyposhv3-v2 (github.com)</a></p><p>直链：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json">https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json</a></p><p>我也放一份到我的博客里面：<a href="/misc/ohmyposhv3-v2.json">ohmyposhv3-v2</a> 可以右键，「链接另存为…」来下载。</p><p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p><p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p><p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p><p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p><p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p><p>然后还需要设置字体，不然这些图标加载不出来。可以到<a href="https://www.nerdfonts.com/">这里</a>下载字体，选择自己喜欢的，下载后是压缩包，解压出来，选中所有字体，右键安装即可。</p><p><img src="/img/2023/win-terminal-font.png" alt="win-terminal-font"></p><p>之后到「设置」「默认值」「外观」里面更改字体。</p>]]></content>
     
     
       
@@ -464,31 +487,6 @@
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
     <category term="Ubuntu" scheme="https://powersee.github.io/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 docker 中使用 Golang 编译 RISC-V 应用</title>
-    <link href="https://powersee.github.io/2023/03/docker-golang-compile-riscv-app/"/>
-    <id>https://powersee.github.io/2023/03/docker-golang-compile-riscv-app/</id>
-    <published>2023-03-15T07:14:38.000Z</published>
-    <updated>2023-03-15T07:18:10.335Z</updated>
-    
-    <content type="html"><![CDATA[<p>我想给 vision five 2 装个 web 服务器 caddy，结果发现它不提供 RISC-V 版的可执行文件下载。</p><p>那就只能自己编译咯，毕竟是开源应用嘛。</p><p>由于机器上也没有装 Go，所以我选择用其它的设备来交叉编译。</p><p>我编译的设备是 d2550，没想到它还能在这种地方发光发热。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -it golang:alpine3.17</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/go # go version</span><br><span class="line">go version go1.20.2 linux/amd64</span><br></pre></td></tr></table></figure><p>用 docker 可以很方便就拥有一个可编译的环境，那么接着需要下载代码，下载需要使用到 wget，由于我下载了 zip 压缩包，所以还得装一个 unzip，如果下载 tar 包就不用了。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add wget upzip</span><br><span class="line">wget https://github.com/caddyserver/caddy/archive/refs/tags/v2.6.4.zip</span><br><span class="line">unzip v2.6.4.zip</span><br></pre></td></tr></table></figure><p>解压出来一个 caddy-2.6.4 的目录，那么进入这个目录，再进入 cmd&#x2F;caddy</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go env -w GOPROXY=https://goproxy.cn</span><br><span class="line">go build</span><br></pre></td></tr></table></figure><p>编译完成就会多出一个名为 caddy 的文件，不过这样编译的是 amd64 版的，我想要编译 RISC-V 版。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CGO_ENABLE=0 GOOS=linux GOARCH=riscv64 go build</span><br></pre></td></tr></table></figure><p>这样编译之后，caddy 这个文件就变成 RISC-V 版的了，使用 file 命令可以查看</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add file</span><br><span class="line"># file caddy</span><br><span class="line">caddy: ELF 64-bit LSB executable, UCB RISC-V, double-float ABI, version 1 (SYSV), statically linked, Go BuildID=Sl5DFjHtcm44runPVDQz/PtAVfjFrZ7ix6z2eqOtp/bjeL6tdqc9Bu0ZnsWsXf/--2q9FfQEXqHen90fHNn, with debug_info, not stripped</span><br></pre></td></tr></table></figure><p>此时这个文件是在 docker 容器中的，我们可以使用 docker cp 命令将它复制出来。这里我是多开一个 ssh 标签。</p><p>需要先去查一下容器的 ID，用 docker ps，我这里查到是 <code>bb95e6bfb7e9</code>，然后像这样复制出来。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp bb95e6bfb7e9:/go/caddy-2.6.4/cmd/caddy/caddy .</span><br></pre></td></tr></table></figure><p>之后再想办法将它传到 RISC-V 开发板上。这一切完成之后，可以直接把容器删掉，甚至把镜像也删掉也行，不会生出多余的文件，很不错。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我想给 vision five 2 装个 web 服务器 caddy，结果发现它不提供 RISC-V 版的可执行文件下载。&lt;/p&gt;
-&lt;p&gt;那就只能自己编译咯，毕竟是开源应用嘛。&lt;/p&gt;
-&lt;p&gt;由于机器上也没有装 Go，所以我选择用其它的设备来交叉编译。&lt;/p&gt;
-&lt;p&gt;我编译</summary>
-      
-    
-    
-    
-    
-    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
   </entry>
   
