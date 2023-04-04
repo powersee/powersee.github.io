@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>更改 Mac 截图快捷键、文件名、文件格式</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    更改 Mac 截图快捷键、文件名、文件格式
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-04T17:38:02.000Z" itemprop="datePublished">2023-04-05</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-04-04T17:41:33.799Z" itemprop="dateUpdated">2023-04-05</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <h3 id="更改截图默认快捷键"><a href="#更改截图默认快捷键" class="headerlink" title="更改截图默认快捷键"></a>更改截图默认快捷键</h3><p>Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4 区域截图。按 3 颗按键还是有些不方便，对于我这种经常截图的人来说。</p>
+<p><img src="/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p>
+<p>我们可以到「系统偏好设置」「键盘」「快捷键」「截屏」中，更改为自己喜欢的按键，我这边直接把区域截图改为<code>F9</code>。</p>
+<h3 id="更改截图默认文件名"><a href="#更改截图默认文件名" class="headerlink" title="更改截图默认文件名"></a>更改截图默认文件名</h3><p>默认截图后得到的图片名称是这样的 <code>截屏2023-04-02 上午10.58.54.png</code>，如果在「语言与地区」里有勾选 ☑️ 24 小时制，那么是这样的 <code>截屏2023-04-02 11.08.06.png</code></p>
+<p>在英文状态下是 <code>Screen Shot [date] at [time].png</code></p>
+<p>我们能修改的，只有日期前面的文字而已，例如我不想要「截图」这两个字。</p>
+<p>打开「终端」这个 APP，粘贴下面的命令，按回车键执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>之后截图得到的文件名会变成这样的 <code>2023-04-02 11.08.06.png</code></p>
+<p>我们也可以改为自己的想设置的文字，例如我想在前面加上 <code>powersee-</code>，我可以这样做</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;powersee-&quot;</span><br></pre></td></tr></table></figure>
+
+<p>之后截图得到的文件名会变成这样的 <code>powersee-2023-04-02 11.08.06.png</code></p>
+<p><img src="/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p>
+<p>如果想改回原来的默认名称，可以用这条命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture &quot;include-date&quot; 1; killall SystemUIServer</span><br></pre></td></tr></table></figure>
+
+<h3 id="更改截图默认文件格式"><a href="#更改截图默认文件格式" class="headerlink" title="更改截图默认文件格式"></a>更改截图默认文件格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture type</span><br></pre></td></tr></table></figure>
+
+<p>后来可以加 JPG, TIFF, GIF, PDF, PNG 这些，我没有改，还是用它默认的 png 就好。</p>
+<h3 id="截图不要阴影"><a href="#截图不要阴影" class="headerlink" title="截图不要阴影"></a>截图不要阴影</h3><p>按 cmd shift 4 后，按空格键，此时按住 alt 键再点击窗口的话，保存下来的图片就是没有阴影的，图片体积会小很多。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

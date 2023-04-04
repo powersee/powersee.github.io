@@ -385,7 +385,8 @@ svg.icon {
     color: #555;
     /* font-size: 14px; */
     line-height: 1.6;
-    text-align: justify; }
+    /* text-align: justify; } */
+    text-align: start; }
     .article p strong {
       font-weight: bold;
       color: #333333; }

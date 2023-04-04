@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-04T03:52:54.646Z</updated>
+  <updated>2023-04-04T17:41:33.799Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>更改 Mac 截图快捷键、文件名、文件格式</title>
+    <link href="https://powersee.github.io/2023/04/mac-screenshot2/"/>
+    <id>https://powersee.github.io/2023/04/mac-screenshot2/</id>
+    <published>2023-04-04T17:38:02.000Z</published>
+    <updated>2023-04-04T17:41:33.799Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="更改截图默认快捷键"><a href="#更改截图默认快捷键" class="headerlink" title="更改截图默认快捷键"></a>更改截图默认快捷键</h3><p>Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4 区域截图。按 3 颗按键还是有些不方便，对于我这种经常截图的人来说。</p><p><img src="/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p><p>我们可以到「系统偏好设置」「键盘」「快捷键」「截屏」中，更改为自己喜欢的按键，我这边直接把区域截图改为<code>F9</code>。</p><h3 id="更改截图默认文件名"><a href="#更改截图默认文件名" class="headerlink" title="更改截图默认文件名"></a>更改截图默认文件名</h3><p>默认截图后得到的图片名称是这样的 <code>截屏2023-04-02 上午10.58.54.png</code>，如果在「语言与地区」里有勾选 ☑️ 24 小时制，那么是这样的 <code>截屏2023-04-02 11.08.06.png</code></p><p>在英文状态下是 <code>Screen Shot [date] at [time].png</code></p><p>我们能修改的，只有日期前面的文字而已，例如我不想要「截图」这两个字。</p><p>打开「终端」这个 APP，粘贴下面的命令，按回车键执行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;&quot;</span><br></pre></td></tr></table></figure><p>之后截图得到的文件名会变成这样的 <code>2023-04-02 11.08.06.png</code></p><p>我们也可以改为自己的想设置的文字，例如我想在前面加上 <code>powersee-</code>，我可以这样做</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;powersee-&quot;</span><br></pre></td></tr></table></figure><p>之后截图得到的文件名会变成这样的 <code>powersee-2023-04-02 11.08.06.png</code></p><p><img src="/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p><p>如果想改回原来的默认名称，可以用这条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture &quot;include-date&quot; 1; killall SystemUIServer</span><br></pre></td></tr></table></figure><h3 id="更改截图默认文件格式"><a href="#更改截图默认文件格式" class="headerlink" title="更改截图默认文件格式"></a>更改截图默认文件格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture type</span><br></pre></td></tr></table></figure><p>后来可以加 JPG, TIFF, GIF, PDF, PNG 这些，我没有改，还是用它默认的 png 就好。</p><h3 id="截图不要阴影"><a href="#截图不要阴影" class="headerlink" title="截图不要阴影"></a>截图不要阴影</h3><p>按 cmd shift 4 后，按空格键，此时按住 alt 键再点击窗口的话，保存下来的图片就是没有阴影的，图片体积会小很多。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;更改截图默认快捷键&quot;&gt;&lt;a href=&quot;#更改截图默认快捷键&quot; class=&quot;headerlink&quot; title=&quot;更改截图默认快捷键&quot;&gt;&lt;/a&gt;更改截图默认快捷键&lt;/h3&gt;&lt;p&gt;Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows 上 where 命令</title>
@@ -462,31 +484,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么使用 apt 安装某些应用的时候，不需要按 y 确认？</title>
-    <link href="https://powersee.github.io/2023/03/why-apt-no-need-for-confirm/"/>
-    <id>https://powersee.github.io/2023/03/why-apt-no-need-for-confirm/</id>
-    <published>2023-03-16T02:33:21.000Z</published>
-    <updated>2023-03-16T02:34:28.454Z</updated>
-    
-    <content type="html"><![CDATA[<p>例如我在 Ubuntu 18.04 里面，安装 ncdu</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install ncdu</span><br></pre></td></tr></table></figure><p>它不需要我按 y，就可以直接安装完成。但如果我安装个 php，它就需要询问我，在我按 y 确认之后，才会进入安装。虽然我们可以通过在命令中加入 <code>-y</code> 参数来自动确认，例如这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install php -y</span><br></pre></td></tr></table></figure><p>但是我好奇的是，为什么有些时候需要确认，有些时候不需要？</p><p>这是来自 ChatGPT 的回答</p><blockquote><p>对于某些较小的软件包，apt 安装时不需要确认是因为它们没有与其他软件包发生依赖关系或冲突。这些软件包通常只包含一些脚本、配置文件或其他小型组件，因此安装它们不会对系统的其他部分造成影响。</p><p>当 apt 安装一个包时，它会检查该包是否需要依赖其他包或冲突于已安装的包。如果没有，则 apt 不会询问用户是否确认安装该包，并自动安装。</p><p>因此，在某些情况下，如果软件包非常小并且没有与其他包发生依赖关系或冲突，则在安装过程中不需要手动确认安装。但是，在安装任何软件包之前，最好检查其详细信息，以确保其不会对系统造成不良影响。</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;例如我在 Ubuntu 18.04 里面，安装 ncdu&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt install ncdu</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-    <category term="Ubuntu" scheme="https://powersee.github.io/tags/Ubuntu/"/>
     
   </entry>
   
