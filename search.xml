@@ -4882,11 +4882,31 @@ border-radius: 4px;
 
 <h3 id="更改截图默认文件格式"><a href="#更改截图默认文件格式" class="headerlink" title="更改截图默认文件格式"></a>更改截图默认文件格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture type</span><br></pre></td></tr></table></figure>
 
-<p>后来可以加 JPG, TIFF, GIF, PDF, PNG 这些，我没有改，还是用它默认的 png 就好。</p>
+<p>后面可以加 JPG, TIFF, GIF, PDF, PNG 这些，我没有改，还是用它默认的 png 就好。</p>
 <h3 id="截图不要阴影"><a href="#截图不要阴影" class="headerlink" title="截图不要阴影"></a>截图不要阴影</h3><p>按 cmd shift 4 后，按空格键，此时按住 alt 键再点击窗口的话，保存下来的图片就是没有阴影的，图片体积会小很多。</p>
 ]]></content>
       <tags>
         <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows 安装 Nu shell 与配置</title>
+    <url>/2023/04/windows-install-nushell-and-config/</url>
+    <content><![CDATA[<p>使用 nu shell 已经有一段时间，感觉还不错。它最为吸引我的就是，自带历史记录提示，就像 zsh 的 zsh-autosuggestions 插件。</p>
+<p><img src="/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p>
+<p>它的一条普通的 ls 命令，结果也和其它 shell 很不一样。</p>
+<p><img src="/img/2023/nushell-ls.png" alt="nushell-ls"></p>
+<p>输出的是一个表格。</p>
+<p>安装可以查看官方文档：<a href="https://www.nushell.sh/zh-CN/book/installation.html">安装 Nu | Nushell</a></p>
+<p>文档一共 6 种语言，中文就是其中一种。</p>
+<p>我是到  <a href="https://github.com/nushell/nushell/releases">GitHub 的 Release 页</a> 下载并解压二进制文件，然后放到 <code>C:\bin\</code> 里面的。接着在「终端」里面添加 nushell。</p>
+<p><img src="/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p>
+<p>如果想让 nushell 作为默认的 shell，可以到「启动」，「默认配置文件」进行更改。</p>
+<p><img src="/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <tags>
+        <tag>Windows</tag>
+        <tag>shell</tag>
       </tags>
   </entry>
 </search>
