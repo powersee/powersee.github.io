@@ -4909,4 +4909,43 @@ border-radius: 4px;
         <tag>shell</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Nu shell Oh My Posh</title>
+    <url>/2023/04/nushell-ohmyposh/</url>
+    <content><![CDATA[<p>给 Nu shell 配置上 Oh My Posh，完成后效果如下。</p>
+<p><img src="/img/2023/nu-ohmyposh.webp" alt="nu-ohmyposh"></p>
+<p>之前我已经给 powershell 配置好 ohmyposh 了，现在感觉还是 nu shell 比较好用，所以也来折腾一下。</p>
+<p>官方文档：<a href="https://ohmyposh.dev/docs/installation/prompt">Change your prompt | Oh My Posh</a></p>
+<p>有这些 shell 可以选择：</p>
+<ul>
+<li>bash</li>
+<li>cmd</li>
+<li>elvish</li>
+<li>fish</li>
+<li><code>nu</code></li>
+<li>powershell</li>
+<li>tcsh</li>
+<li>xonsh</li>
+<li>zsh</li>
+</ul>
+<p>点击中间的 nu 可以看到说明。</p>
+<p>简单来说，就是修改 nushell 的两个配置文件就好。它们在 <code>~\AppData\Roaming\nushell</code> 里面。</p>
+<p>添加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh init nu</span><br></pre></td></tr></table></figure>
+
+<p>到 <code>env.nu</code> 里面，我直接写在第四行的位置。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Nushell Environment Config File</span><br><span class="line">alias ll = ls -l</span><br><span class="line"></span><br><span class="line">oh-my-posh init nu</span><br></pre></td></tr></table></figure>
+
+<p>然后再到 <code>config.nu</code> 的最后，添加这一行。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source ~/.oh-my-posh.nu</span><br></pre></td></tr></table></figure>
+
+<p>它会生成 <code>~/.oh-my-posh.nu</code> ，也就是在用户目录下。打开后里面是这些内容。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">export-env &#123;</span><br><span class="line">    let-env POWERLINE_COMMAND = <span class="string">&#x27;oh-my-posh&#x27;</span></span><br><span class="line">    let-env POSH_THEME = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    let-env PROMPT_INDICATOR = <span class="string">&quot;&quot;</span></span><br><span class="line">    let-env POSH_PID = (random uuid)</span><br><span class="line">    <span class="comment"># By default displays the right prompt on the first line</span></span><br><span class="line">    <span class="comment"># making it annoying when you have a multiline prompt</span></span><br><span class="line">    <span class="comment"># making the behavior different compared to other shells</span></span><br><span class="line">    let-env PROMPT_COMMAND_RIGHT = &#123;<span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">    let-env POSH_SHELL_VERSION = (version | get version)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># PROMPTS</span></span><br><span class="line">    let-env PROMPT_MULTILINE_INDICATOR = (^<span class="string">&quot;C:/Users/nucx/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe&quot;</span> <span class="built_in">print</span> secondary $<span class="string">&quot;--config=(<span class="variable">$env</span>.POSH_THEME)&quot;</span> --shell=nu $<span class="string">&quot;--shell-version=(<span class="variable">$env</span>.POSH_SHELL_VERSION)&quot;</span>)</span><br><span class="line"></span><br><span class="line">    let-env PROMPT_COMMAND = &#123;</span><br><span class="line">        <span class="comment"># We have to do this because the initial value of `$env.CMD_DURATION_MS` is always `0823`,</span></span><br><span class="line">        <span class="comment"># which is an official setting.</span></span><br><span class="line">        <span class="comment"># See https://github.com/nushell/nushell/discussions/6402#discussioncomment-3466687.</span></span><br><span class="line">        <span class="built_in">let</span> cmd_duration = <span class="keyword">if</span> <span class="variable">$env</span>.CMD_DURATION_MS == <span class="string">&quot;0823&quot;</span> &#123; 0 &#125; <span class="keyword">else</span> &#123; <span class="variable">$env</span>.CMD_DURATION_MS &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># hack to set the cursor line to 1 when the user clears the screen</span></span><br><span class="line">        <span class="comment"># this obviously isn&#x27;t bulletproof, but it&#x27;s a start</span></span><br><span class="line">        <span class="built_in">let</span> clear = (<span class="built_in">history</span> | last 1 | get 0.<span class="built_in">command</span>) == <span class="string">&quot;clear&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">let</span> width = ((term size).columns | into string)</span><br><span class="line">        ^&quot;C:/Users/nucx/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe&quot; print primary $&quot;--config=(<span class="variable">$env</span>.POSH_THEME)&quot; --shell=nu $&quot;--shell-version=(<span class="variable">$env</span>.POSH_SHELL_VERSION)&quot; $&quot;--execution-time=(<span class="variable">$cmd_duration</span>)&quot; $&quot;--error=(<span class="variable">$env</span>.LAST_EXIT_CODE)&quot; $&quot;--terminal-width=(<span class="variable">$width</span>)&quot; $&quot;--cleared=(<span class="variable">$clear</span>)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if &quot;false&quot; == &quot;true&quot; &#123;</span><br><span class="line">    echo &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+        <tag>shell</tag>
+      </tags>
+  </entry>
 </search>
