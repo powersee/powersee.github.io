@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-06T17:50:33.831Z</updated>
+  <updated>2023-04-07T16:15:27.795Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Nu shell 升级到 0.78.0，一堆麻烦</title>
+    <link href="https://powersee.github.io/2023/04/nushell-0-78-0/"/>
+    <id>https://powersee.github.io/2023/04/nushell-0-78-0/</id>
+    <published>2023-04-07T16:13:24.000Z</published>
+    <updated>2023-04-07T16:15:27.795Z</updated>
+    
+    <content type="html"><![CDATA[<p>这一次的升级挺恼火的。</p><p>看到 nu shell 发布新版本了，看更新日志好像挺不错。于是我下载压缩包，解压，到「终端」改一下设置，就可以使用新版本了。</p><p>但是一上来就报错，真心看不懂，使用 0.78 加载以前的配置文件会报错，说要加 <code>||</code></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">42 │ # Use nushell functions to define your right and left prompt</span><br><span class="line">43 │ let-env PROMPT_COMMAND = &#123; create_left_prompt &#125;</span><br><span class="line">   ·                          ───────────┬──────────</span><br><span class="line">   ·                                     ╰── Parsing as a closure, but || is missing</span><br><span class="line">44 │ let-env PROMPT_COMMAND_RIGHT = &#123; create_right_prompt &#125;</span><br><span class="line">   ╰────</span><br><span class="line"> help: Try add || to the beginning of closure</span><br></pre></td></tr></table></figure><p>查看一下 GitHub issues ：<a href="https://github.com/nushell/nushell/issues/8767">Error: nu::parser::closure_missing_pipe (nushell v0.78.0) · Issue #8767 · nushell&#x2F;nushell (github.com)</a></p><p>means that it should be</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let-env PROMPT_COMMAND = &#123;|| create_left_prompt &#125;</span><br></pre></td></tr></table></figure><p>如果只是一行需要修改，那倒是无所谓，问题是很多地方需要改，那么一个一个加也不是办法呀，还是让它重新生成配置文件吧。</p><p>于是我把 <code>env.nu</code> 和 <code>config.nu</code> 改个名字，再新开一个 tab，就会提示是否新建配置文件。</p><p>使用新的配置文件之后，可以不报错了，但是，ohmyposh这边又有问题了。</p><p>修改 <code>env.nu</code> 和 <code>config.nu</code> 这两个文件，让 nu 启动时加载 ohmyposh，结果出现这样的报错。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Error: nu::parser::closure_missing_pipe</span><br><span class="line"></span><br><span class="line">  × Missing || inside closure</span><br><span class="line">    ╭─[.oh-my-posh.nu:8:1]</span><br><span class="line">  8 │     # making the behavior different compared to other shells</span><br><span class="line">  9 │     let-env PROMPT_COMMAND_RIGHT = &#123;&#x27;&#x27;&#125;</span><br><span class="line">    ·                                    ──┬─</span><br><span class="line">    ·                                      ╰── Parsing as a closure, but || is missing</span><br><span class="line"> 10 │     let-env POSH_SHELL_VERSION = (version | get version)</span><br><span class="line">    ╰────</span><br><span class="line">  help: Try add || to the beginning of closure</span><br></pre></td></tr></table></figure><p>也就是说，现在 <code>.oh-my-posh.nu</code> 里面的语法也是错误的了。</p><p>于是我到 <a href="https://github.com/JanDeDobbeleer/oh-my-posh/releases/">https://github.com/JanDeDobbeleer/oh-my-posh/releases/</a> 查看一下。果然，它也刚刚更新了。</p><blockquote><h3 id="Bug-Fixes"><a href="#Bug-Fixes" class="headerlink" title="Bug Fixes"></a>Bug Fixes</h3><ul><li><strong>nushell:</strong> update syntax to for v0.78.0 (<a href="https://github.com/JanDeDobbeleer/oh-my-posh/commit/7e04bdc9f7a2c5541191a26e3e2f09a6dc278626">7e04bdc</a>)</li></ul></blockquote><p>于是我更新 oh-my-posh 到最新的版本，就解决问题了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;这一次的升级挺恼火的。&lt;/p&gt;
+&lt;p&gt;看到 nu shell 发布新版本了，看更新日志好像挺不错。于是我下载压缩包，解压，到「终端」改一下设置，就可以使用新版本了。&lt;/p&gt;
+&lt;p&gt;但是一上来就报错，真心看不懂，使用 0.78 加载以前的配置文件会报错，说要加 &lt;code&gt;|</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+    <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Nu shell Oh My Posh</title>
     <link href="https://powersee.github.io/2023/04/nushell-ohmyposh/"/>
     <id>https://powersee.github.io/2023/04/nushell-ohmyposh/</id>
     <published>2023-04-06T17:42:53.000Z</published>
-    <updated>2023-04-06T17:50:33.831Z</updated>
+    <updated>2023-04-07T08:18:42.625Z</updated>
     
     <content type="html"><![CDATA[<p>给 Nu shell 配置上 Oh My Posh，完成后效果如下。</p><p><img src="/img/2023/nu-ohmyposh.webp" alt="nu-ohmyposh"></p><p>之前我已经给 powershell 配置好 ohmyposh 了，现在感觉还是 nu shell 比较好用，所以也来折腾一下。</p><p>官方文档：<a href="https://ohmyposh.dev/docs/installation/prompt">Change your prompt | Oh My Posh</a></p><p>有这些 shell 可以选择：</p><ul><li>bash</li><li>cmd</li><li>elvish</li><li>fish</li><li><code>nu</code></li><li>powershell</li><li>tcsh</li><li>xonsh</li><li>zsh</li></ul><p>点击中间的 nu 可以看到说明。</p><p>简单来说，就是修改 nushell 的两个配置文件就好。它们在 <code>~\AppData\Roaming\nushell</code> 里面。</p><p>添加</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh init nu</span><br></pre></td></tr></table></figure><p>到 <code>env.nu</code> 里面，我直接写在第四行的位置。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Nushell Environment Config File</span><br><span class="line">alias ll = ls -l</span><br><span class="line"></span><br><span class="line">oh-my-posh init nu</span><br></pre></td></tr></table></figure><p>然后再到 <code>config.nu</code> 的最后，添加这一行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source ~/.oh-my-posh.nu</span><br></pre></td></tr></table></figure><p>它会生成 <code>~/.oh-my-posh.nu</code> ，也就是在用户目录下。打开后里面是这些内容。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">export-env &#123;</span><br><span class="line">    let-env POWERLINE_COMMAND = <span class="string">&#x27;oh-my-posh&#x27;</span></span><br><span class="line">    let-env POSH_THEME = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    let-env PROMPT_INDICATOR = <span class="string">&quot;&quot;</span></span><br><span class="line">    let-env POSH_PID = (random uuid)</span><br><span class="line">    <span class="comment"># By default displays the right prompt on the first line</span></span><br><span class="line">    <span class="comment"># making it annoying when you have a multiline prompt</span></span><br><span class="line">    <span class="comment"># making the behavior different compared to other shells</span></span><br><span class="line">    let-env PROMPT_COMMAND_RIGHT = &#123;<span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">    let-env POSH_SHELL_VERSION = (version | get version)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># PROMPTS</span></span><br><span class="line">    let-env PROMPT_MULTILINE_INDICATOR = (^<span class="string">&quot;C:/Users/nucx/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe&quot;</span> <span class="built_in">print</span> secondary $<span class="string">&quot;--config=(<span class="variable">$env</span>.POSH_THEME)&quot;</span> --shell=nu $<span class="string">&quot;--shell-version=(<span class="variable">$env</span>.POSH_SHELL_VERSION)&quot;</span>)</span><br><span class="line"></span><br><span class="line">    let-env PROMPT_COMMAND = &#123;</span><br><span class="line">        <span class="comment"># We have to do this because the initial value of `$env.CMD_DURATION_MS` is always `0823`,</span></span><br><span class="line">        <span class="comment"># which is an official setting.</span></span><br><span class="line">        <span class="comment"># See https://github.com/nushell/nushell/discussions/6402#discussioncomment-3466687.</span></span><br><span class="line">        <span class="built_in">let</span> cmd_duration = <span class="keyword">if</span> <span class="variable">$env</span>.CMD_DURATION_MS == <span class="string">&quot;0823&quot;</span> &#123; 0 &#125; <span class="keyword">else</span> &#123; <span class="variable">$env</span>.CMD_DURATION_MS &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># hack to set the cursor line to 1 when the user clears the screen</span></span><br><span class="line">        <span class="comment"># this obviously isn&#x27;t bulletproof, but it&#x27;s a start</span></span><br><span class="line">        <span class="built_in">let</span> clear = (<span class="built_in">history</span> | last 1 | get 0.<span class="built_in">command</span>) == <span class="string">&quot;clear&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">let</span> width = ((term size).columns | into string)</span><br><span class="line">        ^&quot;C:/Users/nucx/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe&quot; print primary $&quot;--config=(<span class="variable">$env</span>.POSH_THEME)&quot; --shell=nu $&quot;--shell-version=(<span class="variable">$env</span>.POSH_SHELL_VERSION)&quot; $&quot;--execution-time=(<span class="variable">$cmd_duration</span>)&quot; $&quot;--error=(<span class="variable">$env</span>.LAST_EXIT_CODE)&quot; $&quot;--terminal-width=(<span class="variable">$width</span>)&quot; $&quot;--cleared=(<span class="variable">$clear</span>)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if &quot;false&quot; == &quot;true&quot; &#123;</span><br><span class="line">    echo &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
     
@@ -463,31 +489,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用油猴脚本实现自动点击签到按钮</title>
-    <link href="https://powersee.github.io/2023/03/tampermonkey-auto-signin/"/>
-    <id>https://powersee.github.io/2023/03/tampermonkey-auto-signin/</id>
-    <published>2023-03-19T13:14:27.000Z</published>
-    <updated>2023-03-19T13:17:58.789Z</updated>
-    
-    <content type="html"><![CDATA[<p>有很多网站，需要我们打开网页之后，点击上面的签到按钮，来完成当天的签到。</p><p>如果利用油猴脚本，我们可以实现打开网页后，查找按钮，如果找到了，就自动点击。</p><p>首先打开想签到的网页，然后点击油猴插件，点击「添加新脚本」，给的默认模板是这样的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// ==UserScript==</span><br><span class="line">// @name         New Userscript</span><br><span class="line">// @namespace    http://tampermonkey.net/</span><br><span class="line">// @version      0.1</span><br><span class="line">// @description  try to take over the world!</span><br><span class="line">// @author       You</span><br><span class="line">// @match        https://www.xxx.com/</span><br><span class="line">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=xxx.com</span><br><span class="line">// @grant        none</span><br><span class="line">// ==/UserScript==</span><br><span class="line"></span><br><span class="line">(function() &#123;</span><br><span class="line">    &#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">    // Your code here...</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><p>由于我们需要等网页加载完成，再来查找按钮，所以需要添加一行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// @run-at       document-idle</span><br></pre></td></tr></table></figure><p>可以加在 <code>// ==/UserScript==</code> 的上方，变成这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// @grant        none</span><br><span class="line">// @run-at       document-idle</span><br><span class="line">// ==/UserScript==</span><br></pre></td></tr></table></figure><p>感觉也找不到合适网站来作为案例，就拿百度的那个「百度一下」来讲解吧，反正弄懂了原理，换其它网站也就没问题。</p><p>在浏览器按 F12，弹出来的开发者工具，按 <code>ctrl + shift + c</code> 这三颗按键，然后选中「百度一下」</p><p>可以发现它是一个 input</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;百度一下&quot;</span> <span class="attr">id</span>=<span class="string">&quot;su&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn self-btn bg s_btn&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure><p>这种有 id 的最简单，因为网页中的 id 是唯一的。用 js 来选中它，然后点击</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById(&#x27;su&#x27;).click()</span><br></pre></td></tr></table></figure><p>在「控制台」执行这行代码，就跟我们手动去点击「百度一下」的作用是一样的。</p><p>如果你要签到的网站也是这么简单，签到按钮有 id，那只需要把上面的 su 换为你找到的 id 就行。例如我有个网站，它的签到按钮 id 是 <code>sign_title</code> ，那我只需要改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById(&#x27;sign_title&#x27;).click()</span><br></pre></td></tr></table></figure><p>在 <code>// ==/UserScript==</code> 的下方，我们可以改为这样</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Your code here...</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;sign_title&#x27;</span>).<span class="title function_">click</span>()</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><p>很简单就可以实现一个自动点击的脚本了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;有很多网站，需要我们打开网页之后，点击上面的签到按钮，来完成当天的签到。&lt;/p&gt;
-&lt;p&gt;如果利用油猴脚本，我们可以实现打开网页后，查找按钮，如果找到了，就自动点击。&lt;/p&gt;
-&lt;p&gt;首先打开想签到的网页，然后点击油猴插件，点击「添加新脚本」，给的默认模板是这样的&lt;/p&gt;
-&lt;f</summary>
-      
-    
-    
-    
-    
-    <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
     
   </entry>
   

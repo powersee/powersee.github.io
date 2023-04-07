@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>Nu shell 升级到 0.78.0，一堆麻烦</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    Nu shell 升级到 0.78.0，一堆麻烦
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-07T16:13:24.000Z" itemprop="datePublished">2023-04-08</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-04-07T16:15:27.795Z" itemprop="dateUpdated">2023-04-08</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>这一次的升级挺恼火的。</p>
+<p>看到 nu shell 发布新版本了，看更新日志好像挺不错。于是我下载压缩包，解压，到「终端」改一下设置，就可以使用新版本了。</p>
+<p>但是一上来就报错，真心看不懂，使用 0.78 加载以前的配置文件会报错，说要加 <code>||</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">42 │ # Use nushell functions to define your right and left prompt</span><br><span class="line">43 │ let-env PROMPT_COMMAND = &#123; create_left_prompt &#125;</span><br><span class="line">   ·                          ───────────┬──────────</span><br><span class="line">   ·                                     ╰── Parsing as a closure, but || is missing</span><br><span class="line">44 │ let-env PROMPT_COMMAND_RIGHT = &#123; create_right_prompt &#125;</span><br><span class="line">   ╰────</span><br><span class="line"> help: Try add || to the beginning of closure</span><br></pre></td></tr></table></figure>
+
+<p>查看一下 GitHub issues ：<a target="_blank" rel="noopener" href="https://github.com/nushell/nushell/issues/8767">Error: nu::parser::closure_missing_pipe (nushell v0.78.0) · Issue #8767 · nushell&#x2F;nushell (github.com)</a></p>
+<p>means that it should be</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let-env PROMPT_COMMAND = &#123;|| create_left_prompt &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果只是一行需要修改，那倒是无所谓，问题是很多地方需要改，那么一个一个加也不是办法呀，还是让它重新生成配置文件吧。</p>
+<p>于是我把 <code>env.nu</code> 和 <code>config.nu</code> 改个名字，再新开一个 tab，就会提示是否新建配置文件。</p>
+<p>使用新的配置文件之后，可以不报错了，但是，ohmyposh这边又有问题了。</p>
+<p>修改 <code>env.nu</code> 和 <code>config.nu</code> 这两个文件，让 nu 启动时加载 ohmyposh，结果出现这样的报错。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Error: nu::parser::closure_missing_pipe</span><br><span class="line"></span><br><span class="line">  × Missing || inside closure</span><br><span class="line">    ╭─[.oh-my-posh.nu:8:1]</span><br><span class="line">  8 │     # making the behavior different compared to other shells</span><br><span class="line">  9 │     let-env PROMPT_COMMAND_RIGHT = &#123;&#x27;&#x27;&#125;</span><br><span class="line">    ·                                    ──┬─</span><br><span class="line">    ·                                      ╰── Parsing as a closure, but || is missing</span><br><span class="line"> 10 │     let-env POSH_SHELL_VERSION = (version | get version)</span><br><span class="line">    ╰────</span><br><span class="line">  help: Try add || to the beginning of closure</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，现在 <code>.oh-my-posh.nu</code> 里面的语法也是错误的了。</p>
+<p>于是我到 <a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/releases/">https://github.com/JanDeDobbeleer/oh-my-posh/releases/</a> 查看一下。果然，它也刚刚更新了。</p>
+<blockquote>
+<h3 id="Bug-Fixes"><a href="#Bug-Fixes" class="headerlink" title="Bug Fixes"></a>Bug Fixes</h3><ul>
+<li><strong>nushell:</strong> update syntax to for v0.78.0 (<a target="_blank" rel="noopener" href="https://github.com/JanDeDobbeleer/oh-my-posh/commit/7e04bdc9f7a2c5541191a26e3e2f09a6dc278626">7e04bdc</a>)</li>
+</ul>
+</blockquote>
+<p>于是我更新 oh-my-posh 到最新的版本，就解决问题了。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
