@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-07T16:15:27.795Z</updated>
+  <updated>2023-04-08T17:02:18.043Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>macOS 设置允许「任何来源」</title>
+    <link href="https://powersee.github.io/2023/04/mac-allow-apps-anywhere/"/>
+    <id>https://powersee.github.io/2023/04/mac-allow-apps-anywhere/</id>
+    <published>2023-04-08T16:56:57.000Z</published>
+    <updated>2023-04-08T17:02:18.043Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近由于更新系统到 Ventura 13.3，我发现安全性里的「任何来源」又不见了。</p><p><img src="/img/2023/APP-allow1.webp" alt="APP-allow1"></p><p>于是又得去网上搜开启的命令，这里也顺便记录一下📝</p><p>考虑到以后也许有萌新搜到我这篇文章，这里写详细一点。</p><p>首先点击「启动台」，在顶部的搜索框里面输入「终端」，可以找到一个图标上面写 <code>&gt;_</code> 的 APP</p><p><img src="/img/2023/Mac-terminal.webp" alt="Mac-terminal"></p><p>点击打开它，然后复制下面这条命令，粘贴进去</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure><p><img src="/img/2023/terminal-spctl.webp" alt="terminal-spctl"></p><p>然后按一下回车键，这时出现 Password:🔑，需要输入自己的用户密码，也就是开机后要进入桌面时的那个密码。</p><p><img src="/img/2023/terminal-spctl-Password.webp" alt="terminal-spctl-Password"></p><p>注意输入密码的时候，屏幕上不会显示任何内容的，既不会直接显示你的密码，也不会出现 <code>***</code> 或者 <code>···</code>，只管输入就行，完成后就再按一下回车键。</p><p>然后应该就可以看到出现「任何来源」了。</p><p><img src="/img/2023/APP-allow2.webp" alt="APP-allow2"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近由于更新系统到 Ventura 13.3，我发现安全性里的「任何来源」又不见了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/APP-allow1.webp&quot; alt=&quot;APP-allow1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;于是又得去网上搜开启的命令，这里也顺便记录一下📝</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>Nu shell 升级到 0.78.0，一堆麻烦</title>
@@ -466,29 +490,6 @@
     
     
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>油猴脚本——先判断文本内容</title>
-    <link href="https://powersee.github.io/2023/03/tampermonkey-judge-text/"/>
-    <id>https://powersee.github.io/2023/03/tampermonkey-judge-text/</id>
-    <published>2023-03-20T13:29:34.000Z</published>
-    <updated>2023-03-20T13:31:46.475Z</updated>
-    
-    <content type="html"><![CDATA[<p>有时候，一些签到按钮，签到完成之后是依然可以点击的。如果只是用 id 来获取到元素，然后点击，就会导致明明签到完成了，还继续点击按钮。</p><p>此时我们可以加入一个判断条件。看来还是得拿个实际例子，<a href="https://xiage.yy.com/forum-234-1.html">王者荣耀 - 虾哥论坛</a></p><p>这个网站，我们没有账号也可以访问，我们可以看到它有一个「签到」按钮。</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:to_sign(fid, uid)&quot;</span> <span class="attr">class</span>=<span class="string">&quot;checkin-btn follow-show&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkin-btn&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>签到<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><p>由于它有 id ，所以获取起来很简单</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;checkin-btn&#x27;</span>)</span><br></pre></td></tr></table></figure><p>我有这个论坛的账号，我知道点击之后，按钮的文字，会从<code>签到</code> 变成 <code>已签到</code>。</p><p>那么我们要做的就是，在执行点击之前，判断一下，里面的文字是否 <code>签到</code></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name         王者荣耀-虾哥-点击签到</span></span><br><span class="line"><span class="comment">// @namespace    http://tampermonkey.net/</span></span><br><span class="line"><span class="comment">// @version      0.1</span></span><br><span class="line"><span class="comment">// @description  try to take over the world!</span></span><br><span class="line"><span class="comment">// @author       Powersee</span></span><br><span class="line"><span class="comment">// @match        https://xiage.yy.com/forum-234-1.html</span></span><br><span class="line"><span class="comment">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=yy.com</span></span><br><span class="line"><span class="comment">// @grant        none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="string">&#x27;use strict&#x27;</span>;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;load&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;checkin-btn&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (btn.<span class="property">textContent</span> == <span class="string">&#x27;签到&#x27;</span>) btn.<span class="title function_">click</span>()</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><p>完整的代码如下，我发现用 <code>// @run-at       document-idle</code> 似乎有些问题，所以改成了事件监听。</p><p>有些签到按钮，点击之后文字就会发生变化。</p><table><thead><tr><th align="left">签到前</th><th align="left">签到后</th></tr></thead><tbody><tr><td align="left">签到</td><td align="left">已签到</td></tr><tr><td align="left">签到</td><td align="left">已签</td></tr></tbody></table><p>像这种我们可以直接用 <code>==</code> 来判断里面的字符串，但是有的时候，我们想要的是，判断里面的文字，是否包含某些字符串。</p><p>例如，有些网站，它的签到按钮文字是 <code>领取今日的登录奖励</code> </p><p>我们可以用 <code>includes()</code> 方法来判断。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (btn.<span class="property">textContent</span>.<span class="title function_">includes</span>(<span class="string">&#x27;领取今日&#x27;</span>)) btn.<span class="title function_">click</span>()</span><br></pre></td></tr></table></figure><p>这行代码，就是判断是否包含 <code>领取今日</code> 这几个字，如果是，就点击。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;有时候，一些签到按钮，签到完成之后是依然可以点击的。如果只是用 id 来获取到元素，然后点击，就会导致明明签到完成了，还继续点击按钮。&lt;/p&gt;
-&lt;p&gt;此时我们可以加入一个判断条件。看来还是得拿个实际例子，&lt;a href=&quot;https://xiage.yy.com/forum</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
