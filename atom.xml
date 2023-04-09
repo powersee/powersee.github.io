@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-08T17:02:18.043Z</updated>
+  <updated>2023-04-09T16:42:58.968Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>升级 Calibre 到 6.15.1</title>
+    <link href="https://powersee.github.io/2023/04/calibre-6-15-1-ebook-viewer/"/>
+    <id>https://powersee.github.io/2023/04/calibre-6-15-1-ebook-viewer/</id>
+    <published>2023-04-09T16:08:59.000Z</published>
+    <updated>2023-04-09T16:42:58.968Z</updated>
+    
+    <content type="html"><![CDATA[<p>我一直使用 calibre 来打开 epub 和 mobi 文件，我不喜欢 Mac 自带的「图书」APP。</p><p>目前电脑里装的是很久之前的版本了，一直没升级。这次把电脑系统升级到 13.3 之后，发现没法直接用 ebook-viewer 来打开 epub 文件了，选择 calibre 的话，是把书籍导入到 calibre 里面。</p><p><img src="/img/2023/epub-open-method.webp" alt="epub-open-method"></p><p>于是我打算升级一下，到官网下载时发现，2022 年的时候才支持苹果自研芯片的：<a href="https://calibre-ebook.com/whats-new">https://calibre-ebook.com/whats-new</a></p><blockquote><p>Release: 6.0 [11 Jul, 2022]</p><ul><li><strong>Support for new CPU architectures: Apple Silicon and ARM64 on Linux. Support for 32bit CPUs has been dropped because Qt 6 does not support them</strong></li></ul></blockquote><p>我现在用的是 5.31.1 的版本。</p><p><img src="/img/2023/calibre-5.31.1.webp" alt="calibre-5.31.1"></p><p>于是到官网下载新的安装包，直接替换就行。这个应用居然要占用接近 800M……</p><p><img src="/img/2023/calibre-6.15.1-need-800MB.jpg" alt="calibre-6.15.1-need-800MB"></p><p>之后在「活动监视器」里也可以看到它的种类显示为 Apple 了。之前是显示 Intel 的。</p><p><img src="/img/2023/calibre-Apple.webp" alt="calibre-Apple"></p><p>而且现在 epub 也默认改为用 ebook-viewer 来打开了。</p><p><img src="/img/2023/ebook-viewer.webp" alt="ebook-viewer"></p><p>不错，问题解决了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我一直使用 calibre 来打开 epub 和 mobi 文件，我不喜欢 Mac 自带的「图书」APP。&lt;/p&gt;
+&lt;p&gt;目前电脑里装的是很久之前的版本了，一直没升级。这次把电脑系统升级到 13.3 之后，发现没法直接用 ebook-viewer 来打开 epub 文件了，</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>macOS 设置允许「任何来源」</title>
@@ -97,7 +120,7 @@
     <link href="https://powersee.github.io/2023/04/windows-install-nushell-and-config/"/>
     <id>https://powersee.github.io/2023/04/windows-install-nushell-and-config/</id>
     <published>2023-04-05T16:07:13.000Z</published>
-    <updated>2023-04-05T16:09:58.920Z</updated>
+    <updated>2023-04-09T16:11:27.106Z</updated>
     
     <content type="html"><![CDATA[<p>使用 nu shell 已经有一段时间，感觉还不错。它最为吸引我的就是，自带历史记录提示，就像 zsh 的 zsh-autosuggestions 插件。</p><p><img src="/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p><p>它的一条普通的 ls 命令，结果也和其它 shell 很不一样。</p><p><img src="/img/2023/nushell-ls.png" alt="nushell-ls"></p><p>输出的是一个表格。</p><p>安装可以查看官方文档：<a href="https://www.nushell.sh/zh-CN/book/installation.html">安装 Nu | Nushell</a></p><p>文档一共 6 种语言，中文就是其中一种。</p><p>我是到  <a href="https://github.com/nushell/nushell/releases">GitHub 的 Release 页</a> 下载并解压二进制文件，然后放到 <code>C:\bin\</code> 里面的。接着在「终端」里面添加 nushell。</p><p><img src="/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p><p>如果想让 nushell 作为默认的 shell，可以到「启动」，「默认配置文件」进行更改。</p><p><img src="/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
     
@@ -122,7 +145,7 @@
     <link href="https://powersee.github.io/2023/04/mac-screenshot2/"/>
     <id>https://powersee.github.io/2023/04/mac-screenshot2/</id>
     <published>2023-04-04T17:38:02.000Z</published>
-    <updated>2023-04-05T03:12:59.210Z</updated>
+    <updated>2023-04-09T16:11:27.106Z</updated>
     
     <content type="html"><![CDATA[<h3 id="更改截图默认快捷键"><a href="#更改截图默认快捷键" class="headerlink" title="更改截图默认快捷键"></a>更改截图默认快捷键</h3><p>Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4 区域截图。按 3 颗按键还是有些不方便，对于我这种经常截图的人来说。</p><p><img src="/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p><p>我们可以到「系统偏好设置」「键盘」「快捷键」「截屏」中，更改为自己喜欢的按键，我这边直接把区域截图改为<code>F9</code>。</p><h3 id="更改截图默认文件名"><a href="#更改截图默认文件名" class="headerlink" title="更改截图默认文件名"></a>更改截图默认文件名</h3><p>默认截图后得到的图片名称是这样的 <code>截屏2023-04-02 上午10.58.54.png</code>，如果在「语言与地区」里有勾选 ☑️ 24 小时制，那么是这样的 <code>截屏2023-04-02 11.08.06.png</code></p><p>在英文状态下是 <code>Screen Shot [date] at [time].png</code></p><p>我们能修改的，只有日期前面的文字而已，例如我不想要「截图」这两个字。</p><p>打开「终端」这个 APP，粘贴下面的命令，按回车键执行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;&quot;</span><br></pre></td></tr></table></figure><p>之后截图得到的文件名会变成这样的 <code>2023-04-02 11.08.06.png</code></p><p>我们也可以改为自己的想设置的文字，例如我想在前面加上 <code>powersee-</code>，我可以这样做</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;powersee-&quot;</span><br></pre></td></tr></table></figure><p>之后截图得到的文件名会变成这样的 <code>powersee-2023-04-02 11.08.06.png</code></p><p><img src="/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p><p>如果想改回原来的默认名称，可以用这条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture &quot;include-date&quot; 1; killall SystemUIServer</span><br></pre></td></tr></table></figure><h3 id="更改截图默认文件格式"><a href="#更改截图默认文件格式" class="headerlink" title="更改截图默认文件格式"></a>更改截图默认文件格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture type</span><br></pre></td></tr></table></figure><p>后面可以加 JPG, TIFF, GIF, PDF, PNG 这些，我没有改，还是用它默认的 png 就好。</p><h3 id="截图不要阴影"><a href="#截图不要阴影" class="headerlink" title="截图不要阴影"></a>截图不要阴影</h3><p>按 cmd shift 4 后，按空格键，此时按住 alt 键再点击窗口的话，保存下来的图片就是没有阴影的，图片体积会小很多。</p>]]></content>
     
@@ -167,7 +190,7 @@
     <link href="https://powersee.github.io/2023/04/blog-image-optimize/"/>
     <id>https://powersee.github.io/2023/04/blog-image-optimize/</id>
     <published>2023-04-02T17:26:05.000Z</published>
-    <updated>2023-04-02T17:33:28.485Z</updated>
+    <updated>2023-04-09T16:11:27.094Z</updated>
     
     <content type="html"><![CDATA[<p>我现在的博客是用 hexo 生成的静态网页，部署在 GitHub pages。</p><p>而众所周知，国内访问 GitHub pages 一直不怎么好，所以优化非常重要。</p><p>我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等很久才能看到图标。再加上用久了，有点审美疲劳，所以最近换了个主题，现在速度快了很多。</p><p>改完主题后，我又注意到另一个影响访问速度的因素——图片。</p><p>我博客的图片，都是放在 source&#x2F;img 目录中，按照年份建立目录。</p><p><img src="/img/2023/blog-source-img.jpg" alt="blog-source-img"></p><p>我可以通过按大小排序，来查出哪些图片占用的空间比较大。</p><p><img src="/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p><p>现在看到的是我已经优化过的了，下面说说我的优化过程。</p><h3 id="Mac-自带「预览」"><a href="#Mac-自带「预览」" class="headerlink" title="Mac 自带「预览」"></a>Mac 自带「预览」</h3><p>在 Mac 上双击一张图片，会使用自带的「预览」来打开。可以点击「文件」「导出」，选择 JPEG 格式，可以更改它的质量来缩小图片体积。</p><p><img src="/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p><h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="/img/2023/affinity-photo.webp" alt="affinity-photo"></p><p>专业的图片处理软件，除非要修改图片内容，不然一般不会选择用它们来压缩图片。</p><h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="/img/2023/ImageOptim.webp" alt="ImageOptim"></p><p>一个开源的图片优化工具，直接把图片拖进来就行。它只有 <a href="https://imageoptim.com/mac">Mac 版本</a>，在 <a href="https://github.com/ImageOptim/ImageOptim">GitHub</a> 上面有 8.3K star。</p><p>上面我拖了一张图片进来，它处理后，图片大小变成原来的 65.1% 了。这是在我开启微量有损的情况，不开的话，压缩比并不高。</p><p>然后我觉得它有两个缺点：</p><ul><li>压缩后直接替换掉原文件</li><li>压缩时间太长</li></ul><p>所以我不怎么用它。</p><h3 id="使用-WebP-格式"><a href="#使用-WebP-格式" class="headerlink" title="使用 WebP 格式"></a>使用 WebP 格式</h3><p>之前的<a href="/2023/03/about-webp/">文章</a>我已经介绍过它了，我目前博客新添加的图片，如果体积比较大，我都尽量把它们转为 WebP 格式。它的压缩比超级强。</p><p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p><p>你能想象这样一张分辨率为 5472×3080 的图片，它只有 87KB 吗？</p><p>它可以做到图片很小的情况下，还保持着不错的图片质量，真心不错。</p><p>由于经常转换格式，所以我后来将它弄成一个 APP，图片拖进去就会自动转换为 WebP 格式。</p><p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p><p>感兴趣的可以看<a href="/2023/03/create-mac-app-from-command-line-scripts/">之前的文章</a>。这么一番优化，我目前整个博客的图片，只有 34MB，我手机开数据的情况下访问我的博客，速度方面感觉也还不错。</p>]]></content>
     
@@ -191,7 +214,7 @@
     <link href="https://powersee.github.io/2023/04/powershell-ohmyposh/"/>
     <id>https://powersee.github.io/2023/04/powershell-ohmyposh/</id>
     <published>2023-04-02T07:09:34.000Z</published>
-    <updated>2023-04-03T06:44:04.662Z</updated>
+    <updated>2023-04-09T16:11:27.094Z</updated>
     
     <content type="html"><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p><p><img src="/img/2023/ohmyposh.png" alt="ohmyposh"></p><p>安装 Oh My Posh</p><p>可以到 Microsoft Store 安装</p><p><img src="/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p><p>或者通过命令行来安装，需要用管理员身份运行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure><p>不过，极大的可能会因为网络问题安装失败</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; winget install JanDeDobbeleer.OhMyPosh -s winget</span><br><span class="line">已找到 Oh My Posh [JanDeDobbeleer.OhMyPosh] 版本 14.24.0</span><br><span class="line">此应用程序由其所有者授权给你。</span><br><span class="line">Microsoft 对第三方程序包概不负责，也不向第三方程序包授予任何许可证。</span><br><span class="line">正在下载 https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.24.0/install-amd64.exe</span><br><span class="line">执行此命令时发生意外错误：</span><br><span class="line">InternetOpenUrl() failed.</span><br><span class="line">0x80072efd : unknown error</span><br></pre></td></tr></table></figure><p>我是通过设置命令行走代理来解决的。</p><p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure><p><img src="/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p><p>需要输入两次 y，大小写随便。</p><p>装好后可以尝试在终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>如果像这样报错了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">Import-Module : 无法加载文件 C:\Program Files\WindowsPowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。</span><br><span class="line"></span><br><span class="line">所在位置 行:1 字符: 1</span><br><span class="line"></span><br><span class="line">+ Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">+ ~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">+ CategoryInfo : SecurityError: (:) [Import-Module]，PSSecurityException</span><br><span class="line"></span><br><span class="line">+ FullyQualifiedErrorId : UnauthorizedAccess,Microsoft.PowerShell.Commands.ImportModuleCommand</span><br></pre></td></tr></table></figure><p>需要更改执行策略，执行命令后输入 y 再按回车。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; set-executionpolicy remotesigned</span><br><span class="line"></span><br><span class="line">执行策略更改</span><br><span class="line"></span><br><span class="line">执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170</span><br><span class="line"></span><br><span class="line">中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?</span><br><span class="line"></span><br><span class="line">[Y] 是(Y) [A] 全是(A) [N] 否(N) [L] 全否(L) [S] 暂停(S) [?] 帮助 (默认值为“N”): y</span><br></pre></td></tr></table></figure><p>打开 PowerShell profile，加入这两行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh --init --shell pwsh --config ~\Documents\WindowsPowerShell\ohmyposhv3-v2.json | Invoke-Expression</span><br><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>json 配置文件下载：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c?WT.mc_id=-blog-scottha">ohmyposhv3-v2 (github.com)</a></p><p>直链：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json">https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json</a></p><p>我也放一份到我的博客里面：<a href="/misc/ohmyposhv3-v2.json">ohmyposhv3-v2</a> 可以右键，「链接另存为…」来下载。</p><p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p><p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p><p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p><p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p><p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p><p>然后还需要设置字体，不然这些图标加载不出来。可以到<a href="https://www.nerdfonts.com/">这里</a>下载字体，选择自己喜欢的，下载后是压缩包，解压出来，选中所有字体，右键安装即可。</p><p><img src="/img/2023/win-terminal-font.png" alt="win-terminal-font"></p><p>之后到「设置」「默认值」「外观」里面更改字体。</p>]]></content>
     
@@ -216,7 +239,7 @@
     <link href="https://powersee.github.io/2023/04/mac-shell-you-have-new-mail/"/>
     <id>https://powersee.github.io/2023/04/mac-shell-you-have-new-mail/</id>
     <published>2023-03-31T17:15:01.000Z</published>
-    <updated>2023-03-31T17:17:40.919Z</updated>
+    <updated>2023-04-09T16:11:27.096Z</updated>
     
     <content type="html"><![CDATA[<p>邮件？这里的邮件可不是指邮件 APP 里的邮件。而是指 <code>/var/mail</code> 里面的邮件，其实就 cron 计划任务的日志。</p><p>可以在 shell 里执行 <code>mail</code> 来查看。也可以把 <code>/var/mail</code> 里的文件，直接拉到文本编辑器来查看，例如我直接放到 vscode 来查看。</p><p>由于文件没有后缀名，（我的是我的账号名）所以 vscode 自动检测错，把它识别为 Python 文件。</p><p>可以点击底部来更改，改成 log。</p><p><img src="/img/2023/vscode-log.webp" alt="vscode-log"></p><p>看完之后，发现也没什么，可以直接把这个文件删除了，这样再打开 shell 就不会有提示了。</p>]]></content>
     
@@ -239,7 +262,7 @@
     <link href="https://powersee.github.io/2023/03/mac-screenshot/"/>
     <id>https://powersee.github.io/2023/03/mac-screenshot/</id>
     <published>2023-03-31T02:31:09.000Z</published>
-    <updated>2023-03-31T02:32:35.307Z</updated>
+    <updated>2023-04-09T16:11:27.094Z</updated>
     
     <content type="html"><![CDATA[<h3 id="为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的"><a href="#为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的" class="headerlink" title="为什么 Mac 截图后，图片在 Finder 里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的"></a>为什么 Mac 截图后，图片在 Finder 里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的</h3><p>在 Mac OS 中，如果一个文件或文件夹的名称是灰色的，这通常表示该文件或文件夹已被标记为“不可用”，这意味着它已被删除、移动或重命名。</p><p>但是，在截图之后，Finder 中显示的文件名虽然是灰色的，但文件本身并没有被标记为“不可用”。相反，灰色的名称在这种情况下表示该文件是新创建的，但尚未被编辑或重命名。当您对该文件进行任何编辑或更改文件名时，文件名将变为黑色。</p><p>因此，无需担心截图文件名灰色的问题，这只是 Mac OS 的一种普遍表现形式，并不意味着该文件已被标记为“不可用”。</p><h3 id="Mac-截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？"><a href="#Mac-截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？" class="headerlink" title="Mac 截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？"></a>Mac 截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？</h3><p>可以通过输入以下命令来更改截图的保存行为，并直接在桌面上显示它们，而无需等待几秒钟：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture show-thumbnail -bool FALSE &amp;&amp; killall SystemUIServer</span><br></pre></td></tr></table></figure><p>这会禁用截图缩略图并立即使更改生效。现在，您在截图后将立即在桌面上看到它们，而不是在弹出的缩略图中等待数秒。</p><p>请注意，在此更改生效后，您将无法通过双击屏幕截图缩略图来打开它。您需要手动打开存储截图的文件夹，然后找到并打开它们。但是，这个行为可以通过运行以下命令来恢复：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture show-thumbnail -bool TRUE &amp;&amp; killall SystemUIServer</span><br></pre></td></tr></table></figure><p>这里的 <code>-bool</code> 选项允许您将参数值设置为 <code>TRUE</code> 或 <code>FALSE</code>，以启用或禁用缩略图。</p><h3 id="如何更改截图保存位置？"><a href="#如何更改截图保存位置？" class="headerlink" title="如何更改截图保存位置？"></a>如何更改截图保存位置？</h3><p>默认情况下是保存在「桌面」目录中</p><p>我们可以按快捷键 <code>cmd + shift + 5</code> 来唤出截图界面，在「选项」里可以更改保存位置。</p><p><img src="/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>]]></content>
     
@@ -261,7 +284,7 @@
     <link href="https://powersee.github.io/2023/03/iterm2-notification/"/>
     <id>https://powersee.github.io/2023/03/iterm2-notification/</id>
     <published>2023-03-30T06:04:33.000Z</published>
-    <updated>2023-03-30T06:08:27.714Z</updated>
+    <updated>2023-04-09T16:11:27.106Z</updated>
     
     <content type="html"><![CDATA[<p>感觉这个功能超好用。</p><p>有些命令可能需要很久才能执行完，主要是安装之类的，例如 brew 或者 npm，按下回车之后，都不知道它要多久才能装好，我们可能需要时不时就回来看看。</p><p>而在 iTerm2 里面，我们可以设置命令执行完之后，弹出一条通知。这样一来，我们执行命令后，就可以去干其它事情了，等收到通知再回来就行。</p><p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p><p>想要实现这个功能，需要在顶部菜单里，先点击「iTerm2」，再点击「Install Shell Integration」，意思是安装 shell 集合。</p><p>它会执行这样一条命令</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash</span><br></pre></td></tr></table></figure><p>安装好后多出这些功能</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You will also have these commands:</span><br><span class="line">imgcat filename</span><br><span class="line">  Displays the image inline.</span><br><span class="line">imgls</span><br><span class="line">  Shows a directory listing with image thumbnails.</span><br><span class="line">it2api</span><br><span class="line">  Command-line utility to manipulate iTerm2.</span><br><span class="line">it2attention start|stop|fireworks</span><br><span class="line">  Gets your attention.</span><br><span class="line">it2check</span><br><span class="line">  Checks if the terminal is iTerm2.</span><br><span class="line">it2copy [filename]</span><br><span class="line">  Copies to the pasteboard.</span><br><span class="line">it2dl filename</span><br><span class="line">  Downloads the specified file, saving it in your Downloads folder.</span><br><span class="line">it2setcolor ...</span><br><span class="line">  Changes individual color settings or loads a color preset.</span><br><span class="line">it2setkeylabel ...</span><br><span class="line">  Changes Touch Bar function key labels.</span><br><span class="line">it2tip</span><br><span class="line">  iTerm2 usage tips</span><br><span class="line">it2ul</span><br><span class="line">  Uploads a file.</span><br><span class="line">it2universion</span><br><span class="line">  Sets the current unicode version.</span><br><span class="line">it2profile</span><br><span class="line">  Change iTerm2 session profile on the fly.</span><br></pre></td></tr></table></figure><p><img src="/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p><p>然后我们新开一个窗口或者 tab，在菜单里面选择 Edit 、 Marks and Annotations 、 Alerts，打开 Alert on next mark</p><p><img src="/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p><p>开启之后，就可以在右上角看到一个眼睛👁的图标。也可以使用快捷键 <code>cmd + alt + A</code> 来开启。</p><p><img src="/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p><p>之后再执行命令，只要命令完成了，就会弹出一条通知。</p><p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p><p>如果我们选择 「Show Modal Alert Box」，那么会出现这样一个提示窗口</p><p><img src="/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p><p>点击 Reveal 就会跳转到 iTerm2 里面。不过这个应该先执行命令，在设置 Mark 出现眼睛👁。</p>]]></content>
     
@@ -427,7 +450,7 @@
     <link href="https://powersee.github.io/2023/03/css-chinese-font/"/>
     <id>https://powersee.github.io/2023/03/css-chinese-font/</id>
     <published>2023-03-22T16:16:31.000Z</published>
-    <updated>2023-03-31T08:55:22.566Z</updated>
+    <updated>2023-04-09T16:11:27.094Z</updated>
     
     <content type="html"><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。看起来很不舒服。</p><p>有时候我会把它们的字号调大一点</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span>: <span class="number">1.3em</span>;</span><br></pre></td></tr></table></figure><p>有时会直接更改字体</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>在这过程中，我发现怎么有些中文字体，名称打上去后并不生效。例如我写 <code>霞骛文楷</code> 是不生效的，如果我写 <code>LXGW WenKai</code> 就可以生效。</p><p>后来我了解到这个 <a href="https://www.zhangxinxu.com/study/201703/font-family-chinese-english.html">CSS font-family中文字体对应的英文名称整理表 </a></p><p>这里面有些字体在「字体应用」里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span>, <span class="string">&#x27;思源宋体&#x27;</span>, <span class="string">&#x27;文泉驿微米黑&#x27;</span>, <span class="string">&#x27;楷体&#x27;</span>, <span class="string">&#x27;宋体&#x27;</span>, <span class="string">&#x27;黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p><p>难道要这样每次都来查表？目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p><p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p><p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的英文名称。</p><p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p><p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p><p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p><p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p><p>补充：</p><p>后来又进一步了解了一些。</p><p><img src="/img/2023/font-name.png" alt="font-name"></p><p>打开一个字体的时候，里面第一行显示的「字体名称」，就是可以用在网页 css 中的。</p><p>这样的名称，在设置的字体里面，也是可以看到的。</p><p><img src="/img/2023/LXGW-WenKai-Bold.png" alt="LXGW-WenKai-Bold"></p><p>之前 霞骛文楷 全称只显示英文，现有有些已经显示中文了。</p><p><img src="/img/2023/image-20230331153928787.png" alt="image-20230331153928787"></p><p>不过很奇怪，不管是「霞骛文楷」还是「霞骛文楷等宽」，都是只有 light 是显示中文，而且 Regular 和 Bold 都是英文的。</p><p>在 Mac 上面也是这样。</p><p><img src="/img/2023/mac-lxgw-wenkai-bold.webp" alt="mac-lxgw-wenkai-bold"></p><p>使用 Firefox 的 DevTools，会比 chrome 或者 Edge 多一个「字体」，这个功能很不错，还可以拉动控制条，来调整字体。</p><p><img src="/img/2023/Firefox-devtools-fonts.jpg" alt="Firefox-devtools-fonts"></p>]]></content>
     
@@ -467,29 +490,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过 do-release-upgrade 升级 Ubuntu 版本</title>
-    <link href="https://powersee.github.io/2023/03/do-release-upgrade-ubuntu/"/>
-    <id>https://powersee.github.io/2023/03/do-release-upgrade-ubuntu/</id>
-    <published>2023-03-20T16:19:46.000Z</published>
-    <updated>2023-03-20T16:21:33.695Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近给我的两台服务器，都升级了 Ubuntu 版本。个人感觉，如果服务器里的东西不多，还不如备份之后，重装系统，直接装个 22.04 可能会比一步一步升级快。</p><p>我目前有一台服务器用的是 Ubuntu 18.04 LTS，平时装应用有这样那样的问题，我打算给它升级一下。</p><p>平时 ssh 登录上之后，也经常能看到提示升级。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do-release-upgrade</span><br></pre></td></tr></table></figure><p>执行这个命令，就可以升级 Ubuntu 的版本。不过在此之前，我们需要先 update 和 upgrade。当我这些做完之后，却发现，执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">do-release-upgrade</span><br></pre></td></tr></table></figure><p>后提示这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Please install all available updates for your release before upgrading</span><br></pre></td></tr></table></figure><p>可是我明明已经没东西可以再更新了……</p><p>网上搜索后，别人说试试这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br><span class="line">sudo apt dist-upgrade</span><br><span class="line">sudo do-release-upgrade</span><br></pre></td></tr></table></figure><p>结果试了也没用，最终发现，问题出现在第三方软件源上面。</p><p>因为之前直接用 apt 安装 nodejs，这样安装的是旧版本的。我现在运行的应用要求使用 node18。</p><p>所以之前根据教程，下载了这个脚本，执行后，会添加 node 的软件源。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh</span><br></pre></td></tr></table></figure><p>它就在 <code>/etc/apt/sources.list.d</code> 里面，执行下面的命令可以禁用第三方源</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt/sources.list.d </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> *.list; <span class="keyword">do</span> <span class="built_in">mv</span> <span class="variable">$&#123;i&#125;</span> <span class="variable">$&#123;i&#125;</span>.disabled; <span class="keyword">done</span> </span><br><span class="line">apt clean</span><br><span class="line">apt autoclean </span><br><span class="line">sudo do-release-upgrade </span><br></pre></td></tr></table></figure><p>不过我不是这么做的，我直接把里面的 node 源给删了，剩下的 docker 源没动它。之后再执行 <code>do-release-upgrade</code> 就可以继续进行了。</p><p>升级的过程中，有很多选项，还是挺麻烦的。不过好在最后升级成功了，从 18.04 升级到了 20.04.6。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近给我的两台服务器，都升级了 Ubuntu 版本。个人感觉，如果服务器里的东西不多，还不如备份之后，重装系统，直接装个 22.04 可能会比一步一步升级快。&lt;/p&gt;
-&lt;p&gt;我目前有一台服务器用的是 Ubuntu 18.04 LTS，平时装应用有这样那样的问题，我打算给它升</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   

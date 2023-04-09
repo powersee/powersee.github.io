@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
-	<title>更改 Mac 截图快捷键、文件名、文件格式</title>
+	<title>升级 Calibre 到 6.15.1</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -32,7 +32,7 @@
     
   
   <h1 class="title">
-    更改 Mac 截图快捷键、文件名、文件格式
+    升级 Calibre 到 6.15.1
   </h1>
   
 
@@ -40,11 +40,11 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2023-04-04T17:38:02.000Z" itemprop="datePublished">2023-04-05</time>
+        <time datetime="2023-04-09T16:08:59.000Z" itemprop="datePublished">2023-04-10</time>
       </li>
       <li>
         
-    更新 <time datetime="2023-04-09T16:11:27.106Z" itemprop="dateUpdated">2023-04-10</time>
+    更新 <time datetime="2023-04-09T16:42:58.968Z" itemprop="dateUpdated">2023-04-10</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -56,28 +56,25 @@
     <div class="article">
       <div class="content">
         
-        <h3 id="更改截图默认快捷键"><a href="#更改截图默认快捷键" class="headerlink" title="更改截图默认快捷键"></a>更改截图默认快捷键</h3><p>Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4 区域截图。按 3 颗按键还是有些不方便，对于我这种经常截图的人来说。</p>
-<p><img src="/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p>
-<p>我们可以到「系统偏好设置」「键盘」「快捷键」「截屏」中，更改为自己喜欢的按键，我这边直接把区域截图改为<code>F9</code>。</p>
-<h3 id="更改截图默认文件名"><a href="#更改截图默认文件名" class="headerlink" title="更改截图默认文件名"></a>更改截图默认文件名</h3><p>默认截图后得到的图片名称是这样的 <code>截屏2023-04-02 上午10.58.54.png</code>，如果在「语言与地区」里有勾选 ☑️ 24 小时制，那么是这样的 <code>截屏2023-04-02 11.08.06.png</code></p>
-<p>在英文状态下是 <code>Screen Shot [date] at [time].png</code></p>
-<p>我们能修改的，只有日期前面的文字而已，例如我不想要「截图」这两个字。</p>
-<p>打开「终端」这个 APP，粘贴下面的命令，按回车键执行。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;&quot;</span><br></pre></td></tr></table></figure>
-
-<p>之后截图得到的文件名会变成这样的 <code>2023-04-02 11.08.06.png</code></p>
-<p>我们也可以改为自己的想设置的文字，例如我想在前面加上 <code>powersee-</code>，我可以这样做</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;powersee-&quot;</span><br></pre></td></tr></table></figure>
-
-<p>之后截图得到的文件名会变成这样的 <code>powersee-2023-04-02 11.08.06.png</code></p>
-<p><img src="/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p>
-<p>如果想改回原来的默认名称，可以用这条命令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture &quot;include-date&quot; 1; killall SystemUIServer</span><br></pre></td></tr></table></figure>
-
-<h3 id="更改截图默认文件格式"><a href="#更改截图默认文件格式" class="headerlink" title="更改截图默认文件格式"></a>更改截图默认文件格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture type</span><br></pre></td></tr></table></figure>
-
-<p>后面可以加 JPG, TIFF, GIF, PDF, PNG 这些，我没有改，还是用它默认的 png 就好。</p>
-<h3 id="截图不要阴影"><a href="#截图不要阴影" class="headerlink" title="截图不要阴影"></a>截图不要阴影</h3><p>按 cmd shift 4 后，按空格键，此时按住 alt 键再点击窗口的话，保存下来的图片就是没有阴影的，图片体积会小很多。</p>
+        <p>我一直使用 calibre 来打开 epub 和 mobi 文件，我不喜欢 Mac 自带的「图书」APP。</p>
+<p>目前电脑里装的是很久之前的版本了，一直没升级。这次把电脑系统升级到 13.3 之后，发现没法直接用 ebook-viewer 来打开 epub 文件了，选择 calibre 的话，是把书籍导入到 calibre 里面。</p>
+<p><img src="/img/2023/epub-open-method.webp" alt="epub-open-method"></p>
+<p>于是我打算升级一下，到官网下载时发现，2022 年的时候才支持苹果自研芯片的：<a target="_blank" rel="noopener" href="https://calibre-ebook.com/whats-new">https://calibre-ebook.com/whats-new</a></p>
+<blockquote>
+<p>Release: 6.0 [11 Jul, 2022]</p>
+<ul>
+<li><strong>Support for new CPU architectures: Apple Silicon and ARM64 on Linux. Support for 32bit CPUs has been dropped because Qt 6 does not support them</strong></li>
+</ul>
+</blockquote>
+<p>我现在用的是 5.31.1 的版本。</p>
+<p><img src="/img/2023/calibre-5.31.1.webp" alt="calibre-5.31.1"></p>
+<p>于是到官网下载新的安装包，直接替换就行。这个应用居然要占用接近 800M……</p>
+<p><img src="/img/2023/calibre-6.15.1-need-800MB.jpg" alt="calibre-6.15.1-need-800MB"></p>
+<p>之后在「活动监视器」里也可以看到它的种类显示为 Apple 了。之前是显示 Intel 的。</p>
+<p><img src="/img/2023/calibre-Apple.webp" alt="calibre-Apple"></p>
+<p>而且现在 epub 也默认改为用 ebook-viewer 来打开了。</p>
+<p><img src="/img/2023/ebook-viewer.webp" alt="ebook-viewer"></p>
+<p>不错，问题解决了。</p>
 
       </div>
         <div class="support-author">

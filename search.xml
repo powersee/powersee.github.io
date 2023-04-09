@@ -5003,4 +5003,31 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>升级 Calibre 到 6.15.1</title>
+    <url>/2023/04/calibre-6-15-1-ebook-viewer/</url>
+    <content><![CDATA[<p>我一直使用 calibre 来打开 epub 和 mobi 文件，我不喜欢 Mac 自带的「图书」APP。</p>
+<p>目前电脑里装的是很久之前的版本了，一直没升级。这次把电脑系统升级到 13.3 之后，发现没法直接用 ebook-viewer 来打开 epub 文件了，选择 calibre 的话，是把书籍导入到 calibre 里面。</p>
+<p><img src="/img/2023/epub-open-method.webp" alt="epub-open-method"></p>
+<p>于是我打算升级一下，到官网下载时发现，2022 年的时候才支持苹果自研芯片的：<a href="https://calibre-ebook.com/whats-new">https://calibre-ebook.com/whats-new</a></p>
+<blockquote>
+<p>Release: 6.0 [11 Jul, 2022]</p>
+<ul>
+<li><strong>Support for new CPU architectures: Apple Silicon and ARM64 on Linux. Support for 32bit CPUs has been dropped because Qt 6 does not support them</strong></li>
+</ul>
+</blockquote>
+<p>我现在用的是 5.31.1 的版本。</p>
+<p><img src="/img/2023/calibre-5.31.1.webp" alt="calibre-5.31.1"></p>
+<p>于是到官网下载新的安装包，直接替换就行。这个应用居然要占用接近 800M……</p>
+<p><img src="/img/2023/calibre-6.15.1-need-800MB.jpg" alt="calibre-6.15.1-need-800MB"></p>
+<p>之后在「活动监视器」里也可以看到它的种类显示为 Apple 了。之前是显示 Intel 的。</p>
+<p><img src="/img/2023/calibre-Apple.webp" alt="calibre-Apple"></p>
+<p>而且现在 epub 也默认改为用 ebook-viewer 来打开了。</p>
+<p><img src="/img/2023/ebook-viewer.webp" alt="ebook-viewer"></p>
+<p>不错，问题解决了。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>
