@@ -3659,19 +3659,19 @@ border-radius: 4px;
     <url>/2023/02/windows-tai/</url>
     <content><![CDATA[<p>前段时间发现一个可以统计电脑上，各个应用的使用时长的开源应用</p>
 <p><a href="https://github.com/Planshit/Tai">https://github.com/Planshit/Tai</a></p>
-<p><img src="/img/2023/2023-02-01_17-52-08.png"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-01_17-52-08.png"></p>
 <p>我也使用了一段时间了，感觉还不错。平时占用的系统内存是 44MB 左右，在电脑的右下角状态栏会有图标，双击就可以打开软件界面。</p>
-<p><img src="/img/2023/2023-02-02_15-14-47.png"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-02_15-14-47.png"></p>
 <p>一月份我使用了 20 天，里面记录我电脑的使用时长是 132 个小时，其中使用最长的是原神，有 31 个小时。</p>
 <p>切换到【按月】可以看到每天的统计时长。</p>
 <blockquote>
 <p><strong>需要注意的是，使用时长并不是软件的存活时间，而是软件从获得焦点时开始到失去焦点后这段时间</strong></p>
 </blockquote>
 <p>其中有一天，steam 被统计到使用了 13 个小时，估计是我电脑息屏的时候，steam 突然弹到前台，然后又是夜晚，所以被统计下来。虽然后来我们可以通过右键【忽略此应用】来让 tai 不再记录某些应用，但是之前记录的 steam 时长好像没法去掉。</p>
-<p><img src="/img/2023/2023-02-02_15-20-41.png"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-02_15-20-41.png"></p>
 <p>还有就是 steam 的游戏，有时候统计并不准确，像我这里 Beat Saber 这个游戏，我每天都是有玩的，而且都是超过半个小时的，但是在这里，统计出来的数据是这样的。</p>
-<p><img src="/img/2023/2023-02-02_15-31-36.png"></p>
-<p><a href="https://github.com/Planshit/Tai/issues/40">tai对steam里的游戏统计时长有问题 · Issue #40 · Planshit/Tai (github.com)</a></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-02_15-31-36.png"></p>
+<p><a href="https://github.com/Planshit/Tai/issues/40">tai对steam里的游戏统计时长有问题 · Issue #40 · Planshit&#x2F;Tai (github.com)</a></p>
 <p>虽然问题已经关闭了，但是问题好像并没有解决。</p>
 <p>不过我认为瑕不掩瑜吧，我之后还是会继续使用它的。</p>
 ]]></content>
@@ -3715,7 +3715,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5000:5000 --name sayhello powersee/sayhello</span><br></pre></td></tr></table></figure>
 
 <p>第一个 5000 可以换为其它的端口，例如 6000，7000 等等，之后在浏览器通过 <code>IP:端口</code> 的形式来访问即可。</p>
-<p><img src="/img/2023/sayhello10086.jpg"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/sayhello10086.jpg"></p>
 <h3 id="删除内容"><a href="#删除内容" class="headerlink" title="删除内容"></a>删除内容</h3><p>先来说说，怎么删除内容。需要做的是，进入 docker 容器里的，使用命令行对 sqlite 数据库的内容进行删除。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker ps                                                    </span><br><span class="line">CONTAINER ID   IMAGE               COMMAND                  CREATED        STATUS        PORTS                                         NAMES</span><br><span class="line">1888c7d98fe8   powersee/sayhello   &quot;python3 -m flask ru…&quot;   2 months ago   Up 2 months   0.0.0.0:10086-&gt;5000/tcp, :::10086-&gt;5000/tcp   sayhello</span><br></pre></td></tr></table></figure>
 
@@ -3795,13 +3795,13 @@ border-radius: 4px;
 <p>Best regards, manager of OperaSoftware.</p>
 </blockquote>
 <p>然后我就回复他了，之后他就给我发来了一个 PDF 文件，里面是这样的（下面是截图，不用担心👇🏻）</p>
-<p><img src="/img/2023/2023-02-22_21-33-12.png" alt="骗子发的 PDF 文件内容"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-22_21-33-12.png" alt="骗子发的 PDF 文件内容"></p>
 <p>我记得下方的链接那里，好像就是一个病毒链接，当然我没有点过，当时只是好奇他们发这些邮件的目的是什么。</p>
 <p>总之呢，就是哪有那么好的事，不要整天想着天上会掉馅饼。</p>
 <p>骗子一般都会假扮是大公司，然后给出丰厚的佣金，吸引人上钩，一旦有人点击了他们的链接，那电脑可能就中毒了。</p>
 <p>之前还有一位讲技术的博主，好像就是中了这样的骗术，导致他 YouTube 上的所有视频被删了。</p>
 <h2 id="对策1"><a href="#对策1" class="headerlink" title="对策1"></a>对策1</h2><p>在我知道这些都是骗局之后，我基本都不去点开这些邮件。但是，我却避免不了他们的骚扰，每隔几天就会收到一封。其中来自 BlueTwelve Studio 的非常多，我查了一下，这是一个游戏开发团队，有名的赛博猫咪《Stray》就是他们开发的。</p>
-<p><img src="/img/2023/game-stray.jpeg" alt="Stray"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/game-stray.jpeg" alt="Stray"></p>
 <p>当然我收到的这些都是诈骗邮件，肯定不是这个游戏开发团队发的，因为我观察到，这些邮件的后缀都是 @vzonly.cz</p>
 <p>我还搜到了一个 YouTube 视频：<a href="https://www.youtube.com/watch?v=G6S_KwiDTbs">volny.cz online.ua FRAUD email | SCAM alert - YouTube</a></p>
 <p>里面是一位阿三哥在讲他也碰到诈骗邮件的事情，他除了收到来自 <code>@vzonly.cz</code> 的邮件，还有 <code>@online.ua</code> 的。并且他了解得更深入，骗子同样是发送一个 PDF 过来，里面也是有链接，如果点击这个链接，就会重定向然后下载 Windows 软件。大概就是这些内容吧。</p>
@@ -3810,13 +3810,13 @@ border-radius: 4px;
 <p>毕竟如果是真人，真想发邮件的话，换个字符也不会带来多大的麻烦。</p>
 <h2 id="对策2"><a href="#对策2" class="headerlink" title="对策2"></a>对策2</h2><p>其实我会来写这篇文章，是因为我突然想到，我能否把来自 @vzonly.cz 的所有邮件都拉黑？</p>
 <p>由于我使用的是腾讯企业邮箱，所以用必应搜一下，很快就找到答案了。</p>
-<p><a href="https://work.weixin.qq.com/help?person_id=0&doc_id=359&helpType=exmail">黑名单/域名黑名单有什么作用？如何设置？-帮助中心-企业邮 (qq.com)</a></p>
+<p><a href="https://work.weixin.qq.com/help?person_id=0&doc_id=359&helpType=exmail">黑名单&#x2F;域名黑名单有什么作用？如何设置？-帮助中心-企业邮 (qq.com)</a></p>
 <p>那么按照说明</p>
 <blockquote>
 <p>在“邮箱设置”-&gt;“反垃圾”-&gt;“黑名单”栏目中，点击“设置黑名单”</p>
 </blockquote>
 <p>就可以成功把域名添加进去</p>
-<p><img src="/img/2023/2023-02-22_21-14-24.png" alt="成功将域名加入邮箱黑名单"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-22_21-14-24.png" alt="成功将域名加入邮箱黑名单"></p>
 <p>这么一番操作之后，以后我应该就不会被这些垃圾邮件打扰了吧。或者说能减少打扰的次数吧，毕竟来自诈骗邮件也有来自其他域名的，像前面提到的 Opera 这封邮件，它的域名是 <code>laposte.net</code></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>不要点击陌生链接</li>
@@ -3836,7 +3836,7 @@ border-radius: 4px;
     <content><![CDATA[<p>我的手机里有两个 App Store，一个是 MIUI 自带的应用商店。另外一个是 Google 的 Play Store。</p>
 <p>两者的设置中，我都把应用自动更新给关了，我并不喜欢更新 APP，特别是之前被一款国产记账软件「松鼠记账」给恶心到之后，<a href="/2022/01/songshujizhang/">之前的文章</a></p>
 <p>但是当我现在的 Play Store，在我打开代理之后，老是自动给我更新 APP。我想按照以前的方法，关闭掉自动更新，但是没找到。我用中文到网上搜也没找到方法，最后还是用英文搜索，才找到的。位置在「设置」「网络偏好」「自动更新应用」里。</p>
-<p><img src="/img/2023/auto-update-apps.jpg" alt="auto-update-apps"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/auto-update-apps.jpg" alt="auto-update-apps"></p>
 <p>其实也很容易发现，不过之前怎么老是忽略它了呢？</p>
 <p>还有我发现，我的手机系统用的是中文，但是 Play Store 里显示的都是英文的，设置里好像也没地方改，不过这个不重要了，懒得去搜了。</p>
 ]]></content>
@@ -3851,7 +3851,7 @@ border-radius: 4px;
 <p>此时我想到之前写的一个，用来下载贴吧图片的脚本。在之前介绍 <a href="/2021/12/about-kcc/">制作 kindle 漫画的文章</a> 里有提到它。</p>
 <p><img src="/img/2021/tieba-img-download.jpg" alt="贴吧图片下载器"></p>
 <p>在 Windows 上我是把它打包成一个图形应用，这样其他人使用它比较方便。但是同样的代码，我在 Mac 上打包后有一些问题，所以我就进行了一些修改。只通过命令行的方式来使用它，设置 alias 别名，我只需要在终端中执行 <code>tieba</code> 就可以启动，然后我需要把贴吧帖子的链接粘贴进去，就可以自动下载图片了。</p>
-<p><img src="/img/2023/image-20230304160034037.png" alt="image-20230304160034037"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230304160034037.png" alt="image-20230304160034037"></p>
 <p>如果不需要下载就按回车直接退出程序。</p>
 <p>现在为了节省粘贴这一步，我打算把 <code>pbpaste</code> 这个 Mac 命令整合进去。让程序运行时，自动读取剪贴板的内容，如果里面包含 tieba 这个词，就询问，例如这样</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ tieba</span><br><span class="line">您当前剪贴板的内容为： https://tieba.baidu.com/p/8288904408?frwh=index</span><br><span class="line">是否开始下载？是的话请按回车键，否则请输入新的链接。（退出输入 n）</span><br></pre></td></tr></table></figure>
@@ -3952,14 +3952,14 @@ border-radius: 4px;
     <content><![CDATA[<p>今天我想在手机上面，添加一个应用的小部件。但是，我死活找不到怎么添加。明明前段时间我还把 “原神战绩”这个小部件，添加到桌面过的。</p>
 <p>一番搜索后，发现关键点在于【断网】。下面是详细的添加步骤：</p>
 <p>在手机桌面，我们可以通过双指捏合、或长按桌面空白处，来呼出【添加小部件】按钮。</p>
-<p><img src="/img/2023/Screenshot_2023-03-10-13-13-56-014-edit_com.miui.home.jpg" alt="添加小部件"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-13-56-014-edit_com.miui.home.jpg" alt="添加小部件"></p>
 <p>点击之后，有两个选项，【推荐】和【分类】，里面都是 MIUI 推荐的小部件，我们自己装的 app 的小部件，大多数是不会显示在这里的。</p>
-<p><img src="/img/2023/Screenshot_2023-03-10-13-14-29-909-edit_com.miui.personalassistant.jpg" alt="推荐与分类"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-14-29-909-edit_com.miui.personalassistant.jpg" alt="推荐与分类"></p>
 <p>那么不是还有个搜索吗？我直接搜呢？不好意思，也是搜不到的。这让我觉得非常恶心。</p>
 <p>网上搜索了解之后，我找到了解决方案。先让手机处于断网状态，开飞行模式最直接，不过也可以关闭 WiFi 和数据就行了。此时再点击搜索，就会发现底部有一行【安卓小部件】。</p>
-<p><img src="/img/2023/Screenshot_2023-03-10-13-58-19-696_com.miui.personalassistant.jpg" alt="断网下的搜索"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-58-19-696_com.miui.personalassistant.jpg" alt="断网下的搜索"></p>
 <p>点击之后就可以看到我们自己装的 app 所带的小部件了。</p>
-<p><img src="/img/2023/Screenshot_2023-03-10-13-58-52-006_com.miui.home.jpg" alt="其它应用的小部件"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-58-52-006_com.miui.home.jpg" alt="其它应用的小部件"></p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
@@ -3982,7 +3982,7 @@ border-radius: 4px;
 
 <p>把光标放到 <code>#</code> 上面，然后按一下 del 键可以删除掉这个井号。</p>
 <p>另一种删除方法是，按键盘的 <code>i</code> 键，进入编辑模式，此时左下方会显示 <code>-- INSERT --</code>，然后按 退格键来删除（需要先把光标移动到 P），删除完成按 <code>ESC</code>  来退出编辑模式。</p>
-<p><img src="/img/2023/image-20230310165517949.png" alt="PermitRootLogin"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230310165517949.png" alt="PermitRootLogin"></p>
 <p>两种方法都一样的，希望对不懂 vim 的小伙伴有帮助。删除之后，需要保存。方法是，在英文输入法的状态下，输入 <code>:</code>，先按住 <code>Shift</code> 键，再按一下 <code>;:</code> 键，应该可以看到左下角出现一个冒号 : 了。</p>
 <p>接着输入 <code>wq</code> ，意思是保存并退出，再按回车键就可以了。</p>
 <p>之后需要重启群晖</p>
@@ -4000,13 +4000,13 @@ border-radius: 4px;
     <title>如何创建一个指定像素的矩形？Photoshop 和 Affinity Photo</title>
     <url>/2023/03/specified-pixels-rectangle/</url>
     <content><![CDATA[<p>在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U</p>
-<p><img src="/img/2023/image-20230312232057058.png" alt="矩形工具"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230312232057058.png" alt="矩形工具"></p>
 <p>然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性里面修改它的宽高值就行，例如我这里改成 1920 和 1080</p>
-<p><img src="/img/2023/image-20230312231507993.png" alt="属性"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230312231507993.png" alt="属性"></p>
 <p>Affinity Photo 的方法差不多，左边选择矩形工具，快捷键为 U，画出矩形后，选中矩形，在右下角的「变换」里可以更改。</p>
-<p><img src="/img/2023/Snipaste_23-03-09_23-07-19.jpg" alt="变换"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Snipaste_23-03-09_23-07-19.jpg" alt="变换"></p>
 <p>下面这张图，就是通过这种方式制作出来的，其实有一些不足，就是蓝色的有点偏右。想要它们对齐的，只要 X Y 保持一样的数值就可以了。</p>
-<p><img src="/img/2023/720vs1296.jpg" alt="720vs1296"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/720vs1296.jpg" alt="720vs1296"></p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
@@ -4023,14 +4023,14 @@ border-radius: 4px;
 <p>现在的问题是，我运行的是 <code>0.10.3</code> 的版本，目前最新的版本已经到 <code>0.11.2</code> 了，我想要升级到最新的版本。</p>
 <p>下面是我的实际操作。</p>
 <p>首先我们要拉取最新的镜像，依旧到注册表搜 memos，右键然后点「下载此映像」，或者直接双击也可以。</p>
-<p><img src="/img/2023/image-20230313180358859.png" alt="search-memos"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230313180358859.png" alt="search-memos"></p>
 <p>镜像下载完成之后，我们把容器停掉，再重新打开，是没有效果的，依然还是旧版本的。此时应该做的是，创建一个新的容器。但是在群晖里面，我们不需要重新填写容器的配置，因为它可以直接复制。选中一个容器，然后上方的设置里面，有个「复制设置」的选项。</p>
-<p><img src="/img/2023/image-20230313181037438.png" alt="copy-settings"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230313181037438.png" alt="copy-settings"></p>
 <p>点击之后，它会让我们「输入新容器的名称」，我给它起名为 「memos-0.11.2」，因为我估计过段时间又得来升级的，那就每次复制后都填一下当前的版本吧。</p>
 <p>然后我们可以启动这个新的容器，看看运行正不正常，正常的话，就可以删掉旧的容器了。</p>
 <p>我这个容器比较简单，而且网络方面直接用 host，所以不用设置端口。</p>
 <p>但是我发现其它需要设置端口的容器，复制之后，端口会发生变化的。例如我有一个容器的端口是 10086，复制之后，群晖自动给新的容器生成一个随机端口，如 <code>49155</code> ，所以看来，带端口的容器，复制之后，还得修改一下。</p>
-<p><img src="/img/2023/image-20230313190505946.png" alt="port-10086"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230313190505946.png" alt="port-10086"></p>
 <p>但是我们不能直接修改新容器的端口，因为不能两个容器同时使用一个端口。例如我这里的 <code>10086 </code>已经被就容器占用了，新的容器就没法用。虽然直接把旧容器删除了，新容器就可以使用 <code>10086</code> 这个端口，但是现在并不清楚新容器，是否能正常运行，所以不建议删。</p>
 <p>我们可以先修改旧容器的端口，例如改为 <code>10087</code>，然后再修改新容器的。这样新的容器应该就可以运行起来了。</p>
 <p>不过，此时如果你用命令行或者 portainer 查询镜像，应该会发现，多出一个 TAG 为 none 的镜像。</p>
@@ -4156,7 +4156,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect.exe --lint C:\text.md</span><br></pre></td></tr></table></figure>
 
 <p>使用起来很简单，命令名 参数 文件路径，执行后会快速检查文本中的内容。我使用的是一个 markdown 文件，里面的字数有 2 万 3（由 typora 统计的）</p>
-<p><img src="/img/2023/image-20230316204751544.png" alt="autocorrect"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230316204751544.png" alt="autocorrect"></p>
 <p>检测只用了不到 55 毫秒，确实很快。红色的就是我原本的内容，绿色的就是它建议修改后的格式。<code>--lint</code> 只是显示建议而已，不会直接修改文件的。</p>
 <p>感觉还不错：</p>
 <ul>
@@ -4231,7 +4231,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2023/03/14 06:15:43 running apt-proxy </span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Ubuntu mirror http://ftp.sjtu.edu.cn/ubuntu/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Debian mirror http://repo.huaweicloud.com/debian/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest CentOS mirror https://mirrors.aliyun.com/centos/</span><br><span class="line">2023/03/14 06:15:45 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest Alpine mirror http://mirrors.aliyun.com/alpine/</span><br><span class="line">2023/03/14 06:15:45 proxy listening on 0.0.0.0:3142</span><br><span class="line">2023/03/14 06:15:45 Program has been started 🚀</span><br></pre></td></tr></table></figure>
 
 <p>从日志可以看到，它会自动测出速度最快的镜像站。而且此时我们访问 3142 端口，还可以看到 web 界面。</p>
-<p><img src="/img/2023/image-20230314141943091.png" alt="apt-proxy-web"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230314141943091.png" alt="apt-proxy-web"></p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>我运行 apt-proxy 的机器 IP 是 192.168.68.172，所以我可以这样这样来使用它。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># `apt-get update` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true update </span><br><span class="line"># `apt-get install vim -y` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true install vim -y</span><br></pre></td></tr></table></figure>
 
@@ -4380,7 +4380,7 @@ border-radius: 4px;
 <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>先到 <a href="https://github.com/Akegarasu/cocogoat-signin/releases">https://github.com/Akegarasu/cocogoat-signin/releases</a> 下载程序，群晖 x86_64 的下载名字为 <code>cocogoat-signin_linux_amd64.tar.gz</code> 的，这是一个压缩包，可以用电脑解压。</p>
 <p>电脑上我用 Bandizip 是可以打开的，把里面的 <code>cocogoat-signin</code> 解压出来。</p>
 <p>也可以直接把压缩包传到群晖里，然后在 <code>File Station</code> 里面，右键压缩包，「解压缩」，「解压缩至此目录」。我们得到了一个 tar 结尾的压缩包，对这个新的压缩包，右键，「解压缩」，「解压缩至此目录」。就可以把里面的 <code>cocogoat-signin</code> 解压出来。</p>
-<p><img src="/img/2023/d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive.png" alt="d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive.png" alt="d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive"></p>
 <p>我是在 docker 目录下，建立了一个 cocogoat 的目录，程序就放在里面。</p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>要运行它，需要有一个配置文件 <code>config.yml</code></p>
 <p>这个配置文件，如果我们 ssh 连接群晖，然后执行一下程序，就会自动生成的。但是这里考虑到小白用户，我写个不用 ssh 的方法。</p>
@@ -4414,7 +4414,7 @@ border-radius: 4px;
 <p>我们在运行程序之前，设置了变量 <code>TENCENTCLOUD_RUNENV</code> 的值为 <code>SCF</code>，就可以运行完直接退出了。</p>
 <p>现在弄明白了，就可以来设置它每天定时运行了。</p>
 <h3 id="添加定时任务"><a href="#添加定时任务" class="headerlink" title="添加定时任务"></a>添加定时任务</h3><p>打开群晖的「控制面板」，点击「任务计划」，「新增」，「计划的任务」，「用户定义的脚本」</p>
-<p><img src="/img/2023/image-20230320171130893.png" alt="新增-用户定义的脚本"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230320171130893.png" alt="新增-用户定义的脚本"></p>
 <p>常规里面填写任务名，随便都行。计划设置每天几点运行，可以设置 3 点、7点之类的，最好不要设置 0 点运行。重点来到「任务设置」里，我们填写上这样的命令</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat/ &amp;&amp; TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin</span><br></pre></td></tr></table></figure>
 
@@ -4445,25 +4445,25 @@ border-radius: 4px;
 
 <p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p>
 <p>难道要这样每次都来查表？目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p>
-<p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p>
 <p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的英文名称。</p>
 <p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p>
-<p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230321145430371.png" alt="网页字体替换"></p>
 <p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p>
-<p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>
 <p>补充：</p>
 <p>后来又进一步了解了一些。</p>
-<p><img src="/img/2023/font-name.png" alt="font-name"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/font-name.png" alt="font-name"></p>
 <p>打开一个字体的时候，里面第一行显示的「字体名称」，就是可以用在网页 css 中的。</p>
 <p>这样的名称，在设置的字体里面，也是可以看到的。</p>
-<p><img src="/img/2023/LXGW-WenKai-Bold.png" alt="LXGW-WenKai-Bold"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/LXGW-WenKai-Bold.png" alt="LXGW-WenKai-Bold"></p>
 <p>之前 霞骛文楷 全称只显示英文，现有有些已经显示中文了。</p>
-<p><img src="/img/2023/image-20230331153928787.png" alt="image-20230331153928787"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230331153928787.png" alt="image-20230331153928787"></p>
 <p>不过很奇怪，不管是「霞骛文楷」还是「霞骛文楷等宽」，都是只有 light 是显示中文，而且 Regular 和 Bold 都是英文的。</p>
 <p>在 Mac 上面也是这样。</p>
-<p><img src="/img/2023/mac-lxgw-wenkai-bold.webp" alt="mac-lxgw-wenkai-bold"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/mac-lxgw-wenkai-bold.webp" alt="mac-lxgw-wenkai-bold"></p>
 <p>使用 Firefox 的 DevTools，会比 chrome 或者 Edge 多一个「字体」，这个功能很不错，还可以拉动控制条，来调整字体。</p>
-<p><img src="/img/2023/Firefox-devtools-fonts.jpg" alt="Firefox-devtools-fonts"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Firefox-devtools-fonts.jpg" alt="Firefox-devtools-fonts"></p>
 ]]></content>
       <tags>
         <tag>web</tag>
@@ -4474,7 +4474,7 @@ border-radius: 4px;
     <url>/2023/03/mac-command-line-take-photos/</url>
     <content><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p>
 <p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p>
-<p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
 <h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure>
 
@@ -4521,7 +4521,7 @@ border-radius: 4px;
 <p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p>
 <p>接下来介绍我是怎么处理 WebP 图片的。</p>
 <p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p>
-<p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p>
 <p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure>
 
@@ -4532,7 +4532,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure>
 
 <p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p>
-<p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vr.webp" alt="qiyu-vr"></p>
 <p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p>
 <p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p>
 <p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p>
@@ -4540,7 +4540,7 @@ border-radius: 4px;
 
 <p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p>
 <p>WebP 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p>
-<p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
 <p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p>
 <p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p>
 <p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p>
@@ -4694,7 +4694,7 @@ border-radius: 4px;
     <content><![CDATA[<p>感觉这个功能超好用。</p>
 <p>有些命令可能需要很久才能执行完，主要是安装之类的，例如 brew 或者 npm，按下回车之后，都不知道它要多久才能装好，我们可能需要时不时就回来看看。</p>
 <p>而在 iTerm2 里面，我们可以设置命令执行完之后，弹出一条通知。这样一来，我们执行命令后，就可以去干其它事情了，等收到通知再回来就行。</p>
-<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
 <p>想要实现这个功能，需要在顶部菜单里，先点击「iTerm2」，再点击「Install Shell Integration」，意思是安装 shell 集合。</p>
 <p>它会执行这样一条命令</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash</span><br></pre></td></tr></table></figure>
@@ -4702,15 +4702,15 @@ border-radius: 4px;
 <p>安装好后多出这些功能</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You will also have these commands:</span><br><span class="line">imgcat filename</span><br><span class="line">  Displays the image inline.</span><br><span class="line">imgls</span><br><span class="line">  Shows a directory listing with image thumbnails.</span><br><span class="line">it2api</span><br><span class="line">  Command-line utility to manipulate iTerm2.</span><br><span class="line">it2attention start|stop|fireworks</span><br><span class="line">  Gets your attention.</span><br><span class="line">it2check</span><br><span class="line">  Checks if the terminal is iTerm2.</span><br><span class="line">it2copy [filename]</span><br><span class="line">  Copies to the pasteboard.</span><br><span class="line">it2dl filename</span><br><span class="line">  Downloads the specified file, saving it in your Downloads folder.</span><br><span class="line">it2setcolor ...</span><br><span class="line">  Changes individual color settings or loads a color preset.</span><br><span class="line">it2setkeylabel ...</span><br><span class="line">  Changes Touch Bar function key labels.</span><br><span class="line">it2tip</span><br><span class="line">  iTerm2 usage tips</span><br><span class="line">it2ul</span><br><span class="line">  Uploads a file.</span><br><span class="line">it2universion</span><br><span class="line">  Sets the current unicode version.</span><br><span class="line">it2profile</span><br><span class="line">  Change iTerm2 session profile on the fly.</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p>
 <p>然后我们新开一个窗口或者 tab，在菜单里面选择 Edit 、 Marks and Annotations 、 Alerts，打开 Alert on next mark</p>
-<p><img src="/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p>
 <p>开启之后，就可以在右上角看到一个眼睛👁的图标。也可以使用快捷键 <code>cmd + alt + A</code> 来开启。</p>
-<p><img src="/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p>
 <p>之后再执行命令，只要命令完成了，就会弹出一条通知。</p>
-<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
 <p>如果我们选择 「Show Modal Alert Box」，那么会出现这样一个提示窗口</p>
-<p><img src="/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p>
 <p>点击 Reveal 就会跳转到 iTerm2 里面。不过这个应该先执行命令，在设置 Mark 出现眼睛👁。</p>
 ]]></content>
       <tags>
@@ -4733,7 +4733,7 @@ border-radius: 4px;
 <p>这里的 <code>-bool</code> 选项允许您将参数值设置为 <code>TRUE</code> 或 <code>FALSE</code>，以启用或禁用缩略图。</p>
 <h3 id="如何更改截图保存位置？"><a href="#如何更改截图保存位置？" class="headerlink" title="如何更改截图保存位置？"></a>如何更改截图保存位置？</h3><p>默认情况下是保存在「桌面」目录中</p>
 <p>我们可以按快捷键 <code>cmd + shift + 5</code> 来唤出截图界面，在「选项」里可以更改保存位置。</p>
-<p><img src="/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>
 ]]></content>
       <tags>
         <tag>Mac</tag>
@@ -4746,7 +4746,7 @@ border-radius: 4px;
 <p>可以在 shell 里执行 <code>mail</code> 来查看。也可以把 <code>/var/mail</code> 里的文件，直接拉到文本编辑器来查看，例如我直接放到 vscode 来查看。</p>
 <p>由于文件没有后缀名，（我的是我的账号名）所以 vscode 自动检测错，把它识别为 Python 文件。</p>
 <p>可以点击底部来更改，改成 log。</p>
-<p><img src="/img/2023/vscode-log.webp" alt="vscode-log"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vscode-log.webp" alt="vscode-log"></p>
 <p>看完之后，发现也没什么，可以直接把这个文件删除了，这样再打开 shell 就不会有提示了。</p>
 ]]></content>
       <tags>
@@ -4757,10 +4757,10 @@ border-radius: 4px;
     <title>安装 ohmyposh 来美化 powershell</title>
     <url>/2023/04/powershell-ohmyposh/</url>
     <content><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p>
-<p><img src="/img/2023/ohmyposh.png" alt="ohmyposh"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh.png" alt="ohmyposh"></p>
 <p>安装 Oh My Posh</p>
 <p>可以到 Microsoft Store 安装</p>
-<p><img src="/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p>
 <p>或者通过命令行来安装，需要用管理员身份运行。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure>
 
@@ -4771,7 +4771,7 @@ border-radius: 4px;
 <p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p>
 <p>需要输入两次 y，大小写随便。</p>
 <p>装好后可以尝试在终端执行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure>
@@ -4791,10 +4791,10 @@ border-radius: 4px;
 <p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p>
 <p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p>
 <p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p>
-<p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p>
 <p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p>
 <p>然后还需要设置字体，不然这些图标加载不出来。可以到<a href="https://www.nerdfonts.com/">这里</a>下载字体，选择自己喜欢的，下载后是压缩包，解压出来，选中所有字体，右键安装即可。</p>
-<p><img src="/img/2023/win-terminal-font.png" alt="win-terminal-font"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/win-terminal-font.png" alt="win-terminal-font"></p>
 <p>之后到「设置」「默认值」「外观」里面更改字体。</p>
 ]]></content>
       <tags>
@@ -4809,15 +4809,15 @@ border-radius: 4px;
 <p>我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等很久才能看到图标。再加上用久了，有点审美疲劳，所以最近换了个主题，现在速度快了很多。</p>
 <p>改完主题后，我又注意到另一个影响访问速度的因素——图片。</p>
 <p>我博客的图片，都是放在 source&#x2F;img 目录中，按照年份建立目录。</p>
-<p><img src="/img/2023/blog-source-img.jpg" alt="blog-source-img"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/blog-source-img.jpg" alt="blog-source-img"></p>
 <p>我可以通过按大小排序，来查出哪些图片占用的空间比较大。</p>
-<p><img src="/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p>
 <p>现在看到的是我已经优化过的了，下面说说我的优化过程。</p>
 <h3 id="Mac-自带「预览」"><a href="#Mac-自带「预览」" class="headerlink" title="Mac 自带「预览」"></a>Mac 自带「预览」</h3><p>在 Mac 上双击一张图片，会使用自带的「预览」来打开。可以点击「文件」「导出」，选择 JPEG 格式，可以更改它的质量来缩小图片体积。</p>
-<p><img src="/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p>
-<h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="/img/2023/affinity-photo.webp" alt="affinity-photo"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p>
+<h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/affinity-photo.webp" alt="affinity-photo"></p>
 <p>专业的图片处理软件，除非要修改图片内容，不然一般不会选择用它们来压缩图片。</p>
-<h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="/img/2023/ImageOptim.webp" alt="ImageOptim"></p>
+<h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ImageOptim.webp" alt="ImageOptim"></p>
 <p>一个开源的图片优化工具，直接把图片拖进来就行。它只有 <a href="https://imageoptim.com/mac">Mac 版本</a>，在 <a href="https://github.com/ImageOptim/ImageOptim">GitHub</a> 上面有 8.3K star。</p>
 <p>上面我拖了一张图片进来，它处理后，图片大小变成原来的 65.1% 了。这是在我开启微量有损的情况，不开的话，压缩比并不高。</p>
 <p>然后我觉得它有两个缺点：</p>
@@ -4827,11 +4827,11 @@ border-radius: 4px;
 </ul>
 <p>所以我不怎么用它。</p>
 <h3 id="使用-WebP-格式"><a href="#使用-WebP-格式" class="headerlink" title="使用 WebP 格式"></a>使用 WebP 格式</h3><p>之前的<a href="/2023/03/about-webp/">文章</a>我已经介绍过它了，我目前博客新添加的图片，如果体积比较大，我都尽量把它们转为 WebP 格式。它的压缩比超级强。</p>
-<p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vr.webp" alt="qiyu-vr"></p>
 <p>你能想象这样一张分辨率为 5472×3080 的图片，它只有 87KB 吗？</p>
 <p>它可以做到图片很小的情况下，还保持着不错的图片质量，真心不错。</p>
 <p>由于经常转换格式，所以我后来将它弄成一个 APP，图片拖进去就会自动转换为 WebP 格式。</p>
-<p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p>
 <p>感兴趣的可以看<a href="/2023/03/create-mac-app-from-command-line-scripts/">之前的文章</a>。这么一番优化，我目前整个博客的图片，只有 34MB，我手机开数据的情况下访问我的博客，速度方面感觉也还不错。</p>
 ]]></content>
       <tags>
@@ -4863,7 +4863,7 @@ border-radius: 4px;
     <title>更改 Mac 截图快捷键、文件名、文件格式</title>
     <url>/2023/04/mac-screenshot2/</url>
     <content><![CDATA[<h3 id="更改截图默认快捷键"><a href="#更改截图默认快捷键" class="headerlink" title="更改截图默认快捷键"></a>更改截图默认快捷键</h3><p>Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4 区域截图。按 3 颗按键还是有些不方便，对于我这种经常截图的人来说。</p>
-<p><img src="/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p>
 <p>我们可以到「系统偏好设置」「键盘」「快捷键」「截屏」中，更改为自己喜欢的按键，我这边直接把区域截图改为<code>F9</code>。</p>
 <h3 id="更改截图默认文件名"><a href="#更改截图默认文件名" class="headerlink" title="更改截图默认文件名"></a>更改截图默认文件名</h3><p>默认截图后得到的图片名称是这样的 <code>截屏2023-04-02 上午10.58.54.png</code>，如果在「语言与地区」里有勾选 ☑️ 24 小时制，那么是这样的 <code>截屏2023-04-02 11.08.06.png</code></p>
 <p>在英文状态下是 <code>Screen Shot [date] at [time].png</code></p>
@@ -4876,7 +4876,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;powersee-&quot;</span><br></pre></td></tr></table></figure>
 
 <p>之后截图得到的文件名会变成这样的 <code>powersee-2023-04-02 11.08.06.png</code></p>
-<p><img src="/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p>
 <p>如果想改回原来的默认名称，可以用这条命令</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture &quot;include-date&quot; 1; killall SystemUIServer</span><br></pre></td></tr></table></figure>
 
@@ -4893,16 +4893,16 @@ border-radius: 4px;
     <title>Windows 安装 Nu shell 与配置</title>
     <url>/2023/04/windows-install-nushell-and-config/</url>
     <content><![CDATA[<p>使用 nu shell 已经有一段时间，感觉还不错。它最为吸引我的就是，自带历史记录提示，就像 zsh 的 zsh-autosuggestions 插件。</p>
-<p><img src="/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p>
 <p>它的一条普通的 ls 命令，结果也和其它 shell 很不一样。</p>
-<p><img src="/img/2023/nushell-ls.png" alt="nushell-ls"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nushell-ls.png" alt="nushell-ls"></p>
 <p>输出的是一个表格。</p>
 <p>安装可以查看官方文档：<a href="https://www.nushell.sh/zh-CN/book/installation.html">安装 Nu | Nushell</a></p>
 <p>文档一共 6 种语言，中文就是其中一种。</p>
 <p>我是到  <a href="https://github.com/nushell/nushell/releases">GitHub 的 Release 页</a> 下载并解压二进制文件，然后放到 <code>C:\bin\</code> 里面的。接着在「终端」里面添加 nushell。</p>
-<p><img src="/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p>
 <p>如果想让 nushell 作为默认的 shell，可以到「启动」，「默认配置文件」进行更改。</p>
-<p><img src="/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
       <tags>
         <tag>Windows</tag>
@@ -4913,7 +4913,7 @@ border-radius: 4px;
     <title>Nu shell Oh My Posh</title>
     <url>/2023/04/nushell-ohmyposh/</url>
     <content><![CDATA[<p>给 Nu shell 配置上 Oh My Posh，完成后效果如下。</p>
-<p><img src="/img/2023/nu-ohmyposh.webp" alt="nu-ohmyposh"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nu-ohmyposh.webp" alt="nu-ohmyposh"></p>
 <p>之前我已经给 powershell 配置好 ohmyposh 了，现在感觉还是 nu shell 比较好用，所以也来折腾一下。</p>
 <p>官方文档：<a href="https://ohmyposh.dev/docs/installation/prompt">Change your prompt | Oh My Posh</a></p>
 <p>有这些 shell 可以选择：</p>
@@ -4984,20 +4984,20 @@ border-radius: 4px;
     <title>macOS 设置允许「任何来源」</title>
     <url>/2023/04/mac-allow-apps-anywhere/</url>
     <content><![CDATA[<p>最近由于更新系统到 Ventura 13.3，我发现安全性里的「任何来源」又不见了。</p>
-<p><img src="/img/2023/APP-allow1.webp" alt="APP-allow1"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/APP-allow1.webp" alt="APP-allow1"></p>
 <p>于是又得去网上搜开启的命令，这里也顺便记录一下📝</p>
 <p>考虑到以后也许有萌新搜到我这篇文章，这里写详细一点。</p>
 <p>首先点击「启动台」，在顶部的搜索框里面输入「终端」，可以找到一个图标上面写 <code>&gt;_</code> 的 APP</p>
-<p><img src="/img/2023/Mac-terminal.webp" alt="Mac-terminal"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Mac-terminal.webp" alt="Mac-terminal"></p>
 <p>点击打开它，然后复制下面这条命令，粘贴进去</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/2023/terminal-spctl.webp" alt="terminal-spctl"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-spctl.webp" alt="terminal-spctl"></p>
 <p>然后按一下回车键，这时出现 Password:🔑，需要输入自己的用户密码，也就是开机后要进入桌面时的那个密码。</p>
-<p><img src="/img/2023/terminal-spctl-Password.webp" alt="terminal-spctl-Password"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-spctl-Password.webp" alt="terminal-spctl-Password"></p>
 <p>注意输入密码的时候，屏幕上不会显示任何内容的，既不会直接显示你的密码，也不会出现 <code>***</code> 或者 <code>···</code>，只管输入就行，完成后就再按一下回车键。</p>
 <p>然后应该就可以看到出现「任何来源」了。</p>
-<p><img src="/img/2023/APP-allow2.webp" alt="APP-allow2"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/APP-allow2.webp" alt="APP-allow2"></p>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
       <tags>
         <tag>Mac</tag>
@@ -5008,7 +5008,7 @@ border-radius: 4px;
     <url>/2023/04/calibre-6-15-1-ebook-viewer/</url>
     <content><![CDATA[<p>我一直使用 calibre 来打开 epub 和 mobi 文件，我不喜欢 Mac 自带的「图书」APP。</p>
 <p>目前电脑里装的是很久之前的版本了，一直没升级。这次把电脑系统升级到 13.3 之后，发现没法直接用 ebook-viewer 来打开 epub 文件了，选择 calibre 的话，是把书籍导入到 calibre 里面。</p>
-<p><img src="/img/2023/epub-open-method.webp" alt="epub-open-method"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/epub-open-method.webp" alt="epub-open-method"></p>
 <p>于是我打算升级一下，到官网下载时发现，2022 年的时候才支持苹果自研芯片的：<a href="https://calibre-ebook.com/whats-new">https://calibre-ebook.com/whats-new</a></p>
 <blockquote>
 <p>Release: 6.0 [11 Jul, 2022]</p>
@@ -5017,13 +5017,13 @@ border-radius: 4px;
 </ul>
 </blockquote>
 <p>我现在用的是 5.31.1 的版本。</p>
-<p><img src="/img/2023/calibre-5.31.1.webp" alt="calibre-5.31.1"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/calibre-5.31.1.webp" alt="calibre-5.31.1"></p>
 <p>于是到官网下载新的安装包，直接替换就行。这个应用居然要占用接近 800M……</p>
-<p><img src="/img/2023/calibre-6.15.1-need-800MB.jpg" alt="calibre-6.15.1-need-800MB"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/calibre-6.15.1-need-800MB.jpg" alt="calibre-6.15.1-need-800MB"></p>
 <p>之后在「活动监视器」里也可以看到它的种类显示为 Apple 了。之前是显示 Intel 的。</p>
-<p><img src="/img/2023/calibre-Apple.webp" alt="calibre-Apple"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/calibre-Apple.webp" alt="calibre-Apple"></p>
 <p>而且现在 epub 也默认改为用 ebook-viewer 来打开了。</p>
-<p><img src="/img/2023/ebook-viewer.webp" alt="ebook-viewer"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ebook-viewer.webp" alt="ebook-viewer"></p>
 <p>不错，问题解决了。</p>
 ]]></content>
       <tags>
@@ -5042,7 +5042,7 @@ border-radius: 4px;
 <p>过程如下：</p>
 <p>打开 Mac 自带的应用「自动操作」英文名是 automator，选择第三个「快速操作」。然后在左边的「实用工具」里面，找到「运行 Shell 脚本」，将它拖到右边。</p>
 <p>右边我们有很多地方需要调整，可以参考我的设置↓</p>
-<p><img src="/img/2023/automator-webp.webp" alt="automator-webp"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-webp.webp" alt="automator-webp"></p>
 <p>这是脚本内容</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$f</span>&quot;</span></span><br><span class="line">	/opt/homebrew/bin/cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
@@ -5050,7 +5050,7 @@ border-radius: 4px;
 <p>完成之后保存一下即可，接着来到访达里面。</p>
 <p>使用过程如下：</p>
 <p>选中图片，右键「快速操作」，「转换为 WebP」这个名字是我们自己起的。然后旁边就多出一张 webp 格式的图片了。</p>
-<p><img src="/img/2023/automator-quick-webp.gif" alt="automator-quick-webp"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-quick-webp.gif" alt="automator-quick-webp"></p>
 <p>然后根据我的了解，从 macOS 10.15（Catalina）开始，Apple 更改了 Automator 创建的服务的默认位置，将其移动到了右键菜单的「快速操作」下。</p>
 ]]></content>
       <tags>
@@ -5070,7 +5070,7 @@ border-radius: 4px;
 
 <p>感觉还是挺简单的，应该是可以实现的。</p>
 <p>一番研究之后，终于实现了。</p>
-<p><img src="/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p>
 <p>脚本内容</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="variable">$HOME</span>/.zshrc</span><br><span class="line"><span class="comment">#echo $PATH</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$HOME</span>/hexobackup &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">hexo new post <span class="variable">$1</span></span><br></pre></td></tr></table></figure>
 
@@ -5081,13 +5081,13 @@ border-radius: 4px;
 <p>本来到这里就结束了的，不过我后面还是加了些内容，让结果可以通过通知显示出来。</p>
 <p>这里的关键点是设置一个变量，来接收输出结果，然后在显示通知里面，使用这个变量。</p>
 <p>我创建的是「应用程序」，所以可以选择把它保存到自己想放置的地方。</p>
-<p><img src="/img/2023/automator-APP.webp" alt="automator-APP"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-APP.webp" alt="automator-APP"></p>
 <p>之后我把这个 APP 拖到 Dock 栏上面，可以非常快速地打开它。</p>
-<p><img src="/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p>
 <p>点击它之后，就会出现一个文本框，在这里我可以输入博客文章的文件名。不过它这里不能粘贴，只能手动输入。</p>
-<p><img src="/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p>
 <p>当我输入完成后，点击「继续」按钮，就会去执行 shell 脚本。完成之后，会弹出一条通知。</p>
-<p><img src="/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p>
 <p>感觉比较遗憾的地方是，不能粘贴，以及只能按「继续」按钮，而不能用按回车键来代替。</p>
 ]]></content>
       <tags>

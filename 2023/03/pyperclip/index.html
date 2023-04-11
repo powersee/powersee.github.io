@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2023-03-04T08:15:14.593Z" itemprop="dateUpdated">2023-03-04</time>
+    更新 <time datetime="2023-04-11T17:30:48.926Z" itemprop="dateUpdated">2023-04-12</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -60,7 +60,7 @@
 <p>此时我想到之前写的一个，用来下载贴吧图片的脚本。在之前介绍 <a href="/2021/12/about-kcc/">制作 kindle 漫画的文章</a> 里有提到它。</p>
 <p><img src="/img/2021/tieba-img-download.jpg" alt="贴吧图片下载器"></p>
 <p>在 Windows 上我是把它打包成一个图形应用，这样其他人使用它比较方便。但是同样的代码，我在 Mac 上打包后有一些问题，所以我就进行了一些修改。只通过命令行的方式来使用它，设置 alias 别名，我只需要在终端中执行 <code>tieba</code> 就可以启动，然后我需要把贴吧帖子的链接粘贴进去，就可以自动下载图片了。</p>
-<p><img src="/img/2023/image-20230304160034037.png" alt="image-20230304160034037"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230304160034037.png" alt="image-20230304160034037"></p>
 <p>如果不需要下载就按回车直接退出程序。</p>
 <p>现在为了节省粘贴这一步，我打算把 <code>pbpaste</code> 这个 Mac 命令整合进去。让程序运行时，自动读取剪贴板的内容，如果里面包含 tieba 这个词，就询问，例如这样</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ tieba</span><br><span class="line">您当前剪贴板的内容为： https://tieba.baidu.com/p/8288904408?frwh=index</span><br><span class="line">是否开始下载？是的话请按回车键，否则请输入新的链接。（退出输入 n）</span><br></pre></td></tr></table></figure>
