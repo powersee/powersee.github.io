@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-10T16:24:01.963Z</updated>
+  <updated>2023-04-11T16:20:26.048Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自动操作 automator 出现输入框后再运行脚本</title>
+    <link href="https://powersee.github.io/2023/04/automator-input-box/"/>
+    <id>https://powersee.github.io/2023/04/automator-input-box/</id>
+    <published>2023-04-11T16:13:21.000Z</published>
+    <updated>2023-04-11T16:20:26.048Z</updated>
+    
+    <content type="html"><![CDATA[<p>由于我每天都写一篇博客文章，每次都需要我打开 vscode，然后在终端里面输入</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post title...</span><br></pre></td></tr></table></figure><p>我在想，能否使用 automator 让我这个过程变得更加流畅一些。</p><p>我的想法是，在 Mac 右上角，放一个图标，我点击图标后，弹出一个文本框，然后我输入文章名字，例如今天这篇的名字是 <code>automator-input-box</code></p><p>输入完成之后，后台就自动执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post automator-input-box</span><br></pre></td></tr></table></figure><p>感觉还是挺简单的，应该是可以实现的。</p><p>一番研究之后，终于实现了。</p><p><img src="/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p><p>脚本内容</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="variable">$HOME</span>/.zshrc</span><br><span class="line"><span class="comment">#echo $PATH</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$HOME</span>/hexobackup &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">hexo new post <span class="variable">$1</span></span><br></pre></td></tr></table></figure><p>首先放一个 「获得指定的文本」在最上面，然后下面是「运行Shell脚本」</p><p>第一行加载 <code>zsh</code> 的配置，是为了获取到 <code>node</code> 和 <code>hexo</code> 的环境变量，如果不加这一行，那么脚本运行的时候，它是找不到 <code>hexo</code> 的。当然我们也可以写出 <code>hexo</code> 的完整路径，例如 <code>/opt/homebrew/.../hexo</code> 之类，但是我发现这样会提示找不到 <code>node</code>，又得加 <code>node</code> 的环境变量。所以还是直接加载 <code>zsh</code> 的配置文件比较方便。</p><p>之后进入 <code>hexo</code> 博客所在的位置，我的是放在用户目录下的 <code>hexobackup</code> 中，所以可以写成 <code>$HOME/hexobackup</code></p><p>进入到博客目录之后，再执行命令创建文章。</p><p>本来到这里就结束了的，不过我后面还是加了些内容，让结果可以通过通知显示出来。</p><p>这里的关键点是设置一个变量，来接收输出结果，然后在显示通知里面，使用这个变量。</p><p>我创建的是「应用程序」，所以可以选择把它保存到自己想放置的地方。</p><p><img src="/img/2023/automator-APP.webp" alt="automator-APP"></p><p>之后我把这个 APP 拖到 Dock 栏上面，可以非常快速地打开它。</p><p><img src="/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p><p>点击它之后，就会出现一个文本框，在这里我可以输入博客文章的文件名。不过它这里不能粘贴，只能手动输入。</p><p><img src="/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p><p>当我输入完成后，点击「继续」按钮，就会去执行 shell 脚本。完成之后，会弹出一条通知。</p><p><img src="/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p><p>感觉比较遗憾的地方是，不能粘贴，以及只能按「继续」按钮，而不能用按回车键来代替。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;由于我每天都写一篇博客文章，每次都需要我打开 vscode，然后在终端里面输入&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo </summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>自动操作 automator 快速将图片转为 webp</title>
@@ -465,30 +488,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CSS 中文字体名称</title>
-    <link href="https://powersee.github.io/2023/03/css-chinese-font/"/>
-    <id>https://powersee.github.io/2023/03/css-chinese-font/</id>
-    <published>2023-03-22T16:16:31.000Z</published>
-    <updated>2023-04-09T16:11:27.094Z</updated>
-    
-    <content type="html"><![CDATA[<p>我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。看起来很不舒服。</p><p>有时候我会把它们的字号调大一点</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-size</span>: <span class="number">1.3em</span>;</span><br></pre></td></tr></table></figure><p>有时会直接更改字体</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>在这过程中，我发现怎么有些中文字体，名称打上去后并不生效。例如我写 <code>霞骛文楷</code> 是不生效的，如果我写 <code>LXGW WenKai</code> 就可以生效。</p><p>后来我了解到这个 <a href="https://www.zhangxinxu.com/study/201703/font-family-chinese-english.html">CSS font-family中文字体对应的英文名称整理表 </a></p><p>这里面有些字体在「字体应用」里，是只能用英文名的，能直接在 css 里面用中文名的比较少。</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font-family</span>: <span class="string">&#x27;思源黑体&#x27;</span>, <span class="string">&#x27;思源宋体&#x27;</span>, <span class="string">&#x27;文泉驿微米黑&#x27;</span>, <span class="string">&#x27;楷体&#x27;</span>, <span class="string">&#x27;宋体&#x27;</span>, <span class="string">&#x27;黑体&#x27;</span></span><br></pre></td></tr></table></figure><p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p><p>难道要这样每次都来查表？目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p><p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p><p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的英文名称。</p><p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p><p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p><p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p><p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p><p>补充：</p><p>后来又进一步了解了一些。</p><p><img src="/img/2023/font-name.png" alt="font-name"></p><p>打开一个字体的时候，里面第一行显示的「字体名称」，就是可以用在网页 css 中的。</p><p>这样的名称，在设置的字体里面，也是可以看到的。</p><p><img src="/img/2023/LXGW-WenKai-Bold.png" alt="LXGW-WenKai-Bold"></p><p>之前 霞骛文楷 全称只显示英文，现有有些已经显示中文了。</p><p><img src="/img/2023/image-20230331153928787.png" alt="image-20230331153928787"></p><p>不过很奇怪，不管是「霞骛文楷」还是「霞骛文楷等宽」，都是只有 light 是显示中文，而且 Regular 和 Bold 都是英文的。</p><p>在 Mac 上面也是这样。</p><p><img src="/img/2023/mac-lxgw-wenkai-bold.webp" alt="mac-lxgw-wenkai-bold"></p><p>使用 Firefox 的 DevTools，会比 chrome 或者 Edge 多一个「字体」，这个功能很不错，还可以拉动控制条，来调整字体。</p><p><img src="/img/2023/Firefox-devtools-fonts.jpg" alt="Firefox-devtools-fonts"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我平时挺喜欢在浏览器里面，按 F12 打开开发者工具，然后修改网页样式的。特别是有些网站，老是喜欢用宋体，作为文章内容的字体，字号还特别小。看起来很不舒服。&lt;/p&gt;
-&lt;p&gt;有时候我会把它们的字号调大一点&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="web" scheme="https://powersee.github.io/tags/web/"/>
     
   </entry>
   

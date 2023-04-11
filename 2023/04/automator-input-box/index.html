@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>自动操作 automator 出现输入框后再运行脚本</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <img src="/./img/powersee.jpeg">
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    自动操作 automator 出现输入框后再运行脚本
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-11T16:13:21.000Z" itemprop="datePublished">2023-04-12</time>
+      </li>
+      <li>
+        
+    更新 <time datetime="2023-04-11T16:20:26.048Z" itemprop="dateUpdated">2023-04-12</time>
+
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>由于我每天都写一篇博客文章，每次都需要我打开 vscode，然后在终端里面输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post title...</span><br></pre></td></tr></table></figure>
+
+<p>我在想，能否使用 automator 让我这个过程变得更加流畅一些。</p>
+<p>我的想法是，在 Mac 右上角，放一个图标，我点击图标后，弹出一个文本框，然后我输入文章名字，例如今天这篇的名字是 <code>automator-input-box</code></p>
+<p>输入完成之后，后台就自动执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post automator-input-box</span><br></pre></td></tr></table></figure>
+
+<p>感觉还是挺简单的，应该是可以实现的。</p>
+<p>一番研究之后，终于实现了。</p>
+<p><img src="/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p>
+<p>脚本内容</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="variable">$HOME</span>/.zshrc</span><br><span class="line"><span class="comment">#echo $PATH</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$HOME</span>/hexobackup &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">hexo new post <span class="variable">$1</span></span><br></pre></td></tr></table></figure>
+
+<p>首先放一个 「获得指定的文本」在最上面，然后下面是「运行Shell脚本」</p>
+<p>第一行加载 <code>zsh</code> 的配置，是为了获取到 <code>node</code> 和 <code>hexo</code> 的环境变量，如果不加这一行，那么脚本运行的时候，它是找不到 <code>hexo</code> 的。当然我们也可以写出 <code>hexo</code> 的完整路径，例如 <code>/opt/homebrew/.../hexo</code> 之类，但是我发现这样会提示找不到 <code>node</code>，又得加 <code>node</code> 的环境变量。所以还是直接加载 <code>zsh</code> 的配置文件比较方便。</p>
+<p>之后进入 <code>hexo</code> 博客所在的位置，我的是放在用户目录下的 <code>hexobackup</code> 中，所以可以写成 <code>$HOME/hexobackup</code></p>
+<p>进入到博客目录之后，再执行命令创建文章。</p>
+<p>本来到这里就结束了的，不过我后面还是加了些内容，让结果可以通过通知显示出来。</p>
+<p>这里的关键点是设置一个变量，来接收输出结果，然后在显示通知里面，使用这个变量。</p>
+<p>我创建的是「应用程序」，所以可以选择把它保存到自己想放置的地方。</p>
+<p><img src="/img/2023/automator-APP.webp" alt="automator-APP"></p>
+<p>之后我把这个 APP 拖到 Dock 栏上面，可以非常快速地打开它。</p>
+<p><img src="/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p>
+<p>点击它之后，就会出现一个文本框，在这里我可以输入博客文章的文件名。不过它这里不能粘贴，只能手动输入。</p>
+<p><img src="/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p>
+<p>当我输入完成后，点击「继续」按钮，就会去执行 shell 脚本。完成之后，会弹出一条通知。</p>
+<p><img src="/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p>
+<p>感觉比较遗憾的地方是，不能粘贴，以及只能按「继续」按钮，而不能用按回车键来代替。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = false;
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
