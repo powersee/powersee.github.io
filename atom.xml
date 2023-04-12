@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-11T17:30:48.926Z</updated>
+  <updated>2023-04-12T16:06:20.348Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何去掉 iPhone iPad 上的越狱文件？</title>
+    <link href="https://powersee.github.io/2023/04/iphone-ipad-remove-jailbreak/"/>
+    <id>https://powersee.github.io/2023/04/iphone-ipad-remove-jailbreak/</id>
+    <published>2023-04-12T16:05:27.000Z</published>
+    <updated>2023-04-12T16:06:20.348Z</updated>
+    
+    <content type="html"><![CDATA[<p>我有一台 iPad，几年前就将它越狱了。由于越狱之后，就没法直接更新系统，所以目前还停留在 13.6.1</p><p><img src="/img/2023/iPad-13.6.1.jpg" alt="iPad-13.6.1"></p><p>现在提示可以更新的是 iPadOS 16.4.1，如果我直接点击升级，很可能待会就变砖了。</p><p>所以我开始了解怎么才能升级这台，已经越狱了的 iPad。我猜可能得进入 DFU 模式，然后重新刷一个干净的系统进去。</p><p>不过了解后发现，并不用这么麻烦，只需要先把系统的越狱去掉就行。</p><p>先在电脑上使用 checkra1n 让机器处于越狱状态，因为我们需要在设备里打开 checkra1n 这个 app。</p><p>官网：<a href="https://checkra.in/">checkra1n</a></p><p><img src="/img/2023/checkra1n-v-0.12.4.webp" alt="checkra1n-v-0.12.4"></p><p>还是熟悉的操作，按照说明进入 DUF 模式，之后机器重启，然后点击桌面的 checkra1n 这个 app，再点击红色的「Restore System」来恢复系统即可。</p><p><img src="/img/2023/iPad-checkra1n.png" alt="iPad-checkra1n"></p><p>然后机器会重启，并且删除越狱相关的文件。例如重启后桌面就没有 Cydia 了。</p><p>此时就可以到系统里面升级了，经过漫长地等待，我把 iPad 升级到了 16.4.1</p><p><img src="/img/2023/iPad-16.4.1.jpg" alt="iPad-16.4.1"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我有一台 iPad，几年前就将它越狱了。由于越狱之后，就没法直接更新系统，所以目前还停留在 13.6.1&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/iPad-13.6.1.jpg&quot; alt=&quot;iPad-13.6.1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;现在提示可以更新的是 iPa</summary>
+      
+    
+    
+    
+    
+    <category term="iOS" scheme="https://powersee.github.io/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>自动操作 automator 出现输入框后再运行脚本</title>
@@ -454,30 +478,6 @@
       
     <summary type="html">&lt;p&gt;WebP 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
 &lt;p&gt;所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 使用命令行进行拍照</title>
-    <link href="https://powersee.github.io/2023/03/mac-command-line-take-photos/"/>
-    <id>https://powersee.github.io/2023/03/mac-command-line-take-photos/</id>
-    <published>2023-03-24T02:23:09.000Z</published>
-    <updated>2023-04-11T17:30:48.968Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p><p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure><p>装好之后，直接执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap</span><br></pre></td></tr></table></figure><p>就可以生成一张图片，名为 <code>snapshot.jpg</code>，保存在当前目录下。</p><p>参考：<a href="https://davidwalsh.name/mac-camera">Access Mac Camera by Command Line (davidwalsh.name)</a></p><h2 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -h</span><br><span class="line">USAGE: imagesnap [options] [filename-or-dir]</span><br><span class="line">Version: 0.2.16</span><br><span class="line">Captures an image from a video device and saves it in a file.</span><br><span class="line">If no device is specified, the system default will be used.</span><br><span class="line">If no filename is specfied, snapshot.jpg will be used.</span><br><span class="line">If timelapse is used, the filename argument can be a directory where files will be saved.</span><br><span class="line">JPEG is the only supported output type.</span><br><span class="line">  -h          This help message</span><br><span class="line">  -v          Verbose mode</span><br><span class="line">  -l          List available video devices</span><br><span class="line">  -t x.xx     Take a picture every x.xx seconds</span><br><span class="line">  -n num      Limit to &lt;num&gt; snapshots in -t timelapse mode</span><br><span class="line">  -q          Quiet mode. Do not output any text</span><br><span class="line">  -w x.xx     Warmup. Delay snapshot x.xx seconds after turning on camera (default 3sec)</span><br><span class="line">  -d device   Use named video device</span><br></pre></td></tr></table></figure><p>保存的图片命名为 powersee.jpg，可以这么写</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap powersee.jpg</span><br></pre></td></tr></table></figure><h2 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h2><p>不加任何参数的情况下，默认是延迟 3 秒，我想它命令执行时立即拍</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -w 0.1</span><br></pre></td></tr></table></figure><p>使用 0.01 也可以，0.001 都行。</p><p>不过这样使用会有问题，因为摄像头如果发现没有程序在使用它，它会进入休眠状态，在有些设备上面的表现，就是摄像头上面的灯会熄灭。</p><p>如果我们在摄像头休眠状态下，使用 -w 0.1 来拍照，那么得到的是一张全黑的图片。因为它还没有准备好，所以程序才设置默认 3 秒延迟。</p><p>如果我们想快一点，那么延迟一秒应该就够了。那么 0.1、0.01 在什么情况下可以使用呢？在摄像头正在使用的情况下，例如 OBS 开着时。</p><h2 id="其它参数"><a href="#其它参数" class="headerlink" title="其它参数"></a>其它参数</h2><p><code>-t</code> 参数可以用来连续拍照，例如每隔三秒拍一张。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -t 3</span><br><span class="line">Capturing image from device &quot;PC-W3 Camera&quot;...Saving images to .</span><br><span class="line">./snapshot-00001.jpg</span><br><span class="line">./snapshot-00002.jpg</span><br><span class="line">./snapshot-00003.jpg</span><br><span class="line">./snapshot-00004.jpg</span><br><span class="line">./snapshot-00005.jpg</span><br></pre></td></tr></table></figure><p>使用 <code>-l</code> 可以列出所有摄像头。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ imagesnap -l</span><br><span class="line">Video Devices:</span><br><span class="line">=&gt; USB2.0 Camera #2</span><br><span class="line">=&gt; PC-W3 Camera</span><br></pre></td></tr></table></figure><p>当电脑有多个摄像头时，可以用 <code>-d</code> 来指定要使用哪一个。如果不指定，它会使用第一个。注意上面这两个，它们的名称是 <code>USB2.0</code> 和 <code>PC-W3</code> ，使用如下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3</span><br><span class="line">#或者</span><br><span class="line">imagesnap -d &quot;PC-W3 Camera&quot;</span><br></pre></td></tr></table></figure><h2 id="综合使用"><a href="#综合使用" class="headerlink" title="综合使用"></a>综合使用</h2><p>我想要，每隔 5 秒拍一张，一共拍一百张，然后终端不要输出信息，保持安静就好，拍好的图片保存到 Powersee 目录中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">imagesnap -d PC-W3 -w 1 -q -t 5 -n 100 Powersee</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。&lt;/p&gt;
-&lt;p&gt;摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。&lt;/p&gt;
-&lt;p&gt;&lt;im</summary>
       
     
     
