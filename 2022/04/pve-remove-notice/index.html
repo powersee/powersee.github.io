@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-04-09T13:48:21.063Z" itemprop="dateUpdated">2022-04-09</time>
+    更新 <time datetime="2023-04-12T03:00:48.044Z" itemprop="dateUpdated">2023-04-12</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -57,7 +57,7 @@
       <div class="content">
         
         <p>pve 每次登录时，都会弹出一个提示</p>
-<p><img src="/img/2022/pve-subscription-notice.jpg"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/pve-subscription-notice.jpg"></p>
 <p>看着挺烦的，如何去掉它呢？网上一搜很容易就找到解决方案，这里记录一下。我目前使用的版本是 7.1-7</p>
 <p>参考文章：<a target="_blank" rel="noopener" href="https://johnscs.com/remove-proxmox51-subscription-notice/">Remove Proxmox Subscription Notice (Tested to 7.1-10) | John’s Computer Services (johnscs.com)</a></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sed -Ezi.bak &quot;s/(Ext.Msg.show\(\&#123;\s+title: gettext\(&#x27;No valid sub)/void\(\&#123; \/\/\1/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js</span><br></pre></td></tr></table></figure>
@@ -152,7 +152,9 @@
     }
     console.log('%c' + o, textStyle);
   });
-}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+// js 也放到 腾讯云 cos
+}(consoleConfig));</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
 
   <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
 </body>

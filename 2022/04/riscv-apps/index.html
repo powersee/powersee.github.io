@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-05-16T11:39:55.344Z" itemprop="dateUpdated">2022-05-16</time>
+    更新 <time datetime="2023-04-12T03:00:48.044Z" itemprop="dateUpdated">2023-04-12</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -62,12 +62,12 @@
 <p>首先 BT 下载软件 transmission 和 qbittorrent 在这上面想要安装都非常简单，直接用 dnf 就行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dnf install transmission-daemon</span><br><span class="line">dnf install qbittorrent-nox</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/2022/image-20220412155348270.png" alt="image-20220412155348270"></p>
-<p><img src="/img/2022/image-20220412155459647.png" alt="image-20220412155459647"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412155348270.png" alt="image-20220412155348270"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412155459647.png" alt="image-20220412155459647"></p>
 <p>samba 也可以直接用 dnf 安装</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dnf install samba</span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/2022/image-20220412160053966.png" alt="image-20220412160053966"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412160053966.png" alt="image-20220412160053966"></p>
 <p>这种是比较简单的，这里就不多细讲了。</p>
 <p>像有些开源软件，它是托管在 GitHub 上面的，这类软件，我们可以到它的 GitHub release 里面，下载 riscv 架构的可执行文件。这里举两个例子</p>
 <h4 id="syncthing"><a href="#syncthing" class="headerlink" title="syncthing"></a>syncthing</h4><p>这是一个多平台同步软件，之前有一段时间，我经常使用它将我手机里的照片、视频，同步到电脑上面。</p>
@@ -91,11 +91,11 @@
 
 <p>找到 <code>&lt;address&gt;127.0.0.1:8384&lt;/address&gt;</code> 这一行，改为 <code>&lt;address&gt;0.0.0.0:8384&lt;/address&gt;</code> ，再次输入 <code>./syncthing</code> 启动软件</p>
 <p>此时就可以用电脑的浏览器来访问运行在 visionfive 上面的 syncthing 了。</p>
-<p><img src="/img/2022/image-20220412162500139.png" alt="image-20220412162500139"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412162500139.png" alt="image-20220412162500139"></p>
 <h4 id="miniserve"><a href="#miniserve" class="headerlink" title="miniserve"></a>miniserve</h4><p>这个软件是我个人非常喜欢的文件展示应用，它的主要功能就是将某个文件夹通过 web 的方式共享出来，但是功能远不止于此。它还是支持上传功能，以及添加用户名密码验证，所以也可以把它当一个简易网盘来使用。</p>
 <p>项目：<a target="_blank" rel="noopener" href="https://github.com/svenstaro/miniserve">https://github.com/svenstaro/miniserve</a></p>
 <p>安装方法：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/svenstaro/miniserve/releases/download/v0.19.4/miniserve-v0.19.4-riscv64gc-unknown-linux-gnu</span><br><span class="line">mv miniserve-* miniserve</span><br><span class="line">chmod +x miniserve</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">wget https://github.com/svenstaro/miniserve/releases/download/v0.19.4/miniserve-v0.19.4-riscv64gc-unknown-linux-gnu</span><br><span class="line"><span class="built_in">mv</span> miniserve-* miniserve</span><br><span class="line"><span class="built_in">chmod</span> +x miniserve</span><br></pre></td></tr></table></figure>
 
 <p>使用：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./miniserve</span><br></pre></td></tr></table></figure>
@@ -105,7 +105,7 @@
 <p>示例：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜ ./miniserve -u -p 9527 /tmp/test</span><br><span class="line">miniserve v0.19.3</span><br><span class="line">Bound to [::]:9527, 0.0.0.0:9527</span><br><span class="line">Serving path /tmp/test</span><br><span class="line">Available at (non-exhaustive list):</span><br><span class="line">    http://127.0.0.1:9527</span><br><span class="line">    http://192.168.68.178:9527</span><br><span class="line">    http://[::1]:9527</span><br><span class="line"></span><br><span class="line">Quit by pressing CTRL-C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="/img/2022/image-20220412163658298.png" alt="image-20220412163658298"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412163658298.png" alt="image-20220412163658298"></p>
 <h3 id="自行编译"><a href="#自行编译" class="headerlink" title="自行编译"></a>自行编译</h3><p>上面讲到的 syncthing 和 miniserve，它们的 release 里都有提供 riscv 的可执行文件，所以我们使用起来还算是比较容易。</p>
 <p>但这类还是比较少数的，其它开源软件大多数目前都是没有提供 riscv 版的，所以如果我们想要使用的话，就需要自行编译。</p>
 <p>先来一个简单的——<a target="_blank" rel="noopener" href="https://github.com/zerotier/ZeroTierOne">zerotier</a></p>
@@ -219,7 +219,9 @@
     }
     console.log('%c' + o, textStyle);
   });
-}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+// js 也放到 腾讯云 cos
+}(consoleConfig));</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
 
   <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
 </body>

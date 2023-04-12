@@ -44,7 +44,7 @@
       </li>
       <li>
         
-    更新 <time datetime="2022-01-18T03:19:05.461Z" itemprop="dateUpdated">2022-01-18</time>
+    更新 <time datetime="2023-04-12T03:00:48.044Z" itemprop="dateUpdated">2023-04-12</time>
 
       </li>
       <li id="busuanzi_container_page_pv">
@@ -62,18 +62,18 @@
 <p>因为不知道编译好的固件，刷入后会不会出问题，为了避免待会完全变砖，无法挽回。所以先研究一下怎么 ttl 串口连接。</p>
 <p>首先需要拆机，带二维码的为背面，沿着缝隙撬开，有三颗螺丝，拧开后再撬正面的外壳。</p>
 <p>主板上面有三个金属接触点，分别是 RXD, TXD, GND</p>
-<p><img src="/img/2022/Snipaste_22-01-17_22-14-57.jpg" alt="主板"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/Snipaste_22-01-17_22-14-57.jpg" alt="主板"></p>
 <p>一开始我拿杜邦线将它与 CH340G 模块进行连接（GND–GND, TX–RX, RX–TX），我是直接用手按着，然而我还需要接通电源以及操控鼠标，所以一直没法按稳。</p>
 <p>没办法，还是拿出了电烙铁，焊点锡上去吧。结果成了这样（其实也没多牢固，不过比用手按着好很多了）</p>
-<p><img src="/img/2022/Snipaste_22-01-17_22-18-01.jpg" alt="焊锡好"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/Snipaste_22-01-17_22-18-01.jpg" alt="焊锡好"></p>
 <p>之后连接好模块，电脑上可以使用 putty 或者 xshell 来进行串口调试。由于我之前以及刷好 breed 进去了，所以给路由器通电，然后在几秒内按回车键，就可以进入 breed，在浏览器可以通过 <code>192.168.1.1</code> 来访问。</p>
 <p>如果不按回车键的话，就会启动闪存中的系统。然后我就发现了，原来我之前刷进去的 openwrt 固件，是可以启动的</p>
-<p><img src="/img/2022/2022-01-17_19-04-24.jpg" alt="2022-01-17_19-04-24"></p>
-<p><img src="/img/2022/2022-01-17_19-10-16.jpg" alt="2022-01-17_19-10-16"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-01-17_19-04-24.jpg" alt="2022-01-17_19-04-24"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-01-17_19-10-16.jpg" alt="2022-01-17_19-10-16"></p>
 <p>通过 ttl 我才知道的，不过它的 web 服务和 wifi 都没有开启，系统能启动成功也没什么用。</p>
 <p>那么 ttl 连接没问题，就可以来折腾看看了。于是我将 @<strong>大电视姬</strong>  发过来的固件，在 breed 中刷入路由器。</p>
 <p>之后路由器自动重启，成功了。</p>
-<p><img src="/img/2022/2022-01-17_20-06-28.jpg" alt="2022-01-17_20-06-28"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-01-17_20-06-28.jpg" alt="2022-01-17_20-06-28"></p>
 <p>然后，索然无味……就算刷机成功了，又怎样呢？我又不会去使用它，家里面基本所有路由器都比它强，没什么意思。</p>
 <p>固件放到网盘和下载站里，在【路由器】【品胜路由器】中，再次感谢 @<strong>大电视姬</strong></p>
 <p>网盘：<a target="_blank" rel="noopener" href="http://veger.ysepan.com/">http://veger.ysepan.com/</a></p>
@@ -158,7 +158,9 @@
     }
     console.log('%c' + o, textStyle);
   });
-}(consoleConfig));</script><script type="text/javascript" src="/./js/main.js"></script>
+
+// js 也放到 腾讯云 cos
+}(consoleConfig));</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
 
   <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
 </body>
