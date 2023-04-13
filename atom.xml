@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-12T16:06:20.348Z</updated>
+  <updated>2023-04-13T16:05:41.407Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何升级 macOS 到特定版本</title>
+    <link href="https://powersee.github.io/2023/04/macos-update-to-specific-version/"/>
+    <id>https://powersee.github.io/2023/04/macos-update-to-specific-version/</id>
+    <published>2023-04-13T16:03:06.000Z</published>
+    <updated>2023-04-13T16:05:41.407Z</updated>
+    
+    <content type="html"><![CDATA[<p>直接在系统偏好设置里，点击「软件更新」的话，会检查当前最新的系统版本。例如我现在显示的是 Ventura。</p><p><img src="/img/2023/macOS-Monterey-Software-Update.webp" alt="macOS-Monterey-Software-Update"></p><p>而我现在的系统版本还是 Big Sur。</p><p>我其实不想更新的，所以我之前，是把「高级」里面的所有勾都取消掉，这样才可以保持这一年多来，没有任何系统升级提示。</p><p><img src="/img/2023/uncheck-macos-update.webp" alt="uncheck-macos-update"></p><p>但是刚才我点击进来了，它就自动检查更新，所以现在不更新的话，会有一个红色数字 1 在图标上。噢，不把它弄掉的话，我会挺别扭的。</p><p>我尝试看看升级到 11 Big Sur 的最新版，11.7.5，看看怎么样。</p><p><img src="/img/2023/macOS-Big-Sur-11.7.5.jpg" alt="macOS-Big-Sur-11.7.5"></p><p>升级是成功了，但是更新提示依然还在。</p><p>这时我了解到 13 版本，它的系统设置，变得和 iPad 上一样了，感觉不怎么喜欢，不知道我能否选择，只升级到 12 就行？</p><p>于是我查找看看 Mac 能否升级到特定版本。</p><p><a href="https://support.apple.com/zh-cn/HT211683">如何下载 macOS - 官方 Apple 支持 (中国)</a></p><p>直接到苹果官网，可以看到各个版本的系统，点击后跳转到 APP store。</p><p><img src="/img/2023/macOS-Monterey-app-store.webp" alt="macOS-Monterey-app-store"></p><p>商店里能下载的版本还挺多的。</p><p><a href="macappstores://apps.apple.com/app/macos-ventura/id1638787999?mt=12">Ventura 13</a></p><p><a href="macappstores://apps.apple.com/app/macos-monterey/id1576738294?mt=12">Monterey 12</a></p><p><a href="macappstores://apps.apple.com/app/macos-big-sur/id1526878132?mt=12">Big Sur 11</a></p><p><a href="macappstores://apps.apple.com/app/macos-catalina/id1466841314?mt=12">Catalina 10.15</a></p><p><a href="macappstores://apps.apple.com/app/macos-mojave/id1398502828?mt=12">Mojave 10.14</a></p><p><a href="macappstores://apps.apple.com/app/macos-high-sierra/id1246284741?mt=12">High Sierra 10.13</a></p><p>虽然知道怎么选择特定版本了，但是我在软件更新里面，已经下载好 Ventura 了。唉，那就升级看看吧，希望一切顺利。</p><p><img src="/img/2023/download-Ventura.webp" alt="download-Ventura"></p><p>等待了一段时间，升级成功了。升级后自动换了张默认壁纸，「系统偏好设置」也改名为「系统设置」了。</p><p><img src="/img/2023/system-setting.webp" alt="system-setting"></p><p>升级到 Ventura 13 居然我刚才从 Big Sur 11.6 升级到 11.7.5 速度还快。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;直接在系统偏好设置里，点击「软件更新」的话，会检查当前最新的系统版本。例如我现在显示的是 Ventura。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/macOS-Monterey-Software-Update.webp&quot; alt=&quot;macOS-Monterey</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>如何去掉 iPhone iPad 上的越狱文件？</title>
@@ -455,29 +478,6 @@
 &lt;p&gt;但是如果坏了，蓝牙应该也没法用才对。现在蓝牙是可以使用的。&lt;/p&gt;
 &lt;p&gt;于是我拔掉无线网卡，开机，蓝牙也没了。&lt;/p&gt;
 &lt;p&gt;再插上，蓝牙回来了，但是依然没有 WiF</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>省流好助手，WebP 格式是真的强👍🏻</title>
-    <link href="https://powersee.github.io/2023/03/about-webp/"/>
-    <id>https://powersee.github.io/2023/03/about-webp/</id>
-    <published>2023-03-24T16:23:32.000Z</published>
-    <updated>2023-04-11T17:30:48.954Z</updated>
-    
-    <content type="html"><![CDATA[<p>WebP 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。</p><p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p><p>接下来介绍我是怎么处理 WebP 图片的。</p><p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p><p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure><p>如果我把它压缩为 WebP 格式（我电脑已经装好了 cwebp）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ cwebp DSC00097.JPG -o vr.webp</span><br><span class="line">Saving file &#x27;vr.webp&#x27;</span><br><span class="line">File:      DSC00097.JPG</span><br><span class="line">Dimension: 5472 x 3080</span><br><span class="line">Output:    89162 bytes Y-U-V-All-PSNR 47.24 54.85 53.47   48.58 dB</span><br><span class="line">           (0.04 bpp)</span><br><span class="line">block count:  intra4:      12209  (18.50%)</span><br><span class="line">              intra16:     53797  (81.50%)</span><br><span class="line">              skipped:     44832  (67.92%)</span><br><span class="line">bytes used:  header:            171  (0.2%)</span><br><span class="line">             mode-partition:  41743  (46.8%)</span><br><span class="line"> Residuals bytes  |segment 1|segment 2|segment 3|segment 4|  total</span><br><span class="line">    macroblocks:  |       0%|       1%|       2%|      98%|   66006</span><br><span class="line">      quantizer:  |      36 |      36 |      34 |      25 |</span><br><span class="line">   filter level:  |      11 |       9 |      36 |      33 |</span><br></pre></td></tr></table></figure><p>执行过程中会输出这些信息。完成后我们再来看看压缩后的图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure><p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vr.webp" alt="qiyu-vr"></p><p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p><p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p><p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">webp</span></span>() &#123;</span><br><span class="line">  cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p><p>WebP 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p><p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p><p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p><p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p><p>其它参数：</p><p><code>-quiet</code> 不打印任何内容</p><p><code>-short</code> 仅输出文件大小和 PSNR</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cwebp DSC00097.JPG -o t.webp -short</span><br><span class="line">  89162 48.58</span><br></pre></td></tr></table></figure><p>官方文档：<a href="https://developers.google.com/speed/webp/docs/cwebp?hl=zh-cn">cwebp  | WebP  | Google Developers</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;WebP 是 Google 推出的图片格式，优势是图片体积小。在博客中使用 WebP 格式，可以使加载速度更快。兼容性方面我觉得应该不用怎么担心了，毕竟现在 Safari 都支持了。&lt;/p&gt;
-&lt;p&gt;所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格</summary>
       
     
     
