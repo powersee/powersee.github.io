@@ -5098,18 +5098,18 @@ border-radius: 4px;
     <title>如何去掉 iPhone iPad 上的越狱文件？</title>
     <url>/2023/04/iphone-ipad-remove-jailbreak/</url>
     <content><![CDATA[<p>我有一台 iPad，几年前就将它越狱了。由于越狱之后，就没法直接更新系统，所以目前还停留在 13.6.1</p>
-<p><img src="/img/2023/iPad-13.6.1.jpg" alt="iPad-13.6.1"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iPad-13.6.1.jpg" alt="iPad-13.6.1"></p>
 <p>现在提示可以更新的是 iPadOS 16.4.1，如果我直接点击升级，很可能待会就变砖了。</p>
 <p>所以我开始了解怎么才能升级这台，已经越狱了的 iPad。我猜可能得进入 DFU 模式，然后重新刷一个干净的系统进去。</p>
 <p>不过了解后发现，并不用这么麻烦，只需要先把系统的越狱去掉就行。</p>
 <p>先在电脑上使用 checkra1n 让机器处于越狱状态，因为我们需要在设备里打开 checkra1n 这个 app。</p>
 <p>官网：<a href="https://checkra.in/">checkra1n</a></p>
-<p><img src="/img/2023/checkra1n-v-0.12.4.webp" alt="checkra1n-v-0.12.4"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/checkra1n-v-0.12.4.webp" alt="checkra1n-v-0.12.4"></p>
 <p>还是熟悉的操作，按照说明进入 DUF 模式，之后机器重启，然后点击桌面的 checkra1n 这个 app，再点击红色的「Restore System」来恢复系统即可。</p>
-<p><img src="/img/2023/iPad-checkra1n.png" alt="iPad-checkra1n"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iPad-checkra1n.png" alt="iPad-checkra1n"></p>
 <p>然后机器会重启，并且删除越狱相关的文件。例如重启后桌面就没有 Cydia 了。</p>
 <p>此时就可以到系统里面升级了，经过漫长地等待，我把 iPad 升级到了 16.4.1</p>
-<p><img src="/img/2023/iPad-16.4.1.jpg" alt="iPad-16.4.1"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iPad-16.4.1.jpg" alt="iPad-16.4.1"></p>
 ]]></content>
       <tags>
         <tag>iOS</tag>
