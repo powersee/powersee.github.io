@@ -5119,19 +5119,19 @@ border-radius: 4px;
     <title>如何升级 macOS 到特定版本</title>
     <url>/2023/04/macos-update-to-specific-version/</url>
     <content><![CDATA[<p>直接在系统偏好设置里，点击「软件更新」的话，会检查当前最新的系统版本。例如我现在显示的是 Ventura。</p>
-<p><img src="/img/2023/macOS-Monterey-Software-Update.webp" alt="macOS-Monterey-Software-Update"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/macOS-Monterey-Software-Update.webp" alt="macOS-Monterey-Software-Update"></p>
 <p>而我现在的系统版本还是 Big Sur。</p>
 <p>我其实不想更新的，所以我之前，是把「高级」里面的所有勾都取消掉，这样才可以保持这一年多来，没有任何系统升级提示。</p>
-<p><img src="/img/2023/uncheck-macos-update.webp" alt="uncheck-macos-update"></p>
-<p>但是刚才我点击进来了，它就自动检查更新，所以现在不更新的话，会有一个红色数字 1 在图标上。噢，不把它弄掉的话，我会挺别扭的。</p>
-<p>我尝试看看升级到 11 Big Sur 的最新版，11.7.5，看看怎么样。</p>
-<p><img src="/img/2023/macOS-Big-Sur-11.7.5.jpg" alt="macOS-Big-Sur-11.7.5"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/uncheck-macos-update.webp" alt="uncheck-macos-update"></p>
+<p>但是刚才我点击进来了，它就自动检查更新，所以现在不更新的话，会有一个红色数字 1 在图标上。噢，不把它弄掉的话，我会相当别扭的。</p>
+<p>我尝试着升级到 11 Big Sur 的最新版，11.7.5，看看会怎么样。</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/macOS-Big-Sur-11.7.5.jpg" alt="macOS-Big-Sur-11.7.5"></p>
 <p>升级是成功了，但是更新提示依然还在。</p>
 <p>这时我了解到 13 版本，它的系统设置，变得和 iPad 上一样了，感觉不怎么喜欢，不知道我能否选择，只升级到 12 就行？</p>
 <p>于是我查找看看 Mac 能否升级到特定版本。</p>
 <p><a href="https://support.apple.com/zh-cn/HT211683">如何下载 macOS - 官方 Apple 支持 (中国)</a></p>
 <p>直接到苹果官网，可以看到各个版本的系统，点击后跳转到 APP store。</p>
-<p><img src="/img/2023/macOS-Monterey-app-store.webp" alt="macOS-Monterey-app-store"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/macOS-Monterey-app-store.webp" alt="macOS-Monterey-app-store"></p>
 <p>商店里能下载的版本还挺多的。</p>
 <p><a href="macappstores://apps.apple.com/app/macos-ventura/id1638787999?mt=12">Ventura 13</a></p>
 <p><a href="macappstores://apps.apple.com/app/macos-monterey/id1576738294?mt=12">Monterey 12</a></p>
@@ -5140,10 +5140,10 @@ border-radius: 4px;
 <p><a href="macappstores://apps.apple.com/app/macos-mojave/id1398502828?mt=12">Mojave 10.14</a></p>
 <p><a href="macappstores://apps.apple.com/app/macos-high-sierra/id1246284741?mt=12">High Sierra 10.13</a></p>
 <p>虽然知道怎么选择特定版本了，但是我在软件更新里面，已经下载好 Ventura 了。唉，那就升级看看吧，希望一切顺利。</p>
-<p><img src="/img/2023/download-Ventura.webp" alt="download-Ventura"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/download-Ventura.webp" alt="download-Ventura"></p>
 <p>等待了一段时间，升级成功了。升级后自动换了张默认壁纸，「系统偏好设置」也改名为「系统设置」了。</p>
-<p><img src="/img/2023/system-setting.webp" alt="system-setting"></p>
-<p>升级到 Ventura 13 居然我刚才从 Big Sur 11.6 升级到 11.7.5 速度还快。</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/system-setting.webp" alt="system-setting"></p>
+<p>升级到 Ventura 13 居然比我刚才从 Big Sur 11.6 升级到 11.7.5 速度还快。</p>
 ]]></content>
       <tags>
         <tag>Mac</tag>
