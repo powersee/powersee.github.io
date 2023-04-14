@@ -85,7 +85,7 @@ svg.icon {
   text-align: center; }
   .left-aside h2 {
     margin: 24px 0 50px; }
-  .left-aside .face-img img {
+  .left-aside .face-img svg {
     border-radius: 50%;
     height: 100px;
     width: 100px;
@@ -884,7 +884,8 @@ svg.icon {
     display: block;
     margin: 0 auto;
     line-height: 80px; }
-    .navbar-header.fixed-header .face-img img {
+    /* .navbar-header.fixed-header .face-img img { */
+    .navbar-header.fixed-header .face-img svg {
       border-radius: 50%;
       height: 30px;
       width: 30px;
