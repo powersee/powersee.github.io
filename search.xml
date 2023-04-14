@@ -2547,7 +2547,7 @@
 <p>我目前装的版本是 <code>1.21.1</code></p>
 <h3 id="2、"><a href="#2、" class="headerlink" title="2、"></a>2、</h3><p>之后来到浏览器，需要申请 API</p>
 <p><a href="https://my.telegram.org/auth?to=apps">https://my.telegram.org/auth?to=apps</a></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-06-02_22-00-41.jpg" alt="2021-06-02_22-00-41"></p>
+<p><img src="/img/2021/2021-06-02_22-00-41.jpg" alt="2021-06-02_22-00-41"></p>
 <p>填写自己的手机号，前面的 <code>+</code> 我是有填的，不知道不填行不行。点击 next 按钮后我们的 telegram 客户端就会收到一条验证消息，验证码是英文字母，还挺长的。</p>
 <p>之后需要创建一个 application ，要填的就是 App title 和 Short name 这两个而已，主要只能 <code>英文字母和数字</code> ，不可以用下划线，并且要在 5-32 个字符之间。可以参考这么填。</p>
 <blockquote>
@@ -5147,6 +5147,34 @@ border-radius: 4px;
 ]]></content>
       <tags>
         <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Node.js 如何复制和移动文件</title>
+    <url>/2023/04/nodejs-copy-and-move/</url>
+    <content><![CDATA[<p>建议在 nodejs 的交互环境中测试，直接在终端执行 node 就可以进入。</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/node-RELP.gif" alt="node-RELP"></p>
+<h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><p>需要用到 fs</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line">fs.<span class="title function_">copyFileSync</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;b.txt&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>把当前目录下的 a.txt 复制为 b.txt</p>
+<p>查询文件是否存在</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">fs.<span class="title function_">existsSync</span>(<span class="string">&#x27;b.txt&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h2><p>使用 renameSync</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line">fs.<span class="title function_">renameSync</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;b/a.txt&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如上，将 a.txt 移动到 b 目录下。</p>
+<p>或者使用 rename</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">fs.<span class="title function_">rename</span>(<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123; </span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;done&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>将 one 重命名为 two</p>
+<p>第三个参数是一个函数，这个不能缺，不像带 Sync 的，只需要两个参数就行。</p>
+]]></content>
+      <tags>
+        <tag>node</tag>
       </tags>
   </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-13T16:56:02.333Z</updated>
+  <updated>2023-04-14T17:23:44.608Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Node.js 如何复制和移动文件</title>
+    <link href="https://powersee.github.io/2023/04/nodejs-copy-and-move/"/>
+    <id>https://powersee.github.io/2023/04/nodejs-copy-and-move/</id>
+    <published>2023-04-14T17:19:23.000Z</published>
+    <updated>2023-04-14T17:23:44.608Z</updated>
+    
+    <content type="html"><![CDATA[<p>建议在 nodejs 的交互环境中测试，直接在终端执行 node 就可以进入。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/node-RELP.gif" alt="node-RELP"></p><h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><p>需要用到 fs</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line">fs.<span class="title function_">copyFileSync</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;b.txt&#x27;</span>)</span><br></pre></td></tr></table></figure><p>把当前目录下的 a.txt 复制为 b.txt</p><p>查询文件是否存在</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">fs.<span class="title function_">existsSync</span>(<span class="string">&#x27;b.txt&#x27;</span>)</span><br></pre></td></tr></table></figure><h2 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h2><p>使用 renameSync</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line">fs.<span class="title function_">renameSync</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;b/a.txt&#x27;</span>)</span><br></pre></td></tr></table></figure><p>如上，将 a.txt 移动到 b 目录下。</p><p>或者使用 rename</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">fs.<span class="title function_">rename</span>(<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123; </span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;done&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>将 one 重命名为 two</p><p>第三个参数是一个函数，这个不能缺，不像带 Sync 的，只需要两个参数就行。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;建议在 nodejs 的交互环境中测试，直接在终端执行 node 就可以进入。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/node-RELP.gif</summary>
+      
+    
+    
+    
+    
+    <category term="node" scheme="https://powersee.github.io/tags/node/"/>
+    
+  </entry>
   
   <entry>
     <title>如何升级 macOS 到特定版本</title>
@@ -458,31 +481,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>电脑无线网卡没有 WiFi 但是有蓝牙</title>
-    <link href="https://powersee.github.io/2023/03/WLAN-driver/"/>
-    <id>https://powersee.github.io/2023/03/WLAN-driver/</id>
-    <published>2023-03-26T06:00:39.000Z</published>
-    <updated>2023-03-26T06:04:52.334Z</updated>
-    
-    <content type="html"><![CDATA[<p>突然发现，电脑没有 WiFi 选项了。右下角没有，进入设置里面也没有。难道是无线网卡坏了？</p><p>但是如果坏了，蓝牙应该也没法用才对。现在蓝牙是可以使用的。</p><p>于是我拔掉无线网卡，开机，蓝牙也没了。</p><p>再插上，蓝牙回来了，但是依然没有 WiFi。</p><p>打开设备管理器，发现网卡那里有个感叹号❕</p><p><img src="/../img/2023/2023-03-25_12-12-17.webp" alt="旧驱动"></p><p>看来是驱动问题，网卡驱动是一年前的了，可能需要升级。</p><p>刚好电脑里有装 360，那看看它能否帮忙升级驱动，结果并不能，而且 360 检测居然发现不了问题，说驱动一切正常……</p><p>没办法，只能到网上冲浪🏄🏻。然后在 B 站找到这篇文章：<a href="https://www.bilibili.com/read/cv15538455">https://www.bilibili.com/read/cv15538455</a></p><p>从这里下载了驱动，我下的是这个压缩包：MT792xDriver_20221118.zip</p><p>之后到设备管理器里面更新驱动，这样驱动版本就从 495 升级到了 713。</p><p><img src="/../img/2023/2023-03-25_12-12-58.png" alt="RZ608"></p><p>然后 WiFi 就可以用了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;突然发现，电脑没有 WiFi 选项了。右下角没有，进入设置里面也没有。难道是无线网卡坏了？&lt;/p&gt;
-&lt;p&gt;但是如果坏了，蓝牙应该也没法用才对。现在蓝牙是可以使用的。&lt;/p&gt;
-&lt;p&gt;于是我拔掉无线网卡，开机，蓝牙也没了。&lt;/p&gt;
-&lt;p&gt;再插上，蓝牙回来了，但是依然没有 WiF</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
