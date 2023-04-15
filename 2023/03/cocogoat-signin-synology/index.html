@@ -70,7 +70,7 @@
 <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>先到 <a target="_blank" rel="noopener" href="https://github.com/Akegarasu/cocogoat-signin/releases">https://github.com/Akegarasu/cocogoat-signin/releases</a> 下载程序，群晖 x86_64 的下载名字为 <code>cocogoat-signin_linux_amd64.tar.gz</code> 的，这是一个压缩包，可以用电脑解压。</p>
 <p>电脑上我用 Bandizip 是可以打开的，把里面的 <code>cocogoat-signin</code> 解压出来。</p>
 <p>也可以直接把压缩包传到群晖里，然后在 <code>File Station</code> 里面，右键压缩包，「解压缩」，「解压缩至此目录」。我们得到了一个 tar 结尾的压缩包，对这个新的压缩包，右键，「解压缩」，「解压缩至此目录」。就可以把里面的 <code>cocogoat-signin</code> 解压出来。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive.png" alt="d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cocogoat-decompress.png" alt="cocogoat-decompress"></p>
 <p>我是在 docker 目录下，建立了一个 cocogoat 的目录，程序就放在里面。</p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>要运行它，需要有一个配置文件 <code>config.yml</code></p>
 <p>这个配置文件，如果我们 ssh 连接群晖，然后执行一下程序，就会自动生成的。但是这里考虑到小白用户，我写个不用 ssh 的方法。</p>
@@ -194,8 +194,10 @@
     console.log('%c' + o, textStyle);
   });
 
+}(consoleConfig));
+
 // js 也放到 腾讯云 cos
-}(consoleConfig));</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
 <script type="text/javascript" src="/js/my.js"></script>
 
   <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>

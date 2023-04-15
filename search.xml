@@ -4380,7 +4380,7 @@ border-radius: 4px;
 <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>先到 <a href="https://github.com/Akegarasu/cocogoat-signin/releases">https://github.com/Akegarasu/cocogoat-signin/releases</a> 下载程序，群晖 x86_64 的下载名字为 <code>cocogoat-signin_linux_amd64.tar.gz</code> 的，这是一个压缩包，可以用电脑解压。</p>
 <p>电脑上我用 Bandizip 是可以打开的，把里面的 <code>cocogoat-signin</code> 解压出来。</p>
 <p>也可以直接把压缩包传到群晖里，然后在 <code>File Station</code> 里面，右键压缩包，「解压缩」，「解压缩至此目录」。我们得到了一个 tar 结尾的压缩包，对这个新的压缩包，右键，「解压缩」，「解压缩至此目录」。就可以把里面的 <code>cocogoat-signin</code> 解压出来。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive.png" alt="d973de1ea79d7a44b4c9fb7fbb01b3665ff0d735.png@942w_449h_progressive"></p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cocogoat-decompress.png" alt="cocogoat-decompress"></p>
 <p>我是在 docker 目录下，建立了一个 cocogoat 的目录，程序就放在里面。</p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>要运行它，需要有一个配置文件 <code>config.yml</code></p>
 <p>这个配置文件，如果我们 ssh 连接群晖，然后执行一下程序，就会自动生成的。但是这里考虑到小白用户，我写个不用 ssh 的方法。</p>
@@ -5175,6 +5175,28 @@ border-radius: 4px;
 ]]></content>
       <tags>
         <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tbz 如何解压</title>
+    <url>/2023/04/tbz/</url>
+    <content><![CDATA[<p>可以使用 bzip2 来解压</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bzip2 -d filename.tbz</span><br></pre></td></tr></table></figure>
+
+<p>然后应该会得到一个 tar 压缩包，需要再使用 tar 解压</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xf filename.tar</span><br></pre></td></tr></table></figure>
+
+<p>其实也可以直接一步到位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xf filename.tbz</span><br></pre></td></tr></table></figure>
+
+<p>抄来一份定义</p>
+<blockquote>
+<p>tbz 格式是一种压缩文件格式，也称为 tarball。它是将 tar 和 bzip2 两种工具结合起来使用得到的一种格式，使用 bzip2 进行数据压缩，再使用 tar 把多个文件和目录打包在一起，最终形成一个 tbz 后缀的压缩包。</p>
+<p>相比其他压缩格式，tbz 压缩率较高，压缩效果较优，扩展名为 .tbz 或 .tbz2，可在 Linux 和 macOS 等操作系统上使用 tar 和 bunzip2 命令对其进行解压缩。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-14T17:23:44.608Z</updated>
+  <updated>2023-04-15T16:07:32.196Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tbz 如何解压</title>
+    <link href="https://powersee.github.io/2023/04/tbz/"/>
+    <id>https://powersee.github.io/2023/04/tbz/</id>
+    <published>2023-04-15T16:06:52.000Z</published>
+    <updated>2023-04-15T16:07:32.196Z</updated>
+    
+    <content type="html"><![CDATA[<p>可以使用 bzip2 来解压</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bzip2 -d filename.tbz</span><br></pre></td></tr></table></figure><p>然后应该会得到一个 tar 压缩包，需要再使用 tar 解压</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xf filename.tar</span><br></pre></td></tr></table></figure><p>其实也可以直接一步到位</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xf filename.tbz</span><br></pre></td></tr></table></figure><p>抄来一份定义</p><blockquote><p>tbz 格式是一种压缩文件格式，也称为 tarball。它是将 tar 和 bzip2 两种工具结合起来使用得到的一种格式，使用 bzip2 进行数据压缩，再使用 tar 把多个文件和目录打包在一起，最终形成一个 tbz 后缀的压缩包。</p><p>相比其他压缩格式，tbz 压缩率较高，压缩效果较优，扩展名为 .tbz 或 .tbz2，可在 Linux 和 macOS 等操作系统上使用 tar 和 bunzip2 命令对其进行解压缩。</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;可以使用 bzip2 来解压&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;bzip2 -d filename.tbz&lt;/span&gt;&lt;b</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Node.js 如何复制和移动文件</title>
@@ -458,29 +481,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>将 Mac 上的 shell 脚本，变成原生 Mac 图形应用</title>
-    <link href="https://powersee.github.io/2023/03/create-mac-app-from-command-line-scripts/"/>
-    <id>https://powersee.github.io/2023/03/create-mac-app-from-command-line-scripts/</id>
-    <published>2023-03-27T04:09:13.000Z</published>
-    <updated>2023-03-27T12:52:15.486Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前讲到 <a href="/2023/03/about-webp/">WebP 图片格式</a>，目前我博客里一些比较大的图片，我都会转换为 WebP，这样图片的体积会缩小很多，访问的时候速度能提快一些。</p><p>不过，每次要将图片转换为 WebP，我都需要打开终端，在 shell 里用 cwebp 来转换。如果能够把它变为一个 APP，我打开 APP 后，将图片拖进去，它就自动转换就好了。</p><p>很快啊，我就实现这个目的了。</p><p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p><p>实现起来也很简单，使用一个开源应用：<a href="https://github.com/sveinbjornt/Platypus">sveinbjornt&#x2F;Platypus: Create native Mac applications from command line scripts. (github.com)</a></p><p>这个应用名字挺有趣的，叫「鸭嘴兽」，它的目的是把命令行脚本转换为 Mac 原生应用。在 GitHub 上面有非常详细的<a href="https://github.com/sveinbjornt/Platypus/blob/master/Documentation/Documentation.md">说明文档</a>。</p><p><img src="/img/2023/Platypus-webp.webp" alt="Platypus-webp"></p><p>我是直接点击「+New」让它新建一个脚本的，里面写这些内容。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">/opt/homebrew/bin/cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br></pre></td></tr></table></figure><p>Interface 就选 Droplet，这样 APP 打开后就是一个让我们把文件拖进去的界面。</p><p><img src="/img/2023/Suffixes.webp" alt="Suffixes"></p><p>然后在 <code>Accept dropped items</code> 后面的 settings 中，我们需要勾选 Accept dropped files。</p><p>Suffixes 下面的框，就是设置支持的文件后缀。我是怎么将 jpeg 和 png 加进去的呢？它下面的 + - 都是没法点击的。因此我是直接拖一张 jpeg 图片，和一张 png 图片进来，后缀就加上去了。</p><p><img src="/img/2023/only-264KB.webp" alt="only-264KB"></p><p>如果不加 APP 图标的话，这样创建的应用只有 264KB。不过我还是加图标了，这样比较美观。</p><p><img src="/img/2023/Platypus-webp.webp" alt="Platypus-webp"></p><p>这个图标居然要 1.3MB，我是从 <a href="https://macosicons.com/">https://macosicons.com/</a> 下载的，这网站也挺好的，本打算点击图标查看详情，没想到它直接就下载了。不仅免费，而且连注册账号都不用。见惯了国内的网站难看的吃相，遇到这种反到有点不习惯了。</p><p>一切设置好后，点击一下「Create App」，选择保存在哪里，就生成了一个 Mac APP。</p><p>我们可以把它放到「应用程序」里面，这样就可以在「启动台」里面找到它。而且只有这样，APP 打开后再退出，才会留在「程序坞」里面。</p><p><img src="/img/2023/WebP-dock.jpg" alt="WebP-dock"></p><p>如果经常使用，我们可以将它长期固定在「程序坞」。像我这种用来处理图片的，可以在不打开 APP 的情况下，直接将图片拖到 APP 上面，就会打开 APP 自动处理，确实提高了效率，很不错。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;之前讲到 &lt;a href=&quot;/2023/03/about-webp/&quot;&gt;WebP 图片格式&lt;/a&gt;，目前我博客里一些比较大的图片，我都会转换为 WebP，这样图片的体积会缩小很多，访问的时候速度能提快一些。&lt;/p&gt;
-&lt;p&gt;不过，每次要将图片转换为 WebP，我都需要打开终端</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   

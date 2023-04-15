@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
-	<title>Windows 安装 Nu shell 与配置</title>
+	<title>tbz 如何解压</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -37,7 +37,7 @@
     
   
   <h1 class="title">
-    Windows 安装 Nu shell 与配置
+    tbz 如何解压
   </h1>
   
 
@@ -45,7 +45,7 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2023-04-05T16:07:13.000Z" itemprop="datePublished">2023-04-06</time>
+        <time datetime="2023-04-15T16:06:52.000Z" itemprop="datePublished">2023-04-16</time>
       </li>
       <li>
         
@@ -59,18 +59,21 @@
     <div class="article">
       <div class="content">
         
-        <p>使用 nu shell 已经有一段时间，感觉还不错。它最为吸引我的就是，自带历史记录提示，就像 zsh 的 zsh-autosuggestions 插件。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p>
-<p>它的一条普通的 ls 命令，结果也和其它 shell 很不一样。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nushell-ls.png" alt="nushell-ls"></p>
-<p>输出的是一个表格。</p>
-<p>安装可以查看官方文档：<a target="_blank" rel="noopener" href="https://www.nushell.sh/zh-CN/book/installation.html">安装 Nu | Nushell</a></p>
-<p>文档一共 6 种语言，中文就是其中一种。</p>
-<p>我是到  <a target="_blank" rel="noopener" href="https://github.com/nushell/nushell/releases">GitHub 的 Release 页</a> 下载并解压二进制文件，然后放到 <code>C:\bin\</code> 里面的。接着在「终端」里面添加 nushell。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p>
-<p>如果想让 nushell 作为默认的 shell，可以到「启动」，「默认配置文件」进行更改。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+        <p>可以使用 bzip2 来解压</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bzip2 -d filename.tbz</span><br></pre></td></tr></table></figure>
+
+<p>然后应该会得到一个 tar 压缩包，需要再使用 tar 解压</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xf filename.tar</span><br></pre></td></tr></table></figure>
+
+<p>其实也可以直接一步到位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tar -xf filename.tbz</span><br></pre></td></tr></table></figure>
+
+<p>抄来一份定义</p>
+<blockquote>
+<p>tbz 格式是一种压缩文件格式，也称为 tarball。它是将 tar 和 bzip2 两种工具结合起来使用得到的一种格式，使用 bzip2 进行数据压缩，再使用 tar 把多个文件和目录打包在一起，最终形成一个 tbz 后缀的压缩包。</p>
+<p>相比其他压缩格式，tbz 压缩率较高，压缩效果较优，扩展名为 .tbz 或 .tbz2，可在 Linux 和 macOS 等操作系统上使用 tar 和 bunzip2 命令对其进行解压缩。</p>
+</blockquote>
+
       </div>
         <div class="support-author">
           <p>博客链接:
