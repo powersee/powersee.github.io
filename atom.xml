@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-15T16:07:32.196Z</updated>
+  <updated>2023-04-16T16:09:23.981Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决 crontab 中执行 rsync 没有权限问题</title>
+    <link href="https://powersee.github.io/2023/04/macos-crontab-not-permitted/"/>
+    <id>https://powersee.github.io/2023/04/macos-crontab-not-permitted/</id>
+    <published>2023-04-16T16:06:15.000Z</published>
+    <updated>2023-04-16T16:09:23.981Z</updated>
+    
+    <content type="html"><![CDATA[<p>我在使用 rsync 备份文件到 nas 里。如果我手动在终端里执行的话，一切正常，可以把文件同步到 nas 里面。</p><p>但是，当我把同样的命令，添加到 crontab 中，却报错了。</p><p>问题其实是 cron 无法读取到 ~&#x2F;Documents&#x2F;screenshot-backup 里面的内容。因为现在 Mac 收紧了权限，其实我们平时使用一些 APP 的时候，如果要访问桌面或者下载文件夹，就会出现弹窗。</p><blockquote><p>在 macOS 中，某些应用程序在尝试读取或写入桌面、下载文件夹等敏感位置时，会触发系统的安全权限机制，导致弹出权限提示窗口。这是因为自 macOS 10.14 (Mojave) 版本开始，Apple 引入了更加严格的安全控制措施，以保护用户的隐私和数据安全。</p></blockquote><blockquote><p>除了桌面和下载文件夹之外，还有其他一些敏感位置，例如文稿、图片、文档、音乐、视频等文件夹。这些文件夹中的内容通常包含用户的个人数据和隐私信息。因此，当应用程序尝试访问这些敏感位置时，同样会触发权限提示窗口。</p></blockquote><p>那么回到我的问题，现在 cron 执行任务的时候，它可不会弹窗呀，而它又没有访问权限，所以任务就执行失败了。</p><p>方法一</p><p>不使用这个默认用户文件夹即可。例如我用户目录下有个 autosave 的文件夹，同样在 crontab 中用 rsync 备份，可以正常完成任务。</p><p>方法二</p><p>给 cron 完全磁盘权限</p><p>cron 的路径是 <code>/usr/sbin/cron</code>，我们可以在访达 Finder 里面，点击顶部菜单的「前往」「前往文件夹」，然后输入 <code>/usr/sbin</code> 来找到它。</p><p>如果想像我这样，显示隐藏文件夹，可以按快捷键 <code>command + shift + .</code>，就是 <code>&gt;</code> 这颗按键。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cron-location.webp" alt="cron-location"></p><p>现在我们可以把 sbin 这个文件夹，拖到左侧的个人收藏那里。</p><p>然后打开「系统设置」，我的是 13.3 系统版本，以前叫「系统偏好设置」</p><p>找到 「隐私与安全性」里面的「完全磁盘访问权限」，点击下方的 + 来添加一个新的程序进去。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/full-disk-access.webp" alt="full-disk-access"></p><p>由于刚才我把 sbin 放到左侧的个人收藏了，所以现在找到 cron 很简单。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Finder-cron.webp" alt="Finder-cron"></p><p>这样操作之后，使用 cron 来执行 rsync 命令备份Documents&#x2F;screenshot-backup 就没问题了，其它命令如果是需要访问文稿、桌面、下载这些文件夹，应该也是通过这样来解决问题的。</p><p>参考：<a href="https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted">macos - Crontab Operation not permitted - Ask Different (stackexchange.com)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我在使用 rsync 备份文件到 nas 里。如果我手动在终端里执行的话，一切正常，可以把文件同步到 nas 里面。&lt;/p&gt;
+&lt;p&gt;但是，当我把同样的命令，添加到 crontab 中，却报错了。&lt;/p&gt;
+&lt;p&gt;问题其实是 cron 无法读取到 ~&amp;#x2F;Document</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>tbz 如何解压</title>
@@ -452,29 +476,6 @@
     <summary type="html">&lt;p&gt;在安装了 imageMagick 之后，可以使用命令来对图片进行修改。&lt;/p&gt;
 &lt;p&gt;例如，给图片加时间戳水印。需要使用到 &lt;code&gt;convert&lt;/code&gt; 这个命令。&lt;/p&gt;
 &lt;p&gt;我在网上看到的教程，有教使用 &lt;code&gt;%[exif:datetime]&lt;/co</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 ffmpeg 将图片合并为视频</title>
-    <link href="https://powersee.github.io/2023/03/combine-pictures-into-a-video/"/>
-    <id>https://powersee.github.io/2023/03/combine-pictures-into-a-video/</id>
-    <published>2023-03-28T06:38:50.000Z</published>
-    <updated>2023-03-28T07:12:26.752Z</updated>
-    
-    <content type="html"><![CDATA[<p>我需要合并图片为一个视频。我有很多张图片，像这样的命名：<code>2023-03-24-105322.jpg</code> <code>2023-03-24-105352.jpg</code> … 也就是(年-月-日-时分秒.jpg) 这样的来命名的。</p><p>我可以使用这样的命令：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ffmpeg -pattern_type glob -i <span class="string">&#x27;*.jpg&#x27;</span> output.mp4</span><br></pre></td></tr></table></figure><p>没有指定帧率，默认使用 25 帧。直接使用 * 会将当前目录中的所有 jpg 文件都匹配到。</p><p>如果我目录中还有其它图片，不想合并到视频里面，那么也可以这么写：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">ffmpeg -pattern_type glob -i <span class="string">&#x27;????-??-??-??????.jpg&#x27;</span> output.mp4</span><br></pre></td></tr></table></figure><p><code>?</code>通配符表示匹配任意一个字符。</p><p>这样合并出来的视频，是一帧一张图片。这样太快了，一秒播放了 25 张图片。我想要它慢一点，可以通过调整帧率来实现。</p><p>此时需要使用 <code>-r</code> 参数，设置帧数为 10，这样一秒就只播放 10 张图片。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -r 10 -pattern_type glob -i &#x27;????-??-??-??????.jpg&#x27; output.mp4</span><br></pre></td></tr></table></figure><p>注意要放在 <code>-i</code> 前面。如果放在 <code>-i</code> 后面，会导致跳帧。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我需要合并图片为一个视频。我有很多张图片，像这样的命名：&lt;code&gt;2023-03-24-105322.jpg&lt;/code&gt; &lt;code&gt;2023-03-24-105352.jpg&lt;/code&gt; … 也就是(年-月-日-时分秒.jpg) 这样的来命名的。&lt;/p&gt;
-&lt;p&gt;我可</summary>
       
     
     

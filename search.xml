@@ -5199,4 +5199,37 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>解决 crontab 中执行 rsync 没有权限问题</title>
+    <url>/2023/04/macos-crontab-not-permitted/</url>
+    <content><![CDATA[<p>我在使用 rsync 备份文件到 nas 里。如果我手动在终端里执行的话，一切正常，可以把文件同步到 nas 里面。</p>
+<p>但是，当我把同样的命令，添加到 crontab 中，却报错了。</p>
+<p>问题其实是 cron 无法读取到 ~&#x2F;Documents&#x2F;screenshot-backup 里面的内容。因为现在 Mac 收紧了权限，其实我们平时使用一些 APP 的时候，如果要访问桌面或者下载文件夹，就会出现弹窗。</p>
+<blockquote>
+<p>在 macOS 中，某些应用程序在尝试读取或写入桌面、下载文件夹等敏感位置时，会触发系统的安全权限机制，导致弹出权限提示窗口。这是因为自 macOS 10.14 (Mojave) 版本开始，Apple 引入了更加严格的安全控制措施，以保护用户的隐私和数据安全。</p>
+</blockquote>
+<blockquote>
+<p>除了桌面和下载文件夹之外，还有其他一些敏感位置，例如文稿、图片、文档、音乐、视频等文件夹。这些文件夹中的内容通常包含用户的个人数据和隐私信息。因此，当应用程序尝试访问这些敏感位置时，同样会触发权限提示窗口。</p>
+</blockquote>
+<p>那么回到我的问题，现在 cron 执行任务的时候，它可不会弹窗呀，而它又没有访问权限，所以任务就执行失败了。</p>
+<p>方法一</p>
+<p>不使用这个默认用户文件夹即可。例如我用户目录下有个 autosave 的文件夹，同样在 crontab 中用 rsync 备份，可以正常完成任务。</p>
+<p>方法二</p>
+<p>给 cron 完全磁盘权限</p>
+<p>cron 的路径是 <code>/usr/sbin/cron</code>，我们可以在访达 Finder 里面，点击顶部菜单的「前往」「前往文件夹」，然后输入 <code>/usr/sbin</code> 来找到它。</p>
+<p>如果想像我这样，显示隐藏文件夹，可以按快捷键 <code>command + shift + .</code>，就是 <code>&gt;</code> 这颗按键。</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cron-location.webp" alt="cron-location"></p>
+<p>现在我们可以把 sbin 这个文件夹，拖到左侧的个人收藏那里。</p>
+<p>然后打开「系统设置」，我的是 13.3 系统版本，以前叫「系统偏好设置」</p>
+<p>找到 「隐私与安全性」里面的「完全磁盘访问权限」，点击下方的 + 来添加一个新的程序进去。</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/full-disk-access.webp" alt="full-disk-access"></p>
+<p>由于刚才我把 sbin 放到左侧的个人收藏了，所以现在找到 cron 很简单。</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Finder-cron.webp" alt="Finder-cron"></p>
+<p>这样操作之后，使用 cron 来执行 rsync 命令备份Documents&#x2F;screenshot-backup 就没问题了，其它命令如果是需要访问文稿、桌面、下载这些文件夹，应该也是通过这样来解决问题的。</p>
+<p>参考：<a href="https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted">macos - Crontab Operation not permitted - Ask Different (stackexchange.com)</a></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
