@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
-	<title>解决 crontab 中执行 rsync 没有权限问题</title>
+	<title>使用 imagemagick 给图片添加阴影</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -37,7 +37,7 @@
     
   
   <h1 class="title">
-    解决 crontab 中执行 rsync 没有权限问题
+    使用 imagemagick 给图片添加阴影
   </h1>
   
 
@@ -45,7 +45,7 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2023-04-16T16:06:15.000Z" itemprop="datePublished">2023-04-17</time>
+        <time datetime="2023-04-17T16:09:42.000Z" itemprop="datePublished">2023-04-18</time>
       </li>
       <li>
         
@@ -59,31 +59,42 @@
     <div class="article">
       <div class="content">
         
-        <p>我在使用 rsync 备份文件到 nas 里。如果我手动在终端里执行的话，一切正常，可以把文件同步到 nas 里面。</p>
-<p>但是，当我把同样的命令，添加到 crontab 中，却报错了。</p>
-<p>问题其实是 cron 无法读取到 ~&#x2F;Documents&#x2F;screenshot-backup 里面的内容。因为现在 Mac 收紧了权限，其实我们平时使用一些 APP 的时候，如果要访问桌面或者下载文件夹，就会出现弹窗。</p>
-<blockquote>
-<p>在 macOS 中，某些应用程序在尝试读取或写入桌面、下载文件夹等敏感位置时，会触发系统的安全权限机制，导致弹出权限提示窗口。这是因为自 macOS 10.14 (Mojave) 版本开始，Apple 引入了更加严格的安全控制措施，以保护用户的隐私和数据安全。</p>
-</blockquote>
-<blockquote>
-<p>除了桌面和下载文件夹之外，还有其他一些敏感位置，例如文稿、图片、文档、音乐、视频等文件夹。这些文件夹中的内容通常包含用户的个人数据和隐私信息。因此，当应用程序尝试访问这些敏感位置时，同样会触发权限提示窗口。</p>
-</blockquote>
-<p>那么回到我的问题，现在 cron 执行任务的时候，它可不会弹窗呀，而它又没有访问权限，所以任务就执行失败了。</p>
-<p>方法一</p>
-<p>不使用这个默认用户文件夹即可。例如我用户目录下有个 autosave 的文件夹，同样在 crontab 中用 rsync 备份，可以正常完成任务。</p>
-<p>方法二</p>
-<p>给 cron 完全磁盘权限</p>
-<p>cron 的路径是 <code>/usr/sbin/cron</code>，我们可以在访达 Finder 里面，点击顶部菜单的「前往」「前往文件夹」，然后输入 <code>/usr/sbin</code> 来找到它。</p>
-<p>如果想像我这样，显示隐藏文件夹，可以按快捷键 <code>command + shift + .</code>，就是 <code>&gt;</code> 这颗按键。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cron-location-shadow.webp" alt="cron-location"></p>
-<p>现在我们可以把 sbin 这个文件夹，拖到左侧的个人收藏那里。</p>
-<p>然后打开「系统设置」，我的是 13.3 系统版本，以前叫「系统偏好设置」</p>
-<p>找到 「隐私与安全性」里面的「完全磁盘访问权限」，点击下方的 + 来添加一个新的程序进去。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/full-disk-access.webp" alt="full-disk-access"></p>
-<p>由于刚才我把 sbin 放到左侧的个人收藏了，所以现在找到 cron 很简单。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Finder-cron.webp" alt="Finder-cron"></p>
-<p>这样操作之后，使用 cron 来执行 rsync 命令备份Documents&#x2F;screenshot-backup 就没问题了，其它命令如果是需要访问文稿、桌面、下载这些文件夹，应该也是通过这样来解决问题的。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted">macos - Crontab Operation not permitted - Ask Different (stackexchange.com)</a></p>
+        <p>官方文档：<a target="_blank" rel="noopener" href="https://legacy.imagemagick.org/Usage/blur/#shadow">Bluring and Sharpening – IM v6 Examples (imagemagick.org)</a></p>
+<p>我有一张图片，名为 <code>test.jpg</code> 直接放到博客文章里面，效果是这样的</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-test.jpg" alt="shadow-test"></p>
+<p>如果加上阴影后，效果是这样的。</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/convert-add-shadow.png" alt="convert-add-shadow"></p>
+<p>看起来效果会好很多，特别是当网页背景是白色，图片背景也是白色时，加了阴影可以让图片更为突出。我使用的是这样一条命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert test.jpg \( +clone -background black -shadow 50x20+0+0 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
+
+<p><code>-shadow</code> 后面的 <code>50x20+0+0</code> 指的是：</p>
+<p>50：阴影的不透明度</p>
+<p>20：阴影模糊度</p>
+<p>第一个 +0：代表阴影左右偏移</p>
+<p>第二个 +0：代表阴影上下偏移</p>
+<p>假如我改为 <code>50x20+10+10</code>，那么得到的图片是这样的</p>
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-add10-add10.png" alt="shadow-add10-add10"></p>
+<p>也就是阴影会往右下方偏移。</p>
+<p>现在 <code>-background</code> 用的是 black，也可以改为其它颜色的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg \( +clone -background red -shadow 50x20+10+10 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-red.webp" alt="shadow-red"></p>
+<p>个人感觉用 grey 会比较合适，而且我不喜欢偏移，所以这是我使用的命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg \( +clone -background grey -shadow 70x20+0+0 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-grey-70.png" alt="shadow-grey-70"></p>
+<p>在 Mac 上用 zsh 必须得加 \ 转义才行，在 Windows 上面就可以不用。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg ( +clone -background grey -shadow 70x20+0+0 ) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
+
+<p>我可以把它封装为一个函数，但是输出名字要怎么设置呢？直接在后面加 <code>.png</code> 吗？</p>
+<p>也就是 <code>test.jpg</code> 变 <code>test.jpg.png</code>，这样一般是没问题，不过这样的命名不太好。</p>
+<p>另一种思路，在名字后面加 <code>-shadow</code>，也就是变 <code>test-shadow.png</code></p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">shadow</span></span>() &#123;</span><br><span class="line">		convert <span class="variable">$1</span><span class="string">&quot; /( +clone -background grey -shadow 70x20+0+0 /) +swap -background none -layers merge +repage &quot;</span><span class="variable">$&#123;1%.*&#125;</span><span class="string">&quot;-shadow.png</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时将它封装为一个函数，那么之后如果要给图片加阴影，我可以这样来使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shadow powersee-test.jpg</span><br></pre></td></tr></table></figure>
+
+<p>就可以得到一张名为 <code>powersee-test-shadow.png</code> 的带阴影图片。</p>
 
       </div>
         <div class="support-author">
