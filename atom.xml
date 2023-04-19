@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-18T16:09:42.429Z</updated>
+  <updated>2023-04-19T16:05:55.751Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,13 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Mac 提取图片中的文字，断网也能用</title>
+    <link href="https://powersee.github.io/2023/04/mac-image-to-text/"/>
+    <id>https://powersee.github.io/2023/04/mac-image-to-text/</id>
+    <published>2023-04-19T16:01:02.000Z</published>
+    <updated>2023-04-19T16:05:55.751Z</updated>
+    
+    <content type="html"><![CDATA[<p>我之前一直以为这个功能是 iOS 才能用的，因为以前有看到 iOS 相关的介绍。</p><p>没想到 Mac 其实也可以使用。方法是：选中一张图片，按空格键预览，之后按 command + A 这两颗按键，也就是全选嘛，图片中的文字就会高亮。然后再按 command + C  复制即可。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/preview-cmd-a.webp" alt="preview-cmd-a"></p><p>了解了一下，原来是 macOS Monterey 12 才有的功能。我之前的系统一直保留在 Big Sur 11，所以没见过这样的功能。</p><p>然后我测试了一下，断网也可以使用的。而且也可以不用按 command + A，点击右下角的图标就行了。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/preview-button-text.webp" alt="preview-button-text"></p><p>或者直接用鼠标按住左键来选中文字即可。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/preview-select-text.webp" alt="preview-select-text"></p><p>官方介绍：<a href="https://support.apple.com/zh-cn/guide/preview/prvw625a5b2c/mac">在 Mac 上的“预览”中使用“实况文本”与照片中的文本交互 - 官方 Apple 支持 (中国)</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我之前一直以为这个功能是 iOS 才能用的，因为以前有看到 iOS 相关的介绍。&lt;/p&gt;
+&lt;p&gt;没想到 Mac 其实也可以使用。方法是：选中一张图片，按空格键预览，之后按 command + A 这两颗按键，也就是全选嘛，图片中的文字就会高亮。然后再按 command + </summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
     <title>对象存储到底是什么东西？为何能轻松掏空我们的钱包？</title>
     <link href="https://powersee.github.io/2023/04/about-oss/"/>
     <id>https://powersee.github.io/2023/04/about-oss/</id>
     <published>2023-04-18T16:02:17.000Z</published>
-    <updated>2023-04-18T16:09:42.429Z</updated>
+    <updated>2023-04-19T01:49:10.651Z</updated>
     
-    <content type="html"><![CDATA[<p>在网上闲逛看到对象存储，我之前以为这东西应该是企业什么的才需要用的吧，对于我们普通个人来说，应该不太会用到。</p><p>但是我对于它还是有些好奇的，然后最近一直在写博客，那我想着，要不把我博客上的图片，放到对象存储上，这样访问起来会快很多。</p><p>腾讯云好像没有免费空间，我的账号点进去没有，看别人好像有。</p><p>之后我看到这篇博文：<a href="https://www.cnblogs.com/Sky-seeker/p/15855538.html">国内外免费对象存储和CDN加速额度 - 梦幻之心星 - 博客园</a></p><p>里面讲到腾讯云可以花 1 块钱买一年 50G 的，于是我就买了一个。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/one-yuan-cos.webp" alt="one-yuan-cos"></p><p>但是还不知怎么使用，以及它的规则是怎么样的，流量超出了是不是会欠费？那么搜索看看别人是怎么用腾讯云 cos 来存博客图片的吧。</p><p>我找到了这篇文章，而且里面还讲了如何为博客的图片设置 CDN。</p><p><a href="https://jdhao.github.io/2020/03/16/tencent_cos_cdn_setup/">腾讯云对象存储博客图床开启 CDN 加速(不需要购买额外域名) - jdhao’s digital space</a></p><p>不过文章是 2020 年写的，到现在已经三年了。目前想要 cdn 只能使用自己已备案的域名才行，看来 cdn 部分难搞，估计只能使用 cos 了。</p><p>看来也提容易理解，就是把图片放到腾讯云 cos，有点像我们把图片放到网盘里。但是对象存储，它会给我们一个链接，我们可以通过链接来访问放在对象存储中的文件，不需要登录或者输验证码什么的。</p><p>那我这一块钱买的套餐，有 50GB 的存储空间，可以放很多东西嘛。</p><p>可是收费方面我还是没明白。看了腾讯云的免费额度说明</p><blockquote><p>免费额度资源包不可抵扣 <strong>非标准存储容量</strong> 计费项，例如低频存储容量、归档存储容量、请求次数、流量等。</p></blockquote><p>估计就是说，我存 50G 在里面，这个可以免费，但是如果我要访问的话，就需要收费的。</p><p>主要就是 <code>请求次数、流量</code></p><p>我昨晚把博客里的 2023 年的图片，全部替换为 cos 的链接，自己测试了博客的速度，还是比较满意的。今天进入控制台看一下数据</p><p>显示外网流量 12.33 MB，请求次数 297。</p><p>腾讯云已经被扣钱了，看来很危险。</p><blockquote><p>【腾讯云】尊敬的腾讯云用户，您好。截至2023-04-13 08:30:24，您的账号（创建者账号ID：100xxx，昵称：powersee）已欠费0.05元，最新一笔扣费为COS 对象存储 结算扣费，扣费金额0.05元；轻量应用服务器-自定义镜像，对象存储，云函数SCF即将停服；轻量应用服务器-自定义镜像，对象存储停服后会继续对部分功能扣费，直至资源销毁。 您可前往“腾讯云助手”小程序查询扣费明细并快速充值，以免影响资源正常使用</p></blockquote><p>因为我的腾讯云账号里面没有余额，所以直接欠费了。欠费之后，连服务器都要给我停掉，明明我的服务器已经预付款了……</p><p>📝记录一下每天的扣费情况，注意⚠️是根据前一天的流量使用情况来扣费的。</p><table><thead><tr><th>日期</th><th>费用</th></tr></thead><tbody><tr><td>4.13</td><td>0.05</td></tr><tr><td>4.14</td><td>0.07</td></tr><tr><td>4.15</td><td>0.06</td></tr><tr><td>4.16</td><td>0.06</td></tr><tr><td>4.17</td><td>0.05</td></tr></tbody></table><p>根据后台的数据，每天的流量是 120MB 左右，每天的费用是 6 分钱左右，感觉还行，我充了一块钱进去，还能用挺多天的。如果一直保持这样，那一个月就 1.8 元。</p><p>想到既然需要按照流量以及访问次数收钱，那我还是开启防盗链吧。里面默认使用的是白名单，所以我填入这三行进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">powersee.github.io</span><br><span class="line">blog.powersee.top</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure><p>这样我的博客、备份博客、本地调试都可以正常查看图片，如果别人搬运我的内容，或者通过 rss 订阅，就没法加载图片了。</p><p>后来想想，感觉不太好，又把防盗链给关了。</p><p><strong>试试其它的云</strong></p><p>之后我想着试试「阿里云」、「七牛云」，因为之前也有看到别人使用它们当博客图床。</p><p>但是我了解后感觉不好用。</p><p>阿里云我的账号没有免费试用的资格，甚至连想腾讯这种一块钱的体验套餐都没有，一上来就得花钱买……那既然都要花钱，我何必从腾讯云换到阿里云呢？</p><p>七牛云看着是挺好的，每个月有 10G 存储空间，给 10 万次 get 请求。所以一般个人博客使用是足够的。然而它给的链接是 HTTP 的，然后它好像提示，给的域名只有一个月而已。难道以为着如果想白嫖的话，就得每个月自己去更新一下图片域名？所以是在逼我们绑定自己的域名咯，但是域名又必须用备案的……</p><p>之后我搜到这篇文章：<a href="https://kuizuo.cn/why-i-dont-use-qiniu-cloud/">为什么我不用七牛云 - 愧怍的小站</a></p><p>作者讲到使用 HTTP 的图片在 chrome 会有问题，看来还是不要用七牛。</p><p>这里也吐槽一下，注册七年云，需要填写姓名和身份证号，注册完成后，还需要用微信小程序，人脸识别，才可以使用它的对象存储……当我做完这一切，才知道它只给 http 链接，并且域名只能用 30 天……</p><blockquote><p>七牛测试域名，每个域名每日限总流量 10GB，每个测试域名自创建起 30 个自然日后系统会自动回收，仅供测试使用</p></blockquote><p>而且我注册账号后一两个小时吧，七牛那边就打电话过来了，估计是想推广之类的，不过我说我只想拿来当博客图床，后面再敷衍几句就挂了。</p><p>然后我想着既然用不上，我把账号注销了吧，结果发现，整个网站找不到地方注销账号……总之体验很不好。</p><hr><p>目前还是继续用腾讯云 cos，先不搞， 看看腾讯云一块钱能用多久。实在不行就把图片放 vps 上，或者重新改回 GitHub pages。</p>]]></content>
+    <content type="html"><![CDATA[<p>在网上闲逛看到对象存储，我之前以为这东西应该是企业什么的才需要用的吧，对于我们普通个人来说，应该不太会用到。</p><p>但是我对于它还是有些好奇的，然后最近一直在写博客，那我想着，要不把我博客上的图片，放到对象存储上，这样访问起来会快很多。</p><p>腾讯云好像没有免费空间，我的账号点进去没有，看别人好像有。</p><p>之后我看到这篇博文：<a href="https://www.cnblogs.com/Sky-seeker/p/15855538.html">国内外免费对象存储和CDN加速额度 - 梦幻之心星 - 博客园</a></p><p>里面讲到腾讯云可以花 1 块钱买一年 50G 的，于是我就买了一个。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/one-yuan-cos.webp" alt="one-yuan-cos"></p><p>但是还不知怎么使用，以及它的规则是怎么样的，流量超出了是不是会欠费？那么搜索看看别人是怎么用腾讯云 cos 来存博客图片的吧。</p><p>我找到了这篇文章，而且里面还讲了如何为博客的图片设置 CDN。</p><p><a href="https://jdhao.github.io/2020/03/16/tencent_cos_cdn_setup/">腾讯云对象存储博客图床开启 CDN 加速(不需要购买额外域名) - jdhao’s digital space</a></p><p>不过文章是 2020 年写的，到现在已经三年了。目前想要 cdn 只能使用自己已备案的域名才行，看来 cdn 部分难搞，估计只能使用 cos 了。</p><p>看来也挺容易理解，就是把图片放到腾讯云 cos，有点像我们把图片放到网盘里。但是对象存储，它会给我们一个链接，我们可以通过链接来访问放在对象存储中的文件，不需要登录或者输验证码什么的。</p><p>那我这一块钱买的套餐，有 50GB 的存储空间，可以放很多东西嘛。</p><p>可是收费方面我还是没明白。看了腾讯云的免费额度说明</p><blockquote><p>免费额度资源包不可抵扣 <strong>非标准存储容量</strong> 计费项，例如低频存储容量、归档存储容量、请求次数、流量等。</p></blockquote><p>估计就是说，我存 50G 在里面，这个可以免费，但是如果我要访问的话，就需要收费的。</p><p>主要就是 <code>请求次数、流量</code></p><p>我昨晚把博客里的 2023 年的图片，全部替换为 cos 的链接，自己测试了博客的速度，还是比较满意的。今天进入控制台看一下数据</p><p>显示外网流量 12.33 MB，请求次数 297。</p><p>腾讯云已经被扣钱了，看来很危险。</p><blockquote><p>【腾讯云】尊敬的腾讯云用户，您好。截至2023-04-13 08:30:24，您的账号（创建者账号ID：100xxx，昵称：powersee）已欠费0.05元，最新一笔扣费为COS 对象存储 结算扣费，扣费金额0.05元；轻量应用服务器-自定义镜像，对象存储，云函数SCF即将停服；轻量应用服务器-自定义镜像，对象存储停服后会继续对部分功能扣费，直至资源销毁。 您可前往“腾讯云助手”小程序查询扣费明细并快速充值，以免影响资源正常使用</p></blockquote><p>因为我的腾讯云账号里面没有余额，所以直接欠费了。欠费之后，连服务器都要给我停掉，明明我的服务器已经预付款了……</p><p>📝记录一下每天的扣费情况，注意⚠️是根据前一天的流量使用情况来扣费的。</p><table><thead><tr><th>日期</th><th>费用</th></tr></thead><tbody><tr><td>4.13</td><td>0.05</td></tr><tr><td>4.14</td><td>0.07</td></tr><tr><td>4.15</td><td>0.06</td></tr><tr><td>4.16</td><td>0.06</td></tr><tr><td>4.17</td><td>0.05</td></tr></tbody></table><p>根据后台的数据，每天的流量是 120MB 左右，每天的费用是 6 分钱左右，感觉还行，我充了一块钱进去，还能用挺多天的。如果一直保持这样，那一个月就 1.8 元。</p><p>想到既然需要按照流量以及访问次数收钱，那我还是开启防盗链吧。里面默认使用的是白名单，所以我填入这三行进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">powersee.github.io</span><br><span class="line">blog.powersee.top</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure><p>这样我的博客、备份博客、本地调试都可以正常查看图片，如果别人搬运我的内容，或者通过 rss 订阅，就没法加载图片了。</p><p>后来想想，感觉不太好，又把防盗链给关了。</p><p><strong>试试其它的云</strong></p><p>之后我想着试试「阿里云」、「七牛云」，因为之前也有看到别人使用它们当博客图床。</p><p>但是我了解后感觉不好用。</p><p>阿里云我的账号没有免费试用的资格，甚至连想腾讯这种一块钱的体验套餐都没有，一上来就得花钱买……那既然都要花钱，我何必从腾讯云换到阿里云呢？</p><p>七牛云看着是挺好的，每个月有 10G 存储空间，给 10 万次 get 请求。所以一般个人博客使用是足够的。然而它给的链接是 HTTP 的，然后它好像提示，给的域名只有一个月而已。难道意味着如果想白嫖的话，就得每个月自己去更新一下图片域名？所以是在逼我们绑定自己的域名咯，但是域名又必须用备案的……</p><p>之后我搜到这篇文章：<a href="https://kuizuo.cn/why-i-dont-use-qiniu-cloud/">为什么我不用七牛云 - 愧怍的小站</a></p><p>作者讲到使用 HTTP 的图片在 chrome 会有问题，看来还是不要用七牛。</p><p>这里也吐槽一下，注册七年云，需要填写姓名和身份证号，注册完成后，还需要用微信小程序，人脸识别，才可以使用它的对象存储……当我做完这一切，才知道它只给 http 链接，并且域名只能用 30 天……</p><blockquote><p>七牛测试域名，每个域名每日限总流量 10GB，每个测试域名自创建起 30 个自然日后系统会自动回收，仅供测试使用</p></blockquote><p>而且我注册账号后一两个小时吧，七牛那边就打电话过来了，估计是想推广之类的，不过我说我只想拿来当博客图床，后面再敷衍几句就挂了。</p><p>然后我想着既然用不上，我把账号注销了吧，结果发现，整个网站找不到地方注销账号……总之体验很不好。</p><hr><p>目前还是继续用腾讯云 cos，先不搞， 看看腾讯云一块钱能用多久。实在不行就把图片放 vps 上，或者重新改回 GitHub pages。</p>]]></content>
     
     
       
@@ -453,28 +476,6 @@
       
     <summary type="html">&lt;p&gt;邮件？这里的邮件可不是指邮件 APP 里的邮件。而是指 &lt;code&gt;/var/mail&lt;/code&gt; 里面的邮件，其实就 cron 计划任务的日志。&lt;/p&gt;
 &lt;p&gt;可以在 shell 里执行 &lt;code&gt;mail&lt;/code&gt; 来查看。也可以把 &lt;code&gt;/var/mai</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 截图的相关了解</title>
-    <link href="https://powersee.github.io/2023/03/mac-screenshot/"/>
-    <id>https://powersee.github.io/2023/03/mac-screenshot/</id>
-    <published>2023-03-31T02:31:09.000Z</published>
-    <updated>2023-04-11T17:30:48.965Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的"><a href="#为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的" class="headerlink" title="为什么 Mac 截图后，图片在 Finder 里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的"></a>为什么 Mac 截图后，图片在 Finder 里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的</h3><p>在 Mac OS 中，如果一个文件或文件夹的名称是灰色的，这通常表示该文件或文件夹已被标记为“不可用”，这意味着它已被删除、移动或重命名。</p><p>但是，在截图之后，Finder 中显示的文件名虽然是灰色的，但文件本身并没有被标记为“不可用”。相反，灰色的名称在这种情况下表示该文件是新创建的，但尚未被编辑或重命名。当您对该文件进行任何编辑或更改文件名时，文件名将变为黑色。</p><p>因此，无需担心截图文件名灰色的问题，这只是 Mac OS 的一种普遍表现形式，并不意味着该文件已被标记为“不可用”。</p><h3 id="Mac-截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？"><a href="#Mac-截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？" class="headerlink" title="Mac 截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？"></a>Mac 截图之后，图片会在右下角停留几秒，才显示在桌面，如何设置它直接显示在桌面？</h3><p>可以通过输入以下命令来更改截图的保存行为，并直接在桌面上显示它们，而无需等待几秒钟：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture show-thumbnail -bool FALSE &amp;&amp; killall SystemUIServer</span><br></pre></td></tr></table></figure><p>这会禁用截图缩略图并立即使更改生效。现在，您在截图后将立即在桌面上看到它们，而不是在弹出的缩略图中等待数秒。</p><p>请注意，在此更改生效后，您将无法通过双击屏幕截图缩略图来打开它。您需要手动打开存储截图的文件夹，然后找到并打开它们。但是，这个行为可以通过运行以下命令来恢复：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture show-thumbnail -bool TRUE &amp;&amp; killall SystemUIServer</span><br></pre></td></tr></table></figure><p>这里的 <code>-bool</code> 选项允许您将参数值设置为 <code>TRUE</code> 或 <code>FALSE</code>，以启用或禁用缩略图。</p><h3 id="如何更改截图保存位置？"><a href="#如何更改截图保存位置？" class="headerlink" title="如何更改截图保存位置？"></a>如何更改截图保存位置？</h3><p>默认情况下是保存在「桌面」目录中</p><p>我们可以按快捷键 <code>cmd + shift + 5</code> 来唤出截图界面，在「选项」里可以更改保存位置。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的&quot;&gt;&lt;a href=&quot;#为什么-Mac-截图后，图片在-Finder-里面，和其它的文件不一样，它的文件名是灰色的，不像其它文件是黑色的&quot; class=</summary>
       
     
     
