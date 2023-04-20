@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>自建网站访问统计服务 fathom</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    自建网站访问统计服务 fathom
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-20T16:07:27.000Z" itemprop="datePublished">2023-04-21</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>最近给我的博客网站添加上网站统计服务，可以用来记录网站的访问情况。</p>
+<p><img src="/img/2023/fathom-one-week-shadow.webp" alt="fathom-one-week-shadow"></p>
+<p>这是一周的统计情况，比我预期的多。主要来源是：必应、百度、谷歌和 YouTube。访问最多的文章是<a href="/2023/03/tampermonkey-auto-signin/">油猴自动签到</a></p>
+<p>我使用的是 fathom，是一个开源项目，在 <a target="_blank" rel="noopener" href="https://github.com/usefathom/fathom">GitHub</a> 上面有 7 千多 star。</p>
+<p>官方有提供一个预编译的 docker 镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 usefathom/fathom:latest</span><br></pre></td></tr></table></figure>
+
+<p>我观察了下，日常占用内存只有 15MiB，非常轻量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CPU %     MEM USAGE / LIMIT     MEM %     NET I/O</span><br><span class="line">0.04%     15.09MiB / 969.6MiB   1.56%     49MB / 33.1MB</span><br></pre></td></tr></table></figure>
+
+<p>docker 镜像也只有 31.2MB</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">usefathom/fathom         latest    51cf88568278   3 years ago     31.2MB</span><br></pre></td></tr></table></figure>
+
+<p>居然是 3 年前的镜像……</p>
+<p>那么把代码克隆到本地，自己构建新的镜像吧。</p>
+<p>结果失败了，看来是网络问题</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go install: github.com/gobuffalo/packr/v2/packr2@latest: module github.com/gobuffalo/packr/v2/packr2: Get &quot;https://proxy.golang.org/github.com/gobuffalo/packr/v2/packr2/@v/list&quot;: dial tcp 142.251.43.17:443: i/o timeout</span><br><span class="line">The command &#x27;/bin/sh -c go install github.com/gobuffalo/packr/v2/packr2@latest&#x27; returned a non-zero code: 1</span><br></pre></td></tr></table></figure>
+
+<p>在 vps 上构建就没问题。不过我也不知道更新了那些内容，从网页上看，好像没有任何变化。</p>
+<p>运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 fathom</span><br></pre></td></tr></table></figure>
+
+<p>如果不是自己构建的，那么用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 usefathom/fathom:latest</span><br></pre></td></tr></table></figure>
+
+<p>之后我使用反向代理，将 fathom.powersee.top 转发到 8080 端口。</p>
+<p>于是我这样使用了一个星期，好像也没出现什么问题。通过上面的网址，可以访问到 fathom 的 web 界面。</p>
+<p>第一次访问需要设置网站的域名，于是我填了我博客的域名 </p>
+<blockquote>
+<p>powersee.github.io</p>
+</blockquote>
+<p>之后它会给一段 js 代码，把它加入到博客网站的里面就行了。</p>
+<p>我之所以选择它，主要是因为它用的数据库是 sqlite，很轻量，哪怕用 docker 容器运行，镜像大小也只有 30 多 MB。而其它的网站统计服务，很多都是需要使用 MySQL 或者 postgresql，容器很大，太占用服务器空间了。</p>
+<p>相比之下，fathom 可以说是非常轻量小巧。</p>
+<p>如果我们进入容器内，会发现在 &#x2F;app 目录下，就两个文件而已。一个 fathom 可以执行文件，以及 fathom.db 的 sqlite 数据库。</p>
+<p>那看来如果要迁移的话，复制数据库应该就行了。</p>
+<p>其实直接运行 docker 容器应该只是测试用用而已。官方有<a target="_blank" rel="noopener" href="https://github.com/usefathom/fathom/blob/master/docs/Installation%20instructions.md">说明文档</a>：建议的用法是下载 release 中的可执行文件，放到 &#x2F;usr&#x2F;local&#x2F;bin，然后写配置文件 <code>.env</code> 设置 NGINX 方向代理、创建 systemd 服务……</p>
+<p>步骤是有点多，但是按照说明一步一步来，也不难。</p>
+<p>不过我目前犹豫是否继续用下去。因为它开源的是 lite 版，很多功能得 Pro 版本才有。例如统计浏览器型号、用户操作系统这些。</p>
+<p>我点进去看它 Pro 版本的收费情况，好家伙，最低一个月 14 刀。</p>
+<p>我打算换其它的统计服务了。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

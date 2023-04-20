@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-19T16:05:55.751Z</updated>
+  <updated>2023-04-20T16:08:24.216Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自建网站访问统计服务 fathom</title>
+    <link href="https://powersee.github.io/2023/04/fathom/"/>
+    <id>https://powersee.github.io/2023/04/fathom/</id>
+    <published>2023-04-20T16:07:27.000Z</published>
+    <updated>2023-04-20T16:08:24.216Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近给我的博客网站添加上网站统计服务，可以用来记录网站的访问情况。</p><p><img src="/img/2023/fathom-one-week-shadow.webp" alt="fathom-one-week-shadow"></p><p>这是一周的统计情况，比我预期的多。主要来源是：必应、百度、谷歌和 YouTube。访问最多的文章是<a href="/2023/03/tampermonkey-auto-signin/">油猴自动签到</a></p><p>我使用的是 fathom，是一个开源项目，在 <a href="https://github.com/usefathom/fathom">GitHub</a> 上面有 7 千多 star。</p><p>官方有提供一个预编译的 docker 镜像</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 usefathom/fathom:latest</span><br></pre></td></tr></table></figure><p>我观察了下，日常占用内存只有 15MiB，非常轻量。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CPU %     MEM USAGE / LIMIT     MEM %     NET I/O</span><br><span class="line">0.04%     15.09MiB / 969.6MiB   1.56%     49MB / 33.1MB</span><br></pre></td></tr></table></figure><p>docker 镜像也只有 31.2MB</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">usefathom/fathom         latest    51cf88568278   3 years ago     31.2MB</span><br></pre></td></tr></table></figure><p>居然是 3 年前的镜像……</p><p>那么把代码克隆到本地，自己构建新的镜像吧。</p><p>结果失败了，看来是网络问题</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">go install: github.com/gobuffalo/packr/v2/packr2@latest: module github.com/gobuffalo/packr/v2/packr2: Get &quot;https://proxy.golang.org/github.com/gobuffalo/packr/v2/packr2/@v/list&quot;: dial tcp 142.251.43.17:443: i/o timeout</span><br><span class="line">The command &#x27;/bin/sh -c go install github.com/gobuffalo/packr/v2/packr2@latest&#x27; returned a non-zero code: 1</span><br></pre></td></tr></table></figure><p>在 vps 上构建就没问题。不过我也不知道更新了那些内容，从网页上看，好像没有任何变化。</p><p>运行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 fathom</span><br></pre></td></tr></table></figure><p>如果不是自己构建的，那么用</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 usefathom/fathom:latest</span><br></pre></td></tr></table></figure><p>之后我使用反向代理，将 fathom.powersee.top 转发到 8080 端口。</p><p>于是我这样使用了一个星期，好像也没出现什么问题。通过上面的网址，可以访问到 fathom 的 web 界面。</p><p>第一次访问需要设置网站的域名，于是我填了我博客的域名 </p><blockquote><p>powersee.github.io</p></blockquote><p>之后它会给一段 js 代码，把它加入到博客网站的里面就行了。</p><p>我之所以选择它，主要是因为它用的数据库是 sqlite，很轻量，哪怕用 docker 容器运行，镜像大小也只有 30 多 MB。而其它的网站统计服务，很多都是需要使用 MySQL 或者 postgresql，容器很大，太占用服务器空间了。</p><p>相比之下，fathom 可以说是非常轻量小巧。</p><p>如果我们进入容器内，会发现在 &#x2F;app 目录下，就两个文件而已。一个 fathom 可以执行文件，以及 fathom.db 的 sqlite 数据库。</p><p>那看来如果要迁移的话，复制数据库应该就行了。</p><p>其实直接运行 docker 容器应该只是测试用用而已。官方有<a href="https://github.com/usefathom/fathom/blob/master/docs/Installation%20instructions.md">说明文档</a>：建议的用法是下载 release 中的可执行文件，放到 &#x2F;usr&#x2F;local&#x2F;bin，然后写配置文件 <code>.env</code> 设置 NGINX 方向代理、创建 systemd 服务……</p><p>步骤是有点多，但是按照说明一步一步来，也不难。</p><p>不过我目前犹豫是否继续用下去。因为它开源的是 lite 版，很多功能得 Pro 版本才有。例如统计浏览器型号、用户操作系统这些。</p><p>我点进去看它 Pro 版本的收费情况，好家伙，最低一个月 14 刀。</p><p>我打算换其它的统计服务了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近给我的博客网站添加上网站统计服务，可以用来记录网站的访问情况。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/fathom-one-week-shadow.webp&quot; alt=&quot;fathom-one-week-shadow&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这是一周的统计情况，</summary>
+      
+    
+    
+    
+    
+    <category term="web" scheme="https://powersee.github.io/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 提取图片中的文字，断网也能用</title>
@@ -459,29 +483,6 @@
     
     
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 打开 shell 之后，提示 You have new mail</title>
-    <link href="https://powersee.github.io/2023/04/mac-shell-you-have-new-mail/"/>
-    <id>https://powersee.github.io/2023/04/mac-shell-you-have-new-mail/</id>
-    <published>2023-03-31T17:15:01.000Z</published>
-    <updated>2023-04-11T17:30:48.968Z</updated>
-    
-    <content type="html"><![CDATA[<p>邮件？这里的邮件可不是指邮件 APP 里的邮件。而是指 <code>/var/mail</code> 里面的邮件，其实就 cron 计划任务的日志。</p><p>可以在 shell 里执行 <code>mail</code> 来查看。也可以把 <code>/var/mail</code> 里的文件，直接拉到文本编辑器来查看，例如我直接放到 vscode 来查看。</p><p>由于文件没有后缀名，（我的是我的账号名）所以 vscode 自动检测错，把它识别为 Python 文件。</p><p>可以点击底部来更改，改成 log。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vscode-log.webp" alt="vscode-log"></p><p>看完之后，发现也没什么，可以直接把这个文件删除了，这样再打开 shell 就不会有提示了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;邮件？这里的邮件可不是指邮件 APP 里的邮件。而是指 &lt;code&gt;/var/mail&lt;/code&gt; 里面的邮件，其实就 cron 计划任务的日志。&lt;/p&gt;
-&lt;p&gt;可以在 shell 里执行 &lt;code&gt;mail&lt;/code&gt; 来查看。也可以把 &lt;code&gt;/var/mai</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
