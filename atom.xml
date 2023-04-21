@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-20T16:08:24.216Z</updated>
+  <updated>2023-04-21T16:28:09.499Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自建 GitHub 代理服务</title>
+    <link href="https://powersee.github.io/2023/04/github-proxy/"/>
+    <id>https://powersee.github.io/2023/04/github-proxy/</id>
+    <published>2023-04-21T16:08:43.000Z</published>
+    <updated>2023-04-21T16:28:09.499Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的浏览器有装一个<a href="https://github.com/RC1844/FastGithub">油猴脚本</a></p><p>这样我在访问 GitHub 的时候，有一些代理选项。</p><p><img src="/img/2023/image-20230420172817331.webp" alt="image-20230420172817331"></p><p>因为大多数时候，我如果不用梯子，直接点击原链接，是没法下载成功的。</p><p>但是后面的代理链接，有时候也不是很好用，像这种套 cloudflare 的，一天 10 万次居然都能被用完。看来苦逼的国内用户需求还是挺大的。</p><p>它的原理其实也不难。</p><p>原链接：<a href="https://github.com/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_arm64.tar.gz">https://github.com/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_arm64.tar.gz</a></p><p>代理链接：<a href="https://github.rc1844.workers.dev/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_amd64.tar.gz">https://github.rc1844.workers.dev/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_amd64.tar.gz</a></p><p>也就是把 <a href="https://github.com/">https://github.com</a> 换成 <a href="https://github.rc1844.workers.dev/">https://github.rc1844.workers.dev</a></p><p>workers.dev 是 cloudflare 的域名，我们也可以自建自己的 worker 来代理 GitHub。需要使用开源项目：<a href="https://github.com/hunshcn/gh-proxy">https://github.com/hunshcn/gh-proxy</a></p><p>项目的 readme 里面也有写怎么自建 worker 代理。网上也有挺多人写教程的，我自己搭建了一个，结果发现，我的网络好像连访问 cf 都不流畅……</p><p>后来了解到，原来是 workers.dev 已经被墙了……</p><p>解决方法是绑定自己的域名，不过它要求域名的 DNS 解析，得是托管在 cloudflare 才行。</p><p>接着我想研究看看搭建在自己的服务器上，反正服务器的流量一般也用不完。</p><p>使用 docker 的话，很快，一行命令就行，没什么难度。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=&quot;gh-proxy-py&quot; \</span><br><span class="line">  -p 0.0.0.0:80:80 \</span><br><span class="line">  --restart=always \</span><br><span class="line">  hunsh/gh-proxy-py:latest</span><br></pre></td></tr></table></figure><p>不过这镜像有点大，居然要 910MB ……</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hunsh/gh-proxy-py        latest    745d6b4639c3   23 months ago   910MB</span><br></pre></td></tr></table></figure><p>体验一下看到有效果，赶紧把它删了，我这小小的服务器空间宝贵，舍不得。</p><p>我打算部署 python 版本，因为相比之下占用空间就小很多了。</p><p>先把项目克隆到服务器上，然后修改 <code>main.py</code></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/hunshcn/gh-proxy</span><br></pre></td></tr></table></figure><p>需要安装依赖</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install flask requests</span><br></pre></td></tr></table></figure><p>运行起来</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 app/main.py</span><br></pre></td></tr></table></figure><p>也是很简单就可以运行起来，看到可以正常访问之后，我再次把 ip 改为 127.0.0.1 端口就随便设置一个，之后再使用反向代理。</p><p>目前我就使用 screen 让它在后台运行着，比较好的处理方式应该是用 systemd。</p><p>观察了下，感觉还行，占用的系统资源并不多。</p><p>我在自己的服务器上搭建了一个，在 cloudflare 的 workers 也搭建一个。之后可以将自己的链接添加到油猴脚本里面。</p><p><img src="/img/2023/my-github-proxy-shadow.webp" alt="my-github-proxy-shadow"></p><p>就是替换掉脚本中原来的，这样我可以在 GitHub 上面点击那个属于自己的按钮。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我的浏览器有装一个&lt;a href=&quot;https://github.com/RC1844/FastGithub&quot;&gt;油猴脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这样我在访问 GitHub 的时候，有一些代理选项。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/image-20230</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>自建网站访问统计服务 fathom</title>
@@ -460,29 +484,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安装 ohmyposh 来美化 powershell</title>
-    <link href="https://powersee.github.io/2023/04/powershell-ohmyposh/"/>
-    <id>https://powersee.github.io/2023/04/powershell-ohmyposh/</id>
-    <published>2023-04-02T07:09:34.000Z</published>
-    <updated>2023-04-11T17:30:48.958Z</updated>
-    
-    <content type="html"><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh.png" alt="ohmyposh"></p><p>安装 Oh My Posh</p><p>可以到 Microsoft Store 安装</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p><p>或者通过命令行来安装，需要用管理员身份运行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure><p>不过，极大的可能会因为网络问题安装失败</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; winget install JanDeDobbeleer.OhMyPosh -s winget</span><br><span class="line">已找到 Oh My Posh [JanDeDobbeleer.OhMyPosh] 版本 14.24.0</span><br><span class="line">此应用程序由其所有者授权给你。</span><br><span class="line">Microsoft 对第三方程序包概不负责，也不向第三方程序包授予任何许可证。</span><br><span class="line">正在下载 https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v14.24.0/install-amd64.exe</span><br><span class="line">执行此命令时发生意外错误：</span><br><span class="line">InternetOpenUrl() failed.</span><br><span class="line">0x80072efd : unknown error</span><br></pre></td></tr></table></figure><p>我是通过设置命令行走代理来解决的。</p><p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p><p>需要输入两次 y，大小写随便。</p><p>装好后可以尝试在终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>如果像这样报错了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">Import-Module : 无法加载文件 C:\Program Files\WindowsPowerShell\Modules\Terminal-Icons\0.10.0\Terminal-Icons.psm1，因为在此系统上禁止运行脚本。有关详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。</span><br><span class="line"></span><br><span class="line">所在位置 行:1 字符: 1</span><br><span class="line"></span><br><span class="line">+ Import-Module -Name Terminal-Icons</span><br><span class="line"></span><br><span class="line">+ ~~~~~~~~~~</span><br><span class="line"></span><br><span class="line">+ CategoryInfo : SecurityError: (:) [Import-Module]，PSSecurityException</span><br><span class="line"></span><br><span class="line">+ FullyQualifiedErrorId : UnauthorizedAccess,Microsoft.PowerShell.Commands.ImportModuleCommand</span><br></pre></td></tr></table></figure><p>需要更改执行策略，执行命令后输入 y 再按回车。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; set-executionpolicy remotesigned</span><br><span class="line"></span><br><span class="line">执行策略更改</span><br><span class="line"></span><br><span class="line">执行策略可帮助你防止执行不信任的脚本。更改执行策略可能会产生安全风险，如 https:/go.microsoft.com/fwlink/?LinkID=135170</span><br><span class="line"></span><br><span class="line">中的 about_Execution_Policies 帮助主题所述。是否要更改执行策略?</span><br><span class="line"></span><br><span class="line">[Y] 是(Y) [A] 全是(A) [N] 否(N) [L] 全否(L) [S] 暂停(S) [?] 帮助 (默认值为“N”): y</span><br></pre></td></tr></table></figure><p>打开 PowerShell profile，加入这两行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh --init --shell pwsh --config ~\Documents\WindowsPowerShell\ohmyposhv3-v2.json | Invoke-Expression</span><br><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure><p>json 配置文件下载：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c?WT.mc_id=-blog-scottha">ohmyposhv3-v2 (github.com)</a></p><p>直链：<a href="https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json">https://gist.github.com/shanselman/1f69b28bfcc4f7716e49eb5bb34d7b2c/raw/8e9c9a8736ff4e9e5a863c20833d614549ccbc32/ohmyposhv3-v2.json</a></p><p>我也放一份到我的博客里面：<a href="/misc/ohmyposhv3-v2.json">ohmyposhv3-v2</a> 可以右键，「链接另存为…」来下载。</p><p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p><p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p><p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p><p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p><p>然后还需要设置字体，不然这些图标加载不出来。可以到<a href="https://www.nerdfonts.com/">这里</a>下载字体，选择自己喜欢的，下载后是压缩包，解压出来，选中所有字体，右键安装即可。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/win-terminal-font.png" alt="win-terminal-font"></p><p>之后到「设置」「默认值」「外观」里面更改字体。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;通过安装 ohmyposh 来美化 powershell，最终效果如下。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh.png&quot; al</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
   </entry>
   

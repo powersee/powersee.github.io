@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>自建 GitHub 代理服务</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    自建 GitHub 代理服务
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-21T16:08:43.000Z" itemprop="datePublished">2023-04-22</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>我的浏览器有装一个<a target="_blank" rel="noopener" href="https://github.com/RC1844/FastGithub">油猴脚本</a></p>
+<p>这样我在访问 GitHub 的时候，有一些代理选项。</p>
+<p><img src="/img/2023/image-20230420172817331.webp" alt="image-20230420172817331"></p>
+<p>因为大多数时候，我如果不用梯子，直接点击原链接，是没法下载成功的。</p>
+<p>但是后面的代理链接，有时候也不是很好用，像这种套 cloudflare 的，一天 10 万次居然都能被用完。看来苦逼的国内用户需求还是挺大的。</p>
+<p>它的原理其实也不难。</p>
+<p>原链接：<a target="_blank" rel="noopener" href="https://github.com/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_arm64.tar.gz">https://github.com/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_arm64.tar.gz</a></p>
+<p>代理链接：<a target="_blank" rel="noopener" href="https://github.rc1844.workers.dev/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_amd64.tar.gz">https://github.rc1844.workers.dev/usefathom/fathom/releases/download/v1.3.1/fathom_1.3.1_linux_amd64.tar.gz</a></p>
+<p>也就是把 <a target="_blank" rel="noopener" href="https://github.com/">https://github.com</a> 换成 <a target="_blank" rel="noopener" href="https://github.rc1844.workers.dev/">https://github.rc1844.workers.dev</a></p>
+<p>workers.dev 是 cloudflare 的域名，我们也可以自建自己的 worker 来代理 GitHub。需要使用开源项目：<a target="_blank" rel="noopener" href="https://github.com/hunshcn/gh-proxy">https://github.com/hunshcn/gh-proxy</a></p>
+<p>项目的 readme 里面也有写怎么自建 worker 代理。网上也有挺多人写教程的，我自己搭建了一个，结果发现，我的网络好像连访问 cf 都不流畅……</p>
+<p>后来了解到，原来是 workers.dev 已经被墙了……</p>
+<p>解决方法是绑定自己的域名，不过它要求域名的 DNS 解析，得是托管在 cloudflare 才行。</p>
+<p>接着我想研究看看搭建在自己的服务器上，反正服务器的流量一般也用不完。</p>
+<p>使用 docker 的话，很快，一行命令就行，没什么难度。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=&quot;gh-proxy-py&quot; \</span><br><span class="line">  -p 0.0.0.0:80:80 \</span><br><span class="line">  --restart=always \</span><br><span class="line">  hunsh/gh-proxy-py:latest</span><br></pre></td></tr></table></figure>
+
+<p>不过这镜像有点大，居然要 910MB ……</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hunsh/gh-proxy-py        latest    745d6b4639c3   23 months ago   910MB</span><br></pre></td></tr></table></figure>
+
+<p>体验一下看到有效果，赶紧把它删了，我这小小的服务器空间宝贵，舍不得。</p>
+<p>我打算部署 python 版本，因为相比之下占用空间就小很多了。</p>
+<p>先把项目克隆到服务器上，然后修改 <code>main.py</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/hunshcn/gh-proxy</span><br></pre></td></tr></table></figure>
+
+<p>需要安装依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install flask requests</span><br></pre></td></tr></table></figure>
+
+<p>运行起来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 app/main.py</span><br></pre></td></tr></table></figure>
+
+<p>也是很简单就可以运行起来，看到可以正常访问之后，我再次把 ip 改为 127.0.0.1 端口就随便设置一个，之后再使用反向代理。</p>
+<p>目前我就使用 screen 让它在后台运行着，比较好的处理方式应该是用 systemd。</p>
+<p>观察了下，感觉还行，占用的系统资源并不多。</p>
+<p>我在自己的服务器上搭建了一个，在 cloudflare 的 workers 也搭建一个。之后可以将自己的链接添加到油猴脚本里面。</p>
+<p><img src="/img/2023/my-github-proxy-shadow.webp" alt="my-github-proxy-shadow"></p>
+<p>就是替换掉脚本中原来的，这样我可以在 GitHub 上面点击那个属于自己的按钮。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
