@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>命令行中的文件管理器 ranger</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    命令行中的文件管理器 ranger
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-22T16:10:57.000Z" itemprop="datePublished">2023-04-23</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>ranger 一个开源的文件管理器，目前（2023年04月22日）在 <a target="_blank" rel="noopener" href="https://github.com/ranger/ranger">GitHub</a> 上面有 13.2k 颗星。它特别的地方在于，它是在终端里面使用的文件管理器。</p>
+<p>我们可以通过 pip 来安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install ranger-fm</span><br></pre></td></tr></table></figure>
+
+<p>安装好后，输入 ranger 就可以打开它。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ranger/ranger/wiki/Official-user-guide">官方用户指导</a></p>
+<p>打开之后默认是分成两栏或者三栏的，我们可以使用方向键来移动。</p>
+<p>其实和 vim 的使用方法很像的，例如输入冒号 : 之后，可以用 set 来开关各种功能。</p>
+<p><img src="/img/2023/ranger-set-command.webp" alt="ranger-set-command"></p>
+<p>我这里输入 <code>:set draw_borders both</code> 来打开边框。敲下回车键之后，边框就出来了。个人感觉这样比较好看，而且区别清晰，更直观。</p>
+<p><img src="/img/2023/ranger-border.webp" alt="ranger-border"></p>
+<p>其实从顶部和底部，我们还可以获取到很多信息。顶部就是当前的路径，和在 Windows 里使用「资源管理器」很像。</p>
+<p>底部可以看到文件的修改时间。右边可以看到磁盘的剩余空间。</p>
+<p>按下键盘上的 g 会弹出快捷指令。此时再按一下 h，就可以跳转到用户目录下。就是 go home。我经常使用它来切换路径。</p>
+<p><img src="/img/2023/ranger-g.webp" alt="ranger-g"></p>
+<p>按下 z 也会弹出指令，主要是更改一些设置</p>
+<p><img src="/img/2023/ranger-z.webp" alt="ranger-z"></p>
+<p>例如按 h 就可以显示隐藏文件。（除了使用 zh 之外，也可以使用退格键Backspace）</p>
+<p>举一个例子，比如说我想查看 postgresql 的配置文件。那么以前我得这么做</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/postgresql</span><br><span class="line">ls</span><br><span class="line">cd 14</span><br><span class="line">ls</span><br><span class="line">cd main</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>不断地使用 cd 和 ls</p>
+<p>但是我现在使用 ranger 的话，效率就提高很多了</p>
+<p>先按 <code>ge</code> 就可以切换到 &#x2F;etc 里面，然后我可以再按 <code>zz</code> 调出过滤器，输入 post，它就会筛选出带 post 的文件或者文件夹。（比 search 好用，search 还得输入文字之后按回车键，filter 是实时的）</p>
+<p><img src="/img/2023/ranger-filter.webp" alt="ranger-filter"></p>
+<p>之后我只需要一直按方向键右 → 来进入文件夹，还可以预览文件的内容。</p>
+<p><img src="/img/2023/ranger-pg-config.webp" alt="ranger-pg-config"></p>
+<p>再说说一些基本操作</p>
+<p>ranger 默认情况下，是使用 vim 来打开文本文件的，例如上面的 conf 或者 py 等等。如果我想使用 nano 来打开，那可以先按 <code>r</code> 再输入 nano 回车。</p>
+<p>删除文件可以用 F8</p>
+<p>复制粘贴，先复制 yy 再粘贴 pp</p>
+<p>剪切粘贴 dd pp</p>
+<p>不过这样只是对单个文件的操作，如果要操作多个，可以先用空格键标记文件，此时文件名会高亮，并且缩进一个字符。</p>
+<p><img src="/img/2023/ranger-space-Mark.jpg" alt="ranger-space-Mark"></p>
+<p>再按一次空格键可以取消标记。</p>
+<p>重命名文件 cw</p>
+<p>我自己给 ranger 设置了别名 rr</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias rr=&#x27;ranger&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>这样可以更快速地打开它。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>按 g 的时候会弹出很多路径让我们快捷切换。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">key          command</span><br><span class="line"> L           cd -r %f</span><br><span class="line"> l           cd -r .</span><br><span class="line"> /           cd /</span><br><span class="line"> r           cd /</span><br><span class="line"> d           cd /dev</span><br><span class="line"> e           cd /etc</span><br><span class="line"> m           cd /media</span><br><span class="line"> M           cd /mnt</span><br><span class="line"> o           cd /opt</span><br><span class="line"> s           cd /srv</span><br><span class="line"> p           cd /tmp</span><br><span class="line"> u           cd /usr</span><br><span class="line"> ?           cd /usr/share/doc/ranger</span><br><span class="line"> v           cd /var</span><br><span class="line"> h           cd ~</span><br><span class="line"> i           eval fm.cd(&#x27;/run/media/&#x27; + os.getenv(&#x27;USER&#x27;))</span><br><span class="line"> R           eval fm.cd(ranger.RANGERDIR)</span><br><span class="line"> g           move to=0</span><br><span class="line"> c           tab_close</span><br><span class="line"> T           tab_move -1</span><br><span class="line"> t           tab_move 1</span><br><span class="line"> n           tab_new</span><br></pre></td></tr></table></figure>
+
+<p>我们其实是可以自定义这些路径的。我们在终端执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ranger --copy-config=rc.conf</span><br></pre></td></tr></table></figure>
+
+<p>然后到 ~&#x2F;.config&#x2F;ranger 里面找到这个文件，一共有 700 多行。到 450 行可以看到这些</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">450 map gh cd ~</span><br><span class="line">451 map ge cd /etc</span><br><span class="line">452 map gu cd /usr</span><br><span class="line">453 map gd cd /dev</span><br><span class="line">454 map gl cd -r .</span><br><span class="line">455 map gL cd -r %f</span><br><span class="line">456 map go cd /opt</span><br><span class="line">457 map gv cd /var/log/</span><br></pre></td></tr></table></figure>
+
+<p>我们可以修改，或者添加都行，例如我添加多一行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">map g1 cd /etc/postgresql/14/main/</span><br></pre></td></tr></table></figure>
+
+<p>那么我只要按 <code>g1</code> 就可以切换到 <code>/etc/postgresql/14/main/</code></p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

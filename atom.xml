@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-21T16:28:09.499Z</updated>
+  <updated>2023-04-22T16:11:59.036Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>命令行中的文件管理器 ranger</title>
+    <link href="https://powersee.github.io/2023/04/ranger/"/>
+    <id>https://powersee.github.io/2023/04/ranger/</id>
+    <published>2023-04-22T16:10:57.000Z</published>
+    <updated>2023-04-22T16:11:59.036Z</updated>
+    
+    <content type="html"><![CDATA[<p>ranger 一个开源的文件管理器，目前（2023年04月22日）在 <a href="https://github.com/ranger/ranger">GitHub</a> 上面有 13.2k 颗星。它特别的地方在于，它是在终端里面使用的文件管理器。</p><p>我们可以通过 pip 来安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install ranger-fm</span><br></pre></td></tr></table></figure><p>安装好后，输入 ranger 就可以打开它。</p><p><a href="https://github.com/ranger/ranger/wiki/Official-user-guide">官方用户指导</a></p><p>打开之后默认是分成两栏或者三栏的，我们可以使用方向键来移动。</p><p>其实和 vim 的使用方法很像的，例如输入冒号 : 之后，可以用 set 来开关各种功能。</p><p><img src="/img/2023/ranger-set-command.webp" alt="ranger-set-command"></p><p>我这里输入 <code>:set draw_borders both</code> 来打开边框。敲下回车键之后，边框就出来了。个人感觉这样比较好看，而且区别清晰，更直观。</p><p><img src="/img/2023/ranger-border.webp" alt="ranger-border"></p><p>其实从顶部和底部，我们还可以获取到很多信息。顶部就是当前的路径，和在 Windows 里使用「资源管理器」很像。</p><p>底部可以看到文件的修改时间。右边可以看到磁盘的剩余空间。</p><p>按下键盘上的 g 会弹出快捷指令。此时再按一下 h，就可以跳转到用户目录下。就是 go home。我经常使用它来切换路径。</p><p><img src="/img/2023/ranger-g.webp" alt="ranger-g"></p><p>按下 z 也会弹出指令，主要是更改一些设置</p><p><img src="/img/2023/ranger-z.webp" alt="ranger-z"></p><p>例如按 h 就可以显示隐藏文件。（除了使用 zh 之外，也可以使用退格键Backspace）</p><p>举一个例子，比如说我想查看 postgresql 的配置文件。那么以前我得这么做</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /etc/postgresql</span><br><span class="line">ls</span><br><span class="line">cd 14</span><br><span class="line">ls</span><br><span class="line">cd main</span><br><span class="line">ls</span><br></pre></td></tr></table></figure><p>不断地使用 cd 和 ls</p><p>但是我现在使用 ranger 的话，效率就提高很多了</p><p>先按 <code>ge</code> 就可以切换到 &#x2F;etc 里面，然后我可以再按 <code>zz</code> 调出过滤器，输入 post，它就会筛选出带 post 的文件或者文件夹。（比 search 好用，search 还得输入文字之后按回车键，filter 是实时的）</p><p><img src="/img/2023/ranger-filter.webp" alt="ranger-filter"></p><p>之后我只需要一直按方向键右 → 来进入文件夹，还可以预览文件的内容。</p><p><img src="/img/2023/ranger-pg-config.webp" alt="ranger-pg-config"></p><p>再说说一些基本操作</p><p>ranger 默认情况下，是使用 vim 来打开文本文件的，例如上面的 conf 或者 py 等等。如果我想使用 nano 来打开，那可以先按 <code>r</code> 再输入 nano 回车。</p><p>删除文件可以用 F8</p><p>复制粘贴，先复制 yy 再粘贴 pp</p><p>剪切粘贴 dd pp</p><p>不过这样只是对单个文件的操作，如果要操作多个，可以先用空格键标记文件，此时文件名会高亮，并且缩进一个字符。</p><p><img src="/img/2023/ranger-space-Mark.jpg" alt="ranger-space-Mark"></p><p>再按一次空格键可以取消标记。</p><p>重命名文件 cw</p><p>我自己给 ranger 设置了别名 rr</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias rr=&#x27;ranger&#x27;</span><br></pre></td></tr></table></figure><p>这样可以更快速地打开它。</p><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>按 g 的时候会弹出很多路径让我们快捷切换。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">key          command</span><br><span class="line"> L           cd -r %f</span><br><span class="line"> l           cd -r .</span><br><span class="line"> /           cd /</span><br><span class="line"> r           cd /</span><br><span class="line"> d           cd /dev</span><br><span class="line"> e           cd /etc</span><br><span class="line"> m           cd /media</span><br><span class="line"> M           cd /mnt</span><br><span class="line"> o           cd /opt</span><br><span class="line"> s           cd /srv</span><br><span class="line"> p           cd /tmp</span><br><span class="line"> u           cd /usr</span><br><span class="line"> ?           cd /usr/share/doc/ranger</span><br><span class="line"> v           cd /var</span><br><span class="line"> h           cd ~</span><br><span class="line"> i           eval fm.cd(&#x27;/run/media/&#x27; + os.getenv(&#x27;USER&#x27;))</span><br><span class="line"> R           eval fm.cd(ranger.RANGERDIR)</span><br><span class="line"> g           move to=0</span><br><span class="line"> c           tab_close</span><br><span class="line"> T           tab_move -1</span><br><span class="line"> t           tab_move 1</span><br><span class="line"> n           tab_new</span><br></pre></td></tr></table></figure><p>我们其实是可以自定义这些路径的。我们在终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ranger --copy-config=rc.conf</span><br></pre></td></tr></table></figure><p>然后到 ~&#x2F;.config&#x2F;ranger 里面找到这个文件，一共有 700 多行。到 450 行可以看到这些</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">450 map gh cd ~</span><br><span class="line">451 map ge cd /etc</span><br><span class="line">452 map gu cd /usr</span><br><span class="line">453 map gd cd /dev</span><br><span class="line">454 map gl cd -r .</span><br><span class="line">455 map gL cd -r %f</span><br><span class="line">456 map go cd /opt</span><br><span class="line">457 map gv cd /var/log/</span><br></pre></td></tr></table></figure><p>我们可以修改，或者添加都行，例如我添加多一行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">map g1 cd /etc/postgresql/14/main/</span><br></pre></td></tr></table></figure><p>那么我只要按 <code>g1</code> 就可以切换到 <code>/etc/postgresql/14/main/</code></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;ranger 一个开源的文件管理器，目前（2023年04月22日）在 &lt;a href=&quot;https://github.com/ranger/ranger&quot;&gt;GitHub&lt;/a&gt; 上面有 13.2k 颗星。它特别的地方在于，它是在终端里面使用的文件管理器。&lt;/p&gt;
+&lt;p&gt;我们</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>自建 GitHub 代理服务</title>
@@ -92,9 +115,9 @@
     <link href="https://powersee.github.io/2023/04/about-oss/"/>
     <id>https://powersee.github.io/2023/04/about-oss/</id>
     <published>2023-04-18T16:02:17.000Z</published>
-    <updated>2023-04-19T01:49:10.651Z</updated>
+    <updated>2023-04-22T15:29:57.822Z</updated>
     
-    <content type="html"><![CDATA[<p>在网上闲逛看到对象存储，我之前以为这东西应该是企业什么的才需要用的吧，对于我们普通个人来说，应该不太会用到。</p><p>但是我对于它还是有些好奇的，然后最近一直在写博客，那我想着，要不把我博客上的图片，放到对象存储上，这样访问起来会快很多。</p><p>腾讯云好像没有免费空间，我的账号点进去没有，看别人好像有。</p><p>之后我看到这篇博文：<a href="https://www.cnblogs.com/Sky-seeker/p/15855538.html">国内外免费对象存储和CDN加速额度 - 梦幻之心星 - 博客园</a></p><p>里面讲到腾讯云可以花 1 块钱买一年 50G 的，于是我就买了一个。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/one-yuan-cos.webp" alt="one-yuan-cos"></p><p>但是还不知怎么使用，以及它的规则是怎么样的，流量超出了是不是会欠费？那么搜索看看别人是怎么用腾讯云 cos 来存博客图片的吧。</p><p>我找到了这篇文章，而且里面还讲了如何为博客的图片设置 CDN。</p><p><a href="https://jdhao.github.io/2020/03/16/tencent_cos_cdn_setup/">腾讯云对象存储博客图床开启 CDN 加速(不需要购买额外域名) - jdhao’s digital space</a></p><p>不过文章是 2020 年写的，到现在已经三年了。目前想要 cdn 只能使用自己已备案的域名才行，看来 cdn 部分难搞，估计只能使用 cos 了。</p><p>看来也挺容易理解，就是把图片放到腾讯云 cos，有点像我们把图片放到网盘里。但是对象存储，它会给我们一个链接，我们可以通过链接来访问放在对象存储中的文件，不需要登录或者输验证码什么的。</p><p>那我这一块钱买的套餐，有 50GB 的存储空间，可以放很多东西嘛。</p><p>可是收费方面我还是没明白。看了腾讯云的免费额度说明</p><blockquote><p>免费额度资源包不可抵扣 <strong>非标准存储容量</strong> 计费项，例如低频存储容量、归档存储容量、请求次数、流量等。</p></blockquote><p>估计就是说，我存 50G 在里面，这个可以免费，但是如果我要访问的话，就需要收费的。</p><p>主要就是 <code>请求次数、流量</code></p><p>我昨晚把博客里的 2023 年的图片，全部替换为 cos 的链接，自己测试了博客的速度，还是比较满意的。今天进入控制台看一下数据</p><p>显示外网流量 12.33 MB，请求次数 297。</p><p>腾讯云已经被扣钱了，看来很危险。</p><blockquote><p>【腾讯云】尊敬的腾讯云用户，您好。截至2023-04-13 08:30:24，您的账号（创建者账号ID：100xxx，昵称：powersee）已欠费0.05元，最新一笔扣费为COS 对象存储 结算扣费，扣费金额0.05元；轻量应用服务器-自定义镜像，对象存储，云函数SCF即将停服；轻量应用服务器-自定义镜像，对象存储停服后会继续对部分功能扣费，直至资源销毁。 您可前往“腾讯云助手”小程序查询扣费明细并快速充值，以免影响资源正常使用</p></blockquote><p>因为我的腾讯云账号里面没有余额，所以直接欠费了。欠费之后，连服务器都要给我停掉，明明我的服务器已经预付款了……</p><p>📝记录一下每天的扣费情况，注意⚠️是根据前一天的流量使用情况来扣费的。</p><table><thead><tr><th>日期</th><th>费用</th></tr></thead><tbody><tr><td>4.13</td><td>0.05</td></tr><tr><td>4.14</td><td>0.07</td></tr><tr><td>4.15</td><td>0.06</td></tr><tr><td>4.16</td><td>0.06</td></tr><tr><td>4.17</td><td>0.05</td></tr></tbody></table><p>根据后台的数据，每天的流量是 120MB 左右，每天的费用是 6 分钱左右，感觉还行，我充了一块钱进去，还能用挺多天的。如果一直保持这样，那一个月就 1.8 元。</p><p>想到既然需要按照流量以及访问次数收钱，那我还是开启防盗链吧。里面默认使用的是白名单，所以我填入这三行进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">powersee.github.io</span><br><span class="line">blog.powersee.top</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure><p>这样我的博客、备份博客、本地调试都可以正常查看图片，如果别人搬运我的内容，或者通过 rss 订阅，就没法加载图片了。</p><p>后来想想，感觉不太好，又把防盗链给关了。</p><p><strong>试试其它的云</strong></p><p>之后我想着试试「阿里云」、「七牛云」，因为之前也有看到别人使用它们当博客图床。</p><p>但是我了解后感觉不好用。</p><p>阿里云我的账号没有免费试用的资格，甚至连想腾讯这种一块钱的体验套餐都没有，一上来就得花钱买……那既然都要花钱，我何必从腾讯云换到阿里云呢？</p><p>七牛云看着是挺好的，每个月有 10G 存储空间，给 10 万次 get 请求。所以一般个人博客使用是足够的。然而它给的链接是 HTTP 的，然后它好像提示，给的域名只有一个月而已。难道意味着如果想白嫖的话，就得每个月自己去更新一下图片域名？所以是在逼我们绑定自己的域名咯，但是域名又必须用备案的……</p><p>之后我搜到这篇文章：<a href="https://kuizuo.cn/why-i-dont-use-qiniu-cloud/">为什么我不用七牛云 - 愧怍的小站</a></p><p>作者讲到使用 HTTP 的图片在 chrome 会有问题，看来还是不要用七牛。</p><p>这里也吐槽一下，注册七年云，需要填写姓名和身份证号，注册完成后，还需要用微信小程序，人脸识别，才可以使用它的对象存储……当我做完这一切，才知道它只给 http 链接，并且域名只能用 30 天……</p><blockquote><p>七牛测试域名，每个域名每日限总流量 10GB，每个测试域名自创建起 30 个自然日后系统会自动回收，仅供测试使用</p></blockquote><p>而且我注册账号后一两个小时吧，七牛那边就打电话过来了，估计是想推广之类的，不过我说我只想拿来当博客图床，后面再敷衍几句就挂了。</p><p>然后我想着既然用不上，我把账号注销了吧，结果发现，整个网站找不到地方注销账号……总之体验很不好。</p><hr><p>目前还是继续用腾讯云 cos，先不搞， 看看腾讯云一块钱能用多久。实在不行就把图片放 vps 上，或者重新改回 GitHub pages。</p>]]></content>
+    <content type="html"><![CDATA[<p>在网上闲逛看到对象存储，我之前以为这东西应该是企业什么的才需要用的吧，对于我们普通个人来说，应该不太会用到。</p><p>但是我对于它还是有些好奇的，然后最近一直在写博客，那我想着，要不把我博客上的图片，放到对象存储上，这样访问起来会快很多。</p><p>腾讯云好像没有免费空间，我的账号点进去没有，看别人好像有。</p><p>之后我看到这篇博文：<a href="https://www.cnblogs.com/Sky-seeker/p/15855538.html">国内外免费对象存储和CDN加速额度 - 梦幻之心星 - 博客园</a></p><p>里面讲到腾讯云可以花 1 块钱买一年 50G 的，于是我就买了一个。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/one-yuan-cos.webp" alt="one-yuan-cos"></p><p>但是还不知怎么使用，以及它的规则是怎么样的，流量超出了是不是会欠费？那么搜索看看别人是怎么用腾讯云 cos 来存博客图片的吧。</p><p>我找到了这篇文章，而且里面还讲了如何为博客的图片设置 CDN。</p><p><a href="https://jdhao.github.io/2020/03/16/tencent_cos_cdn_setup/">腾讯云对象存储博客图床开启 CDN 加速(不需要购买额外域名) - jdhao’s digital space</a></p><p>不过文章是 2020 年写的，到现在已经三年了。目前想要 cdn 只能使用自己已备案的域名才行，看来 cdn 部分难搞，估计只能使用 cos 了。</p><p>看来也挺容易理解，就是把图片放到腾讯云 cos，有点像我们把图片放到网盘里。但是对象存储，它会给我们一个链接，我们可以通过链接来访问放在对象存储中的文件，不需要登录或者输验证码什么的。</p><p>那我这一块钱买的套餐，有 50GB 的存储空间，可以放很多东西嘛。</p><p>可是收费方面我还是没明白。看了腾讯云的免费额度说明</p><blockquote><p>免费额度资源包不可抵扣 <strong>非标准存储容量</strong> 计费项，例如低频存储容量、归档存储容量、请求次数、流量等。</p></blockquote><p>估计就是说，我存 50G 在里面，这个可以免费，但是如果我要访问的话，就需要收费的。</p><p>主要就是——<strong>请求次数、流量</strong></p><p>我昨晚把博客里的 2023 年的图片，全部替换为 cos 的链接，自己测试了博客的速度，还是比较满意的。今天进入控制台看一下数据</p><p>显示外网流量 12.33 MB，请求次数 297。</p><p>腾讯云已经被扣钱了，看来很危险。</p><blockquote><p>【腾讯云】尊敬的腾讯云用户，您好。截至2023-04-13 08:30:24，您的账号（创建者账号ID：100xxx，昵称：powersee）已欠费0.05元，最新一笔扣费为COS 对象存储 结算扣费，扣费金额0.05元；轻量应用服务器-自定义镜像，对象存储，云函数SCF即将停服；轻量应用服务器-自定义镜像，对象存储停服后会继续对部分功能扣费，直至资源销毁。 您可前往“腾讯云助手”小程序查询扣费明细并快速充值，以免影响资源正常使用</p></blockquote><p>因为我的腾讯云账号里面没有余额，所以直接欠费了。欠费之后，连服务器都要给我停掉，明明我的服务器已经预付款了……</p><p>📝记录一下每天的扣费情况，注意⚠️是根据前一天的流量使用情况来扣费的。</p><table><thead><tr><th>日期</th><th>费用</th></tr></thead><tbody><tr><td>4.13</td><td>0.05</td></tr><tr><td>4.14</td><td>0.07</td></tr><tr><td>4.15</td><td>0.06</td></tr><tr><td>4.16</td><td>0.06</td></tr><tr><td>4.17</td><td>0.05</td></tr></tbody></table><p>根据后台的数据，每天的流量是 120MB 左右，每天的费用是 6 分钱左右，感觉还行，我充了一块钱进去，还能用挺多天的。如果一直保持这样，那一个月就 1.8 元。</p><p>想到既然需要按照流量以及访问次数收钱，那我还是开启防盗链吧。里面默认使用的是白名单，所以我填入这三行进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">powersee.github.io</span><br><span class="line">blog.powersee.top</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure><p>这样我的博客、备份博客、本地调试都可以正常查看图片，如果别人搬运我的内容，或者通过 rss 订阅，就没法加载图片了。</p><p>后来想想，感觉不太好，又把防盗链给关了。</p><p><strong>试试其它的云</strong></p><p>之后我想着试试「阿里云」、「七牛云」，因为之前也有看到别人使用它们当博客图床。</p><p>但是我了解后感觉不好用。</p><p>阿里云我的账号没有免费试用的资格，甚至连像腾讯这种一块钱的体验套餐都没有，一上来就得花钱买……那既然都要花钱，我何必从腾讯云换到阿里云呢？</p><p>七牛云看着是挺好的，每个月有 10G 存储空间，给 10 万次 get 请求。所以一般个人博客使用是足够的。然而它给的链接是 HTTP 的，然后它好像提示，给的域名只有一个月而已。难道意味着如果想白嫖的话，就得每个月自己去更新一下图片域名？所以是在逼我们绑定自己的域名咯，但是域名又必须用备案的……</p><p>之后我搜到这篇文章：<a href="https://kuizuo.cn/why-i-dont-use-qiniu-cloud/">为什么我不用七牛云 - 愧怍的小站</a></p><p>作者讲到使用 HTTP 的图片在 chrome 会有问题，看来还是不要用七牛。</p><p>这里也吐槽一下，注册七年云，需要填写姓名和身份证号，注册完成后，还需要用微信小程序，人脸识别，才可以使用它的对象存储……当我做完这一切，才知道它只给 http 链接，并且域名只能用 30 天……</p><blockquote><p>七牛测试域名，每个域名每日限总流量 10GB，每个测试域名自创建起 30 个自然日后系统会自动回收，仅供测试使用</p></blockquote><p>而且我注册账号后一两个小时吧，七牛那边就打电话过来了，估计是想推广之类的，不过我说我只想拿来当博客图床，后面再敷衍几句就挂了。</p><p>然后我想着既然用不上，我把账号注销了吧，结果发现，整个网站找不到地方注销账号……总之体验很不好。</p><hr><p>目前还是继续用腾讯云 cos，先不搞， 看看腾讯云一块钱能用多久。实在不行就把图片放 vps 上，或者重新改回 GitHub pages。</p>]]></content>
     
     
       
@@ -460,30 +483,6 @@
     
     
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我的图片优化方案</title>
-    <link href="https://powersee.github.io/2023/04/blog-image-optimize/"/>
-    <id>https://powersee.github.io/2023/04/blog-image-optimize/</id>
-    <published>2023-04-02T17:26:05.000Z</published>
-    <updated>2023-04-11T17:30:48.965Z</updated>
-    
-    <content type="html"><![CDATA[<p>我现在的博客是用 hexo 生成的静态网页，部署在 GitHub pages。</p><p>而众所周知，国内访问 GitHub pages 一直不怎么好，所以优化非常重要。</p><p>我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等很久才能看到图标。再加上用久了，有点审美疲劳，所以最近换了个主题，现在速度快了很多。</p><p>改完主题后，我又注意到另一个影响访问速度的因素——图片。</p><p>我博客的图片，都是放在 source&#x2F;img 目录中，按照年份建立目录。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/blog-source-img.jpg" alt="blog-source-img"></p><p>我可以通过按大小排序，来查出哪些图片占用的空间比较大。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p><p>现在看到的是我已经优化过的了，下面说说我的优化过程。</p><h3 id="Mac-自带「预览」"><a href="#Mac-自带「预览」" class="headerlink" title="Mac 自带「预览」"></a>Mac 自带「预览」</h3><p>在 Mac 上双击一张图片，会使用自带的「预览」来打开。可以点击「文件」「导出」，选择 JPEG 格式，可以更改它的质量来缩小图片体积。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p><h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/affinity-photo.webp" alt="affinity-photo"></p><p>专业的图片处理软件，除非要修改图片内容，不然一般不会选择用它们来压缩图片。</p><h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ImageOptim.webp" alt="ImageOptim"></p><p>一个开源的图片优化工具，直接把图片拖进来就行。它只有 <a href="https://imageoptim.com/mac">Mac 版本</a>，在 <a href="https://github.com/ImageOptim/ImageOptim">GitHub</a> 上面有 8.3K star。</p><p>上面我拖了一张图片进来，它处理后，图片大小变成原来的 65.1% 了。这是在我开启微量有损的情况，不开的话，压缩比并不高。</p><p>然后我觉得它有两个缺点：</p><ul><li>压缩后直接替换掉原文件</li><li>压缩时间太长</li></ul><p>所以我不怎么用它。</p><h3 id="使用-WebP-格式"><a href="#使用-WebP-格式" class="headerlink" title="使用 WebP 格式"></a>使用 WebP 格式</h3><p>之前的<a href="/2023/03/about-webp/">文章</a>我已经介绍过它了，我目前博客新添加的图片，如果体积比较大，我都尽量把它们转为 WebP 格式。它的压缩比超级强。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vr.webp" alt="qiyu-vr"></p><p>你能想象这样一张分辨率为 5472×3080 的图片，它只有 87KB 吗？</p><p>它可以做到图片很小的情况下，还保持着不错的图片质量，真心不错。</p><p>由于经常转换格式，所以我后来将它弄成一个 APP，图片拖进去就会自动转换为 WebP 格式。</p><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p><p>感兴趣的可以看<a href="/2023/03/create-mac-app-from-command-line-scripts/">之前的文章</a>。这么一番优化，我目前整个博客的图片，只有 34MB，我手机开数据的情况下访问我的博客，速度方面感觉也还不错。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我现在的博客是用 hexo 生成的静态网页，部署在 GitHub pages。&lt;/p&gt;
-&lt;p&gt;而众所周知，国内访问 GitHub pages 一直不怎么好，所以优化非常重要。&lt;/p&gt;
-&lt;p&gt;我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
