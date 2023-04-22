@@ -10,16 +10,19 @@
 fathom('set', 'siteId', 'NSWOC');
 fathom('trackPageview');
 
-// 获取当前网页中 body 的所有 img 标签
-const imgElements = document.querySelectorAll('body img');
+if (window.location.host == "powersee.github.io") {
 
-// 遍历每个 img 标签
-for (let i = 0; i < imgElements.length; i++) {
-  const imgElement = imgElements[i];
-  const src = imgElement.getAttribute('src');
+	// 获取当前网页中 body 的所有 img 标签
+	const imgElements = document.querySelectorAll('body img');
 
-  // 检查 img 标签的 src 是否以 /img/ 开头
-  if (src.startsWith('/img/')) {
-    imgElement.setAttribute('src', src.replace('/img/', 'https://blog.powersee.top/img/'));
-  }
+	// 遍历每个 img 标签
+	for (let i = 0; i < imgElements.length; i++) {
+	const imgElement = imgElements[i];
+	const src = imgElement.getAttribute('src');
+
+	// 检查 img 标签的 src 是否以 /img/ 开头
+	if (src.startsWith('/img/')) {
+		imgElement.setAttribute('src', src.replace('/img/', 'https://blog.powersee.top/img/'));
+	}
+	}
 }
