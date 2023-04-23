@@ -424,7 +424,7 @@
 <li>Windows 64 位版（win10 和 win7 上都可以用）</li>
 <li>Macos ARM 版（在 M1 芯片的 Mac mini 上可以使用，不需要转译）</li>
 </ul>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/Mac_M1_kcc.png" alt="Mac_M1_kcc"></p>
+<p><img src="/img/2021/Mac_M1_kcc.png" alt="Mac_M1_kcc"></p>
 <blockquote>
 <p>软件链接：</p>
 <p>蓝奏云：<a href="https://pan.lanzou.com/b0bg5lrub">https://pan.lanzou.com/b0bg5lrub</a> 密码:2ebz</p>
@@ -433,10 +433,10 @@
 <p>在【Windows 应用】和【Mac 应用】文件夹中</p>
 <p>阿里云盘分享不了压缩包，mac 的 dmg 安装包居然也不行。。。</p>
 </blockquote>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/profiles_kcc.png" alt="profiles_kcc"></p>
+<p><img src="/img/2021/profiles_kcc.png" alt="profiles_kcc"></p>
 <p>并且我还对软件进行了汉化。并且添加多几个预设，如果你们的设备没有在列表里面，其实也没有关系的，选择同样分辨率的设备就行。例如里面的 Boox，我就只添加一个，因为我发现 7.8 英寸的 nova air 和 10.3 英寸的 note X 其实它们的分辨率是一样的，都是1404 * 1872，和 kobo auro ONE 其实也一样，本来是不需要添加进去的。</p>
 <p>但是我发现如果预设选择 kobo 系列的，那么转换出来的文件，后缀是 kepub.epub，看着有点别扭，所以我就添加多一个预设进去了。这样转换出来的 epub 就不会带 kepub。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/kcc-other.jpg" alt="kcc-other"></p>
+<p><img src="/img/2021/kcc-other.jpg" alt="kcc-other"></p>
 <p>如果自己的设备在里面没有相同分辨率的机器，那么可以选择 other，然后自己添加分辨率。</p>
 <p>这里我也把里面的预设的分辨率放出来给大家参考</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;K1&#x27;: (&quot;Kindle 1&quot;, (600, 670), Palette4, 1.8),</span><br><span class="line">&#x27;K2&#x27;: (&quot;Kindle 2&quot;, (600, 670), Palette15, 1.8),</span><br><span class="line">&#x27;K34&#x27;: (&quot;Kindle Keyboard/Touch&quot;, (600, 800), Palette16, 1.8),</span><br><span class="line">&#x27;K578&#x27;: (&quot;Kindle&quot;, (600, 800), Palette16, 1.8),</span><br><span class="line">&#x27;KDX&#x27;: (&quot;Kindle DX/DXG&quot;, (824, 1000), Palette16, 1.8),</span><br><span class="line">&#x27;KPW&#x27;: (&quot;Kindle Paperwhite 1/2&quot;, (758, 1024), Palette16, 1.8),</span><br><span class="line">&#x27;KV&#x27;: (&quot;Kindle Paperwhite 3/4/Voyage/Oasis&quot;, (1072, 1448), Palette16, 1.8),</span><br><span class="line">&#x27;KPW5&#x27;: (&quot;Kindle Paperwhite 5/Signature Edition&quot;, (1236, 1648), Palette16, 1.8),</span><br><span class="line">&#x27;KO&#x27;: (&quot;Kindle Oasis 2/3&quot;, (1264, 1680), Palette16, 1.8),</span><br><span class="line">&#x27;MIX7&#x27;: (&quot;Kindle Oasis 2/3&quot;, (1264, 1680), Palette16, 1.8),</span><br><span class="line">&#x27;KoMT&#x27;: (&quot;Kobo Mini/Touch&quot;, (600, 800), Palette16, 1.8),</span><br><span class="line">&#x27;KoG&#x27;: (&quot;Kobo Glo&quot;, (768, 1024), Palette16, 1.8),</span><br><span class="line">&#x27;KoGHD&#x27;: (&quot;Kobo Glo HD&quot;, (1072, 1448), Palette16, 1.8),</span><br><span class="line">&#x27;KoA&#x27;: (&quot;Kobo Aura&quot;, (758, 1024), Palette16, 1.8),</span><br><span class="line">&#x27;KoAHD&#x27;: (&quot;Kobo Aura HD&quot;, (1080, 1440), Palette16, 1.8),</span><br><span class="line">&#x27;KoAH2O&#x27;: (&quot;Kobo Aura H2O&quot;, (1080, 1430), Palette16, 1.8),</span><br><span class="line">&#x27;KoAO&#x27;: (&quot;Kobo Aura ONE&quot;, (1404, 1872), Palette16, 1.8),</span><br><span class="line">&#x27;BOOX&#x27;: (&quot;BOOX nova air / note X&quot;, (1404, 1872), Palette16, 1.8),</span><br><span class="line">&#x27;KoC&#x27;: (&quot;Kobo Clara HD&quot;, (1072, 1448), Palette16, 1.8),</span><br><span class="line">&#x27;KoL&#x27;: (&quot;Kobo Libra H2O&quot;, (1264, 1680), Palette16, 1.8),</span><br><span class="line">&#x27;KoF&#x27;: (&quot;Kobo Forma&quot;, (1440, 1920), Palette16, 1.8),</span><br><span class="line">&#x27;OTHER&#x27;: (&quot;Other&quot;, (0, 0), Palette16, 1.8),</span><br></pre></td></tr></table></figure>
@@ -446,11 +446,11 @@
 <p>其实选择不同的预设，只是转换出来的图片分辨率不用而已，但是，好像都是可以正常全屏阅读的，例如我同一本漫画，转为为 ko2 和 kindle（也就是上面的 K578，分辨率为 600 X 800），那么结果在我的 kindle 499 上面都是可以正常阅读，而且明显用 ko2 预设转换出来的漫画，分辨率更高，在 kindle 499 上面看也比较清晰一些。因为选 ko2 转换出来的 mobi 文档，里面的图片分辨率是 1680 X 1264 ，而选择 kindle 转换出来的分辨率则为 600 X 800，所以不管在那台设备，都是高分辨率的图片看起来清晰。</p>
 <p>所以个人感觉，如果可以，尽可能的使用较高分辨率的预设，这样转换出来的图片分辨率比较高，画质更好更清晰，而且可能以后的设备也可以阅读（例如现在有时从网上下载的 kindle 漫画，有些是比较旧的，是当年网友制作给 600 X 800 的设备阅读的，放到 ko2 这个分辨率为 1680 X 1264 的设备看就挺模糊的）。</p>
 <p>当然也不是说分辨率调高就好，现在比较高清的日本漫画资源，分辨率高度方面好像就 2000 多而已，你调个 3、4000 肯定也没用。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/tieba-img-download.jpg" alt="tieba-img-download"></p>
+<p><img src="/img/2021/tieba-img-download.jpg" alt="tieba-img-download"></p>
 <p>然后我发现贴吧还是可以下载到挺多漫画图片的，所以我也写了个程序来下载贴吧的高清图片，用着也还不错，图片会按照顺序重命名，所以下载完后，直接把文件夹拖到 kcc 里面就可以转换为 epub 或者 mobi 了，两者可以配合使用。</p>
 <p>对了，kcc 这个软件也是可以将 PDF 漫画，转换为 epub 或者 mobi 的，我之前就有尝试过，将 700 多 M 的 PDF 漫画，拖进去，转换为 mobi 漫画，放到 kindle 上面来阅读。结果会变成两个文件，因为这个软件限制 mobi 格式的文档，最大只能 400M，据说是太大了 kindle 用起来会卡。（作者在论坛说的）</p>
 <p>EPUB 就没有这方面的限制，所以我尝试过把整本漫画转换为 epub，结果生成了一个 1G 多的文档，放到墨案 mix7 上面阅读还挺流畅的。</p>
-<h3 id="12-21-版"><a href="#12-21-版" class="headerlink" title="12.21 版"></a>12.21 版</h3><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/kcc-2021-12-21.jpg" alt="kcc-2021-12-21"></p>
+<h3 id="12-21-版"><a href="#12-21-版" class="headerlink" title="12.21 版"></a>12.21 版</h3><p><img src="/img/2021/kcc-2021-12-21.jpg" alt="kcc-2021-12-21"></p>
 <p>添加了两个选择框</p>
 <ul>
 <li>禁删 epub</li>
@@ -646,23 +646,23 @@
     <title>关于迅雷赚钱宝二代一些小记录</title>
     <url>/2021/03/about-zhuanqianbao2/</url>
     <content><![CDATA[<p>最近买了台 赚钱宝2代，闲鱼买的，30块包邮，有包装，电源适配器，网线。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-03-01_21-01-42.jpg" alt="2021-03-01_21-01-42"></p>
+<p><img src="/img/2021/2021-03-01_21-01-42.jpg" alt="2021-03-01_21-01-42"></p>
 <p>买这个干什么呢？拿它来赚钱吗？并不是，现在这个好像赚不了钱了吧，不然别人也不会卖。主要是看到恩山上面有刷机的帖子，想买来刷机玩玩。</p>
 <p>论坛帖子：<a href="https://www.right.com.cn/forum/thread-4063295-1-1.html">https://www.right.com.cn/forum/thread-4063295-1-1.html</a></p>
 <p>刷机很简单，下载镜像——<strong>二代线刷无需算号只需改mac后插盘就用.img</strong></p>
 <p>然后使用 usb burning tool 导入，赚钱宝先用双公头 usb 线连接电脑，然后用卡针或者牙签，捅住复位键，再插电源。软件应该就能识别到了，然后就可以点【开始】刷机</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-03-01_23-17-35.jpg" alt="2021-03-01_23-17-35"></p>
+<p><img src="/img/2021/2021-03-01_23-17-35.jpg" alt="2021-03-01_23-17-35"></p>
 <p>完成后拔电源、双公头 usb，再插上网线、电源开机。等待路由器出现 IP，然后就可以通过 ssh 连接上去。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-03-01_21-05-16.jpg" alt="2021-03-01_21-05-16"></p>
+<p><img src="/img/2021/2021-03-01_21-05-16.jpg" alt="2021-03-01_21-05-16"></p>
 <p>原本以为是 armbian ，刷完才发现，原来是 openwrt，而且精简得不能再精简的，很多命令行工具都没有。里面自带有甜糖，一开机就跑，有兴趣可以去原帖看看。</p>
 <p>我对这个是没什么兴趣，那就把它拆开看看吧。网上一搜好像没有拆机的文章，那只能自己研究了。耗费很长很长的时间，终于把机器拆开了，也拆坏了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-03-01_23-23-40.jpg" alt="2021-03-01_23-23-40"></p>
+<p><img src="/img/2021/2021-03-01_23-23-40.jpg" alt="2021-03-01_23-23-40"></p>
 <p>通过这伤痕累累的外壳，也可以想象我拆得好辛苦。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-03-01_23-24-19.jpg" alt="2021-03-01_23-24-19"></p>
+<p><img src="/img/2021/2021-03-01_23-24-19.jpg" alt="2021-03-01_23-24-19"></p>
 <p>而且主板上的一颗电容也被我弄掉下来了，现在机器无法开机了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-03-01_23-24-24.jpg" alt="2021-03-01_23-24-24"></p>
+<p><img src="/img/2021/2021-03-01_23-24-24.jpg" alt="2021-03-01_23-24-24"></p>
 <p>背面长这样，可以焊接排针，用于 ttl 。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-03-01_23-24-31.jpg" alt="2021-03-01_23-24-31"></p>
+<p><img src="/img/2021/2021-03-01_23-24-31.jpg" alt="2021-03-01_23-24-31"></p>
 <p>正确的拆法应该是，用吹风筒吹机器的正面加热，然后取下上面比较薄的一层壳，应该就能看到 4 颗螺丝，拧开才能取下外壳。而我这种拆法是直接大力出奇迹，在 4 颗螺丝拧紧的情况下，强行将外壳掰开。</p>
 <p>希望后人引以为戒。</p>
 ]]></content>
@@ -730,10 +730,10 @@
     <title>bilibili 粉丝数量展示器 app</title>
     <url>/2021/02/bilibili-fans/</url>
     <content><![CDATA[<p>去年搞了好几台墨水屏手机，平时除了阅读，就是放在桌面上当时钟用。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/f1_time.jpg" alt="f1_time"></p>
+<p><img src="/img/2021/f1_time.jpg" alt="f1_time"></p>
 <p>后来突发奇想，要不拿它来当粉丝计数器吧。放在桌面上展示当前的粉丝数量，反正墨水屏屏幕不刷新的话，也不怎么耗电。</p>
 <p>于是花费了一些时间，写了这个 app —— B站粉丝展示器</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/Bili_fans_app.jpg" alt="Bili_fans_app"></p>
+<p><img src="/img/2021/Bili_fans_app.jpg" alt="Bili_fans_app"></p>
 <p>app 只申请网络权限而已，其它的权限都不需要</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br></pre></td></tr></table></figure>
 
@@ -742,14 +742,14 @@
 <p>waiting for update</p>
 </blockquote>
 <p>需要点击文字，进入设置页面</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/bili_fans_settings.jpg" alt="bili_fans_settings"></p>
+<p><img src="/img/2021/bili_fans_settings.jpg" alt="bili_fans_settings"></p>
 <p>填写 mid ，在电脑网页上，点击用户头像，就可以在地址栏看到 mid 了。例如这样</p>
 <blockquote>
 <p><a href="https://space.bilibili.com/254479550">https://space.bilibili.com/254479550</a></p>
 <p>254479550 就是 mid</p>
 </blockquote>
 <p>填完退出 app，再重新打开。就可以刷新出粉丝数量了。手机如果有打开自动旋转屏幕，可以横屏展示。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/phones_bili_fans.jpg" alt="phones_bili_fans"></p>
+<p><img src="/img/2021/phones_bili_fans.jpg" alt="phones_bili_fans"></p>
 <p>默认设置每 60 秒请求一次粉丝数量，并且屏幕永不熄屏，比较适合在墨水屏设备上面使用。</p>
 <p>下载地址：<a href="http://veger.ys168.com/">http://veger.ys168.com/</a></p>
 <p>在【手机软件】文件夹里</p>
@@ -1188,7 +1188,7 @@
 
 <p>这样的了，自然就没法加载出来图片。不过也是很奇怪，我刚才没有升级 hexo 的时候，明明图片是可以加载出来的（刚才在电脑里通过 hexo s 访问 localhost:4000 的时候，图片什么的都是正常的……）</p>
 <p>然后我又查看了一下我的备份博客，我设置它每天凌晨同步 GitHub 上的网页，所以刚才更新的内容，它还没同步过去。然后我发现，其实之前的图片也是有反斜杠的，并且图片可以正常加载。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/%E4%BD%BF%E7%94%A8%E5%8F%8D%E6%96%9C%E6%9D%A0%E7%9A%84%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5.jpg"></p>
+<p><img src="/img/2022/%E4%BD%BF%E7%94%A8%E5%8F%8D%E6%96%9C%E6%9D%A0%E7%9A%84%E5%9B%BE%E7%89%87%E9%93%BE%E6%8E%A5.jpg"></p>
 <p>等了一会之后，我再去刷新 GitHub pages 搭建的博客，图片大多数也可以加载了。有点莫名其妙。不过我还是使用 vscode 里的查找替换功能，将 <code>\img\2021\</code> 全部替换为 <code>/img/2021/</code> ，以及 2020 年的。</p>
 <p>其实想想也不怎么省心呀，不过还好问题能够解决。</p>
 ]]></content>
@@ -1839,10 +1839,10 @@
     <url>/2022/01/pisen-router/</url>
     <content><![CDATA[<p>最近从小黄鱼收了台路由器，挺特别的，带耳机孔。</p>
 <p>不过我买的是 WPR001N ，这款只有的 WiFi 速率只有 150M，而另外有一款外形和它一样的，但是速率是 300M。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/001N.jpg" alt="001N"></p>
+<p><img src="/img/2022/001N.jpg" alt="001N"></p>
 <p>原本以为它们就这点区别而已，买来后才发现并不是，区别还是挺多的。</p>
 <p>首先它们的外形还有一点不同的，就是 300M 这款是有两个网口的，而我的这款 150M 的，它的网口只有一个。其次它们的型号也不同，我这个是 WPR001N ，而那款是 WPR003N，所以导致了，它们的固件是不通用的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/001N-rj45.jpg" alt="001N"></p>
+<p><img src="/img/2022/001N-rj45.jpg" alt="001N"></p>
 <p>所以如果你是为了刷机，那么应该多花点钱买 300M 那款。不过其实我个人并不建议买这玩意来刷 openwrt，毕竟它最大的价值是那个 3.5mm 耳机接口，而刷机之后，接口就没法用了。只能作为普通的路由器使用。</p>
 <p>但是作为普通路由器，它在目前看来，又太弱了。比它更好的选择有太多了，例如同样百兆的路由器有：斐讯 k2、极路由、小米路由器等等，这些都是几十块就能买到的，而且网上的固件也很多，很容易找。</p>
 <p>如果价格升到 50 块，那中兴 e8820s 是一个非常好的选择，千兆，带 USB 接口。</p>
@@ -1857,14 +1857,14 @@
 <hr>
 <p>不过目前没找到它可以用的固件，可能得自己去编译才行……</p>
 <h3 id="更奇葩的路由器"><a href="#更奇葩的路由器" class="headerlink" title="更奇葩的路由器"></a>更奇葩的路由器</h3><p>后来我又买了品胜的另外一款路由器——净 音 云路由</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/%E5%93%81%E8%83%9C%E8%B7%AF%E7%94%B1%E5%99%A8.jpg" alt="两款路由器"></p>
+<p><img src="/img/2022/%E5%93%81%E8%83%9C%E8%B7%AF%E7%94%B1%E5%99%A8.jpg" alt="两款路由器"></p>
 <p>这款里面内置风扇，配有海绵，可以用当空气净化器……脑洞非常的大</p>
 <p>当然，它同样有音频输出接口，所以可以连接一个音响，然后使用它配套的 APP——Pisen Cloud，使用这个 APP 可以访问到，插在路由器上面的 U 盘，或者移动硬盘中的文件。它这个 APP 应该是相当古老的，在现在的全面屏手机上面使用时，下面的一节是黑的，不显示内容。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/pisen_cloud_app.png" alt="APP底部"></p>
+<p><img src="/img/2022/pisen_cloud_app.png" alt="APP底部"></p>
 <p>我记得下载时官网好像提示要求 Android 版本要在 4.0 及以上。然后我还发现了，这款 APP 似乎完全没要求过权限。如果是其它的 APP，想要获取定位、访问相册、访问手机里的其它文件，手机应该会弹出一个提示权限要求才对。但是这个 APP 完全没有，直接就可以访问了。原来只要保持 APP 兼容旧版本的 Android，就可以无视这些权限要求，还是挺可怕的，陌生 APP 安装要谨慎点。</p>
 <p>对了，这款 APP 想要识别到路由器，需要手机连接到【净 音 云路由】的 WiFi 上，同时还要把手机的定位功能打开，这点是 Android 6 之后的要求，可能这个 APP 诞生时 Android 6 还没发布吧，所以它也没有提示什么的。</p>
 <p>在 APP 里面的闪电互传里，可以播放手机里面的音乐，点击右上角可以将音乐推送到路由器上，也就可以让连接在路由器上的音响出声。其实它就是 dlna 而且，用 网易云音乐 也可以推送，点击歌词界面的右上角就行。但是手机必须连接在品胜路由器的 WiFi 下才行，才可以识别并推送。如果手机和连接在品胜路由器的上级路由，此时是发现不了 dlna 信号的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/pisen-dlna.jpg" alt="dlna"></p>
+<p><img src="/img/2022/pisen-dlna.jpg" alt="dlna"></p>
 <p>总体体验下来，不是什么好东西，并不实用，不建议购买。</p>
 ]]></content>
       <tags>
@@ -1927,18 +1927,18 @@
 <p>因为不知道编译好的固件，刷入后会不会出问题，为了避免待会完全变砖，无法挽回。所以先研究一下怎么 ttl 串口连接。</p>
 <p>首先需要拆机，带二维码的为背面，沿着缝隙撬开，有三颗螺丝，拧开后再撬正面的外壳。</p>
 <p>主板上面有三个金属接触点，分别是 RXD, TXD, GND</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/Snipaste_22-01-17_22-14-57.jpg" alt="主板"></p>
+<p><img src="/img/2022/Snipaste_22-01-17_22-14-57.jpg" alt="主板"></p>
 <p>一开始我拿杜邦线将它与 CH340G 模块进行连接（GND–GND, TX–RX, RX–TX），我是直接用手按着，然而我还需要接通电源以及操控鼠标，所以一直没法按稳。</p>
 <p>没办法，还是拿出了电烙铁，焊点锡上去吧。结果成了这样（其实也没多牢固，不过比用手按着好很多了）</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/Snipaste_22-01-17_22-18-01.jpg" alt="焊锡好"></p>
+<p><img src="/img/2022/Snipaste_22-01-17_22-18-01.jpg" alt="焊锡好"></p>
 <p>之后连接好模块，电脑上可以使用 putty 或者 xshell 来进行串口调试。由于我之前以及刷好 breed 进去了，所以给路由器通电，然后在几秒内按回车键，就可以进入 breed，在浏览器可以通过 <code>192.168.1.1</code> 来访问。</p>
 <p>如果不按回车键的话，就会启动闪存中的系统。然后我就发现了，原来我之前刷进去的 openwrt 固件，是可以启动的</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-01-17_19-04-24.jpg" alt="2022-01-17_19-04-24"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-01-17_19-10-16.jpg" alt="2022-01-17_19-10-16"></p>
+<p><img src="/img/2022/2022-01-17_19-04-24.jpg" alt="2022-01-17_19-04-24"></p>
+<p><img src="/img/2022/2022-01-17_19-10-16.jpg" alt="2022-01-17_19-10-16"></p>
 <p>通过 ttl 我才知道的，不过它的 web 服务和 wifi 都没有开启，系统能启动成功也没什么用。</p>
 <p>那么 ttl 连接没问题，就可以来折腾看看了。于是我将 @<strong>大电视姬</strong>  发过来的固件，在 breed 中刷入路由器。</p>
 <p>之后路由器自动重启，成功了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-01-17_20-06-28.jpg" alt="2022-01-17_20-06-28"></p>
+<p><img src="/img/2022/2022-01-17_20-06-28.jpg" alt="2022-01-17_20-06-28"></p>
 <p>然后，索然无味……就算刷机成功了，又怎样呢？我又不会去使用它，家里面基本所有路由器都比它强，没什么意思。</p>
 <p>固件放到网盘和下载站里，在【路由器】【品胜路由器】中，再次感谢 @<strong>大电视姬</strong></p>
 <p>网盘：<a href="http://veger.ysepan.com/">http://veger.ysepan.com/</a></p>
@@ -1953,7 +1953,7 @@
     <title>pve去除订阅提示</title>
     <url>/2022/04/pve-remove-notice/</url>
     <content><![CDATA[<p>pve 每次登录时，都会弹出一个提示</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/pve-subscription-notice.jpg"></p>
+<p><img src="/img/2022/pve-subscription-notice.jpg"></p>
 <p>看着挺烦的，如何去掉它呢？网上一搜很容易就找到解决方案，这里记录一下。我目前使用的版本是 7.1-7</p>
 <p>参考文章：<a href="https://johnscs.com/remove-proxmox51-subscription-notice/">Remove Proxmox Subscription Notice (Tested to 7.1-10) | John’s Computer Services (johnscs.com)</a></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sed -Ezi.bak &quot;s/(Ext.Msg.show\(\&#123;\s+title: gettext\(&#x27;No valid sub)/void\(\&#123; \/\/\1/g&quot; /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js</span><br></pre></td></tr></table></figure>
@@ -2037,7 +2037,7 @@
     <title>关于 radxa-zero</title>
     <url>/2021/09/radxa-zero/</url>
     <content><![CDATA[<p>最近搞来了一台 radxa zero</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/radxa-zero-1.jpg" alt="radxa-zero-1"></p>
+<p><img src="/img/2021/radxa-zero-1.jpg" alt="radxa-zero-1"></p>
 <p>产品信息：<a href="https://forum.radxa.com/t/introduce-the-radxa-zero/6550/">https://forum.radxa.com/t/introduce-the-radxa-zero/6550/</a></p>
 <p>从论坛可以了解到，目前可以在这台机器上运行 TwisterOS、emuelec、coreelec、Android 9、MiniMyth2、Manjaro</p>
 <p>机器到手时，emmc 自带的是 Android 9，之后我开始尝试运行其它的系统。使用 sd 卡成功运行了 TwisterOS 和 EmuELEC，其它的没有启动成功。</p>
@@ -2055,7 +2055,7 @@
 <p>传入固件后，解压（如果电脑没下载固件的话，也可以在 Ubuntu 里面下载）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#下载，看情况</span><br><span class="line">wget https://dl.radxa.com/zero/images/android/radxa_zero_android_9_20210708-amlupdate.img.gz</span><br><span class="line"># 解压</span><br><span class="line">tar -xzvf radxa_zero_android_9_20210708-amlupdate.img.gz</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/radxa-zero-2.jpg" alt="radxa-zero-2"></p>
+<p><img src="/img/2021/radxa-zero-2.jpg" alt="radxa-zero-2"></p>
 <p>之后按住机器背后的按键，使用数据线连接运行着 Ubuntu 的电脑，通过 <code>lsusb</code> 查看是否有识别到名字带 Amlogic 的设备。</p>
 <p>有的话可以进行下一步，执行刷机命令，由于此时固件和脚本放在同一个目录下，所以可以这样执行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./aml-flash-tool.sh radxa_zero_android_9_20210708-amlupdate.img</span><br></pre></td></tr></table></figure>
@@ -2238,12 +2238,12 @@
 <p>首先 BT 下载软件 transmission 和 qbittorrent 在这上面想要安装都非常简单，直接用 dnf 就行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dnf install transmission-daemon</span><br><span class="line">dnf install qbittorrent-nox</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412155348270.png" alt="image-20220412155348270"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412155459647.png" alt="image-20220412155459647"></p>
+<p><img src="/img/2022/image-20220412155348270.png" alt="image-20220412155348270"></p>
+<p><img src="/img/2022/image-20220412155459647.png" alt="image-20220412155459647"></p>
 <p>samba 也可以直接用 dnf 安装</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dnf install samba</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412160053966.png" alt="image-20220412160053966"></p>
+<p><img src="/img/2022/image-20220412160053966.png" alt="image-20220412160053966"></p>
 <p>这种是比较简单的，这里就不多细讲了。</p>
 <p>像有些开源软件，它是托管在 GitHub 上面的，这类软件，我们可以到它的 GitHub release 里面，下载 riscv 架构的可执行文件。这里举两个例子</p>
 <h4 id="syncthing"><a href="#syncthing" class="headerlink" title="syncthing"></a>syncthing</h4><p>这是一个多平台同步软件，之前有一段时间，我经常使用它将我手机里的照片、视频，同步到电脑上面。</p>
@@ -2267,7 +2267,7 @@
 
 <p>找到 <code>&lt;address&gt;127.0.0.1:8384&lt;/address&gt;</code> 这一行，改为 <code>&lt;address&gt;0.0.0.0:8384&lt;/address&gt;</code> ，再次输入 <code>./syncthing</code> 启动软件</p>
 <p>此时就可以用电脑的浏览器来访问运行在 visionfive 上面的 syncthing 了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412162500139.png" alt="image-20220412162500139"></p>
+<p><img src="/img/2022/image-20220412162500139.png" alt="image-20220412162500139"></p>
 <h4 id="miniserve"><a href="#miniserve" class="headerlink" title="miniserve"></a>miniserve</h4><p>这个软件是我个人非常喜欢的文件展示应用，它的主要功能就是将某个文件夹通过 web 的方式共享出来，但是功能远不止于此。它还是支持上传功能，以及添加用户名密码验证，所以也可以把它当一个简易网盘来使用。</p>
 <p>项目：<a href="https://github.com/svenstaro/miniserve">https://github.com/svenstaro/miniserve</a></p>
 <p>安装方法：</p>
@@ -2281,7 +2281,7 @@
 <p>示例：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜ ./miniserve -u -p 9527 /tmp/test</span><br><span class="line">miniserve v0.19.3</span><br><span class="line">Bound to [::]:9527, 0.0.0.0:9527</span><br><span class="line">Serving path /tmp/test</span><br><span class="line">Available at (non-exhaustive list):</span><br><span class="line">    http://127.0.0.1:9527</span><br><span class="line">    http://192.168.68.178:9527</span><br><span class="line">    http://[::1]:9527</span><br><span class="line"></span><br><span class="line">Quit by pressing CTRL-C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412163658298.png" alt="image-20220412163658298"></p>
+<p><img src="/img/2022/image-20220412163658298.png" alt="image-20220412163658298"></p>
 <h3 id="自行编译"><a href="#自行编译" class="headerlink" title="自行编译"></a>自行编译</h3><p>上面讲到的 syncthing 和 miniserve，它们的 release 里都有提供 riscv 的可执行文件，所以我们使用起来还算是比较容易。</p>
 <p>但这类还是比较少数的，其它开源软件大多数目前都是没有提供 riscv 版的，所以如果我们想要使用的话，就需要自行编译。</p>
 <p>先来一个简单的——<a href="https://github.com/zerotier/ZeroTierOne">zerotier</a></p>
@@ -2412,7 +2412,7 @@
 <p>为了方便访问不了 GitHub 的朋友，我也把它们备份到网盘里。</p>
 <p>链接：<a href="https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w">https://pan.baidu.com/s/1XncryNlALVXAO4rsVaqP3w</a><br>提取码：psee</p>
 <p>7z b 分数</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/%E4%B9%90%E6%A9%99_sn1_7z_b.jpg" alt="乐橙_sn1_7z_b"></p>
+<p><img src="/img/2021/%E4%B9%90%E6%A9%99_sn1_7z_b.jpg" alt="乐橙_sn1_7z_b"></p>
 <p>总分 4283</p>
 <p>参考另外两台设备</p>
 <blockquote>
@@ -2447,7 +2447,7 @@
 <p>11.9 元，每个月，每个月，<strong>每个月</strong></p>
 <p>我他妈震惊了，人家 B 站会员，打折的时候一年一百出头，购买后大量动漫、电影、电视剧可以观看。人家百度网盘每年 11 月购买会员有优惠，一年 svip 价格不到 200 ，购买后可以扩大网盘空间，可以高速下载从网上转存的大量资源。</p>
 <p>而你一个记账软件，一个月会员费收 12 块，主要作用是去掉记账时的广告…… 我觉得我要是去充值那我肯定就是智障了。而且我也后悔了，升级之前为什么没有看看应用商店里，其它网友的评论呢？要是早看到我肯定不会去升级的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/Screenshot_2022-01-24-13-14-37-156_com.xiaomi.market.jpg" alt="com.xiaomi.market"></p>
+<p><img src="/img/2022/Screenshot_2022-01-24-13-14-37-156_com.xiaomi.market.jpg" alt="com.xiaomi.market"></p>
 <p>不过也好，越早知道它们吃相这么难看，才能够越早转移。于是我开始寻找其它的记账 APP 来替代它。然而我并没有立刻找到，所以暂时还是需要用到它，于是我把这款软件的联网功能禁止了，不能联网它也没广告了，不过每次打开 APP 到可以记账的页面，大概需要 10 秒才行，因为它好像设定了开屏时会定住几秒，用来显示开屏广告，如果没法联网加载广告图片，会停在那里显示 APP 的开屏页面。</p>
 <h3 id="替代方案——那样记账"><a href="#替代方案——那样记账" class="headerlink" title="替代方案——那样记账"></a>替代方案——那样记账</h3><p>了解来源——GitHub</p>
 <p>我之前在搜索引擎里找，没找到合适的，感觉大多数都是商业公司的产品，我是再也不想 APP 用着用着就给我来一堆广告了，所以那些我都不太想去尝试。然后今天我尝试在 GitHub 上面搜索，因为我想可能也会有人和我一样，只需要一个简单的记录收入和支出的应用而已，并不需要那些花里胡哨的功能。那么应该也有人会尝试自己写一个吧。</p>
@@ -2686,7 +2686,7 @@
 <p>我里面只有一个服务在运行着，每天自动运行一次来签到，使用的资源非常的少，我一个月就调用 30 次，而免费用户是可以一个月调用 5 万次的。腾讯云看来玩不起呀，那对于我这种情况，我肯定不会去付费使用的，所以我就打算停用了。</p>
 <p>它这里也挺贴心的，还有教怎么冻结，这样以后应该就不会被扣费了。</p>
 <p>手动冻结</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220531203309383.png" alt="image-20220531203309383"></p>
+<p><img src="/img/2022/image-20220531203309383.png" alt="image-20220531203309383"></p>
 <p>冻结的时候有提示</p>
 <blockquote>
 <p><strong>服务冻结须知冻结后，该账户下所有地域的函数将会有以下限制，是否确认冻结?</strong></p>
@@ -2697,7 +2697,7 @@
 <li>函数服务不会继续产生费用。</li>
 </ul>
 </blockquote>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220531205635345.png" alt="image-20220531205635345"></p>
+<p><img src="/img/2022/image-20220531205635345.png" alt="image-20220531205635345"></p>
 <p>根据了解阿里云好像也有云函数可以免费使用，但是网上好像没什么教程，不知道什么情况，是可以免费白嫖呢？还是至少每个月有付一块钱呢？这个我还没去了解，等其他人研究后我再去抄作业吧，目前签到服务还是运行在家里的服务器吧。</p>
 <p>看到有人分享用华为云免费运行云函数了：<a href="https://blog.csdn.net/qq_28778001/article/details/124891438">https://blog.csdn.net/qq_28778001/article/details/124891438</a></p>
 ]]></content>
@@ -2866,7 +2866,7 @@
     <content><![CDATA[<p>vscode 默认新建终端的话，开启的是一个 cmd 的 shell，如何将它改为其它的呢？例如 powershell。</p>
 <p>首先点击左下角的进入设置，也可以用快捷键 <code>ctrl + ,</code> </p>
 <p>点击【功能】，【终端】，修改如下图两个地方即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/vscode-settings.jpg" alt="vscode-settings"></p>
+<p><img src="/img/2021/vscode-settings.jpg" alt="vscode-settings"></p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
@@ -2879,34 +2879,34 @@
 <h3 id="荣耀"><a href="#荣耀" class="headerlink" title="荣耀"></a>荣耀</h3><p>首先到【设置】【关于平板电脑】里，连续点击 5 次【版本号】，可以开启开发者模式。</p>
 <p>然后到【系统和更新】【开发人员选项】打开【usb调试】以及 【“仅充电”模式下允许 ADB 调试】</p>
 <p>最后用数据线连接平板与 windows 电脑，将会发现，它不按套路出牌，执行 <code>adb devices</code> 后并不能显示设备。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-12_13-11-26.jpg" alt="2022-04-12_13-11-26"></p>
+<p><img src="/img/2022/2022-04-12_13-11-26.jpg" alt="2022-04-12_13-11-26"></p>
 <p>打开 Android studio 也一样识别不到</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-12_13-16-38.jpg" alt="2022-04-12_13-16-38"></p>
+<p><img src="/img/2022/2022-04-12_13-16-38.jpg" alt="2022-04-12_13-16-38"></p>
 <p>怎么搞呢？那么试试装一下此时显示在【此电脑】里面，多出来的那个盘符里的手机助理吧。装好后我发现可以连接了，而且这个过程中，平板上会弹出提示，它这个叫 HDB 验证。。。而平时我们在其他安卓手机、平板上的叫 ADB 验证。</p>
 <p>那么它们是否都一样，只是荣耀这里改个名字而已呢？并不是，HDB 连接好后，可以通过电脑的手机助理来管理平板上的文件，应用等，好像还可以刷机。</p>
 <p>但是这个时候如果我们再执行 <code>adb devices</code> ，会出现这个</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412134348799.png" alt="image-20220412134348799"></p>
+<p><img src="/img/2022/image-20220412134348799.png" alt="image-20220412134348799"></p>
 <p>unauthorized ，adb 这边还是没有授权，依然没法使用 Android studio</p>
 <p>我网上搜，别人有说手机上的怎么操作，需要在拨号界面输入 <code>*#*#2846579#*#*</code>，进入工程菜单</p>
 <p>但问题是，我这是平板，没有拨号界面……</p>
 <p>然后继续找，最后找到了。WIFI版平板进入计算器，横屏（科学计算器）模式下输入()()2846579()()即可进入工程模式。</p>
 <p>来源：<a href="https://club.huawei.com/forum.php?mod=viewthread&tid=30717452&extra=page=1">花粉俱乐部</a></p>
 <p>不过按照教程，应该把【USB端口设置】从 【Hisuite模式】改为 【生产模式】，但是我这台平板好像改不了，只能改为【默认模式】。不过好像不影响开启 adb，反正最后是成功了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-12_13-23-13.jpg" alt="2022-04-12_13-23-13"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412134858390.png" alt="image-20220412134858390"></p>
+<p><img src="/img/2022/2022-04-12_13-23-13.jpg" alt="2022-04-12_13-23-13"></p>
+<p><img src="/img/2022/image-20220412134858390.png" alt="image-20220412134858390"></p>
 <p>看来手机助理这个软件是完全没有必要安装的，关键点在于进入工程菜单。</p>
 <h3 id="华为"><a href="#华为" class="headerlink" title="华为"></a>华为</h3><p>操作上基本一样。</p>
 <p>点击版本号 5 次，打开开发者选项</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421153431809.png" alt="image-20220421153431809"></p>
+<p><img src="/img/2022/image-20220421153431809.png" alt="image-20220421153431809"></p>
 <p>然后在【系统和更新】【开发人员选项】中打开 USB 调试</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421153531693.png" alt="image-20220421153531693"></p>
+<p><img src="/img/2022/image-20220421153531693.png" alt="image-20220421153531693"></p>
 <p>到应用菜单里打开【计算机】，点击右上角进入【科学计算器】模式，输入 <code>()()2846579()()</code> 即可进入工程模式。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421153730565.png" alt="image-20220421153730565"></p>
+<p><img src="/img/2022/image-20220421153730565.png" alt="image-20220421153730565"></p>
 <p>此时在工程菜单里，点击【后台设置】【USB端口设置】，选择【生产模式】即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421154105540.png" alt="image-20220421154105540"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421154145072.png" alt="image-20220421154145072"></p>
+<p><img src="/img/2022/image-20220421154105540.png" alt="image-20220421154105540"></p>
+<p><img src="/img/2022/image-20220421154145072.png" alt="image-20220421154145072"></p>
 <p>在 Android studio 里面也可以识别到了</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421154252687.png" alt="image-20220421154252687"></p>
+<p><img src="/img/2022/image-20220421154252687.png" alt="image-20220421154252687"></p>
 ]]></content>
       <tags>
         <tag>手机</tag>
@@ -2917,23 +2917,23 @@
     <title>visionfive 串口调试与编译内核</title>
     <url>/2022/04/visionfive-ttl-linux/</url>
     <content><![CDATA[<h3 id="串口调试"><a href="#串口调试" class="headerlink" title="串口调试"></a>串口调试</h3><p>开发板除了通过 HDMI 连接显示器，然后通过 usb 键盘来控制之外，还可以通过串口与电脑进行连接，将它的输出信息显示在电脑上，并且还可以直接用电脑键盘来控制。<br>想要进行这样的操作，需要买一个 USB 转 TTL， 我使用的是 CH340G，拼多多上面 6.3 包邮买的，平时也可以用来给路由器或者机顶盒刷机。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/ch340.jpg" alt="ch340"></p>
+<p><img src="/img/2022/ch340.jpg" alt="ch340"></p>
 <p>另外我还有一个 CH341A，这个看起来就比较高级一点，两年前淘宝 18 块买的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411135344552.png" alt="image-20220411135344552"></p>
+<p><img src="/img/2022/image-20220411135344552.png" alt="image-20220411135344552"></p>
 <p>不过只是用来调试开发板的话，它们用起来都一样的，连接到电脑的 usb 口之后，安装店家提供的驱动，顺利的话就可以在【设备管理器】的【端口】看到了。我们需要记住的是它对应的 com 口是多少，例如我图中的 12 和 13</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411132651192.png" alt="image-20220411132651192"></p>
+<p><img src="/img/2022/image-20220411132651192.png" alt="image-20220411132651192"></p>
 <p>注：设备管理器可以通过点击，开始菜单旁边的放大镜，在里面搜索来打开。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p>
+<p><img src="/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p>
 <p>接下来需要它与开发板进行连接，这时就需要使用杜邦线，这个一般购买模块时都会赠送的，如果没有的话，也可以自己购买。拼多多或者淘宝搜【杜邦线母对母】就可以找到相对应的商品（个人建议购买比较长一点的，我之前用买模块送的杜邦线，只有十几厘米，有时候不太方面，所以后来我重新买了一排30厘米的）</p>
 <p>连接的话只需要 3 根线，接序是这样的</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GND --- GND</span><br><span class="line">TX ---- RX</span><br><span class="line">RX ---- TX</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p>
+<p><img src="/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p>
 <p>按照这样连接好后，将模块插到电脑上，确认在设备管理器里可以看到。</p>
 <p>然后我们还需要软件，才可以显示模块输出的信息。可以选择的软件非常多，我个人用过的有 putty、友善串口调试助手、以及我个人最常用的 xshell。我个人比较推荐 xshell，平时可以用来 ssh 连接开发板，需要串口调试时也可以用它。而且 xshell 个人在家庭或者学校使用的话，是完全免费的，到它的官网 <a href="https://www.xshell.com/zh/free-for-home-school/">https://www.xshell.com/zh/free-for-home-school/</a> 填写邮箱后，收到邮件就可以下载。</p>
 <p>下载安装后，进行如下操作</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p>
+<p><img src="/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p>
+<p><img src="/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p>
 <p>顺利的话应该会看到这个</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connecting to COM12...</span><br><span class="line">Connected.</span><br></pre></td></tr></table></figure>
 
@@ -2941,7 +2941,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bootloader version:211102-0b86f96</span><br><span class="line">ddr 0x00000000, 1M test</span><br><span class="line">ddr 0x00100000, 2M test</span><br><span class="line">DDR clk 2133M,Version: 211102-d086aee                                                  </span><br><span class="line">0 crc flash: 5595e732, crc ddr: 5595e732</span><br><span class="line">crc check PASSED</span><br><span class="line"></span><br><span class="line">bootloader.</span><br><span class="line"></span><br><span class="line">OpenSBI v1.0</span><br><span class="line">   ____                    _____ ____ _____</span><br><span class="line">  / __ \                  / ____|  _ \_   _|</span><br><span class="line"> | |  | |_ __   ___ _ __ | (___ | |_) || |</span><br><span class="line"> | |  | | &#x27;_ \ / _ \ &#x27;_ \ \___ \|  _ &lt; | |</span><br><span class="line"> | |__| | |_) |  __/ | | |____) | |_) || |_</span><br><span class="line">  \____/| .__/ \___|_| |_|_____/|____/_____|</span><br><span class="line">        | |</span><br><span class="line">        |_|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>等到开机完成，会出现这样的界面，在这里我们可以用电脑键盘输入用户名和密码来进行登录。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p>
+<p><img src="/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p>
 <h3 id="编译-Linux-内核"><a href="#编译-Linux-内核" class="headerlink" title="编译 Linux 内核"></a>编译 Linux 内核</h3><p>目前官方提供的 Fedora 镜像是</p>
 <p><strong>2021-December-26:</strong> <a href="https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst">Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst</a></p>
 <p>使用的内核是 5.15，如果我们想要使用更新的内核，可以选择自己编译。</p>
@@ -2979,7 +2979,7 @@
 
 <p>里面的 5.17 也是我之前自己添加的。此时重启机器</p>
 <p>在启动过程中会出现一个选择菜单界面</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p>
+<p><img src="/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p>
 <p>可以按上下键来选择不同的内核版本，如果不手动选的话，就会自动加载第一个。</p>
 <p>进入系统后输入 <code>uname -sr</code> 可以查看当前的内核版本。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$uname -sr   </span><br><span class="line">Linux 5.18.0-rc1-visionfive-g7ff84520cb68</span><br></pre></td></tr></table></figure>
@@ -2999,11 +2999,11 @@
 <p>其实不用慌，这是因为玩客云有分两版，我视频里展示的是老版，它的短接点是在主板的背面。</p>
 <p><img src="/img/2020/%E7%8E%A9%E5%AE%A2%E4%BA%91%E7%9F%AD%E6%8E%A5.jpg" alt="玩客云短接"></p>
 <p>另外还有一款新版，短接点是在正面。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91%E6%96%B0%E7%89%88%E7%9F%AD%E6%8E%A5%E7%82%B9.jpg" alt="玩客云新版短接点"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91%E6%96%B0%E7%89%88%E7%9F%AD%E6%8E%A5%E7%82%B945.jpg" alt="玩客云新版短接点45"></p>
+<p><img src="/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91%E6%96%B0%E7%89%88%E7%9F%AD%E6%8E%A5%E7%82%B9.jpg" alt="玩客云新版短接点"></p>
+<p><img src="/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91%E6%96%B0%E7%89%88%E7%9F%AD%E6%8E%A5%E7%82%B945.jpg" alt="玩客云新版短接点45"></p>
 <p>刷机方式一样的。</p>
 <h3 id="为什么没有进入-U-盘中的系统？"><a href="#为什么没有进入-U-盘中的系统？" class="headerlink" title="为什么没有进入 U 盘中的系统？"></a>为什么没有进入 U 盘中的系统？</h3><p>如果你发现 led 灯每隔几秒就闪一下，那可能是你 U 盘没有插在靠近网口的 USB 口。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/wky-usb-1613448634572.png" alt="wky-usb"></p>
+<p><img src="/img/2021/wky-usb-1613448634572.png" alt="wky-usb"></p>
 <p>如果这样还不行，你可以尝试换一个 U 盘，如果有内存卡加读卡器的话，也可以试试。</p>
 <h3 id="总结一下玩客云的优劣"><a href="#总结一下玩客云的优劣" class="headerlink" title="总结一下玩客云的优劣"></a>总结一下玩客云的优劣</h3><p>优点</p>
 <ul>
@@ -3021,7 +3021,7 @@
 <p>其实不用看参数也能知道 N1 、树莓派 这些比玩客云强，看价格就行呗。N1 现在应该要一百多，树莓派得两百多。所以没什么可比性嘛。</p>
 <hr>
 <h3 id="固件相关"><a href="#固件相关" class="headerlink" title="固件相关"></a>固件相关</h3><p>2021-01-25</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AF%BC%E8%88%AA.jpg" alt="玩客云导航"></p>
+<p><img src="/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AF%BC%E8%88%AA.jpg" alt="玩客云导航"></p>
 <p>固件和刷机工具下载链接</p>
 <p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p>
 <p>访问导航：直接在浏览器输入 onecloud&#x2F; 或者输入玩客云的 ip 地址。</p>
@@ -3039,7 +3039,7 @@
 <p>这个自动签到平台我以前也有做过视频，有兴趣可以去翻翻看。</p>
 <hr>
 <h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/%E6%8C%82%E8%BD%BDsd%E5%8D%A1.png" alt="挂载sd卡"></p>
+<p><img src="/img/2021/%E6%8C%82%E8%BD%BDsd%E5%8D%A1.png" alt="挂载sd卡"></p>
 <h3 id="如何挂载硬盘"><a href="#如何挂载硬盘" class="headerlink" title="如何挂载硬盘"></a>如何挂载硬盘</h3><p>其实视频里有讲了，先输入 <code>lsblk</code> 查看一下硬盘连接上没，一般会显示 sda 或者 sdb 这样。</p>
 <p>假设显示的是 sda ，那么它下面应该有个 sda1 这个才对。这个 sda1 指的是分区，就像你在电脑上，你添加了一块硬盘，你可能把分为 D、E、F　三个盘。但是它都是属于同一块物理硬盘。而这里的 sda 就是指物理硬盘，你不能挂载它，只能挂载它里面的分区。</p>
 <p>所以你应该使用的命令是</p>
@@ -3047,22 +3047,22 @@
 
 <hr>
 <p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/ranger.jpg" alt="ranger"></p>
+<p><img src="/img/2021/ranger.jpg" alt="ranger"></p>
 <p>按 q 退出</p>
 <hr>
 <h3 id="如何判断有没有刷成功"><a href="#如何判断有没有刷成功" class="headerlink" title="如何判断有没有刷成功"></a>如何判断有没有刷成功</h3><p>其实可以用通过玩客云的 hdmi 来判断，你可以把玩客云连接电视或者显示器。</p>
 <p>当你刷好底层包之后，不插U盘，画面会显示这个几秒</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91mxq.png" alt="玩客云mxq"></p>
+<p><img src="/img/2021/%E7%8E%A9%E5%AE%A2%E4%BA%91mxq.png" alt="玩客云mxq"></p>
 <p>然后就没信号几秒，再显示这个画面几秒，再没信号……会这样一直重复。</p>
 <p>如果你插上U盘，并且玩客云成功进入 U 盘里的系统，画面就会停留在上面这个图片这里，不会变化了。所以你可以通过这种方法来判断有没有成功进入 U 盘系统。</p>
 <hr>
 <h3 id="一直线刷失败？"><a href="#一直线刷失败？" class="headerlink" title="一直线刷失败？"></a>一直线刷失败？</h3><p>症状是什么呢？无法刷入 snail 底层包，也无法刷入 emmc 直刷包，线刷最后永远报错。这里有一张网友线刷失败的图片。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/wky-fail1.png" alt="wky-fail1"></p>
+<p><img src="/img/2021/wky-fail1.png" alt="wky-fail1"></p>
 <p>里面的结果这一列，有好多个 5004。然后最近我收了一台有问题的玩客云，下午线刷，发现也是一堆 5004 的报错。所以我估计，可能报 5004 的，应该就是 emmc 有坏块，毕竟症状一样。</p>
 <p>到目前为止，我见识过 4 台设备这样，我自己手上就有一台。唯有一个底层包可以刷，是一个 700多K的 img 包，我将它上传到了网盘。<a href="http://veger.ys168.com/">http://veger.ys168.com/</a> </p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/wky-pan1.png" alt="wky-pan1"></p>
+<p><img src="/img/2021/wky-pan1.png" alt="wky-pan1"></p>
 <p>使用这个底层包，可以线刷进去。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/wky-%E7%BA%BF%E5%88%B7%E6%88%90%E5%8A%9F.png" alt="wky-线刷成功"></p>
+<p><img src="/img/2021/wky-%E7%BA%BF%E5%88%B7%E6%88%90%E5%8A%9F.png" alt="wky-线刷成功"></p>
 <p>刷这个 700 多k 的底层包，开机是亮绿灯。由于 emmc 损坏，因此系统只能装在 U 盘里面使用。</p>
 <h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ol>
 <li><p><a href="https://www.right.com.cn/forum/thread-4057492-1-1.html">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p>
@@ -3078,12 +3078,12 @@
 </ol>
 <h3 id="下期内容"><a href="#下期内容" class="headerlink" title="下期内容"></a>下期内容</h3><p>下一个版本会添加的内容</p>
 <p>1、网页终端</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/wky-ttyd.png" alt="wky-ttyd"></p>
+<p><img src="/img/2021/wky-ttyd.png" alt="wky-ttyd"></p>
 <p>2、portainer 中文化</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/portainer%E6%B1%89%E5%8C%96.png" alt="portainer汉化"></p>
+<p><img src="/img/2021/portainer%E6%B1%89%E5%8C%96.png" alt="portainer汉化"></p>
 <p>3、添加控制 led 功能</p>
 <p>默认情况下，开机后会一直亮蓝灯。其实没什么用，我打算把这灯利用起来，所以设置了开机进入系统后，灯光会自动关闭。然后这灯就可以跑脚本的时候用。例如用 python 脚本来控制它，让它亮绿灯之类的。以后再说吧。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/wky-green.jpg" alt="wky-green"></p>
+<p><img src="/img/2021/wky-green.jpg" alt="wky-green"></p>
 <p>4、aria2</p>
 ]]></content>
       <tags>
@@ -3095,7 +3095,7 @@
     <title>visionfive 开发板通过 gpio 控制 led 灯</title>
     <url>/2022/04/visionfive-gpio-led/</url>
     <content><![CDATA[<p>visionfive 是赛昉科技推出的一款开发板，使用的处理器是他们自家研发的【惊鸿 7100】（JH7100），这是一颗 risc-v 架构的处理器，双核 U74，U74 对标的是 ARM 的 Cortex-A55 。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/visionfive1.jpg" alt="visionfive1"></p>
+<p><img src="/img/2022/visionfive1.jpg" alt="visionfive1"></p>
 <h3 id="写入镜像"><a href="#写入镜像" class="headerlink" title="写入镜像"></a>写入镜像</h3><p>这块板子的系统运行和树莓派一样，需要先将系统镜像写入内存卡，再插到板子上来运行。目前官方提供的只有 Fedora 这个发行版，可以在 GitHub 上找到下载链接。</p>
 <p><a href="https://github.com/starfive-tech/Fedora_on_StarFive">https://github.com/starfive-tech/Fedora_on_StarFive</a></p>
 <p>下载完是一个特殊的压缩格式，zst，我搜了一下</p>
@@ -3105,11 +3105,11 @@
 <p>还得使用专门的工具才能解压，稍微麻烦了点。工具在这里有提供</p>
 <p><a href="https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide">https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide</a></p>
 <p>点击网页左侧的 <strong>Flashing Fedora OS to a Micro-SD Card</strong> 可以快速达到。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/Snipaste_22-04-11_09-21-44.jpg" alt="Snipaste_22-04-11_09-21-44"></p>
+<p><img src="/img/2022/Snipaste_22-04-11_09-21-44.jpg" alt="Snipaste_22-04-11_09-21-44"></p>
 <p>我是在 win10 进行操作的，将下载好的解压工具，从压缩包里解压出来，和 zst 文件放在一起。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-11_09-57-19.jpg" alt="2022-04-11_09-57-19"></p>
+<p><img src="/img/2022/2022-04-11_09-57-19.jpg" alt="2022-04-11_09-57-19"></p>
 <p>此时在这个文件夹里的空白处，一只手按住键盘上的 shift 键，另一只手按一下鼠标的右键，在此处打开 powershell，就可以快速在当前文件夹打开一个命令行窗口。（此处我的 powershell 是自己升级过的，系统自带的是没有带 preview 的。）</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-11_09-58-00.jpg" alt="2022-04-11_09-58-00"></p>
+<p><img src="/img/2022/2022-04-11_09-58-00.jpg" alt="2022-04-11_09-58-00"></p>
 <p>执行这条命令就可以解压了</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./zstd.exe -d Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw\.zst -o Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw</span><br></pre></td></tr></table></figure>
 
@@ -3118,22 +3118,22 @@
 <p>默认的用户名是 riscv</p>
 <p>密码是 starfive</p>
 <p>这台设备的桌面体验，我感觉还是比较差的，毕竟没有 GPU，而已本身也只是双核而已，所以桌面体验会有一些卡顿。很快我就放弃用鼠标来控制它了，而是选择在电脑上通过 ssh 来控制它。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/visionfive-neofetch.jpg" alt="visionfive-neofetch"></p>
+<p><img src="/img/2022/visionfive-neofetch.jpg" alt="visionfive-neofetch"></p>
 <h3 id="如何通过-gpio-控制-LED-灯？"><a href="#如何通过-gpio-控制-LED-灯？" class="headerlink" title="如何通过 gpio 控制 LED 灯？"></a>如何通过 gpio 控制 LED 灯？</h3><p>通过这个网页，我们可以了解到这块板子的 GPIO 信息</p>
 <p><a href="https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide">https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide</a></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/visionfive-gpio.jpg" alt="img"></p>
+<p><img src="/img/2022/visionfive-gpio.jpg" alt="img"></p>
 <p>准备一颗 LED 灯，一头连接 34 号的 GND，一头连接 40 号的 GPIO0</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/LED-off.jpg" alt="LED-off"></p>
+<p><img src="/img/2022/LED-off.jpg" alt="LED-off"></p>
 <p>在终端里进行如下的操作（需要 root 身份来执行）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /sys/class/gpio</span><br><span class="line">echo 448 &gt; export</span><br><span class="line">cd gpio448</span><br><span class="line">echo out &gt; direction</span><br><span class="line">echo 1 &gt; value</span><br></pre></td></tr></table></figure>
 
 <p>这样便可以点亮 LED 灯</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/LED-on.jpg" alt="LED-on"></p>
+<p><img src="/img/2022/LED-on.jpg" alt="LED-on"></p>
 <p>如果想熄灭它，只需执行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo 0 &gt; value</span><br></pre></td></tr></table></figure>
 
 <p>官方文档里的这个表格非常重要，刚才我们控制 GPIO0，操作的是 448，如果现在我们想控制 GPIO4，从表格可以查到是 452，那么只需将刚才的 448 换成 452 即可让 GPIO4 输出高电平。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/gpio%E8%A1%A8%E6%88%AA%E5%9B%BE.jpg" alt="gpio"></p>
+<p><img src="/img/2022/gpio%E8%A1%A8%E6%88%AA%E5%9B%BE.jpg" alt="gpio"></p>
 <p>对此我写了一个 Python 脚本，作用是监控哔哩哔哩上面是否有人给我发私信，也就是我是否有未读消息，如果有的话，则点亮 LED 灯。而当我看完消息后，脚本检测到目前没有未读消息了，则会将 LED 灯熄灭。</p>
 <p>脚本已放在 GitHub 上面，有兴趣的朋友可以参考一下。</p>
 <p><a href="https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py">https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py</a></p>
@@ -3390,7 +3390,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mtd write /tmp/pb-boot.img Bootloader</span><br></pre></td></tr></table></figure>
 
 <p>到此路由器的原系统就没了，现在断电重启，机器会自动进入 pb-boot ，在浏览器访问 192.168.1.1，可以进入刷机界面，如果要刷 openwrt 的话，需要先刷入 factory.bin 结尾的固件。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/cr6608.jpg" alt="cr6608"></p>
+<p><img src="/img/2021/cr6608.jpg" alt="cr6608"></p>
 ]]></content>
       <tags>
         <tag>路由器</tag>
@@ -3441,7 +3441,7 @@ border-radius: 4px;
     <title>玩客云第二版固件说明</title>
     <url>/2021/02/wankeyun-2/</url>
     <content><![CDATA[<p>玩客云第二版固件已经发布。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/wky-2.jpg" alt="wky-2"></p>
+<p><img src="/img/2021/wky-2.jpg" alt="wky-2"></p>
 <p>下载链接和上一版一样。</p>
 <p>固件和刷机工具下载链接</p>
 <p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p>
@@ -3452,7 +3452,7 @@ border-radius: 4px;
 <hr>
 <p>博客用来作为补充和方便大家查询。</p>
 <p>第二版更改了 led。开机后，灯自动熄灭，但是网口的灯是亮着的，而且一般网口两个灯都是亮着的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/2021-02-02_19-29-14.jpg" alt="2021-02-02_19-29-14"></p>
+<p><img src="/img/2021/2021-02-02_19-29-14.jpg" alt="2021-02-02_19-29-14"></p>
 <p>可以通过这来判断机器有没有进入U盘中的系统。</p>
 <p>qbittorrent 使用原生安装，而不使用 docker 了。并且默认下载路径设置为 <code>/mnt</code> ，下载之前请注意网页底部显示的 <code>剩余磁盘空间</code> 。</p>
 <p>添加了 Aria2 ，使用的是 P3TERX 大佬制作的<a href="https://github.com/P3TERX/aria2.sh">一键脚本</a>安装的。rpc 密钥是：12345</p>
@@ -3522,16 +3522,16 @@ border-radius: 4px;
   <entry>
     <title>中兴e8820s路由器</title>
     <url>/2021/07/zte-e8820s/</url>
-    <content><![CDATA[<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/zte-e8820s.jpg" alt="zte-e8820s"></p>
+    <content><![CDATA[<p><img src="/img/2021/zte-e8820s.jpg" alt="zte-e8820s"></p>
 <p>参考帖子：<a href="https://www.right.com.cn/forum/thread-4046951-1-1.html">中兴8820S与8820V2比较及TTL刷机</a></p>
 <p>相关文件：</p>
 <p>网盘：<a href="http://veger.ys168.com/">http://veger.ys168.com/</a><br>个人下载站：<a href="https://pan.powersee.top/">https://pan.powersee.top</a></p>
 <p>padavan 固件下载：<a href="https://opt.cn2qq.com/padavan">https://opt.cn2qq.com/padavan</a></p>
 <p>选择 ZTE_E8820S 开头的</p>
 <p>这台路由器想刷机的话，需要自己焊接针脚。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/e8820s-ttl.jpg" alt="e8820s-ttl"></p>
+<p><img src="/img/2021/e8820s-ttl.jpg" alt="e8820s-ttl"></p>
 <p>我使用的模块是 CH340</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/e8820s-ttl2.jpg" alt="e8820s-ttl2"></p>
+<p><img src="/img/2021/e8820s-ttl2.jpg" alt="e8820s-ttl2"></p>
 <p>软件的选择有很多，可以用 putty，也可以用 xshell。</p>
 <ul>
 <li>连接上之后，使用账号密码进行登录。</li>
@@ -3541,7 +3541,7 @@ border-radius: 4px;
 <li>写入 breed</li>
 <li>重启</li>
 </ul>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/command-zte.png" alt="14.command-zte"></p>
+<p><img src="/img/2021/command-zte.png" alt="14.command-zte"></p>
 ]]></content>
       <tags>
         <tag>路由器</tag>
@@ -3599,13 +3599,13 @@ border-radius: 4px;
 <p>用电脑网页版无法得到这个链接，我是在手机客服端点击才行的。</p>
 <p>从文档里点击链接下载固件，放到 U 盘里，然后插到芝杜上面，点击桌面右边的“关于”，手动升级，选择 U 盘中的固件，会进行验证，然后将固件复制到机身内存，复制完再点一下升级。</p>
 <p><a href="https://tieba.baidu.com/p/7127393998">【图片】【201203 | 教程攻略】芝杜播放器本地OTA升级教程_芝杜吧_百度贴吧 (baidu.com)</a></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220521104308870.png" alt="image-20220521104308870"></p>
+<p><img src="/img/2022/image-20220521104308870.png" alt="image-20220521104308870"></p>
 <p>系统升级完成后，打开文件管理器，此时在左侧可以看到一个 <strong>其它网络</strong> ，里面就有新的连接方式 webdav，我赶紧尝试通过它来连接 nas，很顺利，播放高清电影也很流畅。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220521114412831.png" alt="image-20220521114412831"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220521114437123.png" alt="image-20220521114437123"></p>
+<p><img src="/img/2022/image-20220521114412831.png" alt="image-20220521114412831"></p>
+<p><img src="/img/2022/image-20220521114437123.png" alt="image-20220521114437123"></p>
 <p>不过我发现它不能像 smb 以及 NFS 那样，把某个文件夹收藏起来，方便下次直接访问。那也就是说，我每次访问 webdav 都得这样一层一层去打开文件夹，确实有点麻烦。</p>
 <p>除了 webdav 之外，现在还可以直接访问 <strong>百度网盘</strong>、<strong>阿里云盘</strong> 里面的内容，这点感觉也不错嘛，如果平时收藏的视频是保存在网盘里的，现在可以直接播放还是挺方便的。不过我个人目前用不上这个功能，我的视频主要还是放在 nas 里的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/rYDPf3z47r9GlCStnh3QMA.png" alt="img">        </p>
+<p><img src="/img/2022/rYDPf3z47r9GlCStnh3QMA.png" alt="img">        </p>
 <p>接着最让我高兴的是，现在 smb 的问题好像都解决了，不会出现“未知错误”这样的提示了，直接点击就可以访问 nas 里的内容，NFS 这边也正常了，之前未升级的时候，点击后是显示空白的，现在可以正常显示 nas 的内容了。</p>
 <p>其它的更新内容还挺多的，我就不想在这里重复了，有些更新的内容其实我也用不上，所以也不关心，我现在看到芝杜可以通过 smb、NFS、webdav 来访问 nas 里的文件，而且体验确实不错，就很满意了。</p>
 ]]></content>
@@ -3619,10 +3619,10 @@ border-radius: 4px;
     <content><![CDATA[<p>如今我的主力浏览器已经换位 edge 了，使用了很久，感觉挺好的。</p>
 <p>最近发现，如果使用它访问证书已经失效的 https 网站，会报错，并且点击高级之后，没有继续访问的按钮了。</p>
 <p>例如这样，我访问我局域网的 nas <code>https://192.168.68.172/</code></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/link-unsafe.jpg"></p>
+<p><img src="/img/2022/link-unsafe.jpg"></p>
 <p>那么要怎样才能继续访问呢？方法是，点击网页中空白的地方，然后键盘输入 <code>thisisunsafe</code> ，注意是在英文输入法的情况下，正常的话，输入完就自动访问了。</p>
 <p>另外也可以在浏览器输入 <code>edge://settings/content/insecureContent</code> 来打开设置，将你想要访问的域名添加进去。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/edge-settings-insecureContent.jpg"></p>
+<p><img src="/img/2022/edge-settings-insecureContent.jpg"></p>
 <p>感觉现在就是限制更多了，不像以前那样方便，不过还好问题是可以解决的。</p>
 ]]></content>
       <tags>
@@ -3659,18 +3659,18 @@ border-radius: 4px;
     <url>/2023/02/windows-tai/</url>
     <content><![CDATA[<p>前段时间发现一个可以统计电脑上，各个应用的使用时长的开源应用</p>
 <p><a href="https://github.com/Planshit/Tai">https://github.com/Planshit/Tai</a></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-01_17-52-08.png"></p>
+<p><img src="/img/2023/2023-02-01_17-52-08.png"></p>
 <p>我也使用了一段时间了，感觉还不错。平时占用的系统内存是 44MB 左右，在电脑的右下角状态栏会有图标，双击就可以打开软件界面。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-02_15-14-47.png"></p>
+<p><img src="/img/2023/2023-02-02_15-14-47.png"></p>
 <p>一月份我使用了 20 天，里面记录我电脑的使用时长是 132 个小时，其中使用最长的是原神，有 31 个小时。</p>
 <p>切换到【按月】可以看到每天的统计时长。</p>
 <blockquote>
 <p><strong>需要注意的是，使用时长并不是软件的存活时间，而是软件从获得焦点时开始到失去焦点后这段时间</strong></p>
 </blockquote>
 <p>其中有一天，steam 被统计到使用了 13 个小时，估计是我电脑息屏的时候，steam 突然弹到前台，然后又是夜晚，所以被统计下来。虽然后来我们可以通过右键【忽略此应用】来让 tai 不再记录某些应用，但是之前记录的 steam 时长好像没法去掉。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-02_15-20-41.png"></p>
+<p><img src="/img/2023/2023-02-02_15-20-41.png"></p>
 <p>还有就是 steam 的游戏，有时候统计并不准确，像我这里 Beat Saber 这个游戏，我每天都是有玩的，而且都是超过半个小时的，但是在这里，统计出来的数据是这样的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-02_15-31-36.png"></p>
+<p><img src="/img/2023/2023-02-02_15-31-36.png"></p>
 <p><a href="https://github.com/Planshit/Tai/issues/40">tai对steam里的游戏统计时长有问题 · Issue #40 · Planshit&#x2F;Tai (github.com)</a></p>
 <p>虽然问题已经关闭了，但是问题好像并没有解决。</p>
 <p>不过我认为瑕不掩瑜吧，我之后还是会继续使用它的。</p>
@@ -3715,7 +3715,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5000:5000 --name sayhello powersee/sayhello</span><br></pre></td></tr></table></figure>
 
 <p>第一个 5000 可以换为其它的端口，例如 6000，7000 等等，之后在浏览器通过 <code>IP:端口</code> 的形式来访问即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/sayhello10086.jpg"></p>
+<p><img src="/img/2023/sayhello10086.jpg"></p>
 <h3 id="删除内容"><a href="#删除内容" class="headerlink" title="删除内容"></a>删除内容</h3><p>先来说说，怎么删除内容。需要做的是，进入 docker 容器里的，使用命令行对 sqlite 数据库的内容进行删除。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker ps                                                    </span><br><span class="line">CONTAINER ID   IMAGE               COMMAND                  CREATED        STATUS        PORTS                                         NAMES</span><br><span class="line">1888c7d98fe8   powersee/sayhello   &quot;python3 -m flask ru…&quot;   2 months ago   Up 2 months   0.0.0.0:10086-&gt;5000/tcp, :::10086-&gt;5000/tcp   sayhello</span><br></pre></td></tr></table></figure>
 
@@ -3795,13 +3795,13 @@ border-radius: 4px;
 <p>Best regards, manager of OperaSoftware.</p>
 </blockquote>
 <p>然后我就回复他了，之后他就给我发来了一个 PDF 文件，里面是这样的（下面是截图，不用担心👇🏻）</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-22_21-33-12.png" alt="骗子发的 PDF 文件内容"></p>
+<p><img src="/img/2023/2023-02-22_21-33-12.png" alt="骗子发的 PDF 文件内容"></p>
 <p>我记得下方的链接那里，好像就是一个病毒链接，当然我没有点过，当时只是好奇他们发这些邮件的目的是什么。</p>
 <p>总之呢，就是哪有那么好的事，不要整天想着天上会掉馅饼。</p>
 <p>骗子一般都会假扮是大公司，然后给出丰厚的佣金，吸引人上钩，一旦有人点击了他们的链接，那电脑可能就中毒了。</p>
 <p>之前还有一位讲技术的博主，好像就是中了这样的骗术，导致他 YouTube 上的所有视频被删了。</p>
 <h2 id="对策1"><a href="#对策1" class="headerlink" title="对策1"></a>对策1</h2><p>在我知道这些都是骗局之后，我基本都不去点开这些邮件。但是，我却避免不了他们的骚扰，每隔几天就会收到一封。其中来自 BlueTwelve Studio 的非常多，我查了一下，这是一个游戏开发团队，有名的赛博猫咪《Stray》就是他们开发的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/game-stray.jpeg" alt="Stray"></p>
+<p><img src="/img/2023/game-stray.jpeg" alt="Stray"></p>
 <p>当然我收到的这些都是诈骗邮件，肯定不是这个游戏开发团队发的，因为我观察到，这些邮件的后缀都是 @vzonly.cz</p>
 <p>我还搜到了一个 YouTube 视频：<a href="https://www.youtube.com/watch?v=G6S_KwiDTbs">volny.cz online.ua FRAUD email | SCAM alert - YouTube</a></p>
 <p>里面是一位阿三哥在讲他也碰到诈骗邮件的事情，他除了收到来自 <code>@vzonly.cz</code> 的邮件，还有 <code>@online.ua</code> 的。并且他了解得更深入，骗子同样是发送一个 PDF 过来，里面也是有链接，如果点击这个链接，就会重定向然后下载 Windows 软件。大概就是这些内容吧。</p>
@@ -3816,7 +3816,7 @@ border-radius: 4px;
 <p>在“邮箱设置”-&gt;“反垃圾”-&gt;“黑名单”栏目中，点击“设置黑名单”</p>
 </blockquote>
 <p>就可以成功把域名添加进去</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/2023-02-22_21-14-24.png" alt="成功将域名加入邮箱黑名单"></p>
+<p><img src="/img/2023/2023-02-22_21-14-24.png" alt="成功将域名加入邮箱黑名单"></p>
 <p>这么一番操作之后，以后我应该就不会被这些垃圾邮件打扰了吧。或者说能减少打扰的次数吧，毕竟来自诈骗邮件也有来自其他域名的，像前面提到的 Opera 这封邮件，它的域名是 <code>laposte.net</code></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>不要点击陌生链接</li>
@@ -3836,7 +3836,7 @@ border-radius: 4px;
     <content><![CDATA[<p>我的手机里有两个 App Store，一个是 MIUI 自带的应用商店。另外一个是 Google 的 Play Store。</p>
 <p>两者的设置中，我都把应用自动更新给关了，我并不喜欢更新 APP，特别是之前被一款国产记账软件「松鼠记账」给恶心到之后，<a href="/2022/01/songshujizhang/">之前的文章</a></p>
 <p>但是当我现在的 Play Store，在我打开代理之后，老是自动给我更新 APP。我想按照以前的方法，关闭掉自动更新，但是没找到。我用中文到网上搜也没找到方法，最后还是用英文搜索，才找到的。位置在「设置」「网络偏好」「自动更新应用」里。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/auto-update-apps.jpg" alt="auto-update-apps"></p>
+<p><img src="/img/2023/auto-update-apps.jpg" alt="auto-update-apps"></p>
 <p>其实也很容易发现，不过之前怎么老是忽略它了呢？</p>
 <p>还有我发现，我的手机系统用的是中文，但是 Play Store 里显示的都是英文的，设置里好像也没地方改，不过这个不重要了，懒得去搜了。</p>
 ]]></content>
@@ -3849,9 +3849,9 @@ border-radius: 4px;
     <url>/2023/03/pyperclip/</url>
     <content><![CDATA[<p>之前了解到 Mac 上的两个命令 <a href="/2022/06/mac-pbcopy-pbpaste/">pbcopy &amp; pbpaste</a> ，我就在想，如果我把它整合到某些脚本里面，那就可以减少复制粘贴的步骤，节省一些时间。</p>
 <p>此时我想到之前写的一个，用来下载贴吧图片的脚本。在之前介绍 <a href="/2021/12/about-kcc/">制作 kindle 漫画的文章</a> 里有提到它。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2021/tieba-img-download.jpg" alt="贴吧图片下载器"></p>
+<p><img src="/img/2021/tieba-img-download.jpg" alt="贴吧图片下载器"></p>
 <p>在 Windows 上我是把它打包成一个图形应用，这样其他人使用它比较方便。但是同样的代码，我在 Mac 上打包后有一些问题，所以我就进行了一些修改。只通过命令行的方式来使用它，设置 alias 别名，我只需要在终端中执行 <code>tieba</code> 就可以启动，然后我需要把贴吧帖子的链接粘贴进去，就可以自动下载图片了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230304160034037.png" alt="image-20230304160034037"></p>
+<p><img src="/img/2023/image-20230304160034037.png" alt="image-20230304160034037"></p>
 <p>如果不需要下载就按回车直接退出程序。</p>
 <p>现在为了节省粘贴这一步，我打算把 <code>pbpaste</code> 这个 Mac 命令整合进去。让程序运行时，自动读取剪贴板的内容，如果里面包含 tieba 这个词，就询问，例如这样</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ tieba</span><br><span class="line">您当前剪贴板的内容为： https://tieba.baidu.com/p/8288904408?frwh=index</span><br><span class="line">是否开始下载？是的话请按回车键，否则请输入新的链接。（退出输入 n）</span><br></pre></td></tr></table></figure>
@@ -3952,14 +3952,14 @@ border-radius: 4px;
     <content><![CDATA[<p>今天我想在手机上面，添加一个应用的小部件。但是，我死活找不到怎么添加。明明前段时间我还把 “原神战绩”这个小部件，添加到桌面过的。</p>
 <p>一番搜索后，发现关键点在于【断网】。下面是详细的添加步骤：</p>
 <p>在手机桌面，我们可以通过双指捏合、或长按桌面空白处，来呼出【添加小部件】按钮。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-13-56-014-edit_com.miui.home.jpg" alt="添加小部件"></p>
+<p><img src="/img/2023/Screenshot_2023-03-10-13-13-56-014-edit_com.miui.home.jpg" alt="添加小部件"></p>
 <p>点击之后，有两个选项，【推荐】和【分类】，里面都是 MIUI 推荐的小部件，我们自己装的 app 的小部件，大多数是不会显示在这里的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-14-29-909-edit_com.miui.personalassistant.jpg" alt="推荐与分类"></p>
+<p><img src="/img/2023/Screenshot_2023-03-10-13-14-29-909-edit_com.miui.personalassistant.jpg" alt="推荐与分类"></p>
 <p>那么不是还有个搜索吗？我直接搜呢？不好意思，也是搜不到的。这让我觉得非常恶心。</p>
 <p>网上搜索了解之后，我找到了解决方案。先让手机处于断网状态，开飞行模式最直接，不过也可以关闭 WiFi 和数据就行了。此时再点击搜索，就会发现底部有一行【安卓小部件】。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-58-19-696_com.miui.personalassistant.jpg" alt="断网下的搜索"></p>
+<p><img src="/img/2023/Screenshot_2023-03-10-13-58-19-696_com.miui.personalassistant.jpg" alt="断网下的搜索"></p>
 <p>点击之后就可以看到我们自己装的 app 所带的小部件了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Screenshot_2023-03-10-13-58-52-006_com.miui.home.jpg" alt="其它应用的小部件"></p>
+<p><img src="/img/2023/Screenshot_2023-03-10-13-58-52-006_com.miui.home.jpg" alt="其它应用的小部件"></p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
@@ -3982,7 +3982,7 @@ border-radius: 4px;
 
 <p>把光标放到 <code>#</code> 上面，然后按一下 del 键可以删除掉这个井号。</p>
 <p>另一种删除方法是，按键盘的 <code>i</code> 键，进入编辑模式，此时左下方会显示 <code>-- INSERT --</code>，然后按 退格键来删除（需要先把光标移动到 P），删除完成按 <code>ESC</code>  来退出编辑模式。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230310165517949.png" alt="PermitRootLogin"></p>
+<p><img src="/img/2023/image-20230310165517949.png" alt="PermitRootLogin"></p>
 <p>两种方法都一样的，希望对不懂 vim 的小伙伴有帮助。删除之后，需要保存。方法是，在英文输入法的状态下，输入 <code>:</code>，先按住 <code>Shift</code> 键，再按一下 <code>;:</code> 键，应该可以看到左下角出现一个冒号 : 了。</p>
 <p>接着输入 <code>wq</code> ，意思是保存并退出，再按回车键就可以了。</p>
 <p>之后需要重启群晖</p>
@@ -4000,13 +4000,13 @@ border-radius: 4px;
     <title>如何创建一个指定像素的矩形？Photoshop 和 Affinity Photo</title>
     <url>/2023/03/specified-pixels-rectangle/</url>
     <content><![CDATA[<p>在 Photoshop 里面，我们先在左边选择矩形工具，快捷键为 U</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230312232057058.png" alt="矩形工具"></p>
+<p><img src="/img/2023/image-20230312232057058.png" alt="矩形工具"></p>
 <p>然后按住鼠标随意画出一个矩形。之后来到右边，直接在属性里面修改它的宽高值就行，例如我这里改成 1920 和 1080</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230312231507993.png" alt="属性"></p>
+<p><img src="/img/2023/image-20230312231507993.png" alt="属性"></p>
 <p>Affinity Photo 的方法差不多，左边选择矩形工具，快捷键为 U，画出矩形后，选中矩形，在右下角的「变换」里可以更改。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Snipaste_23-03-09_23-07-19.jpg" alt="变换"></p>
+<p><img src="/img/2023/Snipaste_23-03-09_23-07-19.jpg" alt="变换"></p>
 <p>下面这张图，就是通过这种方式制作出来的，其实有一些不足，就是蓝色的有点偏右。想要它们对齐的，只要 X Y 保持一样的数值就可以了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/720vs1296.jpg" alt="720vs1296"></p>
+<p><img src="/img/2023/720vs1296.jpg" alt="720vs1296"></p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
@@ -4023,14 +4023,14 @@ border-radius: 4px;
 <p>现在的问题是，我运行的是 <code>0.10.3</code> 的版本，目前最新的版本已经到 <code>0.11.2</code> 了，我想要升级到最新的版本。</p>
 <p>下面是我的实际操作。</p>
 <p>首先我们要拉取最新的镜像，依旧到注册表搜 memos，右键然后点「下载此映像」，或者直接双击也可以。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230313180358859.png" alt="search-memos"></p>
+<p><img src="/img/2023/image-20230313180358859.png" alt="search-memos"></p>
 <p>镜像下载完成之后，我们把容器停掉，再重新打开，是没有效果的，依然还是旧版本的。此时应该做的是，创建一个新的容器。但是在群晖里面，我们不需要重新填写容器的配置，因为它可以直接复制。选中一个容器，然后上方的设置里面，有个「复制设置」的选项。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230313181037438.png" alt="copy-settings"></p>
+<p><img src="/img/2023/image-20230313181037438.png" alt="copy-settings"></p>
 <p>点击之后，它会让我们「输入新容器的名称」，我给它起名为 「memos-0.11.2」，因为我估计过段时间又得来升级的，那就每次复制后都填一下当前的版本吧。</p>
 <p>然后我们可以启动这个新的容器，看看运行正不正常，正常的话，就可以删掉旧的容器了。</p>
 <p>我这个容器比较简单，而且网络方面直接用 host，所以不用设置端口。</p>
 <p>但是我发现其它需要设置端口的容器，复制之后，端口会发生变化的。例如我有一个容器的端口是 10086，复制之后，群晖自动给新的容器生成一个随机端口，如 <code>49155</code> ，所以看来，带端口的容器，复制之后，还得修改一下。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230313190505946.png" alt="port-10086"></p>
+<p><img src="/img/2023/image-20230313190505946.png" alt="port-10086"></p>
 <p>但是我们不能直接修改新容器的端口，因为不能两个容器同时使用一个端口。例如我这里的 <code>10086 </code>已经被就容器占用了，新的容器就没法用。虽然直接把旧容器删除了，新容器就可以使用 <code>10086</code> 这个端口，但是现在并不清楚新容器，是否能正常运行，所以不建议删。</p>
 <p>我们可以先修改旧容器的端口，例如改为 <code>10087</code>，然后再修改新容器的。这样新的容器应该就可以运行起来了。</p>
 <p>不过，此时如果你用命令行或者 portainer 查询镜像，应该会发现，多出一个 TAG 为 none 的镜像。</p>
@@ -4156,7 +4156,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">autocorrect.exe --lint C:\text.md</span><br></pre></td></tr></table></figure>
 
 <p>使用起来很简单，命令名 参数 文件路径，执行后会快速检查文本中的内容。我使用的是一个 markdown 文件，里面的字数有 2 万 3（由 typora 统计的）</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230316204751544.png" alt="autocorrect"></p>
+<p><img src="/img/2023/image-20230316204751544.png" alt="autocorrect"></p>
 <p>检测只用了不到 55 毫秒，确实很快。红色的就是我原本的内容，绿色的就是它建议修改后的格式。<code>--lint</code> 只是显示建议而已，不会直接修改文件的。</p>
 <p>感觉还不错：</p>
 <ul>
@@ -4231,7 +4231,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2023/03/14 06:15:43 running apt-proxy </span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Ubuntu mirror http://ftp.sjtu.edu.cn/ubuntu/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:44 using fastest Debian mirror http://repo.huaweicloud.com/debian/</span><br><span class="line">2023/03/14 06:15:44 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest CentOS mirror https://mirrors.aliyun.com/centos/</span><br><span class="line">2023/03/14 06:15:45 Start benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 Finished benchmarking mirrors</span><br><span class="line">2023/03/14 06:15:45 using fastest Alpine mirror http://mirrors.aliyun.com/alpine/</span><br><span class="line">2023/03/14 06:15:45 proxy listening on 0.0.0.0:3142</span><br><span class="line">2023/03/14 06:15:45 Program has been started 🚀</span><br></pre></td></tr></table></figure>
 
 <p>从日志可以看到，它会自动测出速度最快的镜像站。而且此时我们访问 3142 端口，还可以看到 web 界面。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230314141943091.png" alt="apt-proxy-web"></p>
+<p><img src="/img/2023/image-20230314141943091.png" alt="apt-proxy-web"></p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>我运行 apt-proxy 的机器 IP 是 192.168.68.172，所以我可以这样这样来使用它。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># `apt-get update` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true update </span><br><span class="line"># `apt-get install vim -y` with apt-proxy service</span><br><span class="line">http_proxy=http://192.168.68.172:3142 apt-get -o pkgProblemResolver=true -o Acquire::http=true install vim -y</span><br></pre></td></tr></table></figure>
 
@@ -4380,7 +4380,7 @@ border-radius: 4px;
 <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>先到 <a href="https://github.com/Akegarasu/cocogoat-signin/releases">https://github.com/Akegarasu/cocogoat-signin/releases</a> 下载程序，群晖 x86_64 的下载名字为 <code>cocogoat-signin_linux_amd64.tar.gz</code> 的，这是一个压缩包，可以用电脑解压。</p>
 <p>电脑上我用 Bandizip 是可以打开的，把里面的 <code>cocogoat-signin</code> 解压出来。</p>
 <p>也可以直接把压缩包传到群晖里，然后在 <code>File Station</code> 里面，右键压缩包，「解压缩」，「解压缩至此目录」。我们得到了一个 tar 结尾的压缩包，对这个新的压缩包，右键，「解压缩」，「解压缩至此目录」。就可以把里面的 <code>cocogoat-signin</code> 解压出来。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cocogoat-decompress.png" alt="cocogoat-decompress"></p>
+<p><img src="/img/2023/cocogoat-decompress.png" alt="cocogoat-decompress"></p>
 <p>我是在 docker 目录下，建立了一个 cocogoat 的目录，程序就放在里面。</p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>要运行它，需要有一个配置文件 <code>config.yml</code></p>
 <p>这个配置文件，如果我们 ssh 连接群晖，然后执行一下程序，就会自动生成的。但是这里考虑到小白用户，我写个不用 ssh 的方法。</p>
@@ -4414,7 +4414,7 @@ border-radius: 4px;
 <p>我们在运行程序之前，设置了变量 <code>TENCENTCLOUD_RUNENV</code> 的值为 <code>SCF</code>，就可以运行完直接退出了。</p>
 <p>现在弄明白了，就可以来设置它每天定时运行了。</p>
 <h3 id="添加定时任务"><a href="#添加定时任务" class="headerlink" title="添加定时任务"></a>添加定时任务</h3><p>打开群晖的「控制面板」，点击「任务计划」，「新增」，「计划的任务」，「用户定义的脚本」</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230320171130893.png" alt="新增-用户定义的脚本"></p>
+<p><img src="/img/2023/image-20230320171130893.png" alt="新增-用户定义的脚本"></p>
 <p>常规里面填写任务名，随便都行。计划设置每天几点运行，可以设置 3 点、7点之类的，最好不要设置 0 点运行。重点来到「任务设置」里，我们填写上这样的命令</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /volume1/docker/cocogoat/ &amp;&amp; TENCENTCLOUD_RUNENV=SCF &amp;&amp; ./cocogoat-signin</span><br></pre></td></tr></table></figure>
 
@@ -4445,25 +4445,25 @@ border-radius: 4px;
 
 <p>目前找到一个更全的表： <a href="http://www.waiyyw.cn/?id=49">CSS font-family常用好看的中英文字体对照表</a></p>
 <p>难道要这样每次都来查表？目前已经知道，在 css 中想用某些字体，只能用英文名。但是我又记不住它们的英文名……有没有什么办法，可以在我想使用的时候，可以查到它们的名字呢？</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p>
+<p><img src="/img/2023/image-20230321144629089.png" alt="汉仪文黑"></p>
 <p>直接在 Windows 的设置里，查看字体的话，是不会显示英文名的。这里的汉仪文黑是原神里面的默认字体，在网页中使用同样得用英文名。明明我电脑里装了这款字体，我却没法直接查到它的英文名称。</p>
 <p>目前我的解决方法是，在浏览器装一个 <a href="https://microsoftedge.microsoft.com/addons/detail/%E7%BD%91%E9%A1%B5%E5%AD%97%E4%BD%93%E6%9B%BF%E6%8D%A2/lkiifecdjjijjdceondieabmlndffgba">插件</a>，之前是用它来全局替换字体的。现在不替换了，只用来查字体名。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230321145430371.png" alt="网页字体替换"></p>
+<p><img src="/img/2023/image-20230321145430371.png" alt="网页字体替换"></p>
 <p>在选项里面点一下，会列出当前电脑的字体，之后可以用鼠标选中名称的，这样就可以直接复制了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>
+<p><img src="/img/2023/image-20230321145746968.png" alt="复制字体名称"></p>
 <p>补充：</p>
 <p>后来又进一步了解了一些。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/font-name.png" alt="font-name"></p>
+<p><img src="/img/2023/font-name.png" alt="font-name"></p>
 <p>打开一个字体的时候，里面第一行显示的「字体名称」，就是可以用在网页 css 中的。</p>
 <p>这样的名称，在设置的字体里面，也是可以看到的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/LXGW-WenKai-Bold.png" alt="LXGW-WenKai-Bold"></p>
+<p><img src="/img/2023/LXGW-WenKai-Bold.png" alt="LXGW-WenKai-Bold"></p>
 <p>之前 霞骛文楷 全称只显示英文，现有有些已经显示中文了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230331153928787.png" alt="image-20230331153928787"></p>
+<p><img src="/img/2023/image-20230331153928787.png" alt="image-20230331153928787"></p>
 <p>不过很奇怪，不管是「霞骛文楷」还是「霞骛文楷等宽」，都是只有 light 是显示中文，而且 Regular 和 Bold 都是英文的。</p>
 <p>在 Mac 上面也是这样。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/mac-lxgw-wenkai-bold.webp" alt="mac-lxgw-wenkai-bold"></p>
+<p><img src="/img/2023/mac-lxgw-wenkai-bold.webp" alt="mac-lxgw-wenkai-bold"></p>
 <p>使用 Firefox 的 DevTools，会比 chrome 或者 Edge 多一个「字体」，这个功能很不错，还可以拉动控制条，来调整字体。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Firefox-devtools-fonts.jpg" alt="Firefox-devtools-fonts"></p>
+<p><img src="/img/2023/Firefox-devtools-fonts.jpg" alt="Firefox-devtools-fonts"></p>
 ]]></content>
       <tags>
         <tag>web</tag>
@@ -4474,7 +4474,7 @@ border-radius: 4px;
     <url>/2023/03/mac-command-line-take-photos/</url>
     <content><![CDATA[<p>最近翻出来一个 USB 摄像头，我把它插到我的 Mac mini 上面，可以用。</p>
 <p>摄像头是免驱的，插上之后，可以用 obs 来捕获画面。也可以用 QuickTime Player，打开之后，点击「文件」「新建影片录制」，就可以看到画面了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
+<p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
 <h2 id="imagesnap"><a href="#imagesnap" class="headerlink" title="imagesnap"></a>imagesnap</h2><p>我想通过命令行的方式，控制摄像头拍照。需要装一个工具 <code>imagesnap</code>，可以使用 homebrew 来安装。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install imagesnap</span><br></pre></td></tr></table></figure>
 
@@ -4521,7 +4521,7 @@ border-radius: 4px;
 <p>所以我目前会把博客中一些图片，转换为 WebP 格式，主要是针对 png 格式的。而原本那些 jpg 图片就没必要去动它了，反正本来就很小。</p>
 <p>接下来介绍我是怎么处理 WebP 图片的。</p>
 <p>我有一张用相机拍的照片，分辨率是 5472×3080，在电脑上显示它的大小是 1.7MB（Mac 上显示的大小）</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p>
+<p><img src="/img/2023/image-20230324103524483.webp" alt="image-20230324103524483"></p>
 <p>使用 identify 获取它的信息（安装 imagemagick 后有这个命令）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># identify DSC00097.JPG</span><br><span class="line">DSC00097.JPG JPEG 5472x3080 5472x3080+0+0 8-bit sRGB 1.57485MiB</span><br></pre></td></tr></table></figure>
 
@@ -4532,7 +4532,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ identify vr.webp</span><br><span class="line">vr.webp WEBP 5472x3080 5472x3080+0+0 8-bit sRGB 89162B 0.100u 0:00.097</span><br></pre></td></tr></table></figure>
 
 <p>只有 <code>89162B</code>，那么除以 1024 的话，89162&#x2F;1024&#x3D;87.07226562，差不多 87KB。分辨率依然还是 5472x3080，而且我在电脑上用 4k 显示器，全屏来看，感觉没什么区别。确实挺强的，这是压缩后的图片。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vr.webp" alt="qiyu-vr"></p>
+<p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
 <p>不过可能是因为我这张图片，画面相对来说比较简单吧，很多地方都是白色的，所以压缩比才能做到这么高。</p>
 <p>这样使用的过程中，我觉得有些不方便，因为它需要我输入 <code>-o new-filename.webp</code>。</p>
 <p>我想要当我输入 <code>webp test.png</code> 的时候，shell 中执行的是 <code>cwebp test.png -o test.webp</code>，所以我写了个 shell 函数，来达到这个目的。</p>
@@ -4540,7 +4540,7 @@ border-radius: 4px;
 
 <p>而且还能这么用，先在终端输入 WebP 空格，然后再把图片的拖进来，再按回车。此时原图片旁边，就会多出一张同名的 WebP 图片。</p>
 <p>WebP 格式，除了图片体积小之外，另外一个优势就是，它可以和 png 一样，保存透明通道，例如这样的图片。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
+<p><img src="/img/2023/QuickTime-player-camera.webp" alt="QuickTime-player-camera"></p>
 <p>这种图片需要在 Mac 上，使用 command + shift + 4，然后按一下空格键，点击想要的窗口，就可以截图得到。</p>
 <p>而默认得到的是 png 格式，还是比较大的。把它转为为 jpg 的话，虽然能缩小，但是透明通道就没了。</p>
 <p>现在我把它转换为 WebP，就可以既保持小体积，又保留透明通道。</p>
@@ -4694,7 +4694,7 @@ border-radius: 4px;
     <content><![CDATA[<p>感觉这个功能超好用。</p>
 <p>有些命令可能需要很久才能执行完，主要是安装之类的，例如 brew 或者 npm，按下回车之后，都不知道它要多久才能装好，我们可能需要时不时就回来看看。</p>
 <p>而在 iTerm2 里面，我们可以设置命令执行完之后，弹出一条通知。这样一来，我们执行命令后，就可以去干其它事情了，等收到通知再回来就行。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
 <p>想要实现这个功能，需要在顶部菜单里，先点击「iTerm2」，再点击「Install Shell Integration」，意思是安装 shell 集合。</p>
 <p>它会执行这样一条命令</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash</span><br></pre></td></tr></table></figure>
@@ -4702,15 +4702,15 @@ border-radius: 4px;
 <p>安装好后多出这些功能</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You will also have these commands:</span><br><span class="line">imgcat filename</span><br><span class="line">  Displays the image inline.</span><br><span class="line">imgls</span><br><span class="line">  Shows a directory listing with image thumbnails.</span><br><span class="line">it2api</span><br><span class="line">  Command-line utility to manipulate iTerm2.</span><br><span class="line">it2attention start|stop|fireworks</span><br><span class="line">  Gets your attention.</span><br><span class="line">it2check</span><br><span class="line">  Checks if the terminal is iTerm2.</span><br><span class="line">it2copy [filename]</span><br><span class="line">  Copies to the pasteboard.</span><br><span class="line">it2dl filename</span><br><span class="line">  Downloads the specified file, saving it in your Downloads folder.</span><br><span class="line">it2setcolor ...</span><br><span class="line">  Changes individual color settings or loads a color preset.</span><br><span class="line">it2setkeylabel ...</span><br><span class="line">  Changes Touch Bar function key labels.</span><br><span class="line">it2tip</span><br><span class="line">  iTerm2 usage tips</span><br><span class="line">it2ul</span><br><span class="line">  Uploads a file.</span><br><span class="line">it2universion</span><br><span class="line">  Sets the current unicode version.</span><br><span class="line">it2profile</span><br><span class="line">  Change iTerm2 session profile on the fly.</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p>
+<p><img src="/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p>
 <p>然后我们新开一个窗口或者 tab，在菜单里面选择 Edit 、 Marks and Annotations 、 Alerts，打开 Alert on next mark</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p>
+<p><img src="/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p>
 <p>开启之后，就可以在右上角看到一个眼睛👁的图标。也可以使用快捷键 <code>cmd + alt + A</code> 来开启。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p>
+<p><img src="/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p>
 <p>之后再执行命令，只要命令完成了，就会弹出一条通知。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
 <p>如果我们选择 「Show Modal Alert Box」，那么会出现这样一个提示窗口</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p>
+<p><img src="/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p>
 <p>点击 Reveal 就会跳转到 iTerm2 里面。不过这个应该先执行命令，在设置 Mark 出现眼睛👁。</p>
 ]]></content>
       <tags>
@@ -4733,7 +4733,7 @@ border-radius: 4px;
 <p>这里的 <code>-bool</code> 选项允许您将参数值设置为 <code>TRUE</code> 或 <code>FALSE</code>，以启用或禁用缩略图。</p>
 <h3 id="如何更改截图保存位置？"><a href="#如何更改截图保存位置？" class="headerlink" title="如何更改截图保存位置？"></a>如何更改截图保存位置？</h3><p>默认情况下是保存在「桌面」目录中</p>
 <p>我们可以按快捷键 <code>cmd + shift + 5</code> 来唤出截图界面，在「选项」里可以更改保存位置。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>
+<p><img src="/img/2023/screenshot-option.jpg" alt="screenshot-option"></p>
 ]]></content>
       <tags>
         <tag>Mac</tag>
@@ -4746,7 +4746,7 @@ border-radius: 4px;
 <p>可以在 shell 里执行 <code>mail</code> 来查看。也可以把 <code>/var/mail</code> 里的文件，直接拉到文本编辑器来查看，例如我直接放到 vscode 来查看。</p>
 <p>由于文件没有后缀名，（我的是我的账号名）所以 vscode 自动检测错，把它识别为 Python 文件。</p>
 <p>可以点击底部来更改，改成 log。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vscode-log.webp" alt="vscode-log"></p>
+<p><img src="/img/2023/vscode-log.webp" alt="vscode-log"></p>
 <p>看完之后，发现也没什么，可以直接把这个文件删除了，这样再打开 shell 就不会有提示了。</p>
 ]]></content>
       <tags>
@@ -4757,10 +4757,10 @@ border-radius: 4px;
     <title>安装 ohmyposh 来美化 powershell</title>
     <url>/2023/04/powershell-ohmyposh/</url>
     <content><![CDATA[<p>通过安装 ohmyposh 来美化 powershell，最终效果如下。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh.png" alt="ohmyposh"></p>
+<p><img src="/img/2023/ohmyposh.png" alt="ohmyposh"></p>
 <p>安装 Oh My Posh</p>
 <p>可以到 Microsoft Store 安装</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p>
+<p><img src="/img/2023/oh-my-posh-app-store.png" alt="oh-my-posh-app-store"></p>
 <p>或者通过命令行来安装，需要用管理员身份运行。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">winget install JanDeDobbeleer.OhMyPosh -s winget</span><br></pre></td></tr></table></figure>
 
@@ -4771,7 +4771,7 @@ border-radius: 4px;
 <p>想要 <code>ls</code> 后显示的文件带图标，需要安装 <code>Terminal-Icons</code>（需要用管理员身份运行）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p>
+<p><img src="/img/2023/ohmyposh-powershell.png" alt="ohmyposh-powershell"></p>
 <p>需要输入两次 y，大小写随便。</p>
 <p>装好后可以尝试在终端执行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Import-Module -Name Terminal-Icons</span><br></pre></td></tr></table></figure>
@@ -4791,10 +4791,10 @@ border-radius: 4px;
 <p>我是把这个文件直接放到 Documents\WindowsPowerShell 里面。</p>
 <p>你也可以放在其它地方，只要改 <code>--config</code> 后面的路径就行。</p>
 <p>这样修改之后，之后打开终端就自动加载 oh my posh 了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p>
+<p><img src="/img/2023/ohmyposh-1806.png" alt="ohmyposh-1806"></p>
 <p>这里显示 1806 毫秒，后面我再新开两个 tab，都是 800 毫秒左右。</p>
 <p>然后还需要设置字体，不然这些图标加载不出来。可以到<a href="https://www.nerdfonts.com/">这里</a>下载字体，选择自己喜欢的，下载后是压缩包，解压出来，选中所有字体，右键安装即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/win-terminal-font.png" alt="win-terminal-font"></p>
+<p><img src="/img/2023/win-terminal-font.png" alt="win-terminal-font"></p>
 <p>之后到「设置」「默认值」「外观」里面更改字体。</p>
 ]]></content>
       <tags>
@@ -4809,15 +4809,15 @@ border-radius: 4px;
 <p>我之前使用的博客主题，需要加载 font awesome 图标，导致网站打开后需要等很久才能看到图标。再加上用久了，有点审美疲劳，所以最近换了个主题，现在速度快了很多。</p>
 <p>改完主题后，我又注意到另一个影响访问速度的因素——图片。</p>
 <p>我博客的图片，都是放在 source&#x2F;img 目录中，按照年份建立目录。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/blog-source-img.jpg" alt="blog-source-img"></p>
+<p><img src="/img/2023/blog-source-img.jpg" alt="blog-source-img"></p>
 <p>我可以通过按大小排序，来查出哪些图片占用的空间比较大。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p>
+<p><img src="/img/2023/images-sort-by-size.webp" alt="images-sort-by-size"></p>
 <p>现在看到的是我已经优化过的了，下面说说我的优化过程。</p>
 <h3 id="Mac-自带「预览」"><a href="#Mac-自带「预览」" class="headerlink" title="Mac 自带「预览」"></a>Mac 自带「预览」</h3><p>在 Mac 上双击一张图片，会使用自带的「预览」来打开。可以点击「文件」「导出」，选择 JPEG 格式，可以更改它的质量来缩小图片体积。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p>
-<h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/affinity-photo.webp" alt="affinity-photo"></p>
+<p><img src="/img/2023/Mac-preview-export.webp" alt="Mac-preview-export"></p>
+<h3 id="使用-Photoshop-或者-affinity-photo"><a href="#使用-Photoshop-或者-affinity-photo" class="headerlink" title="使用 Photoshop 或者 affinity photo"></a>使用 Photoshop 或者 affinity photo</h3><p><img src="/img/2023/affinity-photo.webp" alt="affinity-photo"></p>
 <p>专业的图片处理软件，除非要修改图片内容，不然一般不会选择用它们来压缩图片。</p>
-<h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ImageOptim.webp" alt="ImageOptim"></p>
+<h3 id="ImageOptim"><a href="#ImageOptim" class="headerlink" title="ImageOptim"></a>ImageOptim</h3><p><img src="/img/2023/ImageOptim.webp" alt="ImageOptim"></p>
 <p>一个开源的图片优化工具，直接把图片拖进来就行。它只有 <a href="https://imageoptim.com/mac">Mac 版本</a>，在 <a href="https://github.com/ImageOptim/ImageOptim">GitHub</a> 上面有 8.3K star。</p>
 <p>上面我拖了一张图片进来，它处理后，图片大小变成原来的 65.1% 了。这是在我开启微量有损的情况，不开的话，压缩比并不高。</p>
 <p>然后我觉得它有两个缺点：</p>
@@ -4827,11 +4827,11 @@ border-radius: 4px;
 </ul>
 <p>所以我不怎么用它。</p>
 <h3 id="使用-WebP-格式"><a href="#使用-WebP-格式" class="headerlink" title="使用 WebP 格式"></a>使用 WebP 格式</h3><p>之前的<a href="/2023/03/about-webp/">文章</a>我已经介绍过它了，我目前博客新添加的图片，如果体积比较大，我都尽量把它们转为 WebP 格式。它的压缩比超级强。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/vr.webp" alt="qiyu-vr"></p>
+<p><img src="/img/2023/vr.webp" alt="qiyu-vr"></p>
 <p>你能想象这样一张分辨率为 5472×3080 的图片，它只有 87KB 吗？</p>
 <p>它可以做到图片很小的情况下，还保持着不错的图片质量，真心不错。</p>
 <p>由于经常转换格式，所以我后来将它弄成一个 APP，图片拖进去就会自动转换为 WebP 格式。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p>
+<p><img src="/img/2023/webp-mac-app.webp" alt="webp-mac-app"></p>
 <p>感兴趣的可以看<a href="/2023/03/create-mac-app-from-command-line-scripts/">之前的文章</a>。这么一番优化，我目前整个博客的图片，只有 34MB，我手机开数据的情况下访问我的博客，速度方面感觉也还不错。</p>
 ]]></content>
       <tags>
@@ -4863,7 +4863,7 @@ border-radius: 4px;
     <title>更改 Mac 截图快捷键、文件名、文件格式</title>
     <url>/2023/04/mac-screenshot2/</url>
     <content><![CDATA[<h3 id="更改截图默认快捷键"><a href="#更改截图默认快捷键" class="headerlink" title="更改截图默认快捷键"></a>更改截图默认快捷键</h3><p>Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4 区域截图。按 3 颗按键还是有些不方便，对于我这种经常截图的人来说。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p>
+<p><img src="/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p>
 <p>我们可以到「系统偏好设置」「键盘」「快捷键」「截屏」中，更改为自己喜欢的按键，我这边直接把区域截图改为<code>F9</code>。</p>
 <h3 id="更改截图默认文件名"><a href="#更改截图默认文件名" class="headerlink" title="更改截图默认文件名"></a>更改截图默认文件名</h3><p>默认截图后得到的图片名称是这样的 <code>截屏2023-04-02 上午10.58.54.png</code>，如果在「语言与地区」里有勾选 ☑️ 24 小时制，那么是这样的 <code>截屏2023-04-02 11.08.06.png</code></p>
 <p>在英文状态下是 <code>Screen Shot [date] at [time].png</code></p>
@@ -4876,7 +4876,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;powersee-&quot;</span><br></pre></td></tr></table></figure>
 
 <p>之后截图得到的文件名会变成这样的 <code>powersee-2023-04-02 11.08.06.png</code></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p>
+<p><img src="/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p>
 <p>如果想改回原来的默认名称，可以用这条命令</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture &quot;include-date&quot; 1; killall SystemUIServer</span><br></pre></td></tr></table></figure>
 
@@ -4893,16 +4893,16 @@ border-radius: 4px;
     <title>Windows 安装 Nu shell 与配置</title>
     <url>/2023/04/windows-install-nushell-and-config/</url>
     <content><![CDATA[<p>使用 nu shell 已经有一段时间，感觉还不错。它最为吸引我的就是，自带历史记录提示，就像 zsh 的 zsh-autosuggestions 插件。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p>
+<p><img src="/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p>
 <p>它的一条普通的 ls 命令，结果也和其它 shell 很不一样。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nushell-ls.png" alt="nushell-ls"></p>
+<p><img src="/img/2023/nushell-ls.png" alt="nushell-ls"></p>
 <p>输出的是一个表格。</p>
 <p>安装可以查看官方文档：<a href="https://www.nushell.sh/zh-CN/book/installation.html">安装 Nu | Nushell</a></p>
 <p>文档一共 6 种语言，中文就是其中一种。</p>
 <p>我是到  <a href="https://github.com/nushell/nushell/releases">GitHub 的 Release 页</a> 下载并解压二进制文件，然后放到 <code>C:\bin\</code> 里面的。接着在「终端」里面添加 nushell。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p>
+<p><img src="/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p>
 <p>如果想让 nushell 作为默认的 shell，可以到「启动」，「默认配置文件」进行更改。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p>
+<p><img src="/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
       <tags>
         <tag>Windows</tag>
@@ -4913,7 +4913,7 @@ border-radius: 4px;
     <title>Nu shell Oh My Posh</title>
     <url>/2023/04/nushell-ohmyposh/</url>
     <content><![CDATA[<p>给 Nu shell 配置上 Oh My Posh，完成后效果如下。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/nu-ohmyposh.webp" alt="nu-ohmyposh"></p>
+<p><img src="/img/2023/nu-ohmyposh.webp" alt="nu-ohmyposh"></p>
 <p>之前我已经给 powershell 配置好 ohmyposh 了，现在感觉还是 nu shell 比较好用，所以也来折腾一下。</p>
 <p>官方文档：<a href="https://ohmyposh.dev/docs/installation/prompt">Change your prompt | Oh My Posh</a></p>
 <p>有这些 shell 可以选择：</p>
@@ -4984,20 +4984,20 @@ border-radius: 4px;
     <title>macOS 设置允许「任何来源」</title>
     <url>/2023/04/mac-allow-apps-anywhere/</url>
     <content><![CDATA[<p>最近由于更新系统到 Ventura 13.3，我发现安全性里的「任何来源」又不见了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/APP-allow1.webp" alt="APP-allow1"></p>
+<p><img src="/img/2023/APP-allow1.webp" alt="APP-allow1"></p>
 <p>于是又得去网上搜开启的命令，这里也顺便记录一下📝</p>
 <p>考虑到以后也许有萌新搜到我这篇文章，这里写详细一点。</p>
 <p>首先点击「启动台」，在顶部的搜索框里面输入「终端」，可以找到一个图标上面写 <code>&gt;_</code> 的 APP</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Mac-terminal.webp" alt="Mac-terminal"></p>
+<p><img src="/img/2023/Mac-terminal.webp" alt="Mac-terminal"></p>
 <p>点击打开它，然后复制下面这条命令，粘贴进去</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-spctl.webp" alt="terminal-spctl"></p>
+<p><img src="/img/2023/terminal-spctl.webp" alt="terminal-spctl"></p>
 <p>然后按一下回车键，这时出现 Password:🔑，需要输入自己的用户密码，也就是开机后要进入桌面时的那个密码。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/terminal-spctl-Password.webp" alt="terminal-spctl-Password"></p>
+<p><img src="/img/2023/terminal-spctl-Password.webp" alt="terminal-spctl-Password"></p>
 <p>注意输入密码的时候，屏幕上不会显示任何内容的，既不会直接显示你的密码，也不会出现 <code>***</code> 或者 <code>···</code>，只管输入就行，完成后就再按一下回车键。</p>
 <p>然后应该就可以看到出现「任何来源」了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/APP-allow2.webp" alt="APP-allow2"></p>
+<p><img src="/img/2023/APP-allow2.webp" alt="APP-allow2"></p>
 <h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
       <tags>
         <tag>Mac</tag>
@@ -5008,7 +5008,7 @@ border-radius: 4px;
     <url>/2023/04/calibre-6-15-1-ebook-viewer/</url>
     <content><![CDATA[<p>我一直使用 calibre 来打开 epub 和 mobi 文件，我不喜欢 Mac 自带的「图书」APP。</p>
 <p>目前电脑里装的是很久之前的版本了，一直没升级。这次把电脑系统升级到 13.3 之后，发现没法直接用 ebook-viewer 来打开 epub 文件了，选择 calibre 的话，是把书籍导入到 calibre 里面。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/epub-open-method.webp" alt="epub-open-method"></p>
+<p><img src="/img/2023/epub-open-method.webp" alt="epub-open-method"></p>
 <p>于是我打算升级一下，到官网下载时发现，2022 年的时候才支持苹果自研芯片的：<a href="https://calibre-ebook.com/whats-new">https://calibre-ebook.com/whats-new</a></p>
 <blockquote>
 <p>Release: 6.0 [11 Jul, 2022]</p>
@@ -5017,13 +5017,13 @@ border-radius: 4px;
 </ul>
 </blockquote>
 <p>我现在用的是 5.31.1 的版本。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/calibre-5.31.1.webp" alt="calibre-5.31.1"></p>
+<p><img src="/img/2023/calibre-5.31.1.webp" alt="calibre-5.31.1"></p>
 <p>于是到官网下载新的安装包，直接替换就行。这个应用居然要占用接近 800M……</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/calibre-6.15.1-need-800MB.jpg" alt="calibre-6.15.1-need-800MB"></p>
+<p><img src="/img/2023/calibre-6.15.1-need-800MB.jpg" alt="calibre-6.15.1-need-800MB"></p>
 <p>之后在「活动监视器」里也可以看到它的种类显示为 Apple 了。之前是显示 Intel 的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/calibre-Apple.webp" alt="calibre-Apple"></p>
+<p><img src="/img/2023/calibre-Apple.webp" alt="calibre-Apple"></p>
 <p>而且现在 epub 也默认改为用 ebook-viewer 来打开了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/ebook-viewer.webp" alt="ebook-viewer"></p>
+<p><img src="/img/2023/ebook-viewer.webp" alt="ebook-viewer"></p>
 <p>不错，问题解决了。</p>
 ]]></content>
       <tags>
@@ -5042,7 +5042,7 @@ border-radius: 4px;
 <p>过程如下：</p>
 <p>打开 Mac 自带的应用「自动操作」英文名是 automator，选择第三个「快速操作」。然后在左边的「实用工具」里面，找到「运行 Shell 脚本」，将它拖到右边。</p>
 <p>右边我们有很多地方需要调整，可以参考我的设置↓</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-webp.webp" alt="automator-webp"></p>
+<p><img src="/img/2023/automator-webp.webp" alt="automator-webp"></p>
 <p>这是脚本内容</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$f</span>&quot;</span></span><br><span class="line">	/opt/homebrew/bin/cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
@@ -5050,7 +5050,7 @@ border-radius: 4px;
 <p>完成之后保存一下即可，接着来到访达里面。</p>
 <p>使用过程如下：</p>
 <p>选中图片，右键「快速操作」，「转换为 WebP」这个名字是我们自己起的。然后旁边就多出一张 webp 格式的图片了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-quick-webp.gif" alt="automator-quick-webp"></p>
+<p><img src="/img/2023/automator-quick-webp.gif" alt="automator-quick-webp"></p>
 <p>然后根据我的了解，从 macOS 10.15（Catalina）开始，Apple 更改了 Automator 创建的服务的默认位置，将其移动到了右键菜单的「快速操作」下。</p>
 ]]></content>
       <tags>
@@ -5070,7 +5070,7 @@ border-radius: 4px;
 
 <p>感觉还是挺简单的，应该是可以实现的。</p>
 <p>一番研究之后，终于实现了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p>
+<p><img src="/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p>
 <p>脚本内容</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="variable">$HOME</span>/.zshrc</span><br><span class="line"><span class="comment">#echo $PATH</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$HOME</span>/hexobackup &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">hexo new post <span class="variable">$1</span></span><br></pre></td></tr></table></figure>
 
@@ -5081,13 +5081,13 @@ border-radius: 4px;
 <p>本来到这里就结束了的，不过我后面还是加了些内容，让结果可以通过通知显示出来。</p>
 <p>这里的关键点是设置一个变量，来接收输出结果，然后在显示通知里面，使用这个变量。</p>
 <p>我创建的是「应用程序」，所以可以选择把它保存到自己想放置的地方。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-APP.webp" alt="automator-APP"></p>
+<p><img src="/img/2023/automator-APP.webp" alt="automator-APP"></p>
 <p>之后我把这个 APP 拖到 Dock 栏上面，可以非常快速地打开它。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p>
+<p><img src="/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p>
 <p>点击它之后，就会出现一个文本框，在这里我可以输入博客文章的文件名。不过它这里不能粘贴，只能手动输入。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p>
+<p><img src="/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p>
 <p>当我输入完成后，点击「继续」按钮，就会去执行 shell 脚本。完成之后，会弹出一条通知。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p>
+<p><img src="/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p>
 <p>感觉比较遗憾的地方是，不能粘贴，以及只能按「继续」按钮，而不能用按回车键来代替。</p>
 ]]></content>
       <tags>
@@ -5098,18 +5098,18 @@ border-radius: 4px;
     <title>如何去掉 iPhone iPad 上的越狱文件？</title>
     <url>/2023/04/iphone-ipad-remove-jailbreak/</url>
     <content><![CDATA[<p>我有一台 iPad，几年前就将它越狱了。由于越狱之后，就没法直接更新系统，所以目前还停留在 13.6.1</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iPad-13.6.1.jpg" alt="iPad-13.6.1"></p>
+<p><img src="/img/2023/iPad-13.6.1.jpg" alt="iPad-13.6.1"></p>
 <p>现在提示可以更新的是 iPadOS 16.4.1，如果我直接点击升级，很可能待会就变砖了。</p>
 <p>所以我开始了解怎么才能升级这台，已经越狱了的 iPad。我猜可能得进入 DFU 模式，然后重新刷一个干净的系统进去。</p>
 <p>不过了解后发现，并不用这么麻烦，只需要先把系统的越狱去掉就行。</p>
 <p>先在电脑上使用 checkra1n 让机器处于越狱状态，因为我们需要在设备里打开 checkra1n 这个 app。</p>
 <p>官网：<a href="https://checkra.in/">checkra1n</a></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/checkra1n-v-0.12.4.webp" alt="checkra1n-v-0.12.4"></p>
+<p><img src="/img/2023/checkra1n-v-0.12.4.webp" alt="checkra1n-v-0.12.4"></p>
 <p>还是熟悉的操作，按照说明进入 DUF 模式，之后机器重启，然后点击桌面的 checkra1n 这个 app，再点击红色的「Restore System」来恢复系统即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iPad-checkra1n.png" alt="iPad-checkra1n"></p>
+<p><img src="/img/2023/iPad-checkra1n.png" alt="iPad-checkra1n"></p>
 <p>然后机器会重启，并且删除越狱相关的文件。例如重启后桌面就没有 Cydia 了。</p>
 <p>此时就可以到系统里面升级了，经过漫长地等待，我把 iPad 升级到了 16.4.1</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iPad-16.4.1.jpg" alt="iPad-16.4.1"></p>
+<p><img src="/img/2023/iPad-16.4.1.jpg" alt="iPad-16.4.1"></p>
 ]]></content>
       <tags>
         <tag>iOS</tag>
@@ -5119,19 +5119,19 @@ border-radius: 4px;
     <title>如何升级 macOS 到特定版本</title>
     <url>/2023/04/macos-update-to-specific-version/</url>
     <content><![CDATA[<p>直接在系统偏好设置里，点击「软件更新」的话，会检查当前最新的系统版本。例如我现在显示的是 Ventura。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/macOS-Monterey-Software-Update.webp" alt="macOS-Monterey-Software-Update"></p>
+<p><img src="/img/2023/macOS-Monterey-Software-Update.webp" alt="macOS-Monterey-Software-Update"></p>
 <p>而我现在的系统版本还是 Big Sur。</p>
 <p>我其实不想更新的，所以我之前，是把「高级」里面的所有勾都取消掉，这样才可以保持这一年多来，没有任何系统升级提示。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/uncheck-macos-update.webp" alt="uncheck-macos-update"></p>
+<p><img src="/img/2023/uncheck-macos-update.webp" alt="uncheck-macos-update"></p>
 <p>但是刚才我点击进来了，它就自动检查更新，所以现在不更新的话，会有一个红色数字 1 在图标上。噢，不把它弄掉的话，我会相当别扭的。</p>
 <p>我尝试着升级到 11 Big Sur 的最新版，11.7.5，看看会怎么样。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/macOS-Big-Sur-11.7.5.jpg" alt="macOS-Big-Sur-11.7.5"></p>
+<p><img src="/img/2023/macOS-Big-Sur-11.7.5.jpg" alt="macOS-Big-Sur-11.7.5"></p>
 <p>升级是成功了，但是更新提示依然还在。</p>
 <p>这时我了解到 13 版本，它的系统设置，变得和 iPad 上一样了，感觉不怎么喜欢，不知道我能否选择，只升级到 12 就行？</p>
 <p>于是我查找看看 Mac 能否升级到特定版本。</p>
 <p><a href="https://support.apple.com/zh-cn/HT211683">如何下载 macOS - 官方 Apple 支持 (中国)</a></p>
 <p>直接到苹果官网，可以看到各个版本的系统，点击后跳转到 APP store。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/macOS-Monterey-app-store.webp" alt="macOS-Monterey-app-store"></p>
+<p><img src="/img/2023/macOS-Monterey-app-store.webp" alt="macOS-Monterey-app-store"></p>
 <p>商店里能下载的版本还挺多的。</p>
 <p><a href="macappstores://apps.apple.com/app/macos-ventura/id1638787999?mt=12">Ventura 13</a></p>
 <p><a href="macappstores://apps.apple.com/app/macos-monterey/id1576738294?mt=12">Monterey 12</a></p>
@@ -5140,9 +5140,9 @@ border-radius: 4px;
 <p><a href="macappstores://apps.apple.com/app/macos-mojave/id1398502828?mt=12">Mojave 10.14</a></p>
 <p><a href="macappstores://apps.apple.com/app/macos-high-sierra/id1246284741?mt=12">High Sierra 10.13</a></p>
 <p>虽然知道怎么选择特定版本了，但是我在软件更新里面，已经下载好 Ventura 了。唉，那就升级看看吧，希望一切顺利。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/download-Ventura.webp" alt="download-Ventura"></p>
+<p><img src="/img/2023/download-Ventura.webp" alt="download-Ventura"></p>
 <p>等待了一段时间，升级成功了。升级后自动换了张默认壁纸，「系统偏好设置」也改名为「系统设置」了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/system-setting.webp" alt="system-setting"></p>
+<p><img src="/img/2023/system-setting.webp" alt="system-setting"></p>
 <p>升级到 Ventura 13 居然比我刚才从 Big Sur 11.6 升级到 11.7.5 速度还快。</p>
 ]]></content>
       <tags>
@@ -5153,7 +5153,7 @@ border-radius: 4px;
     <title>Node.js 如何复制和移动文件</title>
     <url>/2023/04/nodejs-copy-and-move/</url>
     <content><![CDATA[<p>建议在 nodejs 的交互环境中测试，直接在终端执行 node 就可以进入。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/node-RELP.gif" alt="node-RELP"></p>
+<p><img src="/img/2023/node-RELP.gif" alt="node-RELP"></p>
 <h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><p>需要用到 fs</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line">fs.<span class="title function_">copyFileSync</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;b.txt&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -5218,13 +5218,13 @@ border-radius: 4px;
 <p>给 cron 完全磁盘权限</p>
 <p>cron 的路径是 <code>/usr/sbin/cron</code>，我们可以在访达 Finder 里面，点击顶部菜单的「前往」「前往文件夹」，然后输入 <code>/usr/sbin</code> 来找到它。</p>
 <p>如果想像我这样，显示隐藏文件夹，可以按快捷键 <code>command + shift + .</code>，就是 <code>&gt;</code> 这颗按键。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cron-location-shadow.webp" alt="cron-location"></p>
+<p><img src="/img/2023/cron-location-shadow.webp" alt="cron-location"></p>
 <p>现在我们可以把 sbin 这个文件夹，拖到左侧的个人收藏那里。</p>
 <p>然后打开「系统设置」，我的是 13.3 系统版本，以前叫「系统偏好设置」</p>
 <p>找到 「隐私与安全性」里面的「完全磁盘访问权限」，点击下方的 + 来添加一个新的程序进去。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/full-disk-access.webp" alt="full-disk-access"></p>
+<p><img src="/img/2023/full-disk-access.webp" alt="full-disk-access"></p>
 <p>由于刚才我把 sbin 放到左侧的个人收藏了，所以现在找到 cron 很简单。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Finder-cron.webp" alt="Finder-cron"></p>
+<p><img src="/img/2023/Finder-cron.webp" alt="Finder-cron"></p>
 <p>这样操作之后，使用 cron 来执行 rsync 命令备份Documents&#x2F;screenshot-backup 就没问题了，其它命令如果是需要访问文稿、桌面、下载这些文件夹，应该也是通过这样来解决问题的。</p>
 <p>参考：<a href="https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted">macos - Crontab Operation not permitted - Ask Different (stackexchange.com)</a></p>
 ]]></content>
@@ -5237,9 +5237,9 @@ border-radius: 4px;
     <url>/2023/04/imagemagick-shadow/</url>
     <content><![CDATA[<p>官方文档：<a href="https://legacy.imagemagick.org/Usage/blur/#shadow">Bluring and Sharpening – IM v6 Examples (imagemagick.org)</a></p>
 <p>我有一张图片，名为 <code>test.jpg</code> 直接放到博客文章里面，效果是这样的</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-test.jpg" alt="shadow-test"></p>
+<p><img src="/img/2023/shadow-test.jpg" alt="shadow-test"></p>
 <p>如果加上阴影后，效果是这样的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/convert-add-shadow.png" alt="convert-add-shadow"></p>
+<p><img src="/img/2023/convert-add-shadow.png" alt="convert-add-shadow"></p>
 <p>看起来效果会好很多，特别是当网页背景是白色，图片背景也是白色时，加了阴影可以让图片更为突出。我使用的是这样一条命令</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert test.jpg \( +clone -background black -shadow 50x20+0+0 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
 
@@ -5249,16 +5249,16 @@ border-radius: 4px;
 <p>第一个 +0：代表阴影左右偏移</p>
 <p>第二个 +0：代表阴影上下偏移</p>
 <p>假如我改为 <code>50x20+10+10</code>，那么得到的图片是这样的</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-add10-add10.png" alt="shadow-add10-add10"></p>
+<p><img src="/img/2023/shadow-add10-add10.png" alt="shadow-add10-add10"></p>
 <p>也就是阴影会往右下方偏移。</p>
 <p>现在 <code>-background</code> 用的是 black，也可以改为其它颜色的。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg \( +clone -background red -shadow 50x20+10+10 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-red.webp" alt="shadow-red"></p>
+<p><img src="/img/2023/shadow-red.webp" alt="shadow-red"></p>
 <p>个人感觉用 grey 会比较合适，而且我不喜欢偏移，所以这是我使用的命令。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg \( +clone -background grey -shadow 70x20+0+0 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shadow-grey-70.png" alt="shadow-grey-70"></p>
+<p><img src="/img/2023/shadow-grey-70.png" alt="shadow-grey-70"></p>
 <p>在 Mac 上用 zsh 必须得加 \ 转义才行，在 Windows 上面就可以不用。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg ( +clone -background grey -shadow 70x20+0+0 ) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure>
 
@@ -5284,7 +5284,7 @@ border-radius: 4px;
 <p>腾讯云好像没有免费空间，我的账号点进去没有，看别人好像有。</p>
 <p>之后我看到这篇博文：<a href="https://www.cnblogs.com/Sky-seeker/p/15855538.html">国内外免费对象存储和CDN加速额度 - 梦幻之心星 - 博客园</a></p>
 <p>里面讲到腾讯云可以花 1 块钱买一年 50G 的，于是我就买了一个。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/one-yuan-cos.webp" alt="one-yuan-cos"></p>
+<p><img src="/img/2023/one-yuan-cos.webp" alt="one-yuan-cos"></p>
 <p>但是还不知怎么使用，以及它的规则是怎么样的，流量超出了是不是会欠费？那么搜索看看别人是怎么用腾讯云 cos 来存博客图片的吧。</p>
 <p>我找到了这篇文章，而且里面还讲了如何为博客的图片设置 CDN。</p>
 <p><a href="https://jdhao.github.io/2020/03/16/tencent_cos_cdn_setup/">腾讯云对象存储博客图床开启 CDN 加速(不需要购买额外域名) - jdhao’s digital space</a></p>
@@ -5364,12 +5364,12 @@ border-radius: 4px;
     <url>/2023/04/mac-image-to-text/</url>
     <content><![CDATA[<p>我之前一直以为这个功能是 iOS 才能用的，因为以前有看到 iOS 相关的介绍。</p>
 <p>没想到 Mac 其实也可以使用。方法是：选中一张图片，按空格键预览，之后按 command + A 这两颗按键，也就是全选嘛，图片中的文字就会高亮。然后再按 command + C  复制即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/preview-cmd-a.webp" alt="preview-cmd-a"></p>
+<p><img src="/img/2023/preview-cmd-a.webp" alt="preview-cmd-a"></p>
 <p>了解了一下，原来是 macOS Monterey 12 才有的功能。我之前的系统一直保留在 Big Sur 11，所以没见过这样的功能。</p>
 <p>然后我测试了一下，断网也可以使用的。而且也可以不用按 command + A，点击右下角的图标就行了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/preview-button-text.webp" alt="preview-button-text"></p>
+<p><img src="/img/2023/preview-button-text.webp" alt="preview-button-text"></p>
 <p>或者直接用鼠标按住左键来选中文字即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/preview-select-text.webp" alt="preview-select-text"></p>
+<p><img src="/img/2023/preview-select-text.webp" alt="preview-select-text"></p>
 <p>官方介绍：<a href="https://support.apple.com/zh-cn/guide/preview/prvw625a5b2c/mac">在 Mac 上的“预览”中使用“实况文本”与照片中的文本交互 - 官方 Apple 支持 (中国)</a></p>
 ]]></content>
       <tags>

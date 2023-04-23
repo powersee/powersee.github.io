@@ -68,7 +68,7 @@
 <p>过程如下：</p>
 <p>打开 Mac 自带的应用「自动操作」英文名是 automator，选择第三个「快速操作」。然后在左边的「实用工具」里面，找到「运行 Shell 脚本」，将它拖到右边。</p>
 <p>右边我们有很多地方需要调整，可以参考我的设置↓</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-webp.webp" alt="automator-webp"></p>
+<p><img src="/img/2023/automator-webp.webp" alt="automator-webp"></p>
 <p>这是脚本内容</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$f</span>&quot;</span></span><br><span class="line">	/opt/homebrew/bin/cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
@@ -76,7 +76,7 @@
 <p>完成之后保存一下即可，接着来到访达里面。</p>
 <p>使用过程如下：</p>
 <p>选中图片，右键「快速操作」，「转换为 WebP」这个名字是我们自己起的。然后旁边就多出一张 webp 格式的图片了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-quick-webp.gif" alt="automator-quick-webp"></p>
+<p><img src="/img/2023/automator-quick-webp.gif" alt="automator-quick-webp"></p>
 <p>然后根据我的了解，从 macOS 10.15（Catalina）开始，Apple 更改了 Automator 创建的服务的默认位置，将其移动到了右键菜单的「快速操作」下。</p>
 
       </div>

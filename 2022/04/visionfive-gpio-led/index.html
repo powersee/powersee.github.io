@@ -60,7 +60,7 @@
       <div class="content">
         
         <p>visionfive 是赛昉科技推出的一款开发板，使用的处理器是他们自家研发的【惊鸿 7100】（JH7100），这是一颗 risc-v 架构的处理器，双核 U74，U74 对标的是 ARM 的 Cortex-A55 。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/visionfive1.jpg" alt="visionfive1"></p>
+<p><img src="/img/2022/visionfive1.jpg" alt="visionfive1"></p>
 <h3 id="写入镜像"><a href="#写入镜像" class="headerlink" title="写入镜像"></a>写入镜像</h3><p>这块板子的系统运行和树莓派一样，需要先将系统镜像写入内存卡，再插到板子上来运行。目前官方提供的只有 Fedora 这个发行版，可以在 GitHub 上找到下载链接。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/starfive-tech/Fedora_on_StarFive">https://github.com/starfive-tech/Fedora_on_StarFive</a></p>
 <p>下载完是一个特殊的压缩格式，zst，我搜了一下</p>
@@ -70,11 +70,11 @@
 <p>还得使用专门的工具才能解压，稍微麻烦了点。工具在这里有提供</p>
 <p><a target="_blank" rel="noopener" href="https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide">https://rvspace.org/en/Product/VisionFive/Technical_Documents/VisionFive_Single_Board_Computer_Quick_Start_Guide</a></p>
 <p>点击网页左侧的 <strong>Flashing Fedora OS to a Micro-SD Card</strong> 可以快速达到。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/Snipaste_22-04-11_09-21-44.jpg" alt="Snipaste_22-04-11_09-21-44"></p>
+<p><img src="/img/2022/Snipaste_22-04-11_09-21-44.jpg" alt="Snipaste_22-04-11_09-21-44"></p>
 <p>我是在 win10 进行操作的，将下载好的解压工具，从压缩包里解压出来，和 zst 文件放在一起。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-11_09-57-19.jpg" alt="2022-04-11_09-57-19"></p>
+<p><img src="/img/2022/2022-04-11_09-57-19.jpg" alt="2022-04-11_09-57-19"></p>
 <p>此时在这个文件夹里的空白处，一只手按住键盘上的 shift 键，另一只手按一下鼠标的右键，在此处打开 powershell，就可以快速在当前文件夹打开一个命令行窗口。（此处我的 powershell 是自己升级过的，系统自带的是没有带 preview 的。）</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-11_09-58-00.jpg" alt="2022-04-11_09-58-00"></p>
+<p><img src="/img/2022/2022-04-11_09-58-00.jpg" alt="2022-04-11_09-58-00"></p>
 <p>执行这条命令就可以解压了</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./zstd.exe -d Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw\.zst -o Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw</span><br></pre></td></tr></table></figure>
 
@@ -83,22 +83,22 @@
 <p>默认的用户名是 riscv</p>
 <p>密码是 starfive</p>
 <p>这台设备的桌面体验，我感觉还是比较差的，毕竟没有 GPU，而已本身也只是双核而已，所以桌面体验会有一些卡顿。很快我就放弃用鼠标来控制它了，而是选择在电脑上通过 ssh 来控制它。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/visionfive-neofetch.jpg" alt="visionfive-neofetch"></p>
+<p><img src="/img/2022/visionfive-neofetch.jpg" alt="visionfive-neofetch"></p>
 <h3 id="如何通过-gpio-控制-LED-灯？"><a href="#如何通过-gpio-控制-LED-灯？" class="headerlink" title="如何通过 gpio 控制 LED 灯？"></a>如何通过 gpio 控制 LED 灯？</h3><p>通过这个网页，我们可以了解到这块板子的 GPIO 信息</p>
 <p><a target="_blank" rel="noopener" href="https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide">https://rvspace.org/en/Product/General/StarFive_40-Pin_GPIO_Header_User_Guide</a></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/visionfive-gpio.jpg" alt="img"></p>
+<p><img src="/img/2022/visionfive-gpio.jpg" alt="img"></p>
 <p>准备一颗 LED 灯，一头连接 34 号的 GND，一头连接 40 号的 GPIO0</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/LED-off.jpg" alt="LED-off"></p>
+<p><img src="/img/2022/LED-off.jpg" alt="LED-off"></p>
 <p>在终端里进行如下的操作（需要 root 身份来执行）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /sys/class/gpio</span><br><span class="line">echo 448 &gt; export</span><br><span class="line">cd gpio448</span><br><span class="line">echo out &gt; direction</span><br><span class="line">echo 1 &gt; value</span><br></pre></td></tr></table></figure>
 
 <p>这样便可以点亮 LED 灯</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/LED-on.jpg" alt="LED-on"></p>
+<p><img src="/img/2022/LED-on.jpg" alt="LED-on"></p>
 <p>如果想熄灭它，只需执行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo 0 &gt; value</span><br></pre></td></tr></table></figure>
 
 <p>官方文档里的这个表格非常重要，刚才我们控制 GPIO0，操作的是 448，如果现在我们想控制 GPIO4，从表格可以查到是 452，那么只需将刚才的 448 换成 452 即可让 GPIO4 输出高电平。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/gpio%E8%A1%A8%E6%88%AA%E5%9B%BE.jpg" alt="gpio"></p>
+<p><img src="/img/2022/gpio%E8%A1%A8%E6%88%AA%E5%9B%BE.jpg" alt="gpio"></p>
 <p>对此我写了一个 Python 脚本，作用是监控哔哩哔哩上面是否有人给我发私信，也就是我是否有未读消息，如果有的话，则点亮 LED 灯。而当我看完消息后，脚本检测到目前没有未读消息了，则会将 LED 灯熄灭。</p>
 <p>脚本已放在 GitHub 上面，有兴趣的朋友可以参考一下。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py">https://github.com/powersee/bilibili_unread/blob/master/bili-for-visionfive.py</a></p>

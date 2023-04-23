@@ -64,7 +64,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -p 5000:5000 --name sayhello powersee/sayhello</span><br></pre></td></tr></table></figure>
 
 <p>第一个 5000 可以换为其它的端口，例如 6000，7000 等等，之后在浏览器通过 <code>IP:端口</code> 的形式来访问即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/sayhello10086.jpg"></p>
+<p><img src="/img/2023/sayhello10086.jpg"></p>
 <h3 id="删除内容"><a href="#删除内容" class="headerlink" title="删除内容"></a>删除内容</h3><p>先来说说，怎么删除内容。需要做的是，进入 docker 容器里的，使用命令行对 sqlite 数据库的内容进行删除。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker ps                                                    </span><br><span class="line">CONTAINER ID   IMAGE               COMMAND                  CREATED        STATUS        PORTS                                         NAMES</span><br><span class="line">1888c7d98fe8   powersee/sayhello   &quot;python3 -m flask ru…&quot;   2 months ago   Up 2 months   0.0.0.0:10086-&gt;5000/tcp, :::10086-&gt;5000/tcp   sayhello</span><br></pre></td></tr></table></figure>
 

@@ -75,13 +75,13 @@
 <p>给 cron 完全磁盘权限</p>
 <p>cron 的路径是 <code>/usr/sbin/cron</code>，我们可以在访达 Finder 里面，点击顶部菜单的「前往」「前往文件夹」，然后输入 <code>/usr/sbin</code> 来找到它。</p>
 <p>如果想像我这样，显示隐藏文件夹，可以按快捷键 <code>command + shift + .</code>，就是 <code>&gt;</code> 这颗按键。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/cron-location-shadow.webp" alt="cron-location"></p>
+<p><img src="/img/2023/cron-location-shadow.webp" alt="cron-location"></p>
 <p>现在我们可以把 sbin 这个文件夹，拖到左侧的个人收藏那里。</p>
 <p>然后打开「系统设置」，我的是 13.3 系统版本，以前叫「系统偏好设置」</p>
 <p>找到 「隐私与安全性」里面的「完全磁盘访问权限」，点击下方的 + 来添加一个新的程序进去。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/full-disk-access.webp" alt="full-disk-access"></p>
+<p><img src="/img/2023/full-disk-access.webp" alt="full-disk-access"></p>
 <p>由于刚才我把 sbin 放到左侧的个人收藏了，所以现在找到 cron 很简单。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/Finder-cron.webp" alt="Finder-cron"></p>
+<p><img src="/img/2023/Finder-cron.webp" alt="Finder-cron"></p>
 <p>这样操作之后，使用 cron 来执行 rsync 命令备份Documents&#x2F;screenshot-backup 就没问题了，其它命令如果是需要访问文稿、桌面、下载这些文件夹，应该也是通过这样来解决问题的。</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted">macos - Crontab Operation not permitted - Ask Different (stackexchange.com)</a></p>
 

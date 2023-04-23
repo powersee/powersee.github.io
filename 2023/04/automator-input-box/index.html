@@ -69,7 +69,7 @@
 
 <p>感觉还是挺简单的，应该是可以实现的。</p>
 <p>一番研究之后，终于实现了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p>
+<p><img src="/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p>
 <p>脚本内容</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="variable">$HOME</span>/.zshrc</span><br><span class="line"><span class="comment">#echo $PATH</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$HOME</span>/hexobackup &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">hexo new post <span class="variable">$1</span></span><br></pre></td></tr></table></figure>
 
@@ -80,13 +80,13 @@
 <p>本来到这里就结束了的，不过我后面还是加了些内容，让结果可以通过通知显示出来。</p>
 <p>这里的关键点是设置一个变量，来接收输出结果，然后在显示通知里面，使用这个变量。</p>
 <p>我创建的是「应用程序」，所以可以选择把它保存到自己想放置的地方。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-APP.webp" alt="automator-APP"></p>
+<p><img src="/img/2023/automator-APP.webp" alt="automator-APP"></p>
 <p>之后我把这个 APP 拖到 Dock 栏上面，可以非常快速地打开它。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p>
+<p><img src="/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p>
 <p>点击它之后，就会出现一个文本框，在这里我可以输入博客文章的文件名。不过它这里不能粘贴，只能手动输入。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p>
+<p><img src="/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p>
 <p>当我输入完成后，点击「继续」按钮，就会去执行 shell 脚本。完成之后，会弹出一条通知。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p>
+<p><img src="/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p>
 <p>感觉比较遗憾的地方是，不能粘贴，以及只能按「继续」按钮，而不能用按回车键来代替。</p>
 
       </div>

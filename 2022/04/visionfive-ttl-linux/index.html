@@ -60,23 +60,23 @@
       <div class="content">
         
         <h3 id="串口调试"><a href="#串口调试" class="headerlink" title="串口调试"></a>串口调试</h3><p>开发板除了通过 HDMI 连接显示器，然后通过 usb 键盘来控制之外，还可以通过串口与电脑进行连接，将它的输出信息显示在电脑上，并且还可以直接用电脑键盘来控制。<br>想要进行这样的操作，需要买一个 USB 转 TTL， 我使用的是 CH340G，拼多多上面 6.3 包邮买的，平时也可以用来给路由器或者机顶盒刷机。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/ch340.jpg" alt="ch340"></p>
+<p><img src="/img/2022/ch340.jpg" alt="ch340"></p>
 <p>另外我还有一个 CH341A，这个看起来就比较高级一点，两年前淘宝 18 块买的。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411135344552.png" alt="image-20220411135344552"></p>
+<p><img src="/img/2022/image-20220411135344552.png" alt="image-20220411135344552"></p>
 <p>不过只是用来调试开发板的话，它们用起来都一样的，连接到电脑的 usb 口之后，安装店家提供的驱动，顺利的话就可以在【设备管理器】的【端口】看到了。我们需要记住的是它对应的 com 口是多少，例如我图中的 12 和 13</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411132651192.png" alt="image-20220411132651192"></p>
+<p><img src="/img/2022/image-20220411132651192.png" alt="image-20220411132651192"></p>
 <p>注：设备管理器可以通过点击，开始菜单旁边的放大镜，在里面搜索来打开。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p>
+<p><img src="/img/2022/image-20220411132635593.png" alt="image-20220411132635593"></p>
 <p>接下来需要它与开发板进行连接，这时就需要使用杜邦线，这个一般购买模块时都会赠送的，如果没有的话，也可以自己购买。拼多多或者淘宝搜【杜邦线母对母】就可以找到相对应的商品（个人建议购买比较长一点的，我之前用买模块送的杜邦线，只有十几厘米，有时候不太方面，所以后来我重新买了一排30厘米的）</p>
 <p>连接的话只需要 3 根线，接序是这样的</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GND --- GND</span><br><span class="line">TX ---- RX</span><br><span class="line">RX ---- TX</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p>
+<p><img src="/img/2022/image-20220411135551131.jpg" alt="image-20220411135551131"></p>
 <p>按照这样连接好后，将模块插到电脑上，确认在设备管理器里可以看到。</p>
 <p>然后我们还需要软件，才可以显示模块输出的信息。可以选择的软件非常多，我个人用过的有 putty、友善串口调试助手、以及我个人最常用的 xshell。我个人比较推荐 xshell，平时可以用来 ssh 连接开发板，需要串口调试时也可以用它。而且 xshell 个人在家庭或者学校使用的话，是完全免费的，到它的官网 <a target="_blank" rel="noopener" href="https://www.xshell.com/zh/free-for-home-school/">https://www.xshell.com/zh/free-for-home-school/</a> 填写邮箱后，收到邮件就可以下载。</p>
 <p>下载安装后，进行如下操作</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p>
+<p><img src="/img/2022/image-20220411141221081.png" alt="image-20220411141221081"></p>
+<p><img src="/img/2022/image-20220411141516299.png" alt="image-20220411141516299"></p>
 <p>顺利的话应该会看到这个</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Connecting to COM12...</span><br><span class="line">Connected.</span><br></pre></td></tr></table></figure>
 
@@ -84,7 +84,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bootloader version:211102-0b86f96</span><br><span class="line">ddr 0x00000000, 1M test</span><br><span class="line">ddr 0x00100000, 2M test</span><br><span class="line">DDR clk 2133M,Version: 211102-d086aee                                                  </span><br><span class="line">0 crc flash: 5595e732, crc ddr: 5595e732</span><br><span class="line">crc check PASSED</span><br><span class="line"></span><br><span class="line">bootloader.</span><br><span class="line"></span><br><span class="line">OpenSBI v1.0</span><br><span class="line">   ____                    _____ ____ _____</span><br><span class="line">  / __ \                  / ____|  _ \_   _|</span><br><span class="line"> | |  | |_ __   ___ _ __ | (___ | |_) || |</span><br><span class="line"> | |  | | &#x27;_ \ / _ \ &#x27;_ \ \___ \|  _ &lt; | |</span><br><span class="line"> | |__| | |_) |  __/ | | |____) | |_) || |_</span><br><span class="line">  \____/| .__/ \___|_| |_|_____/|____/_____|</span><br><span class="line">        | |</span><br><span class="line">        |_|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>等到开机完成，会出现这样的界面，在这里我们可以用电脑键盘输入用户名和密码来进行登录。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p>
+<p><img src="/img/2022/image-20220411141936085.png" alt="image-20220411141936085"></p>
 <h3 id="编译-Linux-内核"><a href="#编译-Linux-内核" class="headerlink" title="编译 Linux 内核"></a>编译 Linux 内核</h3><p>目前官方提供的 Fedora 镜像是</p>
 <p><strong>2021-December-26:</strong> <a target="_blank" rel="noopener" href="https://fedora.starfivetech.com/pub/downloads/VisionFive-release/Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst">Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0-sda.raw.zst</a></p>
 <p>使用的内核是 5.15，如果我们想要使用更新的内核，可以选择自己编译。</p>
@@ -122,7 +122,7 @@
 
 <p>里面的 5.17 也是我之前自己添加的。此时重启机器</p>
 <p>在启动过程中会出现一个选择菜单界面</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p>
+<p><img src="/img/2022/image-20220411151418548.png" alt="image-20220411151418548"></p>
 <p>可以按上下键来选择不同的内核版本，如果不手动选的话，就会自动加载第一个。</p>
 <p>进入系统后输入 <code>uname -sr</code> 可以查看当前的内核版本。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$uname -sr   </span><br><span class="line">Linux 5.18.0-rc1-visionfive-g7ff84520cb68</span><br></pre></td></tr></table></figure>

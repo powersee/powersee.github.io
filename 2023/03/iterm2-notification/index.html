@@ -62,7 +62,7 @@
         <p>感觉这个功能超好用。</p>
 <p>有些命令可能需要很久才能执行完，主要是安装之类的，例如 brew 或者 npm，按下回车之后，都不知道它要多久才能装好，我们可能需要时不时就回来看看。</p>
 <p>而在 iTerm2 里面，我们可以设置命令执行完之后，弹出一条通知。这样一来，我们执行命令后，就可以去干其它事情了，等收到通知再回来就行。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
 <p>想要实现这个功能，需要在顶部菜单里，先点击「iTerm2」，再点击「Install Shell Integration」，意思是安装 shell 集合。</p>
 <p>它会执行这样一条命令</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash</span><br></pre></td></tr></table></figure>
@@ -70,15 +70,15 @@
 <p>安装好后多出这些功能</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">You will also have these commands:</span><br><span class="line">imgcat filename</span><br><span class="line">  Displays the image inline.</span><br><span class="line">imgls</span><br><span class="line">  Shows a directory listing with image thumbnails.</span><br><span class="line">it2api</span><br><span class="line">  Command-line utility to manipulate iTerm2.</span><br><span class="line">it2attention start|stop|fireworks</span><br><span class="line">  Gets your attention.</span><br><span class="line">it2check</span><br><span class="line">  Checks if the terminal is iTerm2.</span><br><span class="line">it2copy [filename]</span><br><span class="line">  Copies to the pasteboard.</span><br><span class="line">it2dl filename</span><br><span class="line">  Downloads the specified file, saving it in your Downloads folder.</span><br><span class="line">it2setcolor ...</span><br><span class="line">  Changes individual color settings or loads a color preset.</span><br><span class="line">it2setkeylabel ...</span><br><span class="line">  Changes Touch Bar function key labels.</span><br><span class="line">it2tip</span><br><span class="line">  iTerm2 usage tips</span><br><span class="line">it2ul</span><br><span class="line">  Uploads a file.</span><br><span class="line">it2universion</span><br><span class="line">  Sets the current unicode version.</span><br><span class="line">it2profile</span><br><span class="line">  Change iTerm2 session profile on the fly.</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p>
+<p><img src="/img/2023/shell-integration-install-complete.jpg" alt="shell-integration-install-complete"></p>
 <p>然后我们新开一个窗口或者 tab，在菜单里面选择 Edit 、 Marks and Annotations 、 Alerts，打开 Alert on next mark</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p>
+<p><img src="/img/2023/alert-no-next-Mark.webp" alt="alert-no-next-Mark"></p>
 <p>开启之后，就可以在右上角看到一个眼睛👁的图标。也可以使用快捷键 <code>cmd + alt + A</code> 来开启。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p>
+<p><img src="/img/2023/iTerm2-marked.webp" alt="iTerm2-marked"></p>
 <p>之后再执行命令，只要命令完成了，就会弹出一条通知。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
+<p><img src="/img/2023/iTerm2-notification.png" alt="iTerm2-notification"></p>
 <p>如果我们选择 「Show Modal Alert Box」，那么会出现这样一个提示窗口</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p>
+<p><img src="/img/2023/iTerm2-alert.webp" alt="iTerm2-alert"></p>
 <p>点击 Reveal 就会跳转到 iTerm2 里面。不过这个应该先执行命令，在设置 Mark 出现眼睛👁。</p>
 
       </div>

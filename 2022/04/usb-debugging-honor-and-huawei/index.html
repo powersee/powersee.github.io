@@ -63,34 +63,34 @@
 <h3 id="荣耀"><a href="#荣耀" class="headerlink" title="荣耀"></a>荣耀</h3><p>首先到【设置】【关于平板电脑】里，连续点击 5 次【版本号】，可以开启开发者模式。</p>
 <p>然后到【系统和更新】【开发人员选项】打开【usb调试】以及 【“仅充电”模式下允许 ADB 调试】</p>
 <p>最后用数据线连接平板与 windows 电脑，将会发现，它不按套路出牌，执行 <code>adb devices</code> 后并不能显示设备。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-12_13-11-26.jpg" alt="2022-04-12_13-11-26"></p>
+<p><img src="/img/2022/2022-04-12_13-11-26.jpg" alt="2022-04-12_13-11-26"></p>
 <p>打开 Android studio 也一样识别不到</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-12_13-16-38.jpg" alt="2022-04-12_13-16-38"></p>
+<p><img src="/img/2022/2022-04-12_13-16-38.jpg" alt="2022-04-12_13-16-38"></p>
 <p>怎么搞呢？那么试试装一下此时显示在【此电脑】里面，多出来的那个盘符里的手机助理吧。装好后我发现可以连接了，而且这个过程中，平板上会弹出提示，它这个叫 HDB 验证。。。而平时我们在其他安卓手机、平板上的叫 ADB 验证。</p>
 <p>那么它们是否都一样，只是荣耀这里改个名字而已呢？并不是，HDB 连接好后，可以通过电脑的手机助理来管理平板上的文件，应用等，好像还可以刷机。</p>
 <p>但是这个时候如果我们再执行 <code>adb devices</code> ，会出现这个</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412134348799.png" alt="image-20220412134348799"></p>
+<p><img src="/img/2022/image-20220412134348799.png" alt="image-20220412134348799"></p>
 <p>unauthorized ，adb 这边还是没有授权，依然没法使用 Android studio</p>
 <p>我网上搜，别人有说手机上的怎么操作，需要在拨号界面输入 <code>*#*#2846579#*#*</code>，进入工程菜单</p>
 <p>但问题是，我这是平板，没有拨号界面……</p>
 <p>然后继续找，最后找到了。WIFI版平板进入计算器，横屏（科学计算器）模式下输入()()2846579()()即可进入工程模式。</p>
 <p>来源：<a target="_blank" rel="noopener" href="https://club.huawei.com/forum.php?mod=viewthread&tid=30717452&extra=page=1">花粉俱乐部</a></p>
 <p>不过按照教程，应该把【USB端口设置】从 【Hisuite模式】改为 【生产模式】，但是我这台平板好像改不了，只能改为【默认模式】。不过好像不影响开启 adb，反正最后是成功了。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/2022-04-12_13-23-13.jpg" alt="2022-04-12_13-23-13"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220412134858390.png" alt="image-20220412134858390"></p>
+<p><img src="/img/2022/2022-04-12_13-23-13.jpg" alt="2022-04-12_13-23-13"></p>
+<p><img src="/img/2022/image-20220412134858390.png" alt="image-20220412134858390"></p>
 <p>看来手机助理这个软件是完全没有必要安装的，关键点在于进入工程菜单。</p>
 <h3 id="华为"><a href="#华为" class="headerlink" title="华为"></a>华为</h3><p>操作上基本一样。</p>
 <p>点击版本号 5 次，打开开发者选项</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421153431809.png" alt="image-20220421153431809"></p>
+<p><img src="/img/2022/image-20220421153431809.png" alt="image-20220421153431809"></p>
 <p>然后在【系统和更新】【开发人员选项】中打开 USB 调试</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421153531693.png" alt="image-20220421153531693"></p>
+<p><img src="/img/2022/image-20220421153531693.png" alt="image-20220421153531693"></p>
 <p>到应用菜单里打开【计算机】，点击右上角进入【科学计算器】模式，输入 <code>()()2846579()()</code> 即可进入工程模式。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421153730565.png" alt="image-20220421153730565"></p>
+<p><img src="/img/2022/image-20220421153730565.png" alt="image-20220421153730565"></p>
 <p>此时在工程菜单里，点击【后台设置】【USB端口设置】，选择【生产模式】即可。</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421154105540.png" alt="image-20220421154105540"></p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421154145072.png" alt="image-20220421154145072"></p>
+<p><img src="/img/2022/image-20220421154105540.png" alt="image-20220421154105540"></p>
+<p><img src="/img/2022/image-20220421154145072.png" alt="image-20220421154145072"></p>
 <p>在 Android studio 里面也可以识别到了</p>
-<p><img src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/img/2022/image-20220421154252687.png" alt="image-20220421154252687"></p>
+<p><img src="/img/2022/image-20220421154252687.png" alt="image-20220421154252687"></p>
 
       </div>
         <div class="support-author">
