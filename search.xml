@@ -5531,4 +5531,25 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>chkservice 图形化管理 systemd</title>
+    <url>/2023/04/chkservice/</url>
+    <content><![CDATA[<p>我觉得使用 systemctl 来管理 systemd 服务太繁琐了，想了解有没有什么工具，可以更加方便的管理。</p>
+<p>于是通过 Google 搜 systemd gui 发现了 <a href="https://github.com/linuxenko/chkservice">chkservice</a></p>
+<p>是一个开源项目，有 300 多颗星，不过好久没更新了。</p>
+<p>我们可以直接使用 apt 来安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install chkservice</span><br></pre></td></tr></table></figure>
+
+<p>其它发行版可以编译后安装。</p>
+<p>在终端直接执行 chkservice 就可以运行起来。</p>
+<p><img src="/img/2023/chkservice.webp" alt="chkservice"></p>
+<p>按上下键可以切换，这个不用说应该都会，但是其它的用法呢？GitHub 上面也没有文档。</p>
+<p>其实只要我们输入 <code>?</code> 就能看到帮助菜单，也就是按住 shift 再按一下 <code>/?</code> 这颗按键。</p>
+<p><img src="/img/2023/chkservice-help.webp" alt="chkservice-help"></p>
+<p>挺好的，按 <code>s</code> 键可以启动或停止，空格键可以开启关闭「开机自启」。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>

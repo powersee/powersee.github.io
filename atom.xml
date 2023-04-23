@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-22T16:11:59.036Z</updated>
+  <updated>2023-04-23T16:11:09.485Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>chkservice 图形化管理 systemd</title>
+    <link href="https://powersee.github.io/2023/04/chkservice/"/>
+    <id>https://powersee.github.io/2023/04/chkservice/</id>
+    <published>2023-04-23T16:09:15.000Z</published>
+    <updated>2023-04-23T16:11:09.485Z</updated>
+    
+    <content type="html"><![CDATA[<p>我觉得使用 systemctl 来管理 systemd 服务太繁琐了，想了解有没有什么工具，可以更加方便的管理。</p><p>于是通过 Google 搜 systemd gui 发现了 <a href="https://github.com/linuxenko/chkservice">chkservice</a></p><p>是一个开源项目，有 300 多颗星，不过好久没更新了。</p><p>我们可以直接使用 apt 来安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install chkservice</span><br></pre></td></tr></table></figure><p>其它发行版可以编译后安装。</p><p>在终端直接执行 chkservice 就可以运行起来。</p><p><img src="/img/2023/chkservice.webp" alt="chkservice"></p><p>按上下键可以切换，这个不用说应该都会，但是其它的用法呢？GitHub 上面也没有文档。</p><p>其实只要我们输入 <code>?</code> 就能看到帮助菜单，也就是按住 shift 再按一下 <code>/?</code> 这颗按键。</p><p><img src="/img/2023/chkservice-help.webp" alt="chkservice-help"></p><p>挺好的，按 <code>s</code> 键可以启动或停止，空格键可以开启关闭「开机自启」。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我觉得使用 systemctl 来管理 systemd 服务太繁琐了，想了解有没有什么工具，可以更加方便的管理。&lt;/p&gt;
+&lt;p&gt;于是通过 Google 搜 systemd gui 发现了 &lt;a href=&quot;https://github.com/linuxenko/chkse</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>命令行中的文件管理器 ranger</title>
@@ -464,29 +487,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 上 where 命令</title>
-    <link href="https://powersee.github.io/2023/04/windows-where/"/>
-    <id>https://powersee.github.io/2023/04/windows-where/</id>
-    <published>2023-04-04T03:52:13.000Z</published>
-    <updated>2023-04-04T03:52:54.646Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 Mac 和 Linux 我们可以使用 which 命令，来查看某个命令的绝对路径，例如：</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">❯ <span class="built_in">which</span> go</span><br><span class="line">/usr/local/go/bin/go</span><br></pre></td></tr></table></figure><p>在 Windows 上我们可以使用 where</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; <span class="built_in">where</span> node</span><br><span class="line">C:\bin\node-v19.8.1-win-x64\node.exe</span><br></pre></td></tr></table></figure><p>我测试了下，发现只有 cmd 支持，我用 powershell 和 nu shell 都不支持。</p><p>解决方法是，使用 <code>where.exe</code></p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; where.exe node</span><br><span class="line">C:\bin\node-v19.8.1-win-x64\node.exe</span><br></pre></td></tr></table></figure><p>或者使用 <code>gcm</code></p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">&gt; gcm node</span><br><span class="line"></span><br><span class="line">CommandType     Name        Version    Source</span><br><span class="line">-----------     ----        -------    ------</span><br><span class="line">Application     node.exe    19.8.1.0   C:\bin\node-v19.8.1-win-x64\node.exe</span><br></pre></td></tr></table></figure><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在 Mac 和 Linux 我们可以使用 which 命令，来查看某个命令的绝对路径，例如：&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;❯ &lt;sp</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
   </entry>
   
