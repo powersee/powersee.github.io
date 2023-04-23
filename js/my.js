@@ -10,6 +10,13 @@
 fathom('set', 'siteId', 'NSWOC');
 fathom('trackPageview');
 
+var umamiScript = document.createElement('script');
+umamiScript.async = true;
+umamiScript.src = 'https://umami.powersee.top/script.js';
+umamiScript.setAttribute('data-website-id', '47521365-32b8-490a-bfa3-e0546ed12aec');
+document.head.appendChild(umamiScript);
+
+
 if (window.location.host == "powersee.github.io") {
 
 	// 获取当前网页中 body 的所有 img 标签
