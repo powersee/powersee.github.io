@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-23T16:11:09.485Z</updated>
+  <updated>2023-04-24T16:03:11.899Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 Docker 运行 PostgreSQL 数据库</title>
+    <link href="https://powersee.github.io/2023/04/docker-postgresql/"/>
+    <id>https://powersee.github.io/2023/04/docker-postgresql/</id>
+    <published>2023-04-24T16:00:24.000Z</published>
+    <updated>2023-04-24T16:03:11.899Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前发现很多开源项目都使用 postgresql 来存放数据，因此我认为很有必要学习看看。</p><p>一开始我使用 Rock 5B 本地安装 postgresql，安装的是 14 的版本。之后要修改配置文件，才能够外部访问。感觉还有挺多需要折腾的。</p><p>后来我觉得，还是用 Docker 运行一个来学习好了，快捷方便。而且用完直接删除就行。</p><p>我们可以到 <a href="https://hub.docker.com/_/postgres/tags">Docker Hub</a> 查看 Docker 镜像的情况。我拉取了 4 个镜像，看来用 alpine 标签的镜像最省空间。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker images postgres</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">postgres     15        ceccf204404e   12 days ago     379MB</span><br><span class="line">postgres     15.0      027eba2e8939   6 months ago    377MB</span><br><span class="line">postgres     alpine    1149d285a5f5   15 months ago   209MB</span><br><span class="line">postgres     latest    07e2ee723e2d   15 months ago   374MB</span><br></pre></td></tr></table></figure><p>启动</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=postgres-test -p 2345:5432 -e POSTGRES_PASSWORD=password postgres:alpine</span><br></pre></td></tr></table></figure><p>启动信息</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker logs postgres-test</span><br><span class="line">The files belonging to this database system will be owned by user &quot;postgres&quot;.</span><br><span class="line">This user must also own the server process.</span><br><span class="line"></span><br><span class="line">The database cluster will be initialized with locale &quot;en_US.utf8&quot;.</span><br><span class="line">The default database encoding has accordingly been set to &quot;UTF8&quot;.</span><br><span class="line">The default text search configuration will be set to &quot;english&quot;.</span><br><span class="line"></span><br><span class="line">Data page checksums are disabled.</span><br><span class="line"></span><br><span class="line">fixing permissions on existing directory /var/lib/postgresql/data ... ok</span><br><span class="line">creating subdirectories ... ok</span><br><span class="line">selecting dynamic shared memory implementation ... posix</span><br><span class="line">selecting default max_connections ... 100</span><br><span class="line">selecting default shared_buffers ... 128MB</span><br><span class="line">selecting default time zone ... UTC</span><br><span class="line">creating configuration files ... ok</span><br><span class="line">running bootstrap script ... ok</span><br><span class="line">sh: locale: not found</span><br><span class="line">2023-04-24 07:29:18.876 UTC [31] WARNING:  no usable system locales were found</span><br><span class="line">performing post-bootstrap initialization ... ok</span><br><span class="line">syncing data to disk ... ok</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Success. You can now start the database server using:</span><br><span class="line"></span><br><span class="line">    pg_ctl -D /var/lib/postgresql/data -l logfile start</span><br><span class="line"></span><br><span class="line">initdb: warning: enabling &quot;trust&quot; authentication for local connections</span><br><span class="line">You can change this by editing pg_hba.conf or using the option -A, or</span><br><span class="line">--auth-local and --auth-host, the next time you run initdb.</span><br><span class="line">waiting for server to start....2023-04-24 07:29:22.836 UTC [37] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit</span><br><span class="line">2023-04-24 07:29:22.862 UTC [37] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;</span><br><span class="line">2023-04-24 07:29:22.890 UTC [38] LOG:  database system was shut down at 2023-04-24 07:29:21 UTC</span><br><span class="line">2023-04-24 07:29:22.910 UTC [37] LOG:  database system is ready to accept connections</span><br><span class="line"> done</span><br><span class="line">server started</span><br><span class="line"></span><br><span class="line">/usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*</span><br><span class="line"></span><br><span class="line">waiting for server to shut down...2023-04-24 07:29:23.015 UTC [37] LOG:  received fast shutdown request</span><br><span class="line">.2023-04-24 07:29:23.017 UTC [37] LOG:  aborting any active transactions</span><br><span class="line">2023-04-24 07:29:23.019 UTC [37] LOG:  background worker &quot;logical replication launcher&quot; (PID 44) exited with exit code 1</span><br><span class="line">2023-04-24 07:29:23.021 UTC [39] LOG:  shutting down</span><br><span class="line">2023-04-24 07:29:23.080 UTC [37] LOG:  database system is shut down</span><br><span class="line"> done</span><br><span class="line">server stopped</span><br><span class="line"></span><br><span class="line">PostgreSQL init process complete; ready for start up.</span><br><span class="line"></span><br><span class="line">2023-04-24 07:29:23.207 UTC [1] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit</span><br><span class="line">2023-04-24 07:29:23.208 UTC [1] LOG:  listening on IPv4 address &quot;0.0.0.0&quot;, port 5432</span><br><span class="line">2023-04-24 07:29:23.208 UTC [1] LOG:  listening on IPv6 address &quot;::&quot;, port 5432</span><br><span class="line">2023-04-24 07:29:23.211 UTC [1] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;</span><br><span class="line">2023-04-24 07:29:23.238 UTC [49] LOG:  database system was shut down at 2023-04-24 07:29:23 UTC</span><br><span class="line">2023-04-24 07:29:23.257 UTC [1] LOG:  database system is ready to accept connections</span><br></pre></td></tr></table></figure><p>进入容器内的 shell，切换到 postgres 用户，切换到 SQL Shell(psql)</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker exec -it postgres-test bash</span><br><span class="line">bash-5.1# su postgres</span><br><span class="line">/ $ psql</span><br><span class="line">psql (14.1)</span><br><span class="line">Type &quot;help&quot; for help.</span><br><span class="line"></span><br><span class="line">postgres=#</span><br></pre></td></tr></table></figure><p>执行 <code>\l</code> 查看所有数据库，<code>\q</code> 退出 psql</p><p>如果我们想用图形化应用来连接 docker 中的 postgresql，需要用到刚才建立容器时使用的端口。例如我刚才用的是 <code>2345:5432</code>，那么我应该用此时服务器的 IP 地址和 2345 端口。</p><p>我使用的是免费的 <a href="https://dbeaver.io/">DBeaver</a>，它在 GitHub 上面有 3 万多颗星⭐️。</p><p>「新建数据库连接」选择 postgres，填写 IP 地址、端口和密码。</p><p><img src="/img/2023/postgresql-DBeaver.webp" alt="postgresql-DBeaver"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;目前发现很多开源项目都使用 postgresql 来存放数据，因此我认为很有必要学习看看。&lt;/p&gt;
+&lt;p&gt;一开始我使用 Rock 5B 本地安装 postgresql，安装的是 14 的版本。之后要修改配置文件，才能够外部访问。感觉还有挺多需要折腾的。&lt;/p&gt;
+&lt;p&gt;后来我</summary>
+      
+    
+    
+    
+    
+    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
+    
+    <category term="SQL" scheme="https://powersee.github.io/tags/SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>chkservice 图形化管理 systemd</title>
@@ -465,28 +491,6 @@
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
     <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>更改 Mac 截图快捷键、文件名、文件格式</title>
-    <link href="https://powersee.github.io/2023/04/mac-screenshot2/"/>
-    <id>https://powersee.github.io/2023/04/mac-screenshot2/</id>
-    <published>2023-04-04T17:38:02.000Z</published>
-    <updated>2023-04-23T04:09:57.327Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="更改截图默认快捷键"><a href="#更改截图默认快捷键" class="headerlink" title="更改截图默认快捷键"></a>更改截图默认快捷键</h3><p>Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4 区域截图。按 3 颗按键还是有些不方便，对于我这种经常截图的人来说。</p><p><img src="/img/2023/screenshot-hotkey.webp" alt="screenshot-hotkey"></p><p>我们可以到「系统偏好设置」「键盘」「快捷键」「截屏」中，更改为自己喜欢的按键，我这边直接把区域截图改为<code>F9</code>。</p><h3 id="更改截图默认文件名"><a href="#更改截图默认文件名" class="headerlink" title="更改截图默认文件名"></a>更改截图默认文件名</h3><p>默认截图后得到的图片名称是这样的 <code>截屏2023-04-02 上午10.58.54.png</code>，如果在「语言与地区」里有勾选 ☑️ 24 小时制，那么是这样的 <code>截屏2023-04-02 11.08.06.png</code></p><p>在英文状态下是 <code>Screen Shot [date] at [time].png</code></p><p>我们能修改的，只有日期前面的文字而已，例如我不想要「截图」这两个字。</p><p>打开「终端」这个 APP，粘贴下面的命令，按回车键执行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;&quot;</span><br></pre></td></tr></table></figure><p>之后截图得到的文件名会变成这样的 <code>2023-04-02 11.08.06.png</code></p><p>我们也可以改为自己的想设置的文字，例如我想在前面加上 <code>powersee-</code>，我可以这样做</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture name &quot;powersee-&quot;</span><br></pre></td></tr></table></figure><p>之后截图得到的文件名会变成这样的 <code>powersee-2023-04-02 11.08.06.png</code></p><p><img src="/img/2023/change-screencapture-name.webp" alt="change-screencapture-name"></p><p>如果想改回原来的默认名称，可以用这条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture &quot;include-date&quot; 1; killall SystemUIServer</span><br></pre></td></tr></table></figure><h3 id="更改截图默认文件格式"><a href="#更改截图默认文件格式" class="headerlink" title="更改截图默认文件格式"></a>更改截图默认文件格式</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">defaults write com.apple.screencapture type</span><br></pre></td></tr></table></figure><p>后面可以加 JPG, TIFF, GIF, PDF, PNG 这些，我没有改，还是用它默认的 png 就好。</p><h3 id="截图不要阴影"><a href="#截图不要阴影" class="headerlink" title="截图不要阴影"></a>截图不要阴影</h3><p>按 cmd shift 4 后，按空格键，此时按住 alt 键再点击窗口的话，保存下来的图片就是没有阴影的，图片体积会小很多。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;更改截图默认快捷键&quot;&gt;&lt;a href=&quot;#更改截图默认快捷键&quot; class=&quot;headerlink&quot; title=&quot;更改截图默认快捷键&quot;&gt;&lt;/a&gt;更改截图默认快捷键&lt;/h3&gt;&lt;p&gt;Mac 默认的截图快捷键是 cmd+shift+3 全屏截图，cmd+shift+4</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   

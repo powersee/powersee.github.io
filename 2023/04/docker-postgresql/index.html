@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>使用 Docker 运行 PostgreSQL 数据库</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    使用 Docker 运行 PostgreSQL 数据库
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-24T16:00:24.000Z" itemprop="datePublished">2023-04-25</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>目前发现很多开源项目都使用 postgresql 来存放数据，因此我认为很有必要学习看看。</p>
+<p>一开始我使用 Rock 5B 本地安装 postgresql，安装的是 14 的版本。之后要修改配置文件，才能够外部访问。感觉还有挺多需要折腾的。</p>
+<p>后来我觉得，还是用 Docker 运行一个来学习好了，快捷方便。而且用完直接删除就行。</p>
+<p>我们可以到 <a target="_blank" rel="noopener" href="https://hub.docker.com/_/postgres/tags">Docker Hub</a> 查看 Docker 镜像的情况。我拉取了 4 个镜像，看来用 alpine 标签的镜像最省空间。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker images postgres</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">postgres     15        ceccf204404e   12 days ago     379MB</span><br><span class="line">postgres     15.0      027eba2e8939   6 months ago    377MB</span><br><span class="line">postgres     alpine    1149d285a5f5   15 months ago   209MB</span><br><span class="line">postgres     latest    07e2ee723e2d   15 months ago   374MB</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=postgres-test -p 2345:5432 -e POSTGRES_PASSWORD=password postgres:alpine</span><br></pre></td></tr></table></figure>
+
+<p>启动信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker logs postgres-test</span><br><span class="line">The files belonging to this database system will be owned by user &quot;postgres&quot;.</span><br><span class="line">This user must also own the server process.</span><br><span class="line"></span><br><span class="line">The database cluster will be initialized with locale &quot;en_US.utf8&quot;.</span><br><span class="line">The default database encoding has accordingly been set to &quot;UTF8&quot;.</span><br><span class="line">The default text search configuration will be set to &quot;english&quot;.</span><br><span class="line"></span><br><span class="line">Data page checksums are disabled.</span><br><span class="line"></span><br><span class="line">fixing permissions on existing directory /var/lib/postgresql/data ... ok</span><br><span class="line">creating subdirectories ... ok</span><br><span class="line">selecting dynamic shared memory implementation ... posix</span><br><span class="line">selecting default max_connections ... 100</span><br><span class="line">selecting default shared_buffers ... 128MB</span><br><span class="line">selecting default time zone ... UTC</span><br><span class="line">creating configuration files ... ok</span><br><span class="line">running bootstrap script ... ok</span><br><span class="line">sh: locale: not found</span><br><span class="line">2023-04-24 07:29:18.876 UTC [31] WARNING:  no usable system locales were found</span><br><span class="line">performing post-bootstrap initialization ... ok</span><br><span class="line">syncing data to disk ... ok</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Success. You can now start the database server using:</span><br><span class="line"></span><br><span class="line">    pg_ctl -D /var/lib/postgresql/data -l logfile start</span><br><span class="line"></span><br><span class="line">initdb: warning: enabling &quot;trust&quot; authentication for local connections</span><br><span class="line">You can change this by editing pg_hba.conf or using the option -A, or</span><br><span class="line">--auth-local and --auth-host, the next time you run initdb.</span><br><span class="line">waiting for server to start....2023-04-24 07:29:22.836 UTC [37] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit</span><br><span class="line">2023-04-24 07:29:22.862 UTC [37] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;</span><br><span class="line">2023-04-24 07:29:22.890 UTC [38] LOG:  database system was shut down at 2023-04-24 07:29:21 UTC</span><br><span class="line">2023-04-24 07:29:22.910 UTC [37] LOG:  database system is ready to accept connections</span><br><span class="line"> done</span><br><span class="line">server started</span><br><span class="line"></span><br><span class="line">/usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*</span><br><span class="line"></span><br><span class="line">waiting for server to shut down...2023-04-24 07:29:23.015 UTC [37] LOG:  received fast shutdown request</span><br><span class="line">.2023-04-24 07:29:23.017 UTC [37] LOG:  aborting any active transactions</span><br><span class="line">2023-04-24 07:29:23.019 UTC [37] LOG:  background worker &quot;logical replication launcher&quot; (PID 44) exited with exit code 1</span><br><span class="line">2023-04-24 07:29:23.021 UTC [39] LOG:  shutting down</span><br><span class="line">2023-04-24 07:29:23.080 UTC [37] LOG:  database system is shut down</span><br><span class="line"> done</span><br><span class="line">server stopped</span><br><span class="line"></span><br><span class="line">PostgreSQL init process complete; ready for start up.</span><br><span class="line"></span><br><span class="line">2023-04-24 07:29:23.207 UTC [1] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit</span><br><span class="line">2023-04-24 07:29:23.208 UTC [1] LOG:  listening on IPv4 address &quot;0.0.0.0&quot;, port 5432</span><br><span class="line">2023-04-24 07:29:23.208 UTC [1] LOG:  listening on IPv6 address &quot;::&quot;, port 5432</span><br><span class="line">2023-04-24 07:29:23.211 UTC [1] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;</span><br><span class="line">2023-04-24 07:29:23.238 UTC [49] LOG:  database system was shut down at 2023-04-24 07:29:23 UTC</span><br><span class="line">2023-04-24 07:29:23.257 UTC [1] LOG:  database system is ready to accept connections</span><br></pre></td></tr></table></figure>
+
+<p>进入容器内的 shell，切换到 postgres 用户，切换到 SQL Shell(psql)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker exec -it postgres-test bash</span><br><span class="line">bash-5.1# su postgres</span><br><span class="line">/ $ psql</span><br><span class="line">psql (14.1)</span><br><span class="line">Type &quot;help&quot; for help.</span><br><span class="line"></span><br><span class="line">postgres=#</span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>\l</code> 查看所有数据库，<code>\q</code> 退出 psql</p>
+<p>如果我们想用图形化应用来连接 docker 中的 postgresql，需要用到刚才建立容器时使用的端口。例如我刚才用的是 <code>2345:5432</code>，那么我应该用此时服务器的 IP 地址和 2345 端口。</p>
+<p>我使用的是免费的 <a target="_blank" rel="noopener" href="https://dbeaver.io/">DBeaver</a>，它在 GitHub 上面有 3 万多颗星⭐️。</p>
+<p>「新建数据库连接」选择 postgres，填写 IP 地址、端口和密码。</p>
+<p><img src="/img/2023/postgresql-DBeaver.webp" alt="postgresql-DBeaver"></p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
