@@ -5581,4 +5581,25 @@ border-radius: 4px;
         <tag>SQL</tag>
       </tags>
   </entry>
+  <entry>
+    <title>解决 DBeaver 只显示默认的一个数据库 postgres</title>
+    <url>/2023/04/DBeaver-postgresql/</url>
+    <content><![CDATA[<p>右键连接，编辑连接。在「连接设置」「PostgreSQL」里面，勾选上「显示非缺省的数据库」就可以了。</p>
+<p><img src="/img/2023/postgresql-show-all-database.webp" alt="postgresql-show-all-database"></p>
+<p>重新连接就可以看到所有数据库了。</p>
+<p><img src="/img/2023/postgres-all-database.jpg" alt="postgres-all-database"></p>
+<p>如果是在英文语境下，它的设置是 <code>Show all databases</code>，感觉就离谱，这玩意是怎么翻译成「显示非缺省的数据库」的？</p>
+<p><img src="/img/2023/show-all-databases.jpg" alt="show-all-databases"></p>
+<p>问题是没文化的我，还不知道「缺省」是什么意思，翻译一下，才知道是 default……</p>
+<p><img src="/img/2023/default.webp" alt="default"></p>
+<blockquote>
+<p>缺省(quē shěng)，又译“默认”。</p>
+<p>——百度百科</p>
+</blockquote>
+<p>知乎上也有不少的讨论：<a href="https://www.zhihu.com/question/20953160">「缺省」这个词是如何从英语 “Default” 翻译过来的？ - 知乎</a></p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
 </search>

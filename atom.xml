@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-24T16:03:11.899Z</updated>
+  <updated>2023-04-25T17:16:18.618Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决 DBeaver 只显示默认的一个数据库 postgres</title>
+    <link href="https://powersee.github.io/2023/04/DBeaver-postgresql/"/>
+    <id>https://powersee.github.io/2023/04/DBeaver-postgresql/</id>
+    <published>2023-04-25T17:04:46.000Z</published>
+    <updated>2023-04-25T17:16:18.618Z</updated>
+    
+    <content type="html"><![CDATA[<p>右键连接，编辑连接。在「连接设置」「PostgreSQL」里面，勾选上「显示非缺省的数据库」就可以了。</p><p><img src="/img/2023/postgresql-show-all-database.webp" alt="postgresql-show-all-database"></p><p>重新连接就可以看到所有数据库了。</p><p><img src="/img/2023/postgres-all-database.jpg" alt="postgres-all-database"></p><p>如果是在英文语境下，它的设置是 <code>Show all databases</code>，感觉就离谱，这玩意是怎么翻译成「显示非缺省的数据库」的？</p><p><img src="/img/2023/show-all-databases.jpg" alt="show-all-databases"></p><p>问题是没文化的我，还不知道「缺省」是什么意思，翻译一下，才知道是 default……</p><p><img src="/img/2023/default.webp" alt="default"></p><blockquote><p>缺省(quē shěng)，又译“默认”。</p><p>——百度百科</p></blockquote><p>知乎上也有不少的讨论：<a href="https://www.zhihu.com/question/20953160">「缺省」这个词是如何从英语 “Default” 翻译过来的？ - 知乎</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;右键连接，编辑连接。在「连接设置」「PostgreSQL」里面，勾选上「显示非缺省的数据库」就可以了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/postgresql-show-all-database.webp&quot; alt=&quot;postgresql-show-al</summary>
+      
+    
+    
+    
+    
+    <category term="SQL" scheme="https://powersee.github.io/tags/SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 Docker 运行 PostgreSQL 数据库</title>
@@ -458,31 +481,6 @@
     <summary type="html">&lt;p&gt;给 Nu shell 配置上 Oh My Posh，完成后效果如下。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/2023/nu-ohmyposh.webp&quot; alt=&quot;nu-ohmyposh&quot;&gt;&lt;/p&gt;
 &lt;p&gt;之前我已经给 powershell 配置好 ohmyposh </summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-    <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 安装 Nu shell 与配置</title>
-    <link href="https://powersee.github.io/2023/04/windows-install-nushell-and-config/"/>
-    <id>https://powersee.github.io/2023/04/windows-install-nushell-and-config/</id>
-    <published>2023-04-05T16:07:13.000Z</published>
-    <updated>2023-04-23T04:09:57.390Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用 nu shell 已经有一段时间，感觉还不错。它最为吸引我的就是，自带历史记录提示，就像 zsh 的 zsh-autosuggestions 插件。</p><p><img src="/img/2023/nushell-autosuggestions.png" alt="nushell-autosuggestions"></p><p>它的一条普通的 ls 命令，结果也和其它 shell 很不一样。</p><p><img src="/img/2023/nushell-ls.png" alt="nushell-ls"></p><p>输出的是一个表格。</p><p>安装可以查看官方文档：<a href="https://www.nushell.sh/zh-CN/book/installation.html">安装 Nu | Nushell</a></p><p>文档一共 6 种语言，中文就是其中一种。</p><p>我是到  <a href="https://github.com/nushell/nushell/releases">GitHub 的 Release 页</a> 下载并解压二进制文件，然后放到 <code>C:\bin\</code> 里面的。接着在「终端」里面添加 nushell。</p><p><img src="/img/2023/terminal-add-nushell.png" alt="terminal-add-nushell"></p><p>如果想让 nushell 作为默认的 shell，可以到「启动」，「默认配置文件」进行更改。</p><p><img src="/img/2023/terminal-default-shell.png" alt="terminal-default-shell"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;使用 nu shell 已经有一段时间，感觉还不错。它最为吸引我的就是，自带历史记录提示，就像 zsh 的 zsh-autosuggestions 插件。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/nushell-autosuggestions.png&quot; alt</summary>
       
     
     
