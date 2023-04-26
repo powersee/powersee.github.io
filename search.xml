@@ -5602,4 +5602,28 @@ border-radius: 4px;
         <tag>SQL</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何禁止 Firefox 的更新提示</title>
+    <url>/2023/04/Firefox-no-update/</url>
+    <content><![CDATA[<p>火狐浏览器，非常烦人，每次打开都会提示更新。我不想更新，我不在乎安全，因为它不是我的主力浏览器。</p>
+<p><img src="/%5Cimg%5C2023%5Cfirefox-update.png" alt="firefox-update"></p>
+<p>网上搜一下，还是有挺多人对此反感。好在解决方法不算麻烦，只需要修改一个文件。</p>
+<p>首先在桌面或者开始菜单里面，找到 Firefox 的图标，右键「打开文件所在的位置」</p>
+<p>然后进入 defaults 、 pref</p>
+<p>我的是在 <code>C:\Program Files\Firefox Developer Edition\defaults\pref</code></p>
+<p>我们可以使用记事本来打开里面的 <code>channel-prefs.js</code></p>
+<p>我的里面最后一行显示的是这个</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pref(&quot;app.update.channel&quot;, &quot;aurora&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>那么我只需要把后面引号中的内容去掉即可，也就是把 aurora 删掉，变成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pref(&quot;app.update.channel&quot;, &quot;&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>此时保存一下文件。（由于我浏览器装在 C:\Program Files\ 里面，所以需要管理员权限才能保存，如果你们是装在其它位置，也许可以不用）</p>
+<p>之后再打开浏览器，就不会有更新提示了。</p>
+<p><img src="/%5Cimg%5C2023%5Cfirefox-no-update.png" alt="firefox-no-update"></p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>

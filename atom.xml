@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-25T17:16:18.618Z</updated>
+  <updated>2023-04-26T16:18:22.275Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何禁止 Firefox 的更新提示</title>
+    <link href="https://powersee.github.io/2023/04/Firefox-no-update/"/>
+    <id>https://powersee.github.io/2023/04/Firefox-no-update/</id>
+    <published>2023-04-26T16:18:00.000Z</published>
+    <updated>2023-04-26T16:18:22.275Z</updated>
+    
+    <content type="html"><![CDATA[<p>火狐浏览器，非常烦人，每次打开都会提示更新。我不想更新，我不在乎安全，因为它不是我的主力浏览器。</p><p><img src="/%5Cimg%5C2023%5Cfirefox-update.png" alt="firefox-update"></p><p>网上搜一下，还是有挺多人对此反感。好在解决方法不算麻烦，只需要修改一个文件。</p><p>首先在桌面或者开始菜单里面，找到 Firefox 的图标，右键「打开文件所在的位置」</p><p>然后进入 defaults 、 pref</p><p>我的是在 <code>C:\Program Files\Firefox Developer Edition\defaults\pref</code></p><p>我们可以使用记事本来打开里面的 <code>channel-prefs.js</code></p><p>我的里面最后一行显示的是这个</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pref(&quot;app.update.channel&quot;, &quot;aurora&quot;);</span><br></pre></td></tr></table></figure><p>那么我只需要把后面引号中的内容去掉即可，也就是把 aurora 删掉，变成</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pref(&quot;app.update.channel&quot;, &quot;&quot;);</span><br></pre></td></tr></table></figure><p>此时保存一下文件。（由于我浏览器装在 C:\Program Files\ 里面，所以需要管理员权限才能保存，如果你们是装在其它位置，也许可以不用）</p><p>之后再打开浏览器，就不会有更新提示了。</p><p><img src="/%5Cimg%5C2023%5Cfirefox-no-update.png" alt="firefox-no-update"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;火狐浏览器，非常烦人，每次打开都会提示更新。我不想更新，我不在乎安全，因为它不是我的主力浏览器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/%5Cimg%5C2023%5Cfirefox-update.png&quot; alt=&quot;firefox-update&quot;&gt;&lt;/p&gt;
+&lt;p&gt;网上搜一下</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>解决 DBeaver 只显示默认的一个数据库 postgres</title>
@@ -455,32 +479,6 @@
     <summary type="html">&lt;p&gt;这一次的升级挺恼火的。&lt;/p&gt;
 &lt;p&gt;看到 nu shell 发布新版本了，看更新日志好像挺不错。于是我下载压缩包，解压，到「终端」改一下设置，就可以使用新版本了。&lt;/p&gt;
 &lt;p&gt;但是一上来就报错，真心看不懂，使用 0.78 加载以前的配置文件会报错，说要加 &lt;code&gt;|</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-    <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nu shell Oh My Posh</title>
-    <link href="https://powersee.github.io/2023/04/nushell-ohmyposh/"/>
-    <id>https://powersee.github.io/2023/04/nushell-ohmyposh/</id>
-    <published>2023-04-06T17:42:53.000Z</published>
-    <updated>2023-04-23T04:09:57.393Z</updated>
-    
-    <content type="html"><![CDATA[<p>给 Nu shell 配置上 Oh My Posh，完成后效果如下。</p><p><img src="/img/2023/nu-ohmyposh.webp" alt="nu-ohmyposh"></p><p>之前我已经给 powershell 配置好 ohmyposh 了，现在感觉还是 nu shell 比较好用，所以也来折腾一下。</p><p>官方文档：<a href="https://ohmyposh.dev/docs/installation/prompt">Change your prompt | Oh My Posh</a></p><p>有这些 shell 可以选择：</p><ul><li>bash</li><li>cmd</li><li>elvish</li><li>fish</li><li><code>nu</code></li><li>powershell</li><li>tcsh</li><li>xonsh</li><li>zsh</li></ul><p>点击中间的 nu 可以看到说明。</p><p>简单来说，就是修改 nushell 的两个配置文件就好。它们在 <code>~\AppData\Roaming\nushell</code> 里面。</p><p>添加</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">oh-my-posh init nu</span><br></pre></td></tr></table></figure><p>到 <code>env.nu</code> 里面，我直接写在第四行的位置。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Nushell Environment Config File</span><br><span class="line">alias ll = ls -l</span><br><span class="line"></span><br><span class="line">oh-my-posh init nu</span><br></pre></td></tr></table></figure><p>然后再到 <code>config.nu</code> 的最后，添加这一行。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source ~/.oh-my-posh.nu</span><br></pre></td></tr></table></figure><p>它会生成 <code>~/.oh-my-posh.nu</code> ，也就是在用户目录下。打开后里面是这些内容。</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">export-env &#123;</span><br><span class="line">    let-env POWERLINE_COMMAND = <span class="string">&#x27;oh-my-posh&#x27;</span></span><br><span class="line">    let-env POSH_THEME = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    let-env PROMPT_INDICATOR = <span class="string">&quot;&quot;</span></span><br><span class="line">    let-env POSH_PID = (random uuid)</span><br><span class="line">    <span class="comment"># By default displays the right prompt on the first line</span></span><br><span class="line">    <span class="comment"># making it annoying when you have a multiline prompt</span></span><br><span class="line">    <span class="comment"># making the behavior different compared to other shells</span></span><br><span class="line">    let-env PROMPT_COMMAND_RIGHT = &#123;<span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">    let-env POSH_SHELL_VERSION = (version | get version)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># PROMPTS</span></span><br><span class="line">    let-env PROMPT_MULTILINE_INDICATOR = (^<span class="string">&quot;C:/Users/nucx/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe&quot;</span> <span class="built_in">print</span> secondary $<span class="string">&quot;--config=(<span class="variable">$env</span>.POSH_THEME)&quot;</span> --shell=nu $<span class="string">&quot;--shell-version=(<span class="variable">$env</span>.POSH_SHELL_VERSION)&quot;</span>)</span><br><span class="line"></span><br><span class="line">    let-env PROMPT_COMMAND = &#123;</span><br><span class="line">        <span class="comment"># We have to do this because the initial value of `$env.CMD_DURATION_MS` is always `0823`,</span></span><br><span class="line">        <span class="comment"># which is an official setting.</span></span><br><span class="line">        <span class="comment"># See https://github.com/nushell/nushell/discussions/6402#discussioncomment-3466687.</span></span><br><span class="line">        <span class="built_in">let</span> cmd_duration = <span class="keyword">if</span> <span class="variable">$env</span>.CMD_DURATION_MS == <span class="string">&quot;0823&quot;</span> &#123; 0 &#125; <span class="keyword">else</span> &#123; <span class="variable">$env</span>.CMD_DURATION_MS &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># hack to set the cursor line to 1 when the user clears the screen</span></span><br><span class="line">        <span class="comment"># this obviously isn&#x27;t bulletproof, but it&#x27;s a start</span></span><br><span class="line">        <span class="built_in">let</span> clear = (<span class="built_in">history</span> | last 1 | get 0.<span class="built_in">command</span>) == <span class="string">&quot;clear&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">let</span> width = ((term size).columns | into string)</span><br><span class="line">        ^&quot;C:/Users/nucx/AppData/Local/Programs/oh-my-posh/bin/oh-my-posh.exe&quot; print primary $&quot;--config=(<span class="variable">$env</span>.POSH_THEME)&quot; --shell=nu $&quot;--shell-version=(<span class="variable">$env</span>.POSH_SHELL_VERSION)&quot; $&quot;--execution-time=(<span class="variable">$cmd_duration</span>)&quot; $&quot;--error=(<span class="variable">$env</span>.LAST_EXIT_CODE)&quot; $&quot;--terminal-width=(<span class="variable">$width</span>)&quot; $&quot;--cleared=(<span class="variable">$clear</span>)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if &quot;false&quot; == &quot;true&quot; &#123;</span><br><span class="line">    echo &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;给 Nu shell 配置上 Oh My Posh，完成后效果如下。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/nu-ohmyposh.webp&quot; alt=&quot;nu-ohmyposh&quot;&gt;&lt;/p&gt;
-&lt;p&gt;之前我已经给 powershell 配置好 ohmyposh </summary>
       
     
     

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>如何禁止 Firefox 的更新提示</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    如何禁止 Firefox 的更新提示
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-26T16:18:00.000Z" itemprop="datePublished">2023-04-27</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>火狐浏览器，非常烦人，每次打开都会提示更新。我不想更新，我不在乎安全，因为它不是我的主力浏览器。</p>
+<p><img src="/%5Cimg%5C2023%5Cfirefox-update.png" alt="firefox-update"></p>
+<p>网上搜一下，还是有挺多人对此反感。好在解决方法不算麻烦，只需要修改一个文件。</p>
+<p>首先在桌面或者开始菜单里面，找到 Firefox 的图标，右键「打开文件所在的位置」</p>
+<p>然后进入 defaults 、 pref</p>
+<p>我的是在 <code>C:\Program Files\Firefox Developer Edition\defaults\pref</code></p>
+<p>我们可以使用记事本来打开里面的 <code>channel-prefs.js</code></p>
+<p>我的里面最后一行显示的是这个</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pref(&quot;app.update.channel&quot;, &quot;aurora&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>那么我只需要把后面引号中的内容去掉即可，也就是把 aurora 删掉，变成</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pref(&quot;app.update.channel&quot;, &quot;&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>此时保存一下文件。（由于我浏览器装在 C:\Program Files\ 里面，所以需要管理员权限才能保存，如果你们是装在其它位置，也许可以不用）</p>
+<p>之后再打开浏览器，就不会有更新提示了。</p>
+<p><img src="/%5Cimg%5C2023%5Cfirefox-no-update.png" alt="firefox-no-update"></p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
