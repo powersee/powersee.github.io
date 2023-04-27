@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-26T16:24:20.025Z</updated>
+  <updated>2023-04-27T17:17:56.442Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 屏幕使用时间被 HelpViewer 占满</title>
+    <link href="https://powersee.github.io/2023/04/screentime-helpviewer/"/>
+    <id>https://powersee.github.io/2023/04/screentime-helpviewer/</id>
+    <published>2023-04-27T17:15:40.000Z</published>
+    <updated>2023-04-27T17:17:56.442Z</updated>
+    
+    <content type="html"><![CDATA[<p>我打开 Mac 上面的屏幕使用时间，发现有一个叫「HelpViewer」的应用，占满了今天的使用时间。</p><p><img src="/img/2023/screentime-helpviewer.webp" alt="screentime-helpviewer"></p><p>而昨天居然占满了 24 小时。</p><p><img src="/img/2023/HelpViewer-24h.webp" alt="HelpViewer-24h"></p><p>这个问题我之前也遇过，不过重启机器后好像就好了。现在又再次出现，我觉得还是得查查怎么解决。</p><p>在苹果的社区里我看到这样的讨论：<a href="https://discussions.apple.com/thread/253321652">HelpViewer - Apple Community</a></p><p>里面提到，可以通过给这个 APP 限额来解决。直接限制它每天只能使用 1 分钟。</p><p><img src="/img/2023/HelpViewer-limit.webp" alt="HelpViewer-limit"></p><p>我尝试了，发现没有用，还是会继续统计 HelpViewer 的使用时间。</p><p>不过重新机器之后，好像就不会了。之后我又观察了几天，但是这几天的屏幕时间里都没有 HelpViewer，所以并不能证明给它限额有效。</p><p>但是，目前好像就只有这一个方法了。</p><p>这个 bug 存在快两年了，苹果居然还没修复。难道说是没法修复的？看有的网友说是内存泄露的问题。目前看来如果限额也没用，就只能重启了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我打开 Mac 上面的屏幕使用时间，发现有一个叫「HelpViewer」的应用，占满了今天的使用时间。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/screentime-helpviewer.webp&quot; alt=&quot;screentime-helpviewer&quot;&gt;&lt;/</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>如何禁止 Firefox 的更新提示</title>
@@ -461,32 +484,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nu shell 升级到 0.78.0，一堆麻烦</title>
-    <link href="https://powersee.github.io/2023/04/nushell-0-78-0/"/>
-    <id>https://powersee.github.io/2023/04/nushell-0-78-0/</id>
-    <published>2023-04-07T16:13:24.000Z</published>
-    <updated>2023-04-07T16:15:27.795Z</updated>
-    
-    <content type="html"><![CDATA[<p>这一次的升级挺恼火的。</p><p>看到 nu shell 发布新版本了，看更新日志好像挺不错。于是我下载压缩包，解压，到「终端」改一下设置，就可以使用新版本了。</p><p>但是一上来就报错，真心看不懂，使用 0.78 加载以前的配置文件会报错，说要加 <code>||</code></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">42 │ # Use nushell functions to define your right and left prompt</span><br><span class="line">43 │ let-env PROMPT_COMMAND = &#123; create_left_prompt &#125;</span><br><span class="line">   ·                          ───────────┬──────────</span><br><span class="line">   ·                                     ╰── Parsing as a closure, but || is missing</span><br><span class="line">44 │ let-env PROMPT_COMMAND_RIGHT = &#123; create_right_prompt &#125;</span><br><span class="line">   ╰────</span><br><span class="line"> help: Try add || to the beginning of closure</span><br></pre></td></tr></table></figure><p>查看一下 GitHub issues ：<a href="https://github.com/nushell/nushell/issues/8767">Error: nu::parser::closure_missing_pipe (nushell v0.78.0) · Issue #8767 · nushell&#x2F;nushell (github.com)</a></p><p>means that it should be</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let-env PROMPT_COMMAND = &#123;|| create_left_prompt &#125;</span><br></pre></td></tr></table></figure><p>如果只是一行需要修改，那倒是无所谓，问题是很多地方需要改，那么一个一个加也不是办法呀，还是让它重新生成配置文件吧。</p><p>于是我把 <code>env.nu</code> 和 <code>config.nu</code> 改个名字，再新开一个 tab，就会提示是否新建配置文件。</p><p>使用新的配置文件之后，可以不报错了，但是，ohmyposh这边又有问题了。</p><p>修改 <code>env.nu</code> 和 <code>config.nu</code> 这两个文件，让 nu 启动时加载 ohmyposh，结果出现这样的报错。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Error: nu::parser::closure_missing_pipe</span><br><span class="line"></span><br><span class="line">  × Missing || inside closure</span><br><span class="line">    ╭─[.oh-my-posh.nu:8:1]</span><br><span class="line">  8 │     # making the behavior different compared to other shells</span><br><span class="line">  9 │     let-env PROMPT_COMMAND_RIGHT = &#123;&#x27;&#x27;&#125;</span><br><span class="line">    ·                                    ──┬─</span><br><span class="line">    ·                                      ╰── Parsing as a closure, but || is missing</span><br><span class="line"> 10 │     let-env POSH_SHELL_VERSION = (version | get version)</span><br><span class="line">    ╰────</span><br><span class="line">  help: Try add || to the beginning of closure</span><br></pre></td></tr></table></figure><p>也就是说，现在 <code>.oh-my-posh.nu</code> 里面的语法也是错误的了。</p><p>于是我到 <a href="https://github.com/JanDeDobbeleer/oh-my-posh/releases/">https://github.com/JanDeDobbeleer/oh-my-posh/releases/</a> 查看一下。果然，它也刚刚更新了。</p><blockquote><h3 id="Bug-Fixes"><a href="#Bug-Fixes" class="headerlink" title="Bug Fixes"></a>Bug Fixes</h3><ul><li><strong>nushell:</strong> update syntax to for v0.78.0 (<a href="https://github.com/JanDeDobbeleer/oh-my-posh/commit/7e04bdc9f7a2c5541191a26e3e2f09a6dc278626">7e04bdc</a>)</li></ul></blockquote><p>于是我更新 oh-my-posh 到最新的版本，就解决问题了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;这一次的升级挺恼火的。&lt;/p&gt;
-&lt;p&gt;看到 nu shell 发布新版本了，看更新日志好像挺不错。于是我下载压缩包，解压，到「终端」改一下设置，就可以使用新版本了。&lt;/p&gt;
-&lt;p&gt;但是一上来就报错，真心看不懂，使用 0.78 加载以前的配置文件会报错，说要加 &lt;code&gt;|</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-    <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
     
   </entry>
   

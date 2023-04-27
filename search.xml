@@ -5626,4 +5626,24 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mac 屏幕使用时间被 HelpViewer 占满</title>
+    <url>/2023/04/screentime-helpviewer/</url>
+    <content><![CDATA[<p>我打开 Mac 上面的屏幕使用时间，发现有一个叫「HelpViewer」的应用，占满了今天的使用时间。</p>
+<p><img src="/img/2023/screentime-helpviewer.webp" alt="screentime-helpviewer"></p>
+<p>而昨天居然占满了 24 小时。</p>
+<p><img src="/img/2023/HelpViewer-24h.webp" alt="HelpViewer-24h"></p>
+<p>这个问题我之前也遇过，不过重启机器后好像就好了。现在又再次出现，我觉得还是得查查怎么解决。</p>
+<p>在苹果的社区里我看到这样的讨论：<a href="https://discussions.apple.com/thread/253321652">HelpViewer - Apple Community</a></p>
+<p>里面提到，可以通过给这个 APP 限额来解决。直接限制它每天只能使用 1 分钟。</p>
+<p><img src="/img/2023/HelpViewer-limit.webp" alt="HelpViewer-limit"></p>
+<p>我尝试了，发现没有用，还是会继续统计 HelpViewer 的使用时间。</p>
+<p>不过重新机器之后，好像就不会了。之后我又观察了几天，但是这几天的屏幕时间里都没有 HelpViewer，所以并不能证明给它限额有效。</p>
+<p>但是，目前好像就只有这一个方法了。</p>
+<p>这个 bug 存在快两年了，苹果居然还没修复。难道说是没法修复的？看有的网友说是内存泄露的问题。目前看来如果限额也没用，就只能重启了。</p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
