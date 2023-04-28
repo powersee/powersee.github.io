@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-27T17:17:56.442Z</updated>
+  <updated>2023-04-28T16:14:19.923Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,13 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>将博客头像更改为 SVG</title>
+    <link href="https://powersee.github.io/2023/04/blog-logo-svg/"/>
+    <id>https://powersee.github.io/2023/04/blog-logo-svg/</id>
+    <published>2023-04-28T16:11:04.000Z</published>
+    <updated>2023-04-28T16:14:19.923Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在的博客主题 <a href="https://github.com/imfycc/hexo-themes-yearn">yearn</a> 需要使用头像，我使用的是一张 jpeg logo 图片，大小是 8KB。</p><p>在访问首页的时候需要加载它，访问博客文章的时候也需要。</p><p>然而我观察到 GitHub pages 有时候访问速度只有 6、7KB，这就难顶了，一秒还没法将 logo 加载出来。看来这是一个急需解决的问题。</p><p>那么分析一下，我的头像其实很简单，就是黑色的背景，然后上面是我的昵称 Powersee，这其实可以用 svg 画出来。</p><p>我现在用这样的代码把它弄成 svg</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 180 180&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;black&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span> <span class="comment">&lt;!-- 黑色背景矩形 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;45%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>Power<span class="tag">&lt;/<span class="name">text</span>&gt;</span> <span class="comment">&lt;!-- 文字 &quot;Power&quot;，居中对齐，白色填充，字号 48px，字体 sans-serif --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;65%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>_see<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure><p>效果如下</p><svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">  <rect width="100%" height="100%" fill="black"></rect> <!-- 黑色背景矩形 -->  <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text> <!-- 文字 "Power"，居中对齐，白色填充，字号 48px，字体 sans-serif -->    <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text></svg><blockquote><p>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</p></blockquote><p>不要注释的话，它只需要 393 字节，也就是 393Byte，不到 0.4KB，很不错。原本需要加载一张 8KB 的外部图片，现在改为 svg 可以直接写在 HTML 里面，而且需要加载的数据也只需原来的 5%。</p><p>那么就开始修改主题吧，需要修改 <code>index.ejs</code> 和 <code>ariticle.ejs</code> 这两个文件。</p><ul><li>index.ejs</li></ul><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;div class=&quot;face-img&quot;&gt;&lt;img src=&quot;&lt;%=theme.avatar%&gt;&quot;&gt;&lt;/div&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;face-img&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 180 180&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;black&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span> <span class="comment">&lt;!-- 黑色背景矩形 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;45%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>Power<span class="tag">&lt;/<span class="name">text</span>&gt;</span> <span class="comment">&lt;!-- 文字 &quot;Power&quot;，居中对齐，白色填充，字号 48px，字体 sans-serif --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;65%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>_see<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><ul><li>ariticle.ejs</li></ul><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;img src=&quot;&lt;%=theme.avatar%&gt;&quot;&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 180 180&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;black&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;45%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>Power<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;65%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>_see<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure><p>找到里面引入 logo 的 img 位置，将它替换为 svg。</p><p>接着修改 css 文件，更改一下样式。就成功使用 svg 作为头像了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;现在的博客主题 &lt;a href=&quot;https://github.com/imfycc/hexo-themes-yearn&quot;&gt;yearn&lt;/a&gt; 需要使用头像，我使用的是一张 jpeg logo 图片，大小是 8KB。&lt;/p&gt;
+&lt;p&gt;在访问首页的时候需要加载它，访问博客文章的</summary>
+      
+    
+    
+    
+    
+    <category term="web" scheme="https://powersee.github.io/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Mac 屏幕使用时间被 HelpViewer 占满</title>
     <link href="https://powersee.github.io/2023/04/screentime-helpviewer/"/>
     <id>https://powersee.github.io/2023/04/screentime-helpviewer/</id>
     <published>2023-04-27T17:15:40.000Z</published>
-    <updated>2023-04-27T17:17:56.442Z</updated>
+    <updated>2023-04-27T17:25:33.364Z</updated>
     
-    <content type="html"><![CDATA[<p>我打开 Mac 上面的屏幕使用时间，发现有一个叫「HelpViewer」的应用，占满了今天的使用时间。</p><p><img src="/img/2023/screentime-helpviewer.webp" alt="screentime-helpviewer"></p><p>而昨天居然占满了 24 小时。</p><p><img src="/img/2023/HelpViewer-24h.webp" alt="HelpViewer-24h"></p><p>这个问题我之前也遇过，不过重启机器后好像就好了。现在又再次出现，我觉得还是得查查怎么解决。</p><p>在苹果的社区里我看到这样的讨论：<a href="https://discussions.apple.com/thread/253321652">HelpViewer - Apple Community</a></p><p>里面提到，可以通过给这个 APP 限额来解决。直接限制它每天只能使用 1 分钟。</p><p><img src="/img/2023/HelpViewer-limit.webp" alt="HelpViewer-limit"></p><p>我尝试了，发现没有用，还是会继续统计 HelpViewer 的使用时间。</p><p>不过重新机器之后，好像就不会了。之后我又观察了几天，但是这几天的屏幕时间里都没有 HelpViewer，所以并不能证明给它限额有效。</p><p>但是，目前好像就只有这一个方法了。</p><p>这个 bug 存在快两年了，苹果居然还没修复。难道说是没法修复的？看有的网友说是内存泄露的问题。目前看来如果限额也没用，就只能重启了。</p>]]></content>
+    <content type="html"><![CDATA[<p>我打开 Mac 上面的屏幕使用时间，发现有一个叫「HelpViewer」的应用，占满了今天的使用时间。</p><p><img src="/img/2023/screentime-helpviewer.webp" alt="screentime-helpviewer"></p><p>而昨天居然占满了 24 小时。</p><p><img src="/img/2023/HelpViewer-24h.webp" alt="HelpViewer-24h"></p><p>这个问题我之前也遇过，不过重启机器后好像就好了。现在又再次出现，我觉得还是得查查怎么解决。</p><p>在苹果的社区里我看到这样的讨论：<a href="https://discussions.apple.com/thread/253321652">HelpViewer - Apple Community</a></p><p>里面提到，可以通过给这个 APP 限额来解决。直接限制它每天只能使用 1 分钟。</p><p><img src="/img/2023/HelpViewer-limit.webp" alt="HelpViewer-limit"></p><p>我尝试了，发现没有用，还是会继续统计 HelpViewer 的使用时间。</p><p>不过重启机器之后，好像就不会了。之后我又观察了几天，但是这几天的屏幕时间里都没有 HelpViewer，所以并不能证明给它限额有效。</p><p>但是，目前好像就只有这一个方法了。</p><p>这个 bug 存在快两年了，苹果居然还没修复。难道说是没法修复的？看有的网友说是内存泄露的问题。目前看来如果限额也没用，就只能重启了。</p>]]></content>
     
     
       
@@ -460,30 +483,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>macOS 设置允许「任何来源」</title>
-    <link href="https://powersee.github.io/2023/04/mac-allow-apps-anywhere/"/>
-    <id>https://powersee.github.io/2023/04/mac-allow-apps-anywhere/</id>
-    <published>2023-04-08T16:56:57.000Z</published>
-    <updated>2023-04-23T04:09:57.335Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近由于更新系统到 Ventura 13.3，我发现安全性里的「任何来源」又不见了。</p><p><img src="/img/2023/APP-allow1.webp" alt="APP-allow1"></p><p>于是又得去网上搜开启的命令，这里也顺便记录一下📝</p><p>考虑到以后也许有萌新搜到我这篇文章，这里写详细一点。</p><p>首先点击「启动台」，在顶部的搜索框里面输入「终端」，可以找到一个图标上面写 <code>&gt;_</code> 的 APP</p><p><img src="/img/2023/Mac-terminal.webp" alt="Mac-terminal"></p><p>点击打开它，然后复制下面这条命令，粘贴进去</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure><p><img src="/img/2023/terminal-spctl.webp" alt="terminal-spctl"></p><p>然后按一下回车键，这时出现 Password:🔑，需要输入自己的用户密码，也就是开机后要进入桌面时的那个密码。</p><p><img src="/img/2023/terminal-spctl-Password.webp" alt="terminal-spctl-Password"></p><p>注意输入密码的时候，屏幕上不会显示任何内容的，既不会直接显示你的密码，也不会出现 <code>***</code> 或者 <code>···</code>，只管输入就行，完成后就再按一下回车键。</p><p>然后应该就可以看到出现「任何来源」了。</p><p><img src="/img/2023/APP-allow2.webp" alt="APP-allow2"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近由于更新系统到 Ventura 13.3，我发现安全性里的「任何来源」又不见了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/APP-allow1.webp&quot; alt=&quot;APP-allow1&quot;&gt;&lt;/p&gt;
-&lt;p&gt;于是又得去网上搜开启的命令，这里也顺便记录一下📝</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   

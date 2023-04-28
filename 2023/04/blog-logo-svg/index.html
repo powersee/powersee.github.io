@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>将博客头像更改为 SVG</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    将博客头像更改为 SVG
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-04-28T16:11:04.000Z" itemprop="datePublished">2023-04-29</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>现在的博客主题 <a target="_blank" rel="noopener" href="https://github.com/imfycc/hexo-themes-yearn">yearn</a> 需要使用头像，我使用的是一张 jpeg logo 图片，大小是 8KB。</p>
+<p>在访问首页的时候需要加载它，访问博客文章的时候也需要。</p>
+<p>然而我观察到 GitHub pages 有时候访问速度只有 6、7KB，这就难顶了，一秒还没法将 logo 加载出来。看来这是一个急需解决的问题。</p>
+<p>那么分析一下，我的头像其实很简单，就是黑色的背景，然后上面是我的昵称 Powersee，这其实可以用 svg 画出来。</p>
+<p>我现在用这样的代码把它弄成 svg</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 180 180&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;black&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span> <span class="comment">&lt;!-- 黑色背景矩形 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;45%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>Power<span class="tag">&lt;/<span class="name">text</span>&gt;</span> <span class="comment">&lt;!-- 文字 &quot;Power&quot;，居中对齐，白色填充，字号 48px，字体 sans-serif --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;65%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>_see<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <rect width="100%" height="100%" fill="black"></rect> <!-- 黑色背景矩形 -->
+  <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text> <!-- 文字 "Power"，居中对齐，白色填充，字号 48px，字体 sans-serif -->
+    <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+</svg>
+
+<blockquote>
+<p>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</p>
+</blockquote>
+<p>不要注释的话，它只需要 393 字节，也就是 393Byte，不到 0.4KB，很不错。原本需要加载一张 8KB 的外部图片，现在改为 svg 可以直接写在 HTML 里面，而且需要加载的数据也只需原来的 5%。</p>
+<p>那么就开始修改主题吧，需要修改 <code>index.ejs</code> 和 <code>ariticle.ejs</code> 这两个文件。</p>
+<ul>
+<li>index.ejs</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;div class=&quot;face-img&quot;&gt;&lt;img src=&quot;&lt;%=theme.avatar%&gt;&quot;&gt;&lt;/div&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;face-img&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 180 180&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;black&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span> <span class="comment">&lt;!-- 黑色背景矩形 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;45%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>Power<span class="tag">&lt;/<span class="name">text</span>&gt;</span> <span class="comment">&lt;!-- 文字 &quot;Power&quot;，居中对齐，白色填充，字号 48px，字体 sans-serif --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;65%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>_see<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ariticle.ejs</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;img src=&quot;&lt;%=theme.avatar%&gt;&quot;&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;180&quot;</span> <span class="attr">height</span>=<span class="string">&quot;180&quot;</span> <span class="attr">viewBox</span>=<span class="string">&quot;0 0 180 180&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rect</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;black&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;45%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>Power<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">&quot;50%&quot;</span> <span class="attr">y</span>=<span class="string">&quot;65%&quot;</span> <span class="attr">text-anchor</span>=<span class="string">&quot;middle&quot;</span> <span class="attr">dy</span>=<span class="string">&quot;.3em&quot;</span> <span class="attr">fill</span>=<span class="string">&quot;white&quot;</span> <span class="attr">font-size</span>=<span class="string">&quot;48&quot;</span> <span class="attr">font-family</span>=<span class="string">&quot;sans-serif&quot;</span>&gt;</span>_see<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>找到里面引入 logo 的 img 位置，将它替换为 svg。</p>
+<p>接着修改 css 文件，更改一下样式。就成功使用 svg 作为头像了。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
