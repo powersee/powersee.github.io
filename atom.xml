@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-04-29T16:10:29.090Z</updated>
+  <updated>2023-05-01T04:43:38.264Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 控制外接显示器亮度 MonitorControl</title>
+    <link href="https://powersee.github.io/2023/05/MonitorControl/"/>
+    <id>https://powersee.github.io/2023/05/MonitorControl/</id>
+    <published>2023-05-01T01:59:25.000Z</published>
+    <updated>2023-05-01T04:43:38.264Z</updated>
+    
+    <content type="html"><![CDATA[<p>发现一个可以在 Mac 上面控制外接显示器亮度的开源应用 <a href="https://github.com/MonitorControl/MonitorControl">MonitorControl</a></p><p>星星数量目前（2023年05月01日）有 21.4k。</p><p>使用这个要求显示器支持 ddc&#x2F;ci，可以打开显示器的设置看看有没有这个开关。我用的显示器是优派的，设置菜单里可以找到，默认就是打开的。</p><p><img src="/img/2023/ViewSonic-DDC:CI.webp" alt="ViewSonic-DDC:CI"></p><p>之后我使用 homebrew 来安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install MonitorControl</span><br></pre></td></tr></table></figure><p>装好后打开，可以在顶部找到一个灯光图标️</p><p><img src="/img/2023/MonitorControl-top.jpg" alt="MonitorControl-top"></p><p>拉动就可以调节显示器的亮度，但是音量调节并没有效果。（我是通过 HDMI 线连接 Mac min 和显示器的）</p><p>我发现拉到最亮时，就花屏了……</p><p><img src="/img/2023/MonitorControl-crash.webp" alt="MonitorControl-crash"></p><p>好像只有优派的这台显示器会这样，我另外通过 USB Type-C 线，将 Mac mini 连接到一台 sculptor 的便携显示器上，可以随意调节亮度，并没有出现花屏的情况。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;发现一个可以在 Mac 上面控制外接显示器亮度的开源应用 &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl&quot;&gt;MonitorControl&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;星星数量目前（2023年05月01日）有 21</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>大聪明，用 js 替换图片链接，抛弃对象存储</title>
@@ -454,29 +477,6 @@
       
     <summary type="html">&lt;p&gt;由于我每天都写一篇博客文章，每次都需要我打开 vscode，然后在终端里面输入&lt;/p&gt;
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo </summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自动操作 automator 快速将图片转为 webp</title>
-    <link href="https://powersee.github.io/2023/04/automator-quick-webp/"/>
-    <id>https://powersee.github.io/2023/04/automator-quick-webp/</id>
-    <published>2023-04-10T16:16:29.000Z</published>
-    <updated>2023-04-23T04:09:57.335Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在学习 Mac 上面的自动操作 automator 怎么使用。</p><p>bilibili 上面有一个非常好的教程视频：<a href="https://www.bilibili.com/video/BV1ps411J7gW">https://www.bilibili.com/video/BV1ps411J7gW</a></p><p>是 2018 年录制的，不过讲得挺好的，我可以学习学习他的教学方式。</p><p>不过他的视频中，没讲到我想了解的，执行 shell 命令。</p><p>我有这样的需求，需要经常把图片转换为 WebP 格式。然后我了解到用 automator 可以更快地做到，因此打算来研究看看。</p><p>一番折腾之后，终于弄好了，现在可以使用右键来将图片转为 WebP 格式了。</p><p>过程如下：</p><p>打开 Mac 自带的应用「自动操作」英文名是 automator，选择第三个「快速操作」。然后在左边的「实用工具」里面，找到「运行 Shell 脚本」，将它拖到右边。</p><p>右边我们有很多地方需要调整，可以参考我的设置↓</p><p><img src="/img/2023/automator-webp.webp" alt="automator-webp"></p><p>这是脚本内容</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$f</span>&quot;</span></span><br><span class="line">/opt/homebrew/bin/cwebp <span class="string">&quot;<span class="variable">$1</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;1%.*&#125;</span>.webp&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure><p>虽然它使用了 for，但是我测试过，选中两张图片的时候，只有第一张能否转为 WebP，第二张不会。</p><p>完成之后保存一下即可，接着来到访达里面。</p><p>使用过程如下：</p><p>选中图片，右键「快速操作」，「转换为 WebP」这个名字是我们自己起的。然后旁边就多出一张 webp 格式的图片了。</p><p><img src="/img/2023/automator-quick-webp.gif" alt="automator-quick-webp"></p><p>然后根据我的了解，从 macOS 10.15（Catalina）开始，Apple 更改了 Automator 创建的服务的默认位置，将其移动到了右键菜单的「快速操作」下。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近在学习 Mac 上面的自动操作 automator 怎么使用。&lt;/p&gt;
-&lt;p&gt;bilibili 上面有一个非常好的教程视频：&lt;a href=&quot;https://www.bilibili.com/video/BV1ps411J7gW&quot;&gt;https://www.bilibil</summary>
       
     
     
