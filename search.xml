@@ -5732,4 +5732,28 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>让 hexo 文章图片在 typora 里也能显示</title>
+    <url>/2023/05/hexo-typora-img/</url>
+    <content><![CDATA[<p>对于 hexo 文章的图片，我是在 source 目录下新建一个 img 目录，把图片都放在里面。然后我文章中的图片链接，都是 <code>/img/abc.png</code> 这种格式的。</p>
+<p>它在博客网站上可以显示出来，但是在 typora 里面就没法显示。想要在 typora 里面可以显示图片，得把链接改为 <code>../img/abc.png</code> 这种格式的。</p>
+<p>但是这样一改，我博客里就没法显示图片了，属于按下葫芦浮起瓢。</p>
+<p>解决方法：</p>
+<p>我们只需要在文章头部加入这一行，那么图片在 typora 里面就可以加载出来。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typora-root-url: ../</span><br></pre></td></tr></table></figure>
+
+<p>图片的链接依然是 <code>/img/abc.png</code> 这种格式的。</p>
+<p>它的原理就是 url 拼接，也就是说，在 typora 里面，加了这一行之后，图片的链接就变成 <code>../img/abc.png</code> 了。</p>
+<p>或者说，typora 会去 <code>../</code> （也就是上一层目录）找 <code>/img/abc.png</code> 这张图片，找到了就显示出来。</p>
+<p>而对于 hexo，它会忽略掉文章头部的 <code>typora-root-url</code>，所以没什么影响。</p>
+<p>但要是每次都得手动去填写这一行，也很麻烦。一劳永逸的方法是，直接修改 <code>scaffolds/post.md</code> </p>
+<p>这个是文章的模板，当我们执行 <code>hexo new post filename</code> 的时候，hexo 就会读取这个模板文件，创建一个新的文章文件。</p>
+<p>我目前的模板是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br><span class="line">    - 随笔</span><br><span class="line">    -</span><br><span class="line">    - </span><br><span class="line">lock: false</span><br><span class="line">typora-root-url: ../</span><br><span class="line">---</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>

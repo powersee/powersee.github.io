@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-05-01T04:43:38.264Z</updated>
+  <updated>2023-05-02T10:12:58.473Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>让 hexo 文章图片在 typora 里也能显示</title>
+    <link href="https://powersee.github.io/2023/05/hexo-typora-img/"/>
+    <id>https://powersee.github.io/2023/05/hexo-typora-img/</id>
+    <published>2023-05-02T10:10:45.000Z</published>
+    <updated>2023-05-02T10:12:58.473Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于 hexo 文章的图片，我是在 source 目录下新建一个 img 目录，把图片都放在里面。然后我文章中的图片链接，都是 <code>/img/abc.png</code> 这种格式的。</p><p>它在博客网站上可以显示出来，但是在 typora 里面就没法显示。想要在 typora 里面可以显示图片，得把链接改为 <code>../img/abc.png</code> 这种格式的。</p><p>但是这样一改，我博客里就没法显示图片了，属于按下葫芦浮起瓢。</p><p>解决方法：</p><p>我们只需要在文章头部加入这一行，那么图片在 typora 里面就可以加载出来。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typora-root-url: ../</span><br></pre></td></tr></table></figure><p>图片的链接依然是 <code>/img/abc.png</code> 这种格式的。</p><p>它的原理就是 url 拼接，也就是说，在 typora 里面，加了这一行之后，图片的链接就变成 <code>../img/abc.png</code> 了。</p><p>或者说，typora 会去 <code>../</code> （也就是上一层目录）找 <code>/img/abc.png</code> 这张图片，找到了就显示出来。</p><p>而对于 hexo，它会忽略掉文章头部的 <code>typora-root-url</code>，所以没什么影响。</p><p>但要是每次都得手动去填写这一行，也很麻烦。一劳永逸的方法是，直接修改 <code>scaffolds/post.md</code> </p><p>这个是文章的模板，当我们执行 <code>hexo new post filename</code> 的时候，hexo 就会读取这个模板文件，创建一个新的文章文件。</p><p>我目前的模板是这样的：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br><span class="line">    - 随笔</span><br><span class="line">    -</span><br><span class="line">    - </span><br><span class="line">lock: false</span><br><span class="line">typora-root-url: ../</span><br><span class="line">---</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;对于 hexo 文章的图片，我是在 source 目录下新建一个 img 目录，把图片都放在里面。然后我文章中的图片链接，都是 &lt;code&gt;/img/abc.png&lt;/code&gt; 这种格式的。&lt;/p&gt;
+&lt;p&gt;它在博客网站上可以显示出来，但是在 typora 里面就没法显示。</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 控制外接显示器亮度 MonitorControl</title>
@@ -460,29 +483,6 @@
     
     
     <category term="iOS" scheme="https://powersee.github.io/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自动操作 automator 出现输入框后再运行脚本</title>
-    <link href="https://powersee.github.io/2023/04/automator-input-box/"/>
-    <id>https://powersee.github.io/2023/04/automator-input-box/</id>
-    <published>2023-04-11T16:13:21.000Z</published>
-    <updated>2023-04-23T04:09:57.335Z</updated>
-    
-    <content type="html"><![CDATA[<p>由于我每天都写一篇博客文章，每次都需要我打开 vscode，然后在终端里面输入</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post title...</span><br></pre></td></tr></table></figure><p>我在想，能否使用 automator 让我这个过程变得更加流畅一些。</p><p>我的想法是，在 Mac 右上角，放一个图标，我点击图标后，弹出一个文本框，然后我输入文章名字，例如今天这篇的名字是 <code>automator-input-box</code></p><p>输入完成之后，后台就自动执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new post automator-input-box</span><br></pre></td></tr></table></figure><p>感觉还是挺简单的，应该是可以实现的。</p><p>一番研究之后，终于实现了。</p><p><img src="/img/2023/automator-hexo-post.webp" alt="automator-hexo-post"></p><p>脚本内容</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="variable">$HOME</span>/.zshrc</span><br><span class="line"><span class="comment">#echo $PATH</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$HOME</span>/hexobackup &amp;&amp; <span class="built_in">pwd</span></span><br><span class="line">hexo new post <span class="variable">$1</span></span><br></pre></td></tr></table></figure><p>首先放一个 「获得指定的文本」在最上面，然后下面是「运行Shell脚本」</p><p>第一行加载 <code>zsh</code> 的配置，是为了获取到 <code>node</code> 和 <code>hexo</code> 的环境变量，如果不加这一行，那么脚本运行的时候，它是找不到 <code>hexo</code> 的。当然我们也可以写出 <code>hexo</code> 的完整路径，例如 <code>/opt/homebrew/.../hexo</code> 之类，但是我发现这样会提示找不到 <code>node</code>，又得加 <code>node</code> 的环境变量。所以还是直接加载 <code>zsh</code> 的配置文件比较方便。</p><p>之后进入 <code>hexo</code> 博客所在的位置，我的是放在用户目录下的 <code>hexobackup</code> 中，所以可以写成 <code>$HOME/hexobackup</code></p><p>进入到博客目录之后，再执行命令创建文章。</p><p>本来到这里就结束了的，不过我后面还是加了些内容，让结果可以通过通知显示出来。</p><p>这里的关键点是设置一个变量，来接收输出结果，然后在显示通知里面，使用这个变量。</p><p>我创建的是「应用程序」，所以可以选择把它保存到自己想放置的地方。</p><p><img src="/img/2023/automator-APP.webp" alt="automator-APP"></p><p>之后我把这个 APP 拖到 Dock 栏上面，可以非常快速地打开它。</p><p><img src="/img/2023/hexo-post-dock.webp" alt="hexo-post-dock"></p><p>点击它之后，就会出现一个文本框，在这里我可以输入博客文章的文件名。不过它这里不能粘贴，只能手动输入。</p><p><img src="/img/2023/automator-input-box-getText.webp" alt="automator-input-box-getText"></p><p>当我输入完成后，点击「继续」按钮，就会去执行 shell 脚本。完成之后，会弹出一条通知。</p><p><img src="/img/2023/hexo-post-notification.webp" alt="hexo-post-notification"></p><p>感觉比较遗憾的地方是，不能粘贴，以及只能按「继续」按钮，而不能用按回车键来代替。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;由于我每天都写一篇博客文章，每次都需要我打开 vscode，然后在终端里面输入&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;hexo </summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
