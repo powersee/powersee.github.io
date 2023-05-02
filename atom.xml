@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-05-02T10:12:58.473Z</updated>
+  <updated>2023-05-02T16:55:00.572Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>crontab 中如何设置环境变量</title>
+    <link href="https://powersee.github.io/2023/05/crontab-env/"/>
+    <id>https://powersee.github.io/2023/05/crontab-env/</id>
+    <published>2023-05-02T16:52:46.000Z</published>
+    <updated>2023-05-02T16:55:00.572Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的 Python3 是装在 &#x2F;opt&#x2F;homebrew&#x2F;bin&#x2F; 里面的，我发现在 crontab 中执行 Python 脚本。</p><p>使用的是 &#x2F;usr&#x2F;bin&#x2F;python3，这个的版本是 3.9.6。而我用 homebrew 装的是 3.11.2。</p><p>如果想让 crontab 优先使用 homebrew 的 Python3，有两种方法。</p><p>1、直接写出完整路径</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1 7 * * * /opt/homebrew/bin/python3 /path/to/myscript.py</span><br></pre></td></tr></table></figure><p>2、在 crontab 头部定义环境变量</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PATH=/opt/homebrew/bin:/usr/bin:/bin</span><br></pre></td></tr></table></figure><p>当执行脚本时，会按照 PATH 环境变量的先后顺序在每个目录中查找命令，找到第一个版本即执行。</p><p>因此这里我把 &#x2F;opt&#x2F;homebrew&#x2F;bin 放最前面。可以写个脚本测试一下 Python 版本。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import sys</span><br><span class="line">print(sys.version)</span><br></pre></td></tr></table></figure><p>定义环境变量的好处，就是如果我们有多个脚本需要执行，就可以在 crontab 里面省掉很多字符。例如我现在这种情况，就不用在 crontab 中写一堆 <code>/opt/homebrew/bin/</code></p><p>如果我们要读取用户目录下的脚本，可以使用 <code>$HOME</code> 变量，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 $HOME/myscript.py</span><br></pre></td></tr></table></figure><p>那么我们也可以直接在 crontab 开头，加载 shell 配置文件，例如我使用的是 zsh，可以在 crontab 开头加上</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source $HOME/.zshrc</span><br></pre></td></tr></table></figure><p>这样的好处是，在 shell 能执行的命令，现在 crontab 应该也可以。而且也能使用 alias。所以看个人需要咯。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我的 Python3 是装在 &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;bin&amp;#x2F; 里面的，我发现在 crontab 中执行 Python 脚本。&lt;/p&gt;
+&lt;p&gt;使用的是 &amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;python3，这个的版本是 </summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>让 hexo 文章图片在 typora 里也能显示</title>
@@ -459,30 +482,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何去掉 iPhone iPad 上的越狱文件？</title>
-    <link href="https://powersee.github.io/2023/04/iphone-ipad-remove-jailbreak/"/>
-    <id>https://powersee.github.io/2023/04/iphone-ipad-remove-jailbreak/</id>
-    <published>2023-04-12T16:05:27.000Z</published>
-    <updated>2023-04-23T04:09:57.393Z</updated>
-    
-    <content type="html"><![CDATA[<p>我有一台 iPad，几年前就将它越狱了。由于越狱之后，就没法直接更新系统，所以目前还停留在 13.6.1</p><p><img src="/img/2023/iPad-13.6.1.jpg" alt="iPad-13.6.1"></p><p>现在提示可以更新的是 iPadOS 16.4.1，如果我直接点击升级，很可能待会就变砖了。</p><p>所以我开始了解怎么才能升级这台，已经越狱了的 iPad。我猜可能得进入 DFU 模式，然后重新刷一个干净的系统进去。</p><p>不过了解后发现，并不用这么麻烦，只需要先把系统的越狱去掉就行。</p><p>先在电脑上使用 checkra1n 让机器处于越狱状态，因为我们需要在设备里打开 checkra1n 这个 app。</p><p>官网：<a href="https://checkra.in/">checkra1n</a></p><p><img src="/img/2023/checkra1n-v-0.12.4.webp" alt="checkra1n-v-0.12.4"></p><p>还是熟悉的操作，按照说明进入 DUF 模式，之后机器重启，然后点击桌面的 checkra1n 这个 app，再点击红色的「Restore System」来恢复系统即可。</p><p><img src="/img/2023/iPad-checkra1n.png" alt="iPad-checkra1n"></p><p>然后机器会重启，并且删除越狱相关的文件。例如重启后桌面就没有 Cydia 了。</p><p>此时就可以到系统里面升级了，经过漫长地等待，我把 iPad 升级到了 16.4.1</p><p><img src="/img/2023/iPad-16.4.1.jpg" alt="iPad-16.4.1"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我有一台 iPad，几年前就将它越狱了。由于越狱之后，就没法直接更新系统，所以目前还停留在 13.6.1&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/iPad-13.6.1.jpg&quot; alt=&quot;iPad-13.6.1&quot;&gt;&lt;/p&gt;
-&lt;p&gt;现在提示可以更新的是 iPa</summary>
-      
-    
-    
-    
-    
-    <category term="iOS" scheme="https://powersee.github.io/tags/iOS/"/>
     
   </entry>
   
