@@ -5785,4 +5785,17 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>hexo 更改 js、css 后不生效怎么解决</title>
+    <url>/2023/05/hexo-js-css-no-work/</url>
+    <content><![CDATA[<p>有时候我们修改好了 js、css 文件，执行 hexo s 预览一下效果，确认没问题。</p>
+<p>但是执行 hexo g -d 更新博客之后，发现还是原来的样式，也就是说更改没有上传上去。此时可以到 GitHub pages 的仓库看看，是否 js、css 文件没有更新。如果是的话，此时如果按照官方的建议，是执行一下 hexo clean，然后再重新生成博客的 HTML 文件。</p>
+<p>但是这么做，会导致之前的 git commit 记录都被删掉。</p>
+<p>其实我们只是更改 js、css 而已，不需要这么麻烦。只需要把本地 public 文件夹中的 js 或者 css 文件删除掉。</p>
+<p>再来执行 hexo g 就会生成新的。（可以通过输出日志判断）之后我们再执行 hexo d 来发布更新即可。</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>
