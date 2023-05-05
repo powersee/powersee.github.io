@@ -5798,4 +5798,21 @@ border-radius: 4px;
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>贴吧图片批量下载器</title>
+    <url>/2023/05/tieba-image-download/</url>
+    <content><![CDATA[<p>之前为了制作漫画，放到 kindle 上面来观看，我写了这个程序。可以用来批量下载贴吧的图片。</p>
+<p><img src="/img/2023/tieba-download.png" alt="tieba-download"></p>
+<p>使用方法也很简单，把贴吧的链接粘贴进来，再点击下面的「开始下载」就可以了。</p>
+<p><img src="/img/2023/tieba-download2.png" alt="tieba-download2"></p>
+<p>也可以只输入帖子的 id 就行，软件会先判断的，发现不是完整的链接，它会自动补全的。</p>
+<p>下载后，会在软件的同级文件夹下，多出一个文件夹，里面就是我们下载好的图片，它会按照顺序排好重命名。</p>
+<p><img src="/img/2023/tieba-onepiece.webp" alt="tieba-onepiece"></p>
+<p>前段时间有网友跟我反馈不能使用了，所以我更新了一下代码，并且把我修改软件的日期写上去。</p>
+<p>目前软件可以从我的下载站：<a href="https://pan.powersee.top/">https://pan.powersee.top/</a> 里面下载到，在「windows应用」里面。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>

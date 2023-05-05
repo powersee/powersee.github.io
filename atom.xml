@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-05-04T15:10:15.861Z</updated>
+  <updated>2023-05-05T15:05:50.209Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>贴吧图片批量下载器</title>
+    <link href="https://powersee.github.io/2023/05/tieba-image-download/"/>
+    <id>https://powersee.github.io/2023/05/tieba-image-download/</id>
+    <published>2023-05-05T15:04:25.000Z</published>
+    <updated>2023-05-05T15:05:50.209Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前为了制作漫画，放到 kindle 上面来观看，我写了这个程序。可以用来批量下载贴吧的图片。</p><p><img src="/img/2023/tieba-download.png" alt="tieba-download"></p><p>使用方法也很简单，把贴吧的链接粘贴进来，再点击下面的「开始下载」就可以了。</p><p><img src="/img/2023/tieba-download2.png" alt="tieba-download2"></p><p>也可以只输入帖子的 id 就行，软件会先判断的，发现不是完整的链接，它会自动补全的。</p><p>下载后，会在软件的同级文件夹下，多出一个文件夹，里面就是我们下载好的图片，它会按照顺序排好重命名。</p><p><img src="/img/2023/tieba-onepiece.webp" alt="tieba-onepiece"></p><p>前段时间有网友跟我反馈不能使用了，所以我更新了一下代码，并且把我修改软件的日期写上去。</p><p>目前软件可以从我的下载站：<a href="https://pan.powersee.top/">https://pan.powersee.top/</a> 里面下载到，在「windows应用」里面。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;之前为了制作漫画，放到 kindle 上面来观看，我写了这个程序。可以用来批量下载贴吧的图片。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/tieba-download.png&quot; alt=&quot;tieba-download&quot;&gt;&lt;/p&gt;
+&lt;p&gt;使用方法也很简单，把贴吧的</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo 更改 js、css 后不生效怎么解决</title>
@@ -458,30 +482,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node.js 如何复制和移动文件</title>
-    <link href="https://powersee.github.io/2023/04/nodejs-copy-and-move/"/>
-    <id>https://powersee.github.io/2023/04/nodejs-copy-and-move/</id>
-    <published>2023-04-14T17:19:23.000Z</published>
-    <updated>2023-04-23T04:09:57.371Z</updated>
-    
-    <content type="html"><![CDATA[<p>建议在 nodejs 的交互环境中测试，直接在终端执行 node 就可以进入。</p><p><img src="/img/2023/node-RELP.gif" alt="node-RELP"></p><h2 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h2><p>需要用到 fs</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line">fs.<span class="title function_">copyFileSync</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;b.txt&#x27;</span>)</span><br></pre></td></tr></table></figure><p>把当前目录下的 a.txt 复制为 b.txt</p><p>查询文件是否存在</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">fs.<span class="title function_">existsSync</span>(<span class="string">&#x27;b.txt&#x27;</span>)</span><br></pre></td></tr></table></figure><h2 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h2><p>使用 renameSync</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line">fs.<span class="title function_">renameSync</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;b/a.txt&#x27;</span>)</span><br></pre></td></tr></table></figure><p>如上，将 a.txt 移动到 b 目录下。</p><p>或者使用 rename</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">fs.<span class="title function_">rename</span>(<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="function">(<span class="params">err</span>) =&gt;</span> &#123; </span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;done&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>将 one 重命名为 two</p><p>第三个参数是一个函数，这个不能缺，不像带 Sync 的，只需要两个参数就行。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;建议在 nodejs 的交互环境中测试，直接在终端执行 node 就可以进入。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/node-RELP.gif&quot; alt=&quot;node-RELP&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;复制文件&quot;&gt;&lt;a href=&quot;#复制文件&quot; clas</summary>
-      
-    
-    
-    
-    
-    <category term="node" scheme="https://powersee.github.io/tags/node/"/>
     
   </entry>
   
