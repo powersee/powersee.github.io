@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>hexo 自定义 js 脚本</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    hexo 自定义 js 脚本
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-05-06T07:53:23.000Z" itemprop="datePublished">2023-05-06</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>hexo 的官方文档，在插件部分有写</p>
+<blockquote>
+<p>如果您的代码很简单，建议您编写脚本，您只需要把 JavaScript 文件放到 <code>scripts</code> 文件夹，在启动时就会自动载入。</p>
+</blockquote>
+<p>那么我在博客根目录，新建 <code>scripts</code> 目录，然后里面放一个 <code>test.js</code> 的 JavaScript 文件，内容就写</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;haha, powersee&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>之后我执行 <code>hexo s</code> 启动 hexo 服务器，终端就会输出我自定义的内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INFO  Validating config</span><br><span class="line">haha, powersee</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<p>也就是说这个脚本成功执行了。</p>
+<p>而且还可以建立多个 js 文件，例如 test2.js test3.js …</p>
+<p>那我们可以通过建立脚本文件，来实现一些自动化操作。在 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter">过滤器（Filter） | Hexo</a> 里面有提供一些例子。用得比较多的应该是 before_post_render。</p>
+<p>过滤器列表一共有这些：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#before-post-render">before_post_render</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#after-post-render">after_post_render</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#before-exit">before_exit</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#before-generate">before_generate</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#after-generate">after_generate</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#template-locals">template_locals</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#after-init">after_init</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#new-post-path">new_post_path</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#post-permalink">post_permalink</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#after-render">after_render</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter#server-middleware">server_middleware</a></li>
+</ol>
+<p>前段时间我耗费了不少时间在研究这个，感觉还是挺有趣的。目前实现的功能有：检查文章中的图片链接、自动复制图片到 hexo 博客目录中。</p>
+<p>后面整理整理再分享出来。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
