@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-05-06T08:05:02.202Z</updated>
+  <updated>2023-05-11T07:49:46.133Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>威联通 qnap 使用 Python3</title>
+    <link href="https://powersee.github.io/2023/05/qnap-python3/"/>
+    <id>https://powersee.github.io/2023/05/qnap-python3/</id>
+    <published>2023-05-11T07:43:55.000Z</published>
+    <updated>2023-05-11T07:49:46.133Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>我发现在威联通上面使用 Python3 还挺麻烦的。即使我已经在 App Center 里面安装好了，但是当我通过 ssh 连接威联通 nas 时，却发现找不到 Python3，Python2 倒是可以找到。</p><p><img src="/img/2023/qnap-Python3.webp" alt="qnap-Python3"></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[~] # python3</span><br><span class="line">-sh: python3: command not found</span><br><span class="line">[~] # python</span><br><span class="line">Python 2.7.13 (default, Mar 24 2022, 10:03:40)</span><br><span class="line">[GCC 4.9.2] on linux2</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p>那问题来了。</p><h4 id="安装好的-Python3-在哪里呢？"><a href="#安装好的-Python3-在哪里呢？" class="headerlink" title="安装好的 Python3 在哪里呢？"></a>安装好的 Python3 在哪里呢？</h4><p>答：在 <code>/share/CACHEDEV1_DATA/.qpkg/Python3</code></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[/share/CACHEDEV1_DATA/.qpkg/Python3] # ls</span><br><span class="line">python3/  python3.bashPython3.sh*  README.mdsrc/</span><br></pre></td></tr></table></figure><h4 id="那要如何使用它呢？"><a href="#那要如何使用它呢？" class="headerlink" title="那要如何使用它呢？"></a>那要如何使用它呢？</h4><p>通过查看 <code>README.md</code> 的内容，我们可以看到这些内容</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cat README.md</span><br><span class="line">Run the following command to enter Python3 environment:</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">$ . /etc/profile.d/python3.bash</span><br><span class="line">```</span><br></pre></td></tr></table></figure><p>也就是说，我们需要在 shell 里执行一下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">. /etc/profile.d/python3.bash</span><br></pre></td></tr></table></figure><p>这条命令，才可以进入 Python3 环境（注意 <code>.</code> 之后有一个空格）</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[/share/CACHEDEV1_DATA/.qpkg/Python3] # . /etc/profile.d/python3.bash</span><br><span class="line">[/share/CACHEDEV1_DATA/.qpkg/Python3] # python3</span><br><span class="line">Python 3.10.4 (main, May  6 2022, 08:22:01) [GCC 5.4.0 20160609] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><h4 id="进阶了解"><a href="#进阶了解" class="headerlink" title="进阶了解"></a>进阶了解</h4><p>其实这里的 <code>.</code> 也可以换为 source，它们是等价的。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[~] # python3</span><br><span class="line">-sh: python3: command not found</span><br><span class="line">[~] # source /etc/profile.d/python3.bash</span><br><span class="line">[~] # python3</span><br><span class="line">Python 3.10.4 (main, May  6 2022, 08:22:01) [GCC 5.4.0 20160609] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p>而且我们可以发现，<code>/etc/profile.d/python3.bash</code> 其实是 <code>/share/CACHEDEV1_DATA/.qpkg/Python3/python3.bash</code> 符号链接（Symbolic Link）。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ls -alh /etc/profile.d/python3.bash</span><br><span class="line">lrwxrwxrwx 1 powersee administrators 48 2023-05-04 07:15 /etc/profile.d/python3.bash -&gt; /share/CACHEDEV1_DATA/.qpkg/Python3/python3.bash</span><br></pre></td></tr></table></figure><p>看看 python3.bash 里面的内容</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cat python3.bash</span><br><span class="line">_PYTHON3_QPKG_CONF=/etc/config/qpkg.conf</span><br><span class="line">_PYTHON3_QPKG_NAME=&quot;Python3&quot;</span><br><span class="line">_PYTHON3_QPKG_ROOT=$(/sbin/getcfg $_PYTHON3_QPKG_NAME Install_Path -f $&#123;_PYTHON3_QPKG_CONF&#125;)</span><br><span class="line">_PYTHON3_QPKG_BIN=&quot;$&#123;_PYTHON3_QPKG_ROOT&#125;/python3/bin&quot;</span><br><span class="line">echo &quot;$&#123;PATH&#125;&quot; | grep -q  $&#123;_PYTHON3_QPKG_BIN&#125; || export PATH=$&#123;_PYTHON3_QPKG_BIN&#125;:$&#123;PATH&#125;</span><br></pre></td></tr></table></figure><p>我尝试过将 <code>source /etc/profile.d/python3.bash</code> 这条命令，添加到 <code>.bash_profile</code> 里面，但是重新进行 ssh 连接，发现没有效果，并不能直接执行 python3 来进入交互界面。</p><p>之后我发现默认使用的是 <code>/bin/sh</code>，但是我执行 <code>bash</code> 之后，发现依然是 <code>/bin/sh</code>。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[admin@qnap test]# echo $SHELL</span><br><span class="line">/bin/sh</span><br></pre></td></tr></table></figure><p>之后我发现，里面的 bash 其实 sh 的符号链接……</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ls -al /bin/bash</span><br><span class="line">lrwxrwxrwx 1 admin administrators 2 2023-05-04 15:09 /bin/bash -&gt; sh*</span><br></pre></td></tr></table></figure><p>所以我应该把命令添加到 <code>~/.profile</code> 里面才对。之后再次 ssh 就可以直接使用 Python3 了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;p&gt;我发现在威联通上面使用 Python3 还挺麻烦的。即使我已经在 App Center 里面安装好了，但是当我通过 ssh 连接威联通 na</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo 使用自定义脚本，在渲染前检查图片链接</title>
+    <link href="https://powersee.github.io/2023/05/hexo-img-before-render/"/>
+    <id>https://powersee.github.io/2023/05/hexo-img-before-render/</id>
+    <published>2023-05-07T15:57:32.000Z</published>
+    <updated>2023-05-07T16:08:55.101Z</updated>
+    
+    <content type="html"><![CDATA[<p>前篇：<a href="/2023/05/hexo-custom-script">hexo 自定义 js 脚本</a></p><p>我平时都是在 typora 里面写好文章内容，完成之后，再到 hexo 新建文章，然后将之前写好的内容复制粘贴过来。</p><p>但是图片的链接会发生变化，例如原本的链接是 ‘img&#x2F;2023&#x2F;mac-shortcut-key.webp’，复制后就变成了 ‘..&#x2F;..&#x2F;..&#x2F;Nutstore Files&#x2F;markdown&#x2F;img&#x2F;2023&#x2F;mac-shortcut-key.webp’ 这样的链接。想要让 hexo 渲染后能正常显示，需要把它变成 ‘&#x2F;img&#x2F;2023&#x2F;mac-shortcut-key.webp’</p><p>所以我之前都是手动修改图片链接的。如果文章中就一两张图，我就使用鼠标滑动选中，再删除。如果图片比较多，那就查找替换，也就几秒能搞定。</p><p>但这种机械重复的操作，肯定还是用代码来处理比较好。</p><p>我猜想应该也有其他人，也有同样的困扰吧。之后我在插件中心 <a href="https://hexo.io/plugins/">Plugins | Hexo</a>，搜索一下 img，我找到了这个项目：<a href="https://github.com/cocowool/hexo-image-link">cocowool&#x2F;hexo-image-link: 当MD中引用本地文件时，处理生成的html中的图片链接</a></p><p>查看他的代码，我发现里面使用了 <code>before_post_render</code> 这个参数。</p><p>处理的过程就是在渲染之前，查找一下图片链接，再处理图片链接。</p><p>于是我参考他的代码，最后达到了我的目的。这样会在渲染时，检查文章中所有的图片链接，如果发现有 <code>../../../Nutstore Files/markdown</code>，就将这个前缀去掉，但是不会修改源文件。我们的 md 文件还是原来的样子。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;before_post_render&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> str = <span class="string">&#x27;../../../Nutstore Files/markdown&#x27;</span></span><br><span class="line"></span><br><span class="line">    data.<span class="property">content</span> = data.<span class="property">content</span>.<span class="title function_">replace</span>(<span class="regexp">/!\[(.*?)\]\((.*?)\)/gi</span>, <span class="keyword">function</span>(<span class="params">match, p1, p2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p2.<span class="title function_">includes</span>(str)) &#123;</span><br><span class="line">            <span class="comment">// 替换图片链接</span></span><br><span class="line">            p2 = p2.<span class="title function_">replace</span>(str, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 生成对应的 &lt;img&gt; 标签</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">`&lt;img src=&quot;<span class="subst">$&#123;p2&#125;</span>&quot; alt=&quot;<span class="subst">$&#123;p1&#125;</span>&quot;&gt;`</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> match; <span class="comment">// 返回原始的 Markdown 图片语法</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>不过后来由于坚果云自动升级，图片链接的前缀已经不是 <code>../../../Nutstore Files/markdown</code> 了，所以我需要修改一下脚本。可能其他人的链接也跟我不一样，只需要修改一下就行。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;前篇：&lt;a href=&quot;/2023/05/hexo-custom-script&quot;&gt;hexo 自定义 js 脚本&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我平时都是在 typora 里面写好文章内容，完成之后，再到 hexo 新建文章，然后将之前写好的内容复制粘贴过来。&lt;/p&gt;
+&lt;p&gt;但是图片</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo 自定义 js 脚本</title>
@@ -438,53 +484,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 imagemagick 给图片添加阴影</title>
-    <link href="https://powersee.github.io/2023/04/imagemagick-shadow/"/>
-    <id>https://powersee.github.io/2023/04/imagemagick-shadow/</id>
-    <published>2023-04-17T16:09:42.000Z</published>
-    <updated>2023-04-23T04:09:57.408Z</updated>
-    
-    <content type="html"><![CDATA[<p>官方文档：<a href="https://legacy.imagemagick.org/Usage/blur/#shadow">Bluring and Sharpening – IM v6 Examples (imagemagick.org)</a></p><p>我有一张图片，名为 <code>test.jpg</code> 直接放到博客文章里面，效果是这样的</p><p><img src="/img/2023/shadow-test.jpg" alt="shadow-test"></p><p>如果加上阴影后，效果是这样的。</p><p><img src="/img/2023/convert-add-shadow.png" alt="convert-add-shadow"></p><p>看起来效果会好很多，特别是当网页背景是白色，图片背景也是白色时，加了阴影可以让图片更为突出。我使用的是这样一条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert test.jpg \( +clone -background black -shadow 50x20+0+0 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure><p><code>-shadow</code> 后面的 <code>50x20+0+0</code> 指的是：</p><p>50：阴影的不透明度</p><p>20：阴影模糊度</p><p>第一个 +0：代表阴影左右偏移</p><p>第二个 +0：代表阴影上下偏移</p><p>假如我改为 <code>50x20+10+10</code>，那么得到的图片是这样的</p><p><img src="/img/2023/shadow-add10-add10.png" alt="shadow-add10-add10"></p><p>也就是阴影会往右下方偏移。</p><p>现在 <code>-background</code> 用的是 black，也可以改为其它颜色的。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg \( +clone -background red -shadow 50x20+10+10 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure><p><img src="/img/2023/shadow-red.webp" alt="shadow-red"></p><p>个人感觉用 grey 会比较合适，而且我不喜欢偏移，所以这是我使用的命令。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg \( +clone -background grey -shadow 70x20+0+0 \) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure><p><img src="/img/2023/shadow-grey-70.png" alt="shadow-grey-70"></p><p>在 Mac 上用 zsh 必须得加 \ 转义才行，在 Windows 上面就可以不用。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">convert shadow-test.jpg ( +clone -background grey -shadow 70x20+0+0 ) +swap -background none -layers merge +repage shadow.png</span><br></pre></td></tr></table></figure><p>我可以把它封装为一个函数，但是输出名字要怎么设置呢？直接在后面加 <code>.png</code> 吗？</p><p>也就是 <code>test.jpg</code> 变 <code>test.jpg.png</code>，这样一般是没问题，不过这样的命名不太好。</p><p>另一种思路，在名字后面加 <code>-shadow</code>，也就是变 <code>test-shadow.png</code></p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">shadow</span></span>() &#123;</span><br><span class="line">convert <span class="variable">$1</span><span class="string">&quot; /( +clone -background grey -shadow 70x20+0+0 /) +swap -background none -layers merge +repage &quot;</span><span class="variable">$&#123;1%.*&#125;</span><span class="string">&quot;-shadow.png</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure><p>此时将它封装为一个函数，那么之后如果要给图片加阴影，我可以这样来使用</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shadow powersee-test.jpg</span><br></pre></td></tr></table></figure><p>就可以得到一张名为 <code>powersee-test-shadow.png</code> 的带阴影图片。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;官方文档：&lt;a href=&quot;https://legacy.imagemagick.org/Usage/blur/#shadow&quot;&gt;Bluring and Sharpening – IM v6 Examples (imagemagick.org)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;我有一</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决 crontab 中执行 rsync 没有权限问题</title>
-    <link href="https://powersee.github.io/2023/04/macos-crontab-not-permitted/"/>
-    <id>https://powersee.github.io/2023/04/macos-crontab-not-permitted/</id>
-    <published>2023-04-16T16:06:15.000Z</published>
-    <updated>2023-04-23T04:09:57.336Z</updated>
-    
-    <content type="html"><![CDATA[<p>我在使用 rsync 备份文件到 nas 里。如果我手动在终端里执行的话，一切正常，可以把文件同步到 nas 里面。</p><p>但是，当我把同样的命令，添加到 crontab 中，却报错了。</p><p>问题其实是 cron 无法读取到 ~&#x2F;Documents&#x2F;screenshot-backup 里面的内容。因为现在 Mac 收紧了权限，其实我们平时使用一些 APP 的时候，如果要访问桌面或者下载文件夹，就会出现弹窗。</p><blockquote><p>在 macOS 中，某些应用程序在尝试读取或写入桌面、下载文件夹等敏感位置时，会触发系统的安全权限机制，导致弹出权限提示窗口。这是因为自 macOS 10.14 (Mojave) 版本开始，Apple 引入了更加严格的安全控制措施，以保护用户的隐私和数据安全。</p></blockquote><blockquote><p>除了桌面和下载文件夹之外，还有其他一些敏感位置，例如文稿、图片、文档、音乐、视频等文件夹。这些文件夹中的内容通常包含用户的个人数据和隐私信息。因此，当应用程序尝试访问这些敏感位置时，同样会触发权限提示窗口。</p></blockquote><p>那么回到我的问题，现在 cron 执行任务的时候，它可不会弹窗呀，而它又没有访问权限，所以任务就执行失败了。</p><p>方法一</p><p>不使用这个默认用户文件夹即可。例如我用户目录下有个 autosave 的文件夹，同样在 crontab 中用 rsync 备份，可以正常完成任务。</p><p>方法二</p><p>给 cron 完全磁盘权限</p><p>cron 的路径是 <code>/usr/sbin/cron</code>，我们可以在访达 Finder 里面，点击顶部菜单的「前往」「前往文件夹」，然后输入 <code>/usr/sbin</code> 来找到它。</p><p>如果想像我这样，显示隐藏文件夹，可以按快捷键 <code>command + shift + .</code>，就是 <code>&gt;</code> 这颗按键。</p><p><img src="/img/2023/cron-location-shadow.webp" alt="cron-location"></p><p>现在我们可以把 sbin 这个文件夹，拖到左侧的个人收藏那里。</p><p>然后打开「系统设置」，我的是 13.3 系统版本，以前叫「系统偏好设置」</p><p>找到 「隐私与安全性」里面的「完全磁盘访问权限」，点击下方的 + 来添加一个新的程序进去。</p><p><img src="/img/2023/full-disk-access.webp" alt="full-disk-access"></p><p>由于刚才我把 sbin 放到左侧的个人收藏了，所以现在找到 cron 很简单。</p><p><img src="/img/2023/Finder-cron.webp" alt="Finder-cron"></p><p>这样操作之后，使用 cron 来执行 rsync 命令备份Documents&#x2F;screenshot-backup 就没问题了，其它命令如果是需要访问文稿、桌面、下载这些文件夹，应该也是通过这样来解决问题的。</p><p>参考：<a href="https://apple.stackexchange.com/questions/378553/crontab-operation-not-permitted">macos - Crontab Operation not permitted - Ask Different (stackexchange.com)</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我在使用 rsync 备份文件到 nas 里。如果我手动在终端里执行的话，一切正常，可以把文件同步到 nas 里面。&lt;/p&gt;
-&lt;p&gt;但是，当我把同样的命令，添加到 crontab 中，却报错了。&lt;/p&gt;
-&lt;p&gt;问题其实是 cron 无法读取到 ~&amp;#x2F;Document</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>hexo 使用自定义脚本，在渲染前检查图片链接</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    hexo 使用自定义脚本，在渲染前检查图片链接
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-05-07T15:57:32.000Z" itemprop="datePublished">2023-05-07</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>前篇：<a href="/2023/05/hexo-custom-script">hexo 自定义 js 脚本</a></p>
+<p>我平时都是在 typora 里面写好文章内容，完成之后，再到 hexo 新建文章，然后将之前写好的内容复制粘贴过来。</p>
+<p>但是图片的链接会发生变化，例如原本的链接是 ‘img&#x2F;2023&#x2F;mac-shortcut-key.webp’，复制后就变成了 ‘..&#x2F;..&#x2F;..&#x2F;Nutstore Files&#x2F;markdown&#x2F;img&#x2F;2023&#x2F;mac-shortcut-key.webp’ 这样的链接。想要让 hexo 渲染后能正常显示，需要把它变成 ‘&#x2F;img&#x2F;2023&#x2F;mac-shortcut-key.webp’</p>
+<p>所以我之前都是手动修改图片链接的。如果文章中就一两张图，我就使用鼠标滑动选中，再删除。如果图片比较多，那就查找替换，也就几秒能搞定。</p>
+<p>但这种机械重复的操作，肯定还是用代码来处理比较好。</p>
+<p>我猜想应该也有其他人，也有同样的困扰吧。之后我在插件中心 <a target="_blank" rel="noopener" href="https://hexo.io/plugins/">Plugins | Hexo</a>，搜索一下 img，我找到了这个项目：<a target="_blank" rel="noopener" href="https://github.com/cocowool/hexo-image-link">cocowool&#x2F;hexo-image-link: 当MD中引用本地文件时，处理生成的html中的图片链接</a></p>
+<p>查看他的代码，我发现里面使用了 <code>before_post_render</code> 这个参数。</p>
+<p>处理的过程就是在渲染之前，查找一下图片链接，再处理图片链接。</p>
+<p>于是我参考他的代码，最后达到了我的目的。这样会在渲染时，检查文章中所有的图片链接，如果发现有 <code>../../../Nutstore Files/markdown</code>，就将这个前缀去掉，但是不会修改源文件。我们的 md 文件还是原来的样子。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;before_post_render&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> str = <span class="string">&#x27;../../../Nutstore Files/markdown&#x27;</span></span><br><span class="line"></span><br><span class="line">    data.<span class="property">content</span> = data.<span class="property">content</span>.<span class="title function_">replace</span>(<span class="regexp">/!\[(.*?)\]\((.*?)\)/gi</span>, <span class="keyword">function</span>(<span class="params">match, p1, p2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p2.<span class="title function_">includes</span>(str)) &#123;</span><br><span class="line">            <span class="comment">// 替换图片链接</span></span><br><span class="line">            p2 = p2.<span class="title function_">replace</span>(str, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 生成对应的 &lt;img&gt; 标签</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">`&lt;img src=&quot;<span class="subst">$&#123;p2&#125;</span>&quot; alt=&quot;<span class="subst">$&#123;p1&#125;</span>&quot;&gt;`</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> match; <span class="comment">// 返回原始的 Markdown 图片语法</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>不过后来由于坚果云自动升级，图片链接的前缀已经不是 <code>../../../Nutstore Files/markdown</code> 了，所以我需要修改一下脚本。可能其他人的链接也跟我不一样，只需要修改一下就行。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
