@@ -5942,4 +5942,17 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mac 如何将 jfif 图片转换为 jpg</title>
+    <url>/2023/05/Mac-jfif/</url>
+    <content><![CDATA[<p>我发现 Mac 似乎无法直接预览 jfif 格式的图片，按空格键之后并不能显示图片内容。</p>
+<p>不过 Mac 自带的「预览」APP 是可以直接打开 jfif 图片的。我们需要选中图片，右键「打开方式」「其他…」</p>
+<p>之后在下方的「启用：」选择「所有应用程序」，再选「预览」就可以了。</p>
+<p><img src="/img/2023/preview-jfif.webp" alt="preview-jfif"></p>
+<p>此时我们就可以打开这样图片了，然后再通过「文件」「导出」就能保存为 jpg 或者 png 了。</p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>

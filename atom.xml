@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-05-11T16:03:05.324Z</updated>
+  <updated>2023-05-12T16:39:48.785Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 如何将 jfif 图片转换为 jpg</title>
+    <link href="https://powersee.github.io/2023/05/Mac-jfif/"/>
+    <id>https://powersee.github.io/2023/05/Mac-jfif/</id>
+    <published>2023-05-12T16:39:11.000Z</published>
+    <updated>2023-05-12T16:39:48.785Z</updated>
+    
+    <content type="html"><![CDATA[<p>我发现 Mac 似乎无法直接预览 jfif 格式的图片，按空格键之后并不能显示图片内容。</p><p>不过 Mac 自带的「预览」APP 是可以直接打开 jfif 图片的。我们需要选中图片，右键「打开方式」「其他…」</p><p>之后在下方的「启用：」选择「所有应用程序」，再选「预览」就可以了。</p><p><img src="/img/2023/preview-jfif.webp" alt="preview-jfif"></p><p>此时我们就可以打开这样图片了，然后再通过「文件」「导出」就能保存为 jpg 或者 png 了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我发现 Mac 似乎无法直接预览 jfif 格式的图片，按空格键之后并不能显示图片内容。&lt;/p&gt;
+&lt;p&gt;不过 Mac 自带的「预览」APP 是可以直接打开 jfif 图片的。我们需要选中图片，右键「打开方式」「其他…」&lt;/p&gt;
+&lt;p&gt;之后在下方的「启用：」选择「所有应用程序</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>威联通 qnap 定时执行 Python 脚本</title>
@@ -460,29 +484,6 @@
     
     
     <category term="web" scheme="https://powersee.github.io/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 提取图片中的文字，断网也能用</title>
-    <link href="https://powersee.github.io/2023/04/mac-image-to-text/"/>
-    <id>https://powersee.github.io/2023/04/mac-image-to-text/</id>
-    <published>2023-04-19T16:01:02.000Z</published>
-    <updated>2023-04-23T04:09:57.406Z</updated>
-    
-    <content type="html"><![CDATA[<p>我之前一直以为这个功能是 iOS 才能用的，因为以前有看到 iOS 相关的介绍。</p><p>没想到 Mac 其实也可以使用。方法是：选中一张图片，按空格键预览，之后按 command + A 这两颗按键，也就是全选嘛，图片中的文字就会高亮。然后再按 command + C  复制即可。</p><p><img src="/img/2023/preview-cmd-a.webp" alt="preview-cmd-a"></p><p>了解了一下，原来是 macOS Monterey 12 才有的功能。我之前的系统一直保留在 Big Sur 11，所以没见过这样的功能。</p><p>然后我测试了一下，断网也可以使用的。而且也可以不用按 command + A，点击右下角的图标就行了。</p><p><img src="/img/2023/preview-button-text.webp" alt="preview-button-text"></p><p>或者直接用鼠标按住左键来选中文字即可。</p><p><img src="/img/2023/preview-select-text.webp" alt="preview-select-text"></p><p>官方介绍：<a href="https://support.apple.com/zh-cn/guide/preview/prvw625a5b2c/mac">在 Mac 上的“预览”中使用“实况文本”与照片中的文本交互 - 官方 Apple 支持 (中国)</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我之前一直以为这个功能是 iOS 才能用的，因为以前有看到 iOS 相关的介绍。&lt;/p&gt;
-&lt;p&gt;没想到 Mac 其实也可以使用。方法是：选中一张图片，按空格键预览，之后按 command + A 这两颗按键，也就是全选嘛，图片中的文字就会高亮。然后再按 command + </summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
