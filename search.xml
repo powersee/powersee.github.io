@@ -5914,4 +5914,32 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>威联通 qnap 定时执行 Python 脚本</title>
+    <url>/2023/05/qnap-crontab/</url>
+    <content><![CDATA[<p>在上期 <a href="/2023/05/qnap-python3">威联通 qnap 使用 Python3</a> 已经弄明白，怎么在 shell 里使用 Python3 了。但是我想要的是能够定时执行 Python3 脚本。</p>
+<p>通过执行 <code>pip3 -V</code> 可以查找到它在哪个位置。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># pip3 -V</span><br><span class="line">pip 22.0.4 from /opt/python3/lib/python3.10/site-packages/pip (python 3.10)</span><br><span class="line">[/share/CACHEDEV1_DATA/.qpkg/Python3] # which python3</span><br><span class="line">/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/python3</span><br></pre></td></tr></table></figure>
+
+<p>直接使用 <code>pip3 install xxx</code> 来安装模块的话，是安装到 <code>/opt/python3/lib/python3.10/site-packages/</code> 里面的。</p>
+<p>而且它提示我更新 pip 版本给的命令是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/opt/python3/bin/python3.10 -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<p>跟我预期的不一样，我还以为会使用 <code>/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/python3.10</code> 呢。</p>
+<p>查询一下，发现 <code>/opt/python3/bin/python3.10</code> 并不是软链接。那为什么 <code>/opt/python3/bin/</code> 里面的内容和 <code>/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/</code> 一模一样呢？</p>
+<p>后来我知道了，原来 <code>/opt/python3</code> 就是一个符号链接而已。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ls -alh /opt/python3</span><br><span class="line">lrwxrwxrwx 1 admin administrators 43 2023-05-04 07:15 /opt/python3 -&gt; /share/CACHEDEV1_DATA/.qpkg/Python3/python3/</span><br></pre></td></tr></table></figure>
+
+<p>为了命令比较简短一些，我还是用 <code>/opt/python3/bin/python3</code></p>
+<p>执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<p>添加定时任务，例如我让它每天早上 7 点 18 分自动执行一个 Python 脚本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">18 7 * * * /opt/python3/bin/python3 /share/CACHEDEV1_DATA/Multimedia/powersee_script.py</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>

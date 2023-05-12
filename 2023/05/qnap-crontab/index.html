@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>威联通 qnap 定时执行 Python 脚本</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    威联通 qnap 定时执行 Python 脚本
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-05-11T16:01:33.000Z" itemprop="datePublished">2023-05-12</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>在上期 <a href="/2023/05/qnap-python3">威联通 qnap 使用 Python3</a> 已经弄明白，怎么在 shell 里使用 Python3 了。但是我想要的是能够定时执行 Python3 脚本。</p>
+<p>通过执行 <code>pip3 -V</code> 可以查找到它在哪个位置。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># pip3 -V</span><br><span class="line">pip 22.0.4 from /opt/python3/lib/python3.10/site-packages/pip (python 3.10)</span><br><span class="line">[/share/CACHEDEV1_DATA/.qpkg/Python3] # which python3</span><br><span class="line">/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/python3</span><br></pre></td></tr></table></figure>
+
+<p>直接使用 <code>pip3 install xxx</code> 来安装模块的话，是安装到 <code>/opt/python3/lib/python3.10/site-packages/</code> 里面的。</p>
+<p>而且它提示我更新 pip 版本给的命令是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/opt/python3/bin/python3.10 -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<p>跟我预期的不一样，我还以为会使用 <code>/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/python3.10</code> 呢。</p>
+<p>查询一下，发现 <code>/opt/python3/bin/python3.10</code> 并不是软链接。那为什么 <code>/opt/python3/bin/</code> 里面的内容和 <code>/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/</code> 一模一样呢？</p>
+<p>后来我知道了，原来 <code>/opt/python3</code> 就是一个符号链接而已。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ls -alh /opt/python3</span><br><span class="line">lrwxrwxrwx 1 admin administrators 43 2023-05-04 07:15 /opt/python3 -&gt; /share/CACHEDEV1_DATA/.qpkg/Python3/python3/</span><br></pre></td></tr></table></figure>
+
+<p>为了命令比较简短一些，我还是用 <code>/opt/python3/bin/python3</code></p>
+<p>执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<p>添加定时任务，例如我让它每天早上 7 点 18 分自动执行一个 Python 脚本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">18 7 * * * /opt/python3/bin/python3 /share/CACHEDEV1_DATA/Multimedia/powersee_script.py</span><br></pre></td></tr></table></figure>
+
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 也放到 腾讯云 cos
+</script><script type="text/javascript" src="https://blog-img-1259157239.cos.ap-guangzhou.myqcloud.com/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
