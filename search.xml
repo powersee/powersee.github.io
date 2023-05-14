@@ -5948,11 +5948,72 @@ border-radius: 4px;
     <content><![CDATA[<p>我发现 Mac 似乎无法直接预览 jfif 格式的图片，按空格键之后并不能显示图片内容。</p>
 <p>不过 Mac 自带的「预览」APP 是可以直接打开 jfif 图片的。我们需要选中图片，右键「打开方式」「其他…」</p>
 <p>之后在下方的「启用：」选择「所有应用程序」，再选「预览」就可以了。</p>
-<p><img src="/img/2023/preview-jfif.webp" alt="preview-jfif"></p>
+<p><img src="/img/2023/preview-jfif-shadow.webp" alt="preview-jfif"></p>
 <p>此时我们就可以打开这样图片了，然后再通过「文件」「导出」就能保存为 jpg 或者 png 了。</p>
 ]]></content>
       <tags>
         <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>威联通 qnap 使用 NFS 共享文件</title>
+    <url>/2023/05/qnap-nfs/</url>
+    <content><![CDATA[<p>在威联通的控制台里面，提供4种文件共享方式：Win&#x2F;Mac&#x2F;NFS&#x2F;WebDAV</p>
+<p>其中 Windows 的 smb 是最通用，我之前也是一直使用 smb 而已，毕竟 win 和 mac 都能用。</p>
+<p>最近我想研究一下怎么开启 nfs 服务，让我的芝杜播放器可以访问威联通里的视频。</p>
+<p>首先到控制台里面，「激活NFS v2&#x2F;v3服务」，「激活NFS v4服务」两个勾我都打上了。之后再点击一下底部的「应用」。</p>
+<p><img src="/img/2023/qnap-nfs-enable.png.webp" alt="qnap-nfs-enable.png"></p>
+<p>这么多版本，那它们的区别是什么呢？我到网上搜索一番。</p>
+<p>之后找到了一篇文章：<a href="https://blog.csdn.net/qq_20332637/article/details/107796651">NFS各个版本之间的比较_nfsv3和nfsv4的区别</a></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>版本</th>
+<th>RFC</th>
+<th>时间</th>
+<th>页数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>NFSv2</td>
+<td>rfc1094</td>
+<td>1989年3月</td>
+<td>27页</td>
+</tr>
+<tr>
+<td>2</td>
+<td>NFSv3</td>
+<td>rfc1813</td>
+<td>1995年6月</td>
+<td>126页</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NFSv4.0</td>
+<td>rfc3530</td>
+<td>2003年4月</td>
+<td>275页</td>
+</tr>
+<tr>
+<td>4</td>
+<td>NFSv4.1</td>
+<td>rfc5661</td>
+<td>2010年1月</td>
+<td>617页</td>
+</tr>
+</tbody></table>
+<p>了解到的是：每个版本都在之前版本的基础上进行了改进，增加了新的功能和特性，提高了性能和安全性。</p>
+<p>此时只是开启了 NFS 服务，还需要修改共享文件夹的权限。</p>
+<p>到「控制台」「权限」「共享文件夹」里面，对想要共享的文件夹进行权限修改。例如我想改「Download」这个文件夹，需要点击右侧操作的第二个图标。然后按照下图这样修改。</p>
+<p><img src="/img/2023/qnap-nfs-permission.png.webp" alt="qnap-nfs-permission.png"></p>
+<p>IP 地址我填 <code>192.168.68.1/24</code> 也就是说我路由器里的所有设备都可以访问。因为 IP 地址是 32 位的，<code>/24</code> 就是说只要 IP 地址是 <code>192.168.68.</code> 开头的，都可以访问。</p>
+<p>当然我们也可以设置只有一个 IP 可以访问，例如填写个 <code>192.168.68.123</code> 这样。</p>
+<p>由于我只是想播放 nas 里面的视频而已，所以给只读权限就够了。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
