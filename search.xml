@@ -6016,4 +6016,33 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JavaScript 的 some 方法</title>
+    <url>/2023/05/javascript-some/</url>
+    <content><![CDATA[<p>假如我有一段字符串，我需要判断它是否以 one 开头的，可以这样写</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (str.<span class="title function_">startsWith</span>(<span class="string">&#x27;one&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>假如我还需要判断是否以 two 开头：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (str.<span class="title function_">startsWith</span>(<span class="string">&#x27;one&#x27;</span>) || str.<span class="title function_">startsWith</span>(<span class="string">&#x27;two&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>如果后面还需要继续加，岂不是要写很多个 startsWith ？</p>
+<p>更好的做法是使用 some() 方法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> prefixes = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;three body&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (prefixes.<span class="title function_">some</span>(<span class="function"><span class="params">prefix</span> =&gt;</span> str.<span class="title function_">startsWith</span>(prefix))) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(str)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此处定义一个数组，用 some() 方法遍历数组中的每一个元素。如果存在任何一个前缀与字符串匹配，则返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>上面的代码，最后会打印出 str 的值，如果我还想获得 prefix 的值，此时是 three，可以这么写</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> prefixes = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;one three body&#x27;</span>;</span><br><span class="line"></span><br><span class="line">prefixes.<span class="title function_">some</span>(<span class="function"><span class="params">prefix</span> =&gt;</span> &#123;</span><br><span class="line">    str.<span class="title function_">startsWith</span>(prefix) ? </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;prefix&#125;</span> match ⭐️⭐️⭐️`</span>) : </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(prefix);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ? : 是 if else 的简短写法</span></span><br></pre></td></tr></table></figure>
+
+<p>此时输出的结果是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">one match ⭐️⭐️⭐️</span><br><span class="line">two</span><br><span class="line">three</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，明明数组中第一个元素已经匹配到了，但是后面的元素还是继续判断。如果想要匹配到之后，后面的不判断，需要加一个 return。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> prefixes = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;one three body&#x27;</span>;</span><br><span class="line"></span><br><span class="line">prefixes.<span class="title function_">some</span>(<span class="function"><span class="params">prefix</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (str.<span class="title function_">startsWith</span>(prefix))&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;prefix&#125;</span> match ⭐️⭐️⭐️`</span>); </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(prefix);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>测试的时候我使用这个网站：<a href="https://rextester.com/l/nodejs_online_compiler">compile nodejs online (rextester.com)</a></p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
 </search>
