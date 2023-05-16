@@ -5937,6 +5937,7 @@ border-radius: 4px;
 <p>添加定时任务，例如我让它每天早上 7 点 18 分自动执行一个 Python 脚本。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">18 7 * * * /opt/python3/bin/python3 /share/CACHEDEV1_DATA/Multimedia/powersee_script.py</span><br></pre></td></tr></table></figure>
 
+<p>这样添加重启机器后任务就没了，详见 <a href="/2023/05/qnap-crontab/">威联通添加 crontab 任务正确的做法</a>。</p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
@@ -6043,6 +6044,22 @@ border-radius: 4px;
 ]]></content>
       <tags>
         <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>威联通添加 crontab 任务正确的做法</title>
+    <url>/2023/05/qnap-crontab2/</url>
+    <content><![CDATA[<p><a href="/2023/05/qnap-crontab/">之前的文章</a> 我在威联通里面直接用 <code>crontab -e</code> 添加定时任务，机器重启之后就会被覆盖掉。看来这种方式添加的任务不能持久保存。</p>
+<p>想要永久保存，需要编辑 &#x2F;etc&#x2F;config&#x2F;crontab，可以使用 vi 或者 nano。</p>
+<p>添加好任务后，执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crontab /etc/config/crontab &amp;&amp; /etc/init.d/crond.sh restart</span><br></pre></td></tr></table></figure>
+
+<p>来重启 cron 守护进程。</p>
+<p>这样重启机器任务也依然还在。</p>
+<p>参考官方文档：<a href="https://wiki.qnap.com/wiki/Add_items_to_crontab">Add items to crontab - QNAPedia</a></p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
