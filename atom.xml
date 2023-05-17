@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-05-16T09:07:59.236Z</updated>
+  <updated>2023-05-17T03:31:57.405Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>达芬奇如何处理升格、高帧率视频？</title>
+    <link href="https://powersee.github.io/2023/05/DaVinci-High-frame-rate/"/>
+    <id>https://powersee.github.io/2023/05/DaVinci-High-frame-rate/</id>
+    <published>2023-05-17T03:29:47.000Z</published>
+    <updated>2023-05-17T03:31:57.405Z</updated>
+    
+    <content type="html"><![CDATA[<p>假如我拍摄了一段 50 帧的视频，时长为 30 秒。此时如果我将视频放入时间线，那么肯定是占用 30 秒的时长。</p><p>由于我的时间线是设置 25 帧的，所以这段 50 帧的视频，我其实是可以让它以 50% 的速度播放的，这样 30 秒的视频就可以变成 60 秒了。</p><p>但如果我直接在时间线上，选中素材右键选择「更改片段速度」，将速度改为 50%，那么会发现，变成 12.5 帧每秒了。</p><p><img src="/img/2023/change-speed.jpg" alt="change-speed"></p><p>此时播放视频我们也可以明显感受到卡顿。</p><p>其实正确的做法是，在「媒体池」选中素材，右键选择「片段属性」，在「视频」标签下更改「视频帧率」的值。例如我改为 25。</p><p><img src="/img/2023/clip-attributes.jpg" alt="clip-attributes"></p><p>之后只需要将视频素材从媒体池，拖到时间线上，就会发现原来 30 秒的视频现在变成 60 秒了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;假如我拍摄了一段 50 帧的视频，时长为 30 秒。此时如果我将视频放入时间线，那么肯定是占用 30 秒的时长。&lt;/p&gt;
+&lt;p&gt;由于我的时间线是设置 25 帧的，所以这段 50 帧的视频，我其实是可以让它以 50% 的速度播放的，这样 30 秒的视频就可以变成 60 秒了。</summary>
+      
+    
+    
+    
+    
+    <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
+    
+  </entry>
   
   <entry>
     <title>威联通添加 crontab 任务正确的做法</title>
@@ -460,29 +483,6 @@
     <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
     <category term="SQL" scheme="https://powersee.github.io/tags/SQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>chkservice 图形化管理 systemd</title>
-    <link href="https://powersee.github.io/2023/04/chkservice/"/>
-    <id>https://powersee.github.io/2023/04/chkservice/</id>
-    <published>2023-04-23T16:09:15.000Z</published>
-    <updated>2023-04-23T16:11:09.485Z</updated>
-    
-    <content type="html"><![CDATA[<p>我觉得使用 systemctl 来管理 systemd 服务太繁琐了，想了解有没有什么工具，可以更加方便的管理。</p><p>于是通过 Google 搜 systemd gui 发现了 <a href="https://github.com/linuxenko/chkservice">chkservice</a></p><p>是一个开源项目，有 300 多颗星，不过好久没更新了。</p><p>我们可以直接使用 apt 来安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt install chkservice</span><br></pre></td></tr></table></figure><p>其它发行版可以编译后安装。</p><p>在终端直接执行 chkservice 就可以运行起来。</p><p><img src="/img/2023/chkservice.webp" alt="chkservice"></p><p>按上下键可以切换，这个不用说应该都会，但是其它的用法呢？GitHub 上面也没有文档。</p><p>其实只要我们输入 <code>?</code> 就能看到帮助菜单，也就是按住 shift 再按一下 <code>/?</code> 这颗按键。</p><p><img src="/img/2023/chkservice-help.webp" alt="chkservice-help"></p><p>挺好的，按 <code>s</code> 键可以启动或停止，空格键可以开启关闭「开机自启」。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我觉得使用 systemctl 来管理 systemd 服务太繁琐了，想了解有没有什么工具，可以更加方便的管理。&lt;/p&gt;
-&lt;p&gt;于是通过 Google 搜 systemd gui 发现了 &lt;a href=&quot;https://github.com/linuxenko/chkse</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   

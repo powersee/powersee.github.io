@@ -6062,4 +6062,20 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>达芬奇如何处理升格、高帧率视频？</title>
+    <url>/2023/05/DaVinci-High-frame-rate/</url>
+    <content><![CDATA[<p>假如我拍摄了一段 50 帧的视频，时长为 30 秒。此时如果我将视频放入时间线，那么肯定是占用 30 秒的时长。</p>
+<p>由于我的时间线是设置 25 帧的，所以这段 50 帧的视频，我其实是可以让它以 50% 的速度播放的，这样 30 秒的视频就可以变成 60 秒了。</p>
+<p>但如果我直接在时间线上，选中素材右键选择「更改片段速度」，将速度改为 50%，那么会发现，变成 12.5 帧每秒了。</p>
+<p><img src="/img/2023/change-speed.jpg" alt="change-speed"></p>
+<p>此时播放视频我们也可以明显感受到卡顿。</p>
+<p>其实正确的做法是，在「媒体池」选中素材，右键选择「片段属性」，在「视频」标签下更改「视频帧率」的值。例如我改为 25。</p>
+<p><img src="/img/2023/clip-attributes.jpg" alt="clip-attributes"></p>
+<p>之后只需要将视频素材从媒体池，拖到时间线上，就会发现原来 30 秒的视频现在变成 60 秒了。</p>
+]]></content>
+      <tags>
+        <tag>视频</tag>
+      </tags>
+  </entry>
 </search>
