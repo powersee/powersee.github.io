@@ -6078,4 +6078,44 @@ border-radius: 4px;
         <tag>视频</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Windows 快捷方式如何使用相对路径</title>
+    <url>/2023/06/windows-quick-access-relative-paths/</url>
+    <content><![CDATA[<p>现在我的有一个 a.exe 的程序，放在 C:\bin 里面。</p>
+<p>直接选中按右键，在菜单中选择「创建快捷方式」，那么我们可以得到一个名为<code>a.exe - 快捷方式</code>的文件。此时它的属性是这样的</p>
+<p><img src="/img/2023/image-20230618212051614.png" alt="image-20230618212051614"></p>
+<p>可以观察到「目标」和「起始位置」都写上了完整路径。因此我们把这个快捷方式，放到其它地方，也可以双击来打开程序。</p>
+<p>偶然间注意到，还有个备注选项。我在上面填写上 hehe，那么当我的鼠标放到快捷方式上面时，就会出现备注信息。</p>
+<p><img src="/img/2023/image-20230618212612322.png" alt="image-20230618212612322"></p>
+<p>想要使用相对路径，需要先把「起始位置」的内容删了。然后在「目标」后面的框加上 explorer.exe （注意有一个空格），然后再加上「要执行的程序相对于快捷方式的位置」。填写好后点右下角的「应用」。会自动加上「C:\Windows\」，并且图标也变成资源管理器的了。</p>
+<p>这样一个使用相对路径的快捷方式就创建好了，我的用途是放在移动硬盘中，方便我在不同的电脑使用。</p>
+<p><img src="/img/2023/image-20230618213144445.png" alt="image-20230618213144445"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript 拼接百度网盘链接</title>
+    <url>/2023/05/js-baidu-netdisk-link/</url>
+    <content><![CDATA[<p>有时在网页中，看到别人分享百度网盘链接。一般情况下，我点击链接之后，还需要输入提取码，才可以看到别人分享的文件。</p>
+<p>我觉得应该可以通过代码，来减少一些步骤。举个例子，例如现在有这样的链接和提取码</p>
+<blockquote>
+<p><a href="https://pan.baidu.com/s/powersee_xxxx">https://pan.baidu.com/s/powersee_xxxx</a></p>
+<p>提取码: psee</p>
+</blockquote>
+<p>那么只需要把链接改为 <a href="https://pan.baidu.com/s/powersee_xxxx?pwd=psee">https://pan.baidu.com/s/powersee_xxxx?pwd=psee</a> 就不需要手动输出提取码了。就是在原本链接后面加上「?pwd&#x3D;提取码」。</p>
+<p>使用这样的代码可以实现：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> link_area = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.link_area&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> d_link = link_area.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;a&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> link_key = link_area.<span class="property">innerText</span>.<span class="title function_">match</span>(<span class="string">&#x27;提取码: (....)&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">d_link.<span class="property">target</span>=<span class="string">&#x27;_blank&#x27;</span>;</span><br><span class="line">d_link.<span class="property">href</span> += <span class="string">&#x27;?pwd=&#x27;</span> + link_key</span><br></pre></td></tr></table></figure>
+
+<p>不过这样只能处理第一个链接。怎么修改代码让它可以处理多个链接？</p>
+<p>思路：先查找到所有链接，再查找所有 「提取码」 ，只有再使用 for 循环遍历处理链接。最终代码如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> link_area = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.link_area&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> d_link = link_area.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> link_key = link_area.<span class="property">innerText</span>.<span class="title function_">match</span>(<span class="regexp">/提取码: (....)/g</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; d_link.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  d_link[i].<span class="property">target</span>=<span class="string">&#x27;_blank&#x27;</span>;</span><br><span class="line">  d_link[i].<span class="property">href</span> += <span class="string">&#x27;?pwd=&#x27;</span> + link_key[i].<span class="title function_">replace</span>(<span class="string">&#x27;提取码: &#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>获取提取码部分比较麻烦，最终采用 replace 去掉多余的文字。</p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-05-17T03:31:57.405Z</updated>
+  <updated>2023-06-24T04:47:50.963Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows 快捷方式如何使用相对路径</title>
+    <link href="https://powersee.github.io/2023/06/windows-quick-access-relative-paths/"/>
+    <id>https://powersee.github.io/2023/06/windows-quick-access-relative-paths/</id>
+    <published>2023-06-24T04:44:00.000Z</published>
+    <updated>2023-06-24T04:47:50.963Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在我的有一个 a.exe 的程序，放在 C:\bin 里面。</p><p>直接选中按右键，在菜单中选择「创建快捷方式」，那么我们可以得到一个名为<code>a.exe - 快捷方式</code>的文件。此时它的属性是这样的</p><p><img src="/img/2023/image-20230618212051614.png" alt="image-20230618212051614"></p><p>可以观察到「目标」和「起始位置」都写上了完整路径。因此我们把这个快捷方式，放到其它地方，也可以双击来打开程序。</p><p>偶然间注意到，还有个备注选项。我在上面填写上 hehe，那么当我的鼠标放到快捷方式上面时，就会出现备注信息。</p><p><img src="/img/2023/image-20230618212612322.png" alt="image-20230618212612322"></p><p>想要使用相对路径，需要先把「起始位置」的内容删了。然后在「目标」后面的框加上 explorer.exe （注意有一个空格），然后再加上「要执行的程序相对于快捷方式的位置」。填写好后点右下角的「应用」。会自动加上「C:\Windows\」，并且图标也变成资源管理器的了。</p><p>这样一个使用相对路径的快捷方式就创建好了，我的用途是放在移动硬盘中，方便我在不同的电脑使用。</p><p><img src="/img/2023/image-20230618213144445.png" alt="image-20230618213144445"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;现在我的有一个 a.exe 的程序，放在 C:\bin 里面。&lt;/p&gt;
+&lt;p&gt;直接选中按右键，在菜单中选择「创建快捷方式」，那么我们可以得到一个名为&lt;code&gt;a.exe - 快捷方式&lt;/code&gt;的文件。此时它的属性是这样的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript 拼接百度网盘链接</title>
+    <link href="https://powersee.github.io/2023/05/js-baidu-netdisk-link/"/>
+    <id>https://powersee.github.io/2023/05/js-baidu-netdisk-link/</id>
+    <published>2023-05-24T15:55:58.000Z</published>
+    <updated>2023-05-27T07:36:20.778Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时在网页中，看到别人分享百度网盘链接。一般情况下，我点击链接之后，还需要输入提取码，才可以看到别人分享的文件。</p><p>我觉得应该可以通过代码，来减少一些步骤。举个例子，例如现在有这样的链接和提取码</p><blockquote><p><a href="https://pan.baidu.com/s/powersee_xxxx">https://pan.baidu.com/s/powersee_xxxx</a></p><p>提取码: psee</p></blockquote><p>那么只需要把链接改为 <a href="https://pan.baidu.com/s/powersee_xxxx?pwd=psee">https://pan.baidu.com/s/powersee_xxxx?pwd=psee</a> 就不需要手动输出提取码了。就是在原本链接后面加上「?pwd&#x3D;提取码」。</p><p>使用这样的代码可以实现：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> link_area = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.link_area&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> d_link = link_area.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;a&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> link_key = link_area.<span class="property">innerText</span>.<span class="title function_">match</span>(<span class="string">&#x27;提取码: (....)&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">d_link.<span class="property">target</span>=<span class="string">&#x27;_blank&#x27;</span>;</span><br><span class="line">d_link.<span class="property">href</span> += <span class="string">&#x27;?pwd=&#x27;</span> + link_key</span><br></pre></td></tr></table></figure><p>不过这样只能处理第一个链接。怎么修改代码让它可以处理多个链接？</p><p>思路：先查找到所有链接，再查找所有 「提取码」 ，只有再使用 for 循环遍历处理链接。最终代码如下：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> link_area = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.link_area&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> d_link = link_area.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> link_key = link_area.<span class="property">innerText</span>.<span class="title function_">match</span>(<span class="regexp">/提取码: (....)/g</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; d_link.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  d_link[i].<span class="property">target</span>=<span class="string">&#x27;_blank&#x27;</span>;</span><br><span class="line">  d_link[i].<span class="property">href</span> += <span class="string">&#x27;?pwd=&#x27;</span> + link_key[i].<span class="title function_">replace</span>(<span class="string">&#x27;提取码: &#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>获取提取码部分比较麻烦，最终采用 replace 去掉多余的文字。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;有时在网页中，看到别人分享百度网盘链接。一般情况下，我点击链接之后，还需要输入提取码，才可以看到别人分享的文件。&lt;/p&gt;
+&lt;p&gt;我觉得应该可以通过代码，来减少一些步骤。举个例子，例如现在有这样的链接和提取码&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http</summary>
+      
+    
+    
+    
+    
+    <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>达芬奇如何处理升格、高帧率视频？</title>
@@ -434,55 +483,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决 DBeaver 只显示默认的一个数据库 postgres</title>
-    <link href="https://powersee.github.io/2023/04/DBeaver-postgresql/"/>
-    <id>https://powersee.github.io/2023/04/DBeaver-postgresql/</id>
-    <published>2023-04-25T17:04:46.000Z</published>
-    <updated>2023-04-25T17:16:18.618Z</updated>
-    
-    <content type="html"><![CDATA[<p>右键连接，编辑连接。在「连接设置」「PostgreSQL」里面，勾选上「显示非缺省的数据库」就可以了。</p><p><img src="/img/2023/postgresql-show-all-database.webp" alt="postgresql-show-all-database"></p><p>重新连接就可以看到所有数据库了。</p><p><img src="/img/2023/postgres-all-database.jpg" alt="postgres-all-database"></p><p>如果是在英文语境下，它的设置是 <code>Show all databases</code>，感觉就离谱，这玩意是怎么翻译成「显示非缺省的数据库」的？</p><p><img src="/img/2023/show-all-databases.jpg" alt="show-all-databases"></p><p>问题是没文化的我，还不知道「缺省」是什么意思，翻译一下，才知道是 default……</p><p><img src="/img/2023/default.webp" alt="default"></p><blockquote><p>缺省(quē shěng)，又译“默认”。</p><p>——百度百科</p></blockquote><p>知乎上也有不少的讨论：<a href="https://www.zhihu.com/question/20953160">「缺省」这个词是如何从英语 “Default” 翻译过来的？ - 知乎</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;右键连接，编辑连接。在「连接设置」「PostgreSQL」里面，勾选上「显示非缺省的数据库」就可以了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/postgresql-show-all-database.webp&quot; alt=&quot;postgresql-show-al</summary>
-      
-    
-    
-    
-    
-    <category term="SQL" scheme="https://powersee.github.io/tags/SQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 Docker 运行 PostgreSQL 数据库</title>
-    <link href="https://powersee.github.io/2023/04/docker-postgresql/"/>
-    <id>https://powersee.github.io/2023/04/docker-postgresql/</id>
-    <published>2023-04-24T16:00:24.000Z</published>
-    <updated>2023-04-24T16:03:11.899Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前发现很多开源项目都使用 postgresql 来存放数据，因此我认为很有必要学习看看。</p><p>一开始我使用 Rock 5B 本地安装 postgresql，安装的是 14 的版本。之后要修改配置文件，才能够外部访问。感觉还有挺多需要折腾的。</p><p>后来我觉得，还是用 Docker 运行一个来学习好了，快捷方便。而且用完直接删除就行。</p><p>我们可以到 <a href="https://hub.docker.com/_/postgres/tags">Docker Hub</a> 查看 Docker 镜像的情况。我拉取了 4 个镜像，看来用 alpine 标签的镜像最省空间。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker images postgres</span><br><span class="line">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE</span><br><span class="line">postgres     15        ceccf204404e   12 days ago     379MB</span><br><span class="line">postgres     15.0      027eba2e8939   6 months ago    377MB</span><br><span class="line">postgres     alpine    1149d285a5f5   15 months ago   209MB</span><br><span class="line">postgres     latest    07e2ee723e2d   15 months ago   374MB</span><br></pre></td></tr></table></figure><p>启动</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name=postgres-test -p 2345:5432 -e POSTGRES_PASSWORD=password postgres:alpine</span><br></pre></td></tr></table></figure><p>启动信息</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker logs postgres-test</span><br><span class="line">The files belonging to this database system will be owned by user &quot;postgres&quot;.</span><br><span class="line">This user must also own the server process.</span><br><span class="line"></span><br><span class="line">The database cluster will be initialized with locale &quot;en_US.utf8&quot;.</span><br><span class="line">The default database encoding has accordingly been set to &quot;UTF8&quot;.</span><br><span class="line">The default text search configuration will be set to &quot;english&quot;.</span><br><span class="line"></span><br><span class="line">Data page checksums are disabled.</span><br><span class="line"></span><br><span class="line">fixing permissions on existing directory /var/lib/postgresql/data ... ok</span><br><span class="line">creating subdirectories ... ok</span><br><span class="line">selecting dynamic shared memory implementation ... posix</span><br><span class="line">selecting default max_connections ... 100</span><br><span class="line">selecting default shared_buffers ... 128MB</span><br><span class="line">selecting default time zone ... UTC</span><br><span class="line">creating configuration files ... ok</span><br><span class="line">running bootstrap script ... ok</span><br><span class="line">sh: locale: not found</span><br><span class="line">2023-04-24 07:29:18.876 UTC [31] WARNING:  no usable system locales were found</span><br><span class="line">performing post-bootstrap initialization ... ok</span><br><span class="line">syncing data to disk ... ok</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Success. You can now start the database server using:</span><br><span class="line"></span><br><span class="line">    pg_ctl -D /var/lib/postgresql/data -l logfile start</span><br><span class="line"></span><br><span class="line">initdb: warning: enabling &quot;trust&quot; authentication for local connections</span><br><span class="line">You can change this by editing pg_hba.conf or using the option -A, or</span><br><span class="line">--auth-local and --auth-host, the next time you run initdb.</span><br><span class="line">waiting for server to start....2023-04-24 07:29:22.836 UTC [37] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit</span><br><span class="line">2023-04-24 07:29:22.862 UTC [37] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;</span><br><span class="line">2023-04-24 07:29:22.890 UTC [38] LOG:  database system was shut down at 2023-04-24 07:29:21 UTC</span><br><span class="line">2023-04-24 07:29:22.910 UTC [37] LOG:  database system is ready to accept connections</span><br><span class="line"> done</span><br><span class="line">server started</span><br><span class="line"></span><br><span class="line">/usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*</span><br><span class="line"></span><br><span class="line">waiting for server to shut down...2023-04-24 07:29:23.015 UTC [37] LOG:  received fast shutdown request</span><br><span class="line">.2023-04-24 07:29:23.017 UTC [37] LOG:  aborting any active transactions</span><br><span class="line">2023-04-24 07:29:23.019 UTC [37] LOG:  background worker &quot;logical replication launcher&quot; (PID 44) exited with exit code 1</span><br><span class="line">2023-04-24 07:29:23.021 UTC [39] LOG:  shutting down</span><br><span class="line">2023-04-24 07:29:23.080 UTC [37] LOG:  database system is shut down</span><br><span class="line"> done</span><br><span class="line">server stopped</span><br><span class="line"></span><br><span class="line">PostgreSQL init process complete; ready for start up.</span><br><span class="line"></span><br><span class="line">2023-04-24 07:29:23.207 UTC [1] LOG:  starting PostgreSQL 14.1 on x86_64-pc-linux-musl, compiled by gcc (Alpine 10.3.1_git20211027) 10.3.1 20211027, 64-bit</span><br><span class="line">2023-04-24 07:29:23.208 UTC [1] LOG:  listening on IPv4 address &quot;0.0.0.0&quot;, port 5432</span><br><span class="line">2023-04-24 07:29:23.208 UTC [1] LOG:  listening on IPv6 address &quot;::&quot;, port 5432</span><br><span class="line">2023-04-24 07:29:23.211 UTC [1] LOG:  listening on Unix socket &quot;/var/run/postgresql/.s.PGSQL.5432&quot;</span><br><span class="line">2023-04-24 07:29:23.238 UTC [49] LOG:  database system was shut down at 2023-04-24 07:29:23 UTC</span><br><span class="line">2023-04-24 07:29:23.257 UTC [1] LOG:  database system is ready to accept connections</span><br></pre></td></tr></table></figure><p>进入容器内的 shell，切换到 postgres 用户，切换到 SQL Shell(psql)</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker exec -it postgres-test bash</span><br><span class="line">bash-5.1# su postgres</span><br><span class="line">/ $ psql</span><br><span class="line">psql (14.1)</span><br><span class="line">Type &quot;help&quot; for help.</span><br><span class="line"></span><br><span class="line">postgres=#</span><br></pre></td></tr></table></figure><p>执行 <code>\l</code> 查看所有数据库，<code>\q</code> 退出 psql</p><p>如果我们想用图形化应用来连接 docker 中的 postgresql，需要用到刚才建立容器时使用的端口。例如我刚才用的是 <code>2345:5432</code>，那么我应该用此时服务器的 IP 地址和 2345 端口。</p><p>我使用的是免费的 <a href="https://dbeaver.io/">DBeaver</a>，它在 GitHub 上面有 3 万多颗星⭐️。</p><p>「新建数据库连接」选择 postgres，填写 IP 地址、端口和密码。</p><p><img src="/img/2023/postgresql-DBeaver.webp" alt="postgresql-DBeaver"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;目前发现很多开源项目都使用 postgresql 来存放数据，因此我认为很有必要学习看看。&lt;/p&gt;
-&lt;p&gt;一开始我使用 Rock 5B 本地安装 postgresql，安装的是 14 的版本。之后要修改配置文件，才能够外部访问。感觉还有挺多需要折腾的。&lt;/p&gt;
-&lt;p&gt;后来我</summary>
-      
-    
-    
-    
-    
-    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
-    
-    <category term="SQL" scheme="https://powersee.github.io/tags/SQL/"/>
     
   </entry>
   
