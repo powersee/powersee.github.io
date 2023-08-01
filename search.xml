@@ -6118,4 +6118,64 @@ border-radius: 4px;
         <tag>JavaScript</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何在 alpine docker 容器中开启 ssh</title>
+    <url>/2023/08/alpine-docker-ssh/</url>
+    <content><![CDATA[<p>由于目前绿联官方没有开启 ssh 的方法，这样导致我想通过 rsync 备份文件到 NAS 里就没法做到了。</p>
+<p>于是我想通过在 docker 里运行一个 alpine 容器，在容器里开启 ssh，而我只要将特定的目录挂载到容器内，就可以实现用 rsync 备份文件到 NAS。</p>
+<h3 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h3><p>先搜索并下载 alpine 容器镜像</p>
+<p><img src="/img/2023/download-alpine.webp" alt="download-alpine"></p>
+<p>之后点击创建，起一个名字</p>
+<p><img src="/img/2023/Create.webp" alt="Create"></p>
+<p>把 -i 和 -t 选上</p>
+<p><img src="/img/2023/alpine-it-shadow.webp" alt="alpine-it-shadow"></p>
+<p>网络选择 host，这样就不用去设置端口</p>
+<p><img src="/img/2023/network-host-shadow.webp" alt="network-host-shadow"></p>
+<p>存储空间，把想要操作的文件夹挂载到容器里面，我选择放在 &#x2F;mnt，注意后面要改为「读写」</p>
+<p><img src="/img/2023/storage.jpg" alt="storage"></p>
+<p>那么要填写的内容就这些而已，可以点下一步，完成创建后再启动，也可以勾选下方的「创建后启动容器」这个选项。</p>
+<h3 id="配置与开启-ssh"><a href="#配置与开启-ssh" class="headerlink" title="配置与开启 ssh"></a>配置与开启 ssh</h3><p>之后在「容器管理」中找到我们刚才创建的容器，在它启动的情况下，点击详情，然后到最后的终端这里。</p>
+<p><img src="/img/2023/ssh-and-rc.webp" alt="ssh-and-rc"></p>
+<p>使用 apk add 来安装应用，这样装上 openssh 和 openrc</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add openssh</span><br><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>OpenRC 是一个用于 Linux 系统的初始化系统和服务管理器。它最初是为 Gentoo Linux 开发的，后来也被广泛地用于其他 Linux 发行版，特别是一些轻量级的发行版，如 Alpine Linux。OpenRC 的目标是提供一种简单而可靠的初始化和服务管理解决方案，它与传统的 sysvinit 和较新的 systemd 相比，更轻量级且易于配置。</p>
+</blockquote>
+<p>之后修改 ssh 的配置文件，使用 vi 来打开</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<p>找到 #PermitRootLogin prohibit-password 把前面的 # 去掉，然后把 prohibit-password 改为 yes。再把 PasswordAuthentication yes 前面的 # 去掉。</p>
+<p><img src="/img/2023/sshd-config.webp" alt="sshd-config"></p>
+<p>让 sshd 在容器启动时自启动（可以理解为开机自启，把容器当成一台机器）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rc-update add sshd</span><br></pre></td></tr></table></figure>
+
+<p>此时如果直接用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rc-service sshd start</span><br></pre></td></tr></table></figure>
+
+<p>来启动 sshd 应该启动不了，会报错。需要先执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">touch /run/openrc/softlevel</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以启动了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rc-service sshd start</span><br></pre></td></tr></table></figure>
+
+<p>查看状态可以用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rc-service sshd status</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2023/rc-sshd-status.webp" alt="rc-sshd-status"></p>
+<p>此时就可以使用 ssh 来连接了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ ssh root@192.168.68.197</span><br><span class="line">The authenticity of host &#x27;192.168.68.197 (192.168.68.197)&#x27; can&#x27;t be established.</span><br><span class="line">ED25519 key fingerprint is SHA256:0h5hViR5234yJ3VqbuATQApvu+RONcbhhOygThKadjk.</span><br><span class="line">This key is not known by any other names</span><br><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="line">Warning: Permanently added &#x27;192.168.68.197&#x27; (ED25519) to the list of known hosts.</span><br><span class="line">root@192.168.68.197&#x27;s password:</span><br></pre></td></tr></table></figure>
+
+<p>但是容器的密码是什么呢？</p>
+<p>其实并没有密码，如果我们想要使用密码得自己设置一个，输入 passwd 就可以设置密码。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">/ <span class="comment"># passwd</span></span><br><span class="line">Changing password <span class="keyword">for</span> root</span><br><span class="line">New password: </span><br><span class="line">Bad password: too short</span><br><span class="line">Retype password: </span><br><span class="line">passwd: password <span class="keyword">for</span> root changed by root</span><br><span class="line">/ <span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以使用 root 用户名，加上自己设置的密码，来 ssh 连接上 alpine 容器。由于之前将 NAS 的特定文件夹挂载到 &#x2F;mnt，可以使用 ls &#x2F;mnt 命令，看看是否能在容器中看到 NAS 中的文件，可以的话就没问题了。</p>
+<p>参考文档：<a href="https://www.cnblogs.com/zpcdbky/p/15568702.html">Alpine容器安装运行ssh - 同勉共进 - 博客园</a></p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>NAS</tag>
+      </tags>
+  </entry>
 </search>
