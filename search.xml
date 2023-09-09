@@ -6178,4 +6178,41 @@ border-radius: 4px;
         <tag>NAS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何下载离线版 AMD 显卡驱动，以及旧版本驱动</title>
+    <url>/2023/09/download-amd-drive/</url>
+    <content><![CDATA[<p>在 AMD 的官网 <a href="https://www.amd.com/zh-hans/support">https://www.amd.com/zh-hans/support</a> 如果我们直接点击「下载 WINDOWS 驱动程序」，那么得到的是一个类似这样的 exe 文件</p>
+<blockquote>
+<p>amd-software-adrenalin-edition-23.9.1-minimalsetup-230905_web.exe</p>
+</blockquote>
+<p>文件大小只有几十 MB，而且使用它来安装驱动需要联网才行。</p>
+<p>那要怎样才能下载得到，像 Nvidia 驱动那样的完整驱动呢？离线也能安装的那种。</p>
+<p><img src="/img/2023/2023-09-08_14-10-18.png" alt="2023-09-08_14-10-18"></p>
+<p>我们先在下方选择我们的显卡，点击「提交」。然后便能得到不同操作系统的驱动下载链接。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Windows 11 - 64 位版本</span><br><span class="line">Windows 10 64 位版本</span><br><span class="line">Windows 7 64 位版本</span><br><span class="line">RHEL x86 64 位</span><br><span class="line">Ubuntu x86 64 位</span><br><span class="line">SLED/SLES 15</span><br></pre></td></tr></table></figure>
+
+<p>展开之后可以看到有</p>
+<ul>
+<li><strong>Auto-Detect and Install</strong></li>
+<li><strong>AMD Software: Adrenalin Edition</strong></li>
+<li><strong>AMD Software: PRO Edition</strong></li>
+</ul>
+<p>我们玩游戏的话一般选择 Adrenalin 版本，这样就能得到可以离线安装的显卡驱动了。</p>
+<p><img src="/img/2023/2023-09-08_14-15-44.png" alt="2023-09-08_14-15-44"></p>
+<p>不过这样下载的是最新版的驱动，如果我们想下载旧版的，可以点击 「驱动程序详细信息」下的 Release Notes，例如我这里点击之后，浏览器上方的地址栏就变成了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.amd.com/en/support/kb/release-notes/rn-rad-win-23-9-1</span><br></pre></td></tr></table></figure>
+
+<p>我们只需要更改链接最后面的数字就行，例如改为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.amd.com/en/support/kb/release-notes/rn-rad-win-23-8-1</span><br><span class="line">https://www.amd.com/en/support/kb/release-notes/rn-rad-win-23-5-1</span><br><span class="line">https://www.amd.com/en/support/kb/release-notes/rn-rad-win-22-5-1</span><br></pre></td></tr></table></figure>
+
+<p>之前看到有网友说 22.5.1 这个版本好像比较好，游戏帧数会比新版本的驱动高，适合给 RX580 这类显卡使用，不过我没试过。</p>
+<p>下载旧版本驱动点击 following links: 下方的链接即可。</p>
+<p><img src="/img/2023/2023-09-08_14-25-38.png" alt="2023-09-08_14-25-38"></p>
+<p>通过这种方法下载驱动，我们准备多个驱动，然后对比看看哪个好，毕竟 amd 的驱动更新确实比较频繁。留有完整的驱动安装包，要回退会比较方便。</p>
+<p>驱动安装好后，C 盘的 AMD 文件夹可以删除的。</p>
+]]></content>
+      <tags>
+        <tag>电脑</tag>
+      </tags>
+  </entry>
 </search>
