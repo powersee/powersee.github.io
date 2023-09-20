@@ -6215,4 +6215,20 @@ border-radius: 4px;
         <tag>电脑</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mac 如何隐藏状态栏的日期和时间</title>
+    <url>/2023/09/mac-hide-date/</url>
+    <content><![CDATA[<p>默认情况下，Mac 会在屏幕右上角，显示日期和时间。</p>
+<p><img src="/img/2023/Snipaste_23-09-19_07-59-14.jpg" alt="Snipaste_23-09-19_07-59-14"></p>
+<p>目前好像没有什么办法，可以将它完全隐藏起来。</p>
+<p>不过可以将它改为这样。</p>
+<p><img src="/img/2023/Snipaste_23-09-19_08-01-15.jpg" alt="Snipaste_23-09-19_08-01-15"></p>
+<p>也就是只剩一个模拟时钟来看时间，还是比较简洁的。</p>
+<p>具体的做法是，到系统设置里面，（以前叫「系统偏好设置」）找到时钟，把「时间」从「数码」改为「模拟」就行。</p>
+<p><img src="/img/2023/Mac-Time-Show.webp" alt="Mac-Time-Show"></p>
+]]></content>
+      <tags>
+        <tag>mac</tag>
+      </tags>
+  </entry>
 </search>
