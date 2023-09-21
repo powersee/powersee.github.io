@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-09-20T06:45:47.723Z</updated>
+  <updated>2023-09-21T08:51:06.232Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>剪映变得更好用了</title>
+    <link href="https://powersee.github.io/2023/09/better-capcut/"/>
+    <id>https://powersee.github.io/2023/09/better-capcut/</id>
+    <published>2023-09-21T08:43:57.000Z</published>
+    <updated>2023-09-21T08:51:06.232Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近剪映的两个更新，让我感觉有些视频，真的可以只用剪映来制作了。</p><p>首先是添加了快捷键，向前和向后修剪。</p><p><img src="/img/2023/left-right-cut.webp" alt="left-right-cut"></p><p>快捷键是 Q 和 W，和 pr 的是一样的，我平时使用它们的频率非常高，所以当初我使用 final cut pro 和 davinci Resolve 时，我都是通过自定义快捷键，让这个功能做到跟在 pr 的使用体验一样。</p><p>另一个也许不是最近添加的，不过我是最近才发现的——自定义码率。</p><p><img src="/img/2023/%E5%89%AA%E6%98%A0-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%A0%81%E7%8E%87.webp" alt="剪映-自定义码率"></p><p>以前它只有几个选项让我们选择而已，现在可以让我们自定义码率了，很好。</p><p>码率这方面，其实我以前很长一段时间，都是控制视频码率在 2800Kbps 左右，这样视频传 bilibili 就不会出现高码率的画质选项。</p><p>不过目前已经不这么做了，目前主要是设置 6800Kbps，B 站会出现高码率选项，有大会员的用户看起来会好一些。</p><p>所以以前剪映给的几个码率选项，我都是选择最低的，因为它的最低也比我原本用的高很多。</p><p>剪映最近添加这2个功能，都是我期待已久的，很棒，希望它能越做越好。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近剪映的两个更新，让我感觉有些视频，真的可以只用剪映来制作了。&lt;/p&gt;
+&lt;p&gt;首先是添加了快捷键，向前和向后修剪。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/left-right-cut.webp&quot; alt=&quot;left-right-cut&quot;&gt;&lt;/p&gt;
+&lt;p&gt;快</summary>
+      
+    
+    
+    
+    
+    <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
+    
+    <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 如何隐藏状态栏的日期和时间</title>
@@ -461,29 +488,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大聪明，用 js 替换图片链接，抛弃对象存储</title>
-    <link href="https://powersee.github.io/2023/04/js-replace-img-link/"/>
-    <id>https://powersee.github.io/2023/04/js-replace-img-link/</id>
-    <published>2023-04-29T16:03:57.000Z</published>
-    <updated>2023-04-29T16:10:29.090Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前讲到<a href="/2023/04/about-oss/">对象存储</a>，我使用了腾讯云的对象存储来当博客图床。</p><p>用了一段时间后，我还是决定弃用了。一方面是担心待会别有用心的人，来盗刷我的对象存储流量，毕竟网上有很多人遇过了，谁叫对象存储是可以欠费的呢。</p><p>另一方面，我分析一下，现在对象存储选的是广州的服务器，而我自己有一台香港的服务器。如果我将博客图片，放到这台香港服务器上面，速度方面还是绰绰有余的。</p><p>那要怎么将图片放到自己的服务器上呢？🤔如果是其他人，可能需要去装个图床应用之类的。但是我不需要，因为我的备份博客就在这台服务器上面。😉</p><p><a href="https://powersee.github.io/">https://powersee.github.io/</a> 这个网址访问的是 GitHub Pages 上的网页文件。</p><p>而 <a href="https://blog.powersee.top/">https://blog.powersee.top/</a> 访问的是我服务器上面的网页文件。</p><p>我实现备份博客的方法也很简单，因为我的博客托管在 GitHub 上面，所以我在服务器上面设置定时任务，每天凌晨自动执行 git pull  来更新博客。🤗</p><p>那么我博客上的图片，服务器上都是有的。</p><p>此时简单的方法就是，将文章中的图片链接，都加上备份博客 <a href="https://blog.powersee.top/">https://blog.powersee.top/</a> 的前缀，在 vscode 里面批量替换可以很快处理完。</p><p>但是这样有些问题，就是当我写好文章后，在本地执行 <code>hexo s</code> 来预览时，图片就加载不出来，因为此时图片还没有传到服务器上。</p><p>所以我的想法是，当通过 <a href="https://powersee.github.io/">https://powersee.github.io/</a> 访问我的博客时，才替换图片链接。通过其它的域名访问，不会替换。</p><p>这样的要求，就需要使用 JavaScript 来实现。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">host</span> == <span class="string">&quot;powersee.github.io&quot;</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取当前网页中 body 的所有 img 标签</span></span><br><span class="line"><span class="keyword">const</span> imgElements = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;body img&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历每个 img 标签</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; imgElements.<span class="property">length</span>; i++) &#123;</span><br><span class="line"><span class="keyword">const</span> imgElement = imgElements[i];</span><br><span class="line"><span class="keyword">const</span> src = imgElement.<span class="title function_">getAttribute</span>(<span class="string">&#x27;src&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查 img 标签的 src 是否以 /img/ 开头</span></span><br><span class="line"><span class="keyword">if</span> (src.<span class="title function_">startsWith</span>(<span class="string">&#x27;/img/&#x27;</span>)) &#123;</span><br><span class="line">imgElement.<span class="title function_">setAttribute</span>(<span class="string">&#x27;src&#x27;</span>, src.<span class="title function_">replace</span>(<span class="string">&#x27;/img/&#x27;</span>, <span class="string">&#x27;https://blog.powersee.top/img/&#x27;</span>));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>于是我在 js 文件中加入这段代码，就实现了我的目的。😘</p><p>假如我以后不需要替换了，那么只需要去掉这段代码就行。😎</p><p>如果我以后换域名了，也只需要修改这段代码，不需要去替换所有的文章原文本。</p><p>我个人对此还是比较满意的。😊</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;之前讲到&lt;a href=&quot;/2023/04/about-oss/&quot;&gt;对象存储&lt;/a&gt;，我使用了腾讯云的对象存储来当博客图床。&lt;/p&gt;
-&lt;p&gt;用了一段时间后，我还是决定弃用了。一方面是担心待会别有用心的人，来盗刷我的对象存储流量，毕竟网上有很多人遇过了，谁叫对象存储是可以欠费</summary>
-      
-    
-    
-    
-    
-    <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
     
   </entry>
   
