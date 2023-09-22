@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-09-21T08:51:06.232Z</updated>
+  <updated>2023-09-22T02:43:03.442Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>达芬奇 18.6 史诗级更新，增加文字外描边</title>
+    <link href="https://powersee.github.io/2023/09/davinci-outline/"/>
+    <id>https://powersee.github.io/2023/09/davinci-outline/</id>
+    <published>2023-09-22T02:42:20.000Z</published>
+    <updated>2023-09-22T02:43:03.442Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 2023 年 9 月，知名剪辑、调色软件达芬奇 DaVinCi Resolve 更新到了 18.6 版本。</p><p>这个版本更新中，对我最有用的就是新增加的文本外描边功能。</p><p><img src="/img/2023/Snipaste_23-09-18_10-05-38.jpg" alt="Snipaste_23-09-18_10-05-38"></p><p>这里我弄了个对比，可以发现它原本的内描边，是观感最差的，会导致文字笔画变得非常的细，很难看。反正我使用达芬奇，作为主力剪辑工具已经两年了，应该还没在视频中使用过它这个内描边功能。</p><p><img src="/img/2023/Snipaste_23-09-18_10-03-05.jpg" alt="Snipaste_23-09-18_10-03-05"></p><p>最近的更新就是在描边选项中的下方，添加了一个「仅外部」的勾选框。勾选上之后就是外描边了，就可以和其它剪辑软件一样了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在 2023 年 9 月，知名剪辑、调色软件达芬奇 DaVinCi Resolve 更新到了 18.6 版本。&lt;/p&gt;
+&lt;p&gt;这个版本更新中，对我最有用的就是新增加的文本外描边功能。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/Snipaste_23-09-18_</summary>
+      
+    
+    
+    
+    
+    <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
+    
+  </entry>
   
   <entry>
     <title>剪映变得更好用了</title>
@@ -465,29 +489,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 控制外接显示器亮度 MonitorControl</title>
-    <link href="https://powersee.github.io/2023/05/MonitorControl/"/>
-    <id>https://powersee.github.io/2023/05/MonitorControl/</id>
-    <published>2023-05-01T01:59:25.000Z</published>
-    <updated>2023-05-01T04:43:38.264Z</updated>
-    
-    <content type="html"><![CDATA[<p>发现一个可以在 Mac 上面控制外接显示器亮度的开源应用 <a href="https://github.com/MonitorControl/MonitorControl">MonitorControl</a></p><p>星星数量目前（2023年05月01日）有 21.4k。</p><p>使用这个要求显示器支持 ddc&#x2F;ci，可以打开显示器的设置看看有没有这个开关。我用的显示器是优派的，设置菜单里可以找到，默认就是打开的。</p><p><img src="/img/2023/ViewSonic-DDC:CI.webp" alt="ViewSonic-DDC:CI"></p><p>之后我使用 homebrew 来安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install MonitorControl</span><br></pre></td></tr></table></figure><p>装好后打开，可以在顶部找到一个灯光图标️</p><p><img src="/img/2023/MonitorControl-top.jpg" alt="MonitorControl-top"></p><p>拉动就可以调节显示器的亮度，但是音量调节并没有效果。（我是通过 HDMI 线连接 Mac min 和显示器的）</p><p>我发现拉到最亮时，就花屏了……</p><p><img src="/img/2023/MonitorControl-crash.webp" alt="MonitorControl-crash"></p><p>好像只有优派的这台显示器会这样，我另外通过 USB Type-C 线，将 Mac mini 连接到一台 sculptor 的便携显示器上，可以随意调节亮度，并没有出现花屏的情况。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;发现一个可以在 Mac 上面控制外接显示器亮度的开源应用 &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl&quot;&gt;MonitorControl&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;星星数量目前（2023年05月01日）有 21</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
