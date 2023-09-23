@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-09-22T02:43:03.442Z</updated>
+  <updated>2023-09-23T06:24:32.023Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SwitchyOmega 备份与恢复</title>
+    <link href="https://powersee.github.io/2023/09/SwitchyOmega-backup/"/>
+    <id>https://powersee.github.io/2023/09/SwitchyOmega-backup/</id>
+    <published>2023-09-23T06:21:02.000Z</published>
+    <updated>2023-09-23T06:24:32.023Z</updated>
+    
+    <content type="html"><![CDATA[<p>SwitchyOmega 是我电脑浏览器上，一直在使用的代理管理工具。以前我的主力浏览器是 Chrome，现在已经切换为 Edge 很久了，不过这个扩展插件一直都在使用。</p><p>每次换电脑或者重装系统后，在浏览器登录微软账号，虽然可以自动将扩展插件装回来。但是，又得再一次配置 SwitchyOmega 里面的情景模式了。</p><p>但其实可以避免这个繁琐的步骤的，因为插件自带有备份恢复功能。</p><p>在浏览器点击插件，再点击「选项」，来进入设置页面。</p><p>然后点击「设定」下方的「导入&#x2F;导出」</p><p><img src="/img/2023/SwitchyOmega-settings-shadow.webp" alt="SwitchyOmega-settings"></p><p>点击「生成备份文件」之后，就可以获得一个名为 <code>OmegaOptions.bak</code> 的文件。我们只要把这个文件，传到其他的电脑，然后再点击「从备份文件恢复」，选择 <code>OmegaOptions.bak</code>，就可以将情景模式同步过去了。</p><p>而且它还支持在线恢复，那也许我们可以把备份文件放到自己的网站上。</p><p>最下方的同步，说是支持 Chrome 浏览器，不过我现在电脑都没装 Chrome，不清楚好不好用，Edge 不知道能不能同步？懒得去试了，现在用文件备份我觉得也挺不错的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;SwitchyOmega 是我电脑浏览器上，一直在使用的代理管理工具。以前我的主力浏览器是 Chrome，现在已经切换为 Edge 很久了，不过这个扩展插件一直都在使用。&lt;/p&gt;
+&lt;p&gt;每次换电脑或者重装系统后，在浏览器登录微软账号，虽然可以自动将扩展插件装回来。但是，又得</summary>
+      
+    
+    
+    
+    
+    <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
+    
+  </entry>
   
   <entry>
     <title>达芬奇 18.6 史诗级更新，增加文字外描边</title>
@@ -460,29 +483,6 @@
       
     <summary type="html">&lt;p&gt;我的 Python3 是装在 &amp;#x2F;opt&amp;#x2F;homebrew&amp;#x2F;bin&amp;#x2F; 里面的，我发现在 crontab 中执行 Python 脚本。&lt;/p&gt;
 &lt;p&gt;使用的是 &amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;python3，这个的版本是 </summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>让 hexo 文章图片在 typora 里也能显示</title>
-    <link href="https://powersee.github.io/2023/05/hexo-typora-img/"/>
-    <id>https://powersee.github.io/2023/05/hexo-typora-img/</id>
-    <published>2023-05-02T10:10:45.000Z</published>
-    <updated>2023-05-02T10:12:58.473Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于 hexo 文章的图片，我是在 source 目录下新建一个 img 目录，把图片都放在里面。然后我文章中的图片链接，都是 <code>/img/abc.png</code> 这种格式的。</p><p>它在博客网站上可以显示出来，但是在 typora 里面就没法显示。想要在 typora 里面可以显示图片，得把链接改为 <code>../img/abc.png</code> 这种格式的。</p><p>但是这样一改，我博客里就没法显示图片了，属于按下葫芦浮起瓢。</p><p>解决方法：</p><p>我们只需要在文章头部加入这一行，那么图片在 typora 里面就可以加载出来。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">typora-root-url: ../</span><br></pre></td></tr></table></figure><p>图片的链接依然是 <code>/img/abc.png</code> 这种格式的。</p><p>它的原理就是 url 拼接，也就是说，在 typora 里面，加了这一行之后，图片的链接就变成 <code>../img/abc.png</code> 了。</p><p>或者说，typora 会去 <code>../</code> （也就是上一层目录）找 <code>/img/abc.png</code> 这张图片，找到了就显示出来。</p><p>而对于 hexo，它会忽略掉文章头部的 <code>typora-root-url</code>，所以没什么影响。</p><p>但要是每次都得手动去填写这一行，也很麻烦。一劳永逸的方法是，直接修改 <code>scaffolds/post.md</code> </p><p>这个是文章的模板，当我们执行 <code>hexo new post filename</code> 的时候，hexo 就会读取这个模板文件，创建一个新的文章文件。</p><p>我目前的模板是这样的：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories:</span><br><span class="line">tags:</span><br><span class="line">    - 随笔</span><br><span class="line">    -</span><br><span class="line">    - </span><br><span class="line">lock: false</span><br><span class="line">typora-root-url: ../</span><br><span class="line">---</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;对于 hexo 文章的图片，我是在 source 目录下新建一个 img 目录，把图片都放在里面。然后我文章中的图片链接，都是 &lt;code&gt;/img/abc.png&lt;/code&gt; 这种格式的。&lt;/p&gt;
-&lt;p&gt;它在博客网站上可以显示出来，但是在 typora 里面就没法显示。</summary>
       
     
     

@@ -6265,4 +6265,21 @@ border-radius: 4px;
         <tag>电脑</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SwitchyOmega 备份与恢复</title>
+    <url>/2023/09/SwitchyOmega-backup/</url>
+    <content><![CDATA[<p>SwitchyOmega 是我电脑浏览器上，一直在使用的代理管理工具。以前我的主力浏览器是 Chrome，现在已经切换为 Edge 很久了，不过这个扩展插件一直都在使用。</p>
+<p>每次换电脑或者重装系统后，在浏览器登录微软账号，虽然可以自动将扩展插件装回来。但是，又得再一次配置 SwitchyOmega 里面的情景模式了。</p>
+<p>但其实可以避免这个繁琐的步骤的，因为插件自带有备份恢复功能。</p>
+<p>在浏览器点击插件，再点击「选项」，来进入设置页面。</p>
+<p>然后点击「设定」下方的「导入&#x2F;导出」</p>
+<p><img src="/img/2023/SwitchyOmega-settings-shadow.webp" alt="SwitchyOmega-settings"></p>
+<p>点击「生成备份文件」之后，就可以获得一个名为 <code>OmegaOptions.bak</code> 的文件。我们只要把这个文件，传到其他的电脑，然后再点击「从备份文件恢复」，选择 <code>OmegaOptions.bak</code>，就可以将情景模式同步过去了。</p>
+<p>而且它还支持在线恢复，那也许我们可以把备份文件放到自己的网站上。</p>
+<p>最下方的同步，说是支持 Chrome 浏览器，不过我现在电脑都没装 Chrome，不清楚好不好用，Edge 不知道能不能同步？懒得去试了，现在用文件备份我觉得也挺不错的。</p>
+]]></content>
+      <tags>
+        <tag>电脑</tag>
+      </tags>
+  </entry>
 </search>
