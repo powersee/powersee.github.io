@@ -6282,4 +6282,38 @@ border-radius: 4px;
         <tag>电脑</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何制作透明表格图？</title>
+    <url>/2023/09/excel-transparent-image/</url>
+    <content><![CDATA[<p>如何制作一张透明的表格图片？</p>
+<p>答：先用 excel 导出为 PDF，然后用将 PDF 拖入 Photoshop 里，再导出为 png 就行。</p>
+<p>例如我这里有这样的表格数据。</p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>语文</th>
+<th>数学</th>
+<th>英语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>powersee</td>
+<td>99</td>
+<td>98</td>
+<td>66</td>
+</tr>
+</tbody></table>
+<p>我把它输入到 WPS 表格里面，然后添加所有边框，接着选择【文件】，【输出为 PDF 文件】，这样是可以生成 PDF 文件。但是，英语这一列会被放到第二页……</p>
+<p><img src="/img/2023/wps-export-pdf.png" alt="image"></p>
+<p>这时我选择【打印预览】，确认排版没问题，都是在同一页之后，再确认选择的是【Microsoft Print to PDF】，之后点击打印就能获得 PDF 文件。</p>
+<p><img src="/img/2023/ps-excel-pdf.webp" alt="ps-excel-pdf">在 ps 里面创建文档，我新建了 4k 分辨率的文档，再将 PDF 拖进来，然后再把背景关掉，就可以获得透明表格图了。</p>
+<p>不过这时边框和文字都是黑色的，如果想要变成白色，可以通过【图像】【调整】【反相】来实现，快捷键为 ctrl+i。</p>
+<p>有需要的话可以在下方添加纯色图层或者渐变色，例如这样。</p>
+<p><img src="/img/2023/excel-pdf-ps-final-img.webp" alt="excel-pdf-ps-final-img"></p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>
