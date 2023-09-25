@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>无法拉取 Docker 镜像的另一种解决方案</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    无法拉取 Docker 镜像的另一种解决方案
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2023-09-25T14:09:18.000Z" itemprop="datePublished">2023-09-25</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>目前我拉取不了 docker 镜像，不管是 docker hub 的，还是 GitHub 的 ghcr.io 的。</p>
+<p>我的解决方案，使用境外的 VPS 拉取镜像，然后通过 docker save 保存为 tar 归档包。接着把这个 tar 下载到本地，再使用 docker load 来加载。</p>
+<p>我这里拉取的镜像是 memos</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull ghcr.io/usememos/memos:latest</span><br></pre></td></tr></table></figure>
+
+<p>目前最新的版本是 0.15.2，所以拉取完成之后，我使用这条命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker save -o memos-15.2.tar ghcr.io/usememos/memos:latest</span><br></pre></td></tr></table></figure>
+
+<p>此时我需要把文件从服务器下载到本地，可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure>
+
+<p>之类的来开启一个 http 服务</p>
+<p>不过此时我是使用 root 身份，导致文件没法下载，所以我还得更改一下文件的权限。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod 777 memos-15.2.tar</span><br></pre></td></tr></table></figure>
+
+<p>本地我是需要把 docker 镜像放到 nas 里，所以我可以 ssh 连接到 nas，然后使用 wget 来下载。</p>
+<p>之后使用 load 命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker load&lt;memos-15.2.tar </span><br><span class="line">09180e184944: Loading layer [==================================================&gt;]   2.56kB/2.56kB</span><br><span class="line">d6149c35a41c: Loading layer [==================================================&gt;]  1.989MB/1.989MB</span><br><span class="line">41163094a155: Loading layer [==================================================&gt;]  59.53MB/59.53MB</span><br><span class="line">628f23364ad0: Loading layer [==================================================&gt;]   2.56kB/2.56kB</span><br><span class="line">The image ghcr.io/usememos/memos:latest already exists, renaming the old one with ID sha256:f930acc56434c179480c15382a8d2ef1651b44bc7f299e1b0bdff6d0f8d1c7eb to empty string</span><br><span class="line">Loaded image: ghcr.io/usememos/memos:latest</span><br></pre></td></tr></table></figure>
+
+<p>就成功把镜像拉取到本地了，唉。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
