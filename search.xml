@@ -6345,4 +6345,24 @@ border-radius: 4px;
         <tag>docker</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Docker build 失败后如何删除清理？</title>
+    <url>/2023/09/docker-build-fail-delete/</url>
+    <content><![CDATA[<p>docker build 即使失败了，也会生成镜像的，此时我们可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>来查找出所有的镜像，构建失败的镜像 REPOSITORY 和 TAG 都是 <code>&lt;none&gt;</code>，而且我们也可以通过时间来判断。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">REPOSITORY         TAG         IMAGE ID       CREATED         SIZE</span><br><span class="line">powersee/siyuan    latest      8664365030da   4 hours ago     202MB</span><br><span class="line">siyuan             2.10.6      94877dcb3823   5 hours ago     201MB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      bf5c2d0d522c   5 hours ago     3GB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      c26fddb8b7ed   5 hours ago     1.93GB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      4f76c8d24d52   6 hours ago     865MB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      601859a2537a   6 hours ago     1.93GB</span><br><span class="line">siyuan-ce          2.10.6      10ce4886f886   8 hours ago     202MB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      253c841913eb   8 hours ago     3.03GB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      5fbb7e469e64   8 hours ago     1.93GB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      6b3c0b42b275   15 hours ago    865MB</span><br><span class="line">&lt;none&gt;             &lt;none&gt;      493bc3f0c9b5   15 hours ago    1.93GB</span><br></pre></td></tr></table></figure>
+
+<p>要删除的话使用 docker rmi 加上 <code>IMAGE ID</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi bf5c2d0d522c</span><br></pre></td></tr></table></figure>
+
+<p>而且支持同时删除多个</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker rmi c26fddb8b7ed 4f76c8d24d52 601859a2537a</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
 </search>
