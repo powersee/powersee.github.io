@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
-	<title>蜗牛星际驱动核显，使用 jellyfin 和 qbittorrent</title>
+	<title>给威联通 NAS 添加多一块固态硬盘</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -37,7 +37,7 @@
     
   
   <h1 class="title">
-    蜗牛星际驱动核显，使用 jellyfin 和 qbittorrent
+    给威联通 NAS 添加多一块固态硬盘
   </h1>
   
 
@@ -45,7 +45,7 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2020-06-29T02:14:09.000Z" itemprop="datePublished">2020-06-29</time>
+        <time datetime="2023-09-27T14:12:17.000Z" itemprop="datePublished">2023-09-27</time>
       </li>
       <li>
         
@@ -59,34 +59,22 @@
     <div class="article">
       <div class="content">
         
-        <p>最近入手了一台蜗牛星际，这里记录一些自己踩过的坑。</p>
-<h2 id="驱动核显"><a href="#驱动核显" class="headerlink" title="驱动核显"></a>驱动核显</h2><h3 id="如何替换-lzma-文件"><a href="#如何替换-lzma-文件" class="headerlink" title="如何替换 lzma 文件"></a>如何替换 lzma 文件</h3><p>需要用到 pe ，这里我用的是 wepe</p>
-<p>将pe系统写入U盘，插入蜗牛的usb口，连接键盘鼠标，开机一直按 del 键，进入bios，在最右边选择U盘，进入 pe。</p>
-<p>之后打开桌面的 DG ，选中引导所在的硬盘或者U盘（我的话是将引导放在16G的 msata 硬盘里的）。选择分区1，点右边的浏览文件，可以看到里面有两个文件 <code>extra.lzma</code> 和 <code>extra2.lzma</code> </p>
-<p><img src="/img/2020/%E9%A9%B1%E5%8A%A8%E6%A0%B8%E6%98%BE%E9%9C%80%E8%A6%81%E6%9B%BF%E6%8D%A2%E7%9A%84%E6%96%87%E4%BB%B6.jpg" alt="驱动核显需要替换的文件"></p>
-<p>将这两个文件替换为网盘中的那两个即可。</p>
-<p>网盘：<a target="_blank" rel="noopener" href="http://veger.ys168.com/">http://veger.ys168.com/</a></p>
-<p>可以右键然后选择【复制文件到当前分区】。</p>
-<p>然后关机，拔掉 pe U盘，再次进入群晖系统，应该就能驱动核显了。</p>
-<h3 id="如何判断已经驱动核显了？"><a href="#如何判断已经驱动核显了？" class="headerlink" title="如何判断已经驱动核显了？"></a>如何判断已经驱动核显了？</h3><p>用 ssh 连接群晖，输入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls /dev/dri/</span><br></pre></td></tr></table></figure>
-
-<p>如果能够看到 renderD128 就是驱动了。</p>
-<h2 id="搭建媒体仓库——-jellyfin"><a href="#搭建媒体仓库——-jellyfin" class="headerlink" title="搭建媒体仓库—— jellyfin"></a>搭建媒体仓库—— jellyfin</h2><p>相比于 plex 和 emby ，jellyfin 的优势是调用硬件转码不用钱。</p>
-<p>这里我是使用 docker 来安装的，容器建立时需要有这个命令，才能调用核显</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--device=/dev/dri/renderD128</span><br></pre></td></tr></table></figure>
-
-<h2 id="BT下载器——qbittorent"><a href="#BT下载器——qbittorent" class="headerlink" title="BT下载器——qbittorent"></a>BT下载器——qbittorent</h2><p>用手动安装的 qb ，没法正常在 chrome 浏览器打开，只能在隐身模式下才能打开。所以我采用 docker   的方式来安装。</p>
-<p>一开始老是没法设置好 &#x2F;config 映射到宿主机的文件夹的权限，导致 qb 的 web 界面打开后残缺，而且也没法登录。明明我已经把映射的文件夹权限设置为 everyone 了，还是不行。。。</p>
-<p>最后发现最简单的应该是不管 &#x2F;config 了，只设置 &#x2F;downloads 的映射就行。就可以正常使用 qb 。</p>
-<p>但是，我不喜欢这样的方式，我还是喜欢把 &#x2F;config 映射到宿主机的文件夹中。所以我采用命令行的方式来建立 docker 容器。</p>
-<p>需要先确认文件夹的权限，也可以</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod -R 777 /xxx</span><br></pre></td></tr></table></figure>
-
-<p>来更改文件夹 xxx 的权限。</p>
-<p>如果想要 qb 能连接 ipv6 用户的话，得使用 </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--network host</span><br></pre></td></tr></table></figure>
-
+        <p>最近翻出来一块老硬盘,120G 的 SATA 固态硬盘。</p>
+<p>我想着既然是闲置的，那就装到 NAS 上吧，用来放一些读写比较频繁的文件，这样机械硬盘使用频率下降，我也不用老是听它转盘的声音。</p>
+<p>于是使用 3 颗螺丝，将这块 2.5 英寸的硬盘固定到硬盘架，装入 NAS。如果 NAS 识别到硬盘，会发出“滴”的声音。</p>
+<p><img src="/img/2023/qnap-ssd-cache.webp" alt="qnap-ssd-cache"></p>
+<p>固态硬盘可以作为高速缓存来加速，我以前用过，没感受到有什么提升。</p>
+<p>这里我是打算使用它，新建一个存储池。</p>
+<p><img src="/img/2023/less-than-144GB.webp" alt="less-than-144GB"></p>
+<p>结果系统提示，容量太小，无法创建存储池。</p>
+<p><img src="/img/2023/create-new-volume.jpg" alt="create-new-volume"></p>
+<p>于是我只能创建「新卷」，创建好后，再到 file station 里面创建共享文件夹，就可以使用它了。</p>
+<p>后面我测试了下，可以移除的，不影响原来的机械硬盘。</p>
+<p><img src="/img/2023/qnap-static-volume.webp" alt="qnap-static-volume"></p>
+<p>也就是说，我现在有一个存储池，里面有两个卷，机械硬盘作为一个卷，固态硬盘作为一个卷。</p>
+<p>我这里移除固态这个卷后，是可以把固态硬盘拔出来的。但是插回去后，固态硬盘里的文件就没了，因为它的移除有点像格式化吧。</p>
+<p>这里的移除，容易让人误解。以为是卸载，就像电脑上要拔出U盘前的推出。</p>
+<p>但它并不是这个意思，贴吧上就有人被坑了，而且还不止一个人。<a target="_blank" rel="noopener" href="https://tieba.baidu.com/p/7847763843#/">https://tieba.baidu.com/p/7847763843#/</a></p>
 
       </div>
         <div class="support-author">

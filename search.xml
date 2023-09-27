@@ -3502,9 +3502,9 @@ border-radius: 4px;
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--device=/dev/dri/renderD128</span><br></pre></td></tr></table></figure>
 
 <h2 id="BT下载器——qbittorent"><a href="#BT下载器——qbittorent" class="headerlink" title="BT下载器——qbittorent"></a>BT下载器——qbittorent</h2><p>用手动安装的 qb ，没法正常在 chrome 浏览器打开，只能在隐身模式下才能打开。所以我采用 docker   的方式来安装。</p>
-<p>一开始老是没法设置好 /config 映射到宿主机的文件夹的权限，导致 qb 的 web 界面打开后残缺，而且也没法登录。明明我已经把映射的文件夹权限设置为 everyone 了，还是不行。。。</p>
-<p>最后发现最简单的应该是不管 /config 了，只设置 /downloads 的映射就行。就可以正常使用 qb 。</p>
-<p>但是，我不喜欢这样的方式，我还是喜欢把 /config 映射到宿主机的文件夹中。所以我采用命令行的方式来建立 docker 容器。</p>
+<p>一开始老是没法设置好 &#x2F;config 映射到宿主机的文件夹的权限，导致 qb 的 web 界面打开后残缺，而且也没法登录。明明我已经把映射的文件夹权限设置为 everyone 了，还是不行。。。</p>
+<p>最后发现最简单的应该是不管 &#x2F;config 了，只设置 &#x2F;downloads 的映射就行。就可以正常使用 qb 。</p>
+<p>但是，我不喜欢这样的方式，我还是喜欢把 &#x2F;config 映射到宿主机的文件夹中。所以我采用命令行的方式来建立 docker 容器。</p>
 <p>需要先确认文件夹的权限，也可以</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod -R 777 /xxx</span><br></pre></td></tr></table></figure>
 
@@ -3516,7 +3516,7 @@ border-radius: 4px;
       <tags>
         <tag>设备</tag>
         <tag>Linux</tag>
-        <tag>nas</tag>
+        <tag>NAS</tag>
       </tags>
   </entry>
   <entry>
@@ -6363,6 +6363,30 @@ border-radius: 4px;
 ]]></content>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给威联通 NAS 添加多一块固态硬盘</title>
+    <url>/2023/09/qnap-add-second-disk/</url>
+    <content><![CDATA[<p>最近翻出来一块老硬盘,120G 的 SATA 固态硬盘。</p>
+<p>我想着既然是闲置的，那就装到 NAS 上吧，用来放一些读写比较频繁的文件，这样机械硬盘使用频率下降，我也不用老是听它转盘的声音。</p>
+<p>于是使用 3 颗螺丝，将这块 2.5 英寸的硬盘固定到硬盘架，装入 NAS。如果 NAS 识别到硬盘，会发出“滴”的声音。</p>
+<p><img src="/img/2023/qnap-ssd-cache.webp" alt="qnap-ssd-cache"></p>
+<p>固态硬盘可以作为高速缓存来加速，我以前用过，没感受到有什么提升。</p>
+<p>这里我是打算使用它，新建一个存储池。</p>
+<p><img src="/img/2023/less-than-144GB.webp" alt="less-than-144GB"></p>
+<p>结果系统提示，容量太小，无法创建存储池。</p>
+<p><img src="/img/2023/create-new-volume.jpg" alt="create-new-volume"></p>
+<p>于是我只能创建「新卷」，创建好后，再到 file station 里面创建共享文件夹，就可以使用它了。</p>
+<p>后面我测试了下，可以移除的，不影响原来的机械硬盘。</p>
+<p><img src="/img/2023/qnap-static-volume.webp" alt="qnap-static-volume"></p>
+<p>也就是说，我现在有一个存储池，里面有两个卷，机械硬盘作为一个卷，固态硬盘作为一个卷。</p>
+<p>我这里移除固态这个卷后，是可以把固态硬盘拔出来的。但是插回去后，固态硬盘里的文件就没了，因为它的移除有点像格式化吧。</p>
+<p>这里的移除，容易让人误解。以为是卸载，就像电脑上要拔出U盘前的推出。</p>
+<p>但它并不是这个意思，贴吧上就有人被坑了，而且还不止一个人。<a href="https://tieba.baidu.com/p/7847763843#/">https://tieba.baidu.com/p/7847763843#/</a></p>
+]]></content>
+      <tags>
+        <tag>NAS</tag>
       </tags>
   </entry>
 </search>
