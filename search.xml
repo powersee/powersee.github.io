@@ -6389,4 +6389,15 @@ border-radius: 4px;
         <tag>NAS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何关闭 Safari 下载完自动打开文件？</title>
+    <url>/2023/09/safari-turnoff-auto-open-file/</url>
+    <content><![CDATA[<p>我发现在 Mac 上使用 Safari 下载完 MP3 音频文件后，它会自动使用「音乐」这个 APP 打开文件并播放。</p>
+<p>解决方法，进入 Safari 的设置，在「通用」选项的最下方，把「下载后打开“安全”文件」前面的勾去掉就行。</p>
+<p><img src="/img/2023/Safari-download-open.webp" alt="Safari-download-open"></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
