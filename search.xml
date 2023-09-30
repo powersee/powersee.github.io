@@ -6400,4 +6400,38 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>GDU 开源的磁盘分析工具</title>
+    <url>/2023/09/gdu-go/</url>
+    <content><![CDATA[<p><a href="https://github.com/dundee/gdu">dundee&#x2F;gdu: Fast disk usage analyzer with console interface written in Go (github.com)</a></p>
+<p>一款命令行工具，看起来和以前使用的 ncdu 差不多。目前在 GitHub 的 star 数为 2.8k。</p>
+<p><img src="/img/2023/gdu-go.webp" alt="gdu-go"></p>
+<p>它支持的平台还挺多的，Linux、Mac、Windows 都可以，毕竟是使用 GO 写的，编译多平台很方便。</p>
+<p>我在 Mac 上使用 brew install gdu 来安装，完成后需要使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gdu-go</span><br></pre></td></tr></table></figure>
+
+<p>来使用它。</p>
+<p>看 GitHub 上的文档，官方是写要用</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">brew install -f gdu</span><br><span class="line">brew <span class="built_in">link</span> --overwrite gdu  <span class="comment"># if you have coreutils installed as well</span></span><br></pre></td></tr></table></figure>
+
+<p>查询一下 brew -f 的作用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-f, --force</span><br><span class="line">      Remove a previously cached version and re-fetch.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>上下方向键就是切换不同目录，左右键可以前进和后退。</p>
+<p><code>shift + ？</code> 可以呼出帮助菜单。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">r		重新扫描当前目录</span><br><span class="line">/		按名称搜索</span><br><span class="line">q		退出</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">In interactive mode:</span><br><span class="line">  ↑ or k                              Move cursor up</span><br><span class="line">  ↓ or j                              Move cursor down</span><br><span class="line">  → or Enter                          Go to highlighted directory</span><br><span class="line">  ← or h                              Go to parent directory</span><br><span class="line">  d                                   Delete the selected file or directory</span><br><span class="line">  e                                   Empty the selected directory</span><br><span class="line">  n                                   Sort by name</span><br><span class="line">  s                                   Sort by size</span><br><span class="line">  c                                   Show number of items in directory</span><br></pre></td></tr></table></figure>
+
+<p>其中的快捷键 e 我觉得还挺新鲜的，清空选择的目录，就是相比于 d 的删除，e 只是清空里面的，目录本身还是保留下来。</p>
+<p>使用 v 可以预览文件内容，预览一些文本时还不错。</p>
+<p>感觉有点像 ranger。</p>
+<p>使用它我发现微信占用的空间挺多的，其中有一个微信群，居然有 1GB 的聊天数据，这群我现在也没怎么看了，于是我在微信里右键「删除」，整个群的聊天信息就没了，它存放在我电脑的图片、文件也跟着删除了。当然只是电脑端的，手机端不影响。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
