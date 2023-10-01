@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-09-30T09:30:47.737Z</updated>
+  <updated>2023-10-01T15:39:52.951Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UAC白名单小工具</title>
+    <link href="https://powersee.github.io/2023/10/UACWhitelistTool/"/>
+    <id>https://powersee.github.io/2023/10/UACWhitelistTool/</id>
+    <published>2023-10-01T15:35:17.000Z</published>
+    <updated>2023-10-01T15:39:52.951Z</updated>
+    
+    <content type="html"><![CDATA[<p>我之前就有过这样的疑惑，为什么 Windows 没有 UAC 白名单之类的功能？</p><p>有些频繁打开的应用，每一次打开都需要弹窗确认真心烦。</p><p>例如像原神，我每天基本打开两次，这样才能保证里面的树脂不浪费。</p><p><img src="/img/2023/genshin-uac.png" alt="genshin-uac"></p><p>所以我每天至少得点 用户账号控制 里面的“是”两次。</p><p>而现在，我找到了解决方法，使用 GitHub 上的一个开源工具——<a href="https://github.com/XIU2/UACWhitelistTool">UAC白名单小工具</a></p><p>国人开发的工具，文档是中文的，下载可以在 GitHub 的 release 上，也可以到蓝奏云。</p><ul><li>蓝奏云 ：<a href="https://pan.lanzouj.com/b073m0dne">https://pan.lanzouj.com/b073m0dne</a></li><li>Github：<a href="https://github.com/XIU2/UACWhitelistTool/releases">https://github.com/XIU2/UACWhitelistTool/releases</a></li></ul><p>不用安装，把里面的 exe 解压出来，直接双击打开就行。</p><p>之后把我们信任的应用拖进去就行，例如我把原神图标拖进去。</p><p><img src="/img/2023/uacwhitelist-add-genshin.png" alt="uacwhitelist-add-genshin">再点一下“添加到 UAC 白名单”，就能在桌面生成一个新的图标。我这里是多一个名为 “noUAC.launcher”的快捷方式。</p><p>这个我们是可以改名或者移动到其它地方的。</p><p>以后我们只要双击它就不会有弹窗确认了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我之前就有过这样的疑惑，为什么 Windows 没有 UAC 白名单之类的功能？&lt;/p&gt;
+&lt;p&gt;有些频繁打开的应用，每一次打开都需要弹窗确认真心烦。&lt;/p&gt;
+&lt;p&gt;例如像原神，我每天基本打开两次，这样才能保证里面的树脂不浪费。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>GDU 开源的磁盘分析工具</title>
@@ -473,29 +498,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>威联通 qnap 定时执行 Python 脚本</title>
-    <link href="https://powersee.github.io/2023/05/qnap-crontab/"/>
-    <id>https://powersee.github.io/2023/05/qnap-crontab/</id>
-    <published>2023-05-11T16:01:33.000Z</published>
-    <updated>2023-05-16T09:07:44.217Z</updated>
-    
-    <content type="html"><![CDATA[<p>在上期 <a href="/2023/05/qnap-python3">威联通 qnap 使用 Python3</a> 已经弄明白，怎么在 shell 里使用 Python3 了。但是我想要的是能够定时执行 Python3 脚本。</p><p>通过执行 <code>pip3 -V</code> 可以查找到它在哪个位置。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># pip3 -V</span><br><span class="line">pip 22.0.4 from /opt/python3/lib/python3.10/site-packages/pip (python 3.10)</span><br><span class="line">[/share/CACHEDEV1_DATA/.qpkg/Python3] # which python3</span><br><span class="line">/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/python3</span><br></pre></td></tr></table></figure><p>直接使用 <code>pip3 install xxx</code> 来安装模块的话，是安装到 <code>/opt/python3/lib/python3.10/site-packages/</code> 里面的。</p><p>而且它提示我更新 pip 版本给的命令是</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/opt/python3/bin/python3.10 -m pip install --upgrade pip</span><br></pre></td></tr></table></figure><p>跟我预期的不一样，我还以为会使用 <code>/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/python3.10</code> 呢。</p><p>查询一下，发现 <code>/opt/python3/bin/python3.10</code> 并不是软链接。那为什么 <code>/opt/python3/bin/</code> 里面的内容和 <code>/share/CACHEDEV1_DATA/.qpkg/Python3/python3/bin/</code> 一模一样呢？</p><p>后来我知道了，原来 <code>/opt/python3</code> 就是一个符号链接而已。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ls -alh /opt/python3</span><br><span class="line">lrwxrwxrwx 1 admin administrators 43 2023-05-04 07:15 /opt/python3 -&gt; /share/CACHEDEV1_DATA/.qpkg/Python3/python3/</span><br></pre></td></tr></table></figure><p>为了命令比较简短一些，我还是用 <code>/opt/python3/bin/python3</code></p><p>执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure><p>添加定时任务，例如我让它每天早上 7 点 18 分自动执行一个 Python 脚本。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">18 7 * * * /opt/python3/bin/python3 /share/CACHEDEV1_DATA/Multimedia/powersee_script.py</span><br></pre></td></tr></table></figure><p>这样添加重启机器后任务就没了，详见 <a href="/2023/05/qnap-crontab/">威联通添加 crontab 任务正确的做法</a>。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在上期 &lt;a href=&quot;/2023/05/qnap-python3&quot;&gt;威联通 qnap 使用 Python3&lt;/a&gt; 已经弄明白，怎么在 shell 里使用 Python3 了。但是我想要的是能够定时执行 Python3 脚本。&lt;/p&gt;
-&lt;p&gt;通过执行 &lt;code&gt;pip</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
