@@ -6458,4 +6458,31 @@ border-radius: 4px;
         <tag>Windows</tag>
       </tags>
   </entry>
+  <entry>
+    <title>vps 服务器自建 vaultwarden 密码管理器</title>
+    <url>/2023/10/vps-vaultwarden/</url>
+    <content><![CDATA[<p>本次实验环境：Ubuntu 22.04.2 LTS (GNU&#x2F;Linux 5.15.0-67-generic x86_64)</p>
+<p>系统已安装好 Docker，先把容器运行起来。</p>
+<p>项目地址：<a href="https://github.com/dani-garcia/vaultwarden">https://github.com/dani-garcia/vaultwarden</a></p>
+<p>Docker 创建命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name vaultwarden -v /opt/bitwarden/:/data/ --restart unless-stopped -p 55555:80 vaultwarden/server:latest</span><br></pre></td></tr></table></figure>
+
+<p>之后安装 caddy 来进行反向代理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#x27; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#x27; | sudo tee /etc/apt/sources.list.d/caddy-stable.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install caddy</span><br></pre></td></tr></table></figure>
+
+<p>caddy 反向代理参考</p>
+<p>复制下来的内容，修改为自己的域名，把它添加到 <code>/etc/caddy/Caddyfile</code> 里面</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vaultwarden.powersee.top &#123;</span><br><span class="line">reverse_proxy 127.0.0.1:55555</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重启 caddy</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart caddy</span><br></pre></td></tr></table></figure>
+
+<p>之后在浏览器访问域名应该就可以了，使用 caddy 的好处是会自己添加 SSL 证书，而且会自动将 http 跳转到 https，相比起 NGINX 方便很多。</p>
+<p>如果你没有 VPS 服务器的话，可以尝试 <a href="https://www.vultr.com/?ref=8161953-4F">vultr</a>，这个平台我自己使用了好几年了，可以了解看看。</p>
+]]></content>
+      <tags>
+        <tag>服务器</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
 </search>
