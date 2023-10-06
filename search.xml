@@ -6471,7 +6471,7 @@ border-radius: 4px;
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#x27; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#x27; | sudo tee /etc/apt/sources.list.d/caddy-stable.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install caddy</span><br></pre></td></tr></table></figure>
 
 <p>caddy 反向代理参考</p>
-<p>复制下来的内容，修改为自己的域名，把它添加到 <code>/etc/caddy/Caddyfile</code> 里面</p>
+<p>复制下面的内容，修改为自己的域名，把它添加到 <code>/etc/caddy/Caddyfile</code> 里面</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vaultwarden.powersee.top &#123;</span><br><span class="line">reverse_proxy 127.0.0.1:55555</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>重启 caddy</p>
@@ -6483,6 +6483,39 @@ border-radius: 4px;
       <tags>
         <tag>服务器</tag>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 使用 zip 创建加密压缩包</title>
+    <url>/2023/10/linux-zip-password/</url>
+    <content><![CDATA[<p>在群晖和威联通上面都自带有 zip，可以在 shell 里执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -v</span><br></pre></td></tr></table></figure>
+
+<p>来查看信息，这是在群晖 6.X 版本里的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># zip -v</span><br><span class="line">Copyright (c) 1990-2008 Info-ZIP - Type &#x27;zip &quot;-L&quot;&#x27; for software license.</span><br><span class="line">This is Zip 3.0 (July 5th 2008), by Info-ZIP.</span><br><span class="line">Currently maintained by E. Gordon.  Please send bug reports to</span><br><span class="line">the authors using the web page at www.info-zip.org; see README for details.</span><br><span class="line"></span><br><span class="line">Latest sources and executables are at ftp://ftp.info-zip.org/pub/infozip,</span><br><span class="line">as of above date; see http://www.info-zip.org/ for other sites.</span><br><span class="line"></span><br><span class="line">Compiled with gcc 4.9.3 20150311 (prerelease) for Unix (Linux ELF) on May 19 2018.</span><br></pre></td></tr></table></figure>
+
+<p>这是在威联通 5.X 版本里的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Compiled with gcc 4.9.2 for Unix (Linux ELF) on Mar 24 2022.</span><br></pre></td></tr></table></figure>
+
+<p>使用 zip 创建压缩包很简单</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip test.zip test.js</span><br></pre></td></tr></table></figure>
+
+<p>使用这样的命令就可以将 <code>test.js</code> 添加到名为 <code>test.zip</code> 的压缩包里面。</p>
+<blockquote>
+<p>test.zip 是生成的压缩文件</p>
+<p>test.js 是被压缩的文件</p>
+</blockquote>
+<p>如果被压缩的对象是文件夹，我们需要添加 <code>-r</code> 参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -r test.zip test</span><br></pre></td></tr></table></figure>
+
+<p>如果需要加密，需要使用 <code>-P</code> 参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -rP powersee test.zip test</span><br></pre></td></tr></table></figure>
+
+<p>此时压缩包的密码是 <code>powersee</code></p>
+<p>解压我们可以使用 <code>unzip</code>，不过我发现群晖系统不带这个工具，威联通倒是有带。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>

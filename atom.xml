@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-10-06T02:57:01.122Z</updated>
+  <updated>2023-10-06T17:31:14.468Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,13 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Linux 使用 zip 创建加密压缩包</title>
+    <link href="https://powersee.github.io/2023/10/linux-zip-password/"/>
+    <id>https://powersee.github.io/2023/10/linux-zip-password/</id>
+    <published>2023-10-06T17:30:39.000Z</published>
+    <updated>2023-10-06T17:31:14.468Z</updated>
+    
+    <content type="html"><![CDATA[<p>在群晖和威联通上面都自带有 zip，可以在 shell 里执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -v</span><br></pre></td></tr></table></figure><p>来查看信息，这是在群晖 6.X 版本里的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># zip -v</span><br><span class="line">Copyright (c) 1990-2008 Info-ZIP - Type &#x27;zip &quot;-L&quot;&#x27; for software license.</span><br><span class="line">This is Zip 3.0 (July 5th 2008), by Info-ZIP.</span><br><span class="line">Currently maintained by E. Gordon.  Please send bug reports to</span><br><span class="line">the authors using the web page at www.info-zip.org; see README for details.</span><br><span class="line"></span><br><span class="line">Latest sources and executables are at ftp://ftp.info-zip.org/pub/infozip,</span><br><span class="line">as of above date; see http://www.info-zip.org/ for other sites.</span><br><span class="line"></span><br><span class="line">Compiled with gcc 4.9.3 20150311 (prerelease) for Unix (Linux ELF) on May 19 2018.</span><br></pre></td></tr></table></figure><p>这是在威联通 5.X 版本里的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Compiled with gcc 4.9.2 for Unix (Linux ELF) on Mar 24 2022.</span><br></pre></td></tr></table></figure><p>使用 zip 创建压缩包很简单</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip test.zip test.js</span><br></pre></td></tr></table></figure><p>使用这样的命令就可以将 <code>test.js</code> 添加到名为 <code>test.zip</code> 的压缩包里面。</p><blockquote><p>test.zip 是生成的压缩文件</p><p>test.js 是被压缩的文件</p></blockquote><p>如果被压缩的对象是文件夹，我们需要添加 <code>-r</code> 参数。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -r test.zip test</span><br></pre></td></tr></table></figure><p>如果需要加密，需要使用 <code>-P</code> 参数。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -rP powersee test.zip test</span><br></pre></td></tr></table></figure><p>此时压缩包的密码是 <code>powersee</code></p><p>解压我们可以使用 <code>unzip</code>，不过我发现群晖系统不带这个工具，威联通倒是有带。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在群晖和威联通上面都自带有 zip，可以在 shell 里执行&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;zip -v&lt;/span&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vps 服务器自建 vaultwarden 密码管理器</title>
     <link href="https://powersee.github.io/2023/10/vps-vaultwarden/"/>
     <id>https://powersee.github.io/2023/10/vps-vaultwarden/</id>
     <published>2023-10-06T02:52:04.000Z</published>
-    <updated>2023-10-06T02:57:01.122Z</updated>
+    <updated>2023-10-06T17:32:23.523Z</updated>
     
-    <content type="html"><![CDATA[<p>本次实验环境：Ubuntu 22.04.2 LTS (GNU&#x2F;Linux 5.15.0-67-generic x86_64)</p><p>系统已安装好 Docker，先把容器运行起来。</p><p>项目地址：<a href="https://github.com/dani-garcia/vaultwarden">https://github.com/dani-garcia/vaultwarden</a></p><p>Docker 创建命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name vaultwarden -v /opt/bitwarden/:/data/ --restart unless-stopped -p 55555:80 vaultwarden/server:latest</span><br></pre></td></tr></table></figure><p>之后安装 caddy 来进行反向代理</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#x27; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#x27; | sudo tee /etc/apt/sources.list.d/caddy-stable.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install caddy</span><br></pre></td></tr></table></figure><p>caddy 反向代理参考</p><p>复制下来的内容，修改为自己的域名，把它添加到 <code>/etc/caddy/Caddyfile</code> 里面</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vaultwarden.powersee.top &#123;</span><br><span class="line">reverse_proxy 127.0.0.1:55555</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>重启 caddy</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart caddy</span><br></pre></td></tr></table></figure><p>之后在浏览器访问域名应该就可以了，使用 caddy 的好处是会自己添加 SSL 证书，而且会自动将 http 跳转到 https，相比起 NGINX 方便很多。</p><p>如果你没有 VPS 服务器的话，可以尝试 <a href="https://www.vultr.com/?ref=8161953-4F">vultr</a>，这个平台我自己使用了好几年了，可以了解看看。</p>]]></content>
+    <content type="html"><![CDATA[<p>本次实验环境：Ubuntu 22.04.2 LTS (GNU&#x2F;Linux 5.15.0-67-generic x86_64)</p><p>系统已安装好 Docker，先把容器运行起来。</p><p>项目地址：<a href="https://github.com/dani-garcia/vaultwarden">https://github.com/dani-garcia/vaultwarden</a></p><p>Docker 创建命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name vaultwarden -v /opt/bitwarden/:/data/ --restart unless-stopped -p 55555:80 vaultwarden/server:latest</span><br></pre></td></tr></table></figure><p>之后安装 caddy 来进行反向代理</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#x27; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#x27; | sudo tee /etc/apt/sources.list.d/caddy-stable.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install caddy</span><br></pre></td></tr></table></figure><p>caddy 反向代理参考</p><p>复制下面的内容，修改为自己的域名，把它添加到 <code>/etc/caddy/Caddyfile</code> 里面</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vaultwarden.powersee.top &#123;</span><br><span class="line">reverse_proxy 127.0.0.1:55555</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>重启 caddy</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart caddy</span><br></pre></td></tr></table></figure><p>之后在浏览器访问域名应该就可以了，使用 caddy 的好处是会自己添加 SSL 证书，而且会自动将 http 跳转到 https，相比起 NGINX 方便很多。</p><p>如果你没有 VPS 服务器的话，可以尝试 <a href="https://www.vultr.com/?ref=8161953-4F">vultr</a>，这个平台我自己使用了好几年了，可以了解看看。</p>]]></content>
     
     
       
@@ -476,30 +499,6 @@
     
     
     <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>威联通 qnap 使用 NFS 共享文件</title>
-    <link href="https://powersee.github.io/2023/05/qnap-nfs/"/>
-    <id>https://powersee.github.io/2023/05/qnap-nfs/</id>
-    <published>2023-05-13T16:29:37.000Z</published>
-    <updated>2023-05-14T02:45:03.158Z</updated>
-    
-    <content type="html"><![CDATA[<p>在威联通的控制台里面，提供4种文件共享方式：Win&#x2F;Mac&#x2F;NFS&#x2F;WebDAV</p><p>其中 Windows 的 smb 是最通用，我之前也是一直使用 smb 而已，毕竟 win 和 mac 都能用。</p><p>最近我想研究一下怎么开启 nfs 服务，让我的芝杜播放器可以访问威联通里的视频。</p><p>首先到控制台里面，「激活NFS v2&#x2F;v3服务」，「激活NFS v4服务」两个勾我都打上了。之后再点击一下底部的「应用」。</p><p><img src="/img/2023/qnap-nfs-enable.png.webp" alt="qnap-nfs-enable.png"></p><p>这么多版本，那它们的区别是什么呢？我到网上搜索一番。</p><p>之后找到了一篇文章：<a href="https://blog.csdn.net/qq_20332637/article/details/107796651">NFS各个版本之间的比较_nfsv3和nfsv4的区别</a></p><table><thead><tr><th>编号</th><th>版本</th><th>RFC</th><th>时间</th><th>页数</th></tr></thead><tbody><tr><td>1</td><td>NFSv2</td><td>rfc1094</td><td>1989年3月</td><td>27页</td></tr><tr><td>2</td><td>NFSv3</td><td>rfc1813</td><td>1995年6月</td><td>126页</td></tr><tr><td>3</td><td>NFSv4.0</td><td>rfc3530</td><td>2003年4月</td><td>275页</td></tr><tr><td>4</td><td>NFSv4.1</td><td>rfc5661</td><td>2010年1月</td><td>617页</td></tr></tbody></table><p>了解到的是：每个版本都在之前版本的基础上进行了改进，增加了新的功能和特性，提高了性能和安全性。</p><p>此时只是开启了 NFS 服务，还需要修改共享文件夹的权限。</p><p>到「控制台」「权限」「共享文件夹」里面，对想要共享的文件夹进行权限修改。例如我想改「Download」这个文件夹，需要点击右侧操作的第二个图标。然后按照下图这样修改。</p><p><img src="/img/2023/qnap-nfs-permission.png.webp" alt="qnap-nfs-permission.png"></p><p>IP 地址我填 <code>192.168.68.1/24</code> 也就是说我路由器里的所有设备都可以访问。因为 IP 地址是 32 位的，<code>/24</code> 就是说只要 IP 地址是 <code>192.168.68.</code> 开头的，都可以访问。</p><p>当然我们也可以设置只有一个 IP 可以访问，例如填写个 <code>192.168.68.123</code> 这样。</p><p>由于我只是想播放 nas 里面的视频而已，所以给只读权限就够了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在威联通的控制台里面，提供4种文件共享方式：Win&amp;#x2F;Mac&amp;#x2F;NFS&amp;#x2F;WebDAV&lt;/p&gt;
-&lt;p&gt;其中 Windows 的 smb 是最通用，我之前也是一直使用 smb 而已，毕竟 win 和 mac 都能用。&lt;/p&gt;
-&lt;p&gt;最近我想研究一下怎么</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
