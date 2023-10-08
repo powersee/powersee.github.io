@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-10-06T17:31:14.468Z</updated>
+  <updated>2023-10-08T03:26:33.720Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>caddy 添加身份验证 basicauth</title>
+    <link href="https://powersee.github.io/2023/10/caddy-basicauth/"/>
+    <id>https://powersee.github.io/2023/10/caddy-basicauth/</id>
+    <published>2023-10-08T03:24:46.000Z</published>
+    <updated>2023-10-08T03:26:33.720Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 shell 里执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">caddy hash-password</span><br></pre></td></tr></table></figure><p>然后输入两次密码，它会帮我们生成 hash-password 字符串。</p><p>这里我输入 powersee 作为密码，输入密码的过程中不会显示</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># caddy hash-password</span><br><span class="line">Enter password:</span><br><span class="line">Confirm password:</span><br><span class="line">$2a$14$plaWtwb6sWHLMe/M6J9YqeOzbfabMeOaSm51gnHAegXpraaRyARLm</span><br></pre></td></tr></table></figure><p>然后就得到了这样的字符串：<code>$2a$14$plaWtwb6sWHLMe/M6J9YqeOzbfabMeOaSm51gnHAegXpraaRyARLm</code></p><p>这步的作用是通过哈希密码，来对密码进行加密。它的特点是「不可逆」，没法通过上面的字符串来反推我的密码。</p><p>而且，我再执行一次命令，依然使用 powersee 作为密码，得到的字符串和上次也不一样。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># caddy hash-password</span><br><span class="line">Enter password:</span><br><span class="line">Confirm password:</span><br><span class="line">$2a$14$DDZ.pSpoDCjSLU6t4VCofer8kV/GMFRAiwlFLKQy2GR46/M26pvvy</span><br></pre></td></tr></table></figure><p>获得这个加密的密码后，我们需要把它添加到 caddy 的配置文件 Caddyfile 里面。</p><p>我里面的内容原本是这样的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:80 &#123;</span><br><span class="line">        root * /usr/share/caddy</span><br><span class="line">        file_server</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>修改后变成这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">:80 &#123;</span><br><span class="line">        basicauth * &#123;</span><br><span class="line">                admin       $2a$14$rwVbmOSeXDBg16KT3w2FtOPRmskImqGPWBmHhtAHFDjelpDANl8Zq</span><br><span class="line">        &#125;</span><br><span class="line">        root * /usr/share/caddy</span><br><span class="line">        file_server</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>也就是多添加了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">basicauth * &#123;</span><br><span class="line">        admin       $2a$14$rwVbmOSeXDBg16KT3w2FtOPRmskImqGPWBmHhtAHFDjelpDANl8Zq</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>此时用户名是 admin，密码是后面的字符串，也就是之前的 powersee。</p><p>于是此时我通过 80 端口来访问这台服务器的话，会弹出一个窗口，然后输入用户名和密码，验证成功才能看到里面的内容。</p><p><img src="/img/2023/caddy-basicauth.webp" alt="caddy-basicauth"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在 shell 里执行&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;caddy hash-password&lt;/span&gt;&lt;br&gt;&lt;/p</summary>
+      
+    
+    
+    
+    
+    <category term="web" scheme="https://powersee.github.io/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux 使用 zip 创建加密压缩包</title>
@@ -476,29 +499,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript 的 some 方法</title>
-    <link href="https://powersee.github.io/2023/05/javascript-some/"/>
-    <id>https://powersee.github.io/2023/05/javascript-some/</id>
-    <published>2023-05-15T02:30:49.000Z</published>
-    <updated>2023-05-15T02:31:48.525Z</updated>
-    
-    <content type="html"><![CDATA[<p>假如我有一段字符串，我需要判断它是否以 one 开头的，可以这样写</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (str.<span class="title function_">startsWith</span>(<span class="string">&#x27;one&#x27;</span>))</span><br></pre></td></tr></table></figure><p>假如我还需要判断是否以 two 开头：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (str.<span class="title function_">startsWith</span>(<span class="string">&#x27;one&#x27;</span>) || str.<span class="title function_">startsWith</span>(<span class="string">&#x27;two&#x27;</span>))</span><br></pre></td></tr></table></figure><p>如果后面还需要继续加，岂不是要写很多个 startsWith ？</p><p>更好的做法是使用 some() 方法。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> prefixes = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;three body&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (prefixes.<span class="title function_">some</span>(<span class="function"><span class="params">prefix</span> =&gt;</span> str.<span class="title function_">startsWith</span>(prefix))) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(str)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>此处定义一个数组，用 some() 方法遍历数组中的每一个元素。如果存在任何一个前缀与字符串匹配，则返回 <code>true</code>，否则返回 <code>false</code>。</p><p>上面的代码，最后会打印出 str 的值，如果我还想获得 prefix 的值，此时是 three，可以这么写</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> prefixes = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;one three body&#x27;</span>;</span><br><span class="line"></span><br><span class="line">prefixes.<span class="title function_">some</span>(<span class="function"><span class="params">prefix</span> =&gt;</span> &#123;</span><br><span class="line">    str.<span class="title function_">startsWith</span>(prefix) ? </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;prefix&#125;</span> match ⭐️⭐️⭐️`</span>) : </span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(prefix);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// ? : 是 if else 的简短写法</span></span><br></pre></td></tr></table></figure><p>此时输出的结果是</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">one match ⭐️⭐️⭐️</span><br><span class="line">two</span><br><span class="line">three</span><br></pre></td></tr></table></figure><p>可以发现，明明数组中第一个元素已经匹配到了，但是后面的元素还是继续判断。如果想要匹配到之后，后面的不判断，需要加一个 return。</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> prefixes = [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;three&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;one three body&#x27;</span>;</span><br><span class="line"></span><br><span class="line">prefixes.<span class="title function_">some</span>(<span class="function"><span class="params">prefix</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (str.<span class="title function_">startsWith</span>(prefix))&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;prefix&#125;</span> match ⭐️⭐️⭐️`</span>); </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(prefix);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>测试的时候我使用这个网站：<a href="https://rextester.com/l/nodejs_online_compiler">compile nodejs online (rextester.com)</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;假如我有一段字符串，我需要判断它是否以 one 开头的，可以这样写&lt;/p&gt;
-&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keywo</summary>
-      
-    
-    
-    
-    
-    <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
     
   </entry>
   
