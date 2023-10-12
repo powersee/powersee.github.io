@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-10-08T03:26:33.720Z</updated>
+  <updated>2023-10-12T08:46:51.223Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不错的通知方式——PushMe</title>
+    <link href="https://powersee.github.io/2023/10/PushMe/"/>
+    <id>https://powersee.github.io/2023/10/PushMe/</id>
+    <published>2023-10-12T08:44:45.000Z</published>
+    <updated>2023-10-12T08:46:51.223Z</updated>
+    
+    <content type="html"><![CDATA[<p>刚才没事看看青龙的更新日志，发现它从 7 月份开始，支持多一种通知方式 PushMe，了解了下，发现还挺不错的。</p><p>官网：<a href="https://push.i-i.me/">PushMe 一个简单轻量的Android消息客户端 (i-i.me)</a></p><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><hr><ul><li>简单：无需登录注册，安装后，在app上获取push_key，即可使用</li><li>轻量：android原生开发，无多余功能，安装包大小不到7M</li><li>可靠：支持离线消息</li><li>兼容：接口兼容企业微信&#x2F;钉钉&#x2F;飞书群机器人，直接替换即可</li><li>Markdown：消息内容支持markdown格式</li><li>数据小屏：方便查看数据消息 new</li></ul><p>它不同于我之前使用的 server 酱，爱语飞飞，Pushplus 这些需要使用微信公众号的。pushme 是一款安卓 APP，那么就只有安卓设备可以使用咯。</p><p>官网上提供的下载方式有 GitHub 和 Gitee，不过它并不是开源软件，只是把 apk 安装包放上去去。到 GitHub 上可以发现仓库只是放了图片和 apk 安装包而已。</p><p>这 APP 确实简洁，甚至连自己 APP 图标都没有。</p><p>我在 MIUI 上安装好后，需要自己去打开应用的通知权限。</p><p>第一次使用，需要在左侧获取一下 push_key。然后可以在 APP 内给自己发消息，也可以在<a href="https://push.i-i.me/">官网</a>，主要是测试能否收到消息。</p><p><img src="/img/2023/pushme-test-shadow.webp" alt="pushme-test-shadow"></p><p>目前也使用有 10 来天了，感觉还不错。目前一些青龙脚本我就是使用它，来发送通知到手机的。</p><p>如果是自己写的 Python 脚本，只需要在加入这样几行</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> notify</span><br><span class="line"></span><br><span class="line">title = <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line"></span><br><span class="line">notify.send(title, result)</span><br></pre></td></tr></table></figure><p>就可以在脚本运行完成之后，通过 pushme 把内容发送到手机。</p><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>不过我明明给这个 APP 自启动的权限，并且关闭了省电限制，也让它固定在后台，但是却发现依然不能收到通知，只能打开 APP 后刷新才能看到消息。</p><p>而且这 APP 一放到后台没多久，就会弹出一条通知「通道状态：Disconnected」</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>我发现直接把 APP 从后台划掉，这样就可以直接收到通知了。到「通知管理」里面，将 StateChannel 关掉，就不会收到通道状态的消息了。</p><h3 id="更新-notice"><a href="#更新-notice" class="headerlink" title="更新 notice"></a>更新 notice</h3><p>qinglong 需要更新 notice 文件，由于我只使用 Python 脚本，所以去 GitHub 下载新的 <a href="https://github.com/whyour/qinglong/blob/develop/sample/notify.py">qinglong&#x2F;sample&#x2F;notify.py at develop · whyour&#x2F;qinglong · GitHub</a></p><p>然后替换掉原来的就可以了。</p><p>通过观察 notify.py 文件，可以看到这样的内容</p><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">pushme</span>(<span class="params">title: <span class="built_in">str</span>, content: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    使用 PushMe 推送消息。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> push_config.get(<span class="string">&quot;PUSHME_KEY&quot;</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;PushMe 服务的 PUSHME_KEY 未设置!!\n取消推送&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;PushMe 服务启动&quot;</span>)</span><br><span class="line"></span><br><span class="line">    url = <span class="string">f&#x27;https://push.i-i.me/?push_key=<span class="subst">&#123;push_config.get(<span class="string">&quot;PUSHME_KEY&quot;</span>)&#125;</span>&#x27;</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;title&quot;</span>: title,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: content,</span><br><span class="line">    &#125;</span><br><span class="line">    response = requests.post(url, data=data)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> response.status_code == <span class="number">200</span> <span class="keyword">and</span> response.text == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;PushMe 推送成功！&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;PushMe 推送失败！<span class="subst">&#123;response.status_code&#125;</span> <span class="subst">&#123;response.text&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure><p>虽然里面用的是 post，不过其实我们把它转换一下，然后用 get 也是可以发送通知的。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://push.i-i.me/?push_key=KEY&amp;title=标题&amp;content=内容</span><br></pre></td></tr></table></figure><p>把这里的 KEY 换成自己的秘钥，然后把链接复制到浏览器访问一下，手机端就可以收到消息。</p><p><img src="/img/2023/pushme-msg.webp" alt="pushme-msg"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;刚才没事看看青龙的更新日志，发现它从 7 月份开始，支持多一种通知方式 PushMe，了解了下，发现还挺不错的。&lt;/p&gt;
+&lt;p&gt;官网：&lt;a href=&quot;https://push.i-i.me/&quot;&gt;PushMe 一个简单轻量的Android消息客户端 (i-i.me)&lt;/a&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://powersee.github.io/tags/Python/"/>
+    
+    <category term="工具" scheme="https://powersee.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>caddy 添加身份验证 basicauth</title>
@@ -476,29 +501,6 @@
     
     
     <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>威联通添加 crontab 任务正确的做法</title>
-    <link href="https://powersee.github.io/2023/05/qnap-crontab2/"/>
-    <id>https://powersee.github.io/2023/05/qnap-crontab2/</id>
-    <published>2023-05-16T09:03:27.000Z</published>
-    <updated>2023-05-16T09:07:59.236Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="/2023/05/qnap-crontab/">之前的文章</a> 我在威联通里面直接用 <code>crontab -e</code> 添加定时任务，机器重启之后就会被覆盖掉。看来这种方式添加的任务不能持久保存。</p><p>想要永久保存，需要编辑 &#x2F;etc&#x2F;config&#x2F;crontab，可以使用 vi 或者 nano。</p><p>添加好任务后，执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crontab /etc/config/crontab &amp;&amp; /etc/init.d/crond.sh restart</span><br></pre></td></tr></table></figure><p>来重启 cron 守护进程。</p><p>这样重启机器任务也依然还在。</p><p>参考官方文档：<a href="https://wiki.qnap.com/wiki/Add_items_to_crontab">Add items to crontab - QNAPedia</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;/2023/05/qnap-crontab/&quot;&gt;之前的文章&lt;/a&gt; 我在威联通里面直接用 &lt;code&gt;crontab -e&lt;/code&gt; 添加定时任务，机器重启之后就会被覆盖掉。看来这种方式添加的任务不能持久保存。&lt;/p&gt;
-&lt;p&gt;想要永久保存，需要编辑 &amp;</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
