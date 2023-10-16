@@ -6595,4 +6595,37 @@ border-radius: 4px;
         <tag>工具</tag>
       </tags>
   </entry>
+  <entry>
+    <title>威联通安装 zsh 与 ohmyzsh</title>
+    <url>/2023/10/qnap-zsh/</url>
+    <content><![CDATA[<p>本文记录如果在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。</p>
+<p>比较简单的方法，是在 APP Center 里添加「程序来源」</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.myqnap.org/repo.xml</span><br></pre></td></tr></table></figure>
+
+<p>或者到 <a href="https://www.myqnap.org/">https://www.myqnap.org/</a> 上面下载，然后使用命令行安装。</p>
+<p>注意，以前的 qnapclub 已经不能用了。</p>
+<hr>
+<p>搜索 zsh 可以找到一个 oh my zsh，安装好就行。</p>
+<p>之后 ssh 连接上威联通，输入 zsh，就可以把 shell 从默认的 sh 切换到 zsh。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[admin@qnap ~]# zsh</span><br><span class="line">➜  ~</span><br></pre></td></tr></table></figure>
+
+<p>它的真实路径是在硬盘的 <code>.qpkg</code> 目录中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx /usr/bin/zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/bin/zsh*</span><br></pre></td></tr></table></figure>
+
+<p>在普通的 Linux 发行版上，我们可能会使用 chsh 来切换默认 shell，实现 ssh 连接上时，自动使用 zsh，但是在威联通 qnap 里面并没有 chsh。</p>
+<p>目前好像没什么比较好的办法来实现，网上搜到这篇教程，但是这样操作有风险，我没尝试。</p>
+<p><a href="https://post.smzdm.com/p/a785zrr5/">NAS 篇一：威联通设置默认 shell 为 zsh_NAS存储_什么值得买</a></p>
+<p>目前我想到的做法是，直接在 .profile 的最后，添加一行 zsh，这样我们 ssh 连接上威联通时，先启动 sh，然后它在加载配置文件时，自动启动 zsh。</p>
+<p>但由于速度很快，所以我们肉眼看就像直接就进入 zsh 了。</p>
+<p>同时它也帮我们装好了 oh my zsh，真实路径在</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.oh-my-zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/oh-my-zsh</span><br></pre></td></tr></table></figure>
+
+<p>配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.zshrc -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/zshrc.zsh-template</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>NAS</tag>
+      </tags>
+  </entry>
 </search>
