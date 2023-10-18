@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
-	<title>威联通安装 zsh 与 ohmyzsh</title>
+	<title>Mac 使用 nano 编辑器如何复制 M-6</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -37,7 +37,7 @@
     
   
   <h1 class="title">
-    威联通安装 zsh 与 ohmyzsh
+    Mac 使用 nano 编辑器如何复制 M-6
   </h1>
   
 
@@ -45,7 +45,7 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2023-10-16T07:56:48.000Z" itemprop="datePublished">2023-10-16</time>
+        <time datetime="2023-10-18T18:10:20.000Z" itemprop="datePublished">2023-10-19</time>
       </li>
       <li>
         
@@ -59,31 +59,40 @@
     <div class="article">
       <div class="content">
         
-        <p>本文记录如何在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。</p>
-<p>比较简单的方法，是在 APP Center 里添加「程序来源」</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.myqnap.org/repo.xml</span><br></pre></td></tr></table></figure>
-
-<p>或者到 <a target="_blank" rel="noopener" href="https://www.myqnap.org/">https://www.myqnap.org/</a> 上面下载，然后使用命令行安装。</p>
-<p>注意，以前的 qnapclub 已经不能用了。</p>
-<hr>
-<p>搜索 zsh 可以找到一个 oh my zsh，安装好就行。</p>
-<p>之后 ssh 连接上威联通，输入 zsh，就可以把 shell 从默认的 sh 切换到 zsh。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[admin@qnap ~]# zsh</span><br><span class="line">➜  ~</span><br></pre></td></tr></table></figure>
-
-<p>它的真实路径是在硬盘的 <code>.qpkg</code> 目录中。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx /usr/bin/zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/bin/zsh*</span><br></pre></td></tr></table></figure>
-
-<p>在普通的 Linux 发行版上，我们可能会使用 chsh 来切换默认 shell，实现 ssh 连接上时，自动使用 zsh，但是在威联通 qnap 里面并没有 chsh。</p>
-<p>目前好像没什么比较好的办法来实现，网上搜到这篇教程，但是这样操作有风险，我没尝试。</p>
-<p><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/a785zrr5/">NAS 篇一：威联通设置默认 shell 为 zsh_NAS存储_什么值得买</a></p>
-<p>目前我想到的做法是，直接在 .profile 的最后，添加一行 zsh，这样我们 ssh 连接上威联通时，先启动 sh，然后它在加载配置文件时，自动启动 zsh。</p>
-<p>但由于速度很快，所以我们肉眼看就像直接就进入 zsh 了。</p>
-<p>同时它也帮我们装好了 oh my zsh，真实路径在</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.oh-my-zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/oh-my-zsh</span><br></pre></td></tr></table></figure>
-
-<p>配置文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.zshrc -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/zshrc.zsh-template</span><br></pre></td></tr></table></figure>
-
+        <p>nano 编辑器中复制使用的快捷键是 M-6，在 Windows 和 Linux 就是 Alt + 6 这两个按键一起按。作用和 vim 的 yy 一样。</p>
+<p>当我们没有选中任何内容时，就会复制当前光标所在的行。使用 Ctrl + U 就可以粘贴。</p>
+<p>但是在 Mac 上就有问题了，我发现当我按下 Alt + 6 时，屏幕上是多出来一个特殊的符号 <code>§</code></p>
+<p>Mac 的 Alt 或者说 Option 键，是有特殊的用处的，在输入状态下，是打出特殊字符。</p>
+<p>例如我们按 shift + 2，打出的是 @，而按 Alt + 2，则是 ™。</p>
+<p>下面是一些常见的特殊字符和符号，以及在按住 Option 键时输入对应字符的方式：</p>
+<ol>
+<li><strong>常见特殊字符</strong>：<ul>
+<li><code>Option + a</code> 产生 å</li>
+<li><code>Option + e</code> 产生 é</li>
+<li><code>Option + u</code> 产生 ü</li>
+<li><code>Option + i</code> 产生 î</li>
+<li><code>Option + o</code> 产生 ô</li>
+</ul>
+</li>
+<li><strong>符号和标点</strong>：<ul>
+<li><code>Option + 1</code> 产生 ¡</li>
+<li><code>Option + 2</code> 产生 ™</li>
+<li><code>Option + 3</code> 产生 £</li>
+<li><code>Option + 4</code> 产生 ¢</li>
+<li><code>Option + 5</code> 产生 ∞</li>
+<li><code>Option + 6</code> 产生 §</li>
+<li><code>Option + 7</code> 产生 ¶</li>
+<li><code>Option + 8</code> 产生 •</li>
+<li><code>Option + 9</code> 产生 ª</li>
+<li><code>Option + 0</code> 产生 º</li>
+<li><code>Option + -</code> 产生 –</li>
+<li><code>Option + =</code> 产生 ±</li>
+</ul>
+</li>
+</ol>
+<p>也就是说，Alt + 6 的快捷键组合，已经被 Mac 自身使用了，所以在 nano 里不生效。</p>
+<p>解决方法，按 escape + 6，也就是键盘左上角的 ESC 键。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/26285791/unix-what-modifier-key-does-m-refer-to-e-g-m-c">nano - Unix: what modifier key does “M-“ refer to (e.g. M-C) - Stack Overflow</a></p>
 
       </div>
         <div class="support-author">

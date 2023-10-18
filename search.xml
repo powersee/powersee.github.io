@@ -6598,7 +6598,7 @@ border-radius: 4px;
   <entry>
     <title>威联通安装 zsh 与 ohmyzsh</title>
     <url>/2023/10/qnap-zsh/</url>
-    <content><![CDATA[<p>本文记录如果在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。</p>
+    <content><![CDATA[<p>本文记录如何在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。</p>
 <p>比较简单的方法，是在 APP Center 里添加「程序来源」</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.myqnap.org/repo.xml</span><br></pre></td></tr></table></figure>
 
@@ -6626,6 +6626,72 @@ border-radius: 4px;
 ]]></content>
       <tags>
         <tag>NAS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 使用 nano 编辑器如何复制 M-6</title>
+    <url>/2023/10/mac-nano-copy/</url>
+    <content><![CDATA[<p>nano 编辑器中复制使用的快捷键是 M-6，在 Windows 和 Linux 就是 Alt + 6 这两个按键一起按。作用和 vim 的 yy 一样。</p>
+<p>当我们没有选中任何内容时，就会复制当前光标所在的行。使用 Ctrl + U 就可以粘贴。</p>
+<p>但是在 Mac 上就有问题了，我发现当我按下 Alt + 6 时，屏幕上是多出来一个特殊的符号 <code>§</code></p>
+<p>Mac 的 Alt 或者说 Option 键，是有特殊的用处的，在输入状态下，是打出特殊字符。</p>
+<p>例如我们按 shift + 2，打出的是 @，而按 Alt + 2，则是 ™。</p>
+<p>下面是一些常见的特殊字符和符号，以及在按住 Option 键时输入对应字符的方式：</p>
+<ol>
+<li><strong>常见特殊字符</strong>：<ul>
+<li><code>Option + a</code> 产生 å</li>
+<li><code>Option + e</code> 产生 é</li>
+<li><code>Option + u</code> 产生 ü</li>
+<li><code>Option + i</code> 产生 î</li>
+<li><code>Option + o</code> 产生 ô</li>
+</ul>
+</li>
+<li><strong>符号和标点</strong>：<ul>
+<li><code>Option + 1</code> 产生 ¡</li>
+<li><code>Option + 2</code> 产生 ™</li>
+<li><code>Option + 3</code> 产生 £</li>
+<li><code>Option + 4</code> 产生 ¢</li>
+<li><code>Option + 5</code> 产生 ∞</li>
+<li><code>Option + 6</code> 产生 §</li>
+<li><code>Option + 7</code> 产生 ¶</li>
+<li><code>Option + 8</code> 产生 •</li>
+<li><code>Option + 9</code> 产生 ª</li>
+<li><code>Option + 0</code> 产生 º</li>
+<li><code>Option + -</code> 产生 –</li>
+<li><code>Option + =</code> 产生 ±</li>
+</ul>
+</li>
+</ol>
+<p>也就是说，Alt + 6 的快捷键组合，已经被 Mac 自身使用了，所以在 nano 里不生效。</p>
+<p>解决方法，按 escape + 6，也就是键盘左上角的 ESC 键。</p>
+<p>参考：<a href="https://stackoverflow.com/questions/26285791/unix-what-modifier-key-does-m-refer-to-e-g-m-c">nano - Unix: what modifier key does “M-“ refer to (e.g. M-C) - Stack Overflow</a></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Alpine 里安装 docker</title>
+    <url>/2023/10/alpine-install-docker/</url>
+    <content><![CDATA[<p>注，是实机安装 Alpine 作为主系统使用。</p>
+<p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add docker</span><br></pre></td></tr></table></figure>
+
+<p>添加开机自启</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rc-update add docker boot</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+
+<p>此时应该就可以正常使用 docker 了，可以执行 <code>docker info</code> 来检查看看</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker info</span><br><span class="line">Client:</span><br><span class="line"> Context:    default</span><br><span class="line"> Debug Mode: false</span><br><span class="line"> Plugins:</span><br><span class="line">  buildx: Docker Buildx (Docker Inc.)</span><br><span class="line">    Version:  v0.10.4</span><br><span class="line">    Path:     /usr/libexec/docker/cli-plugins/docker-buildx</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Containers: 0</span><br><span class="line">  Running: 0</span><br><span class="line">  Paused: 0</span><br><span class="line">  Stopped: 0</span><br><span class="line"> Images: 0</span><br><span class="line"> Server Version: 23.0.6</span><br><span class="line"> Storage Driver: overlay2</span><br><span class="line">  Backing Filesystem: extfs</span><br><span class="line">  Supports d_type: true</span><br><span class="line">  Using metacopy: false</span><br><span class="line">  Native Overlay Diff: true</span><br><span class="line">  userxattr: false</span><br><span class="line"> Logging Driver: json-file</span><br><span class="line"> Cgroup Driver: cgroupfs</span><br><span class="line"> Cgroup Version: 1</span><br><span class="line"> Plugins:</span><br><span class="line">  Volume: local</span><br><span class="line">  Network: bridge host ipvlan macvlan null overlay</span><br><span class="line">  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog</span><br><span class="line"> Swarm: inactive</span><br><span class="line"> Runtimes: io.containerd.runc.v2 runc</span><br><span class="line"> Default Runtime: runc</span><br><span class="line"> Init Binary: docker-init</span><br><span class="line"> containerd version: 0cae528dd6cb557f7201036e9f43420650207b58</span><br><span class="line"> runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7</span><br><span class="line"> init version: </span><br><span class="line"> Security Options:</span><br><span class="line">  seccomp</span><br><span class="line">   Profile: builtin</span><br><span class="line"> Kernel Version: 6.1.51-0-lts</span><br><span class="line"> Operating System: Alpine Linux v3.18</span><br><span class="line"> OSType: linux</span><br><span class="line"> Architecture: x86_64</span><br><span class="line"> CPUs: 1</span><br><span class="line"> Total Memory: 460.3MiB</span><br><span class="line"> Name: vultr</span><br><span class="line"> ID: 60556f53-c374-4131-8e9f-45c112f766b2</span><br><span class="line"> Docker Root Dir: /var/lib/docker</span><br><span class="line"> Debug Mode: false</span><br><span class="line"> Registry: https://index.docker.io/v1/</span><br><span class="line"> Experimental: false</span><br><span class="line"> Insecure Registries:</span><br><span class="line">  127.0.0.0/8</span><br><span class="line"> Live Restore Enabled: false</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker version</span><br><span class="line">Client:</span><br><span class="line"> Version:           23.0.6</span><br><span class="line"> API version:       1.42</span><br><span class="line"> Go version:        go1.20.10</span><br><span class="line"> Git commit:        ef23cbc4315ae76c744e02d687c09548ede461bd</span><br><span class="line"> Built:             Thu Oct 12 14:14:03 2023</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          23.0.6</span><br><span class="line">  API version:      1.42 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.20.10</span><br><span class="line">  Git commit:       9dbdbd4b6d7681bd18c897a6ba0376073c2a72ff</span><br><span class="line">  Built:            Thu Oct 12 14:14:03 2023</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br><span class="line"> containerd:</span><br><span class="line">  Version:          v1.7.2</span><br><span class="line">  GitCommit:        0cae528dd6cb557f7201036e9f43420650207b58</span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.1.7</span><br><span class="line">  GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7</span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>docker</tag>
       </tags>
   </entry>
 </search>

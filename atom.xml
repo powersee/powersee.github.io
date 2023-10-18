@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-10-16T08:06:06.073Z</updated>
+  <updated>2023-10-18T18:11:33.540Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,18 +17,68 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Mac 使用 nano 编辑器如何复制 M-6</title>
+    <link href="https://powersee.github.io/2023/10/mac-nano-copy/"/>
+    <id>https://powersee.github.io/2023/10/mac-nano-copy/</id>
+    <published>2023-10-18T18:10:20.000Z</published>
+    <updated>2023-10-18T18:11:33.540Z</updated>
+    
+    <content type="html"><![CDATA[<p>nano 编辑器中复制使用的快捷键是 M-6，在 Windows 和 Linux 就是 Alt + 6 这两个按键一起按。作用和 vim 的 yy 一样。</p><p>当我们没有选中任何内容时，就会复制当前光标所在的行。使用 Ctrl + U 就可以粘贴。</p><p>但是在 Mac 上就有问题了，我发现当我按下 Alt + 6 时，屏幕上是多出来一个特殊的符号 <code>§</code></p><p>Mac 的 Alt 或者说 Option 键，是有特殊的用处的，在输入状态下，是打出特殊字符。</p><p>例如我们按 shift + 2，打出的是 @，而按 Alt + 2，则是 ™。</p><p>下面是一些常见的特殊字符和符号，以及在按住 Option 键时输入对应字符的方式：</p><ol><li><strong>常见特殊字符</strong>：<ul><li><code>Option + a</code> 产生 å</li><li><code>Option + e</code> 产生 é</li><li><code>Option + u</code> 产生 ü</li><li><code>Option + i</code> 产生 î</li><li><code>Option + o</code> 产生 ô</li></ul></li><li><strong>符号和标点</strong>：<ul><li><code>Option + 1</code> 产生 ¡</li><li><code>Option + 2</code> 产生 ™</li><li><code>Option + 3</code> 产生 £</li><li><code>Option + 4</code> 产生 ¢</li><li><code>Option + 5</code> 产生 ∞</li><li><code>Option + 6</code> 产生 §</li><li><code>Option + 7</code> 产生 ¶</li><li><code>Option + 8</code> 产生 •</li><li><code>Option + 9</code> 产生 ª</li><li><code>Option + 0</code> 产生 º</li><li><code>Option + -</code> 产生 –</li><li><code>Option + =</code> 产生 ±</li></ul></li></ol><p>也就是说，Alt + 6 的快捷键组合，已经被 Mac 自身使用了，所以在 nano 里不生效。</p><p>解决方法，按 escape + 6，也就是键盘左上角的 ESC 键。</p><p>参考：<a href="https://stackoverflow.com/questions/26285791/unix-what-modifier-key-does-m-refer-to-e-g-m-c">nano - Unix: what modifier key does “M-“ refer to (e.g. M-C) - Stack Overflow</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;nano 编辑器中复制使用的快捷键是 M-6，在 Windows 和 Linux 就是 Alt + 6 这两个按键一起按。作用和 vim 的 yy 一样。&lt;/p&gt;
+&lt;p&gt;当我们没有选中任何内容时，就会复制当前光标所在的行。使用 Ctrl + U 就可以粘贴。&lt;/p&gt;
+&lt;p&gt;</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Alpine 里安装 docker</title>
+    <link href="https://powersee.github.io/2023/10/alpine-install-docker/"/>
+    <id>https://powersee.github.io/2023/10/alpine-install-docker/</id>
+    <published>2023-10-17T16:32:41.000Z</published>
+    <updated>2023-10-17T16:34:15.426Z</updated>
+    
+    <content type="html"><![CDATA[<p>注，是实机安装 Alpine 作为主系统使用。</p><p>安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add docker</span><br></pre></td></tr></table></figure><p>添加开机自启</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rc-update add docker boot</span><br></pre></td></tr></table></figure><p>启动</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure><p>此时应该就可以正常使用 docker 了，可以执行 <code>docker info</code> 来检查看看</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker info</span><br><span class="line">Client:</span><br><span class="line"> Context:    default</span><br><span class="line"> Debug Mode: false</span><br><span class="line"> Plugins:</span><br><span class="line">  buildx: Docker Buildx (Docker Inc.)</span><br><span class="line">    Version:  v0.10.4</span><br><span class="line">    Path:     /usr/libexec/docker/cli-plugins/docker-buildx</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Containers: 0</span><br><span class="line">  Running: 0</span><br><span class="line">  Paused: 0</span><br><span class="line">  Stopped: 0</span><br><span class="line"> Images: 0</span><br><span class="line"> Server Version: 23.0.6</span><br><span class="line"> Storage Driver: overlay2</span><br><span class="line">  Backing Filesystem: extfs</span><br><span class="line">  Supports d_type: true</span><br><span class="line">  Using metacopy: false</span><br><span class="line">  Native Overlay Diff: true</span><br><span class="line">  userxattr: false</span><br><span class="line"> Logging Driver: json-file</span><br><span class="line"> Cgroup Driver: cgroupfs</span><br><span class="line"> Cgroup Version: 1</span><br><span class="line"> Plugins:</span><br><span class="line">  Volume: local</span><br><span class="line">  Network: bridge host ipvlan macvlan null overlay</span><br><span class="line">  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog</span><br><span class="line"> Swarm: inactive</span><br><span class="line"> Runtimes: io.containerd.runc.v2 runc</span><br><span class="line"> Default Runtime: runc</span><br><span class="line"> Init Binary: docker-init</span><br><span class="line"> containerd version: 0cae528dd6cb557f7201036e9f43420650207b58</span><br><span class="line"> runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7</span><br><span class="line"> init version: </span><br><span class="line"> Security Options:</span><br><span class="line">  seccomp</span><br><span class="line">   Profile: builtin</span><br><span class="line"> Kernel Version: 6.1.51-0-lts</span><br><span class="line"> Operating System: Alpine Linux v3.18</span><br><span class="line"> OSType: linux</span><br><span class="line"> Architecture: x86_64</span><br><span class="line"> CPUs: 1</span><br><span class="line"> Total Memory: 460.3MiB</span><br><span class="line"> Name: vultr</span><br><span class="line"> ID: 60556f53-c374-4131-8e9f-45c112f766b2</span><br><span class="line"> Docker Root Dir: /var/lib/docker</span><br><span class="line"> Debug Mode: false</span><br><span class="line"> Registry: https://index.docker.io/v1/</span><br><span class="line"> Experimental: false</span><br><span class="line"> Insecure Registries:</span><br><span class="line">  127.0.0.0/8</span><br><span class="line"> Live Restore Enabled: false</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker version</span><br><span class="line">Client:</span><br><span class="line"> Version:           23.0.6</span><br><span class="line"> API version:       1.42</span><br><span class="line"> Go version:        go1.20.10</span><br><span class="line"> Git commit:        ef23cbc4315ae76c744e02d687c09548ede461bd</span><br><span class="line"> Built:             Thu Oct 12 14:14:03 2023</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          23.0.6</span><br><span class="line">  API version:      1.42 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.20.10</span><br><span class="line">  Git commit:       9dbdbd4b6d7681bd18c897a6ba0376073c2a72ff</span><br><span class="line">  Built:            Thu Oct 12 14:14:03 2023</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br><span class="line"> containerd:</span><br><span class="line">  Version:          v1.7.2</span><br><span class="line">  GitCommit:        0cae528dd6cb557f7201036e9f43420650207b58</span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.1.7</span><br><span class="line">  GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7</span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;注，是实机安装 Alpine 作为主系统使用。&lt;/p&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apk add doc</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
     <title>威联通安装 zsh 与 ohmyzsh</title>
     <link href="https://powersee.github.io/2023/10/qnap-zsh/"/>
     <id>https://powersee.github.io/2023/10/qnap-zsh/</id>
     <published>2023-10-16T07:56:48.000Z</published>
-    <updated>2023-10-16T08:06:06.073Z</updated>
+    <updated>2023-10-18T18:11:59.217Z</updated>
     
-    <content type="html"><![CDATA[<p>本文记录如果在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。</p><p>比较简单的方法，是在 APP Center 里添加「程序来源」</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.myqnap.org/repo.xml</span><br></pre></td></tr></table></figure><p>或者到 <a href="https://www.myqnap.org/">https://www.myqnap.org/</a> 上面下载，然后使用命令行安装。</p><p>注意，以前的 qnapclub 已经不能用了。</p><hr><p>搜索 zsh 可以找到一个 oh my zsh，安装好就行。</p><p>之后 ssh 连接上威联通，输入 zsh，就可以把 shell 从默认的 sh 切换到 zsh。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[admin@qnap ~]# zsh</span><br><span class="line">➜  ~</span><br></pre></td></tr></table></figure><p>它的真实路径是在硬盘的 <code>.qpkg</code> 目录中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx /usr/bin/zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/bin/zsh*</span><br></pre></td></tr></table></figure><p>在普通的 Linux 发行版上，我们可能会使用 chsh 来切换默认 shell，实现 ssh 连接上时，自动使用 zsh，但是在威联通 qnap 里面并没有 chsh。</p><p>目前好像没什么比较好的办法来实现，网上搜到这篇教程，但是这样操作有风险，我没尝试。</p><p><a href="https://post.smzdm.com/p/a785zrr5/">NAS 篇一：威联通设置默认 shell 为 zsh_NAS存储_什么值得买</a></p><p>目前我想到的做法是，直接在 .profile 的最后，添加一行 zsh，这样我们 ssh 连接上威联通时，先启动 sh，然后它在加载配置文件时，自动启动 zsh。</p><p>但由于速度很快，所以我们肉眼看就像直接就进入 zsh 了。</p><p>同时它也帮我们装好了 oh my zsh，真实路径在</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.oh-my-zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/oh-my-zsh</span><br></pre></td></tr></table></figure><p>配置文件</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.zshrc -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/zshrc.zsh-template</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>本文记录如何在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。</p><p>比较简单的方法，是在 APP Center 里添加「程序来源」</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.myqnap.org/repo.xml</span><br></pre></td></tr></table></figure><p>或者到 <a href="https://www.myqnap.org/">https://www.myqnap.org/</a> 上面下载，然后使用命令行安装。</p><p>注意，以前的 qnapclub 已经不能用了。</p><hr><p>搜索 zsh 可以找到一个 oh my zsh，安装好就行。</p><p>之后 ssh 连接上威联通，输入 zsh，就可以把 shell 从默认的 sh 切换到 zsh。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[admin@qnap ~]# zsh</span><br><span class="line">➜  ~</span><br></pre></td></tr></table></figure><p>它的真实路径是在硬盘的 <code>.qpkg</code> 目录中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx /usr/bin/zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/bin/zsh*</span><br></pre></td></tr></table></figure><p>在普通的 Linux 发行版上，我们可能会使用 chsh 来切换默认 shell，实现 ssh 连接上时，自动使用 zsh，但是在威联通 qnap 里面并没有 chsh。</p><p>目前好像没什么比较好的办法来实现，网上搜到这篇教程，但是这样操作有风险，我没尝试。</p><p><a href="https://post.smzdm.com/p/a785zrr5/">NAS 篇一：威联通设置默认 shell 为 zsh_NAS存储_什么值得买</a></p><p>目前我想到的做法是，直接在 .profile 的最后，添加一行 zsh，这样我们 ssh 连接上威联通时，先启动 sh，然后它在加载配置文件时，自动启动 zsh。</p><p>但由于速度很快，所以我们肉眼看就像直接就进入 zsh 了。</p><p>同时它也帮我们装好了 oh my zsh，真实路径在</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.oh-my-zsh -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/oh-my-zsh</span><br></pre></td></tr></table></figure><p>配置文件</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.zshrc -&gt; /share/CACHEDEV1_DATA/.qpkg/ZSH/zshrc.zsh-template</span><br></pre></td></tr></table></figure>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;本文记录如果在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;本文记录如何在威联通的 qnap 系统里安装 zsh 和配置集 ohmyzsh。&lt;/p&gt;
 &lt;p&gt;比较简单的方法，是在 APP Center 里添加「程序来源」&lt;/p&gt;
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cl</summary>
       
@@ -453,55 +503,6 @@
     <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
     <category term="NAS" scheme="https://powersee.github.io/tags/NAS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 快捷方式如何使用相对路径</title>
-    <link href="https://powersee.github.io/2023/06/windows-quick-access-relative-paths/"/>
-    <id>https://powersee.github.io/2023/06/windows-quick-access-relative-paths/</id>
-    <published>2023-06-24T04:44:00.000Z</published>
-    <updated>2023-06-24T04:47:50.963Z</updated>
-    
-    <content type="html"><![CDATA[<p>现在我的有一个 a.exe 的程序，放在 C:\bin 里面。</p><p>直接选中按右键，在菜单中选择「创建快捷方式」，那么我们可以得到一个名为<code>a.exe - 快捷方式</code>的文件。此时它的属性是这样的</p><p><img src="/img/2023/image-20230618212051614.png" alt="image-20230618212051614"></p><p>可以观察到「目标」和「起始位置」都写上了完整路径。因此我们把这个快捷方式，放到其它地方，也可以双击来打开程序。</p><p>偶然间注意到，还有个备注选项。我在上面填写上 hehe，那么当我的鼠标放到快捷方式上面时，就会出现备注信息。</p><p><img src="/img/2023/image-20230618212612322.png" alt="image-20230618212612322"></p><p>想要使用相对路径，需要先把「起始位置」的内容删了。然后在「目标」后面的框加上 explorer.exe （注意有一个空格），然后再加上「要执行的程序相对于快捷方式的位置」。填写好后点右下角的「应用」。会自动加上「C:\Windows\」，并且图标也变成资源管理器的了。</p><p>这样一个使用相对路径的快捷方式就创建好了，我的用途是放在移动硬盘中，方便我在不同的电脑使用。</p><p><img src="/img/2023/image-20230618213144445.png" alt="image-20230618213144445"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;现在我的有一个 a.exe 的程序，放在 C:\bin 里面。&lt;/p&gt;
-&lt;p&gt;直接选中按右键，在菜单中选择「创建快捷方式」，那么我们可以得到一个名为&lt;code&gt;a.exe - 快捷方式&lt;/code&gt;的文件。此时它的属性是这样的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript 拼接百度网盘链接</title>
-    <link href="https://powersee.github.io/2023/05/js-baidu-netdisk-link/"/>
-    <id>https://powersee.github.io/2023/05/js-baidu-netdisk-link/</id>
-    <published>2023-05-24T15:55:58.000Z</published>
-    <updated>2023-05-27T07:36:20.778Z</updated>
-    
-    <content type="html"><![CDATA[<p>有时在网页中，看到别人分享百度网盘链接。一般情况下，我点击链接之后，还需要输入提取码，才可以看到别人分享的文件。</p><p>我觉得应该可以通过代码，来减少一些步骤。举个例子，例如现在有这样的链接和提取码</p><blockquote><p><a href="https://pan.baidu.com/s/powersee_xxxx">https://pan.baidu.com/s/powersee_xxxx</a></p><p>提取码: psee</p></blockquote><p>那么只需要把链接改为 <a href="https://pan.baidu.com/s/powersee_xxxx?pwd=psee">https://pan.baidu.com/s/powersee_xxxx?pwd=psee</a> 就不需要手动输出提取码了。就是在原本链接后面加上「?pwd&#x3D;提取码」。</p><p>使用这样的代码可以实现：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> link_area = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.link_area&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> d_link = link_area.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;a&#x27;</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> link_key = link_area.<span class="property">innerText</span>.<span class="title function_">match</span>(<span class="string">&#x27;提取码: (....)&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">d_link.<span class="property">target</span>=<span class="string">&#x27;_blank&#x27;</span>;</span><br><span class="line">d_link.<span class="property">href</span> += <span class="string">&#x27;?pwd=&#x27;</span> + link_key</span><br></pre></td></tr></table></figure><p>不过这样只能处理第一个链接。怎么修改代码让它可以处理多个链接？</p><p>思路：先查找到所有链接，再查找所有 「提取码」 ，只有再使用 for 循环遍历处理链接。最终代码如下：</p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> link_area = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.link_area&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> d_link = link_area.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> link_key = link_area.<span class="property">innerText</span>.<span class="title function_">match</span>(<span class="regexp">/提取码: (....)/g</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; d_link.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  d_link[i].<span class="property">target</span>=<span class="string">&#x27;_blank&#x27;</span>;</span><br><span class="line">  d_link[i].<span class="property">href</span> += <span class="string">&#x27;?pwd=&#x27;</span> + link_key[i].<span class="title function_">replace</span>(<span class="string">&#x27;提取码: &#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>获取提取码部分比较麻烦，最终采用 replace 去掉多余的文字。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;有时在网页中，看到别人分享百度网盘链接。一般情况下，我点击链接之后，还需要输入提取码，才可以看到别人分享的文件。&lt;/p&gt;
-&lt;p&gt;我觉得应该可以通过代码，来减少一些步骤。举个例子，例如现在有这样的链接和提取码&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http</summary>
-      
-    
-    
-    
-    
-    <category term="JavaScript" scheme="https://powersee.github.io/tags/JavaScript/"/>
     
   </entry>
   
