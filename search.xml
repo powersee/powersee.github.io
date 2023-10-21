@@ -6694,4 +6694,20 @@ border-radius: 4px;
         <tag>docker</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Outlook 邮箱添加白名单 垃圾邮件处理</title>
+    <url>/2023/10/outlook-email-whitelist/</url>
+    <content><![CDATA[<p>微软的邮箱，处理垃圾邮件的力度太猛了，大多数通知邮件都被归类到垃圾邮件里面。而且 10 天就会删除。</p>
+<p>它好像没有关闭邮件拦截的开关，所以目前我的做法是，自己手动添加白名单。</p>
+<p>可以到网页端进行操作：<a href="https://outlook.live.com/">https://outlook.live.com/</a></p>
+<p>点击右上角的齿轮图标⚙，打开设置。</p>
+<p><img src="/img/2023/Outlook-setting-shadow.webp" alt="Outlook-setting-shadow"></p>
+<p>在「邮件」「垃圾电子邮件」里面，就可以设置黑名单和白名单。</p>
+<p>不过这样手动添加也比较麻烦，我们可以先点开垃圾邮件，然后点击上方的「这不是垃圾邮件」，这是网页会弹出一个提示，问是否要将这个邮箱地址，添加到「安全发件人」，点击「是」即可。</p>
+<p>不过这种得你已经收到邮件，并且邮件在「垃圾邮件」文件夹里能看到才行，毕竟这里面的邮件，存放 10 天就回被删除，所以要是长时间没去注意的话，很可能有些邮件被拦截，然后被自动删除，自己完全不知道。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>
