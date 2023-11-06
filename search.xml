@@ -6710,4 +6710,52 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>使用 docker 自建在线文档「思源笔记」</title>
+    <url>/2023/11/docker-siyuan/</url>
+    <content><![CDATA[<p>思源笔记是一款开源的笔记应用，目前（2023年11月06日）在 <a href="https://github.com/siyuan-note/siyuan">GitHub</a> 上的 star 数量接近一万三。</p>
+<p>我自己也使用它有一两个月了，感觉还不错。我只使用 docker 自建的，没有使用电脑和手机的客户端。因为我感觉在浏览器里使用它就够了，能满足我的日常使用需求。</p>
+<p>虽然这是一个开源应用，不过里面有些功能是需要付费才能使用的。例如通过 webdav 备份，这个功能需要花 128 元才能启用。</p>
+<p>不想花钱的话，可以使用旧版本的，v2.9.6 就是最后一个可以免费使用 webdav 备份的版本。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull b3log/siyuan:v2.9.6</span><br></pre></td></tr></table></figure>
+
+<p>旧版本的容器运行起来也比较简单，映射一个端口和一个容器内的路径就行。</p>
+<p>例如这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d -v /volume1/docker/siyuan-test:/siyuan/workspace -p 6806:6806 -u 1000:1000 b3log/siyuan:v2.9.6 -lang=zh_CN</span><br></pre></td></tr></table></figure>
+
+<p>之后在浏览器访问机器的 ip:6806 就可以。最后面的 lang 是指定语言，不加的话默认打开是英文的，虽然我们可以到 Settings - Appearance - Language 更改语言，不过生成的「用户指南」并不会一起更改语言。</p>
+<p>也就是说第一次打开时是英文，文档就一直是英文。所以我是建议加上 lang 参数的。</p>
+<blockquote>
+<p>端口 6806</p>
+<p>容器内路径 &#x2F;siyuan&#x2F;workspace</p>
+</blockquote>
+<p>目前最新的版本是 v2.10.13，这个项目的更新是非常频繁的，基本一周一更。如果使用新版本，就不能用上面的命令了。否则会出现报错，容器会自动停止。</p>
+<p><a href="https://github.com/siyuan-note/siyuan/issues/9447">The access authorization code command line parameter (–accessAuthCode) must be set when deploying via DockerPlease enter the title of the bug report · Issue #9447 · siyuan-note&#x2F;siyuan (github.com)</a></p>
+<p>新版本需要使用 <code>-accessAuthCode</code> 参数，注意加在容器名后面的。</p>
+<p>例如我在威联通 NAS 上执行的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -v /share/CACHEDEV1_DATA/Container/siyuan-test:/siyuan/workspace -p 6809:6806 b3log/siyuan:v2.10.13 --workspace=/siyuan/workspace/ -accessAuthCode=123456  -lang=zh_CN</span><br></pre></td></tr></table></figure>
+
+<p>这里我的授权码设置为 123456</p>
+<p>容器运行后，通过 6809 端口访问，会出现这样的网页，必须填上正确的授权码，才可以进入笔记页面。</p>
+<p><img src="/img/2023/siyuan-accessAuthCode.webp" alt="siyuan-accessAuthCode"></p>
+<p>我也在群晖 6.1.7 上面使用，会报错。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker run -v /volume1/docker/siyu96:6806 -u 1000:1000 powersee/siyuan:v2.10.13 --workspace=/siyuan/workspace/ -—accessAuthCode=123456  -lang=zh_CN</span><br><span class="line"></span><br><span class="line">flag provided but not defined: -—accessAuthCode</span><br><span class="line">Usage of /opt/siyuan/kernel:</span><br><span class="line">  -accessAuthCode string</span><br><span class="line">    	access auth code</span><br><span class="line">  -alsologtostderr</span><br><span class="line">    	log to standard error as well as files</span><br><span class="line">  -lang string</span><br><span class="line">    	zh_CN/zh_CHT/en_US/fr_FR/es_ES</span><br><span class="line">  -log_backtrace_at value</span><br><span class="line">    	when logging hits line file:N, emit a stack trace</span><br><span class="line">  -log_dir string</span><br><span class="line">    	If non-empty, write log files in this directory</span><br><span class="line">  -log_link string</span><br><span class="line">    	If non-empty, add symbolic links in this directory to the log files</span><br><span class="line">  -logbuflevel int</span><br><span class="line">    	Buffer log messages logged at this level or lower (-1 means don&#x27;t buffer; 0 means buffer INFO only; ...). Has limited applicability on non-prod platforms.</span><br><span class="line">  -logtostderr</span><br><span class="line">    	log to standard error instead of files</span><br><span class="line">  -mode string</span><br><span class="line">    	dev/prod (default &quot;prod&quot;)</span><br><span class="line">  -port string</span><br><span class="line">    	port of the HTTP server (default &quot;0&quot;)</span><br><span class="line">  -readonly string</span><br><span class="line">    	read-only mode (default &quot;false&quot;)</span><br><span class="line">  -ssl</span><br><span class="line">    	for https and wss</span><br><span class="line">  -stderrthreshold value</span><br><span class="line">    	logs at or above this threshold go to stderr (default 2)</span><br><span class="line">  -v value</span><br><span class="line">    	log level for V logs</span><br><span class="line">  -vmodule value</span><br><span class="line">    	comma-separated list of pattern=N settings for file-filtered logging</span><br><span class="line">  -wd string</span><br><span class="line">    	working directory of SiYuan (default &quot;/opt/siyuan&quot;)</span><br><span class="line">  -workspace string</span><br><span class="line">    	dir path of the workspace, default to ~/SiYuan/</span><br></pre></td></tr></table></figure>
+
+<p>关键信息是这句</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flag provided but not defined: -—accessAuthCode</span><br></pre></td></tr></table></figure>
+
+<p>然后下面给的帮助文档，使用的都是一个减号 - 的，那么我就试试用一个 - 看看咯。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker run -v /volume1/docker/siyuan-test:/siyuan/workspace -p 6896:6806 -u 1000:1000 powersee/siyuan:v2.10.13 --workspace=/siyuan/workspace/ —accessAuthCode=123456  -lang=zh_CN</span><br><span class="line"></span><br><span class="line">The access authorization code command line parameter (--accessAuthCode) must be set when deploying via Docker.</span><br></pre></td></tr></table></figure>
+
+<p>不知道是不是 docker 版本太老了，不支持新的命令参数。</p>
+<p>如果有读者也是使用旧版本群晖的话，没法使用新版思源笔记，就使用旧版本的吧。</p>
+<p>对了，在威联通上，倒是不管减号 - 一个还是两个，都是可以成功运行的。</p>
+<p>上面我的容器名称变成了 powersee&#x2F;siyuan:v2.10.13，这个是我使用社区版的思源笔记编译的，去掉了一些付费限制。</p>
+<p>项目：<a href="https://github.com/siyuan-community/siyuan">https://github.com/siyuan-community/siyuan</a></p>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+        <tag>qnap</tag>
+      </tags>
+  </entry>
 </search>
