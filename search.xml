@@ -6758,4 +6758,24 @@ border-radius: 4px;
         <tag>qnap</tag>
       </tags>
   </entry>
+  <entry>
+    <title>windows-keyboard-remap</title>
+    <url>/2023/11/windows-keyboard-remap/</url>
+    <content><![CDATA[<p>最近在玩一款游戏，星之海，这个游戏人物对话时，想要继续，得使用空格键，不能用鼠标和回车键。</p>
+<p>所以我的问题出现了，空格键离我的右手比较远，由于我的键盘右侧是有数字区域的。</p>
+<p>所以我想通过按键映射的方法，把小键盘上的数字 0 映射到空格键上。也就是按 0 时相当于按空格键。</p>
+<p>我使用的软件是 powertoys</p>
+<p><img src="/img/2023/image-20231113200125-suokhij.webp" alt="image">​</p>
+<p>微软官方出的，而且是<a href="https://github.com/microsoft/PowerToys/wiki/Keyboard-Manager">开源</a>的。可以直接在 win 商店下载，也可以到 GitHub 下载。</p>
+<p><img src="/img/2023/image-20231113200412-0ozj5f2.webp" alt="image">​</p>
+<p>软件打开之后，在左边找到（键盘管理器），把 Numpad 0 映射到 Space 就行。</p>
+<p>也就是说，现在小键盘上的数字 0 等于空格键，我们可以选择找一个可以输入文字地方测试。</p>
+<p>然后我发现映射的前面只能是一个按键，而后面则可以多个按键组合。例如我这里把小键盘上的 + 映射为 alt + tab，用来切换程序。</p>
+<p><img src="/img/2023/sshot-24-20231114152712-ncyzsv0.png" alt="sshot-24">​</p>
+<p>目前体验挺不错，软件会开机自启，设置也简单。</p>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-11-06T06:18:48.492Z</updated>
+  <updated>2023-11-15T09:11:11.918Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>windows-keyboard-remap</title>
+    <link href="https://powersee.github.io/2023/11/windows-keyboard-remap/"/>
+    <id>https://powersee.github.io/2023/11/windows-keyboard-remap/</id>
+    <published>2023-11-15T09:05:48.000Z</published>
+    <updated>2023-11-15T09:11:11.918Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在玩一款游戏，星之海，这个游戏人物对话时，想要继续，得使用空格键，不能用鼠标和回车键。</p><p>所以我的问题出现了，空格键离我的右手比较远，由于我的键盘右侧是有数字区域的。</p><p>所以我想通过按键映射的方法，把小键盘上的数字 0 映射到空格键上。也就是按 0 时相当于按空格键。</p><p>我使用的软件是 powertoys</p><p><img src="/img/2023/image-20231113200125-suokhij.webp" alt="image">​</p><p>微软官方出的，而且是<a href="https://github.com/microsoft/PowerToys/wiki/Keyboard-Manager">开源</a>的。可以直接在 win 商店下载，也可以到 GitHub 下载。</p><p><img src="/img/2023/image-20231113200412-0ozj5f2.webp" alt="image">​</p><p>软件打开之后，在左边找到（键盘管理器），把 Numpad 0 映射到 Space 就行。</p><p>也就是说，现在小键盘上的数字 0 等于空格键，我们可以选择找一个可以输入文字地方测试。</p><p>然后我发现映射的前面只能是一个按键，而后面则可以多个按键组合。例如我这里把小键盘上的 + 映射为 alt + tab，用来切换程序。</p><p><img src="/img/2023/sshot-24-20231114152712-ncyzsv0.png" alt="sshot-24">​</p><p>目前体验挺不错，软件会开机自启，设置也简单。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近在玩一款游戏，星之海，这个游戏人物对话时，想要继续，得使用空格键，不能用鼠标和回车键。&lt;/p&gt;
+&lt;p&gt;所以我的问题出现了，空格键离我的右手比较远，由于我的键盘右侧是有数字区域的。&lt;/p&gt;
+&lt;p&gt;所以我想通过按键映射的方法，把小键盘上的数字 0 映射到空格键上。也就是按 </summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 docker 自建在线文档「思源笔记」</title>
@@ -481,30 +505,6 @@
     <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
     
     <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 如何隐藏状态栏的日期和时间</title>
-    <link href="https://powersee.github.io/2023/09/mac-hide-date/"/>
-    <id>https://powersee.github.io/2023/09/mac-hide-date/</id>
-    <published>2023-09-20T06:44:16.000Z</published>
-    <updated>2023-09-20T06:45:47.723Z</updated>
-    
-    <content type="html"><![CDATA[<p>默认情况下，Mac 会在屏幕右上角，显示日期和时间。</p><p><img src="/img/2023/Snipaste_23-09-19_07-59-14.jpg" alt="Snipaste_23-09-19_07-59-14"></p><p>目前好像没有什么办法，可以将它完全隐藏起来。</p><p>不过可以将它改为这样。</p><p><img src="/img/2023/Snipaste_23-09-19_08-01-15.jpg" alt="Snipaste_23-09-19_08-01-15"></p><p>也就是只剩一个模拟时钟来看时间，还是比较简洁的。</p><p>具体的做法是，到系统设置里面，（以前叫「系统偏好设置」）找到时钟，把「时间」从「数码」改为「模拟」就行。</p><p><img src="/img/2023/Mac-Time-Show.webp" alt="Mac-Time-Show"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;默认情况下，Mac 会在屏幕右上角，显示日期和时间。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/Snipaste_23-09-19_07-59-14.jpg&quot; alt=&quot;Snipaste_23-09-19_07-59-14&quot;&gt;&lt;/p&gt;
-&lt;p&gt;目前好像没有什么办法</summary>
-      
-    
-    
-    
-    
-    <category term="mac" scheme="https://powersee.github.io/tags/mac/"/>
     
   </entry>
   
