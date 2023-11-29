@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" type="text/css" href="/./style/main.css">
 	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
-	<title>Windows 按键重映射简单方案</title>
+	<title>如何查看电脑蓝牙版本</title>
   
   
 <meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -37,7 +37,7 @@
     
   
   <h1 class="title">
-    Windows 按键重映射简单方案
+    如何查看电脑蓝牙版本
   </h1>
   
 
@@ -45,7 +45,7 @@
     <ul class="article-info">
       <li>
         发布
-        <time datetime="2023-11-15T09:05:48.000Z" itemprop="datePublished">2023-11-15</time>
+        <time datetime="2023-11-29T02:58:44.000Z" itemprop="datePublished">2023-11-29</time>
       </li>
       <li>
         
@@ -59,18 +59,74 @@
     <div class="article">
       <div class="content">
         
-        <p>最近在玩一款游戏，星之海，这个游戏人物对话时，想要继续，得使用空格键，不能用鼠标和回车键。</p>
-<p>所以我的问题出现了，空格键离我的右手比较远，由于我的键盘右侧是有数字区域的。</p>
-<p>所以我想通过按键映射的方法，把小键盘上的数字 0 映射到空格键上。也就是按 0 时相当于按空格键。</p>
-<p>我使用的软件是 powertoys</p>
-<p><img src="/img/2023/image-20231113200125-suokhij.webp" alt="image">​</p>
-<p>微软官方出的，而且是<a target="_blank" rel="noopener" href="https://github.com/microsoft/PowerToys/wiki/Keyboard-Manager">开源</a>的。可以直接在 win 商店下载，也可以到 GitHub 下载。</p>
-<p><img src="/img/2023/image-20231113200412-0ozj5f2.webp" alt="image">​</p>
-<p>软件打开之后，在左边找到（键盘管理器），把 Numpad 0 映射到 Space 就行。</p>
-<p>也就是说，现在小键盘上的数字 0 等于空格键，我们可以选择找一个可以输入文字地方测试。</p>
-<p>然后我发现映射的前面只能是一个按键，而后面则可以多个按键组合。例如我这里把小键盘上的 + 映射为 alt + tab，用来切换程序。</p>
-<p><img src="/img/2023/sshot-24-20231114152712-ncyzsv0.png" alt="sshot-24">​</p>
-<p>目前体验挺不错，软件会开机自启，设置也简单。</p>
+        <p>在 Windows 电脑上，我们可以同时按住 win + X 这两个按键。然后左下角会弹出菜单，选择「设备管理器」。</p>
+<p>然后展开「蓝牙」选项，一般里面会有很多项，例如我的里面有手柄、耳机，应该是以前匹配过的就会显示在这里。我们需要选择「蓝牙无线收发器」，右键，选择「属性」，再进入「高级」选项。</p>
+<p><img src="/img/2023/nucx-BT.png" alt="nucx蓝牙版本"></p>
+<p>在这里我们可以看到它的 LMP 版本，LMP 12 就是蓝牙 5.3。上面是笔记本使用的无线网卡中蓝牙的版本。</p>
+<p>下面是我台式电脑使用的蓝牙接收器，几块钱买的，也是 5.3。</p>
+<p><img src="/img/2023/BT5.3.png" alt="BT5.3">我几年也有买一个 USB 蓝牙接收器，同样是给台式电脑用的，查了一下是 LMP 6 的，也就是蓝牙 4.0。同时连接手柄和蓝牙耳机的话，耳机的音频会断断续续，搜索了解一番，好像是蓝牙版本低，它的带宽不够，连接多个设备就会这样。</p>
+<p>于是到拼多多搜一下，没想到现在最新的蓝牙 5.3 也就几块钱包邮，于是就买了一个。</p>
+<p>到手后插到机箱后的 USB 2.0 接口就行，此时手柄和耳机就能同时用了。</p>
+<table>
+<thead>
+<tr>
+<th>链路管理器协议 (LMP) 版本</th>
+<th>蓝牙核心规格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LMP 0</td>
+<td>蓝牙核心规格 1.0b（已撤销）</td>
+</tr>
+<tr>
+<td>LMP 1</td>
+<td>蓝牙核心规格 1.1（已撤销）</td>
+</tr>
+<tr>
+<td>LMP 2</td>
+<td>蓝牙核心规格 1.2（已撤销）</td>
+</tr>
+<tr>
+<td>LMP 3</td>
+<td>蓝牙核心规格 2.0 + EDR（已撤销）</td>
+</tr>
+<tr>
+<td>LMP 4</td>
+<td>蓝牙核心规范 2.1 + EDR （已弃用、待撤销）</td>
+</tr>
+<tr>
+<td>LMP 5</td>
+<td>蓝牙核心规范 3.0 + HS （已弃用、待撤销）</td>
+</tr>
+<tr>
+<td>LMP 6</td>
+<td>蓝牙核心规格 4.0</td>
+</tr>
+<tr>
+<td>LMP 7</td>
+<td>蓝牙核心规格 4.1</td>
+</tr>
+<tr>
+<td>LMP 8</td>
+<td>蓝牙核心规格 4.2</td>
+</tr>
+<tr>
+<td>LMP 9</td>
+<td>蓝牙核心规格 5.0</td>
+</tr>
+<tr>
+<td>LMP 10</td>
+<td>蓝牙核心规格 5.1</td>
+</tr>
+<tr>
+<td>LMP 11</td>
+<td>蓝牙核心规格 5.2</td>
+</tr>
+<tr>
+<td>LMP 12</td>
+<td>蓝牙核心规格 5.3</td>
+</tr>
+</tbody></table>
 
       </div>
         <div class="support-author">

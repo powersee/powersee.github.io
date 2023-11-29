@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-11-15T09:11:11.918Z</updated>
+  <updated>2023-11-29T03:03:12.936Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>windows-keyboard-remap</title>
+    <title>如何查看电脑蓝牙版本</title>
+    <link href="https://powersee.github.io/2023/11/windows-bluetooth-version/"/>
+    <id>https://powersee.github.io/2023/11/windows-bluetooth-version/</id>
+    <published>2023-11-29T02:58:44.000Z</published>
+    <updated>2023-11-29T03:03:12.936Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 Windows 电脑上，我们可以同时按住 win + X 这两个按键。然后左下角会弹出菜单，选择「设备管理器」。</p><p>然后展开「蓝牙」选项，一般里面会有很多项，例如我的里面有手柄、耳机，应该是以前匹配过的就会显示在这里。我们需要选择「蓝牙无线收发器」，右键，选择「属性」，再进入「高级」选项。</p><p><img src="/img/2023/nucx-BT.png" alt="nucx蓝牙版本"></p><p>在这里我们可以看到它的 LMP 版本，LMP 12 就是蓝牙 5.3。上面是笔记本使用的无线网卡中蓝牙的版本。</p><p>下面是我台式电脑使用的蓝牙接收器，几块钱买的，也是 5.3。</p><p><img src="/img/2023/BT5.3.png" alt="BT5.3">我几年也有买一个 USB 蓝牙接收器，同样是给台式电脑用的，查了一下是 LMP 6 的，也就是蓝牙 4.0。同时连接手柄和蓝牙耳机的话，耳机的音频会断断续续，搜索了解一番，好像是蓝牙版本低，它的带宽不够，连接多个设备就会这样。</p><p>于是到拼多多搜一下，没想到现在最新的蓝牙 5.3 也就几块钱包邮，于是就买了一个。</p><p>到手后插到机箱后的 USB 2.0 接口就行，此时手柄和耳机就能同时用了。</p><table><thead><tr><th>链路管理器协议 (LMP) 版本</th><th>蓝牙核心规格</th></tr></thead><tbody><tr><td>LMP 0</td><td>蓝牙核心规格 1.0b（已撤销）</td></tr><tr><td>LMP 1</td><td>蓝牙核心规格 1.1（已撤销）</td></tr><tr><td>LMP 2</td><td>蓝牙核心规格 1.2（已撤销）</td></tr><tr><td>LMP 3</td><td>蓝牙核心规格 2.0 + EDR（已撤销）</td></tr><tr><td>LMP 4</td><td>蓝牙核心规范 2.1 + EDR （已弃用、待撤销）</td></tr><tr><td>LMP 5</td><td>蓝牙核心规范 3.0 + HS （已弃用、待撤销）</td></tr><tr><td>LMP 6</td><td>蓝牙核心规格 4.0</td></tr><tr><td>LMP 7</td><td>蓝牙核心规格 4.1</td></tr><tr><td>LMP 8</td><td>蓝牙核心规格 4.2</td></tr><tr><td>LMP 9</td><td>蓝牙核心规格 5.0</td></tr><tr><td>LMP 10</td><td>蓝牙核心规格 5.1</td></tr><tr><td>LMP 11</td><td>蓝牙核心规格 5.2</td></tr><tr><td>LMP 12</td><td>蓝牙核心规格 5.3</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在 Windows 电脑上，我们可以同时按住 win + X 这两个按键。然后左下角会弹出菜单，选择「设备管理器」。&lt;/p&gt;
+&lt;p&gt;然后展开「蓝牙」选项，一般里面会有很多项，例如我的里面有手柄、耳机，应该是以前匹配过的就会显示在这里。我们需要选择「蓝牙无线收发器」，右键，选</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 按键重映射简单方案</title>
     <link href="https://powersee.github.io/2023/11/windows-keyboard-remap/"/>
     <id>https://powersee.github.io/2023/11/windows-keyboard-remap/</id>
     <published>2023-11-15T09:05:48.000Z</published>
-    <updated>2023-11-15T09:11:11.918Z</updated>
+    <updated>2023-11-15T09:14:23.201Z</updated>
     
     <content type="html"><![CDATA[<p>最近在玩一款游戏，星之海，这个游戏人物对话时，想要继续，得使用空格键，不能用鼠标和回车键。</p><p>所以我的问题出现了，空格键离我的右手比较远，由于我的键盘右侧是有数字区域的。</p><p>所以我想通过按键映射的方法，把小键盘上的数字 0 映射到空格键上。也就是按 0 时相当于按空格键。</p><p>我使用的软件是 powertoys</p><p><img src="/img/2023/image-20231113200125-suokhij.webp" alt="image">​</p><p>微软官方出的，而且是<a href="https://github.com/microsoft/PowerToys/wiki/Keyboard-Manager">开源</a>的。可以直接在 win 商店下载，也可以到 GitHub 下载。</p><p><img src="/img/2023/image-20231113200412-0ozj5f2.webp" alt="image">​</p><p>软件打开之后，在左边找到（键盘管理器），把 Numpad 0 映射到 Space 就行。</p><p>也就是说，现在小键盘上的数字 0 等于空格键，我们可以选择找一个可以输入文字地方测试。</p><p>然后我发现映射的前面只能是一个按键，而后面则可以多个按键组合。例如我这里把小键盘上的 + 映射为 alt + tab，用来切换程序。</p><p><img src="/img/2023/sshot-24-20231114152712-ncyzsv0.png" alt="sshot-24">​</p><p>目前体验挺不错，软件会开机自启，设置也简单。</p>]]></content>
     
@@ -476,33 +499,6 @@
     
     
     
-    
-    <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剪映变得更好用了</title>
-    <link href="https://powersee.github.io/2023/09/better-capcut/"/>
-    <id>https://powersee.github.io/2023/09/better-capcut/</id>
-    <published>2023-09-21T08:43:57.000Z</published>
-    <updated>2023-09-21T08:51:06.232Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近剪映的两个更新，让我感觉有些视频，真的可以只用剪映来制作了。</p><p>首先是添加了快捷键，向前和向后修剪。</p><p><img src="/img/2023/left-right-cut.webp" alt="left-right-cut"></p><p>快捷键是 Q 和 W，和 pr 的是一样的，我平时使用它们的频率非常高，所以当初我使用 final cut pro 和 davinci Resolve 时，我都是通过自定义快捷键，让这个功能做到跟在 pr 的使用体验一样。</p><p>另一个也许不是最近添加的，不过我是最近才发现的——自定义码率。</p><p><img src="/img/2023/%E5%89%AA%E6%98%A0-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%A0%81%E7%8E%87.webp" alt="剪映-自定义码率"></p><p>以前它只有几个选项让我们选择而已，现在可以让我们自定义码率了，很好。</p><p>码率这方面，其实我以前很长一段时间，都是控制视频码率在 2800Kbps 左右，这样视频传 bilibili 就不会出现高码率的画质选项。</p><p>不过目前已经不这么做了，目前主要是设置 6800Kbps，B 站会出现高码率选项，有大会员的用户看起来会好一些。</p><p>所以以前剪映给的几个码率选项，我都是选择最低的，因为它的最低也比我原本用的高很多。</p><p>剪映最近添加这2个功能，都是我期待已久的，很棒，希望它能越做越好。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近剪映的两个更新，让我感觉有些视频，真的可以只用剪映来制作了。&lt;/p&gt;
-&lt;p&gt;首先是添加了快捷键，向前和向后修剪。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/left-right-cut.webp&quot; alt=&quot;left-right-cut&quot;&gt;&lt;/p&gt;
-&lt;p&gt;快</summary>
-      
-    
-    
-    
-    
-    <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
     
     <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
     
