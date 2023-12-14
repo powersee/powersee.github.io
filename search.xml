@@ -6854,4 +6854,20 @@ border-radius: 4px;
         <tag>Windows</tag>
       </tags>
   </entry>
+  <entry>
+    <title>WPS 只粘贴文本</title>
+    <url>/2023/12/wps-paste/</url>
+    <content><![CDATA[<p>平时使用 WPS 写东西时，如果我从网页复制内容，到 WPS 里面粘贴，会发现粘贴进来的样式，和 WPS 中原本的内容样式不同。</p>
+<p>所以我得右键，然后选择「只粘贴文本」</p>
+<p><img src="/img/2023/wps-paste.jpg" alt="wps-paste"></p>
+<p>由于我复制粘贴还经常使用，所以我想着能否提高一下效率，否则每次粘贴都得先右键，再选择，比较麻烦。</p>
+<h4 id="解决方案：更改默认粘贴方式"><a href="#解决方案：更改默认粘贴方式" class="headerlink" title="解决方案：更改默认粘贴方式"></a>解决方案：更改默认粘贴方式</h4><p>点击左上角的「文件」，然后选择「文字偏好设置」。</p>
+<p><img src="/img/2023/wps-file-select.jpg" alt="wps-file-select"></p>
+<p>之后进入编辑，拉到最下方。改为「无格式文本」即可。</p>
+<p><img src="/img/2023/wps-edit-setting.webp" alt="wps-edit-setting"></p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>

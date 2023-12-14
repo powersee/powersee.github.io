@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-11-29T03:03:12.936Z</updated>
+  <updated>2023-12-14T03:10:18.519Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WPS 只粘贴文本</title>
+    <link href="https://powersee.github.io/2023/12/wps-paste/"/>
+    <id>https://powersee.github.io/2023/12/wps-paste/</id>
+    <published>2023-12-14T03:08:07.000Z</published>
+    <updated>2023-12-14T03:10:18.519Z</updated>
+    
+    <content type="html"><![CDATA[<p>平时使用 WPS 写东西时，如果我从网页复制内容，到 WPS 里面粘贴，会发现粘贴进来的样式，和 WPS 中原本的内容样式不同。</p><p>所以我得右键，然后选择「只粘贴文本」</p><p><img src="/img/2023/wps-paste.jpg" alt="wps-paste"></p><p>由于我复制粘贴还经常使用，所以我想着能否提高一下效率，否则每次粘贴都得先右键，再选择，比较麻烦。</p><h4 id="解决方案：更改默认粘贴方式"><a href="#解决方案：更改默认粘贴方式" class="headerlink" title="解决方案：更改默认粘贴方式"></a>解决方案：更改默认粘贴方式</h4><p>点击左上角的「文件」，然后选择「文字偏好设置」。</p><p><img src="/img/2023/wps-file-select.jpg" alt="wps-file-select"></p><p>之后进入编辑，拉到最下方。改为「无格式文本」即可。</p><p><img src="/img/2023/wps-edit-setting.webp" alt="wps-edit-setting"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;平时使用 WPS 写东西时，如果我从网页复制内容，到 WPS 里面粘贴，会发现粘贴进来的样式，和 WPS 中原本的内容样式不同。&lt;/p&gt;
+&lt;p&gt;所以我得右键，然后选择「只粘贴文本」&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2023/wps-paste.jpg&quot; alt=</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>如何查看电脑蓝牙版本</title>
@@ -471,30 +495,6 @@
       
     <summary type="html">&lt;p&gt;SwitchyOmega 是我电脑浏览器上，一直在使用的代理管理工具。以前我的主力浏览器是 Chrome，现在已经切换为 Edge 很久了，不过这个扩展插件一直都在使用。&lt;/p&gt;
 &lt;p&gt;每次换电脑或者重装系统后，在浏览器登录微软账号，虽然可以自动将扩展插件装回来。但是，又得</summary>
-      
-    
-    
-    
-    
-    <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>达芬奇 18.6 史诗级更新，增加文字外描边</title>
-    <link href="https://powersee.github.io/2023/09/davinci-outline/"/>
-    <id>https://powersee.github.io/2023/09/davinci-outline/</id>
-    <published>2023-09-22T02:42:20.000Z</published>
-    <updated>2023-09-22T02:43:03.442Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 2023 年 9 月，知名剪辑、调色软件达芬奇 DaVinCi Resolve 更新到了 18.6 版本。</p><p>这个版本更新中，对我最有用的就是新增加的文本外描边功能。</p><p><img src="/img/2023/Snipaste_23-09-18_10-05-38.jpg" alt="Snipaste_23-09-18_10-05-38"></p><p>这里我弄了个对比，可以发现它原本的内描边，是观感最差的，会导致文字笔画变得非常的细，很难看。反正我使用达芬奇，作为主力剪辑工具已经两年了，应该还没在视频中使用过它这个内描边功能。</p><p><img src="/img/2023/Snipaste_23-09-18_10-03-05.jpg" alt="Snipaste_23-09-18_10-03-05"></p><p>最近的更新就是在描边选项中的下方，添加了一个「仅外部」的勾选框。勾选上之后就是外描边了，就可以和其它剪辑软件一样了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在 2023 年 9 月，知名剪辑、调色软件达芬奇 DaVinCi Resolve 更新到了 18.6 版本。&lt;/p&gt;
-&lt;p&gt;这个版本更新中，对我最有用的就是新增加的文本外描边功能。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/Snipaste_23-09-18_</summary>
       
     
     
