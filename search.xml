@@ -6870,4 +6870,18 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何把文件移动到服务器里？</title>
+    <url>/2023/12/moving-file-to-server/</url>
+    <content><![CDATA[<p>平时把文件复制到服务器，我们可以使用 scp。但如何直接移动过去呢？</p>
+<p>比较简单的方法，是先 scp 复制过去。完成之后，再使用 rm 来删除本地的文件。</p>
+<p>另外一种比较优雅的方式 <strong>rsync</strong></p>
+<p>它有一个参数 <code>--remove-source-files</code> 表示在成功同步后删除源文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用 rsync 同步文件并删除本地文件</span><br><span class="line">rsync -av --remove-source-files /path/to/local/file.txt username@remote_server:/path/to/remote/</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2023-12-14T03:10:18.519Z</updated>
+  <updated>2023-12-31T08:24:01.607Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何把文件移动到服务器里？</title>
+    <link href="https://powersee.github.io/2023/12/moving-file-to-server/"/>
+    <id>https://powersee.github.io/2023/12/moving-file-to-server/</id>
+    <published>2023-12-31T08:23:30.000Z</published>
+    <updated>2023-12-31T08:24:01.607Z</updated>
+    
+    <content type="html"><![CDATA[<p>平时把文件复制到服务器，我们可以使用 scp。但如何直接移动过去呢？</p><p>比较简单的方法，是先 scp 复制过去。完成之后，再使用 rm 来删除本地的文件。</p><p>另外一种比较优雅的方式 <strong>rsync</strong></p><p>它有一个参数 <code>--remove-source-files</code> 表示在成功同步后删除源文件。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用 rsync 同步文件并删除本地文件</span><br><span class="line">rsync -av --remove-source-files /path/to/local/file.txt username@remote_server:/path/to/remote/</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;平时把文件复制到服务器，我们可以使用 scp。但如何直接移动过去呢？&lt;/p&gt;
+&lt;p&gt;比较简单的方法，是先 scp 复制过去。完成之后，再使用 rm 来删除本地的文件。&lt;/p&gt;
+&lt;p&gt;另外一种比较优雅的方式 &lt;strong&gt;rsync&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;它有一个</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>WPS 只粘贴文本</title>
@@ -478,29 +503,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SwitchyOmega 备份与恢复</title>
-    <link href="https://powersee.github.io/2023/09/SwitchyOmega-backup/"/>
-    <id>https://powersee.github.io/2023/09/SwitchyOmega-backup/</id>
-    <published>2023-09-23T06:21:02.000Z</published>
-    <updated>2023-09-23T06:24:32.023Z</updated>
-    
-    <content type="html"><![CDATA[<p>SwitchyOmega 是我电脑浏览器上，一直在使用的代理管理工具。以前我的主力浏览器是 Chrome，现在已经切换为 Edge 很久了，不过这个扩展插件一直都在使用。</p><p>每次换电脑或者重装系统后，在浏览器登录微软账号，虽然可以自动将扩展插件装回来。但是，又得再一次配置 SwitchyOmega 里面的情景模式了。</p><p>但其实可以避免这个繁琐的步骤的，因为插件自带有备份恢复功能。</p><p>在浏览器点击插件，再点击「选项」，来进入设置页面。</p><p>然后点击「设定」下方的「导入&#x2F;导出」</p><p><img src="/img/2023/SwitchyOmega-settings-shadow.webp" alt="SwitchyOmega-settings"></p><p>点击「生成备份文件」之后，就可以获得一个名为 <code>OmegaOptions.bak</code> 的文件。我们只要把这个文件，传到其他的电脑，然后再点击「从备份文件恢复」，选择 <code>OmegaOptions.bak</code>，就可以将情景模式同步过去了。</p><p>而且它还支持在线恢复，那也许我们可以把备份文件放到自己的网站上。</p><p>最下方的同步，说是支持 Chrome 浏览器，不过我现在电脑都没装 Chrome，不清楚好不好用，Edge 不知道能不能同步？懒得去试了，现在用文件备份我觉得也挺不错的。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;SwitchyOmega 是我电脑浏览器上，一直在使用的代理管理工具。以前我的主力浏览器是 Chrome，现在已经切换为 Edge 很久了，不过这个扩展插件一直都在使用。&lt;/p&gt;
-&lt;p&gt;每次换电脑或者重装系统后，在浏览器登录微软账号，虽然可以自动将扩展插件装回来。但是，又得</summary>
-      
-    
-    
-    
-    
-    <category term="电脑" scheme="https://powersee.github.io/tags/%E7%94%B5%E8%84%91/"/>
     
   </entry>
   
