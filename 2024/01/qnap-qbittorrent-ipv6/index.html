@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>威联通的 qbittorrent 不支持 ipv6</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    威联通的 qbittorrent 不支持 ipv6
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-01-02T09:12:26.000Z" itemprop="datePublished">2024-01-02</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>之前我使用威联通 nas 里的 qb 来下载资源，发现无法连接上种子的 tracker。我以为是 tracker 的问题，毕竟它是套了 cloudflare 的，在国内的访问确实有些问题。</p>
+<p>但是后来我发现，怎么家里的黑群晖 nas 却可以正常下载。明明都是同一个局域网下，使用着同样的宽带，不应该呀。</p>
+<p>经过一番排查，发现问题在于 ipv6。威联通和群晖上面的 qb，我都是使用套件安装的，但是群晖的支持 ipv6，而威联通的不支持。</p>
+<p>所以同样的种子，在群晖上面的 qb 可以连接上 tracker，但是在威联通的 qb 就连接不上，无法下载。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>既然知道问题所在，那现在就让 qb 支持 ipv6 就行呗。但是我找不到让威联通 qnap 里的 qbittorrent 套件，支持 ipv6 的方法。</p>
+<p>所以我的做法是不使用这个 qb，而是使用 docker 来运行 qb。而想要让 docker 容器支持 ipv6，最简单的方法就是使用 host 网络。</p>
+<p>所以我使用这条命令来创建并运行 qb</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name=qbittorrent \</span><br><span class="line">  -e PUID=1000 \</span><br><span class="line">  -e PGID=1000 \</span><br><span class="line">  -e TZ=Aisa/Shanghai \</span><br><span class="line">  -e WEBUI_PORT=8082 \</span><br><span class="line">  --network host \</span><br><span class="line">  -v /share/CACHEDEV1_DATA/Container/qbit:/config \</span><br><span class="line">  -v /share/CACHEDEV1_DATA/Download:/downloads \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  ghcr.io/linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
+
+<p>完成之后 qb 应该就在运行中了。现在新版的 qb，已经不使用 adminadmin 来作为默认的密码了。我们需要通过容器的日志来查看默认密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#docker logs qbittorrent</span><br><span class="line"></span><br><span class="line">******** Information ********</span><br><span class="line">To control qBittorrent, access the WebUI at: http://localhost:8082</span><br><span class="line"></span><br><span class="line">The WebUI administrator username is: admin</span><br><span class="line">The WebUI administrator password was not set. </span><br><span class="line">A temporary password is provided for this session: S3powersee</span><br></pre></td></tr></table></figure>
+
+<p>可以看到默认的用户名还是 admin，密码是随机生成的。使用它们进入 qb 的网页管理界面，然后到【设置】的 Web UI 里面，就可以修改密码。</p>
+<p>之后我使用这个 docker 运行的 qb 来下载之前的种子，就可以正常下载了。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
