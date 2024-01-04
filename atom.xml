@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-02T09:16:08.813Z</updated>
+  <updated>2024-01-04T08:28:29.513Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网心云从端口限制型变回全锥型</title>
+    <link href="https://powersee.github.io/2024/01/onething-nat-type/"/>
+    <id>https://powersee.github.io/2024/01/onething-nat-type/</id>
+    <published>2024-01-04T08:27:18.000Z</published>
+    <updated>2024-01-04T08:28:29.513Z</updated>
+    
+    <content type="html"><![CDATA[<p>前段时间，家里一直运行网心云的 OEC 无端端变成「端口限制型」。这导致我每天的收益变少了。</p><p>但我也没去改家里的网络设置，怎么无缘无故就变了呢？不清楚，也找不到解决方案，就这样放着。</p><p>我个人名下是办理了两条宽带的，都是移动的。一条在我现在的住处，一条在我父母的住处。</p><p>两边的网络情况基本一样，都是自己修改光猫设置，改为桥接模式，然后使用京东路由器拨号上网。跑网心云的设备通过网线连接在路由器上。</p><p>之前两边的状态都是全锥型，而且 UPNP 都是可用。</p><p><img src="/img/2024/quanzhui-upnp-ok.jpg" alt="quanzhui-upnp-ok"></p><p>而现在我这边的设备变成了「端口限制型」且 UPNP 不可用。</p><p><img src="/img/2024/port-limit.jpg" alt="port-limit"></p><p>于是我进入路由器后台，看看是否我这边的路由器 UPNP 没开？结果发现一直开着的。</p><p>而且里面还有网心云设备的记录。</p><p>这时我看到 UPNP 旁边就是 DMZ，那我试试把网心云设备的 IP 填入到 DMZ 里面，然后点击保存。</p><p><img src="/img/2024/route-dmz.webp" alt="route-dmz"></p><p>过一会再去 APP 里面看网心云设备的状态。现在变回全锥型了，不过 UPNP 还是不可用。</p><p><img src="/img/2024/quanzhui-upnp-no.jpg" alt="quanzhui-upnp-no"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;前段时间，家里一直运行网心云的 OEC 无端端变成「端口限制型」。这导致我每天的收益变少了。&lt;/p&gt;
+&lt;p&gt;但我也没去改家里的网络设置，怎么无缘无故就变了呢？不清楚，也找不到解决方案，就这样放着。&lt;/p&gt;
+&lt;p&gt;我个人名下是办理了两条宽带的，都是移动的。一条在我现在的住处，</summary>
+      
+    
+    
+    
+    
+    <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>威联通的 qbittorrent 不支持 ipv6</title>
@@ -472,31 +498,6 @@
     
     
     
-    
-    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>无法拉取 Docker 镜像的另一种解决方案</title>
-    <link href="https://powersee.github.io/2023/09/docker-pull-save-load/"/>
-    <id>https://powersee.github.io/2023/09/docker-pull-save-load/</id>
-    <published>2023-09-25T14:09:18.000Z</published>
-    <updated>2023-09-25T14:10:31.624Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前我拉取不了 docker 镜像，不管是 docker hub 的，还是 GitHub 的 ghcr.io 的。</p><p>我的解决方案，使用境外的 VPS 拉取镜像，然后通过 docker save 保存为 tar 归档包。接着把这个 tar 下载到本地，再使用 docker load 来加载。</p><p>我这里拉取的镜像是 memos</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull ghcr.io/usememos/memos:latest</span><br></pre></td></tr></table></figure><p>目前最新的版本是 0.15.2，所以拉取完成之后，我使用这条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker save -o memos-15.2.tar ghcr.io/usememos/memos:latest</span><br></pre></td></tr></table></figure><p>此时我需要把文件从服务器下载到本地，可以使用</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure><p>之类的来开启一个 http 服务</p><p>不过此时我是使用 root 身份，导致文件没法下载，所以我还得更改一下文件的权限。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod 777 memos-15.2.tar</span><br></pre></td></tr></table></figure><p>本地我是需要把 docker 镜像放到 nas 里，所以我可以 ssh 连接到 nas，然后使用 wget 来下载。</p><p>之后使用 load 命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker load&lt;memos-15.2.tar </span><br><span class="line">09180e184944: Loading layer [==================================================&gt;]   2.56kB/2.56kB</span><br><span class="line">d6149c35a41c: Loading layer [==================================================&gt;]  1.989MB/1.989MB</span><br><span class="line">41163094a155: Loading layer [==================================================&gt;]  59.53MB/59.53MB</span><br><span class="line">628f23364ad0: Loading layer [==================================================&gt;]   2.56kB/2.56kB</span><br><span class="line">The image ghcr.io/usememos/memos:latest already exists, renaming the old one with ID sha256:f930acc56434c179480c15382a8d2ef1651b44bc7f299e1b0bdff6d0f8d1c7eb to empty string</span><br><span class="line">Loaded image: ghcr.io/usememos/memos:latest</span><br></pre></td></tr></table></figure><p>就成功把镜像拉取到本地了，唉。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;目前我拉取不了 docker 镜像，不管是 docker hub 的，还是 GitHub 的 ghcr.io 的。&lt;/p&gt;
-&lt;p&gt;我的解决方案，使用境外的 VPS 拉取镜像，然后通过 docker save 保存为 tar 归档包。接着把这个 tar 下载到本地，再使用 d</summary>
-      
-    
-    
-    
-    
-    <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
     <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     

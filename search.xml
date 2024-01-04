@@ -6907,4 +6907,27 @@ border-radius: 4px;
         <tag>qnap</tag>
       </tags>
   </entry>
+  <entry>
+    <title>网心云从端口限制型变回全锥型</title>
+    <url>/2024/01/onething-nat-type/</url>
+    <content><![CDATA[<p>前段时间，家里一直运行网心云的 OEC 无端端变成「端口限制型」。这导致我每天的收益变少了。</p>
+<p>但我也没去改家里的网络设置，怎么无缘无故就变了呢？不清楚，也找不到解决方案，就这样放着。</p>
+<p>我个人名下是办理了两条宽带的，都是移动的。一条在我现在的住处，一条在我父母的住处。</p>
+<p>两边的网络情况基本一样，都是自己修改光猫设置，改为桥接模式，然后使用京东路由器拨号上网。跑网心云的设备通过网线连接在路由器上。</p>
+<p>之前两边的状态都是全锥型，而且 UPNP 都是可用。</p>
+<p><img src="/img/2024/quanzhui-upnp-ok.jpg" alt="quanzhui-upnp-ok"></p>
+<p>而现在我这边的设备变成了「端口限制型」且 UPNP 不可用。</p>
+<p><img src="/img/2024/port-limit.jpg" alt="port-limit"></p>
+<p>于是我进入路由器后台，看看是否我这边的路由器 UPNP 没开？结果发现一直开着的。</p>
+<p>而且里面还有网心云设备的记录。</p>
+<p>这时我看到 UPNP 旁边就是 DMZ，那我试试把网心云设备的 IP 填入到 DMZ 里面，然后点击保存。</p>
+<p><img src="/img/2024/route-dmz.webp" alt="route-dmz"></p>
+<p>过一会再去 APP 里面看网心云设备的状态。现在变回全锥型了，不过 UPNP 还是不可用。</p>
+<p><img src="/img/2024/quanzhui-upnp-no.jpg" alt="quanzhui-upnp-no"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <tags>
+        <tag>网络</tag>
+        <tag>路由器</tag>
+      </tags>
+  </entry>
 </search>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>网心云从端口限制型变回全锥型</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    网心云从端口限制型变回全锥型
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-01-04T08:27:18.000Z" itemprop="datePublished">2024-01-04</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>前段时间，家里一直运行网心云的 OEC 无端端变成「端口限制型」。这导致我每天的收益变少了。</p>
+<p>但我也没去改家里的网络设置，怎么无缘无故就变了呢？不清楚，也找不到解决方案，就这样放着。</p>
+<p>我个人名下是办理了两条宽带的，都是移动的。一条在我现在的住处，一条在我父母的住处。</p>
+<p>两边的网络情况基本一样，都是自己修改光猫设置，改为桥接模式，然后使用京东路由器拨号上网。跑网心云的设备通过网线连接在路由器上。</p>
+<p>之前两边的状态都是全锥型，而且 UPNP 都是可用。</p>
+<p><img src="/img/2024/quanzhui-upnp-ok.jpg" alt="quanzhui-upnp-ok"></p>
+<p>而现在我这边的设备变成了「端口限制型」且 UPNP 不可用。</p>
+<p><img src="/img/2024/port-limit.jpg" alt="port-limit"></p>
+<p>于是我进入路由器后台，看看是否我这边的路由器 UPNP 没开？结果发现一直开着的。</p>
+<p>而且里面还有网心云设备的记录。</p>
+<p>这时我看到 UPNP 旁边就是 DMZ，那我试试把网心云设备的 IP 填入到 DMZ 里面，然后点击保存。</p>
+<p><img src="/img/2024/route-dmz.webp" alt="route-dmz"></p>
+<p>过一会再去 APP 里面看网心云设备的状态。现在变回全锥型了，不过 UPNP 还是不可用。</p>
+<p><img src="/img/2024/quanzhui-upnp-no.jpg" alt="quanzhui-upnp-no"></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
