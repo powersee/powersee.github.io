@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>达芬奇更改默认项目设置</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    达芬奇更改默认项目设置
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-01-05T11:49:46.000Z" itemprop="datePublished">2024-01-05</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>达芬奇 DaVinci 是我的主力剪辑软件。有一个困扰我已久的问题，最近终于找到了解决方案。</p>
+<p>平常我新建一个项目时，如果我直接把视频素材拖进来，软件会提示我更改项目帧率。</p>
+<blockquote>
+<p>所选片段的帧率与项目帧率不同。您想要更改时间线帧率以和片段帧率匹配吗？</p>
+</blockquote>
+<p>这是因为默认的项目设置是 1080P 24 帧，我们点击右下角的齿轮⚙就可以看到。</p>
+<p><img src="/img/2024/DaVinci-default-project.webp" alt="DaVinci-default-project"></p>
+<p>我的视频基本没有 24 帧的，所以基本我每个项目都会弹出提示。</p>
+<p>想要修改这里的默认设置也很简单，直接在这里改，例如我改为 59.94 帧，然后点击右上方的三个点 …</p>
+<p><img src="/img/2024/DaVinci2.webp" alt="DaVinci2"></p>
+<p>选择「将当前设置设定为默认预设…」就可以了。</p>
+<p>其实我这么改，也不只是为了少点一下那个弹窗。更主要是为了避免，剪辑大半天才发现时间线帧数错了。</p>
+<p>因为达芬奇时间线创建好之后，是没法再修改它的分辨率和帧数的。所以它默认 24 帧，如果我们拖进来视频，会提示我们帧数不同，但是如果拖进来的是图片、音频，就不会有提示。</p>
+<p>我之前拍的视频基本是 50 帧的，有时候剪辑了大半段，才发现时间线是 24 帧。补救的方法是新建一条 50 帧的时间线，然后再把旧时间线上的内容，全选，然后复制粘贴到新的时间线上。</p>
+<p>而现在我修改了默认项目设置，就可以避免这种情况了。</p>
+<p>对了，以前我是拍 50 帧，但是现在我已经变了，改为 59.94 帧。因为前段时间<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hp4y1f7B5/">影视飓风的视频</a>说，用 29.97 和 59.94 会比用 25 和 50 帧好。</p>
+<p>他们已经从 P 制改为用 N 制了，所以我也跟随潮流，才将达芬奇的项目设置改为 59.94。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
