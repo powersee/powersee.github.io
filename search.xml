@@ -6974,4 +6974,20 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何下载 YouTube、bilibili 的视频字幕</title>
+    <url>/2024/01/youtube-bilibili-downsub/</url>
+    <content><![CDATA[<p>下载 YouTube、bilibili 的视频，有很多的方案。但是要下载它们的字幕呢？</p>
+<p>我目前找到的比较简单的方法，是通过一个网站。</p>
+<p><a href="https://downsub.com/">https://downsub.com/</a></p>
+<p>把视频链接粘贴到网站中的输入框就行。</p>
+<p>我测试过 bilibili 的，手动上传的字幕可以，系统自动生成的字幕就没法下载。</p>
+<p>而 YouTube 这边的支持就比较好，自动生成的字幕也可以下载。</p>
+<p><img src="/img/2024/downsub.webp" alt="downsub"></p>
+<p>下载的时候可以选择 srt 还是 txt。</p>
+]]></content>
+      <tags>
+        <tag>视频</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-07T12:02:12.830Z</updated>
+  <updated>2024-01-07T17:02:11.358Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何下载 YouTube、bilibili 的视频字幕</title>
+    <link href="https://powersee.github.io/2024/01/youtube-bilibili-downsub/"/>
+    <id>https://powersee.github.io/2024/01/youtube-bilibili-downsub/</id>
+    <published>2024-01-07T17:01:05.000Z</published>
+    <updated>2024-01-07T17:02:11.358Z</updated>
+    
+    <content type="html"><![CDATA[<p>下载 YouTube、bilibili 的视频，有很多的方案。但是要下载它们的字幕呢？</p><p>我目前找到的比较简单的方法，是通过一个网站。</p><p><a href="https://downsub.com/">https://downsub.com/</a></p><p>把视频链接粘贴到网站中的输入框就行。</p><p>我测试过 bilibili 的，手动上传的字幕可以，系统自动生成的字幕就没法下载。</p><p>而 YouTube 这边的支持就比较好，自动生成的字幕也可以下载。</p><p><img src="/img/2024/downsub.webp" alt="downsub"></p><p>下载的时候可以选择 srt 还是 txt。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;下载 YouTube、bilibili 的视频，有很多的方案。但是要下载它们的字幕呢？&lt;/p&gt;
+&lt;p&gt;我目前找到的比较简单的方法，是通过一个网站。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://downsub.com/&quot;&gt;https://downsub.com/&lt;/a&gt;&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
+    
+  </entry>
   
   <entry>
     <title>检查更新 Mac 上的第三方应用 Latest</title>
@@ -476,30 +500,6 @@
     
     
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何关闭 Safari 下载完自动打开文件？</title>
-    <link href="https://powersee.github.io/2023/09/safari-turnoff-auto-open-file/"/>
-    <id>https://powersee.github.io/2023/09/safari-turnoff-auto-open-file/</id>
-    <published>2023-09-28T06:33:11.000Z</published>
-    <updated>2023-09-28T06:34:19.352Z</updated>
-    
-    <content type="html"><![CDATA[<p>我发现在 Mac 上使用 Safari 下载完 MP3 音频文件后，它会自动使用「音乐」这个 APP 打开文件并播放。</p><p>解决方法，进入 Safari 的设置，在「通用」选项的最下方，把「下载后打开“安全”文件」前面的勾去掉就行。</p><p><img src="/img/2023/Safari-download-open.webp" alt="Safari-download-open"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我发现在 Mac 上使用 Safari 下载完 MP3 音频文件后，它会自动使用「音乐」这个 APP 打开文件并播放。&lt;/p&gt;
-&lt;p&gt;解决方法，进入 Safari 的设置，在「通用」选项的最下方，把「下载后打开“安全”文件」前面的勾去掉就行。&lt;/p&gt;
-&lt;p&gt;&lt;img src</summary>
-      
-    
-    
-    
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
