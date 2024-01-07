@@ -6955,4 +6955,23 @@ border-radius: 4px;
         <tag>视频</tag>
       </tags>
   </entry>
+  <entry>
+    <title>检查更新 Mac 上的第三方应用 Latest</title>
+    <url>/2024/01/mac-latest/</url>
+    <content><![CDATA[<p>最近发现一款不错的应用，可以用来更新 Mac 上面的 APP。</p>
+<p>因为 Mac 自带的 APP Store 只能更新从里面下载的 APP。我们自己下载的第三方应用，或者用 homebrew 安装的应用，是没法在 APP Store 里面更新的。</p>
+<p>而现在这个在 GitHub 上面开源的应用 <a href="https://github.com/mangerlahn/Latest">mangerlahn&#x2F;Latest: A small utility app for macOS that makes sure you know about all the latest updates to the apps you use.</a> 就可以很好地形成互补。</p>
+<p>目前它在 GitHub 上面的 star 数量是两千多。<a href="https://github.com/mangerlahn/Latest/releases">Releases</a> 里面有提供 dmg 包下载，不过我电脑有装 homebrew，所以我直接使用命令行安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install --cask latest</span><br></pre></td></tr></table></figure>
+
+<p>APP 打开后的界面是这样的，左边显示有那些应用可以更新，点击之后会在右边显示更新日志。</p>
+<p><img src="/img/2024/Latest.webp" alt="Latest"></p>
+<p>而且它连 Mac 官方的应用都可以更新，例如我上图中的 keynote。</p>
+<p>我感觉挺好的，其实我电脑里装了挺多开源软件，有些用 homebrew 安装的，有些是在 GitHub 下载的。如果软件自身没有检测更新的功能，可能我一直都不会去更新它。</p>
+<p>现在有 latest 这个 APP 来帮忙检测和更新，确实方便多了。</p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>

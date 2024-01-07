@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-05T11:51:07.570Z</updated>
+  <updated>2024-01-07T12:02:12.830Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>检查更新 Mac 上的第三方应用 Latest</title>
+    <link href="https://powersee.github.io/2024/01/mac-latest/"/>
+    <id>https://powersee.github.io/2024/01/mac-latest/</id>
+    <published>2024-01-07T12:00:36.000Z</published>
+    <updated>2024-01-07T12:02:12.830Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近发现一款不错的应用，可以用来更新 Mac 上面的 APP。</p><p>因为 Mac 自带的 APP Store 只能更新从里面下载的 APP。我们自己下载的第三方应用，或者用 homebrew 安装的应用，是没法在 APP Store 里面更新的。</p><p>而现在这个在 GitHub 上面开源的应用 <a href="https://github.com/mangerlahn/Latest">mangerlahn&#x2F;Latest: A small utility app for macOS that makes sure you know about all the latest updates to the apps you use.</a> 就可以很好地形成互补。</p><p>目前它在 GitHub 上面的 star 数量是两千多。<a href="https://github.com/mangerlahn/Latest/releases">Releases</a> 里面有提供 dmg 包下载，不过我电脑有装 homebrew，所以我直接使用命令行安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install --cask latest</span><br></pre></td></tr></table></figure><p>APP 打开后的界面是这样的，左边显示有那些应用可以更新，点击之后会在右边显示更新日志。</p><p><img src="/img/2024/Latest.webp" alt="Latest"></p><p>而且它连 Mac 官方的应用都可以更新，例如我上图中的 keynote。</p><p>我感觉挺好的，其实我电脑里装了挺多开源软件，有些用 homebrew 安装的，有些是在 GitHub 下载的。如果软件自身没有检测更新的功能，可能我一直都不会去更新它。</p><p>现在有 latest 这个 APP 来帮忙检测和更新，确实方便多了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近发现一款不错的应用，可以用来更新 Mac 上面的 APP。&lt;/p&gt;
+&lt;p&gt;因为 Mac 自带的 APP Store 只能更新从里面下载的 APP。我们自己下载的第三方应用，或者用 homebrew 安装的应用，是没法在 APP Store 里面更新的。&lt;/p&gt;
+&lt;p&gt;而</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>达芬奇更改默认项目设置</title>
@@ -478,30 +502,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>给威联通 NAS 添加多一块固态硬盘</title>
-    <link href="https://powersee.github.io/2023/09/qnap-add-second-disk/"/>
-    <id>https://powersee.github.io/2023/09/qnap-add-second-disk/</id>
-    <published>2023-09-27T14:12:17.000Z</published>
-    <updated>2023-09-27T14:13:38.480Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近翻出来一块老硬盘,120G 的 SATA 固态硬盘。</p><p>我想着既然是闲置的，那就装到 NAS 上吧，用来放一些读写比较频繁的文件，这样机械硬盘使用频率下降，我也不用老是听它转盘的声音。</p><p>于是使用 3 颗螺丝，将这块 2.5 英寸的硬盘固定到硬盘架，装入 NAS。如果 NAS 识别到硬盘，会发出“滴”的声音。</p><p><img src="/img/2023/qnap-ssd-cache.webp" alt="qnap-ssd-cache"></p><p>固态硬盘可以作为高速缓存来加速，我以前用过，没感受到有什么提升。</p><p>这里我是打算使用它，新建一个存储池。</p><p><img src="/img/2023/less-than-144GB.webp" alt="less-than-144GB"></p><p>结果系统提示，容量太小，无法创建存储池。</p><p><img src="/img/2023/create-new-volume.jpg" alt="create-new-volume"></p><p>于是我只能创建「新卷」，创建好后，再到 file station 里面创建共享文件夹，就可以使用它了。</p><p>后面我测试了下，可以移除的，不影响原来的机械硬盘。</p><p><img src="/img/2023/qnap-static-volume.webp" alt="qnap-static-volume"></p><p>也就是说，我现在有一个存储池，里面有两个卷，机械硬盘作为一个卷，固态硬盘作为一个卷。</p><p>我这里移除固态这个卷后，是可以把固态硬盘拔出来的。但是插回去后，固态硬盘里的文件就没了，因为它的移除有点像格式化吧。</p><p>这里的移除，容易让人误解。以为是卸载，就像电脑上要拔出U盘前的推出。</p><p>但它并不是这个意思，贴吧上就有人被坑了，而且还不止一个人。<a href="https://tieba.baidu.com/p/7847763843#/">https://tieba.baidu.com/p/7847763843#/</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近翻出来一块老硬盘,120G 的 SATA 固态硬盘。&lt;/p&gt;
-&lt;p&gt;我想着既然是闲置的，那就装到 NAS 上吧，用来放一些读写比较频繁的文件，这样机械硬盘使用频率下降，我也不用老是听它转盘的声音。&lt;/p&gt;
-&lt;p&gt;于是使用 3 颗螺丝，将这块 2.5 英寸的硬盘固定到硬盘</summary>
-      
-    
-    
-    
-    
-    <category term="NAS" scheme="https://powersee.github.io/tags/NAS/"/>
     
   </entry>
   
