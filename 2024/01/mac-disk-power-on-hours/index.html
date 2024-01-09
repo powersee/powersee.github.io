@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>如何查看 Mac 电脑的硬盘使用时间？</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    如何查看 Mac 电脑的硬盘使用时间？
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-01-09T05:20:07.000Z" itemprop="datePublished">2024-01-09</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>Windows 上面我们想要查看硬盘的使用时间，很多人会选择 CrystalDiskInfo</p>
+<p><img src="/img/2024/disk-info.png" alt="disk-info"></p>
+<p>那么在 Mac 上要怎么查看呢？我见过有人使用一款叫「DriveDx」的软件，可以查看很多硬盘信息。</p>
+<p><img src="/img/2024/DriveDx-2-drives-dashboard.webp" alt="DriveDx-2-drives-dashboard"></p>
+<p>但是这是一款付费软件，官网查了一下，个人版的费用是 19.99 美元。虽然可以下载后免费试用一段时间，不过我还是不想去尝试。</p>
+<p>我使用免费的命令行工具 smartctl</p>
+<p>在电脑有安装 homebrew 的情况下，用 brew 就可以安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install smartmontools</span><br></pre></td></tr></table></figure>
+
+<p>装好之后，使用这条命令就可以查看硬盘信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">smartctl -a disk0</span><br></pre></td></tr></table></figure>
+
+<p>这个我很久之前就有用，当时是为了查看硬盘的写入量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">=== START OF SMART DATA SECTION ===</span><br><span class="line">SMART overall-health self-assessment test result: PASSED</span><br><span class="line"></span><br><span class="line">SMART/Health Information (NVMe Log 0x02)</span><br><span class="line">Critical Warning:                   0x00</span><br><span class="line">Temperature:                        37 Celsius</span><br><span class="line">Available Spare:                    100%</span><br><span class="line">Available Spare Threshold:          99%</span><br><span class="line">Percentage Used:                    3%</span><br><span class="line">Data Units Read:                    164,352,048 [84.1 TB]</span><br><span class="line">Data Units Written:                 84,019,304 [43.0 TB]</span><br><span class="line">Host Read Commands:                 3,608,721,339</span><br><span class="line">Host Write Commands:                1,345,245,922</span><br><span class="line">Controller Busy Time:               0</span><br><span class="line">Power Cycles:                       202</span><br><span class="line">Power On Hours:                     1,962</span><br><span class="line">Unsafe Shutdowns:                   75</span><br><span class="line">Media and Data Integrity Errors:    0</span><br><span class="line">Error Information Log Entries:      0</span><br></pre></td></tr></table></figure>
+
+<p>下方的 Power On Hours 就是硬盘使用时长，我这硬盘居然使用了快 2000 小时。</p>
+<p>这么看好像很多，但是我用计算器算一下，24 × 365 &#x3D; 8760</p>
+<p>我这电脑都用两年多了，基本不关机。所以它这个时间估计是算电脑有亮屏的时间吧。电脑熄屏（不休眠）应该是不算进去的。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

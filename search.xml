@@ -6990,4 +6990,30 @@ border-radius: 4px;
         <tag>视频</tag>
       </tags>
   </entry>
+  <entry>
+    <title>如何查看 Mac 电脑的硬盘使用时间？</title>
+    <url>/2024/01/mac-disk-power-on-hours/</url>
+    <content><![CDATA[<p>Windows 上面我们想要查看硬盘的使用时间，很多人会选择 CrystalDiskInfo</p>
+<p><img src="/img/2024/disk-info.png" alt="disk-info"></p>
+<p>那么在 Mac 上要怎么查看呢？我见过有人使用一款叫「DriveDx」的软件，可以查看很多硬盘信息。</p>
+<p><img src="/img/2024/DriveDx-2-drives-dashboard.webp" alt="DriveDx-2-drives-dashboard"></p>
+<p>但是这是一款付费软件，官网查了一下，个人版的费用是 19.99 美元。虽然可以下载后免费试用一段时间，不过我还是不想去尝试。</p>
+<p>我使用免费的命令行工具 smartctl</p>
+<p>在电脑有安装 homebrew 的情况下，用 brew 就可以安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install smartmontools</span><br></pre></td></tr></table></figure>
+
+<p>装好之后，使用这条命令就可以查看硬盘信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">smartctl -a disk0</span><br></pre></td></tr></table></figure>
+
+<p>这个我很久之前就有用，当时是为了查看硬盘的写入量。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">=== START OF SMART DATA SECTION ===</span><br><span class="line">SMART overall-health self-assessment test result: PASSED</span><br><span class="line"></span><br><span class="line">SMART/Health Information (NVMe Log 0x02)</span><br><span class="line">Critical Warning:                   0x00</span><br><span class="line">Temperature:                        37 Celsius</span><br><span class="line">Available Spare:                    100%</span><br><span class="line">Available Spare Threshold:          99%</span><br><span class="line">Percentage Used:                    3%</span><br><span class="line">Data Units Read:                    164,352,048 [84.1 TB]</span><br><span class="line">Data Units Written:                 84,019,304 [43.0 TB]</span><br><span class="line">Host Read Commands:                 3,608,721,339</span><br><span class="line">Host Write Commands:                1,345,245,922</span><br><span class="line">Controller Busy Time:               0</span><br><span class="line">Power Cycles:                       202</span><br><span class="line">Power On Hours:                     1,962</span><br><span class="line">Unsafe Shutdowns:                   75</span><br><span class="line">Media and Data Integrity Errors:    0</span><br><span class="line">Error Information Log Entries:      0</span><br></pre></td></tr></table></figure>
+
+<p>下方的 Power On Hours 就是硬盘使用时长，我这硬盘居然使用了快 2000 小时。</p>
+<p>这么看好像很多，但是我用计算器算一下，24 × 365 &#x3D; 8760</p>
+<p>我这电脑都用两年多了，基本不关机。所以它这个时间估计是算电脑有亮屏的时间吧。电脑熄屏（不休眠）应该是不算进去的。</p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>

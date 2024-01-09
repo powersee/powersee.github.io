@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-07T17:02:11.358Z</updated>
+  <updated>2024-01-09T05:21:03.208Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何查看 Mac 电脑的硬盘使用时间？</title>
+    <link href="https://powersee.github.io/2024/01/mac-disk-power-on-hours/"/>
+    <id>https://powersee.github.io/2024/01/mac-disk-power-on-hours/</id>
+    <published>2024-01-09T05:20:07.000Z</published>
+    <updated>2024-01-09T05:21:03.208Z</updated>
+    
+    <content type="html"><![CDATA[<p>Windows 上面我们想要查看硬盘的使用时间，很多人会选择 CrystalDiskInfo</p><p><img src="/img/2024/disk-info.png" alt="disk-info"></p><p>那么在 Mac 上要怎么查看呢？我见过有人使用一款叫「DriveDx」的软件，可以查看很多硬盘信息。</p><p><img src="/img/2024/DriveDx-2-drives-dashboard.webp" alt="DriveDx-2-drives-dashboard"></p><p>但是这是一款付费软件，官网查了一下，个人版的费用是 19.99 美元。虽然可以下载后免费试用一段时间，不过我还是不想去尝试。</p><p>我使用免费的命令行工具 smartctl</p><p>在电脑有安装 homebrew 的情况下，用 brew 就可以安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install smartmontools</span><br></pre></td></tr></table></figure><p>装好之后，使用这条命令就可以查看硬盘信息</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">smartctl -a disk0</span><br></pre></td></tr></table></figure><p>这个我很久之前就有用，当时是为了查看硬盘的写入量。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">=== START OF SMART DATA SECTION ===</span><br><span class="line">SMART overall-health self-assessment test result: PASSED</span><br><span class="line"></span><br><span class="line">SMART/Health Information (NVMe Log 0x02)</span><br><span class="line">Critical Warning:                   0x00</span><br><span class="line">Temperature:                        37 Celsius</span><br><span class="line">Available Spare:                    100%</span><br><span class="line">Available Spare Threshold:          99%</span><br><span class="line">Percentage Used:                    3%</span><br><span class="line">Data Units Read:                    164,352,048 [84.1 TB]</span><br><span class="line">Data Units Written:                 84,019,304 [43.0 TB]</span><br><span class="line">Host Read Commands:                 3,608,721,339</span><br><span class="line">Host Write Commands:                1,345,245,922</span><br><span class="line">Controller Busy Time:               0</span><br><span class="line">Power Cycles:                       202</span><br><span class="line">Power On Hours:                     1,962</span><br><span class="line">Unsafe Shutdowns:                   75</span><br><span class="line">Media and Data Integrity Errors:    0</span><br><span class="line">Error Information Log Entries:      0</span><br></pre></td></tr></table></figure><p>下方的 Power On Hours 就是硬盘使用时长，我这硬盘居然使用了快 2000 小时。</p><p>这么看好像很多，但是我用计算器算一下，24 × 365 &#x3D; 8760</p><p>我这电脑都用两年多了，基本不关机。所以它这个时间估计是算电脑有亮屏的时间吧。电脑熄屏（不休眠）应该是不算进去的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Windows 上面我们想要查看硬盘的使用时间，很多人会选择 CrystalDiskInfo&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2024/disk-info.png&quot; alt=&quot;disk-info&quot;&gt;&lt;/p&gt;
+&lt;p&gt;那么在 Mac 上要怎么查看呢？我见过有人使用一</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>如何下载 YouTube、bilibili 的视频字幕</title>
@@ -478,30 +502,6 @@
     
     
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GDU 开源的磁盘分析工具</title>
-    <link href="https://powersee.github.io/2023/09/gdu-go/"/>
-    <id>https://powersee.github.io/2023/09/gdu-go/</id>
-    <published>2023-09-30T09:26:54.000Z</published>
-    <updated>2023-09-30T09:30:47.737Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://github.com/dundee/gdu">dundee&#x2F;gdu: Fast disk usage analyzer with console interface written in Go (github.com)</a></p><p>一款命令行工具，看起来和以前使用的 ncdu 差不多。目前在 GitHub 的 star 数为 2.8k。</p><p><img src="/img/2023/gdu-go.webp" alt="gdu-go"></p><p>它支持的平台还挺多的，Linux、Mac、Windows 都可以，毕竟是使用 GO 写的，编译多平台很方便。</p><p>我在 Mac 上使用 brew install gdu 来安装，完成后需要使用</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gdu-go</span><br></pre></td></tr></table></figure><p>来使用它。</p><p>看 GitHub 上的文档，官方是写要用</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">brew install -f gdu</span><br><span class="line">brew <span class="built_in">link</span> --overwrite gdu  <span class="comment"># if you have coreutils installed as well</span></span><br></pre></td></tr></table></figure><p>查询一下 brew -f 的作用</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-f, --force</span><br><span class="line">      Remove a previously cached version and re-fetch.</span><br></pre></td></tr></table></figure><hr><p>上下方向键就是切换不同目录，左右键可以前进和后退。</p><p><code>shift + ？</code> 可以呼出帮助菜单。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">r重新扫描当前目录</span><br><span class="line">/按名称搜索</span><br><span class="line">q退出</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">In interactive mode:</span><br><span class="line">  ↑ or k                              Move cursor up</span><br><span class="line">  ↓ or j                              Move cursor down</span><br><span class="line">  → or Enter                          Go to highlighted directory</span><br><span class="line">  ← or h                              Go to parent directory</span><br><span class="line">  d                                   Delete the selected file or directory</span><br><span class="line">  e                                   Empty the selected directory</span><br><span class="line">  n                                   Sort by name</span><br><span class="line">  s                                   Sort by size</span><br><span class="line">  c                                   Show number of items in directory</span><br></pre></td></tr></table></figure><p>其中的快捷键 e 我觉得还挺新鲜的，清空选择的目录，就是相比于 d 的删除，e 只是清空里面的，目录本身还是保留下来。</p><p>使用 v 可以预览文件内容，预览一些文本时还不错。</p><p>感觉有点像 ranger。</p><p>使用它我发现微信占用的空间挺多的，其中有一个微信群，居然有 1GB 的聊天数据，这群我现在也没怎么看了，于是我在微信里右键「删除」，整个群的聊天信息就没了，它存放在我电脑的图片、文件也跟着删除了。当然只是电脑端的，手机端不影响。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/dundee/gdu&quot;&gt;dundee&amp;#x2F;gdu: Fast disk usage analyzer with console interface written in Go (github.com)&lt;/a&gt;&lt;/</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
