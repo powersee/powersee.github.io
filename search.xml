@@ -7016,4 +7016,18 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>达芬奇小技巧，使用鼠标滚轮左右滑动时间线</title>
+    <url>/2024/01/davinci-timeline-mouse-wheel/</url>
+    <content><![CDATA[<p>默认情况下，我们在达芬奇的时间线上，拨动鼠标滚轮，是上下移动时间线。</p>
+<p>如果想要左右移动，需要按住 command 再拨动滚轮。（Windows 上应该是按住 Ctrl 键）</p>
+<p>只要我们进入设置，在「用户」、「UI 设置」里面，关掉「2D 时间线滚动」。</p>
+<p><img src="/img/2024/DaVinci-ui-setting-timeline.webp" alt="DaVinci-ui-setting-timeline"></p>
+<p>就可以在时间线直接使用滚轮来左右滚动了。</p>
+<p>此时想要上下滚动时间线，得按住滚轮，再来上下移动鼠标。其实左右移动也可以，按住滚轮的时候，有点像之前使用触摸板。</p>
+]]></content>
+      <tags>
+        <tag>视频</tag>
+      </tags>
+  </entry>
 </search>

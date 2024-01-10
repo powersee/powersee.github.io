@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-09T05:21:03.208Z</updated>
+  <updated>2024-01-10T06:58:15.277Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>达芬奇小技巧，使用鼠标滚轮左右滑动时间线</title>
+    <link href="https://powersee.github.io/2024/01/davinci-timeline-mouse-wheel/"/>
+    <id>https://powersee.github.io/2024/01/davinci-timeline-mouse-wheel/</id>
+    <published>2024-01-10T06:57:40.000Z</published>
+    <updated>2024-01-10T06:58:15.277Z</updated>
+    
+    <content type="html"><![CDATA[<p>默认情况下，我们在达芬奇的时间线上，拨动鼠标滚轮，是上下移动时间线。</p><p>如果想要左右移动，需要按住 command 再拨动滚轮。（Windows 上应该是按住 Ctrl 键）</p><p>只要我们进入设置，在「用户」、「UI 设置」里面，关掉「2D 时间线滚动」。</p><p><img src="/img/2024/DaVinci-ui-setting-timeline.webp" alt="DaVinci-ui-setting-timeline"></p><p>就可以在时间线直接使用滚轮来左右滚动了。</p><p>此时想要上下滚动时间线，得按住滚轮，再来上下移动鼠标。其实左右移动也可以，按住滚轮的时候，有点像之前使用触摸板。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;默认情况下，我们在达芬奇的时间线上，拨动鼠标滚轮，是上下移动时间线。&lt;/p&gt;
+&lt;p&gt;如果想要左右移动，需要按住 command 再拨动滚轮。（Windows 上应该是按住 Ctrl 键）&lt;/p&gt;
+&lt;p&gt;只要我们进入设置，在「用户」、「UI 设置」里面，关掉「2D 时间线滚动</summary>
+      
+    
+    
+    
+    
+    <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
+    
+  </entry>
   
   <entry>
     <title>如何查看 Mac 电脑的硬盘使用时间？</title>
@@ -477,31 +501,6 @@
     <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UAC白名单小工具</title>
-    <link href="https://powersee.github.io/2023/10/UACWhitelistTool/"/>
-    <id>https://powersee.github.io/2023/10/UACWhitelistTool/</id>
-    <published>2023-10-01T15:35:17.000Z</published>
-    <updated>2023-10-01T15:39:52.951Z</updated>
-    
-    <content type="html"><![CDATA[<p>我之前就有过这样的疑惑，为什么 Windows 没有 UAC 白名单之类的功能？</p><p>有些频繁打开的应用，每一次打开都需要弹窗确认真心烦。</p><p>例如像原神，我每天基本打开两次，这样才能保证里面的树脂不浪费。</p><p><img src="/img/2023/genshin-uac.png" alt="genshin-uac"></p><p>所以我每天至少得点 用户账号控制 里面的“是”两次。</p><p>而现在，我找到了解决方法，使用 GitHub 上的一个开源工具——<a href="https://github.com/XIU2/UACWhitelistTool">UAC白名单小工具</a></p><p>国人开发的工具，文档是中文的，下载可以在 GitHub 的 release 上，也可以到蓝奏云。</p><ul><li>蓝奏云 ：<a href="https://pan.lanzouj.com/b073m0dne">https://pan.lanzouj.com/b073m0dne</a></li><li>Github：<a href="https://github.com/XIU2/UACWhitelistTool/releases">https://github.com/XIU2/UACWhitelistTool/releases</a></li></ul><p>不用安装，把里面的 exe 解压出来，直接双击打开就行。</p><p>之后把我们信任的应用拖进去就行，例如我把原神图标拖进去。</p><p><img src="/img/2023/uacwhitelist-add-genshin.png" alt="uacwhitelist-add-genshin">再点一下“添加到 UAC 白名单”，就能在桌面生成一个新的图标。我这里是多一个名为 “noUAC.launcher”的快捷方式。</p><p>这个我们是可以改名或者移动到其它地方的。</p><p>以后我们只要双击它就不会有弹窗确认了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我之前就有过这样的疑惑，为什么 Windows 没有 UAC 白名单之类的功能？&lt;/p&gt;
-&lt;p&gt;有些频繁打开的应用，每一次打开都需要弹窗确认真心烦。&lt;/p&gt;
-&lt;p&gt;例如像原神，我每天基本打开两次，这样才能保证里面的树脂不浪费。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
   </entry>
   
