@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-10T06:58:15.277Z</updated>
+  <updated>2024-01-11T02:54:36.677Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自建 RSS 订阅服务 miniflux</title>
+    <link href="https://powersee.github.io/2024/01/docker-miniflux/"/>
+    <id>https://powersee.github.io/2024/01/docker-miniflux/</id>
+    <published>2024-01-11T02:53:44.000Z</published>
+    <updated>2024-01-11T02:54:36.677Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://github.com/miniflux/v2">miniflux</a> 是一个可自建的 rss 服务。在 GitHub 上面有 5k 多颗星⭐️。</p><p><img src="/img/2024/miniflux.webp" alt="miniflux"></p><p>界面看起来挺朴素的。</p><p>miniflux 需要使用 postgresql 数据库，且只支持这一个。最简单的搭建方法是使用 docker compose。</p><p>官方文档：<a href="https://miniflux.app/docs/docker.html">Miniflux Installation with Docker</a></p><p>里面给的 compose 文件内容，新建一个 docker-compose.yaml 文件，把下面的内容粘贴进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">services:</span><br><span class="line">  miniflux:</span><br><span class="line">    image: miniflux/miniflux:latest</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:8080&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      db:</span><br><span class="line">        condition: service_healthy</span><br><span class="line">    environment:</span><br><span class="line">      - DATABASE_URL=postgres://miniflux:secret@db/miniflux?sslmode=disable</span><br><span class="line">      - RUN_MIGRATIONS=1</span><br><span class="line">      - CREATE_ADMIN=1</span><br><span class="line">      - ADMIN_USERNAME=admin</span><br><span class="line">      - ADMIN_PASSWORD=test123</span><br><span class="line">  db:</span><br><span class="line">    image: postgres:15</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_USER=miniflux</span><br><span class="line">      - POSTGRES_PASSWORD=secret</span><br><span class="line">      - POSTGRES_DB=miniflux</span><br><span class="line">    volumes:</span><br><span class="line">      - miniflux-db:/var/lib/postgresql/data</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;pg_isready&quot;, &quot;-U&quot;, &quot;miniflux&quot;]</span><br><span class="line">      interval: 10s</span><br><span class="line">      start_period: 30s</span><br><span class="line">volumes:</span><br><span class="line">  miniflux-db:</span><br></pre></td></tr></table></figure><p>如果我们的 80 端口已经被使用了，就修改一下上面的 80 为其它数字。</p><p>之后保存退出，然后执行一下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure><p>我之前的 RSS 订阅是使用 inoreader，一直是免费使用，没充过钱。不过越来越多的网站 rss 订阅只给出一点内容，每次查看需要去再次加载，比较麻烦。</p><p>而 miniflux 有一个功能，在设置「源」的地方，有一个「抓取全文内容」的选项，把它勾选上☑️，就能抓取像少数派这类网站的全文了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/miniflux/v2&quot;&gt;miniflux&lt;/a&gt; 是一个可自建的 rss 服务。在 GitHub 上面有 5k 多颗星⭐️。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2024/miniflux.webp&quot; alt</summary>
+      
+    
+    
+    
+    
+    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>达芬奇小技巧，使用鼠标滚轮左右滑动时间线</title>
@@ -475,32 +498,6 @@
     
     
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vps 服务器自建 vaultwarden 密码管理器</title>
-    <link href="https://powersee.github.io/2023/10/vps-vaultwarden/"/>
-    <id>https://powersee.github.io/2023/10/vps-vaultwarden/</id>
-    <published>2023-10-06T02:52:04.000Z</published>
-    <updated>2023-10-06T17:32:23.523Z</updated>
-    
-    <content type="html"><![CDATA[<p>本次实验环境：Ubuntu 22.04.2 LTS (GNU&#x2F;Linux 5.15.0-67-generic x86_64)</p><p>系统已安装好 Docker，先把容器运行起来。</p><p>项目地址：<a href="https://github.com/dani-garcia/vaultwarden">https://github.com/dani-garcia/vaultwarden</a></p><p>Docker 创建命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --name vaultwarden -v /opt/bitwarden/:/data/ --restart unless-stopped -p 55555:80 vaultwarden/server:latest</span><br></pre></td></tr></table></figure><p>之后安装 caddy 来进行反向代理</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#x27; | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg</span><br><span class="line">curl -1sLf &#x27;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#x27; | sudo tee /etc/apt/sources.list.d/caddy-stable.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install caddy</span><br></pre></td></tr></table></figure><p>caddy 反向代理参考</p><p>复制下面的内容，修改为自己的域名，把它添加到 <code>/etc/caddy/Caddyfile</code> 里面</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vaultwarden.powersee.top &#123;</span><br><span class="line">reverse_proxy 127.0.0.1:55555</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>重启 caddy</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart caddy</span><br></pre></td></tr></table></figure><p>之后在浏览器访问域名应该就可以了，使用 caddy 的好处是会自己添加 SSL 证书，而且会自动将 http 跳转到 https，相比起 NGINX 方便很多。</p><p>如果你没有 VPS 服务器的话，可以尝试 <a href="https://www.vultr.com/?ref=8161953-4F">vultr</a>，这个平台我自己使用了好几年了，可以了解看看。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;本次实验环境：Ubuntu 22.04.2 LTS (GNU&amp;#x2F;Linux 5.15.0-67-generic x86_64)&lt;/p&gt;
-&lt;p&gt;系统已安装好 Docker，先把容器运行起来。&lt;/p&gt;
-&lt;p&gt;项目地址：&lt;a href=&quot;https://github.co</summary>
-      
-    
-    
-    
-    
-    <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
   </entry>
   

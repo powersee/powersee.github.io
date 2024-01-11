@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>自建 RSS 订阅服务 miniflux</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    自建 RSS 订阅服务 miniflux
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-01-11T02:53:44.000Z" itemprop="datePublished">2024-01-11</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p><a target="_blank" rel="noopener" href="https://github.com/miniflux/v2">miniflux</a> 是一个可自建的 rss 服务。在 GitHub 上面有 5k 多颗星⭐️。</p>
+<p><img src="/img/2024/miniflux.webp" alt="miniflux"></p>
+<p>界面看起来挺朴素的。</p>
+<p>miniflux 需要使用 postgresql 数据库，且只支持这一个。最简单的搭建方法是使用 docker compose。</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://miniflux.app/docs/docker.html">Miniflux Installation with Docker</a></p>
+<p>里面给的 compose 文件内容，新建一个 docker-compose.yaml 文件，把下面的内容粘贴进去。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">services:</span><br><span class="line">  miniflux:</span><br><span class="line">    image: miniflux/miniflux:latest</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:8080&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      db:</span><br><span class="line">        condition: service_healthy</span><br><span class="line">    environment:</span><br><span class="line">      - DATABASE_URL=postgres://miniflux:secret@db/miniflux?sslmode=disable</span><br><span class="line">      - RUN_MIGRATIONS=1</span><br><span class="line">      - CREATE_ADMIN=1</span><br><span class="line">      - ADMIN_USERNAME=admin</span><br><span class="line">      - ADMIN_PASSWORD=test123</span><br><span class="line">  db:</span><br><span class="line">    image: postgres:15</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_USER=miniflux</span><br><span class="line">      - POSTGRES_PASSWORD=secret</span><br><span class="line">      - POSTGRES_DB=miniflux</span><br><span class="line">    volumes:</span><br><span class="line">      - miniflux-db:/var/lib/postgresql/data</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;pg_isready&quot;, &quot;-U&quot;, &quot;miniflux&quot;]</span><br><span class="line">      interval: 10s</span><br><span class="line">      start_period: 30s</span><br><span class="line">volumes:</span><br><span class="line">  miniflux-db:</span><br></pre></td></tr></table></figure>
+
+<p>如果我们的 80 端口已经被使用了，就修改一下上面的 80 为其它数字。</p>
+<p>之后保存退出，然后执行一下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>我之前的 RSS 订阅是使用 inoreader，一直是免费使用，没充过钱。不过越来越多的网站 rss 订阅只给出一点内容，每次查看需要去再次加载，比较麻烦。</p>
+<p>而 miniflux 有一个功能，在设置「源」的地方，有一个「抓取全文内容」的选项，把它勾选上☑️，就能抓取像少数派这类网站的全文了。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
