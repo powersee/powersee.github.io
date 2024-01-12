@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-11T02:54:36.677Z</updated>
+  <updated>2024-01-12T12:19:10.052Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>服务器高频读取，导致连 ssh 都连接不上</title>
+    <link href="https://powersee.github.io/2024/01/vps-high-io/"/>
+    <id>https://powersee.github.io/2024/01/vps-high-io/</id>
+    <published>2024-01-12T12:18:08.000Z</published>
+    <updated>2024-01-12T12:19:10.052Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前服务器有时候 ssh 连接不上，我以为是网络问题。因为毕竟连搭建在上面的网站都访问不了，但是后来测试开梯子，还是访问不了，又感觉不像是网络问题。</p><p>而最近我终于发现问题所在了,是系统磁盘高频读取导致的。我通过腾讯云的后台实时监控，发现在「系统盘 IO」这里，读取能达到 100 多 MB 每秒，并且是一条直线的。</p><p>而平时服务器正常时的监控图表是这样的</p><p><img src="/img/2024/Tencent-cloud-monitoring-shadow.webp" alt="Tencent-cloud-monitoring-shadow"></p><p>而且读取达到 100 多 MB 时，左侧的带宽使用基本是 0。那么应该不是在往外传东西。其实就算是在往外传，也不可能读取达到这么高。因为这轻量应用服务器的带宽是（峰值带宽：30Mbps）</p><p><img src="/img/2024/Tencent-cloud-monitoring-io-shadow.webp" alt="Tencent-cloud-monitoring-io-shadow"></p><p>那导致 io 这么高的原因是什么呢？其实我也没查到，因为这时我压根没法 ssh 连接上去，查看不了。</p><p>不过我搜索一下，发现也有其他人遇到这种问题。</p><p><a href="https://developer.aliyun.com/ask/237165">阿里云 系统磁盘总读BPS 突然增长很高，导致网站502 Bad Gateway</a></p><p>我猜问题应该是内存不够用导致的，使用 htop 查看一下，平时的内存使用率就很高了。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CPU[|||||||                  19.2%]   Tasks: 81, 342 thr; 1 running</span><br><span class="line">Mem[|||||||||||||||||||||786M/970M]   Load average: 0.12 0.13 0.10</span><br><span class="line">Swp[                         0K/0K]   Uptime: 2 days, 00:03:35</span><br></pre></td></tr></table></figure><p>遇到这种情况呢，其实重启一下服务器，是可以解决问题的，但是使用一段时间后又会复发。而且每次都要登录腾讯云后台去重启，也挺麻烦的。</p><p>目前我强制重启之后，连接上服务器，然后添加 1GB 的 swap 交换文件。试试看这样能否解决问题吧。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CPU[|||||                    12.6%]   Tasks: 83, 332 thr; 1 running</span><br><span class="line">Mem[|||||||||||||||||||||387M/970M]   Load average: 0.17 0.08 0.08</span><br><span class="line">Swp[||||||||||||        397M/1024M]   Uptime: 2 days, 06:59:42</span><br></pre></td></tr></table></figure><p>问题好像解决了，运行了两天多，没出现连接不上的情况。添加 swap 之后，内存有一部分分摊到 swp 里。看来内存小的服务器，开启 swap 还是挺有必要的。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;之前服务器有时候 ssh 连接不上，我以为是网络问题。因为毕竟连搭建在上面的网站都访问不了，但是后来测试开梯子，还是访问不了，又感觉不像是网络问题。&lt;/p&gt;
+&lt;p&gt;而最近我终于发现问题所在了,是系统磁盘高频读取导致的。我通过腾讯云的后台实时监控，发现在「系统盘 IO」这里，</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+    <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>自建 RSS 订阅服务 miniflux</title>
@@ -475,29 +500,6 @@
     
     
     <category term="web" scheme="https://powersee.github.io/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux 使用 zip 创建加密压缩包</title>
-    <link href="https://powersee.github.io/2023/10/linux-zip-password/"/>
-    <id>https://powersee.github.io/2023/10/linux-zip-password/</id>
-    <published>2023-10-06T17:30:39.000Z</published>
-    <updated>2023-10-06T17:31:14.468Z</updated>
-    
-    <content type="html"><![CDATA[<p>在群晖和威联通上面都自带有 zip，可以在 shell 里执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -v</span><br></pre></td></tr></table></figure><p>来查看信息，这是在群晖 6.X 版本里的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># zip -v</span><br><span class="line">Copyright (c) 1990-2008 Info-ZIP - Type &#x27;zip &quot;-L&quot;&#x27; for software license.</span><br><span class="line">This is Zip 3.0 (July 5th 2008), by Info-ZIP.</span><br><span class="line">Currently maintained by E. Gordon.  Please send bug reports to</span><br><span class="line">the authors using the web page at www.info-zip.org; see README for details.</span><br><span class="line"></span><br><span class="line">Latest sources and executables are at ftp://ftp.info-zip.org/pub/infozip,</span><br><span class="line">as of above date; see http://www.info-zip.org/ for other sites.</span><br><span class="line"></span><br><span class="line">Compiled with gcc 4.9.3 20150311 (prerelease) for Unix (Linux ELF) on May 19 2018.</span><br></pre></td></tr></table></figure><p>这是在威联通 5.X 版本里的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Compiled with gcc 4.9.2 for Unix (Linux ELF) on Mar 24 2022.</span><br></pre></td></tr></table></figure><p>使用 zip 创建压缩包很简单</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip test.zip test.js</span><br></pre></td></tr></table></figure><p>使用这样的命令就可以将 <code>test.js</code> 添加到名为 <code>test.zip</code> 的压缩包里面。</p><blockquote><p>test.zip 是生成的压缩文件</p><p>test.js 是被压缩的文件</p></blockquote><p>如果被压缩的对象是文件夹，我们需要添加 <code>-r</code> 参数。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -r test.zip test</span><br></pre></td></tr></table></figure><p>如果需要加密，需要使用 <code>-P</code> 参数。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">zip -rP powersee test.zip test</span><br></pre></td></tr></table></figure><p>此时压缩包的密码是 <code>powersee</code></p><p>解压我们可以使用 <code>unzip</code>，不过我发现群晖系统不带这个工具，威联通倒是有带。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;在群晖和威联通上面都自带有 zip，可以在 shell 里执行&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;zip -v&lt;/span&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
