@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-01-13T03:57:48.499Z</updated>
+  <updated>2024-01-19T03:47:53.654Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>yt-dlp 使用心得（一）下载 YouTube 视频和音频</title>
+    <link href="https://powersee.github.io/2024/01/yt-dlp-1/"/>
+    <id>https://powersee.github.io/2024/01/yt-dlp-1/</id>
+    <published>2024-01-19T03:47:05.000Z</published>
+    <updated>2024-01-19T03:47:53.654Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>我的使用环境是 macOS，使用 pip 安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip3 install yt-dlp</span><br></pre></td></tr></table></figure><p>之后查看版本</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --version</span><br><span class="line">2023.12.30</span><br></pre></td></tr></table></figure><p>在我开启系统代理的情况下，我可以直接使用它，它会自动走代理。</p><p>如果把代理关掉，再来使用它，自然连接不上。会出现这样的警告。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WARNING: [youtube] Unable to download webpage: (&lt;urllib3.connection.HTTPSConnection object at 0x10788cb10&gt;, &#x27;Connection to www.youtube.com timed out. (connect timeout=20.0)&#x27;)</span><br></pre></td></tr></table></figure><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>获取视频的结构（就是看它有哪些分辨率，哪些音频），使用大写的 F</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -F https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><p>不加任何参数（也就是上面的命令去掉 <code>-F</code>），会自动下载质量最高的视频和音频，然后将它们合并起来。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><p>当然我们也可以自由选择，例如我们不需要那么高分辨率的视频，我只要 720P 就够了之类的。那么可以序号相加的方式，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 251+614 https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><h3 id="下载音频"><a href="#下载音频" class="headerlink" title="下载音频"></a>下载音频</h3><p>我个人有这样的需要，想要下载视频的音频部分。所以我了解到有这样的参数，<code>-x</code> 参数，可以用来提取音频。</p><p>不过我发现这样是把完整的视频下载之后，再从视频中把音频提取出来。然后再删除掉视频……</p><p>感觉不环保，我明明不需要视频部分，它下载之后只保留音频，再删掉视频……</p><p>当然也有只下载音频的方法，先用 <code>-F</code> 查询信息，然后选择想要的音频 id 就行，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 251 https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><p>但是这样也比较麻烦，得先查询嘛。于是继续了解，发现可以使用 <code>-f ba</code> ，也就是 best audio 的首字母缩写，只下载质量最好的音频。</p><p>不过这样有时候下载的音频是 webm 格式的。</p><p>我观察了一个视频</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">233 mp4   audio only        │                  m3u8  │ audio only          unknown             Default</span><br><span class="line">234 mp4   audio only        │                  m3u8  │ audio only          unknown             Default</span><br><span class="line">599 m4a   audio only      2 │    2.50MiB   31k https │ audio only          mp4a.40.5   31k 22k ultralow, m4a_dash</span><br><span class="line">600 webm  audio only      2 │    2.70MiB   33k https │ audio only          opus        33k 48k ultralow, webm_dash</span><br><span class="line">139 m4a   audio only      2 │    3.96MiB   49k https │ audio only          mp4a.40.5   49k 22k low, m4a_dash</span><br><span class="line">249 webm  audio only      2 │    3.99MiB   49k https │ audio only          opus        49k 48k low, webm_dash</span><br><span class="line">250 webm  audio only      2 │    5.31MiB   65k https │ audio only          opus        65k 48k low, webm_dash</span><br><span class="line">140 m4a   audio only      2 │   10.51MiB  129k https │ audio only          mp4a.40.2  129k 44k medium, m4a_dash</span><br><span class="line">251 webm  audio only      2 │    9.83MiB  121k https │ audio only          opus       121k 48k medium, webm_dash</span><br></pre></td></tr></table></figure><p>只看它音频部分，其实质量最高的应该是 <code>140 m4a   audio only      2 │   10.51MiB  129k</code> 这个才对，不管是文件体积还是码率，它都是最大的。</p><p>但实际上使用 ba 参数，下载的是最高一项 webm 这个。难道是因为它是 48K 而上面的 m4a 是 44k 的？</p><p>那么我添加一个限制，排除掉 webm</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f &#x27;bestaudio/best&#x27; --format &#x27;bestaudio[ext!=webm]&#x27;</span><br></pre></td></tr></table></figure><p>这样后面再加上视频链接即可。</p><p>然后我再写一个 alias，之后我只需要 「ya 视频链接」，就能下载一个视频的音频了。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias ya=&quot;yt-dlp -f &#x27;bestaudio/best&#x27; --format &#x27;bestaudio[ext!=webm]&#x27;&quot;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;p&gt;我的使用环境是 macOS，使用 pip 安装。&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;tabl</summary>
+      
+    
+    
+    
+    
+    <category term="下载" scheme="https://powersee.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>油猴脚本，给网站添加一个「粘贴」按钮</title>
@@ -474,31 +497,6 @@
     
     
     <category term="NAS" scheme="https://powersee.github.io/tags/NAS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>不错的通知方式——PushMe</title>
-    <link href="https://powersee.github.io/2023/10/PushMe/"/>
-    <id>https://powersee.github.io/2023/10/PushMe/</id>
-    <published>2023-10-12T08:44:45.000Z</published>
-    <updated>2023-10-12T08:46:51.223Z</updated>
-    
-    <content type="html"><![CDATA[<p>刚才没事看看青龙的更新日志，发现它从 7 月份开始，支持多一种通知方式 PushMe，了解了下，发现还挺不错的。</p><p>官网：<a href="https://push.i-i.me/">PushMe 一个简单轻量的Android消息客户端 (i-i.me)</a></p><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><hr><ul><li>简单：无需登录注册，安装后，在app上获取push_key，即可使用</li><li>轻量：android原生开发，无多余功能，安装包大小不到7M</li><li>可靠：支持离线消息</li><li>兼容：接口兼容企业微信&#x2F;钉钉&#x2F;飞书群机器人，直接替换即可</li><li>Markdown：消息内容支持markdown格式</li><li>数据小屏：方便查看数据消息 new</li></ul><p>它不同于我之前使用的 server 酱，爱语飞飞，Pushplus 这些需要使用微信公众号的。pushme 是一款安卓 APP，那么就只有安卓设备可以使用咯。</p><p>官网上提供的下载方式有 GitHub 和 Gitee，不过它并不是开源软件，只是把 apk 安装包放上去去。到 GitHub 上可以发现仓库只是放了图片和 apk 安装包而已。</p><p>这 APP 确实简洁，甚至连自己 APP 图标都没有。</p><p>我在 MIUI 上安装好后，需要自己去打开应用的通知权限。</p><p>第一次使用，需要在左侧获取一下 push_key。然后可以在 APP 内给自己发消息，也可以在<a href="https://push.i-i.me/">官网</a>，主要是测试能否收到消息。</p><p><img src="/img/2023/pushme-test-shadow.webp" alt="pushme-test-shadow"></p><p>目前也使用有 10 来天了，感觉还不错。目前一些青龙脚本我就是使用它，来发送通知到手机的。</p><p>如果是自己写的 Python 脚本，只需要在加入这样几行</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> notify</span><br><span class="line"></span><br><span class="line">title = <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line"></span><br><span class="line">notify.send(title, result)</span><br></pre></td></tr></table></figure><p>就可以在脚本运行完成之后，通过 pushme 把内容发送到手机。</p><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>不过我明明给这个 APP 自启动的权限，并且关闭了省电限制，也让它固定在后台，但是却发现依然不能收到通知，只能打开 APP 后刷新才能看到消息。</p><p>而且这 APP 一放到后台没多久，就会弹出一条通知「通道状态：Disconnected」</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>我发现直接把 APP 从后台划掉，这样就可以直接收到通知了。到「通知管理」里面，将 StateChannel 关掉，就不会收到通道状态的消息了。</p><h3 id="更新-notice"><a href="#更新-notice" class="headerlink" title="更新 notice"></a>更新 notice</h3><p>qinglong 需要更新 notice 文件，由于我只使用 Python 脚本，所以去 GitHub 下载新的 <a href="https://github.com/whyour/qinglong/blob/develop/sample/notify.py">qinglong&#x2F;sample&#x2F;notify.py at develop · whyour&#x2F;qinglong · GitHub</a></p><p>然后替换掉原来的就可以了。</p><p>通过观察 notify.py 文件，可以看到这样的内容</p><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">pushme</span>(<span class="params">title: <span class="built_in">str</span>, content: <span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    使用 PushMe 推送消息。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> push_config.get(<span class="string">&quot;PUSHME_KEY&quot;</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;PushMe 服务的 PUSHME_KEY 未设置!!\n取消推送&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;PushMe 服务启动&quot;</span>)</span><br><span class="line"></span><br><span class="line">    url = <span class="string">f&#x27;https://push.i-i.me/?push_key=<span class="subst">&#123;push_config.get(<span class="string">&quot;PUSHME_KEY&quot;</span>)&#125;</span>&#x27;</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;title&quot;</span>: title,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: content,</span><br><span class="line">    &#125;</span><br><span class="line">    response = requests.post(url, data=data)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> response.status_code == <span class="number">200</span> <span class="keyword">and</span> response.text == <span class="string">&quot;success&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;PushMe 推送成功！&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;PushMe 推送失败！<span class="subst">&#123;response.status_code&#125;</span> <span class="subst">&#123;response.text&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure><p>虽然里面用的是 post，不过其实我们把它转换一下，然后用 get 也是可以发送通知的。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://push.i-i.me/?push_key=KEY&amp;title=标题&amp;content=内容</span><br></pre></td></tr></table></figure><p>把这里的 KEY 换成自己的秘钥，然后把链接复制到浏览器访问一下，手机端就可以收到消息。</p><p><img src="/img/2023/pushme-msg.webp" alt="pushme-msg"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;刚才没事看看青龙的更新日志，发现它从 7 月份开始，支持多一种通知方式 PushMe，了解了下，发现还挺不错的。&lt;/p&gt;
-&lt;p&gt;官网：&lt;a href=&quot;https://push.i-i.me/&quot;&gt;PushMe 一个简单轻量的Android消息客户端 (i-i.me)&lt;/a&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://powersee.github.io/tags/Python/"/>
-    
-    <category term="工具" scheme="https://powersee.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   

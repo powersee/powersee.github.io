@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>yt-dlp 使用心得（一）下载 YouTube 视频和音频</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    yt-dlp 使用心得（一）下载 YouTube 视频和音频
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-01-19T03:47:05.000Z" itemprop="datePublished">2024-01-19</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>我的使用环境是 macOS，使用 pip 安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip3 install yt-dlp</span><br></pre></td></tr></table></figure>
+
+<p>之后查看版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --version</span><br><span class="line">2023.12.30</span><br></pre></td></tr></table></figure>
+
+<p>在我开启系统代理的情况下，我可以直接使用它，它会自动走代理。</p>
+<p>如果把代理关掉，再来使用它，自然连接不上。会出现这样的警告。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WARNING: [youtube] Unable to download webpage: (&lt;urllib3.connection.HTTPSConnection object at 0x10788cb10&gt;, &#x27;Connection to www.youtube.com timed out. (connect timeout=20.0)&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>获取视频的结构（就是看它有哪些分辨率，哪些音频），使用大写的 F</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -F https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>不加任何参数（也就是上面的命令去掉 <code>-F</code>），会自动下载质量最高的视频和音频，然后将它们合并起来。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>当然我们也可以自由选择，例如我们不需要那么高分辨率的视频，我只要 720P 就够了之类的。那么可以序号相加的方式，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 251+614 https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<h3 id="下载音频"><a href="#下载音频" class="headerlink" title="下载音频"></a>下载音频</h3><p>我个人有这样的需要，想要下载视频的音频部分。所以我了解到有这样的参数，<code>-x</code> 参数，可以用来提取音频。</p>
+<p>不过我发现这样是把完整的视频下载之后，再从视频中把音频提取出来。然后再删除掉视频……</p>
+<p>感觉不环保，我明明不需要视频部分，它下载之后只保留音频，再删掉视频……</p>
+<p>当然也有只下载音频的方法，先用 <code>-F</code> 查询信息，然后选择想要的音频 id 就行，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 251 https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>但是这样也比较麻烦，得先查询嘛。于是继续了解，发现可以使用 <code>-f ba</code> ，也就是 best audio 的首字母缩写，只下载质量最好的音频。</p>
+<p>不过这样有时候下载的音频是 webm 格式的。</p>
+<p>我观察了一个视频</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">233 mp4   audio only        │                  m3u8  │ audio only          unknown             Default</span><br><span class="line">234 mp4   audio only        │                  m3u8  │ audio only          unknown             Default</span><br><span class="line">599 m4a   audio only      2 │    2.50MiB   31k https │ audio only          mp4a.40.5   31k 22k ultralow, m4a_dash</span><br><span class="line">600 webm  audio only      2 │    2.70MiB   33k https │ audio only          opus        33k 48k ultralow, webm_dash</span><br><span class="line">139 m4a   audio only      2 │    3.96MiB   49k https │ audio only          mp4a.40.5   49k 22k low, m4a_dash</span><br><span class="line">249 webm  audio only      2 │    3.99MiB   49k https │ audio only          opus        49k 48k low, webm_dash</span><br><span class="line">250 webm  audio only      2 │    5.31MiB   65k https │ audio only          opus        65k 48k low, webm_dash</span><br><span class="line">140 m4a   audio only      2 │   10.51MiB  129k https │ audio only          mp4a.40.2  129k 44k medium, m4a_dash</span><br><span class="line">251 webm  audio only      2 │    9.83MiB  121k https │ audio only          opus       121k 48k medium, webm_dash</span><br></pre></td></tr></table></figure>
+
+<p>只看它音频部分，其实质量最高的应该是 <code>140 m4a   audio only      2 │   10.51MiB  129k</code> 这个才对，不管是文件体积还是码率，它都是最大的。</p>
+<p>但实际上使用 ba 参数，下载的是最高一项 webm 这个。难道是因为它是 48K 而上面的 m4a 是 44k 的？</p>
+<p>那么我添加一个限制，排除掉 webm</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f &#x27;bestaudio/best&#x27; --format &#x27;bestaudio[ext!=webm]&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>这样后面再加上视频链接即可。</p>
+<p>然后我再写一个 alias，之后我只需要 「ya 视频链接」，就能下载一个视频的音频了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias ya=&quot;yt-dlp -f &#x27;bestaudio/best&#x27; --format &#x27;bestaudio[ext!=webm]&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
