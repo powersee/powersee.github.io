@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-02-09T07:36:18.002Z</updated>
+  <updated>2024-02-26T03:22:12.208Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>再一次被坚果云气到</title>
+    <link href="https://powersee.github.io/2024/02/jianguoyun/"/>
+    <id>https://powersee.github.io/2024/02/jianguoyun/</id>
+    <published>2024-02-26T03:19:00.000Z</published>
+    <updated>2024-02-26T03:22:12.208Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天再一次被坚果云气到。我平时制作的视频封面，都是一张张图片，我将它们都存到一个文件夹里。然后使用坚果云同步到云端。</p><p>其实主要是做一个备份，万一电脑真的出了问题，我还可以换设备，从网络上下载回来。</p><p>23 年的某一次更新，导致坚果云现在的同步文件夹，都只能在一个特定的文件夹下。例如我使用的是 Mac，它在 <code>$HOME/Library/CloudStorage/</code></p><p>而在此之前，我们的同步文件夹，是可以在其它地方的。比如我「下载」文件夹下有一个 A 文件夹，「文档」文件夹下有一个 B 文件夹，我是可以使用坚果云来同步 A 和 B 的。去年的这次更新我是很不满的，但是没办法了，不满也没用，忍着用呗，用着用着就习惯了。</p><p>现在说回来，我现在电脑有一个同步文件夹，存放的都是图片。图片放进去后，坚果云默认开启一个「不占用电脑空间」的功能。也就是把我图片上传云端后，就将图片从我电脑删除掉，那个位置只放一张缩略图。</p><p>比如原本是一张 1.8MB 的图片，这样操作后，剩一张 4KB 的缩略图。</p><p>这个功能是不错，可能对有些人来说非常有用。但是，我其实不怎么用得着。毕竟我没有存放一堆的图片，电脑给占用几百 MB 我不怎么在意。</p><p>所以我是想着关闭这个功能的，但是，它好像在 Windows 端才有关闭的功能。</p><p><img src="/img/2024/Not-occupy-Space.webp" alt="Not-occupy-Space"></p><p>来源：<a href="https://help.jianguoyun.com/?p=4220">官方帮助文档</a></p><p>Windows 右键文件夹后，有一个「保持离线可用」的功能。Mac 端没有。</p><p><img src="/img/2024/Mac-jianguoyun.webp" alt="Mac-jianguoyun"></p><p>不过我现在打字的时候发现，文件夹右边的云朵图标，应该就是「保持离线」。当然我之前也是点过它的，知道点击后可以把文件从云端下载到电脑。但是我怎么感觉，过段时间，它又会自动删除……</p><p>看来我并没有记错，通过 <a href="https://www.zhihu.com/question/371962536/answer/3144326216">知乎上其他网友</a> 的吐槽，坚果云真的会自动关闭「保持离线」这个功能的。</p><p>总之刚才我就先点击云朵☁️图标，把图片都下载电脑后，打算不同步这个文件夹了，这样坚果云应该就不会老是去删除了吧。</p><p>于是我打开坚果云的主界面，选择这个文件夹，然后点击「取消同步」。</p><p><img src="/img/2024/cancel-sync.webp" alt="cancel-sync"></p><p>结果尴尬的事情发生了，坚果云直接把这个文件夹里面的内容，从我的电脑里面，完全删除。。。跟我预期的完全不一样呀，我以为「取消同步」就是坚果云你以后不要再去管这个文件夹了。</p><p>但是软件它好像觉得，我不想要这个文件夹在我的电脑里了，有些无语。</p><p>没办法，我只能再次同步回来。这次就点击文件夹后面的云朵图标，希望它不会再删除我电脑里的图片吧。不过我也感觉这些图片只备份到坚果云，不怎么安全，说不定哪天又一个误操作，只能电脑和云端都删除了，所以还是复制一份到 NAS 里吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;今天再一次被坚果云气到。我平时制作的视频封面，都是一张张图片，我将它们都存到一个文件夹里。然后使用坚果云同步到云端。&lt;/p&gt;
+&lt;p&gt;其实主要是做一个备份，万一电脑真的出了问题，我还可以换设备，从网络上下载回来。&lt;/p&gt;
+&lt;p&gt;23 年的某一次更新，导致坚果云现在的同步文件夹</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>如何复制 Windows 上无法选中的文字？Textify</title>
@@ -472,32 +496,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Alpine 里安装 docker</title>
-    <link href="https://powersee.github.io/2023/10/alpine-install-docker/"/>
-    <id>https://powersee.github.io/2023/10/alpine-install-docker/</id>
-    <published>2023-10-17T16:32:41.000Z</published>
-    <updated>2023-10-17T16:34:15.426Z</updated>
-    
-    <content type="html"><![CDATA[<p>注，是实机安装 Alpine 作为主系统使用。</p><p>安装</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apk add docker</span><br></pre></td></tr></table></figure><p>添加开机自启</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rc-update add docker boot</span><br></pre></td></tr></table></figure><p>启动</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure><p>此时应该就可以正常使用 docker 了，可以执行 <code>docker info</code> 来检查看看</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker info</span><br><span class="line">Client:</span><br><span class="line"> Context:    default</span><br><span class="line"> Debug Mode: false</span><br><span class="line"> Plugins:</span><br><span class="line">  buildx: Docker Buildx (Docker Inc.)</span><br><span class="line">    Version:  v0.10.4</span><br><span class="line">    Path:     /usr/libexec/docker/cli-plugins/docker-buildx</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Containers: 0</span><br><span class="line">  Running: 0</span><br><span class="line">  Paused: 0</span><br><span class="line">  Stopped: 0</span><br><span class="line"> Images: 0</span><br><span class="line"> Server Version: 23.0.6</span><br><span class="line"> Storage Driver: overlay2</span><br><span class="line">  Backing Filesystem: extfs</span><br><span class="line">  Supports d_type: true</span><br><span class="line">  Using metacopy: false</span><br><span class="line">  Native Overlay Diff: true</span><br><span class="line">  userxattr: false</span><br><span class="line"> Logging Driver: json-file</span><br><span class="line"> Cgroup Driver: cgroupfs</span><br><span class="line"> Cgroup Version: 1</span><br><span class="line"> Plugins:</span><br><span class="line">  Volume: local</span><br><span class="line">  Network: bridge host ipvlan macvlan null overlay</span><br><span class="line">  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog</span><br><span class="line"> Swarm: inactive</span><br><span class="line"> Runtimes: io.containerd.runc.v2 runc</span><br><span class="line"> Default Runtime: runc</span><br><span class="line"> Init Binary: docker-init</span><br><span class="line"> containerd version: 0cae528dd6cb557f7201036e9f43420650207b58</span><br><span class="line"> runc version: 860f061b76bb4fc671f0f9e900f7d80ff93d4eb7</span><br><span class="line"> init version: </span><br><span class="line"> Security Options:</span><br><span class="line">  seccomp</span><br><span class="line">   Profile: builtin</span><br><span class="line"> Kernel Version: 6.1.51-0-lts</span><br><span class="line"> Operating System: Alpine Linux v3.18</span><br><span class="line"> OSType: linux</span><br><span class="line"> Architecture: x86_64</span><br><span class="line"> CPUs: 1</span><br><span class="line"> Total Memory: 460.3MiB</span><br><span class="line"> Name: vultr</span><br><span class="line"> ID: 60556f53-c374-4131-8e9f-45c112f766b2</span><br><span class="line"> Docker Root Dir: /var/lib/docker</span><br><span class="line"> Debug Mode: false</span><br><span class="line"> Registry: https://index.docker.io/v1/</span><br><span class="line"> Experimental: false</span><br><span class="line"> Insecure Registries:</span><br><span class="line">  127.0.0.0/8</span><br><span class="line"> Live Restore Enabled: false</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># docker version</span><br><span class="line">Client:</span><br><span class="line"> Version:           23.0.6</span><br><span class="line"> API version:       1.42</span><br><span class="line"> Go version:        go1.20.10</span><br><span class="line"> Git commit:        ef23cbc4315ae76c744e02d687c09548ede461bd</span><br><span class="line"> Built:             Thu Oct 12 14:14:03 2023</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Context:           default</span><br><span class="line"></span><br><span class="line">Server:</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          23.0.6</span><br><span class="line">  API version:      1.42 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.20.10</span><br><span class="line">  Git commit:       9dbdbd4b6d7681bd18c897a6ba0376073c2a72ff</span><br><span class="line">  Built:            Thu Oct 12 14:14:03 2023</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     false</span><br><span class="line"> containerd:</span><br><span class="line">  Version:          v1.7.2</span><br><span class="line">  GitCommit:        0cae528dd6cb557f7201036e9f43420650207b58</span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.1.7</span><br><span class="line">  GitCommit:        860f061b76bb4fc671f0f9e900f7d80ff93d4eb7</span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.19.0</span><br><span class="line">  GitCommit:</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;注，是实机安装 Alpine 作为主系统使用。&lt;/p&gt;
-&lt;p&gt;安装&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apk add doc</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
   </entry>
   
