@@ -7200,4 +7200,18 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mac 端 QQ 设置直接登录</title>
+    <url>/2024/03/mac-qq-login/</url>
+    <content><![CDATA[<p>每次我在 Mac 上登录 QQ，都需要在手机上点击一下「允许登录」，有时甚至需要扫一下二维码才能登录。</p>
+<p>这就很麻烦，如果只是第一次在新设备上登录，需要进行这样的验证，那我可以理解。问题是我都用这电脑登录好多次了。</p>
+<p>解决方法</p>
+<p>打开 QQ 后，点击 Mac 状态栏的左上角， 图标旁边的 QQ，选择 「设置」，来到「登录设置」。</p>
+<p>将「下次登录无需在手机端确认」这个开关打开就行。</p>
+<p><img src="/img/2024/mac-qq-login.webp" alt="mac-qq-login"></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>

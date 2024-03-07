@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-02-26T03:22:12.208Z</updated>
+  <updated>2024-03-07T07:17:55.750Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 端 QQ 设置直接登录</title>
+    <link href="https://powersee.github.io/2024/03/mac-qq-login/"/>
+    <id>https://powersee.github.io/2024/03/mac-qq-login/</id>
+    <published>2024-03-07T07:15:58.000Z</published>
+    <updated>2024-03-07T07:17:55.750Z</updated>
+    
+    <content type="html"><![CDATA[<p>每次我在 Mac 上登录 QQ，都需要在手机上点击一下「允许登录」，有时甚至需要扫一下二维码才能登录。</p><p>这就很麻烦，如果只是第一次在新设备上登录，需要进行这样的验证，那我可以理解。问题是我都用这电脑登录好多次了。</p><p>解决方法</p><p>打开 QQ 后，点击 Mac 状态栏的左上角， 图标旁边的 QQ，选择 「设置」，来到「登录设置」。</p><p>将「下次登录无需在手机端确认」这个开关打开就行。</p><p><img src="/img/2024/mac-qq-login.webp" alt="mac-qq-login"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;每次我在 Mac 上登录 QQ，都需要在手机上点击一下「允许登录」，有时甚至需要扫一下二维码才能登录。&lt;/p&gt;
+&lt;p&gt;这就很麻烦，如果只是第一次在新设备上登录，需要进行这样的验证，那我可以理解。问题是我都用这电脑登录好多次了。&lt;/p&gt;
+&lt;p&gt;解决方法&lt;/p&gt;
+&lt;p&gt;打开 Q</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>再一次被坚果云气到</title>
@@ -472,30 +497,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 使用 nano 编辑器如何复制 M-6</title>
-    <link href="https://powersee.github.io/2023/10/mac-nano-copy/"/>
-    <id>https://powersee.github.io/2023/10/mac-nano-copy/</id>
-    <published>2023-10-18T18:10:20.000Z</published>
-    <updated>2023-10-18T18:11:33.540Z</updated>
-    
-    <content type="html"><![CDATA[<p>nano 编辑器中复制使用的快捷键是 M-6，在 Windows 和 Linux 就是 Alt + 6 这两个按键一起按。作用和 vim 的 yy 一样。</p><p>当我们没有选中任何内容时，就会复制当前光标所在的行。使用 Ctrl + U 就可以粘贴。</p><p>但是在 Mac 上就有问题了，我发现当我按下 Alt + 6 时，屏幕上是多出来一个特殊的符号 <code>§</code></p><p>Mac 的 Alt 或者说 Option 键，是有特殊的用处的，在输入状态下，是打出特殊字符。</p><p>例如我们按 shift + 2，打出的是 @，而按 Alt + 2，则是 ™。</p><p>下面是一些常见的特殊字符和符号，以及在按住 Option 键时输入对应字符的方式：</p><ol><li><strong>常见特殊字符</strong>：<ul><li><code>Option + a</code> 产生 å</li><li><code>Option + e</code> 产生 é</li><li><code>Option + u</code> 产生 ü</li><li><code>Option + i</code> 产生 î</li><li><code>Option + o</code> 产生 ô</li></ul></li><li><strong>符号和标点</strong>：<ul><li><code>Option + 1</code> 产生 ¡</li><li><code>Option + 2</code> 产生 ™</li><li><code>Option + 3</code> 产生 £</li><li><code>Option + 4</code> 产生 ¢</li><li><code>Option + 5</code> 产生 ∞</li><li><code>Option + 6</code> 产生 §</li><li><code>Option + 7</code> 产生 ¶</li><li><code>Option + 8</code> 产生 •</li><li><code>Option + 9</code> 产生 ª</li><li><code>Option + 0</code> 产生 º</li><li><code>Option + -</code> 产生 –</li><li><code>Option + =</code> 产生 ±</li></ul></li></ol><p>也就是说，Alt + 6 的快捷键组合，已经被 Mac 自身使用了，所以在 nano 里不生效。</p><p>解决方法，按 escape + 6，也就是键盘左上角的 ESC 键。</p><p>参考：<a href="https://stackoverflow.com/questions/26285791/unix-what-modifier-key-does-m-refer-to-e-g-m-c">nano - Unix: what modifier key does “M-“ refer to (e.g. M-C) - Stack Overflow</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;nano 编辑器中复制使用的快捷键是 M-6，在 Windows 和 Linux 就是 Alt + 6 这两个按键一起按。作用和 vim 的 yy 一样。&lt;/p&gt;
-&lt;p&gt;当我们没有选中任何内容时，就会复制当前光标所在的行。使用 Ctrl + U 就可以粘贴。&lt;/p&gt;
-&lt;p&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
