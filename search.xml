@@ -7253,4 +7253,27 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CopyQ 在 Mac 上意外退出的解决方法</title>
+    <url>/2024/04/mac-copyq-error/</url>
+    <content><![CDATA[<p>CopyQ 是我目前正在使用的「剪贴板管理工具」，它是在 GitHub 上开源的软件：<a href="https://github.com/hluk/CopyQ">https://github.com/hluk/CopyQ</a></p>
+<p>目前星星的数量有 7 千多。之前使用它的时候，官方还没有提供 Mac ARM 版，直接下载使用的是 Intel 版本。</p>
+<p>所以我还去研究怎么自己编译，折腾一番之后，才使用上 Apple silicon 版本的 CopyQ。</p>
+<p>刚才发现这软件打不开了，一运行就提示「意外退出」。</p>
+<p><img src="/img/2024/CopyQ-error.webp" alt="CopyQ-error"></p>
+<p>我想着去 <a href="https://github.com/hluk/CopyQ/releases">GitHub</a> 上下载新版本试试看，结果发现现在已经提供 M1 版本的了，于是下载试试看。</p>
+<p>由于这软件没有签名，所以默认情况下是打不开的。需要使用终端执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo xattr -d com.apple.quarantine /Applications/CopyQ.app</span><br></pre></td></tr></table></figure>
+
+<p>之后再尝试打开，发现还是会提示「意外退出」，和我之前的一样。。。</p>
+<p>翻一下 issues，找到了<a href="https://github.com/hluk/CopyQ/issues/2652">解决方法</a></p>
+<p>只需要在终端执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">codesign --force --deep --sign - /Applications/CopyQ.app</span><br></pre></td></tr></table></figure>
+
+<p>就可以再次打开了。</p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
