@@ -7276,4 +7276,26 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>使用 AppleScript 控制键盘按键</title>
+    <url>/2024/04/mac-applescript-keyboard-control/</url>
+    <content><![CDATA[<p>macOS 有一个自带的 APP 叫「脚本编辑器」，我想使用它，来实现每三秒就按一下方向键右→</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">repeat</span><br><span class="line">	tell application &quot;System Events&quot;</span><br><span class="line">		key code 124</span><br><span class="line">	end tell</span><br><span class="line">	delay 3</span><br><span class="line">end repeat</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2024/applescript-key.webp" alt="applescript-key"></p>
+<p>此时如果点击右上角的三角形图标 ▶，应该会报错。</p>
+<blockquote>
+<p>“System Events”遇到一个错误：“脚本编辑器”不允许发送按键。</p>
+</blockquote>
+<p>需要给它控制电脑的权限才行。在辅助功能里面，找到「脚本编辑器」然后打开，找不到可以像我这样直接搜索。</p>
+<p><img src="/img/2024/crontrol-computer.webp" alt="crontrol-computer"></p>
+<p>之后再来运行脚本，就可以实现目的了，每 3 秒就会按一下 右键。</p>
+<p>后面再加入随机时间和通知</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">repeat</span><br><span class="line">    tell application &quot;System Events&quot;</span><br><span class="line">        key code 124</span><br><span class="line">    end tell</span><br><span class="line">    set randomDelay to (random number from 6 to 20)</span><br><span class="line">    display notification &quot;随机延迟时间为：&quot; &amp; randomDelay &amp; &quot; 秒&quot;</span><br><span class="line">    delay randomDelay</span><br><span class="line">end repeat</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
