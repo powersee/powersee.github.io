@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-04-26T13:43:18.341Z</updated>
+  <updated>2024-04-27T03:25:16.495Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次清理 /var/lib/docker/</title>
+    <link href="https://powersee.github.io/2024/04/clean-var-lib-docker/"/>
+    <id>https://powersee.github.io/2024/04/clean-var-lib-docker/</id>
+    <published>2024-04-27T03:24:44.000Z</published>
+    <updated>2024-04-27T03:25:16.495Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近发现服务器的可用空间又变零了，使用 ncdu 扫描一下全盘，发现还是 docker 占用的空间最多。</p><p>于是得来清理一下。</p><p>使用 docker 的内置命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker system df        </span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          7         7         1.49GB    0B (0%)</span><br><span class="line">Containers      7         6         14.61MB   0B (0%)</span><br><span class="line">Local Volumes   2         2         219.1MB   0B (0%)</span><br><span class="line">Build Cache     63        0         1.089GB   1.089GB</span><br></pre></td></tr></table></figure><p>我这里找到了 1GB 多的构建缓存，我打算把它清除掉。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker builder prune</span><br></pre></td></tr></table></figure><p>清除完成后，再来看一下。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker system df    </span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          7         7         1.49GB    0B (0%)</span><br><span class="line">Containers      7         6         14.61MB   0B (0%)</span><br><span class="line">Local Volumes   2         2         219.1MB   0B (0%)</span><br><span class="line">Build Cache     1         0         0B        0B</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近发现服务器的可用空间又变零了，使用 ncdu 扫描一下全盘，发现还是 docker 占用的空间最多。&lt;/p&gt;
+&lt;p&gt;于是得来清理一下。&lt;/p&gt;
+&lt;p&gt;使用 docker 的内置命令&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;tab</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 AppleScript 控制键盘按键</title>
@@ -470,30 +495,6 @@
     
     
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WPS 只粘贴文本</title>
-    <link href="https://powersee.github.io/2023/12/wps-paste/"/>
-    <id>https://powersee.github.io/2023/12/wps-paste/</id>
-    <published>2023-12-14T03:08:07.000Z</published>
-    <updated>2023-12-14T03:10:18.519Z</updated>
-    
-    <content type="html"><![CDATA[<p>平时使用 WPS 写东西时，如果我从网页复制内容，到 WPS 里面粘贴，会发现粘贴进来的样式，和 WPS 中原本的内容样式不同。</p><p>所以我得右键，然后选择「只粘贴文本」</p><p><img src="/img/2023/wps-paste.jpg" alt="wps-paste"></p><p>由于我复制粘贴还经常使用，所以我想着能否提高一下效率，否则每次粘贴都得先右键，再选择，比较麻烦。</p><h4 id="解决方案：更改默认粘贴方式"><a href="#解决方案：更改默认粘贴方式" class="headerlink" title="解决方案：更改默认粘贴方式"></a>解决方案：更改默认粘贴方式</h4><p>点击左上角的「文件」，然后选择「文字偏好设置」。</p><p><img src="/img/2023/wps-file-select.jpg" alt="wps-file-select"></p><p>之后进入编辑，拉到最下方。改为「无格式文本」即可。</p><p><img src="/img/2023/wps-edit-setting.webp" alt="wps-edit-setting"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;平时使用 WPS 写东西时，如果我从网页复制内容，到 WPS 里面粘贴，会发现粘贴进来的样式，和 WPS 中原本的内容样式不同。&lt;/p&gt;
-&lt;p&gt;所以我得右键，然后选择「只粘贴文本」&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2023/wps-paste.jpg&quot; alt=</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

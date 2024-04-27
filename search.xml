@@ -7298,4 +7298,23 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>记一次清理 /var/lib/docker/</title>
+    <url>/2024/04/clean-var-lib-docker/</url>
+    <content><![CDATA[<p>最近发现服务器的可用空间又变零了，使用 ncdu 扫描一下全盘，发现还是 docker 占用的空间最多。</p>
+<p>于是得来清理一下。</p>
+<p>使用 docker 的内置命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker system df        </span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          7         7         1.49GB    0B (0%)</span><br><span class="line">Containers      7         6         14.61MB   0B (0%)</span><br><span class="line">Local Volumes   2         2         219.1MB   0B (0%)</span><br><span class="line">Build Cache     63        0         1.089GB   1.089GB</span><br></pre></td></tr></table></figure>
+
+<p>我这里找到了 1GB 多的构建缓存，我打算把它清除掉。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker builder prune</span><br></pre></td></tr></table></figure>
+
+<p>清除完成后，再来看一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker system df    </span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          7         7         1.49GB    0B (0%)</span><br><span class="line">Containers      7         6         14.61MB   0B (0%)</span><br><span class="line">Local Volumes   2         2         219.1MB   0B (0%)</span><br><span class="line">Build Cache     1         0         0B        0B</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>
