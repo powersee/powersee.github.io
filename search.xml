@@ -7337,4 +7337,16 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>在 B 站网页版显示用户 IP 归属地</title>
+    <url>/2024/05/bilibili-web-user-ip/</url>
+    <content><![CDATA[<p>目前使用「哔哩哔哩」的手机客户端，可以显示用户的 IP 属地。（不过用谷歌商店的「bilibili」国际版不能显示）</p>
+<p>最近无意间发现一个油猴脚本 <a href="https://greasyfork.org/zh-CN/scripts/466815-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%BD%91%E9%A1%B5%E7%89%88%E5%B1%95%E7%A4%BA-ip-%E5%B1%9E%E5%9C%B0">哔哩哔哩网页版展示 IP 属地</a></p>
+<p>安装之后在网页端也可以显示用户的 IP 属地了，效果如下图。</p>
+<p><img src="/img/2024/bilibili-ip-web-preview.webp" alt="preview"></p>
+]]></content>
+      <tags>
+        <tag>网络</tag>
+      </tags>
+  </entry>
 </search>

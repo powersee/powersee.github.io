@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-05-18T13:09:27.624Z</updated>
+  <updated>2024-05-21T04:59:08.855Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 B 站网页版显示用户 IP 归属地</title>
+    <link href="https://powersee.github.io/2024/05/bilibili-web-user-ip/"/>
+    <id>https://powersee.github.io/2024/05/bilibili-web-user-ip/</id>
+    <published>2024-05-21T04:58:12.000Z</published>
+    <updated>2024-05-21T04:59:08.855Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前使用「哔哩哔哩」的手机客户端，可以显示用户的 IP 属地。（不过用谷歌商店的「bilibili」国际版不能显示）</p><p>最近无意间发现一个油猴脚本 <a href="https://greasyfork.org/zh-CN/scripts/466815-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%BD%91%E9%A1%B5%E7%89%88%E5%B1%95%E7%A4%BA-ip-%E5%B1%9E%E5%9C%B0">哔哩哔哩网页版展示 IP 属地</a></p><p>安装之后在网页端也可以显示用户的 IP 属地了，效果如下图。</p><p><img src="/img/2024/bilibili-ip-web-preview.webp" alt="preview"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;目前使用「哔哩哔哩」的手机客户端，可以显示用户的 IP 属地。（不过用谷歌商店的「bilibili」国际版不能显示）&lt;/p&gt;
+&lt;p&gt;最近无意间发现一个油猴脚本 &lt;a href=&quot;https://greasyfork.org/zh-CN/scripts/466815-%E5%</summary>
+      
+    
+    
+    
+    
+    <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 邮件 APP 老是自动退出，分享我的解决方案</title>
@@ -469,31 +492,6 @@
     <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
     <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>威联通的 qbittorrent 不支持 ipv6</title>
-    <link href="https://powersee.github.io/2024/01/qnap-qbittorrent-ipv6/"/>
-    <id>https://powersee.github.io/2024/01/qnap-qbittorrent-ipv6/</id>
-    <published>2024-01-02T09:12:26.000Z</published>
-    <updated>2024-01-02T09:16:08.813Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前我使用威联通 nas 里的 qb 来下载资源，发现无法连接上种子的 tracker。我以为是 tracker 的问题，毕竟它是套了 cloudflare 的，在国内的访问确实有些问题。</p><p>但是后来我发现，怎么家里的黑群晖 nas 却可以正常下载。明明都是同一个局域网下，使用着同样的宽带，不应该呀。</p><p>经过一番排查，发现问题在于 ipv6。威联通和群晖上面的 qb，我都是使用套件安装的，但是群晖的支持 ipv6，而威联通的不支持。</p><p>所以同样的种子，在群晖上面的 qb 可以连接上 tracker，但是在威联通的 qb 就连接不上，无法下载。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>既然知道问题所在，那现在就让 qb 支持 ipv6 就行呗。但是我找不到让威联通 qnap 里的 qbittorrent 套件，支持 ipv6 的方法。</p><p>所以我的做法是不使用这个 qb，而是使用 docker 来运行 qb。而想要让 docker 容器支持 ipv6，最简单的方法就是使用 host 网络。</p><p>所以我使用这条命令来创建并运行 qb</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name=qbittorrent \</span><br><span class="line">  -e PUID=1000 \</span><br><span class="line">  -e PGID=1000 \</span><br><span class="line">  -e TZ=Aisa/Shanghai \</span><br><span class="line">  -e WEBUI_PORT=8082 \</span><br><span class="line">  --network host \</span><br><span class="line">  -v /share/CACHEDEV1_DATA/Container/qbit:/config \</span><br><span class="line">  -v /share/CACHEDEV1_DATA/Download:/downloads \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  ghcr.io/linuxserver/qbittorrent</span><br></pre></td></tr></table></figure><p>完成之后 qb 应该就在运行中了。现在新版的 qb，已经不使用 adminadmin 来作为默认的密码了。我们需要通过容器的日志来查看默认密码。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#docker logs qbittorrent</span><br><span class="line"></span><br><span class="line">******** Information ********</span><br><span class="line">To control qBittorrent, access the WebUI at: http://localhost:8082</span><br><span class="line"></span><br><span class="line">The WebUI administrator username is: admin</span><br><span class="line">The WebUI administrator password was not set. </span><br><span class="line">A temporary password is provided for this session: S3powersee</span><br></pre></td></tr></table></figure><p>可以看到默认的用户名还是 admin，密码是随机生成的。使用它们进入 qb 的网页管理界面，然后到【设置】的 Web UI 里面，就可以修改密码。</p><p>之后我使用这个 docker 运行的 qb 来下载之前的种子，就可以正常下载了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;之前我使用威联通 nas 里的 qb 来下载资源，发现无法连接上种子的 tracker。我以为是 tracker 的问题，毕竟它是套了 cloudflare 的，在国内的访问确实有些问题。&lt;/p&gt;
-&lt;p&gt;但是后来我发现，怎么家里的黑群晖 nas 却可以正常下载。明明都是同一</summary>
-      
-    
-    
-    
-    
-    <category term="NAS" scheme="https://powersee.github.io/tags/NAS/"/>
-    
-    <category term="qnap" scheme="https://powersee.github.io/tags/qnap/"/>
     
   </entry>
   
