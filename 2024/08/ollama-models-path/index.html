@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>Ollama 更改模型存放位置</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    Ollama 更改模型存放位置
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-08-05T05:09:48.000Z" itemprop="datePublished">2024-08-05</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>想要改它的存放位置，我们需要进入环境变量。</p>
+<p>打开 Windows 系统设置，来到【关于】，在右边找到【高级系统设置】，然后会出现一个【系统属性】窗口。</p>
+<p>在上面的标签里选择【高级】，再点击下方的【环境变量】。</p>
+<p>这时弹出一个【环境变量】窗口，点击【系统变量】下的新建，然后又弹出一个窗口。</p>
+<p>变量名：OLLAMA_MODELS</p>
+<p>变量值：D:\AI\Ollama</p>
+<p>然后一个一个确定，就添加好环境变量了。</p>
+<p><img src="/img/2024/Ollama-env-model.webp" alt="Ollama-env-model"></p>
+<p>那怎么知道环境变量有没有生效呢？直接重启电脑肯定可以。</p>
+<p>不过也有快速的方法，我们打开 cmd，然后执行一个命令 set ，它就会输出所有的环境变量，找找看有没有我们刚才添加的 OLLAMA_MODELS 就行。</p>
+<p><img src="/img/2024/cmd-ollama-env.webp" alt="cmd-ollama-env"></p>
+<p>这时候再执行  run 或者 pull 命令来拉去模型，就会存放在 D 盘了。</p>
+<p>那如果我之前已经下载过模型，存放在 C 盘里面了呢？怎么迁移到 D 盘？</p>
+<p>很简单，将 C 盘的用户目录下的 .ollama 中的两个文件夹，移动到 D 盘我们新设置的存放路径就行。</p>
+<p>迁移之后，可以使用 ollama list 来检查</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\x&gt;ollama list</span><br><span class="line">NAME            ID              SIZE    MODIFIED</span><br><span class="line">qwen2:1.5b      f6daf2b25194    934 MB  11 hours ago</span><br><span class="line">gemma2:latest   ff02c3702f32    5.4 GB  46 hours ago</span><br><span class="line">qwen2:latest    e0d4e1163c58    4.4 GB  47 hours ago</span><br><span class="line">qwen2:0.5b      6f48b936a09f    352 MB  2 days ago</span><br><span class="line">llama3.1:latest 62757c860e01    4.7 GB  2 days ago</span><br></pre></td></tr></table></figure>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

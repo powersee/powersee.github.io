@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-05-21T04:59:08.855Z</updated>
+  <updated>2024-08-05T05:13:31.723Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ollama 更改模型存放位置</title>
+    <link href="https://powersee.github.io/2024/08/ollama-models-path/"/>
+    <id>https://powersee.github.io/2024/08/ollama-models-path/</id>
+    <published>2024-08-05T05:09:48.000Z</published>
+    <updated>2024-08-05T05:13:31.723Z</updated>
+    
+    <content type="html"><![CDATA[<p>想要改它的存放位置，我们需要进入环境变量。</p><p>打开 Windows 系统设置，来到【关于】，在右边找到【高级系统设置】，然后会出现一个【系统属性】窗口。</p><p>在上面的标签里选择【高级】，再点击下方的【环境变量】。</p><p>这时弹出一个【环境变量】窗口，点击【系统变量】下的新建，然后又弹出一个窗口。</p><p>变量名：OLLAMA_MODELS</p><p>变量值：D:\AI\Ollama</p><p>然后一个一个确定，就添加好环境变量了。</p><p><img src="/img/2024/Ollama-env-model.webp" alt="Ollama-env-model"></p><p>那怎么知道环境变量有没有生效呢？直接重启电脑肯定可以。</p><p>不过也有快速的方法，我们打开 cmd，然后执行一个命令 set ，它就会输出所有的环境变量，找找看有没有我们刚才添加的 OLLAMA_MODELS 就行。</p><p><img src="/img/2024/cmd-ollama-env.webp" alt="cmd-ollama-env"></p><p>这时候再执行  run 或者 pull 命令来拉去模型，就会存放在 D 盘了。</p><p>那如果我之前已经下载过模型，存放在 C 盘里面了呢？怎么迁移到 D 盘？</p><p>很简单，将 C 盘的用户目录下的 .ollama 中的两个文件夹，移动到 D 盘我们新设置的存放路径就行。</p><p>迁移之后，可以使用 ollama list 来检查</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\x&gt;ollama list</span><br><span class="line">NAME            ID              SIZE    MODIFIED</span><br><span class="line">qwen2:1.5b      f6daf2b25194    934 MB  11 hours ago</span><br><span class="line">gemma2:latest   ff02c3702f32    5.4 GB  46 hours ago</span><br><span class="line">qwen2:latest    e0d4e1163c58    4.4 GB  47 hours ago</span><br><span class="line">qwen2:0.5b      6f48b936a09f    352 MB  2 days ago</span><br><span class="line">llama3.1:latest 62757c860e01    4.7 GB  2 days ago</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;想要改它的存放位置，我们需要进入环境变量。&lt;/p&gt;
+&lt;p&gt;打开 Windows 系统设置，来到【关于】，在右边找到【高级系统设置】，然后会出现一个【系统属性】窗口。&lt;/p&gt;
+&lt;p&gt;在上面的标签里选择【高级】，再点击下方的【环境变量】。&lt;/p&gt;
+&lt;p&gt;这时弹出一个【环境变量】</summary>
+      
+    
+    
+    
+    
+    <category term="AI" scheme="https://powersee.github.io/tags/AI/"/>
+    
+  </entry>
   
   <entry>
     <title>在 B 站网页版显示用户 IP 归属地</title>
@@ -466,32 +491,6 @@
     
     
     <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网心云从端口限制型变回全锥型</title>
-    <link href="https://powersee.github.io/2024/01/onething-nat-type/"/>
-    <id>https://powersee.github.io/2024/01/onething-nat-type/</id>
-    <published>2024-01-04T08:27:18.000Z</published>
-    <updated>2024-01-04T08:28:29.513Z</updated>
-    
-    <content type="html"><![CDATA[<p>前段时间，家里一直运行网心云的 OEC 无端端变成「端口限制型」。这导致我每天的收益变少了。</p><p>但我也没去改家里的网络设置，怎么无缘无故就变了呢？不清楚，也找不到解决方案，就这样放着。</p><p>我个人名下是办理了两条宽带的，都是移动的。一条在我现在的住处，一条在我父母的住处。</p><p>两边的网络情况基本一样，都是自己修改光猫设置，改为桥接模式，然后使用京东路由器拨号上网。跑网心云的设备通过网线连接在路由器上。</p><p>之前两边的状态都是全锥型，而且 UPNP 都是可用。</p><p><img src="/img/2024/quanzhui-upnp-ok.jpg" alt="quanzhui-upnp-ok"></p><p>而现在我这边的设备变成了「端口限制型」且 UPNP 不可用。</p><p><img src="/img/2024/port-limit.jpg" alt="port-limit"></p><p>于是我进入路由器后台，看看是否我这边的路由器 UPNP 没开？结果发现一直开着的。</p><p>而且里面还有网心云设备的记录。</p><p>这时我看到 UPNP 旁边就是 DMZ，那我试试把网心云设备的 IP 填入到 DMZ 里面，然后点击保存。</p><p><img src="/img/2024/route-dmz.webp" alt="route-dmz"></p><p>过一会再去 APP 里面看网心云设备的状态。现在变回全锥型了，不过 UPNP 还是不可用。</p><p><img src="/img/2024/quanzhui-upnp-no.jpg" alt="quanzhui-upnp-no"></p><h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;前段时间，家里一直运行网心云的 OEC 无端端变成「端口限制型」。这导致我每天的收益变少了。&lt;/p&gt;
-&lt;p&gt;但我也没去改家里的网络设置，怎么无缘无故就变了呢？不清楚，也找不到解决方案，就这样放着。&lt;/p&gt;
-&lt;p&gt;我个人名下是办理了两条宽带的，都是移动的。一条在我现在的住处，</summary>
-      
-    
-    
-    
-    
-    <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="路由器" scheme="https://powersee.github.io/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/"/>
     
   </entry>
   

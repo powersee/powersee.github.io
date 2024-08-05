@@ -7349,4 +7349,28 @@ border-radius: 4px;
         <tag>网络</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Ollama 更改模型存放位置</title>
+    <url>/2024/08/ollama-models-path/</url>
+    <content><![CDATA[<p>想要改它的存放位置，我们需要进入环境变量。</p>
+<p>打开 Windows 系统设置，来到【关于】，在右边找到【高级系统设置】，然后会出现一个【系统属性】窗口。</p>
+<p>在上面的标签里选择【高级】，再点击下方的【环境变量】。</p>
+<p>这时弹出一个【环境变量】窗口，点击【系统变量】下的新建，然后又弹出一个窗口。</p>
+<p>变量名：OLLAMA_MODELS</p>
+<p>变量值：D:\AI\Ollama</p>
+<p>然后一个一个确定，就添加好环境变量了。</p>
+<p><img src="/img/2024/Ollama-env-model.webp" alt="Ollama-env-model"></p>
+<p>那怎么知道环境变量有没有生效呢？直接重启电脑肯定可以。</p>
+<p>不过也有快速的方法，我们打开 cmd，然后执行一个命令 set ，它就会输出所有的环境变量，找找看有没有我们刚才添加的 OLLAMA_MODELS 就行。</p>
+<p><img src="/img/2024/cmd-ollama-env.webp" alt="cmd-ollama-env"></p>
+<p>这时候再执行  run 或者 pull 命令来拉去模型，就会存放在 D 盘了。</p>
+<p>那如果我之前已经下载过模型，存放在 C 盘里面了呢？怎么迁移到 D 盘？</p>
+<p>很简单，将 C 盘的用户目录下的 .ollama 中的两个文件夹，移动到 D 盘我们新设置的存放路径就行。</p>
+<p>迁移之后，可以使用 ollama list 来检查</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C:\Users\x&gt;ollama list</span><br><span class="line">NAME            ID              SIZE    MODIFIED</span><br><span class="line">qwen2:1.5b      f6daf2b25194    934 MB  11 hours ago</span><br><span class="line">gemma2:latest   ff02c3702f32    5.4 GB  46 hours ago</span><br><span class="line">qwen2:latest    e0d4e1163c58    4.4 GB  47 hours ago</span><br><span class="line">qwen2:0.5b      6f48b936a09f    352 MB  2 days ago</span><br><span class="line">llama3.1:latest 62757c860e01    4.7 GB  2 days ago</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
 </search>
