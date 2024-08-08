@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-08-05T05:13:31.723Z</updated>
+  <updated>2024-08-08T13:40:25.285Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>本地部署开源语音转文字模型 SenseVoice</title>
+    <link href="https://powersee.github.io/2024/08/SenseVoice/"/>
+    <id>https://powersee.github.io/2024/08/SenseVoice/</id>
+    <published>2024-08-08T13:39:15.000Z</published>
+    <updated>2024-08-08T13:40:25.285Z</updated>
+    
+    <content type="html"><![CDATA[<p>阿里的语音转文字模型 <a href="https://github.com/FunAudioLLM/SenseVoice/">https://github.com/FunAudioLLM/SenseVoice/</a></p><p>听说比 openai 的 Whisper 效果好，既然是开源的，那就下载来试试看吧。</p><ul><li><p>这个可以用 CPU 来运行，所以没有显卡也能用。</p></li><li><p>对电脑系统要求有 python 和 ffmpeg。</p></li></ul><p>首先把代码克隆到本地</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/FunAudioLLM/SenseVoice.git</span><br></pre></td></tr></table></figure><p>然后安装依赖</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure><p>完成后启动 webui 就可以使用了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python webui.py</span><br></pre></td></tr></table></figure><p><img src="/img/2024/sensevoice-webui.webp" alt="sensevoice-webui"></p><p>一般运行之后，会给我们一个地址 <a href="http://127.0.0.1:7860/">http://127.0.0.1:7860</a> 打开浏览器访问它，然后上传音频上去，语言可以选择一下，这样可以更快速转换，再点击一下 「start」按键就可以了。</p><p>我使用的是 Mac mini，观察了一下，使用时占用内存 1.6GB，点击 start 后开始转换，主要是 CPU 占用增加，GPU 好像没变化，转换时内存占用会提高到 2.6GB。</p><p>速度确实挺快的，三分钟的音频，6 秒就转换好了。这点可以从终端看到。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  185.867, time_escape: 6.026: 100%</span><br></pre></td></tr></table></figure><p>后面又尝试了一段 57 分钟的音频，耗时不到两分钟</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  3461.120, time_escape: 113.743: 100%</span><br></pre></td></tr></table></figure><p>注意，安装的依赖比较占用空间</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">torch&lt;=2.3</span><br><span class="line">torchaudio</span><br><span class="line">modelscope</span><br><span class="line">huggingface</span><br><span class="line">huggingface_hub</span><br><span class="line">funasr&gt;=1.1.3</span><br><span class="line">numpy&lt;=1.26.4</span><br><span class="line">gradio</span><br><span class="line">fastapi&gt;=0.111.1</span><br></pre></td></tr></table></figure><p>建议创建 python 虚拟环境，专门给它使用。</p><p>我这边 venv 目录占用了 883 MB。</p><p>目前好像就开源了这个 small 模型，我们好像也不能切换其它模型，不过我感觉转换的质量还不错，所以以后在 Mac 上我就使用它来语音转文字了，Windows 上面我还是会继续使用 Whisper。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;阿里的语音转文字模型 &lt;a href=&quot;https://github.com/FunAudioLLM/SenseVoice/&quot;&gt;https://github.com/FunAudioLLM/SenseVoice/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;听说比 openai 的 Whispe</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Ollama 更改模型存放位置</title>
@@ -466,31 +489,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>达芬奇更改默认项目设置</title>
-    <link href="https://powersee.github.io/2024/01/davinci-change-project-default-setting/"/>
-    <id>https://powersee.github.io/2024/01/davinci-change-project-default-setting/</id>
-    <published>2024-01-05T11:49:46.000Z</published>
-    <updated>2024-01-05T11:51:07.570Z</updated>
-    
-    <content type="html"><![CDATA[<p>达芬奇 DaVinci 是我的主力剪辑软件。有一个困扰我已久的问题，最近终于找到了解决方案。</p><p>平常我新建一个项目时，如果我直接把视频素材拖进来，软件会提示我更改项目帧率。</p><blockquote><p>所选片段的帧率与项目帧率不同。您想要更改时间线帧率以和片段帧率匹配吗？</p></blockquote><p>这是因为默认的项目设置是 1080P 24 帧，我们点击右下角的齿轮⚙就可以看到。</p><p><img src="/img/2024/DaVinci-default-project.webp" alt="DaVinci-default-project"></p><p>我的视频基本没有 24 帧的，所以基本我每个项目都会弹出提示。</p><p>想要修改这里的默认设置也很简单，直接在这里改，例如我改为 59.94 帧，然后点击右上方的三个点 …</p><p><img src="/img/2024/DaVinci2.webp" alt="DaVinci2"></p><p>选择「将当前设置设定为默认预设…」就可以了。</p><p>其实我这么改，也不只是为了少点一下那个弹窗。更主要是为了避免，剪辑大半天才发现时间线帧数错了。</p><p>因为达芬奇时间线创建好之后，是没法再修改它的分辨率和帧数的。所以它默认 24 帧，如果我们拖进来视频，会提示我们帧数不同，但是如果拖进来的是图片、音频，就不会有提示。</p><p>我之前拍的视频基本是 50 帧的，有时候剪辑了大半段，才发现时间线是 24 帧。补救的方法是新建一条 50 帧的时间线，然后再把旧时间线上的内容，全选，然后复制粘贴到新的时间线上。</p><p>而现在我修改了默认项目设置，就可以避免这种情况了。</p><p>对了，以前我是拍 50 帧，但是现在我已经变了，改为 59.94 帧。因为前段时间<a href="https://www.bilibili.com/video/BV1hp4y1f7B5/">影视飓风的视频</a>说，用 29.97 和 59.94 会比用 25 和 50 帧好。</p><p>他们已经从 P 制改为用 N 制了，所以我也跟随潮流，才将达芬奇的项目设置改为 59.94。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;达芬奇 DaVinci 是我的主力剪辑软件。有一个困扰我已久的问题，最近终于找到了解决方案。&lt;/p&gt;
-&lt;p&gt;平常我新建一个项目时，如果我直接把视频素材拖进来，软件会提示我更改项目帧率。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;所选片段的帧率与项目帧率不同。您想要更改时间线帧</summary>
-      
-    
-    
-    
-    
-    <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
     
   </entry>
   

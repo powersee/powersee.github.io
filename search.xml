@@ -7373,4 +7373,44 @@ border-radius: 4px;
         <tag>AI</tag>
       </tags>
   </entry>
+  <entry>
+    <title>本地部署开源语音转文字模型 SenseVoice</title>
+    <url>/2024/08/SenseVoice/</url>
+    <content><![CDATA[<p>阿里的语音转文字模型 <a href="https://github.com/FunAudioLLM/SenseVoice/">https://github.com/FunAudioLLM/SenseVoice/</a></p>
+<p>听说比 openai 的 Whisper 效果好，既然是开源的，那就下载来试试看吧。</p>
+<ul>
+<li><p>这个可以用 CPU 来运行，所以没有显卡也能用。</p>
+</li>
+<li><p>对电脑系统要求有 python 和 ffmpeg。</p>
+</li>
+</ul>
+<p>首先把代码克隆到本地</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/FunAudioLLM/SenseVoice.git</span><br></pre></td></tr></table></figure>
+
+<p>然后安装依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>完成后启动 webui 就可以使用了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python webui.py</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2024/sensevoice-webui.webp" alt="sensevoice-webui"></p>
+<p>一般运行之后，会给我们一个地址 <a href="http://127.0.0.1:7860/">http://127.0.0.1:7860</a> 打开浏览器访问它，然后上传音频上去，语言可以选择一下，这样可以更快速转换，再点击一下 「start」按键就可以了。</p>
+<p>我使用的是 Mac mini，观察了一下，使用时占用内存 1.6GB，点击 start 后开始转换，主要是 CPU 占用增加，GPU 好像没变化，转换时内存占用会提高到 2.6GB。</p>
+<p>速度确实挺快的，三分钟的音频，6 秒就转换好了。这点可以从终端看到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  185.867, time_escape: 6.026: 100%</span><br></pre></td></tr></table></figure>
+
+<p>后面又尝试了一段 57 分钟的音频，耗时不到两分钟</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  3461.120, time_escape: 113.743: 100%</span><br></pre></td></tr></table></figure>
+
+<p>注意，安装的依赖比较占用空间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">torch&lt;=2.3</span><br><span class="line">torchaudio</span><br><span class="line">modelscope</span><br><span class="line">huggingface</span><br><span class="line">huggingface_hub</span><br><span class="line">funasr&gt;=1.1.3</span><br><span class="line">numpy&lt;=1.26.4</span><br><span class="line">gradio</span><br><span class="line">fastapi&gt;=0.111.1</span><br></pre></td></tr></table></figure>
+
+<p>建议创建 python 虚拟环境，专门给它使用。</p>
+<p>我这边 venv 目录占用了 883 MB。</p>
+<p>目前好像就开源了这个 small 模型，我们好像也不能切换其它模型，不过我感觉转换的质量还不错，所以以后在 Mac 上我就使用它来语音转文字了，Windows 上面我还是会继续使用 Whisper。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>

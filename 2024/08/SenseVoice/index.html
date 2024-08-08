@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>本地部署开源语音转文字模型 SenseVoice</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    本地部署开源语音转文字模型 SenseVoice
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2024-08-08T13:39:15.000Z" itemprop="datePublished">2024-08-08</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>阿里的语音转文字模型 <a target="_blank" rel="noopener" href="https://github.com/FunAudioLLM/SenseVoice/">https://github.com/FunAudioLLM/SenseVoice/</a></p>
+<p>听说比 openai 的 Whisper 效果好，既然是开源的，那就下载来试试看吧。</p>
+<ul>
+<li><p>这个可以用 CPU 来运行，所以没有显卡也能用。</p>
+</li>
+<li><p>对电脑系统要求有 python 和 ffmpeg。</p>
+</li>
+</ul>
+<p>首先把代码克隆到本地</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/FunAudioLLM/SenseVoice.git</span><br></pre></td></tr></table></figure>
+
+<p>然后安装依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>完成后启动 webui 就可以使用了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python webui.py</span><br></pre></td></tr></table></figure>
+
+<p><img src="/img/2024/sensevoice-webui.webp" alt="sensevoice-webui"></p>
+<p>一般运行之后，会给我们一个地址 <a target="_blank" rel="noopener" href="http://127.0.0.1:7860/">http://127.0.0.1:7860</a> 打开浏览器访问它，然后上传音频上去，语言可以选择一下，这样可以更快速转换，再点击一下 「start」按键就可以了。</p>
+<p>我使用的是 Mac mini，观察了一下，使用时占用内存 1.6GB，点击 start 后开始转换，主要是 CPU 占用增加，GPU 好像没变化，转换时内存占用会提高到 2.6GB。</p>
+<p>速度确实挺快的，三分钟的音频，6 秒就转换好了。这点可以从终端看到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  185.867, time_escape: 6.026: 100%</span><br></pre></td></tr></table></figure>
+
+<p>后面又尝试了一段 57 分钟的音频，耗时不到两分钟</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  3461.120, time_escape: 113.743: 100%</span><br></pre></td></tr></table></figure>
+
+<p>注意，安装的依赖比较占用空间</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">torch&lt;=2.3</span><br><span class="line">torchaudio</span><br><span class="line">modelscope</span><br><span class="line">huggingface</span><br><span class="line">huggingface_hub</span><br><span class="line">funasr&gt;=1.1.3</span><br><span class="line">numpy&lt;=1.26.4</span><br><span class="line">gradio</span><br><span class="line">fastapi&gt;=0.111.1</span><br></pre></td></tr></table></figure>
+
+<p>建议创建 python 虚拟环境，专门给它使用。</p>
+<p>我这边 venv 目录占用了 883 MB。</p>
+<p>目前好像就开源了这个 small 模型，我们好像也不能切换其它模型，不过我感觉转换的质量还不错，所以以后在 Mac 上我就使用它来语音转文字了，Windows 上面我还是会继续使用 Whisper。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
