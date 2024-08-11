@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-08-08T13:40:25.285Z</updated>
+  <updated>2024-08-11T15:59:17.043Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Nu shell 的 alias （别名）笔记</title>
+    <link href="https://powersee.github.io/2024/08/nu-shell-alias/"/>
+    <id>https://powersee.github.io/2024/08/nu-shell-alias/</id>
+    <published>2024-08-11T15:54:55.000Z</published>
+    <updated>2024-08-11T15:59:17.043Z</updated>
+    
+    <content type="html"><![CDATA[<p>平时在 Mac 和 Linux 上面，我挺喜欢使用 alias 的，可以节省我执行命令的时间。</p><p>Windows 上面，我还是用不惯 powershell 和 cmd，所以我在上面安装了 nu shell，并且把它设置为默认的 shell，打开终端 APP 的时候，就会启动 nu shell。</p><p><img src="/img/2023/nushell-ls.png"></p><p>在比较简单的情况下，它的 alias 和 bash 的差不多。</p><p>此处可以参考官方文档：<a href="https://www.nushell.sh/zh-CN/book/aliases.html">别名 | Nushell</a></p><p>不过里面说，想要持久化，可以添加到你的 config.nu 文件中。</p><p>我没有这么做，我直接写入到 env.nu 中了，直接把 env.nu 当成 .zshrc 来看待了。</p><p>如果只是简单地缩短命令，那么了解到这里就足够了。</p><p>不过使用稍微深一点，就还是容易遇到问题。</p><h3 id="首先是命令的拼接"><a href="#首先是命令的拼接" class="headerlink" title="首先是命令的拼接"></a>首先是命令的拼接</h3><p>在 bash 上面我们可以使用 &amp;&amp; 来连接两条命令。不过在 nu 这边不行，这点我们可以参考官方的这篇文档 <a href="https://www.nushell.sh/zh-CN/book/coming_from_bash.html">从 Bash 到 Nu | Nushell</a>，这里面可以了解到 bash 上面的 &amp;&amp;，在 nu shell 里是使用 <code>;</code></p><h3 id="然后是-Windows-切换盘符"><a href="#然后是-Windows-切换盘符" class="headerlink" title="然后是 Windows 切换盘符"></a>然后是 Windows 切换盘符</h3><p>我们平时启动 shell 之后，默认是在 C 盘的用户目录下，此时如果想切换到 D 盘。</p><p>那么在 cmd 和 powershell，我们只需要执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:</span><br></pre></td></tr></table></figure><p>就可以切换过去。但是在 nu 这边不行，得加多一个 \</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;平时在 Mac 和 Linux 上面，我挺喜欢使用 alias 的，可以节省我执行命令的时间。&lt;/p&gt;
+&lt;p&gt;Windows 上面，我还是用不惯 powershell 和 cmd，所以我在上面安装了 nu shell，并且把它设置为默认的 shell，打开终端 APP 的时</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+    <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>本地部署开源语音转文字模型 SenseVoice</title>
@@ -465,30 +490,6 @@
     
     
     <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>检查更新 Mac 上的第三方应用 Latest</title>
-    <link href="https://powersee.github.io/2024/01/mac-latest/"/>
-    <id>https://powersee.github.io/2024/01/mac-latest/</id>
-    <published>2024-01-07T12:00:36.000Z</published>
-    <updated>2024-01-07T12:02:12.830Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近发现一款不错的应用，可以用来更新 Mac 上面的 APP。</p><p>因为 Mac 自带的 APP Store 只能更新从里面下载的 APP。我们自己下载的第三方应用，或者用 homebrew 安装的应用，是没法在 APP Store 里面更新的。</p><p>而现在这个在 GitHub 上面开源的应用 <a href="https://github.com/mangerlahn/Latest">mangerlahn&#x2F;Latest: A small utility app for macOS that makes sure you know about all the latest updates to the apps you use.</a> 就可以很好地形成互补。</p><p>目前它在 GitHub 上面的 star 数量是两千多。<a href="https://github.com/mangerlahn/Latest/releases">Releases</a> 里面有提供 dmg 包下载，不过我电脑有装 homebrew，所以我直接使用命令行安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install --cask latest</span><br></pre></td></tr></table></figure><p>APP 打开后的界面是这样的，左边显示有那些应用可以更新，点击之后会在右边显示更新日志。</p><p><img src="/img/2024/Latest.webp" alt="Latest"></p><p>而且它连 Mac 官方的应用都可以更新，例如我上图中的 keynote。</p><p>我感觉挺好的，其实我电脑里装了挺多开源软件，有些用 homebrew 安装的，有些是在 GitHub 下载的。如果软件自身没有检测更新的功能，可能我一直都不会去更新它。</p><p>现在有 latest 这个 APP 来帮忙检测和更新，确实方便多了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近发现一款不错的应用，可以用来更新 Mac 上面的 APP。&lt;/p&gt;
-&lt;p&gt;因为 Mac 自带的 APP Store 只能更新从里面下载的 APP。我们自己下载的第三方应用，或者用 homebrew 安装的应用，是没法在 APP Store 里面更新的。&lt;/p&gt;
-&lt;p&gt;而</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   

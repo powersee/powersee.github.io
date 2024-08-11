@@ -7413,4 +7413,29 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Nu shell 的 alias （别名）笔记</title>
+    <url>/2024/08/nu-shell-alias/</url>
+    <content><![CDATA[<p>平时在 Mac 和 Linux 上面，我挺喜欢使用 alias 的，可以节省我执行命令的时间。</p>
+<p>Windows 上面，我还是用不惯 powershell 和 cmd，所以我在上面安装了 nu shell，并且把它设置为默认的 shell，打开终端 APP 的时候，就会启动 nu shell。</p>
+<p><img src="/img/2023/nushell-ls.png"></p>
+<p>在比较简单的情况下，它的 alias 和 bash 的差不多。</p>
+<p>此处可以参考官方文档：<a href="https://www.nushell.sh/zh-CN/book/aliases.html">别名 | Nushell</a></p>
+<p>不过里面说，想要持久化，可以添加到你的 config.nu 文件中。</p>
+<p>我没有这么做，我直接写入到 env.nu 中了，直接把 env.nu 当成 .zshrc 来看待了。</p>
+<p>如果只是简单地缩短命令，那么了解到这里就足够了。</p>
+<p>不过使用稍微深一点，就还是容易遇到问题。</p>
+<h3 id="首先是命令的拼接"><a href="#首先是命令的拼接" class="headerlink" title="首先是命令的拼接"></a>首先是命令的拼接</h3><p>在 bash 上面我们可以使用 &amp;&amp; 来连接两条命令。不过在 nu 这边不行，这点我们可以参考官方的这篇文档 <a href="https://www.nushell.sh/zh-CN/book/coming_from_bash.html">从 Bash 到 Nu | Nushell</a>，这里面可以了解到 bash 上面的 &amp;&amp;，在 nu shell 里是使用 <code>;</code></p>
+<h3 id="然后是-Windows-切换盘符"><a href="#然后是-Windows-切换盘符" class="headerlink" title="然后是 Windows 切换盘符"></a>然后是 Windows 切换盘符</h3><p>我们平时启动 shell 之后，默认是在 C 盘的用户目录下，此时如果想切换到 D 盘。</p>
+<p>那么在 cmd 和 powershell，我们只需要执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:</span><br></pre></td></tr></table></figure>
+
+<p>就可以切换过去。但是在 nu 这边不行，得加多一个 \</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+        <tag>shell</tag>
+      </tags>
+  </entry>
 </search>
