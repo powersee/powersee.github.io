@@ -7421,6 +7421,9 @@ border-radius: 4px;
 <p><img src="/img/2023/nushell-ls.png"></p>
 <p>在比较简单的情况下，它的 alias 和 bash 的差不多。</p>
 <p>此处可以参考官方文档：<a href="https://www.nushell.sh/zh-CN/book/aliases.html">别名 | Nushell</a></p>
+<p>例如我就把 yt-dlp 缩短为 yt</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> $ alias yt = yt-dlp</span><br><span class="line"> $ yt-dlp --version                     </span><br><span class="line">2024.08.01</span><br><span class="line"> $ yt --version </span><br><span class="line">2024.08.01</span><br></pre></td></tr></table></figure>
+
 <p>不过里面说，想要持久化，可以添加到你的 config.nu 文件中。</p>
 <p>我没有这么做，我直接写入到 env.nu 中了，直接把 env.nu 当成 .zshrc 来看待了。</p>
 <p>如果只是简单地缩短命令，那么了解到这里就足够了。</p>
@@ -7432,6 +7435,28 @@ border-radius: 4px;
 
 <p>就可以切换过去。但是在 nu 这边不行，得加多一个 \</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+        <tag>shell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nu shell 的自定义命令（函数）笔记</title>
+    <url>/2024/08/nu-shell-def/</url>
+    <content><![CDATA[<p>由于我经常使用 yt-dlp 来下载视频或者音频，所以之前已经给 nu shell 添加了 alias，把 yt-dlp 缩短为 yt。</p>
+<p>但是我平时喜欢把音频，直接下载到一个特定的目录里面。所以使用命令行，我需要先 cd xxxx，然后再执行 yt xxxx。</p>
+<p>在 Mac 上面我使用的是 zsh，所以写一条 alias</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias ya=&quot;cd xxxx &amp;&amp; yt-dlp --format &#x27;bestaudio[ext!=webm]&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后平时就执行 ya url，就可以下载到 url 对应的音频了。</p>
+<p>但是我发现，在 nu shell 这边的 alias，没法这么用，即使我已经知道它不能使用 <code>&amp;&amp;</code>，得使用 <code>;</code> 才对。</p>
+<p>在这边我也是折腾了不少时间，使用 alias 应该是没法达到我的目的了。</p>
+<p>所以我寻找其它的方法——<a href="https://www.nushell.sh/zh-CN/book/custom_commands.html">自定义命令 | Nushell</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def yda [url:string] &#123;</span><br><span class="line">    cd &#x27;D:/xxx&#x27;</span><br><span class="line">    yt-dlp --format &#x27;bestaudio[ext!=webm]&#x27; $url</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终就是写了一个函数，这样我们在 shell 里面执行 yda 后面需要一个参数。持久化的方法，我也是同样写到 env.nu 里面。</p>
+<p><img src="/img/2024/nu-shell-yda.png" alt="nu-shell-yda"></p>
 ]]></content>
       <tags>
         <tag>Windows</tag>
