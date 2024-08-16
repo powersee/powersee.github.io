@@ -7463,4 +7463,22 @@ border-radius: 4px;
         <tag>shell</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Windows 11 资源管理器的地址栏消失了</title>
+    <url>/2024/08/windows11-address-bar-missing/</url>
+    <content><![CDATA[<p>最近打开一台很久没开机的 win11 电脑，使用了一下，然后系统提示更新。</p>
+<p>等它更新完成之后，我打开资源管理器，发现地址栏不见了。</p>
+<p><img src="/img/2024/startallback-win7.webp" alt="startallback-win7"></p>
+<p>看来应该和这次更新有关，网上搜索一下，有网友也遇过这样的问题，他的解决方案是，到设置里面回滚更新，好像可以退回到更新前的状态。</p>
+<p>不过我不想这么做，继续了解，有人讲到是电脑安装 StartAllBack 这个软件导致的。需要在软件的设置里面，把「资源管理器样式」改回 Win11 就行。</p>
+<p>（提醒一下，StartAllBack 这个软件安装后，是没有 APP 图标的，想要再次进入软件的设置界面，需要把鼠标放在「开始菜单」的位置，然后右键，选择「属性」。）</p>
+<p><img src="/img/2024/startallback-win11.webp" alt="startallback-win11"></p>
+<p>果然如此，我改回 Win11 之后，资源管理器的地址栏就再次出现了。</p>
+<p><img src="/img/2024/win11-explorer-ok.webp" alt="win11-explorer-ok"></p>
+<p>不过这个问题其实也可以通过，更新 StartAllBack 的软件版本来解决，新版本依然可以使用 win10 的样式。</p>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
 </search>

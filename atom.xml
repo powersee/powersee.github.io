@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-08-12T15:44:17.423Z</updated>
+  <updated>2024-08-16T05:24:10.731Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows 11 资源管理器的地址栏消失了</title>
+    <link href="https://powersee.github.io/2024/08/windows11-address-bar-missing/"/>
+    <id>https://powersee.github.io/2024/08/windows11-address-bar-missing/</id>
+    <published>2024-08-16T05:21:46.000Z</published>
+    <updated>2024-08-16T05:24:10.731Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近打开一台很久没开机的 win11 电脑，使用了一下，然后系统提示更新。</p><p>等它更新完成之后，我打开资源管理器，发现地址栏不见了。</p><p><img src="/img/2024/startallback-win7.webp" alt="startallback-win7"></p><p>看来应该和这次更新有关，网上搜索一下，有网友也遇过这样的问题，他的解决方案是，到设置里面回滚更新，好像可以退回到更新前的状态。</p><p>不过我不想这么做，继续了解，有人讲到是电脑安装 StartAllBack 这个软件导致的。需要在软件的设置里面，把「资源管理器样式」改回 Win11 就行。</p><p>（提醒一下，StartAllBack 这个软件安装后，是没有 APP 图标的，想要再次进入软件的设置界面，需要把鼠标放在「开始菜单」的位置，然后右键，选择「属性」。）</p><p><img src="/img/2024/startallback-win11.webp" alt="startallback-win11"></p><p>果然如此，我改回 Win11 之后，资源管理器的地址栏就再次出现了。</p><p><img src="/img/2024/win11-explorer-ok.webp" alt="win11-explorer-ok"></p><p>不过这个问题其实也可以通过，更新 StartAllBack 的软件版本来解决，新版本依然可以使用 win10 的样式。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近打开一台很久没开机的 win11 电脑，使用了一下，然后系统提示更新。&lt;/p&gt;
+&lt;p&gt;等它更新完成之后，我打开资源管理器，发现地址栏不见了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2024/startallback-win7.webp&quot; alt=&quot;startall</summary>
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>Nu shell 的自定义命令（函数）笔记</title>
@@ -467,30 +491,6 @@
     
     
     <category term="视频" scheme="https://powersee.github.io/tags/%E8%A7%86%E9%A2%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何查看 Mac 电脑的硬盘使用时间？</title>
-    <link href="https://powersee.github.io/2024/01/mac-disk-power-on-hours/"/>
-    <id>https://powersee.github.io/2024/01/mac-disk-power-on-hours/</id>
-    <published>2024-01-09T05:20:07.000Z</published>
-    <updated>2024-01-09T05:21:03.208Z</updated>
-    
-    <content type="html"><![CDATA[<p>Windows 上面我们想要查看硬盘的使用时间，很多人会选择 CrystalDiskInfo</p><p><img src="/img/2024/disk-info.png" alt="disk-info"></p><p>那么在 Mac 上要怎么查看呢？我见过有人使用一款叫「DriveDx」的软件，可以查看很多硬盘信息。</p><p><img src="/img/2024/DriveDx-2-drives-dashboard.webp" alt="DriveDx-2-drives-dashboard"></p><p>但是这是一款付费软件，官网查了一下，个人版的费用是 19.99 美元。虽然可以下载后免费试用一段时间，不过我还是不想去尝试。</p><p>我使用免费的命令行工具 smartctl</p><p>在电脑有安装 homebrew 的情况下，用 brew 就可以安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">brew install smartmontools</span><br></pre></td></tr></table></figure><p>装好之后，使用这条命令就可以查看硬盘信息</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">smartctl -a disk0</span><br></pre></td></tr></table></figure><p>这个我很久之前就有用，当时是为了查看硬盘的写入量。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">=== START OF SMART DATA SECTION ===</span><br><span class="line">SMART overall-health self-assessment test result: PASSED</span><br><span class="line"></span><br><span class="line">SMART/Health Information (NVMe Log 0x02)</span><br><span class="line">Critical Warning:                   0x00</span><br><span class="line">Temperature:                        37 Celsius</span><br><span class="line">Available Spare:                    100%</span><br><span class="line">Available Spare Threshold:          99%</span><br><span class="line">Percentage Used:                    3%</span><br><span class="line">Data Units Read:                    164,352,048 [84.1 TB]</span><br><span class="line">Data Units Written:                 84,019,304 [43.0 TB]</span><br><span class="line">Host Read Commands:                 3,608,721,339</span><br><span class="line">Host Write Commands:                1,345,245,922</span><br><span class="line">Controller Busy Time:               0</span><br><span class="line">Power Cycles:                       202</span><br><span class="line">Power On Hours:                     1,962</span><br><span class="line">Unsafe Shutdowns:                   75</span><br><span class="line">Media and Data Integrity Errors:    0</span><br><span class="line">Error Information Log Entries:      0</span><br></pre></td></tr></table></figure><p>下方的 Power On Hours 就是硬盘使用时长，我这硬盘居然使用了快 2000 小时。</p><p>这么看好像很多，但是我用计算器算一下，24 × 365 &#x3D; 8760</p><p>我这电脑都用两年多了，基本不关机。所以它这个时间估计是算电脑有亮屏的时间吧。电脑熄屏（不休眠）应该是不算进去的。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;Windows 上面我们想要查看硬盘的使用时间，很多人会选择 CrystalDiskInfo&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2024/disk-info.png&quot; alt=&quot;disk-info&quot;&gt;&lt;/p&gt;
-&lt;p&gt;那么在 Mac 上要怎么查看呢？我见过有人使用一</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   
