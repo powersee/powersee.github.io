@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-08-16T17:35:09.537Z</updated>
+  <updated>2024-08-18T08:56:43.098Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Typora Mac 版本如何打开开发人员工具？</title>
+    <link href="https://powersee.github.io/2024/08/typora-macos-debug/"/>
+    <id>https://powersee.github.io/2024/08/typora-macos-debug/</id>
+    <published>2024-08-18T08:56:04.000Z</published>
+    <updated>2024-08-18T08:56:43.098Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前我 Mac 上的 Typora 已经升级到了 1.9.4 版本，现在我找不到调出「开发人员工具」的地方。</p><p>以前的版本，我记得在设置里面，勾选上开发工具，然后在编辑页面右键就行，现在没有了。</p><p>目前新版本，需要通过 Safari 才行。</p><p>先打开 Typora，然后打开 Safari 浏览器，点击上方的「开发」，第三行就是我们机器的名字和系统版本，鼠标放上去，就可以在右边看到 Typora。</p><p><img src="/img/2024/Safari-debug-Typora.webp" alt="Safari-debug-Typora"></p><p>我这里在 Typora 打开了 3 个文档，所以这里有 3 个选项，鼠标放到对应选项时，后面的文档会高亮起来。</p><p><img src="/img/2024/Typora-debug.webp" alt="Typora-debug"></p><p>点击之后就可以打开对应文档的「开发人员工具」了。</p><p>参考：<a href="https://support.typoraio.cn/Debug-Themes/">Debug Themes &#x2F; CSS - Typora Support</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;目前我 Mac 上的 Typora 已经升级到了 1.9.4 版本，现在我找不到调出「开发人员工具」的地方。&lt;/p&gt;
+&lt;p&gt;以前的版本，我记得在设置里面，勾选上开发工具，然后在编辑页面右键就行，现在没有了。&lt;/p&gt;
+&lt;p&gt;目前新版本，需要通过 Safari 才行。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows 10 无法连接上 Xbox 手柄</title>
@@ -470,29 +495,6 @@
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
     <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自建 RSS 订阅服务 miniflux</title>
-    <link href="https://powersee.github.io/2024/01/docker-miniflux/"/>
-    <id>https://powersee.github.io/2024/01/docker-miniflux/</id>
-    <published>2024-01-11T02:53:44.000Z</published>
-    <updated>2024-01-11T02:54:36.677Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://github.com/miniflux/v2">miniflux</a> 是一个可自建的 rss 服务。在 GitHub 上面有 5k 多颗星⭐️。</p><p><img src="/img/2024/miniflux.webp" alt="miniflux"></p><p>界面看起来挺朴素的。</p><p>miniflux 需要使用 postgresql 数据库，且只支持这一个。最简单的搭建方法是使用 docker compose。</p><p>官方文档：<a href="https://miniflux.app/docs/docker.html">Miniflux Installation with Docker</a></p><p>里面给的 compose 文件内容，新建一个 docker-compose.yaml 文件，把下面的内容粘贴进去。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">services:</span><br><span class="line">  miniflux:</span><br><span class="line">    image: miniflux/miniflux:latest</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;80:8080&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      db:</span><br><span class="line">        condition: service_healthy</span><br><span class="line">    environment:</span><br><span class="line">      - DATABASE_URL=postgres://miniflux:secret@db/miniflux?sslmode=disable</span><br><span class="line">      - RUN_MIGRATIONS=1</span><br><span class="line">      - CREATE_ADMIN=1</span><br><span class="line">      - ADMIN_USERNAME=admin</span><br><span class="line">      - ADMIN_PASSWORD=test123</span><br><span class="line">  db:</span><br><span class="line">    image: postgres:15</span><br><span class="line">    environment:</span><br><span class="line">      - POSTGRES_USER=miniflux</span><br><span class="line">      - POSTGRES_PASSWORD=secret</span><br><span class="line">      - POSTGRES_DB=miniflux</span><br><span class="line">    volumes:</span><br><span class="line">      - miniflux-db:/var/lib/postgresql/data</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [&quot;CMD&quot;, &quot;pg_isready&quot;, &quot;-U&quot;, &quot;miniflux&quot;]</span><br><span class="line">      interval: 10s</span><br><span class="line">      start_period: 30s</span><br><span class="line">volumes:</span><br><span class="line">  miniflux-db:</span><br></pre></td></tr></table></figure><p>如果我们的 80 端口已经被使用了，就修改一下上面的 80 为其它数字。</p><p>之后保存退出，然后执行一下</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure><p>我之前的 RSS 订阅是使用 inoreader，一直是免费使用，没充过钱。不过越来越多的网站 rss 订阅只给出一点内容，每次查看需要去再次加载，比较麻烦。</p><p>而 miniflux 有一个功能，在设置「源」的地方，有一个「抓取全文内容」的选项，把它勾选上☑️，就能抓取像少数派这类网站的全文了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/miniflux/v2&quot;&gt;miniflux&lt;/a&gt; 是一个可自建的 rss 服务。在 GitHub 上面有 5k 多颗星⭐️。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2024/miniflux.webp&quot; alt</summary>
-      
-    
-    
-    
-    
-    <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
   </entry>
   
