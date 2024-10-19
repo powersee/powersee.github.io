@@ -7598,4 +7598,36 @@ border-radius: 4px;
         <tag>Windows</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mac 上的开源键盘映射应用——Karabiner-Elements</title>
+    <url>/2024/10/Karabiner-Elements/</url>
+    <content><![CDATA[<p>最近在看漫画，需要经常使用到 pgdn 这颗按键，来切换到下一页。</p>
+<p>但是它在键盘的顶部，我的手需要伸长去按。于是我现在的需求，就是想把键盘右下角，小键盘区域的回车键，映射到 pgdn 上。</p>
+<p>当我按下小键盘的回车键，效果就相当于按下 pgdn。</p>
+<p>然后我就发现了这个软件 <a href="https://github.com/pqrs-org/Karabiner-Elements">Karabiner-Elements</a></p>
+<p>在 GitHub 上面有 18.7 k 的 star，只有 Mac 版本。</p>
+<blockquote>
+<p>Supported systems</p>
+<ul>
+<li>macOS 15 Sequoia<ul>
+<li>Both Intel-based Macs 和 Apple Silicon Macs</li>
+</ul>
+</li>
+<li>macOS 14 Sonoma<ul>
+<li>Both Intel-based Macs 和 Apple Silicon Macs</li>
+</ul>
+</li>
+<li>macOS 13 Ventura<ul>
+<li>Both Intel-based Macs 和 Apple Silicon Macs</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><img src="/img/2024/Karabiner-Elements.webp" alt="Karabiner-Elements"></p>
+<p>应用下载后打开，如上图这样设置一下，就可以实现我的目的了。</p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-09-09T03:20:46.502Z</updated>
+  <updated>2024-10-19T07:02:01.342Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 上的开源键盘映射应用——Karabiner-Elements</title>
+    <link href="https://powersee.github.io/2024/10/Karabiner-Elements/"/>
+    <id>https://powersee.github.io/2024/10/Karabiner-Elements/</id>
+    <published>2024-10-19T07:01:28.000Z</published>
+    <updated>2024-10-19T07:02:01.342Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在看漫画，需要经常使用到 pgdn 这颗按键，来切换到下一页。</p><p>但是它在键盘的顶部，我的手需要伸长去按。于是我现在的需求，就是想把键盘右下角，小键盘区域的回车键，映射到 pgdn 上。</p><p>当我按下小键盘的回车键，效果就相当于按下 pgdn。</p><p>然后我就发现了这个软件 <a href="https://github.com/pqrs-org/Karabiner-Elements">Karabiner-Elements</a></p><p>在 GitHub 上面有 18.7 k 的 star，只有 Mac 版本。</p><blockquote><p>Supported systems</p><ul><li>macOS 15 Sequoia<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li><li>macOS 14 Sonoma<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li><li>macOS 13 Ventura<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li></ul></blockquote><p><img src="/img/2024/Karabiner-Elements.webp" alt="Karabiner-Elements"></p><p>应用下载后打开，如上图这样设置一下，就可以实现我的目的了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近在看漫画，需要经常使用到 pgdn 这颗按键，来切换到下一页。&lt;/p&gt;
+&lt;p&gt;但是它在键盘的顶部，我的手需要伸长去按。于是我现在的需求，就是想把键盘右下角，小键盘区域的回车键，映射到 pgdn 上。&lt;/p&gt;
+&lt;p&gt;当我按下小键盘的回车键，效果就相当于按下 pgdn。&lt;/</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>在 Windows 的搜狗输入法中，输出直角引号「」</title>
@@ -472,29 +496,6 @@
     
     
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>yt-dlp 使用心得（一）下载 YouTube 视频和音频</title>
-    <link href="https://powersee.github.io/2024/01/yt-dlp-1/"/>
-    <id>https://powersee.github.io/2024/01/yt-dlp-1/</id>
-    <published>2024-01-19T03:47:05.000Z</published>
-    <updated>2024-01-19T03:47:53.654Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>我的使用环境是 macOS，使用 pip 安装。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip3 install yt-dlp</span><br></pre></td></tr></table></figure><p>之后查看版本</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp --version</span><br><span class="line">2023.12.30</span><br></pre></td></tr></table></figure><p>在我开启系统代理的情况下，我可以直接使用它，它会自动走代理。</p><p>如果把代理关掉，再来使用它，自然连接不上。会出现这样的警告。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">WARNING: [youtube] Unable to download webpage: (&lt;urllib3.connection.HTTPSConnection object at 0x10788cb10&gt;, &#x27;Connection to www.youtube.com timed out. (connect timeout=20.0)&#x27;)</span><br></pre></td></tr></table></figure><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>获取视频的结构（就是看它有哪些分辨率，哪些音频），使用大写的 F</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -F https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><p>不加任何参数（也就是上面的命令去掉 <code>-F</code>），会自动下载质量最高的视频和音频，然后将它们合并起来。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><p>当然我们也可以自由选择，例如我们不需要那么高分辨率的视频，我只要 720P 就够了之类的。那么可以序号相加的方式，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 251+614 https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><h3 id="下载音频"><a href="#下载音频" class="headerlink" title="下载音频"></a>下载音频</h3><p>我个人有这样的需要，想要下载视频的音频部分。所以我了解到有这样的参数，<code>-x</code> 参数，可以用来提取音频。</p><p>不过我发现这样是把完整的视频下载之后，再从视频中把音频提取出来。然后再删除掉视频……</p><p>感觉不环保，我明明不需要视频部分，它下载之后只保留音频，再删掉视频……</p><p>当然也有只下载音频的方法，先用 <code>-F</code> 查询信息，然后选择想要的音频 id 就行，例如</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f 251 https://www.youtube.com/xxxxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure><p>但是这样也比较麻烦，得先查询嘛。于是继续了解，发现可以使用 <code>-f ba</code> ，也就是 best audio 的首字母缩写，只下载质量最好的音频。</p><p>不过这样有时候下载的音频是 webm 格式的。</p><p>我观察了一个视频</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">233 mp4   audio only        │                  m3u8  │ audio only          unknown             Default</span><br><span class="line">234 mp4   audio only        │                  m3u8  │ audio only          unknown             Default</span><br><span class="line">599 m4a   audio only      2 │    2.50MiB   31k https │ audio only          mp4a.40.5   31k 22k ultralow, m4a_dash</span><br><span class="line">600 webm  audio only      2 │    2.70MiB   33k https │ audio only          opus        33k 48k ultralow, webm_dash</span><br><span class="line">139 m4a   audio only      2 │    3.96MiB   49k https │ audio only          mp4a.40.5   49k 22k low, m4a_dash</span><br><span class="line">249 webm  audio only      2 │    3.99MiB   49k https │ audio only          opus        49k 48k low, webm_dash</span><br><span class="line">250 webm  audio only      2 │    5.31MiB   65k https │ audio only          opus        65k 48k low, webm_dash</span><br><span class="line">140 m4a   audio only      2 │   10.51MiB  129k https │ audio only          mp4a.40.2  129k 44k medium, m4a_dash</span><br><span class="line">251 webm  audio only      2 │    9.83MiB  121k https │ audio only          opus       121k 48k medium, webm_dash</span><br></pre></td></tr></table></figure><p>只看它音频部分，其实质量最高的应该是 <code>140 m4a   audio only      2 │   10.51MiB  129k</code> 这个才对，不管是文件体积还是码率，它都是最大的。</p><p>但实际上使用 ba 参数，下载的是最高一项 webm 这个。难道是因为它是 48K 而上面的 m4a 是 44k 的？</p><p>那么我添加一个限制，排除掉 webm</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yt-dlp -f &#x27;bestaudio/best&#x27; --format &#x27;bestaudio[ext!=webm]&#x27;</span><br></pre></td></tr></table></figure><p>这样后面再加上视频链接即可。</p><p>然后我再写一个 alias，之后我只需要 「ya 视频链接」，就能下载一个视频的音频了。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias ya=&quot;yt-dlp -f &#x27;bestaudio/best&#x27; --format &#x27;bestaudio[ext!=webm]&#x27;&quot;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;p&gt;我的使用环境是 macOS，使用 pip 安装。&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;tabl</summary>
-      
-    
-    
-    
-    
-    <category term="下载" scheme="https://powersee.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   
