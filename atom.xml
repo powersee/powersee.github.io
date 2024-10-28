@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-10-19T07:02:01.342Z</updated>
+  <updated>2024-10-28T07:51:33.360Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>威联通 qnap 外接硬盘挂载失败记录</title>
+    <link href="https://powersee.github.io/2024/10/qnap-mount-fail/"/>
+    <id>https://powersee.github.io/2024/10/qnap-mount-fail/</id>
+    <published>2024-10-28T07:49:57.000Z</published>
+    <updated>2024-10-28T07:51:33.360Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的 NAS 是威联通 TS-451D，它的正面有一个 USB 接口，不知什么时候开始，通过这个接口连接移动硬盘，无法成功挂载。</p><p><img src="/img/2024/can't-mount.webp" alt="can&#39;t-mount"></p><p>如图所示，会提示：<strong>磁盘群组无法被挂载或识别。</strong></p><p>但是它可以识别到硬盘的容量，而且我试过插一个 U 盘上去，可以正常挂载。按理说这个口应该没问题才对，搞不懂。</p><p>难道是我的硬盘有问题？但是我连接电脑却是可以正常读取的。于是，我把移动硬盘，连接到 NAS 后面的 USB 口，然后，就可以正常读写了。</p><p><img src="/img/2024/mount.webp" alt="mount"></p><p>也是挺奇怪的，我试了好几块硬盘，都是前面的 USB 口，可以识别到硬盘容量，但是没法挂载。使用后面的 USB 口就正常。</p><p>难道是前面的 USB 口现在供电不足了？所以连接 U 盘可以，移动硬盘不行？不清楚，本文仅仅记录一下。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我的 NAS 是威联通 TS-451D，它的正面有一个 USB 接口，不知什么时候开始，通过这个接口连接移动硬盘，无法成功挂载。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2024/can&#39;t-mount.webp&quot; alt=&quot;can&amp;#39;t-mount&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="qnap" scheme="https://powersee.github.io/tags/qnap/"/>
+    
+  </entry>
   
   <entry>
     <title>Mac 上的开源键盘映射应用——Karabiner-Elements</title>
@@ -471,31 +495,6 @@
     
     
     <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何复制 Windows 上无法选中的文字？Textify</title>
-    <link href="https://powersee.github.io/2024/02/Textify/"/>
-    <id>https://powersee.github.io/2024/02/Textify/</id>
-    <published>2024-02-09T07:35:23.000Z</published>
-    <updated>2024-02-09T07:36:18.002Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是我 win10 电脑上的系统设置界面，这些文字并没有办法用鼠标选中。</p><p><img src="/img/2024/win-setting.webp" alt="win-setting"></p><p>所以我们想要复制这些文字也就做不到了。</p><p>而最近我发现了一个开源的应用 Textify，使用它就可以解决这个问题。</p><ul><li><a href="https://github.com/m417z/Textify">GitHub</a></li><li><a href="https://ramensoftware.com/textify">下载链接</a></li></ul><p>下载后需要安装，打开后软件长这样。可以看到默认的激活方式是 shift + 鼠标中键，也就是把鼠标滚轮按下去。</p><p><img src="/img/2024/Textify.png" alt="Textify"></p><p>鼠标指针来到需要复制的地方，激活一下，就可以复制了。</p><p><img src="/img/2024/Textify-win-text.webp" alt="Textify-win-text"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;这是我 win10 电脑上的系统设置界面，这些文字并没有办法用鼠标选中。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2024/win-setting.webp&quot; alt=&quot;win-setting&quot;&gt;&lt;/p&gt;
-&lt;p&gt;所以我们想要复制这些文字也就做不到了。&lt;/p&gt;
-&lt;p&gt;而最</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
   </entry>
   
