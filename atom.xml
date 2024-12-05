@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-10-28T07:51:33.360Z</updated>
+  <updated>2024-12-05T06:19:02.645Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>迁移 fathom 到另一台服务器</title>
+    <link href="https://powersee.github.io/2024/12/fathom2/"/>
+    <id>https://powersee.github.io/2024/12/fathom2/</id>
+    <published>2024-12-05T06:18:04.000Z</published>
+    <updated>2024-12-05T06:19:02.645Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="/2023/04/fathom/">前文回顾</a></p><p>如今 fathom 这个服务我已经运行了一年多了，感觉也还行吧，很轻量，不怎么占用服务器资源。但是会被浏览器广告拦截插件，给屏蔽。所以我后来是再加了一个 umami。</p><p>最近服务器要到期了，我需要迁移 fathom 到另一台服务器上。</p><p>已知数据库 <code>fathom.db</code> 在 <code>/app</code> 下，那么可以使用命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp fathom:/app/fathom.db .</span><br></pre></td></tr></table></figure><p>将它从 docker 容器中复制出来。</p><p>在新的服务器上面，先创建容器</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker create -p 8080:8080 --name fathom usefathom/fathom:latest</span><br></pre></td></tr></table></figure><p>把数据库 fathom.db 复制到新服务器上，再复制到刚才创建的 docker 容器中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp fathom.db fathom:/app/</span><br></pre></td></tr></table></figure><p>然后再启动容器</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start fathom</span><br></pre></td></tr></table></figure><p>这样便迁移完成了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;/2023/04/fathom/&quot;&gt;前文回顾&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如今 fathom 这个服务我已经运行了一年多了，感觉也还行吧，很轻量，不怎么占用服务器资源。但是会被浏览器广告拦截插件，给屏蔽。所以我后来是再加了一个 umami。&lt;/p&gt;
+&lt;p&gt;最近服</summary>
+      
+    
+    
+    
+    
+    <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>威联通 qnap 外接硬盘挂载失败记录</title>
@@ -471,30 +495,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>再一次被坚果云气到</title>
-    <link href="https://powersee.github.io/2024/02/jianguoyun/"/>
-    <id>https://powersee.github.io/2024/02/jianguoyun/</id>
-    <published>2024-02-26T03:19:00.000Z</published>
-    <updated>2024-02-26T03:22:12.208Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天再一次被坚果云气到。我平时制作的视频封面，都是一张张图片，我将它们都存到一个文件夹里。然后使用坚果云同步到云端。</p><p>其实主要是做一个备份，万一电脑真的出了问题，我还可以换设备，从网络上下载回来。</p><p>23 年的某一次更新，导致坚果云现在的同步文件夹，都只能在一个特定的文件夹下。例如我使用的是 Mac，它在 <code>$HOME/Library/CloudStorage/</code></p><p>而在此之前，我们的同步文件夹，是可以在其它地方的。比如我「下载」文件夹下有一个 A 文件夹，「文档」文件夹下有一个 B 文件夹，我是可以使用坚果云来同步 A 和 B 的。去年的这次更新我是很不满的，但是没办法了，不满也没用，忍着用呗，用着用着就习惯了。</p><p>现在说回来，我现在电脑有一个同步文件夹，存放的都是图片。图片放进去后，坚果云默认开启一个「不占用电脑空间」的功能。也就是把我图片上传云端后，就将图片从我电脑删除掉，那个位置只放一张缩略图。</p><p>比如原本是一张 1.8MB 的图片，这样操作后，剩一张 4KB 的缩略图。</p><p>这个功能是不错，可能对有些人来说非常有用。但是，我其实不怎么用得着。毕竟我没有存放一堆的图片，电脑给占用几百 MB 我不怎么在意。</p><p>所以我是想着关闭这个功能的，但是，它好像在 Windows 端才有关闭的功能。</p><p><img src="/img/2024/Not-occupy-Space.webp" alt="Not-occupy-Space"></p><p>来源：<a href="https://help.jianguoyun.com/?p=4220">官方帮助文档</a></p><p>Windows 右键文件夹后，有一个「保持离线可用」的功能。Mac 端没有。</p><p><img src="/img/2024/Mac-jianguoyun.webp" alt="Mac-jianguoyun"></p><p>不过我现在打字的时候发现，文件夹右边的云朵图标，应该就是「保持离线」。当然我之前也是点过它的，知道点击后可以把文件从云端下载到电脑。但是我怎么感觉，过段时间，它又会自动删除……</p><p>看来我并没有记错，通过 <a href="https://www.zhihu.com/question/371962536/answer/3144326216">知乎上其他网友</a> 的吐槽，坚果云真的会自动关闭「保持离线」这个功能的。</p><p>总之刚才我就先点击云朵☁️图标，把图片都下载电脑后，打算不同步这个文件夹了，这样坚果云应该就不会老是去删除了吧。</p><p>于是我打开坚果云的主界面，选择这个文件夹，然后点击「取消同步」。</p><p><img src="/img/2024/cancel-sync.webp" alt="cancel-sync"></p><p>结果尴尬的事情发生了，坚果云直接把这个文件夹里面的内容，从我的电脑里面，完全删除。。。跟我预期的完全不一样呀，我以为「取消同步」就是坚果云你以后不要再去管这个文件夹了。</p><p>但是软件它好像觉得，我不想要这个文件夹在我的电脑里了，有些无语。</p><p>没办法，我只能再次同步回来。这次就点击文件夹后面的云朵图标，希望它不会再删除我电脑里的图片吧。不过我也感觉这些图片只备份到坚果云，不怎么安全，说不定哪天又一个误操作，只能电脑和云端都删除了，所以还是复制一份到 NAS 里吧。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;今天再一次被坚果云气到。我平时制作的视频封面，都是一张张图片，我将它们都存到一个文件夹里。然后使用坚果云同步到云端。&lt;/p&gt;
-&lt;p&gt;其实主要是做一个备份，万一电脑真的出了问题，我还可以换设备，从网络上下载回来。&lt;/p&gt;
-&lt;p&gt;23 年的某一次更新，导致坚果云现在的同步文件夹</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
