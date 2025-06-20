@@ -7671,4 +7671,25 @@ border-radius: 4px;
         <tag>服务器</tag>
       </tags>
   </entry>
+  <entry>
+    <title>手动更新了 Typecho 版本到 1.2.1</title>
+    <url>/2025/06/typecho-update-1-2-1/</url>
+    <content><![CDATA[<p>最近访问了一下我之前用 docker 运行的 Typecho 博客，主页的文章可以正常浏览，但如果进入后台，就会出现这样的界面。</p>
+<p><img src="/img/2024/Typecho-upgrade-shadow.webp" alt="Typecho-upgrade-shadow"></p>
+<p>提示我需要升级，那就升呗。我点击下方的 「完成升级」按钮，可以看到网页正在加载，过一会儿加载完成，还是这个页面。</p>
+<p>也就是说没法在线升级。而且比较恶心的是，它还不允许不升级。除了点击备份，可以切换到其他页面。其它地方点击之后，都是跳转回这个提示页面，也就是说现在不升级，后台这里什么事都没法干，没法创建文章，管理文章、评论这些。</p>
+<p>一开始我尝试修改代码，去掉检测升级的代码。但是没用，还是会提示。</p>
+<p>于是我就想，那我手动给它升级一下吧。于是到官网下载新的 Typecho 1.2.1 版本。</p>
+<p>得到一个 typecho.zip 压缩包，那么里面要用到的就两个文件夹 <code>admin</code> <code>var</code></p>
+<p>我使用的 image 是 80x86&#x2F;typecho:latest ，它的用户数据是在 <code>/data</code> 里面的。</p>
+<p>创建的容器名字是 typecho，所以我在容器运行的使用，命令行执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it typecho sh</span><br></pre></td></tr></table></figure>
+
+<p>来进入容器内部。默认就进入到 <code>/app</code> 这个目录中，我们需要 <code>cd /data</code> 把里面的 admin 和 var 改名为 admin1 和 var1，之后再把刚才下载的 typecho.zip 里面的 admin 和 var 这两个文件夹，复制到这里。</p>
+<p>之后再次通过浏览器访问 Typecho 的后台，就可以完成升级了。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>

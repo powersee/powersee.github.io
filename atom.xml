@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2024-12-05T06:19:02.645Z</updated>
+  <updated>2025-06-20T07:06:50.529Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>手动更新了 Typecho 版本到 1.2.1</title>
+    <link href="https://powersee.github.io/2025/06/typecho-update-1-2-1/"/>
+    <id>https://powersee.github.io/2025/06/typecho-update-1-2-1/</id>
+    <published>2025-06-20T07:03:48.000Z</published>
+    <updated>2025-06-20T07:06:50.529Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近访问了一下我之前用 docker 运行的 Typecho 博客，主页的文章可以正常浏览，但如果进入后台，就会出现这样的界面。</p><p><img src="/img/2024/Typecho-upgrade-shadow.webp" alt="Typecho-upgrade-shadow"></p><p>提示我需要升级，那就升呗。我点击下方的 「完成升级」按钮，可以看到网页正在加载，过一会儿加载完成，还是这个页面。</p><p>也就是说没法在线升级。而且比较恶心的是，它还不允许不升级。除了点击备份，可以切换到其他页面。其它地方点击之后，都是跳转回这个提示页面，也就是说现在不升级，后台这里什么事都没法干，没法创建文章，管理文章、评论这些。</p><p>一开始我尝试修改代码，去掉检测升级的代码。但是没用，还是会提示。</p><p>于是我就想，那我手动给它升级一下吧。于是到官网下载新的 Typecho 1.2.1 版本。</p><p>得到一个 typecho.zip 压缩包，那么里面要用到的就两个文件夹 <code>admin</code> <code>var</code></p><p>我使用的 image 是 80x86&#x2F;typecho:latest ，它的用户数据是在 <code>/data</code> 里面的。</p><p>创建的容器名字是 typecho，所以我在容器运行的使用，命令行执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it typecho sh</span><br></pre></td></tr></table></figure><p>来进入容器内部。默认就进入到 <code>/app</code> 这个目录中，我们需要 <code>cd /data</code> 把里面的 admin 和 var 改名为 admin1 和 var1，之后再把刚才下载的 typecho.zip 里面的 admin 和 var 这两个文件夹，复制到这里。</p><p>之后再次通过浏览器访问 Typecho 的后台，就可以完成升级了。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近访问了一下我之前用 docker 运行的 Typecho 博客，主页的文章可以正常浏览，但如果进入后台，就会出现这样的界面。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2024/Typecho-upgrade-shadow.webp&quot; alt=&quot;Typecho-upg</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>迁移 fathom 到另一台服务器</title>
@@ -464,31 +487,6 @@
     <summary type="html">&lt;p&gt;IINA 是我在 Mac 上的常用视频播放器。&lt;/p&gt;
 &lt;p&gt;不过它默认的倍速比较奇葩。速度都是相乘的，比如乘 2，那么第一次就是速度变为 2，再按一次就是变为 4。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/img/2024/IINA-default.webp&quot; alt=&quot;II</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 端 QQ 设置直接登录</title>
-    <link href="https://powersee.github.io/2024/03/mac-qq-login/"/>
-    <id>https://powersee.github.io/2024/03/mac-qq-login/</id>
-    <published>2024-03-07T07:15:58.000Z</published>
-    <updated>2024-03-07T07:17:55.750Z</updated>
-    
-    <content type="html"><![CDATA[<p>每次我在 Mac 上登录 QQ，都需要在手机上点击一下「允许登录」，有时甚至需要扫一下二维码才能登录。</p><p>这就很麻烦，如果只是第一次在新设备上登录，需要进行这样的验证，那我可以理解。问题是我都用这电脑登录好多次了。</p><p>解决方法</p><p>打开 QQ 后，点击 Mac 状态栏的左上角， 图标旁边的 QQ，选择 「设置」，来到「登录设置」。</p><p>将「下次登录无需在手机端确认」这个开关打开就行。</p><p><img src="/img/2024/mac-qq-login.webp" alt="mac-qq-login"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;每次我在 Mac 上登录 QQ，都需要在手机上点击一下「允许登录」，有时甚至需要扫一下二维码才能登录。&lt;/p&gt;
-&lt;p&gt;这就很麻烦，如果只是第一次在新设备上登录，需要进行这样的验证，那我可以理解。问题是我都用这电脑登录好多次了。&lt;/p&gt;
-&lt;p&gt;解决方法&lt;/p&gt;
-&lt;p&gt;打开 Q</summary>
       
     
     
