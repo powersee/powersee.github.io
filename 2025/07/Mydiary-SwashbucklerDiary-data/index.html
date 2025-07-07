@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>迁移 Mydiary 数据到 侠客日记</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    迁移 Mydiary 数据到 侠客日记
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2025-07-07T09:46:37.000Z" itemprop="datePublished">2025-07-07</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>我使用 <a target="_blank" rel="noopener" href="https://github.com/DaxiaK/MyDiary">Mydiary</a> 这个日记 app 好多年了，至今里面的日记有几百篇。</p>
+<p>但是这个 app 的最后一次更新，是在 2017 年，虽然在现在最新的 Android 15 手机上，还可以正常使用，但我一直想寻找更好用的替代品。</p>
+<p>我对于新的日记软件，最主要的需求是：</p>
+<ul>
+<li>开源的</li>
+<li>支持内容搜索</li>
+</ul>
+<p>终于，我找到了《<a target="_blank" rel="noopener" href="https://github.com/Yu-Core/SwashbucklerDiary">侠客日记</a>》。</p>
+<p>我简单了解一下，发现它不仅满足我的需求，而且还有很多亮点。例如支持 webdav 备份、多平台客户端、使用 markdown 语法……</p>
+<p>所以我决定将原本的日记内容，迁移过来。</p>
+<h3 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h3><p>首先在 Mydiary 导出数据，得到一个 zip 压缩包，里面是一个 <code>backup.json</code> 文件。</p>
+<p>我接着研究「侠客日记」的导出导入，然后得知，只要把旧的日记数据，处理转换为一篇篇的 md 文件，再把它们压缩到一个 zip 压缩包里，就可以导入到「侠客日记」中。</p>
+<p>于是我是弄了一个 python 脚本，来将 <code>backup.json</code> 转换为多个 md 文件的。脚本内容如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import json</span><br><span class="line">import os</span><br><span class="line">from datetime import datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def extract_diaries(json_data):</span><br><span class="line">    # 解析JSON数据</span><br><span class="line">    data = json.loads(json_data)</span><br><span class="line"></span><br><span class="line">    # 获取日记主题列表</span><br><span class="line">    for topic in data[&#x27;backup_topic_list&#x27;]:</span><br><span class="line">        if topic[&#x27;topic_type&#x27;] == 1:  # 1表示日记类型</span><br><span class="line">            diaries = topic[&#x27;diary_topic_entries_list&#x27;]</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    # 创建output文件夹存放日记</span><br><span class="line">    if not os.path.exists(&#x27;output&#x27;):</span><br><span class="line">        os.makedirs(&#x27;output&#x27;)</span><br><span class="line"></span><br><span class="line">    # 处理每篇日记</span><br><span class="line">    for diary in diaries:</span><br><span class="line">        # 转换Unix时间戳为日期时间格式</span><br><span class="line">        timestamp = diary[&#x27;diary_entries_time&#x27;] / 1000  # 转换为秒</span><br><span class="line">        dt = datetime.fromtimestamp(timestamp)</span><br><span class="line">        filename = dt.strftime(&quot;%Y%m%d%H%M%S&quot;) + &quot;.md&quot;</span><br><span class="line"></span><br><span class="line">        # 构建日记内容</span><br><span class="line">        content = f&quot;# &#123;diary[&#x27;diary_entries_title&#x27;]&#125;\n\n&quot;</span><br><span class="line">        # content += f&quot;- 日期: &#123;dt.strftime(&#x27;%Y-%m-%d %H:%M:%S&#x27;)&#125;\n&quot;</span><br><span class="line">        # if diary[&#x27;diary_entries_location&#x27;]:</span><br><span class="line">        #     content += f&quot;- 地点: &#123;diary[&#x27;diary_entries_location&#x27;]&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 添加日记条目内容，并确保换行符合Markdown规范（\n\n）</span><br><span class="line">        for item in diary[&#x27;diary_item_list&#x27;]:</span><br><span class="line">            if item[&#x27;diary_item_type&#x27;] == 0:  # 0表示文本内容</span><br><span class="line">                # 替换单换行符为双换行符（符合Markdown段落要求）</span><br><span class="line">                item_content = item[&#x27;diary_item_content&#x27;].replace(&#x27;\n&#x27;, &#x27;\n\n&#x27;)</span><br><span class="line">                content += f&quot;\n&#123;item_content&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 写入文件</span><br><span class="line">        with open(os.path.join(&#x27;output&#x27;, filename), &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">            f.write(content)</span><br><span class="line"></span><br><span class="line">        print(f&quot;已保存日记: &#123;filename&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># 执行提取</span><br><span class="line">with open(&#x27;backup.json&#x27;, &#x27;r&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">    json_data = f.read()</span><br><span class="line">extract_diaries(json_data)</span><br></pre></td></tr></table></figure>
+
+<p>幸好当初选择的是一个，开源并且可以轻松导出数据的日记 APP，否则可能就没法像今天这样轻松地迁移数据了。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>

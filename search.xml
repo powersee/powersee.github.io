@@ -7692,4 +7692,28 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>迁移 Mydiary 数据到 侠客日记</title>
+    <url>/2025/07/Mydiary-SwashbucklerDiary-data/</url>
+    <content><![CDATA[<p>我使用 <a href="https://github.com/DaxiaK/MyDiary">Mydiary</a> 这个日记 app 好多年了，至今里面的日记有几百篇。</p>
+<p>但是这个 app 的最后一次更新，是在 2017 年，虽然在现在最新的 Android 15 手机上，还可以正常使用，但我一直想寻找更好用的替代品。</p>
+<p>我对于新的日记软件，最主要的需求是：</p>
+<ul>
+<li>开源的</li>
+<li>支持内容搜索</li>
+</ul>
+<p>终于，我找到了《<a href="https://github.com/Yu-Core/SwashbucklerDiary">侠客日记</a>》。</p>
+<p>我简单了解一下，发现它不仅满足我的需求，而且还有很多亮点。例如支持 webdav 备份、多平台客户端、使用 markdown 语法……</p>
+<p>所以我决定将原本的日记内容，迁移过来。</p>
+<h3 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h3><p>首先在 Mydiary 导出数据，得到一个 zip 压缩包，里面是一个 <code>backup.json</code> 文件。</p>
+<p>我接着研究「侠客日记」的导出导入，然后得知，只要把旧的日记数据，处理转换为一篇篇的 md 文件，再把它们压缩到一个 zip 压缩包里，就可以导入到「侠客日记」中。</p>
+<p>于是我是弄了一个 python 脚本，来将 <code>backup.json</code> 转换为多个 md 文件的。脚本内容如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import json</span><br><span class="line">import os</span><br><span class="line">from datetime import datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def extract_diaries(json_data):</span><br><span class="line">    # 解析JSON数据</span><br><span class="line">    data = json.loads(json_data)</span><br><span class="line"></span><br><span class="line">    # 获取日记主题列表</span><br><span class="line">    for topic in data[&#x27;backup_topic_list&#x27;]:</span><br><span class="line">        if topic[&#x27;topic_type&#x27;] == 1:  # 1表示日记类型</span><br><span class="line">            diaries = topic[&#x27;diary_topic_entries_list&#x27;]</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    # 创建output文件夹存放日记</span><br><span class="line">    if not os.path.exists(&#x27;output&#x27;):</span><br><span class="line">        os.makedirs(&#x27;output&#x27;)</span><br><span class="line"></span><br><span class="line">    # 处理每篇日记</span><br><span class="line">    for diary in diaries:</span><br><span class="line">        # 转换Unix时间戳为日期时间格式</span><br><span class="line">        timestamp = diary[&#x27;diary_entries_time&#x27;] / 1000  # 转换为秒</span><br><span class="line">        dt = datetime.fromtimestamp(timestamp)</span><br><span class="line">        filename = dt.strftime(&quot;%Y%m%d%H%M%S&quot;) + &quot;.md&quot;</span><br><span class="line"></span><br><span class="line">        # 构建日记内容</span><br><span class="line">        content = f&quot;# &#123;diary[&#x27;diary_entries_title&#x27;]&#125;\n\n&quot;</span><br><span class="line">        # content += f&quot;- 日期: &#123;dt.strftime(&#x27;%Y-%m-%d %H:%M:%S&#x27;)&#125;\n&quot;</span><br><span class="line">        # if diary[&#x27;diary_entries_location&#x27;]:</span><br><span class="line">        #     content += f&quot;- 地点: &#123;diary[&#x27;diary_entries_location&#x27;]&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 添加日记条目内容，并确保换行符合Markdown规范（\n\n）</span><br><span class="line">        for item in diary[&#x27;diary_item_list&#x27;]:</span><br><span class="line">            if item[&#x27;diary_item_type&#x27;] == 0:  # 0表示文本内容</span><br><span class="line">                # 替换单换行符为双换行符（符合Markdown段落要求）</span><br><span class="line">                item_content = item[&#x27;diary_item_content&#x27;].replace(&#x27;\n&#x27;, &#x27;\n\n&#x27;)</span><br><span class="line">                content += f&quot;\n&#123;item_content&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 写入文件</span><br><span class="line">        with open(os.path.join(&#x27;output&#x27;, filename), &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">            f.write(content)</span><br><span class="line"></span><br><span class="line">        print(f&quot;已保存日记: &#123;filename&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># 执行提取</span><br><span class="line">with open(&#x27;backup.json&#x27;, &#x27;r&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">    json_data = f.read()</span><br><span class="line">extract_diaries(json_data)</span><br></pre></td></tr></table></figure>
+
+<p>幸好当初选择的是一个，开源并且可以轻松导出数据的日记 APP，否则可能就没法像今天这样轻松地迁移数据了。</p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>
