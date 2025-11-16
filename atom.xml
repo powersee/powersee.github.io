@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2025-07-07T09:55:14.426Z</updated>
+  <updated>2025-11-16T02:38:26.235Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker 拉取 memos 镜像失败的解决方案</title>
+    <link href="https://powersee.github.io/2025/11/docker-pull-memos/"/>
+    <id>https://powersee.github.io/2025/11/docker-pull-memos/</id>
+    <published>2025-11-16T02:29:21.000Z</published>
+    <updated>2025-11-16T02:38:26.235Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近想看看 memos 现在的新功能，于是打算拉取一个新的镜像，在 NAS 上面运行看看效果如何。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull neosmemo/memos:0.25</span><br></pre></td></tr></table></figure><p>然后就拉取失败了，意料之中的，Dockerhub 很久之前就没法正常访问拉取了。</p><p>于是我选择拉取 GitHub 上的镜像。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull ghcr.io/usememos/memos:0.25</span><br><span class="line">0.25: Pulling from usememos/memos</span><br><span class="line">2d35ebdb57d9: Pull complete</span><br><span class="line">fbc92e9aa2c0: Pull complete</span><br><span class="line">f5dbe49bfe14: Pull complete</span><br><span class="line">bb9a81ac92e7: Pull complete</span><br><span class="line">11851c07ec75: Pull complete</span><br><span class="line">7e5f450aa3e6: Pull complete</span><br><span class="line">Digest: sha256:240e34c9328b5206d534782a47b6d8164f19177eface64ffa44da93efcb929a0</span><br><span class="line">Status: Downloaded newer image for ghcr.io/usememos/memos:0.25</span><br><span class="line">ghcr.io/usememos/memos:0.25</span><br></pre></td></tr></table></figure><p>虽然速度也挺慢的，但是能拉取成功，算不错了。</p><p>那么原本的运行命令，也得改了，从原来的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name memos \</span><br><span class="line">  -p 5230:5230 \</span><br><span class="line">  -v ~/.memos:/var/opt/memos \</span><br><span class="line">  neosmemo/memos:stable</span><br></pre></td></tr></table></figure><p>改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name memos \</span><br><span class="line">  -p 5230:5230 \</span><br><span class="line">  -v ~/.memos:/var/opt/memos \</span><br><span class="line">  ghcr.io/usememos/memos:0.25</span><br></pre></td></tr></table></figure><p>我个人喜欢去拉取特定的版本号。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近想看看 memos 现在的新功能，于是打算拉取一个新的镜像，在 NAS 上面运行看看效果如何。&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;l</summary>
+      
+    
+    
+    
+    
+    <category term="Docker" scheme="https://powersee.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>迁移 Mydiary 数据到 侠客日记</title>
@@ -463,29 +486,6 @@
       
     <summary type="html">&lt;p&gt;CopyQ 是我目前正在使用的「剪贴板管理工具」，它是在 GitHub 上开源的软件：&lt;a href=&quot;https://github.com/hluk/CopyQ&quot;&gt;https://github.com/hluk/CopyQ&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;目前星星的数量有 7 千多</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac 使用终端命令打开和关闭应用</title>
-    <link href="https://powersee.github.io/2024/03/mac-terminal-open-and-close-app/"/>
-    <id>https://powersee.github.io/2024/03/mac-terminal-open-and-close-app/</id>
-    <published>2024-03-23T04:31:59.000Z</published>
-    <updated>2024-03-23T04:32:38.088Z</updated>
-    
-    <content type="html"><![CDATA[<p>打开，需要应用的完整路径和后缀</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">open /Applications/OBS.app</span><br></pre></td></tr></table></figure><p>关闭，只需要应用名</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">killall OBS</span><br></pre></td></tr></table></figure><p>既然可以用命令，来打开和关闭应用程序，那么结合定时任务，就能实现一些自动化操作。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;打开，需要应用的完整路径和后缀&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;open /Applications/OBS.app&lt;/s</summary>
       
     
     
