@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2025-11-16T02:38:26.235Z</updated>
+  <updated>2025-12-27T15:22:42.383Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pr 给缓入缓出设置快捷键</title>
+    <link href="https://powersee.github.io/2025/12/adobe-pr-easy-in-out-shortcut/"/>
+    <id>https://powersee.github.io/2025/12/adobe-pr-easy-in-out-shortcut/</id>
+    <published>2025-12-27T15:12:37.000Z</published>
+    <updated>2025-12-27T15:22:42.383Z</updated>
+    
+    <content type="html"><![CDATA[<p>平时使用 pr 给视频或者素材，添加位移或者缩放动画时，都是手动选中关键帧，右键，点击缓出，再选中另一个关键帧，点击缓入</p><p><img src="/img/2024/premiere-effect-controls-easy-in-out.webp" alt="premiere-effect-controls-easy-in-out"></p><p>今天看别人的视频，才发现原来可以在设置里面，给缓入缓出都设置快捷键的。</p><p><img src="/img/2024/pr-settings-shortcut-huan.webp" alt="pr-settings-shortcut-huan"></p><p><img src="/img/2024/pr-settings-3-4.webp" alt="pr-settings-3-4"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;平时使用 pr 给视频或者素材，添加位移或者缩放动画时，都是手动选中关键帧，右键，点击缓出，再选中另一个关键帧，点击缓入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2024/premiere-effect-controls-easy-in-out.webp&quot; alt=&quot;p</summary>
+      
+    
+    
+    
+    
+    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
+    
+  </entry>
   
   <entry>
     <title>docker 拉取 memos 镜像失败的解决方案</title>
@@ -463,29 +486,6 @@
       
     <summary type="html">&lt;p&gt;macOS 有一个自带的 APP 叫「脚本编辑器」，我想使用它，来实现每三秒就按一下方向键右→&lt;/p&gt;
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CopyQ 在 Mac 上意外退出的解决方法</title>
-    <link href="https://powersee.github.io/2024/04/mac-copyq-error/"/>
-    <id>https://powersee.github.io/2024/04/mac-copyq-error/</id>
-    <published>2024-04-01T06:03:10.000Z</published>
-    <updated>2024-04-01T06:03:42.866Z</updated>
-    
-    <content type="html"><![CDATA[<p>CopyQ 是我目前正在使用的「剪贴板管理工具」，它是在 GitHub 上开源的软件：<a href="https://github.com/hluk/CopyQ">https://github.com/hluk/CopyQ</a></p><p>目前星星的数量有 7 千多。之前使用它的时候，官方还没有提供 Mac ARM 版，直接下载使用的是 Intel 版本。</p><p>所以我还去研究怎么自己编译，折腾一番之后，才使用上 Apple silicon 版本的 CopyQ。</p><p>刚才发现这软件打不开了，一运行就提示「意外退出」。</p><p><img src="/img/2024/CopyQ-error.webp" alt="CopyQ-error"></p><p>我想着去 <a href="https://github.com/hluk/CopyQ/releases">GitHub</a> 上下载新版本试试看，结果发现现在已经提供 M1 版本的了，于是下载试试看。</p><p>由于这软件没有签名，所以默认情况下是打不开的。需要使用终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo xattr -d com.apple.quarantine /Applications/CopyQ.app</span><br></pre></td></tr></table></figure><p>之后再尝试打开，发现还是会提示「意外退出」，和我之前的一样。。。</p><p>翻一下 issues，找到了<a href="https://github.com/hluk/CopyQ/issues/2652">解决方法</a></p><p>只需要在终端执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">codesign --force --deep --sign - /Applications/CopyQ.app</span><br></pre></td></tr></table></figure><p>就可以再次打开了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;CopyQ 是我目前正在使用的「剪贴板管理工具」，它是在 GitHub 上开源的软件：&lt;a href=&quot;https://github.com/hluk/CopyQ&quot;&gt;https://github.com/hluk/CopyQ&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;目前星星的数量有 7 千多</summary>
       
     
     

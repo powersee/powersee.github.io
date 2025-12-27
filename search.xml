@@ -7739,4 +7739,17 @@ border-radius: 4px;
         <tag>Docker</tag>
       </tags>
   </entry>
+  <entry>
+    <title>pr 给缓入缓出设置快捷键</title>
+    <url>/2025/12/adobe-pr-easy-in-out-shortcut/</url>
+    <content><![CDATA[<p>平时使用 pr 给视频或者素材，添加位移或者缩放动画时，都是手动选中关键帧，右键，点击缓出，再选中另一个关键帧，点击缓入</p>
+<p><img src="/img/2024/premiere-effect-controls-easy-in-out.webp" alt="premiere-effect-controls-easy-in-out"></p>
+<p>今天看别人的视频，才发现原来可以在设置里面，给缓入缓出都设置快捷键的。</p>
+<p><img src="/img/2024/pr-settings-shortcut-huan.webp" alt="pr-settings-shortcut-huan"></p>
+<p><img src="/img/2024/pr-settings-3-4.webp" alt="pr-settings-3-4"></p>
+]]></content>
+      <tags>
+        <tag>Adobe</tag>
+      </tags>
+  </entry>
 </search>
