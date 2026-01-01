@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2025-12-27T15:22:42.383Z</updated>
+  <updated>2026-01-01T03:01:39.381Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pr 素材铺满画面 媒体默认缩放</title>
+    <link href="https://powersee.github.io/2025/12/adobe-pr-media-default-scaling/"/>
+    <id>https://powersee.github.io/2025/12/adobe-pr-media-default-scaling/</id>
+    <published>2025-12-28T10:06:17.000Z</published>
+    <updated>2026-01-01T03:01:39.381Z</updated>
+    
+    <content type="html"><![CDATA[<p>平时剪辑的时候，建立序列一般是选择 1080P，此时如果我们把 4k 或者 720P 的素材拉到时间线，它要不只展示一部分，要不就居中完整显示，但是四周留有黑边。</p><p>我们都手动去进行缩放处理。</p><p>但其实有更好的处理方法，我们把素材拉进时间线后，右键素材，有三个选项</p><ul><li><p>缩放为帧大小 （会损失画质）</p></li><li><p>贴合帧 （无损，和我们手动缩放，调整位置一样）</p></li><li><p>填充帧 （一般用于低分辨率素材，主要是让素材铺满，不留黑边）</p></li></ul><p> <img src="/img/2026/pr-set-to-frame-size.webp" alt="pr-set-to-frame-size"></p><p>那么对于把 4k 或者 1440P 的素材，放入 1080P 的时间线，该选择「缩放为帧大小」还是「贴合帧」还呢？</p><p>如果我们放入的视频或者图片，之后还需要设置关键帧缩放，那么选择贴合帧会更好</p><p>我们还可以在「首选项」「媒体」「默认媒体缩放」设置为贴合帧。这样把素材拉入时间线时，软件就会自动帮我们设置好，不需要右键素材去设置了。</p><p><img src="/img/2026/pr-media-default-media-scaling.webp" alt="pr-media-default-media-scaling"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;平时剪辑的时候，建立序列一般是选择 1080P，此时如果我们把 4k 或者 720P 的素材拉到时间线，它要不只展示一部分，要不就居中完整显示，但是四周留有黑边。&lt;/p&gt;
+&lt;p&gt;我们都手动去进行缩放处理。&lt;/p&gt;
+&lt;p&gt;但其实有更好的处理方法，我们把素材拉进时间线后，右键素</summary>
+      
+    
+    
+    
+    
+    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
+    
+  </entry>
   
   <entry>
     <title>pr 给缓入缓出设置快捷键</title>
@@ -469,29 +493,6 @@
     
     
     <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 AppleScript 控制键盘按键</title>
-    <link href="https://powersee.github.io/2024/04/mac-applescript-keyboard-control/"/>
-    <id>https://powersee.github.io/2024/04/mac-applescript-keyboard-control/</id>
-    <published>2024-04-26T13:39:37.000Z</published>
-    <updated>2024-04-26T13:43:18.341Z</updated>
-    
-    <content type="html"><![CDATA[<p>macOS 有一个自带的 APP 叫「脚本编辑器」，我想使用它，来实现每三秒就按一下方向键右→</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">repeat</span><br><span class="line">tell application &quot;System Events&quot;</span><br><span class="line">key code 124</span><br><span class="line">end tell</span><br><span class="line">delay 3</span><br><span class="line">end repeat</span><br></pre></td></tr></table></figure><p><img src="/img/2024/applescript-key.webp" alt="applescript-key"></p><p>此时如果点击右上角的三角形图标 ▶，应该会报错。</p><blockquote><p>“System Events”遇到一个错误：“脚本编辑器”不允许发送按键。</p></blockquote><p>需要给它控制电脑的权限才行。在辅助功能里面，找到「脚本编辑器」然后打开，找不到可以像我这样直接搜索。</p><p><img src="/img/2024/crontrol-computer.webp" alt="crontrol-computer"></p><p>之后再来运行脚本，就可以实现目的了，每 3 秒就会按一下 右键。</p><p>后面再加入随机时间和通知</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">repeat</span><br><span class="line">    tell application &quot;System Events&quot;</span><br><span class="line">        key code 124</span><br><span class="line">    end tell</span><br><span class="line">    set randomDelay to (random number from 6 to 20)</span><br><span class="line">    display notification &quot;随机延迟时间为：&quot; &amp; randomDelay &amp; &quot; 秒&quot;</span><br><span class="line">    delay randomDelay</span><br><span class="line">end repeat</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;macOS 有一个自带的 APP 叫「脚本编辑器」，我想使用它，来实现每三秒就按一下方向键右→&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
     
   </entry>
   

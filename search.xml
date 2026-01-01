@@ -7752,4 +7752,28 @@ border-radius: 4px;
         <tag>Adobe</tag>
       </tags>
   </entry>
+  <entry>
+    <title>pr 素材铺满画面 媒体默认缩放</title>
+    <url>/2025/12/adobe-pr-media-default-scaling/</url>
+    <content><![CDATA[<p>平时剪辑的时候，建立序列一般是选择 1080P，此时如果我们把 4k 或者 720P 的素材拉到时间线，它要不只展示一部分，要不就居中完整显示，但是四周留有黑边。</p>
+<p>我们都手动去进行缩放处理。</p>
+<p>但其实有更好的处理方法，我们把素材拉进时间线后，右键素材，有三个选项</p>
+<ul>
+<li><p>缩放为帧大小 （会损失画质）</p>
+</li>
+<li><p>贴合帧 （无损，和我们手动缩放，调整位置一样）</p>
+</li>
+<li><p>填充帧 （一般用于低分辨率素材，主要是让素材铺满，不留黑边）</p>
+</li>
+</ul>
+<p> <img src="/img/2026/pr-set-to-frame-size.webp" alt="pr-set-to-frame-size"></p>
+<p>那么对于把 4k 或者 1440P 的素材，放入 1080P 的时间线，该选择「缩放为帧大小」还是「贴合帧」还呢？</p>
+<p>如果我们放入的视频或者图片，之后还需要设置关键帧缩放，那么选择贴合帧会更好</p>
+<p>我们还可以在「首选项」「媒体」「默认媒体缩放」设置为贴合帧。这样把素材拉入时间线时，软件就会自动帮我们设置好，不需要右键素材去设置了。</p>
+<p><img src="/img/2026/pr-media-default-media-scaling.webp" alt="pr-media-default-media-scaling"></p>
+]]></content>
+      <tags>
+        <tag>Adobe</tag>
+      </tags>
+  </entry>
 </search>
