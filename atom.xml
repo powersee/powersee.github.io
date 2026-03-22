@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2026-01-01T03:01:39.381Z</updated>
+  <updated>2026-03-22T02:09:09.620Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac 上面运行 iOS 版小红书，保存的图片在哪里？</title>
+    <link href="https://powersee.github.io/2026/03/mac-xiaohongshu-image/"/>
+    <id>https://powersee.github.io/2026/03/mac-xiaohongshu-image/</id>
+    <published>2026-03-22T02:07:51.000Z</published>
+    <updated>2026-03-22T02:09:09.620Z</updated>
+    
+    <content type="html"><![CDATA[<p>我的 Mac mini 上面的小红书 APP，是之前在 APP store 下载的 iOS 版本。</p><p>最近，我在里面长按图片，然后选择保存。</p><p>提示成功之后，却在访达里面，找不到图片踪迹，「下载」、「资源库」都没有。</p><p>最终发现，图片是存在 Mac 上的「照片」APP 里。</p><p><img src="/img/2026/Mac-Photos-xhs-pic.webp" alt="Mac-Photos-xhs-pic"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我的 Mac mini 上面的小红书 APP，是之前在 APP store 下载的 iOS 版本。&lt;/p&gt;
+&lt;p&gt;最近，我在里面长按图片，然后选择保存。&lt;/p&gt;
+&lt;p&gt;提示成功之后，却在访达里面，找不到图片踪迹，「下载」、「资源库」都没有。&lt;/p&gt;
+&lt;p&gt;最终发现，图片是存</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>pr 素材铺满画面 媒体默认缩放</title>
@@ -468,31 +493,6 @@
     
     
     <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记一次清理 /var/lib/docker/</title>
-    <link href="https://powersee.github.io/2024/04/clean-var-lib-docker/"/>
-    <id>https://powersee.github.io/2024/04/clean-var-lib-docker/</id>
-    <published>2024-04-27T03:24:44.000Z</published>
-    <updated>2024-04-27T03:25:16.495Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近发现服务器的可用空间又变零了，使用 ncdu 扫描一下全盘，发现还是 docker 占用的空间最多。</p><p>于是得来清理一下。</p><p>使用 docker 的内置命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker system df        </span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          7         7         1.49GB    0B (0%)</span><br><span class="line">Containers      7         6         14.61MB   0B (0%)</span><br><span class="line">Local Volumes   2         2         219.1MB   0B (0%)</span><br><span class="line">Build Cache     63        0         1.089GB   1.089GB</span><br></pre></td></tr></table></figure><p>我这里找到了 1GB 多的构建缓存，我打算把它清除掉。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker builder prune</span><br></pre></td></tr></table></figure><p>清除完成后，再来看一下。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker system df    </span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          7         7         1.49GB    0B (0%)</span><br><span class="line">Containers      7         6         14.61MB   0B (0%)</span><br><span class="line">Local Volumes   2         2         219.1MB   0B (0%)</span><br><span class="line">Build Cache     1         0         0B        0B</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近发现服务器的可用空间又变零了，使用 ncdu 扫描一下全盘，发现还是 docker 占用的空间最多。&lt;/p&gt;
-&lt;p&gt;于是得来清理一下。&lt;/p&gt;
-&lt;p&gt;使用 docker 的内置命令&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;tab</summary>
-      
-    
-    
-    
-    
-    <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
