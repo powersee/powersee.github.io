@@ -7789,4 +7789,19 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>给网页端的哔哩哔哩添加截图按键</title>
+    <url>/2026/03/bilibili-add-screenshot-button/</url>
+    <content><![CDATA[<p>由于有时候需要边观看 B 站上的视频，边做笔记。所以截图这个动作比较频繁，手动去截图，会把弹幕给也包含进去，而且自己去调整边缘，感觉效率也比较低。</p>
+<p>于是我想找找有没有更好的方法。</p>
+<p>很快就搜索到了一个油猴脚本：<a href="https://greasyfork.org/zh-CN/scripts/522597-bilibili-%E8%A7%86%E9%A2%91%E6%88%AA%E5%9B%BE%E6%8C%89%E9%92%AE">Bilibili 视频截图按钮</a></p>
+<p>安装好后，刷新一下网页，就可以在标题下方，看到一个截图按钮。</p>
+<p><img src="/img/2026/image-20260317165037067.png" alt="image-20260317165037067"></p>
+<p>截图获得的画面不包含弹幕，图片格式为 png，分辨率与视频本身一致。</p>
+<p><img src="/img/2026/image-20260317165210887.webp" alt="image-20260317165210887"></p>
+]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
 </search>
