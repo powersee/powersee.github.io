@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2026-03-23T15:02:51.102Z</updated>
+  <updated>2026-03-25T15:02:14.060Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新版本 pr 如何更改标签颜色</title>
+    <link href="https://powersee.github.io/2026/03/adobe-pr-change-clip-lable-colors/"/>
+    <id>https://powersee.github.io/2026/03/adobe-pr-change-clip-lable-colors/</id>
+    <published>2026-03-25T14:57:36.000Z</published>
+    <updated>2026-03-25T15:02:14.060Z</updated>
+    
+    <content type="html"><![CDATA[<p>前段时间把 Adobe premiere 升级到 2025 版本后，发现给素材更改标签颜色，会把同类型的素材一同改变，不像以前旧版本那样，只是单独改变某一片段的颜色。</p><p>解决方案：</p><p>点击时间线左上方的小扳手，把第一项【显示源剪辑名称和标签】取消勾选即可。</p><p><img src="/img/2026/image-20260321153856330.png" alt="image-20260321153856330"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;前段时间把 Adobe premiere 升级到 2025 版本后，发现给素材更改标签颜色，会把同类型的素材一同改变，不像以前旧版本那样，只是单独改变某一片段的颜色。&lt;/p&gt;
+&lt;p&gt;解决方案：&lt;/p&gt;
+&lt;p&gt;点击时间线左上方的小扳手，把第一项【显示源剪辑名称和标签】取消勾选</summary>
+      
+    
+    
+    
+    
+    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
+    
+  </entry>
   
   <entry>
     <title>给网页端的哔哩哔哩添加截图按键</title>
@@ -470,29 +494,6 @@
     
     
     <category term="AI" scheme="https://powersee.github.io/tags/AI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 B 站网页版显示用户 IP 归属地</title>
-    <link href="https://powersee.github.io/2024/05/bilibili-web-user-ip/"/>
-    <id>https://powersee.github.io/2024/05/bilibili-web-user-ip/</id>
-    <published>2024-05-21T04:58:12.000Z</published>
-    <updated>2024-05-21T04:59:08.855Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前使用「哔哩哔哩」的手机客户端，可以显示用户的 IP 属地。（不过用谷歌商店的「bilibili」国际版不能显示）</p><p>最近无意间发现一个油猴脚本 <a href="https://greasyfork.org/zh-CN/scripts/466815-%E5%93%94%E5%93%A9%E5%93%94%E5%93%A9%E7%BD%91%E9%A1%B5%E7%89%88%E5%B1%95%E7%A4%BA-ip-%E5%B1%9E%E5%9C%B0">哔哩哔哩网页版展示 IP 属地</a></p><p>安装之后在网页端也可以显示用户的 IP 属地了，效果如下图。</p><p><img src="/img/2024/bilibili-ip-web-preview.webp" alt="preview"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;目前使用「哔哩哔哩」的手机客户端，可以显示用户的 IP 属地。（不过用谷歌商店的「bilibili」国际版不能显示）&lt;/p&gt;
-&lt;p&gt;最近无意间发现一个油猴脚本 &lt;a href=&quot;https://greasyfork.org/zh-CN/scripts/466815-%E5%</summary>
-      
-    
-    
-    
-    
-    <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   

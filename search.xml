@@ -7804,4 +7804,16 @@ border-radius: 4px;
         <tag>随笔</tag>
       </tags>
   </entry>
+  <entry>
+    <title>新版本 pr 如何更改标签颜色</title>
+    <url>/2026/03/adobe-pr-change-clip-lable-colors/</url>
+    <content><![CDATA[<p>前段时间把 Adobe premiere 升级到 2025 版本后，发现给素材更改标签颜色，会把同类型的素材一同改变，不像以前旧版本那样，只是单独改变某一片段的颜色。</p>
+<p>解决方案：</p>
+<p>点击时间线左上方的小扳手，把第一项【显示源剪辑名称和标签】取消勾选即可。</p>
+<p><img src="/img/2026/image-20260321153856330.png" alt="image-20260321153856330"></p>
+]]></content>
+      <tags>
+        <tag>Adobe</tag>
+      </tags>
+  </entry>
 </search>
