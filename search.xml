@@ -7830,4 +7830,39 @@ border-radius: 4px;
         <tag>剪映</tag>
       </tags>
   </entry>
+  <entry>
+    <title>在 Mac 上使用 ffmpeg 压缩相机视频</title>
+    <url>/2026/04/mac-ffmpeg-Compression/</url>
+    <content><![CDATA[<p>测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。</p>
+<p>测试的是松下 S5 拍摄的 4k60 10bit 视频</p>
+<p>时长 1分 11 秒，码率 97M</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media / Version 2</span><br><span class="line">Codec ID                                 : mp42 (mp42/hvc1)</span><br><span class="line">File size                                : 821 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 96.3 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br></pre></td></tr></table></figure>
+
+<p>一开始用 CPU 压缩，速度太慢了，感觉难以接受，每秒大概就 4 帧。</p>
+<p>后面使用 Apple 芯片的 GPU 来压缩，参数是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-c:v hevc_videotoolbox -q:v 30</span><br></pre></td></tr></table></figure>
+
+<p>q 好像默认是 65，我尝试了下用 70，结果出来的码率有 67M，太大了。</p>
+<p>后面尝试了 30，码率在 6M 多。</p>
+<p>40  10.8M</p>
+<p>45 16M</p>
+<p>50 22M</p>
+<p>55 25.9M</p>
+<p>看来可能使用 45 比较适合我</p>
+<p>136&#x2F;821 意味着体积压缩到原来的 16.5%</p>
+<p>一分钟的视频，估计就 120MB 左右吧，很可以。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media</span><br><span class="line">Codec ID                                 : isom (isom/iso2/mp41)</span><br><span class="line">File size                                : 136 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 16.0 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br><span class="line">Writing application                      : Lavf62.12.100</span><br></pre></td></tr></table></figure>
+
+<p>最终参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4 -c:v hevc_videotoolbox -q:v 45 -tag:v hvc1 /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br></pre></td></tr></table></figure>
+
+<p>注意要加  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-tag:v hvc1</span><br></pre></td></tr></table></figure>
+
+<p>不然在 Mac 上面，没法按空格键来播放视频。</p>
+]]></content>
+      <tags>
+        <tag>ffmpeg</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2026-04-19T02:25:32.801Z</updated>
+  <updated>2026-04-23T00:52:00.951Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Mac 上使用 ffmpeg 压缩相机视频</title>
+    <link href="https://powersee.github.io/2026/04/mac-ffmpeg-Compression/"/>
+    <id>https://powersee.github.io/2026/04/mac-ffmpeg-Compression/</id>
+    <published>2026-04-23T00:50:27.000Z</published>
+    <updated>2026-04-23T00:52:00.951Z</updated>
+    
+    <content type="html"><![CDATA[<p>测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。</p><p>测试的是松下 S5 拍摄的 4k60 10bit 视频</p><p>时长 1分 11 秒，码率 97M</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media / Version 2</span><br><span class="line">Codec ID                                 : mp42 (mp42/hvc1)</span><br><span class="line">File size                                : 821 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 96.3 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br></pre></td></tr></table></figure><p>一开始用 CPU 压缩，速度太慢了，感觉难以接受，每秒大概就 4 帧。</p><p>后面使用 Apple 芯片的 GPU 来压缩，参数是</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-c:v hevc_videotoolbox -q:v 30</span><br></pre></td></tr></table></figure><p>q 好像默认是 65，我尝试了下用 70，结果出来的码率有 67M，太大了。</p><p>后面尝试了 30，码率在 6M 多。</p><p>40  10.8M</p><p>45 16M</p><p>50 22M</p><p>55 25.9M</p><p>看来可能使用 45 比较适合我</p><p>136&#x2F;821 意味着体积压缩到原来的 16.5%</p><p>一分钟的视频，估计就 120MB 左右吧，很可以。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media</span><br><span class="line">Codec ID                                 : isom (isom/iso2/mp41)</span><br><span class="line">File size                                : 136 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 16.0 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br><span class="line">Writing application                      : Lavf62.12.100</span><br></pre></td></tr></table></figure><p>最终参数</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4 -c:v hevc_videotoolbox -q:v 45 -tag:v hvc1 /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br></pre></td></tr></table></figure><p>注意要加  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-tag:v hvc1</span><br></pre></td></tr></table></figure><p>不然在 Mac 上面，没法按空格键来播放视频。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。&lt;/p&gt;
+&lt;p&gt;测试的是松下 S5 拍摄的 4k60 10bit 视频&lt;/p&gt;
+&lt;p&gt;时长 1分 11 秒，码率 97M&lt;/p&gt;
+&lt;figure class=&quot;highlight </summary>
+      
+    
+    
+    
+    
+    <category term="ffmpeg" scheme="https://powersee.github.io/tags/ffmpeg/"/>
+    
+  </entry>
   
   <entry>
     <title>剪映音乐骤停效果制作</title>
@@ -471,29 +496,6 @@
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
     <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>本地部署开源语音转文字模型 SenseVoice</title>
-    <link href="https://powersee.github.io/2024/08/SenseVoice/"/>
-    <id>https://powersee.github.io/2024/08/SenseVoice/</id>
-    <published>2024-08-08T13:39:15.000Z</published>
-    <updated>2024-08-08T13:40:25.285Z</updated>
-    
-    <content type="html"><![CDATA[<p>阿里的语音转文字模型 <a href="https://github.com/FunAudioLLM/SenseVoice/">https://github.com/FunAudioLLM/SenseVoice/</a></p><p>听说比 openai 的 Whisper 效果好，既然是开源的，那就下载来试试看吧。</p><ul><li><p>这个可以用 CPU 来运行，所以没有显卡也能用。</p></li><li><p>对电脑系统要求有 python 和 ffmpeg。</p></li></ul><p>首先把代码克隆到本地</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/FunAudioLLM/SenseVoice.git</span><br></pre></td></tr></table></figure><p>然后安装依赖</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure><p>完成后启动 webui 就可以使用了</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python webui.py</span><br></pre></td></tr></table></figure><p><img src="/img/2024/sensevoice-webui.webp" alt="sensevoice-webui"></p><p>一般运行之后，会给我们一个地址 <a href="http://127.0.0.1:7860/">http://127.0.0.1:7860</a> 打开浏览器访问它，然后上传音频上去，语言可以选择一下，这样可以更快速转换，再点击一下 「start」按键就可以了。</p><p>我使用的是 Mac mini，观察了一下，使用时占用内存 1.6GB，点击 start 后开始转换，主要是 CPU 占用增加，GPU 好像没变化，转换时内存占用会提高到 2.6GB。</p><p>速度确实挺快的，三分钟的音频，6 秒就转换好了。这点可以从终端看到。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  185.867, time_escape: 6.026: 100%</span><br></pre></td></tr></table></figure><p>后面又尝试了一段 57 分钟的音频，耗时不到两分钟</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">time_speech:  3461.120, time_escape: 113.743: 100%</span><br></pre></td></tr></table></figure><p>注意，安装的依赖比较占用空间</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">torch&lt;=2.3</span><br><span class="line">torchaudio</span><br><span class="line">modelscope</span><br><span class="line">huggingface</span><br><span class="line">huggingface_hub</span><br><span class="line">funasr&gt;=1.1.3</span><br><span class="line">numpy&lt;=1.26.4</span><br><span class="line">gradio</span><br><span class="line">fastapi&gt;=0.111.1</span><br></pre></td></tr></table></figure><p>建议创建 python 虚拟环境，专门给它使用。</p><p>我这边 venv 目录占用了 883 MB。</p><p>目前好像就开源了这个 small 模型，我们好像也不能切换其它模型，不过我感觉转换的质量还不错，所以以后在 Mac 上我就使用它来语音转文字了，Windows 上面我还是会继续使用 Whisper。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;阿里的语音转文字模型 &lt;a href=&quot;https://github.com/FunAudioLLM/SenseVoice/&quot;&gt;https://github.com/FunAudioLLM/SenseVoice/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;听说比 openai 的 Whispe</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="keywords" content="hexo,个人博客,blog" />
+  <meta name="description" content="Powersee 的个人博客" />
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+  <link rel="dns-prefetch" href="https://at.alicdn.com">
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/./style/main.css">
+	<link rel="shortcut icon" href="/blog.svg" title="Favicon">
+	<title>在 Mac 上使用 ffmpeg 压缩相机视频</title>
+  
+  
+<meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Powersee的博客" type="application/atom+xml">
+</head>
+<body>
+  <canvas id="pattern-placeholder" height="230"></canvas>
+<div class="navbar-header">
+  <a class="blog-title" href="/">Powersee的博客</a>
+  <a class="face-img" href="/">
+    <!-- <img src="/./img/powersee.jpeg"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+      <rect width="100%" height="100%" fill="black"></rect>
+      <text x="50%" y="45%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">Power</text>
+        <text x="50%" y="65%" text-anchor="middle" dy=".3em" fill="white" font-size="48" font-family="sans-serif">_see</text>
+    </svg>
+  </a>
+</div>
+<main>
+  <div class="article-title">
+    
+  
+  <h1 class="title">
+    在 Mac 上使用 ffmpeg 压缩相机视频
+  </h1>
+  
+
+
+    <ul class="article-info">
+      <li>
+        发布
+        <time datetime="2026-04-23T00:50:27.000Z" itemprop="datePublished">2026-04-23</time>
+      </li>
+      <li>
+        
+      </li>
+      <li id="busuanzi_container_page_pv">
+        阅读 <span id="busuanzi_value_page_pv"></span>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="article">
+      <div class="content">
+        
+        <p>测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。</p>
+<p>测试的是松下 S5 拍摄的 4k60 10bit 视频</p>
+<p>时长 1分 11 秒，码率 97M</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media / Version 2</span><br><span class="line">Codec ID                                 : mp42 (mp42/hvc1)</span><br><span class="line">File size                                : 821 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 96.3 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br></pre></td></tr></table></figure>
+
+<p>一开始用 CPU 压缩，速度太慢了，感觉难以接受，每秒大概就 4 帧。</p>
+<p>后面使用 Apple 芯片的 GPU 来压缩，参数是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-c:v hevc_videotoolbox -q:v 30</span><br></pre></td></tr></table></figure>
+
+<p>q 好像默认是 65，我尝试了下用 70，结果出来的码率有 67M，太大了。</p>
+<p>后面尝试了 30，码率在 6M 多。</p>
+<p>40  10.8M</p>
+<p>45 16M</p>
+<p>50 22M</p>
+<p>55 25.9M</p>
+<p>看来可能使用 45 比较适合我</p>
+<p>136&#x2F;821 意味着体积压缩到原来的 16.5%</p>
+<p>一分钟的视频，估计就 120MB 左右吧，很可以。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media</span><br><span class="line">Codec ID                                 : isom (isom/iso2/mp41)</span><br><span class="line">File size                                : 136 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 16.0 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br><span class="line">Writing application                      : Lavf62.12.100</span><br></pre></td></tr></table></figure>
+
+<p>最终参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4 -c:v hevc_videotoolbox -q:v 45 -tag:v hvc1 /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br></pre></td></tr></table></figure>
+
+<p>注意要加  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-tag:v hvc1</span><br></pre></td></tr></table></figure>
+
+<p>不然在 Mac 上面，没法按空格键来播放视频。</p>
+
+      </div>
+        <div class="support-author">
+          <p>博客链接:
+          <a href="https://powersee.github.io/" target="_blank">https://powersee.github.io/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+          <p>备份博客:
+          <a href="https://blog.powersee.top/" target="_blank">https://blog.powersee.top/</a>
+            <!--<a class="btn-pay"  href="#pay-modal">¥ 打赏支持</a>-->
+          </p>
+        </div>
+        <!--
+            <div class="like ">
+              <div class="like-button">
+                <a id="like-note" href="">
+                  <i class="icon-heart"></i>喜欢
+                </a>
+              </div>
+              <span id="likes-count">256</span>
+            </div>
+        -->
+        <div class="otherLink">
+          <div class="previous">
+          </div>
+          <div class="next">
+          </div>
+        </div>
+        <div class="comments" id="comments">
+          
+
+        </div>
+      </div>
+    </div>
+   </div>
+</main>
+<div class="footer">
+  <div class="info">
+    <p>
+    <a target="_blank" rel="noopener" href="https://hexo.io"> Hexo </a> 强力驱动 |
+      <a target="_blank" rel="noopener" href="https://github.com/Youthink/hexo-themes-yearn"> Yearn </a>
+      主题
+    </p>
+    <p>&copy;2018-2023 </p>
+  </div>
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>//console
+  var consoleConfig = ''.split(',');
+  var canConsole = 'false';
+  var consoleInfo = (function(consoleConfig) {
+  if (!canConsole || !consoleConfig || consoleConfig.length < 1) {
+    return;
+  }
+  var consoleColor = '#6190e8';
+  var _console;
+  var backgroundTextStyle = 'padding: 1px 5px;color: #fff;background: ' + consoleColor + ';'
+  var textStyle = 'color: ' + consoleColor + ';';
+
+  consoleConfig.map(o => {
+    var num = (o.match(/%c/g) || []).length;
+    if(/^http(s)?:\/\//.test(o)) {
+      console.log('%c     ', 'background: url(' + o + ') no-repeat left center;font-size: 180px;');
+      return;
+    }
+    if (num > 0) {
+      var logArguments = [];
+      for (var i = 0; i < num; i++) {
+        if (i % 2 === 0) {
+          logArguments.push(backgroundTextStyle);
+        } else {
+          logArguments.push(textStyle);
+        }
+      }
+      (_console = console).log.apply(_console, ['%c' + o, textStyle].concat(logArguments));
+      return;
+    }
+    console.log('%c' + o, textStyle);
+  });
+
+}(consoleConfig));
+
+// js 放到 备份博客
+</script><script type="text/javascript" src="https://blog.powersee.top/js/main.js"></script>
+<script type="text/javascript" src="/js/my.js"></script>
+
+  <script src="//at.alicdn.com/t/font_159214_mvtxvg9me9.js"></script>
+</body>
+</html>
