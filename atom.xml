@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2026-04-23T00:52:00.951Z</updated>
+  <updated>2026-04-26T11:07:24.673Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CopyQ 升级到 15.0 版本后，打开后 APP 报错</title>
+    <link href="https://powersee.github.io/2026/04/copyQ-15-error-mac/"/>
+    <id>https://powersee.github.io/2026/04/copyQ-15-error-mac/</id>
+    <published>2026-04-26T11:06:16.000Z</published>
+    <updated>2026-04-26T11:07:24.673Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近把 CopyQ 从 8.0 升级到了 15.0，是从 GitHub 上面下载 CopyQ-15.0.0-macos-12-m1.dmg 覆盖替换的。</p><p>然后，软件就打不开了。</p><p><img src="/img/2026/CopyQ-error-Mac.webp" alt="CopyQ-error-Mac"></p><p>最终我在 GitHub 的 issue 中找到了解决方案。</p><p><a href="https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676">https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676</a></p><p>里面给了两条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xattr -d com.apple.quarantine /Applications/CopyQ.app</span><br><span class="line">codesign --force --deep --sign - /Applications/CopyQ.app</span><br></pre></td></tr></table></figure><p>第一条我之前有执行过，不然没法打开 APP 的。</p><p>第二条的作用是：重新给应用打上一个有效的（但非官方）签名，避免 macOS 因签名不匹配或缺失而拒绝执行（例如报告“应用已损坏”或“代码对象未能通过验证”）。</p><p>之后就可以正常运行了。</p><p><img src="/img/2026/CopyQ-15.webp" alt="CopyQ-15"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近把 CopyQ 从 8.0 升级到了 15.0，是从 GitHub 上面下载 CopyQ-15.0.0-macos-12-m1.dmg 覆盖替换的。&lt;/p&gt;
+&lt;p&gt;然后，软件就打不开了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/2026/CopyQ-error-Ma</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>在 Mac 上使用 ffmpeg 压缩相机视频</title>
@@ -463,31 +487,6 @@
       
     <summary type="html">&lt;p&gt;由于我经常使用 yt-dlp 来下载视频或者音频，所以之前已经给 nu shell 添加了 alias，把 yt-dlp 缩短为 yt。&lt;/p&gt;
 &lt;p&gt;但是我平时喜欢把音频，直接下载到一个特定的目录里面。所以使用命令行，我需要先 cd xxxx，然后再执行 yt xxxx。</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-    <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nu shell 的 alias （别名）笔记</title>
-    <link href="https://powersee.github.io/2024/08/nu-shell-alias/"/>
-    <id>https://powersee.github.io/2024/08/nu-shell-alias/</id>
-    <published>2024-08-11T15:54:55.000Z</published>
-    <updated>2024-08-12T15:41:55.993Z</updated>
-    
-    <content type="html"><![CDATA[<p>平时在 Mac 和 Linux 上面，我挺喜欢使用 alias 的，可以节省我执行命令的时间。</p><p>Windows 上面，我还是用不惯 powershell 和 cmd，所以我在上面安装了 nu shell，并且把它设置为默认的 shell，打开终端 APP 的时候，就会启动 nu shell。</p><p><img src="/img/2023/nushell-ls.png"></p><p>在比较简单的情况下，它的 alias 和 bash 的差不多。</p><p>此处可以参考官方文档：<a href="https://www.nushell.sh/zh-CN/book/aliases.html">别名 | Nushell</a></p><p>例如我就把 yt-dlp 缩短为 yt</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> $ alias yt = yt-dlp</span><br><span class="line"> $ yt-dlp --version                     </span><br><span class="line">2024.08.01</span><br><span class="line"> $ yt --version </span><br><span class="line">2024.08.01</span><br></pre></td></tr></table></figure><p>不过里面说，想要持久化，可以添加到你的 config.nu 文件中。</p><p>我没有这么做，我直接写入到 env.nu 中了，直接把 env.nu 当成 .zshrc 来看待了。</p><p>如果只是简单地缩短命令，那么了解到这里就足够了。</p><p>不过使用稍微深一点，就还是容易遇到问题。</p><h3 id="首先是命令的拼接"><a href="#首先是命令的拼接" class="headerlink" title="首先是命令的拼接"></a>首先是命令的拼接</h3><p>在 bash 上面我们可以使用 &amp;&amp; 来连接两条命令。不过在 nu 这边不行，这点我们可以参考官方的这篇文档 <a href="https://www.nushell.sh/zh-CN/book/coming_from_bash.html">从 Bash 到 Nu | Nushell</a>，这里面可以了解到 bash 上面的 &amp;&amp;，在 nu shell 里是使用 <code>;</code></p><h3 id="然后是-Windows-切换盘符"><a href="#然后是-Windows-切换盘符" class="headerlink" title="然后是 Windows 切换盘符"></a>然后是 Windows 切换盘符</h3><p>我们平时启动 shell 之后，默认是在 C 盘的用户目录下，此时如果想切换到 D 盘。</p><p>那么在 cmd 和 powershell，我们只需要执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:</span><br></pre></td></tr></table></figure><p>就可以切换过去。但是在 nu 这边不行，得加多一个 \</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;平时在 Mac 和 Linux 上面，我挺喜欢使用 alias 的，可以节省我执行命令的时间。&lt;/p&gt;
-&lt;p&gt;Windows 上面，我还是用不惯 powershell 和 cmd，所以我在上面安装了 nu shell，并且把它设置为默认的 shell，打开终端 APP 的时</summary>
       
     
     

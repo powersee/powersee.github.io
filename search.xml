@@ -7865,4 +7865,24 @@ border-radius: 4px;
         <tag>ffmpeg</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CopyQ 升级到 15.0 版本后，打开后 APP 报错</title>
+    <url>/2026/04/copyQ-15-error-mac/</url>
+    <content><![CDATA[<p>最近把 CopyQ 从 8.0 升级到了 15.0，是从 GitHub 上面下载 CopyQ-15.0.0-macos-12-m1.dmg 覆盖替换的。</p>
+<p>然后，软件就打不开了。</p>
+<p><img src="/img/2026/CopyQ-error-Mac.webp" alt="CopyQ-error-Mac"></p>
+<p>最终我在 GitHub 的 issue 中找到了解决方案。</p>
+<p><a href="https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676">https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676</a></p>
+<p>里面给了两条命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xattr -d com.apple.quarantine /Applications/CopyQ.app</span><br><span class="line">codesign --force --deep --sign - /Applications/CopyQ.app</span><br></pre></td></tr></table></figure>
+
+<p>第一条我之前有执行过，不然没法打开 APP 的。</p>
+<p>第二条的作用是：重新给应用打上一个有效的（但非官方）签名，避免 macOS 因签名不匹配或缺失而拒绝执行（例如报告“应用已损坏”或“代码对象未能通过验证”）。</p>
+<p>之后就可以正常运行了。</p>
+<p><img src="/img/2026/CopyQ-15.webp" alt="CopyQ-15"></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>
