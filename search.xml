@@ -7885,4 +7885,26 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Homebrew 的桌面 APP？WailBrew</title>
+    <url>/2026/05/WailBrew/</url>
+    <content><![CDATA[<p>最近发现一款 Mac 上的开源应用商店？哈哈，有点夸张。</p>
+<p><a href="https://github.com/wickenico/WailBrew">https://github.com/wickenico/WailBrew</a></p>
+<blockquote>
+<p>Minimalistic Homebrew GUI made with Go, Wails and React.</p>
+<p>用 Go、Wails 和 React 制作的最小化自制 GUI。</p>
+</blockquote>
+<p>得说是 Homebrew 的桌面 APP 吧。</p>
+<p><img src="/img/2026/wailbrew-installed.webp" alt="wailbrew-installed"></p>
+<p>第一次打开扫描有点久，会检测用 homebrew 安装了哪些应用。点击按大小排序，可以清理一些很久不用的。</p>
+<p>从左下角能将语言切换为中文。</p>
+<p>从系统状态栏，进入软件的设置，可以将镜像源切换为国内的，例如我这里切换为「清华大学」。▽</p>
+<p><img src="/img/2026/wailbrew-settings.webp" alt="wailbrew-settings"></p>
+<p>从这里面升级或者安装应用也挺方便的，用鼠标点就行。▽</p>
+<p><img src="/img/2026/wailbrew-updating.webp" alt="wailbrew-updating"></p>
+]]></content>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
 </search>

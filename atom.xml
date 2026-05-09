@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2026-04-26T11:07:24.673Z</updated>
+  <updated>2026-05-09T14:23:39.890Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Homebrew 的桌面 APP？WailBrew</title>
+    <link href="https://powersee.github.io/2026/05/WailBrew/"/>
+    <id>https://powersee.github.io/2026/05/WailBrew/</id>
+    <published>2026-05-09T14:17:28.000Z</published>
+    <updated>2026-05-09T14:23:39.890Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近发现一款 Mac 上的开源应用商店？哈哈，有点夸张。</p><p><a href="https://github.com/wickenico/WailBrew">https://github.com/wickenico/WailBrew</a></p><blockquote><p>Minimalistic Homebrew GUI made with Go, Wails and React.</p><p>用 Go、Wails 和 React 制作的最小化自制 GUI。</p></blockquote><p>得说是 Homebrew 的桌面 APP 吧。</p><p><img src="/img/2026/wailbrew-installed.webp" alt="wailbrew-installed"></p><p>第一次打开扫描有点久，会检测用 homebrew 安装了哪些应用。点击按大小排序，可以清理一些很久不用的。</p><p>从左下角能将语言切换为中文。</p><p>从系统状态栏，进入软件的设置，可以将镜像源切换为国内的，例如我这里切换为「清华大学」。▽</p><p><img src="/img/2026/wailbrew-settings.webp" alt="wailbrew-settings"></p><p>从这里面升级或者安装应用也挺方便的，用鼠标点就行。▽</p><p><img src="/img/2026/wailbrew-updating.webp" alt="wailbrew-updating"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;最近发现一款 Mac 上的开源应用商店？哈哈，有点夸张。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/wickenico/WailBrew&quot;&gt;https://github.com/wickenico/WailBrew&lt;/a&gt;&lt;/p&gt;
+&lt;blockq</summary>
+      
+    
+    
+    
+    
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>CopyQ 升级到 15.0 版本后，打开后 APP 报错</title>
@@ -470,31 +494,6 @@
     
     
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nu shell 的自定义命令（函数）笔记</title>
-    <link href="https://powersee.github.io/2024/08/nu-shell-def/"/>
-    <id>https://powersee.github.io/2024/08/nu-shell-def/</id>
-    <published>2024-08-12T15:39:09.000Z</published>
-    <updated>2024-08-12T15:44:17.423Z</updated>
-    
-    <content type="html"><![CDATA[<p>由于我经常使用 yt-dlp 来下载视频或者音频，所以之前已经给 nu shell 添加了 alias，把 yt-dlp 缩短为 yt。</p><p>但是我平时喜欢把音频，直接下载到一个特定的目录里面。所以使用命令行，我需要先 cd xxxx，然后再执行 yt xxxx。</p><p>在 Mac 上面我使用的是 zsh，所以写一条 alias</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias ya=&quot;cd xxxx &amp;&amp; yt-dlp --format &#x27;bestaudio[ext!=webm]&#x27;&quot;</span><br></pre></td></tr></table></figure><p>然后平时就执行 ya url，就可以下载到 url 对应的音频了。</p><p>但是我发现，在 nu shell 这边的 alias，没法这么用，即使我已经知道它不能使用 <code>&amp;&amp;</code>，得使用 <code>;</code> 才对。</p><p>在这边我也是折腾了不少时间，使用 alias 应该是没法达到我的目的了。</p><p>所以我寻找其它的方法——<a href="https://www.nushell.sh/zh-CN/book/custom_commands.html">自定义命令 | Nushell</a></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def yda [url:string] &#123;</span><br><span class="line">    cd &#x27;D:/xxx&#x27;</span><br><span class="line">    yt-dlp --format &#x27;bestaudio[ext!=webm]&#x27; $url</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>最终就是写了一个函数，这样我们在 shell 里面执行 yda 后面需要一个参数。持久化的方法，我也是同样写到 env.nu 里面。</p><p><img src="/img/2024/nu-shell-yda.png" alt="nu-shell-yda"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;由于我经常使用 yt-dlp 来下载视频或者音频，所以之前已经给 nu shell 添加了 alias，把 yt-dlp 缩短为 yt。&lt;/p&gt;
-&lt;p&gt;但是我平时喜欢把音频，直接下载到一个特定的目录里面。所以使用命令行，我需要先 cd xxxx，然后再执行 yt xxxx。</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-    <category term="shell" scheme="https://powersee.github.io/tags/shell/"/>
     
   </entry>
   
