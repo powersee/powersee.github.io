@@ -7907,4 +7907,20 @@ border-radius: 4px;
         <tag>Mac</tag>
       </tags>
   </entry>
+  <entry>
+    <title>群晖 cloud sync 无法添加多任务</title>
+    <url>/2026/05/cloud-sync-Multitasking/</url>
+    <content><![CDATA[<p>之前在群晖的 cloud sync 套件中，添加 one drive 后，是可以建立多个任务的。</p>
+<p>但是后面通过 webdav 添加了 123 盘，却发现只能添加一个任务。（之前「新增」这个按钮是灰色的。）</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>今天终于发现问题了，因为我把远程路径，设置为「根文件夹」。就没法再新增任务。</p>
+<p><img src="/img/2026/cloud-sync-1.png" alt="image-20260504140108883"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>只要远程路径，改为子文件夹，就可以了。</p>
+<p><img src="/img/2026/cloud-sync-2.png" alt="image-20260504140343849"></p>
+<p>例如我要备份 nas 里的图片、视频，这两个文件夹。</p>
+<p>那么就新增两个任务，备份到【远程路径】的图片、视频文件夹中。</p>
+]]></content>
+      <tags>
+        <tag>NAS</tag>
+      </tags>
+  </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://powersee.github.io/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2026-05-09T14:23:39.890Z</updated>
+  <updated>2026-05-11T12:28:37.319Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>群晖 cloud sync 无法添加多任务</title>
+    <link href="https://powersee.github.io/2026/05/cloud-sync-Multitasking/"/>
+    <id>https://powersee.github.io/2026/05/cloud-sync-Multitasking/</id>
+    <published>2026-05-11T12:21:03.000Z</published>
+    <updated>2026-05-11T12:28:37.319Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前在群晖的 cloud sync 套件中，添加 one drive 后，是可以建立多个任务的。</p><p>但是后面通过 webdav 添加了 123 盘，却发现只能添加一个任务。（之前「新增」这个按钮是灰色的。）</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>今天终于发现问题了，因为我把远程路径，设置为「根文件夹」。就没法再新增任务。</p><p><img src="/img/2026/cloud-sync-1.png" alt="image-20260504140108883"></p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>只要远程路径，改为子文件夹，就可以了。</p><p><img src="/img/2026/cloud-sync-2.png" alt="image-20260504140343849"></p><p>例如我要备份 nas 里的图片、视频，这两个文件夹。</p><p>那么就新增两个任务，备份到【远程路径】的图片、视频文件夹中。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;之前在群晖的 cloud sync 套件中，添加 one drive 后，是可以建立多个任务的。&lt;/p&gt;
+&lt;p&gt;但是后面通过 webdav 添加了 123 盘，却发现只能添加一个任务。（之前「新增」这个按钮是灰色的。）&lt;/p&gt;
+&lt;h3 id=&quot;原因&quot;&gt;&lt;a href=&quot;#原</summary>
+      
+    
+    
+    
+    
+    <category term="NAS" scheme="https://powersee.github.io/tags/NAS/"/>
+    
+  </entry>
   
   <entry>
     <title>Homebrew 的桌面 APP？WailBrew</title>
@@ -470,30 +494,6 @@
     <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
     <category term="Xbox" scheme="https://powersee.github.io/tags/Xbox/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 11 资源管理器的地址栏消失了</title>
-    <link href="https://powersee.github.io/2024/08/windows11-address-bar-missing/"/>
-    <id>https://powersee.github.io/2024/08/windows11-address-bar-missing/</id>
-    <published>2024-08-16T05:21:46.000Z</published>
-    <updated>2024-08-16T05:24:10.731Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近打开一台很久没开机的 win11 电脑，使用了一下，然后系统提示更新。</p><p>等它更新完成之后，我打开资源管理器，发现地址栏不见了。</p><p><img src="/img/2024/startallback-win7.webp" alt="startallback-win7"></p><p>看来应该和这次更新有关，网上搜索一下，有网友也遇过这样的问题，他的解决方案是，到设置里面回滚更新，好像可以退回到更新前的状态。</p><p>不过我不想这么做，继续了解，有人讲到是电脑安装 StartAllBack 这个软件导致的。需要在软件的设置里面，把「资源管理器样式」改回 Win11 就行。</p><p>（提醒一下，StartAllBack 这个软件安装后，是没有 APP 图标的，想要再次进入软件的设置界面，需要把鼠标放在「开始菜单」的位置，然后右键，选择「属性」。）</p><p><img src="/img/2024/startallback-win11.webp" alt="startallback-win11"></p><p>果然如此，我改回 Win11 之后，资源管理器的地址栏就再次出现了。</p><p><img src="/img/2024/win11-explorer-ok.webp" alt="win11-explorer-ok"></p><p>不过这个问题其实也可以通过，更新 StartAllBack 的软件版本来解决，新版本依然可以使用 win10 的样式。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近打开一台很久没开机的 win11 电脑，使用了一下，然后系统提示更新。&lt;/p&gt;
-&lt;p&gt;等它更新完成之后，我打开资源管理器，发现地址栏不见了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2024/startallback-win7.webp&quot; alt=&quot;startall</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
     
   </entry>
   
