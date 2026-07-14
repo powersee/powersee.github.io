@@ -1,500 +1,391 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Powersee的博客</title>
-  
-  
-  <link href="https://powersee.github.io/atom.xml" rel="self"/>
-  
-  <link href="https://powersee.github.io/"/>
-  <updated>2026-05-11T12:28:37.319Z</updated>
-  <id>https://powersee.github.io/</id>
-  
   <author>
     <name>powersee</name>
-    
   </author>
-  
   <generator uri="https://hexo.io/">Hexo</generator>
-  
+  <id>https://powersee.github.io/</id>
+  <link href="https://powersee.github.io/" rel="alternate"/>
+  <link href="https://powersee.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, powersee</rights>
+  <title>Powersee的博客</title>
+  <updated>2026-07-14T13:44:39.482Z</updated>
   <entry>
-    <title>群晖 cloud sync 无法添加多任务</title>
-    <link href="https://powersee.github.io/2026/05/cloud-sync-Multitasking/"/>
-    <id>https://powersee.github.io/2026/05/cloud-sync-Multitasking/</id>
-    <published>2026-05-11T12:21:03.000Z</published>
-    <updated>2026-05-11T12:28:37.319Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前在群晖的 cloud sync 套件中，添加 one drive 后，是可以建立多个任务的。</p><p>但是后面通过 webdav 添加了 123 盘，却发现只能添加一个任务。（之前「新增」这个按钮是灰色的。）</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>今天终于发现问题了，因为我把远程路径，设置为「根文件夹」。就没法再新增任务。</p><p><img src="/img/2026/cloud-sync-1.png" alt="image-20260504140108883"></p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>只要远程路径，改为子文件夹，就可以了。</p><p><img src="/img/2026/cloud-sync-2.png" alt="image-20260504140343849"></p><p>例如我要备份 nas 里的图片、视频，这两个文件夹。</p><p>那么就新增两个任务，备份到【远程路径】的图片、视频文件夹中。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;之前在群晖的 cloud sync 套件中，添加 one drive 后，是可以建立多个任务的。&lt;/p&gt;
-&lt;p&gt;但是后面通过 webdav 添加了 123 盘，却发现只能添加一个任务。（之前「新增」这个按钮是灰色的。）&lt;/p&gt;
-&lt;h3 id=&quot;原因&quot;&gt;&lt;a href=&quot;#原</summary>
-      
-    
-    
-    
-    
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
+    <content>
+      <![CDATA[<p>最近，电脑上的 AE 突然无法启动了。提示应该程序错误(0xc0000142)</p><p>我尝试卸载，重装，还是一样的报错，奇了怪了，明明前一天还能正常使用的。</p><p>根本原因：系统 VC++ 运行库 DLL 文件损坏&#x2F;被替换</p><p>报错弹窗：</p><p><img src="/img/2026/AfterFX-142.png" alt="AfterFX-142"></p><p>先卸载电脑里的 Microsoft Visual C++ 2022，再下载新的安装。（不卸载直接安装，会得到这个安装失败）</p><p><img src="/img/2026/vc2015-2022-x64.png" alt="vc2015-2022-x64"></p><p>下载最新的 Microsoft Visual C++ Redistributable：</p><ul><li>x64: <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">https://aka.ms/vs/17/release/vc_redist.x64.exe</a></li><li>x86: <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">https://aka.ms/vs/17/release/vc_redist.x86.exe</a></li></ul><p>安装好就可以启动了。好像两个都要安装。虽然只安装一个 x64 AE 可以启动，但是后面电脑重启，其它软件一直报错，把 x86 的也安装就正常了。</p>]]>
+    </content>
+    <id>https://powersee.github.io/2026/07/afterFX-error-142/</id>
+    <link href="https://powersee.github.io/2026/07/afterFX-error-142/"/>
+    <published>2026-07-14T13:42:48.000Z</published>
+    <summary>
+      <![CDATA[<p>最近，电脑上的 AE 突然无法启动了。提示应该程序错误(0xc0000142)</p>
+<p>我尝试卸载，重装，还是一样的报错，奇了怪了，明明前一天还能正常使用的。</p>
+<p>根本原因：系统 VC++ 运行库 DLL 文件损坏&#x2F;被替换</p>
+<p>报错弹窗：]]>
+    </summary>
+    <title>AE 无法启动 142 报错，如何解决？</title>
+    <updated>2026-07-14T13:44:39.482Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>powersee</name>
+    </author>
     <category term="NAS" scheme="https://powersee.github.io/tags/NAS/"/>
-    
+    <content>
+      <![CDATA[<p>之前在群晖的 cloud sync 套件中，添加 one drive 后，是可以建立多个任务的。</p><p>但是后面通过 webdav 添加了 123 盘，却发现只能添加一个任务。（之前「新增」这个按钮是灰色的。）</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>今天终于发现问题了，因为我把远程路径，设置为「根文件夹」。就没法再新增任务。</p><p><img src="/img/2026/cloud-sync-1.png" alt="image-20260504140108883"></p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>只要远程路径，改为子文件夹，就可以了。</p><p><img src="/img/2026/cloud-sync-2.png" alt="image-20260504140343849"></p><p>例如我要备份 nas 里的图片、视频，这两个文件夹。</p><p>那么就新增两个任务，备份到【远程路径】的图片、视频文件夹中。</p>]]>
+    </content>
+    <id>https://powersee.github.io/2026/05/cloud-sync-Multitasking/</id>
+    <link href="https://powersee.github.io/2026/05/cloud-sync-Multitasking/"/>
+    <published>2026-05-11T12:21:03.000Z</published>
+    <summary>
+      <![CDATA[<p>之前在群晖的 cloud sync 套件中，添加 one drive 后，是可以建立多个任务的。</p>
+<p>但是后面通过 webdav 添加了 123 盘，却发现只能添加一个任务。（之前「新增」这个按钮是灰色的。）</p>
+<h3 id="原因"><a href="#原]]>
+    </summary>
+    <title>群晖 cloud sync 无法添加多任务</title>
+    <updated>2026-05-11T12:28:37.319Z</updated>
   </entry>
-  
   <entry>
-    <title>Homebrew 的桌面 APP？WailBrew</title>
-    <link href="https://powersee.github.io/2026/05/WailBrew/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    <content>
+      <![CDATA[<p>最近发现一款 Mac 上的开源应用商店？哈哈，有点夸张。</p><p><a href="https://github.com/wickenico/WailBrew">https://github.com/wickenico/WailBrew</a></p><blockquote><p>Minimalistic Homebrew GUI made with Go, Wails and React.</p><p>用 Go、Wails 和 React 制作的最小化自制 GUI。</p></blockquote><p>得说是 Homebrew 的桌面 APP 吧。</p><p><img src="/img/2026/wailbrew-installed.webp" alt="wailbrew-installed"></p><p>第一次打开扫描有点久，会检测用 homebrew 安装了哪些应用。点击按大小排序，可以清理一些很久不用的。</p><p>从左下角能将语言切换为中文。</p><p>从系统状态栏，进入软件的设置，可以将镜像源切换为国内的，例如我这里切换为「清华大学」。▽</p><p><img src="/img/2026/wailbrew-settings.webp" alt="wailbrew-settings"></p><p>从这里面升级或者安装应用也挺方便的，用鼠标点就行。▽</p><p><img src="/img/2026/wailbrew-updating.webp" alt="wailbrew-updating"></p>]]>
+    </content>
     <id>https://powersee.github.io/2026/05/WailBrew/</id>
+    <link href="https://powersee.github.io/2026/05/WailBrew/"/>
     <published>2026-05-09T14:17:28.000Z</published>
+    <summary>
+      <![CDATA[<p>最近发现一款 Mac 上的开源应用商店？哈哈，有点夸张。</p>
+<p><a href="https://github.com/wickenico/WailBrew">https://github.com/wickenico/WailBrew</a></p>
+<blockq]]>
+    </summary>
+    <title>Homebrew 的桌面 APP？WailBrew</title>
     <updated>2026-05-09T14:23:39.890Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近发现一款 Mac 上的开源应用商店？哈哈，有点夸张。</p><p><a href="https://github.com/wickenico/WailBrew">https://github.com/wickenico/WailBrew</a></p><blockquote><p>Minimalistic Homebrew GUI made with Go, Wails and React.</p><p>用 Go、Wails 和 React 制作的最小化自制 GUI。</p></blockquote><p>得说是 Homebrew 的桌面 APP 吧。</p><p><img src="/img/2026/wailbrew-installed.webp" alt="wailbrew-installed"></p><p>第一次打开扫描有点久，会检测用 homebrew 安装了哪些应用。点击按大小排序，可以清理一些很久不用的。</p><p>从左下角能将语言切换为中文。</p><p>从系统状态栏，进入软件的设置，可以将镜像源切换为国内的，例如我这里切换为「清华大学」。▽</p><p><img src="/img/2026/wailbrew-settings.webp" alt="wailbrew-settings"></p><p>从这里面升级或者安装应用也挺方便的，用鼠标点就行。▽</p><p><img src="/img/2026/wailbrew-updating.webp" alt="wailbrew-updating"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近发现一款 Mac 上的开源应用商店？哈哈，有点夸张。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/wickenico/WailBrew&quot;&gt;https://github.com/wickenico/WailBrew&lt;/a&gt;&lt;/p&gt;
-&lt;blockq</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
   </entry>
-  
   <entry>
-    <title>CopyQ 升级到 15.0 版本后，打开后 APP 报错</title>
-    <link href="https://powersee.github.io/2026/04/copyQ-15-error-mac/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    <content>
+      <![CDATA[<p>最近把 CopyQ 从 8.0 升级到了 15.0，是从 GitHub 上面下载 CopyQ-15.0.0-macos-12-m1.dmg 覆盖替换的。</p><p>然后，软件就打不开了。</p><p><img src="/img/2026/CopyQ-error-Mac.webp" alt="CopyQ-error-Mac"></p><p>最终我在 GitHub 的 issue 中找到了解决方案。</p><p><a href="https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676">https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676</a></p><p>里面给了两条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xattr -d com.apple.quarantine /Applications/CopyQ.app</span><br><span class="line">codesign --force --deep --sign - /Applications/CopyQ.app</span><br></pre></td></tr></table></figure><p>第一条我之前有执行过，不然没法打开 APP 的。</p><p>第二条的作用是：重新给应用打上一个有效的（但非官方）签名，避免 macOS 因签名不匹配或缺失而拒绝执行（例如报告“应用已损坏”或“代码对象未能通过验证”）。</p><p>之后就可以正常运行了。</p><p><img src="/img/2026/CopyQ-15.webp" alt="CopyQ-15"></p>]]>
+    </content>
     <id>https://powersee.github.io/2026/04/copyQ-15-error-mac/</id>
+    <link href="https://powersee.github.io/2026/04/copyQ-15-error-mac/"/>
     <published>2026-04-26T11:06:16.000Z</published>
+    <summary>
+      <![CDATA[<p>最近把 CopyQ 从 8.0 升级到了 15.0，是从 GitHub 上面下载 CopyQ-15.0.0-macos-12-m1.dmg 覆盖替换的。</p>
+<p>然后，软件就打不开了。</p>
+<p><img src="/img/2026/CopyQ-error-Ma]]>
+    </summary>
+    <title>CopyQ 升级到 15.0 版本后，打开后 APP 报错</title>
     <updated>2026-04-26T11:07:24.673Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近把 CopyQ 从 8.0 升级到了 15.0，是从 GitHub 上面下载 CopyQ-15.0.0-macos-12-m1.dmg 覆盖替换的。</p><p>然后，软件就打不开了。</p><p><img src="/img/2026/CopyQ-error-Mac.webp" alt="CopyQ-error-Mac"></p><p>最终我在 GitHub 的 issue 中找到了解决方案。</p><p><a href="https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676">https://github.com/hluk/CopyQ/issues/2710#issuecomment-2128391676</a></p><p>里面给了两条命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xattr -d com.apple.quarantine /Applications/CopyQ.app</span><br><span class="line">codesign --force --deep --sign - /Applications/CopyQ.app</span><br></pre></td></tr></table></figure><p>第一条我之前有执行过，不然没法打开 APP 的。</p><p>第二条的作用是：重新给应用打上一个有效的（但非官方）签名，避免 macOS 因签名不匹配或缺失而拒绝执行（例如报告“应用已损坏”或“代码对象未能通过验证”）。</p><p>之后就可以正常运行了。</p><p><img src="/img/2026/CopyQ-15.webp" alt="CopyQ-15"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近把 CopyQ 从 8.0 升级到了 15.0，是从 GitHub 上面下载 CopyQ-15.0.0-macos-12-m1.dmg 覆盖替换的。&lt;/p&gt;
-&lt;p&gt;然后，软件就打不开了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2026/CopyQ-error-Ma</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
   </entry>
-  
   <entry>
-    <title>在 Mac 上使用 ffmpeg 压缩相机视频</title>
-    <link href="https://powersee.github.io/2026/04/mac-ffmpeg-Compression/"/>
-    <id>https://powersee.github.io/2026/04/mac-ffmpeg-Compression/</id>
-    <published>2026-04-23T00:50:27.000Z</published>
-    <updated>2026-04-23T00:52:00.951Z</updated>
-    
-    <content type="html"><![CDATA[<p>测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。</p><p>测试的是松下 S5 拍摄的 4k60 10bit 视频</p><p>时长 1分 11 秒，码率 97M</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media / Version 2</span><br><span class="line">Codec ID                                 : mp42 (mp42/hvc1)</span><br><span class="line">File size                                : 821 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 96.3 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br></pre></td></tr></table></figure><p>一开始用 CPU 压缩，速度太慢了，感觉难以接受，每秒大概就 4 帧。</p><p>后面使用 Apple 芯片的 GPU 来压缩，参数是</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-c:v hevc_videotoolbox -q:v 30</span><br></pre></td></tr></table></figure><p>q 好像默认是 65，我尝试了下用 70，结果出来的码率有 67M，太大了。</p><p>后面尝试了 30，码率在 6M 多。</p><p>40  10.8M</p><p>45 16M</p><p>50 22M</p><p>55 25.9M</p><p>看来可能使用 45 比较适合我</p><p>136&#x2F;821 意味着体积压缩到原来的 16.5%</p><p>一分钟的视频，估计就 120MB 左右吧，很可以。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media</span><br><span class="line">Codec ID                                 : isom (isom/iso2/mp41)</span><br><span class="line">File size                                : 136 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 16.0 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br><span class="line">Writing application                      : Lavf62.12.100</span><br></pre></td></tr></table></figure><p>最终参数</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4 -c:v hevc_videotoolbox -q:v 45 -tag:v hvc1 /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br></pre></td></tr></table></figure><p>注意要加  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-tag:v hvc1</span><br></pre></td></tr></table></figure><p>不然在 Mac 上面，没法按空格键来播放视频。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。&lt;/p&gt;
-&lt;p&gt;测试的是松下 S5 拍摄的 4k60 10bit 视频&lt;/p&gt;
-&lt;p&gt;时长 1分 11 秒，码率 97M&lt;/p&gt;
-&lt;figure class=&quot;highlight </summary>
-      
-    
-    
-    
-    
+    <author>
+      <name>powersee</name>
+    </author>
     <category term="ffmpeg" scheme="https://powersee.github.io/tags/ffmpeg/"/>
-    
+    <content>
+      <![CDATA[<p>测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。</p><p>测试的是松下 S5 拍摄的 4k60 10bit 视频</p><p>时长 1分 11 秒，码率 97M</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media / Version 2</span><br><span class="line">Codec ID                                 : mp42 (mp42/hvc1)</span><br><span class="line">File size                                : 821 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 96.3 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br></pre></td></tr></table></figure><p>一开始用 CPU 压缩，速度太慢了，感觉难以接受，每秒大概就 4 帧。</p><p>后面使用 Apple 芯片的 GPU 来压缩，参数是</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-c:v hevc_videotoolbox -q:v 30</span><br></pre></td></tr></table></figure><p>q 好像默认是 65，我尝试了下用 70，结果出来的码率有 67M，太大了。</p><p>后面尝试了 30，码率在 6M 多。</p><p>40  10.8M</p><p>45 16M</p><p>50 22M</p><p>55 25.9M</p><p>看来可能使用 45 比较适合我</p><p>136&#x2F;821 意味着体积压缩到原来的 16.5%</p><p>一分钟的视频，估计就 120MB 左右吧，很可以。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Complete name                            : /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br><span class="line">Format                                   : MPEG-4</span><br><span class="line">Format profile                           : Base Media</span><br><span class="line">Codec ID                                 : isom (isom/iso2/mp41)</span><br><span class="line">File size                                : 136 MiB</span><br><span class="line">Duration                                 : 1 min 11 s</span><br><span class="line">Overall bit rate                         : 16.0 Mb/s</span><br><span class="line">Frame rate                               : 59.940 FPS</span><br><span class="line">Writing application                      : Lavf62.12.100</span><br></pre></td></tr></table></figure><p>最终参数</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i /Volumes/LUMIX/DCIM/118_PANA/PANA2891.MP4 -c:v hevc_videotoolbox -q:v 45 -tag:v hvc1 /Users/ming/Movies/2891-10bit-4k-GPU-qv45.mp4</span><br></pre></td></tr></table></figure><p>注意要加  </p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-tag:v hvc1</span><br></pre></td></tr></table></figure><p>不然在 Mac 上面，没法按空格键来播放视频。</p>]]>
+    </content>
+    <id>https://powersee.github.io/2026/04/mac-ffmpeg-Compression/</id>
+    <link href="https://powersee.github.io/2026/04/mac-ffmpeg-Compression/"/>
+    <published>2026-04-23T00:50:27.000Z</published>
+    <summary>
+      <![CDATA[<p>测试了下在 Mac 上面压缩视频，感觉还行，或许以后可以拍摄 4k60 10bit 的视频了。</p>
+<p>测试的是松下 S5 拍摄的 4k60 10bit 视频</p>
+<p>时长 1分 11 秒，码率 97M</p>
+<figure class="highlight]]>
+    </summary>
+    <title>在 Mac 上使用 ffmpeg 压缩相机视频</title>
+    <updated>2026-04-23T00:52:00.951Z</updated>
   </entry>
-  
   <entry>
-    <title>剪映音乐骤停效果制作</title>
-    <link href="https://powersee.github.io/2026/04/capcut-music-stop/"/>
-    <id>https://powersee.github.io/2026/04/capcut-music-stop/</id>
-    <published>2026-04-19T02:17:21.000Z</published>
-    <updated>2026-04-19T02:25:32.801Z</updated>
-    
-    <content type="html"><![CDATA[<p>结尾切出两段，后一段音量拉低到无。</p><p><img src="/img/2026/capcut-timeline-music.jpg" alt="capcut-timeline-music"></p><p>再建立复合片段</p><p><img src="/img/2026/capcut-timeline-music-2.jpg" alt="capcut-timeline-music-2"></p><p>添加「麦霸」效果，空间大小 85，强弱 45。</p><p><img src="/img/2026/capcut-maiba.webp" alt="capcut-maiba"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;结尾切出两段，后一段音量拉低到无。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2026/capcut-timeline-music.jpg&quot; alt=&quot;capcut-timeline-music&quot;&gt;&lt;/p&gt;
-&lt;p&gt;再建立复合片段&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img</summary>
-      
-    
-    
-    
-    
+    <author>
+      <name>powersee</name>
+    </author>
     <category term="剪映" scheme="https://powersee.github.io/tags/%E5%89%AA%E6%98%A0/"/>
-    
+    <content>
+      <![CDATA[<p>结尾切出两段，后一段音量拉低到无。</p><p><img src="/img/2026/capcut-timeline-music.jpg" alt="capcut-timeline-music"></p><p>再建立复合片段</p><p><img src="/img/2026/capcut-timeline-music-2.jpg" alt="capcut-timeline-music-2"></p><p>添加「麦霸」效果，空间大小 85，强弱 45。</p><p><img src="/img/2026/capcut-maiba.webp" alt="capcut-maiba"></p>]]>
+    </content>
+    <id>https://powersee.github.io/2026/04/capcut-music-stop/</id>
+    <link href="https://powersee.github.io/2026/04/capcut-music-stop/"/>
+    <published>2026-04-19T02:17:21.000Z</published>
+    <summary>
+      <![CDATA[<p>结尾切出两段，后一段音量拉低到无。</p>
+<p><img src="/img/2026/capcut-timeline-music.jpg" alt="capcut-timeline-music"></p>
+<p>再建立复合片段</p>
+<p><img src="/img]]>
+    </summary>
+    <title>剪映音乐骤停效果制作</title>
+    <updated>2026-04-19T02:25:32.801Z</updated>
   </entry>
-  
   <entry>
-    <title>新版本 pr 如何更改标签颜色</title>
-    <link href="https://powersee.github.io/2026/03/adobe-pr-change-clip-lable-colors/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
+    <content>
+      <![CDATA[<p>前段时间把 Adobe premiere 升级到 2025 版本后，发现给素材更改标签颜色，会把同类型的素材一同改变，不像以前旧版本那样，只是单独改变某一片段的颜色。</p><p>解决方案：</p><p>点击时间线左上方的小扳手，把第一项【显示源剪辑名称和标签】取消勾选即可。</p><p><img src="/img/2026/image-20260321153856330.png" alt="image-20260321153856330"></p>]]>
+    </content>
     <id>https://powersee.github.io/2026/03/adobe-pr-change-clip-lable-colors/</id>
+    <link href="https://powersee.github.io/2026/03/adobe-pr-change-clip-lable-colors/"/>
     <published>2026-03-25T14:57:36.000Z</published>
+    <summary>
+      <![CDATA[<p>前段时间把 Adobe premiere 升级到 2025 版本后，发现给素材更改标签颜色，会把同类型的素材一同改变，不像以前旧版本那样，只是单独改变某一片段的颜色。</p>
+<p>解决方案：</p>
+<p>点击时间线左上方的小扳手，把第一项【显示源剪辑名称和标签】取消勾选]]>
+    </summary>
+    <title>新版本 pr 如何更改标签颜色</title>
     <updated>2026-03-25T15:02:14.060Z</updated>
-    
-    <content type="html"><![CDATA[<p>前段时间把 Adobe premiere 升级到 2025 版本后，发现给素材更改标签颜色，会把同类型的素材一同改变，不像以前旧版本那样，只是单独改变某一片段的颜色。</p><p>解决方案：</p><p>点击时间线左上方的小扳手，把第一项【显示源剪辑名称和标签】取消勾选即可。</p><p><img src="/img/2026/image-20260321153856330.png" alt="image-20260321153856330"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;前段时间把 Adobe premiere 升级到 2025 版本后，发现给素材更改标签颜色，会把同类型的素材一同改变，不像以前旧版本那样，只是单独改变某一片段的颜色。&lt;/p&gt;
-&lt;p&gt;解决方案：&lt;/p&gt;
-&lt;p&gt;点击时间线左上方的小扳手，把第一项【显示源剪辑名称和标签】取消勾选</summary>
-      
-    
-    
-    
-    
-    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
-    
   </entry>
-  
   <entry>
-    <title>给网页端的哔哩哔哩添加截图按键</title>
-    <link href="https://powersee.github.io/2026/03/bilibili-add-screenshot-button/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    <content>
+      <![CDATA[<p>由于有时候需要边观看 B 站上的视频，边做笔记。所以截图这个动作比较频繁，手动去截图，会把弹幕给也包含进去，而且自己去调整边缘，感觉效率也比较低。</p><p>于是我想找找有没有更好的方法。</p><p>很快就搜索到了一个油猴脚本：<a href="https://greasyfork.org/zh-CN/scripts/522597-bilibili-%E8%A7%86%E9%A2%91%E6%88%AA%E5%9B%BE%E6%8C%89%E9%92%AE">Bilibili 视频截图按钮</a></p><p>安装好后，刷新一下网页，就可以在标题下方，看到一个截图按钮。</p><p><img src="/img/2026/image-20260317165037067.png" alt="image-20260317165037067"></p><p>截图获得的画面不包含弹幕，图片格式为 png，分辨率与视频本身一致。</p><p><img src="/img/2026/image-20260317165210887.webp" alt="image-20260317165210887"></p>]]>
+    </content>
     <id>https://powersee.github.io/2026/03/bilibili-add-screenshot-button/</id>
+    <link href="https://powersee.github.io/2026/03/bilibili-add-screenshot-button/"/>
     <published>2026-03-23T14:53:56.000Z</published>
+    <summary>
+      <![CDATA[<p>由于有时候需要边观看 B 站上的视频，边做笔记。所以截图这个动作比较频繁，手动去截图，会把弹幕给也包含进去，而且自己去调整边缘，感觉效率也比较低。</p>
+<p>于是我想找找有没有更好的方法。</p>
+<p>很快就搜索到了一个油猴脚本：<a href="https://gr]]>
+    </summary>
+    <title>给网页端的哔哩哔哩添加截图按键</title>
     <updated>2026-03-23T15:02:51.102Z</updated>
-    
-    <content type="html"><![CDATA[<p>由于有时候需要边观看 B 站上的视频，边做笔记。所以截图这个动作比较频繁，手动去截图，会把弹幕给也包含进去，而且自己去调整边缘，感觉效率也比较低。</p><p>于是我想找找有没有更好的方法。</p><p>很快就搜索到了一个油猴脚本：<a href="https://greasyfork.org/zh-CN/scripts/522597-bilibili-%E8%A7%86%E9%A2%91%E6%88%AA%E5%9B%BE%E6%8C%89%E9%92%AE">Bilibili 视频截图按钮</a></p><p>安装好后，刷新一下网页，就可以在标题下方，看到一个截图按钮。</p><p><img src="/img/2026/image-20260317165037067.png" alt="image-20260317165037067"></p><p>截图获得的画面不包含弹幕，图片格式为 png，分辨率与视频本身一致。</p><p><img src="/img/2026/image-20260317165210887.webp" alt="image-20260317165210887"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;由于有时候需要边观看 B 站上的视频，边做笔记。所以截图这个动作比较频繁，手动去截图，会把弹幕给也包含进去，而且自己去调整边缘，感觉效率也比较低。&lt;/p&gt;
-&lt;p&gt;于是我想找找有没有更好的方法。&lt;/p&gt;
-&lt;p&gt;很快就搜索到了一个油猴脚本：&lt;a href=&quot;https://gr</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
   </entry>
-  
   <entry>
-    <title>Mac 上面运行 iOS 版小红书，保存的图片在哪里？</title>
-    <link href="https://powersee.github.io/2026/03/mac-xiaohongshu-image/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    <content>
+      <![CDATA[<p>我的 Mac mini 上面的小红书 APP，是之前在 APP store 下载的 iOS 版本。</p><p>最近，我在里面长按图片，然后选择保存。</p><p>提示成功之后，却在访达里面，找不到图片踪迹，「下载」、「资源库」都没有。</p><p>最终发现，图片是存在 Mac 上的「照片」APP 里。</p><p><img src="/img/2026/Mac-Photos-xhs-pic.webp" alt="Mac-Photos-xhs-pic"></p>]]>
+    </content>
     <id>https://powersee.github.io/2026/03/mac-xiaohongshu-image/</id>
+    <link href="https://powersee.github.io/2026/03/mac-xiaohongshu-image/"/>
     <published>2026-03-22T02:07:51.000Z</published>
+    <summary>
+      <![CDATA[<p>我的 Mac mini 上面的小红书 APP，是之前在 APP store 下载的 iOS 版本。</p>
+<p>最近，我在里面长按图片，然后选择保存。</p>
+<p>提示成功之后，却在访达里面，找不到图片踪迹，「下载」、「资源库」都没有。</p>
+<p>最终发现，图片是存]]>
+    </summary>
+    <title>Mac 上面运行 iOS 版小红书，保存的图片在哪里？</title>
     <updated>2026-03-22T02:09:09.620Z</updated>
-    
-    <content type="html"><![CDATA[<p>我的 Mac mini 上面的小红书 APP，是之前在 APP store 下载的 iOS 版本。</p><p>最近，我在里面长按图片，然后选择保存。</p><p>提示成功之后，却在访达里面，找不到图片踪迹，「下载」、「资源库」都没有。</p><p>最终发现，图片是存在 Mac 上的「照片」APP 里。</p><p><img src="/img/2026/Mac-Photos-xhs-pic.webp" alt="Mac-Photos-xhs-pic"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我的 Mac mini 上面的小红书 APP，是之前在 APP store 下载的 iOS 版本。&lt;/p&gt;
-&lt;p&gt;最近，我在里面长按图片，然后选择保存。&lt;/p&gt;
-&lt;p&gt;提示成功之后，却在访达里面，找不到图片踪迹，「下载」、「资源库」都没有。&lt;/p&gt;
-&lt;p&gt;最终发现，图片是存</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
   </entry>
-  
   <entry>
-    <title>pr 素材铺满画面 媒体默认缩放</title>
-    <link href="https://powersee.github.io/2025/12/adobe-pr-media-default-scaling/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
+    <content>
+      <![CDATA[<p>平时剪辑的时候，建立序列一般是选择 1080P，此时如果我们把 4k 或者 720P 的素材拉到时间线，它要不只展示一部分，要不就居中完整显示，但是四周留有黑边。</p><p>我们都手动去进行缩放处理。</p><p>但其实有更好的处理方法，我们把素材拉进时间线后，右键素材，有三个选项</p><ul><li><p>缩放为帧大小 （会损失画质）</p></li><li><p>贴合帧 （无损，和我们手动缩放，调整位置一样）</p></li><li><p>填充帧 （一般用于低分辨率素材，主要是让素材铺满，不留黑边）</p></li></ul><p> <img src="/img/2026/pr-set-to-frame-size.webp" alt="pr-set-to-frame-size"></p><p>那么对于把 4k 或者 1440P 的素材，放入 1080P 的时间线，该选择「缩放为帧大小」还是「贴合帧」还呢？</p><p>如果我们放入的视频或者图片，之后还需要设置关键帧缩放，那么选择贴合帧会更好</p><p>我们还可以在「首选项」「媒体」「默认媒体缩放」设置为贴合帧。这样把素材拉入时间线时，软件就会自动帮我们设置好，不需要右键素材去设置了。</p><p><img src="/img/2026/pr-media-default-media-scaling.webp" alt="pr-media-default-media-scaling"></p>]]>
+    </content>
     <id>https://powersee.github.io/2025/12/adobe-pr-media-default-scaling/</id>
+    <link href="https://powersee.github.io/2025/12/adobe-pr-media-default-scaling/"/>
     <published>2025-12-28T10:06:17.000Z</published>
+    <summary>
+      <![CDATA[<p>平时剪辑的时候，建立序列一般是选择 1080P，此时如果我们把 4k 或者 720P 的素材拉到时间线，它要不只展示一部分，要不就居中完整显示，但是四周留有黑边。</p>
+<p>我们都手动去进行缩放处理。</p>
+<p>但其实有更好的处理方法，我们把素材拉进时间线后，右键素]]>
+    </summary>
+    <title>pr 素材铺满画面 媒体默认缩放</title>
     <updated>2026-01-01T03:01:39.381Z</updated>
-    
-    <content type="html"><![CDATA[<p>平时剪辑的时候，建立序列一般是选择 1080P，此时如果我们把 4k 或者 720P 的素材拉到时间线，它要不只展示一部分，要不就居中完整显示，但是四周留有黑边。</p><p>我们都手动去进行缩放处理。</p><p>但其实有更好的处理方法，我们把素材拉进时间线后，右键素材，有三个选项</p><ul><li><p>缩放为帧大小 （会损失画质）</p></li><li><p>贴合帧 （无损，和我们手动缩放，调整位置一样）</p></li><li><p>填充帧 （一般用于低分辨率素材，主要是让素材铺满，不留黑边）</p></li></ul><p> <img src="/img/2026/pr-set-to-frame-size.webp" alt="pr-set-to-frame-size"></p><p>那么对于把 4k 或者 1440P 的素材，放入 1080P 的时间线，该选择「缩放为帧大小」还是「贴合帧」还呢？</p><p>如果我们放入的视频或者图片，之后还需要设置关键帧缩放，那么选择贴合帧会更好</p><p>我们还可以在「首选项」「媒体」「默认媒体缩放」设置为贴合帧。这样把素材拉入时间线时，软件就会自动帮我们设置好，不需要右键素材去设置了。</p><p><img src="/img/2026/pr-media-default-media-scaling.webp" alt="pr-media-default-media-scaling"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;平时剪辑的时候，建立序列一般是选择 1080P，此时如果我们把 4k 或者 720P 的素材拉到时间线，它要不只展示一部分，要不就居中完整显示，但是四周留有黑边。&lt;/p&gt;
-&lt;p&gt;我们都手动去进行缩放处理。&lt;/p&gt;
-&lt;p&gt;但其实有更好的处理方法，我们把素材拉进时间线后，右键素</summary>
-      
-    
-    
-    
-    
-    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
-    
   </entry>
-  
   <entry>
-    <title>pr 给缓入缓出设置快捷键</title>
-    <link href="https://powersee.github.io/2025/12/adobe-pr-easy-in-out-shortcut/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
+    <content>
+      <![CDATA[<p>平时使用 pr 给视频或者素材，添加位移或者缩放动画时，都是手动选中关键帧，右键，点击缓出，再选中另一个关键帧，点击缓入</p><p><img src="/img/2024/premiere-effect-controls-easy-in-out.webp" alt="premiere-effect-controls-easy-in-out"></p><p>今天看别人的视频，才发现原来可以在设置里面，给缓入缓出都设置快捷键的。</p><p><img src="/img/2024/pr-settings-shortcut-huan.webp" alt="pr-settings-shortcut-huan"></p><p><img src="/img/2024/pr-settings-3-4.webp" alt="pr-settings-3-4"></p>]]>
+    </content>
     <id>https://powersee.github.io/2025/12/adobe-pr-easy-in-out-shortcut/</id>
+    <link href="https://powersee.github.io/2025/12/adobe-pr-easy-in-out-shortcut/"/>
     <published>2025-12-27T15:12:37.000Z</published>
+    <summary>
+      <![CDATA[<p>平时使用 pr 给视频或者素材，添加位移或者缩放动画时，都是手动选中关键帧，右键，点击缓出，再选中另一个关键帧，点击缓入</p>
+<p><img src="/img/2024/premiere-effect-controls-easy-in-out.webp" alt="p]]>
+    </summary>
+    <title>pr 给缓入缓出设置快捷键</title>
     <updated>2025-12-27T15:22:42.383Z</updated>
-    
-    <content type="html"><![CDATA[<p>平时使用 pr 给视频或者素材，添加位移或者缩放动画时，都是手动选中关键帧，右键，点击缓出，再选中另一个关键帧，点击缓入</p><p><img src="/img/2024/premiere-effect-controls-easy-in-out.webp" alt="premiere-effect-controls-easy-in-out"></p><p>今天看别人的视频，才发现原来可以在设置里面，给缓入缓出都设置快捷键的。</p><p><img src="/img/2024/pr-settings-shortcut-huan.webp" alt="pr-settings-shortcut-huan"></p><p><img src="/img/2024/pr-settings-3-4.webp" alt="pr-settings-3-4"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;平时使用 pr 给视频或者素材，添加位移或者缩放动画时，都是手动选中关键帧，右键，点击缓出，再选中另一个关键帧，点击缓入&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2024/premiere-effect-controls-easy-in-out.webp&quot; alt=&quot;p</summary>
-      
-    
-    
-    
-    
-    <category term="Adobe" scheme="https://powersee.github.io/tags/Adobe/"/>
-    
   </entry>
-  
   <entry>
-    <title>docker 拉取 memos 镜像失败的解决方案</title>
-    <link href="https://powersee.github.io/2025/11/docker-pull-memos/"/>
-    <id>https://powersee.github.io/2025/11/docker-pull-memos/</id>
-    <published>2025-11-16T02:29:21.000Z</published>
-    <updated>2025-11-16T02:38:26.235Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近想看看 memos 现在的新功能，于是打算拉取一个新的镜像，在 NAS 上面运行看看效果如何。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull neosmemo/memos:0.25</span><br></pre></td></tr></table></figure><p>然后就拉取失败了，意料之中的，Dockerhub 很久之前就没法正常访问拉取了。</p><p>于是我选择拉取 GitHub 上的镜像。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull ghcr.io/usememos/memos:0.25</span><br><span class="line">0.25: Pulling from usememos/memos</span><br><span class="line">2d35ebdb57d9: Pull complete</span><br><span class="line">fbc92e9aa2c0: Pull complete</span><br><span class="line">f5dbe49bfe14: Pull complete</span><br><span class="line">bb9a81ac92e7: Pull complete</span><br><span class="line">11851c07ec75: Pull complete</span><br><span class="line">7e5f450aa3e6: Pull complete</span><br><span class="line">Digest: sha256:240e34c9328b5206d534782a47b6d8164f19177eface64ffa44da93efcb929a0</span><br><span class="line">Status: Downloaded newer image for ghcr.io/usememos/memos:0.25</span><br><span class="line">ghcr.io/usememos/memos:0.25</span><br></pre></td></tr></table></figure><p>虽然速度也挺慢的，但是能拉取成功，算不错了。</p><p>那么原本的运行命令，也得改了，从原来的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name memos \</span><br><span class="line">  -p 5230:5230 \</span><br><span class="line">  -v ~/.memos:/var/opt/memos \</span><br><span class="line">  neosmemo/memos:stable</span><br></pre></td></tr></table></figure><p>改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name memos \</span><br><span class="line">  -p 5230:5230 \</span><br><span class="line">  -v ~/.memos:/var/opt/memos \</span><br><span class="line">  ghcr.io/usememos/memos:0.25</span><br></pre></td></tr></table></figure><p>我个人喜欢去拉取特定的版本号。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近想看看 memos 现在的新功能，于是打算拉取一个新的镜像，在 NAS 上面运行看看效果如何。&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;l</summary>
-      
-    
-    
-    
-    
+    <author>
+      <name>powersee</name>
+    </author>
     <category term="Docker" scheme="https://powersee.github.io/tags/Docker/"/>
-    
+    <content>
+      <![CDATA[<p>最近想看看 memos 现在的新功能，于是打算拉取一个新的镜像，在 NAS 上面运行看看效果如何。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull neosmemo/memos:0.25</span><br></pre></td></tr></table></figure><p>然后就拉取失败了，意料之中的，Dockerhub 很久之前就没法正常访问拉取了。</p><p>于是我选择拉取 GitHub 上的镜像。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull ghcr.io/usememos/memos:0.25</span><br><span class="line">0.25: Pulling from usememos/memos</span><br><span class="line">2d35ebdb57d9: Pull complete</span><br><span class="line">fbc92e9aa2c0: Pull complete</span><br><span class="line">f5dbe49bfe14: Pull complete</span><br><span class="line">bb9a81ac92e7: Pull complete</span><br><span class="line">11851c07ec75: Pull complete</span><br><span class="line">7e5f450aa3e6: Pull complete</span><br><span class="line">Digest: sha256:240e34c9328b5206d534782a47b6d8164f19177eface64ffa44da93efcb929a0</span><br><span class="line">Status: Downloaded newer image for ghcr.io/usememos/memos:0.25</span><br><span class="line">ghcr.io/usememos/memos:0.25</span><br></pre></td></tr></table></figure><p>虽然速度也挺慢的，但是能拉取成功，算不错了。</p><p>那么原本的运行命令，也得改了，从原来的</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name memos \</span><br><span class="line">  -p 5230:5230 \</span><br><span class="line">  -v ~/.memos:/var/opt/memos \</span><br><span class="line">  neosmemo/memos:stable</span><br></pre></td></tr></table></figure><p>改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name memos \</span><br><span class="line">  -p 5230:5230 \</span><br><span class="line">  -v ~/.memos:/var/opt/memos \</span><br><span class="line">  ghcr.io/usememos/memos:0.25</span><br></pre></td></tr></table></figure><p>我个人喜欢去拉取特定的版本号。</p>]]>
+    </content>
+    <id>https://powersee.github.io/2025/11/docker-pull-memos/</id>
+    <link href="https://powersee.github.io/2025/11/docker-pull-memos/"/>
+    <published>2025-11-16T02:29:21.000Z</published>
+    <summary>
+      <![CDATA[<p>最近想看看 memos 现在的新功能，于是打算拉取一个新的镜像，在 NAS 上面运行看看效果如何。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="l]]>
+    </summary>
+    <title>docker 拉取 memos 镜像失败的解决方案</title>
+    <updated>2025-11-16T02:38:26.235Z</updated>
   </entry>
-  
   <entry>
-    <title>迁移 Mydiary 数据到 侠客日记</title>
-    <link href="https://powersee.github.io/2025/07/Mydiary-SwashbucklerDiary-data/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    <content>
+      <![CDATA[<p>我使用 <a href="https://github.com/DaxiaK/MyDiary">Mydiary</a> 这个日记 app 好多年了，至今里面的日记有几百篇。</p><p>但是这个 app 的最后一次更新，是在 2017 年，虽然在现在最新的 Android 15 手机上，还可以正常使用，但我一直想寻找更好用的替代品。</p><p>我对于新的日记软件，最主要的需求是：</p><ul><li>开源的</li><li>支持内容搜索</li></ul><p>终于，我找到了《<a href="https://github.com/Yu-Core/SwashbucklerDiary">侠客日记</a>》。</p><p>我简单了解一下，发现它不仅满足我的需求，而且还有很多亮点。例如支持 webdav 备份、多平台客户端、使用 markdown 语法……</p><p>所以我决定将原本的日记内容，迁移过来。</p><h3 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h3><p>首先在 Mydiary 导出数据，得到一个 zip 压缩包，里面是一个 <code>backup.json</code> 文件。</p><p>我接着研究「侠客日记」的导出导入，然后得知，只要把旧的日记数据，处理转换为一篇篇的 md 文件，再把它们压缩到一个 zip 压缩包里，就可以导入到「侠客日记」中。</p><p>于是我是弄了一个 python 脚本，来将 <code>backup.json</code> 转换为多个 md 文件的。脚本内容如下。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import json</span><br><span class="line">import os</span><br><span class="line">from datetime import datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def extract_diaries(json_data):</span><br><span class="line">    # 解析JSON数据</span><br><span class="line">    data = json.loads(json_data)</span><br><span class="line"></span><br><span class="line">    # 获取日记主题列表</span><br><span class="line">    for topic in data[&#x27;backup_topic_list&#x27;]:</span><br><span class="line">        if topic[&#x27;topic_type&#x27;] == 1:  # 1表示日记类型</span><br><span class="line">            diaries = topic[&#x27;diary_topic_entries_list&#x27;]</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    # 创建output文件夹存放日记</span><br><span class="line">    if not os.path.exists(&#x27;output&#x27;):</span><br><span class="line">        os.makedirs(&#x27;output&#x27;)</span><br><span class="line"></span><br><span class="line">    # 处理每篇日记</span><br><span class="line">    for diary in diaries:</span><br><span class="line">        # 转换Unix时间戳为日期时间格式</span><br><span class="line">        timestamp = diary[&#x27;diary_entries_time&#x27;] / 1000  # 转换为秒</span><br><span class="line">        dt = datetime.fromtimestamp(timestamp)</span><br><span class="line">        filename = dt.strftime(&quot;%Y%m%d%H%M%S&quot;) + &quot;.md&quot;</span><br><span class="line"></span><br><span class="line">        # 构建日记内容</span><br><span class="line">        content = f&quot;# &#123;diary[&#x27;diary_entries_title&#x27;]&#125;\n\n&quot;</span><br><span class="line">        # content += f&quot;- 日期: &#123;dt.strftime(&#x27;%Y-%m-%d %H:%M:%S&#x27;)&#125;\n&quot;</span><br><span class="line">        # if diary[&#x27;diary_entries_location&#x27;]:</span><br><span class="line">        #     content += f&quot;- 地点: &#123;diary[&#x27;diary_entries_location&#x27;]&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 添加日记条目内容，并确保换行符合Markdown规范（\n\n）</span><br><span class="line">        for item in diary[&#x27;diary_item_list&#x27;]:</span><br><span class="line">            if item[&#x27;diary_item_type&#x27;] == 0:  # 0表示文本内容</span><br><span class="line">                # 替换单换行符为双换行符（符合Markdown段落要求）</span><br><span class="line">                item_content = item[&#x27;diary_item_content&#x27;].replace(&#x27;\n&#x27;, &#x27;\n\n&#x27;)</span><br><span class="line">                content += f&quot;\n&#123;item_content&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 写入文件</span><br><span class="line">        with open(os.path.join(&#x27;output&#x27;, filename), &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">            f.write(content)</span><br><span class="line"></span><br><span class="line">        print(f&quot;已保存日记: &#123;filename&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># 执行提取</span><br><span class="line">with open(&#x27;backup.json&#x27;, &#x27;r&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">    json_data = f.read()</span><br><span class="line">extract_diaries(json_data)</span><br></pre></td></tr></table></figure><p>幸好当初选择的是一个，开源并且可以轻松导出数据的日记 APP，否则可能就没法像今天这样轻松地迁移数据了。</p>]]>
+    </content>
     <id>https://powersee.github.io/2025/07/Mydiary-SwashbucklerDiary-data/</id>
+    <link href="https://powersee.github.io/2025/07/Mydiary-SwashbucklerDiary-data/"/>
     <published>2025-07-07T09:46:37.000Z</published>
+    <summary>
+      <![CDATA[<p>我使用 <a href="https://github.com/DaxiaK/MyDiary">Mydiary</a> 这个日记 app 好多年了，至今里面的日记有几百篇。</p>
+<p>但是这个 app 的最后一次更新，是在 2017 年，虽然在现在最新的 Android]]>
+    </summary>
+    <title>迁移 Mydiary 数据到 侠客日记</title>
     <updated>2025-07-07T09:55:14.426Z</updated>
-    
-    <content type="html"><![CDATA[<p>我使用 <a href="https://github.com/DaxiaK/MyDiary">Mydiary</a> 这个日记 app 好多年了，至今里面的日记有几百篇。</p><p>但是这个 app 的最后一次更新，是在 2017 年，虽然在现在最新的 Android 15 手机上，还可以正常使用，但我一直想寻找更好用的替代品。</p><p>我对于新的日记软件，最主要的需求是：</p><ul><li>开源的</li><li>支持内容搜索</li></ul><p>终于，我找到了《<a href="https://github.com/Yu-Core/SwashbucklerDiary">侠客日记</a>》。</p><p>我简单了解一下，发现它不仅满足我的需求，而且还有很多亮点。例如支持 webdav 备份、多平台客户端、使用 markdown 语法……</p><p>所以我决定将原本的日记内容，迁移过来。</p><h3 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h3><p>首先在 Mydiary 导出数据，得到一个 zip 压缩包，里面是一个 <code>backup.json</code> 文件。</p><p>我接着研究「侠客日记」的导出导入，然后得知，只要把旧的日记数据，处理转换为一篇篇的 md 文件，再把它们压缩到一个 zip 压缩包里，就可以导入到「侠客日记」中。</p><p>于是我是弄了一个 python 脚本，来将 <code>backup.json</code> 转换为多个 md 文件的。脚本内容如下。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">import json</span><br><span class="line">import os</span><br><span class="line">from datetime import datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def extract_diaries(json_data):</span><br><span class="line">    # 解析JSON数据</span><br><span class="line">    data = json.loads(json_data)</span><br><span class="line"></span><br><span class="line">    # 获取日记主题列表</span><br><span class="line">    for topic in data[&#x27;backup_topic_list&#x27;]:</span><br><span class="line">        if topic[&#x27;topic_type&#x27;] == 1:  # 1表示日记类型</span><br><span class="line">            diaries = topic[&#x27;diary_topic_entries_list&#x27;]</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    # 创建output文件夹存放日记</span><br><span class="line">    if not os.path.exists(&#x27;output&#x27;):</span><br><span class="line">        os.makedirs(&#x27;output&#x27;)</span><br><span class="line"></span><br><span class="line">    # 处理每篇日记</span><br><span class="line">    for diary in diaries:</span><br><span class="line">        # 转换Unix时间戳为日期时间格式</span><br><span class="line">        timestamp = diary[&#x27;diary_entries_time&#x27;] / 1000  # 转换为秒</span><br><span class="line">        dt = datetime.fromtimestamp(timestamp)</span><br><span class="line">        filename = dt.strftime(&quot;%Y%m%d%H%M%S&quot;) + &quot;.md&quot;</span><br><span class="line"></span><br><span class="line">        # 构建日记内容</span><br><span class="line">        content = f&quot;# &#123;diary[&#x27;diary_entries_title&#x27;]&#125;\n\n&quot;</span><br><span class="line">        # content += f&quot;- 日期: &#123;dt.strftime(&#x27;%Y-%m-%d %H:%M:%S&#x27;)&#125;\n&quot;</span><br><span class="line">        # if diary[&#x27;diary_entries_location&#x27;]:</span><br><span class="line">        #     content += f&quot;- 地点: &#123;diary[&#x27;diary_entries_location&#x27;]&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 添加日记条目内容，并确保换行符合Markdown规范（\n\n）</span><br><span class="line">        for item in diary[&#x27;diary_item_list&#x27;]:</span><br><span class="line">            if item[&#x27;diary_item_type&#x27;] == 0:  # 0表示文本内容</span><br><span class="line">                # 替换单换行符为双换行符（符合Markdown段落要求）</span><br><span class="line">                item_content = item[&#x27;diary_item_content&#x27;].replace(&#x27;\n&#x27;, &#x27;\n\n&#x27;)</span><br><span class="line">                content += f&quot;\n&#123;item_content&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">        # 写入文件</span><br><span class="line">        with open(os.path.join(&#x27;output&#x27;, filename), &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">            f.write(content)</span><br><span class="line"></span><br><span class="line">        print(f&quot;已保存日记: &#123;filename&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># 执行提取</span><br><span class="line">with open(&#x27;backup.json&#x27;, &#x27;r&#x27;, encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">    json_data = f.read()</span><br><span class="line">extract_diaries(json_data)</span><br></pre></td></tr></table></figure><p>幸好当初选择的是一个，开源并且可以轻松导出数据的日记 APP，否则可能就没法像今天这样轻松地迁移数据了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我使用 &lt;a href=&quot;https://github.com/DaxiaK/MyDiary&quot;&gt;Mydiary&lt;/a&gt; 这个日记 app 好多年了，至今里面的日记有几百篇。&lt;/p&gt;
-&lt;p&gt;但是这个 app 的最后一次更新，是在 2017 年，虽然在现在最新的 Android</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
   </entry>
-  
   <entry>
-    <title>手动更新了 Typecho 版本到 1.2.1</title>
-    <link href="https://powersee.github.io/2025/06/typecho-update-1-2-1/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    <content>
+      <![CDATA[<p>最近访问了一下我之前用 docker 运行的 Typecho 博客，主页的文章可以正常浏览，但如果进入后台，就会出现这样的界面。</p><p><img src="/img/2024/Typecho-upgrade-shadow.webp" alt="Typecho-upgrade-shadow"></p><p>提示我需要升级，那就升呗。我点击下方的 「完成升级」按钮，可以看到网页正在加载，过一会儿加载完成，还是这个页面。</p><p>也就是说没法在线升级。而且比较恶心的是，它还不允许不升级。除了点击备份，可以切换到其他页面。其它地方点击之后，都是跳转回这个提示页面，也就是说现在不升级，后台这里什么事都没法干，没法创建文章，管理文章、评论这些。</p><p>一开始我尝试修改代码，去掉检测升级的代码。但是没用，还是会提示。</p><p>于是我就想，那我手动给它升级一下吧。于是到官网下载新的 Typecho 1.2.1 版本。</p><p>得到一个 typecho.zip 压缩包，那么里面要用到的就两个文件夹 <code>admin</code> <code>var</code></p><p>我使用的 image 是 80x86&#x2F;typecho:latest ，它的用户数据是在 <code>/data</code> 里面的。</p><p>创建的容器名字是 typecho，所以我在容器运行的使用，命令行执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it typecho sh</span><br></pre></td></tr></table></figure><p>来进入容器内部。默认就进入到 <code>/app</code> 这个目录中，我们需要 <code>cd /data</code> 把里面的 admin 和 var 改名为 admin1 和 var1，之后再把刚才下载的 typecho.zip 里面的 admin 和 var 这两个文件夹，复制到这里。</p><p>之后再次通过浏览器访问 Typecho 的后台，就可以完成升级了。</p>]]>
+    </content>
     <id>https://powersee.github.io/2025/06/typecho-update-1-2-1/</id>
+    <link href="https://powersee.github.io/2025/06/typecho-update-1-2-1/"/>
     <published>2025-06-20T07:03:48.000Z</published>
+    <summary>
+      <![CDATA[<p>最近访问了一下我之前用 docker 运行的 Typecho 博客，主页的文章可以正常浏览，但如果进入后台，就会出现这样的界面。</p>
+<p><img src="/img/2024/Typecho-upgrade-shadow.webp" alt="Typecho-upg]]>
+    </summary>
+    <title>手动更新了 Typecho 版本到 1.2.1</title>
     <updated>2025-06-20T07:06:50.529Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近访问了一下我之前用 docker 运行的 Typecho 博客，主页的文章可以正常浏览，但如果进入后台，就会出现这样的界面。</p><p><img src="/img/2024/Typecho-upgrade-shadow.webp" alt="Typecho-upgrade-shadow"></p><p>提示我需要升级，那就升呗。我点击下方的 「完成升级」按钮，可以看到网页正在加载，过一会儿加载完成，还是这个页面。</p><p>也就是说没法在线升级。而且比较恶心的是，它还不允许不升级。除了点击备份，可以切换到其他页面。其它地方点击之后，都是跳转回这个提示页面，也就是说现在不升级，后台这里什么事都没法干，没法创建文章，管理文章、评论这些。</p><p>一开始我尝试修改代码，去掉检测升级的代码。但是没用，还是会提示。</p><p>于是我就想，那我手动给它升级一下吧。于是到官网下载新的 Typecho 1.2.1 版本。</p><p>得到一个 typecho.zip 压缩包，那么里面要用到的就两个文件夹 <code>admin</code> <code>var</code></p><p>我使用的 image 是 80x86&#x2F;typecho:latest ，它的用户数据是在 <code>/data</code> 里面的。</p><p>创建的容器名字是 typecho，所以我在容器运行的使用，命令行执行</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it typecho sh</span><br></pre></td></tr></table></figure><p>来进入容器内部。默认就进入到 <code>/app</code> 这个目录中，我们需要 <code>cd /data</code> 把里面的 admin 和 var 改名为 admin1 和 var1，之后再把刚才下载的 typecho.zip 里面的 admin 和 var 这两个文件夹，复制到这里。</p><p>之后再次通过浏览器访问 Typecho 的后台，就可以完成升级了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近访问了一下我之前用 docker 运行的 Typecho 博客，主页的文章可以正常浏览，但如果进入后台，就会出现这样的界面。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2024/Typecho-upgrade-shadow.webp&quot; alt=&quot;Typecho-upg</summary>
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
   </entry>
-  
   <entry>
-    <title>迁移 fathom 到另一台服务器</title>
-    <link href="https://powersee.github.io/2024/12/fathom2/"/>
-    <id>https://powersee.github.io/2024/12/fathom2/</id>
-    <published>2024-12-05T06:18:04.000Z</published>
-    <updated>2024-12-05T06:19:02.645Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="/2023/04/fathom/">前文回顾</a></p><p>如今 fathom 这个服务我已经运行了一年多了，感觉也还行吧，很轻量，不怎么占用服务器资源。但是会被浏览器广告拦截插件，给屏蔽。所以我后来是再加了一个 umami。</p><p>最近服务器要到期了，我需要迁移 fathom 到另一台服务器上。</p><p>已知数据库 <code>fathom.db</code> 在 <code>/app</code> 下，那么可以使用命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp fathom:/app/fathom.db .</span><br></pre></td></tr></table></figure><p>将它从 docker 容器中复制出来。</p><p>在新的服务器上面，先创建容器</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker create -p 8080:8080 --name fathom usefathom/fathom:latest</span><br></pre></td></tr></table></figure><p>把数据库 fathom.db 复制到新服务器上，再复制到刚才创建的 docker 容器中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp fathom.db fathom:/app/</span><br></pre></td></tr></table></figure><p>然后再启动容器</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start fathom</span><br></pre></td></tr></table></figure><p>这样便迁移完成了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;/2023/04/fathom/&quot;&gt;前文回顾&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;如今 fathom 这个服务我已经运行了一年多了，感觉也还行吧，很轻量，不怎么占用服务器资源。但是会被浏览器广告拦截插件，给屏蔽。所以我后来是再加了一个 umami。&lt;/p&gt;
-&lt;p&gt;最近服</summary>
-      
-    
-    
-    
-    
+    <author>
+      <name>powersee</name>
+    </author>
     <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
+    <content>
+      <![CDATA[<p><a href="/2023/04/fathom/">前文回顾</a></p><p>如今 fathom 这个服务我已经运行了一年多了，感觉也还行吧，很轻量，不怎么占用服务器资源。但是会被浏览器广告拦截插件，给屏蔽。所以我后来是再加了一个 umami。</p><p>最近服务器要到期了，我需要迁移 fathom 到另一台服务器上。</p><p>已知数据库 <code>fathom.db</code> 在 <code>/app</code> 下，那么可以使用命令</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp fathom:/app/fathom.db .</span><br></pre></td></tr></table></figure><p>将它从 docker 容器中复制出来。</p><p>在新的服务器上面，先创建容器</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker create -p 8080:8080 --name fathom usefathom/fathom:latest</span><br></pre></td></tr></table></figure><p>把数据库 fathom.db 复制到新服务器上，再复制到刚才创建的 docker 容器中。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker cp fathom.db fathom:/app/</span><br></pre></td></tr></table></figure><p>然后再启动容器</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start fathom</span><br></pre></td></tr></table></figure><p>这样便迁移完成了。</p>]]>
+    </content>
+    <id>https://powersee.github.io/2024/12/fathom2/</id>
+    <link href="https://powersee.github.io/2024/12/fathom2/"/>
+    <published>2024-12-05T06:18:04.000Z</published>
+    <summary>
+      <![CDATA[<p><a href="/2023/04/fathom/">前文回顾</a></p>
+<p>如今 fathom 这个服务我已经运行了一年多了，感觉也还行吧，很轻量，不怎么占用服务器资源。但是会被浏览器广告拦截插件，给屏蔽。所以我后来是再加了一个 umami。</p>
+<p>最近服]]>
+    </summary>
+    <title>迁移 fathom 到另一台服务器</title>
+    <updated>2024-12-05T06:19:02.645Z</updated>
   </entry>
-  
   <entry>
-    <title>威联通 qnap 外接硬盘挂载失败记录</title>
-    <link href="https://powersee.github.io/2024/10/qnap-mount-fail/"/>
-    <id>https://powersee.github.io/2024/10/qnap-mount-fail/</id>
-    <published>2024-10-28T07:49:57.000Z</published>
-    <updated>2024-10-28T07:51:33.360Z</updated>
-    
-    <content type="html"><![CDATA[<p>我的 NAS 是威联通 TS-451D，它的正面有一个 USB 接口，不知什么时候开始，通过这个接口连接移动硬盘，无法成功挂载。</p><p><img src="/img/2024/can't-mount.webp" alt="can&#39;t-mount"></p><p>如图所示，会提示：<strong>磁盘群组无法被挂载或识别。</strong></p><p>但是它可以识别到硬盘的容量，而且我试过插一个 U 盘上去，可以正常挂载。按理说这个口应该没问题才对，搞不懂。</p><p>难道是我的硬盘有问题？但是我连接电脑却是可以正常读取的。于是，我把移动硬盘，连接到 NAS 后面的 USB 口，然后，就可以正常读写了。</p><p><img src="/img/2024/mount.webp" alt="mount"></p><p>也是挺奇怪的，我试了好几块硬盘，都是前面的 USB 口，可以识别到硬盘容量，但是没法挂载。使用后面的 USB 口就正常。</p><p>难道是前面的 USB 口现在供电不足了？所以连接 U 盘可以，移动硬盘不行？不清楚，本文仅仅记录一下。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;我的 NAS 是威联通 TS-451D，它的正面有一个 USB 接口，不知什么时候开始，通过这个接口连接移动硬盘，无法成功挂载。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/img/2024/can&#39;t-mount.webp&quot; alt=&quot;can&amp;#39;t-mount&quot;&gt;&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    
+    <author>
+      <name>powersee</name>
+    </author>
     <category term="qnap" scheme="https://powersee.github.io/tags/qnap/"/>
-    
+    <content>
+      <![CDATA[<p>我的 NAS 是威联通 TS-451D，它的正面有一个 USB 接口，不知什么时候开始，通过这个接口连接移动硬盘，无法成功挂载。</p><p><img src="/img/2024/can't-mount.webp" alt="can&#39;t-mount"></p><p>如图所示，会提示：<strong>磁盘群组无法被挂载或识别。</strong></p><p>但是它可以识别到硬盘的容量，而且我试过插一个 U 盘上去，可以正常挂载。按理说这个口应该没问题才对，搞不懂。</p><p>难道是我的硬盘有问题？但是我连接电脑却是可以正常读取的。于是，我把移动硬盘，连接到 NAS 后面的 USB 口，然后，就可以正常读写了。</p><p><img src="/img/2024/mount.webp" alt="mount"></p><p>也是挺奇怪的，我试了好几块硬盘，都是前面的 USB 口，可以识别到硬盘容量，但是没法挂载。使用后面的 USB 口就正常。</p><p>难道是前面的 USB 口现在供电不足了？所以连接 U 盘可以，移动硬盘不行？不清楚，本文仅仅记录一下。</p>]]>
+    </content>
+    <id>https://powersee.github.io/2024/10/qnap-mount-fail/</id>
+    <link href="https://powersee.github.io/2024/10/qnap-mount-fail/"/>
+    <published>2024-10-28T07:49:57.000Z</published>
+    <summary>
+      <![CDATA[<p>我的 NAS 是威联通 TS-451D，它的正面有一个 USB 接口，不知什么时候开始，通过这个接口连接移动硬盘，无法成功挂载。</p>
+<p><img src="/img/2024/can't-mount.webp" alt="can&#39;t-mount"></p>]]>
+    </summary>
+    <title>威联通 qnap 外接硬盘挂载失败记录</title>
+    <updated>2024-10-28T07:51:33.360Z</updated>
   </entry>
-  
   <entry>
-    <title>Mac 上的开源键盘映射应用——Karabiner-Elements</title>
-    <link href="https://powersee.github.io/2024/10/Karabiner-Elements/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    <content>
+      <![CDATA[<p>最近在看漫画，需要经常使用到 pgdn 这颗按键，来切换到下一页。</p><p>但是它在键盘的顶部，我的手需要伸长去按。于是我现在的需求，就是想把键盘右下角，小键盘区域的回车键，映射到 pgdn 上。</p><p>当我按下小键盘的回车键，效果就相当于按下 pgdn。</p><p>然后我就发现了这个软件 <a href="https://github.com/pqrs-org/Karabiner-Elements">Karabiner-Elements</a></p><p>在 GitHub 上面有 18.7 k 的 star，只有 Mac 版本。</p><blockquote><p>Supported systems</p><ul><li>macOS 15 Sequoia<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li><li>macOS 14 Sonoma<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li><li>macOS 13 Ventura<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li></ul></blockquote><p><img src="/img/2024/Karabiner-Elements.webp" alt="Karabiner-Elements"></p><p>应用下载后打开，如上图这样设置一下，就可以实现我的目的了。</p>]]>
+    </content>
     <id>https://powersee.github.io/2024/10/Karabiner-Elements/</id>
+    <link href="https://powersee.github.io/2024/10/Karabiner-Elements/"/>
     <published>2024-10-19T07:01:28.000Z</published>
+    <summary>
+      <![CDATA[<p>最近在看漫画，需要经常使用到 pgdn 这颗按键，来切换到下一页。</p>
+<p>但是它在键盘的顶部，我的手需要伸长去按。于是我现在的需求，就是想把键盘右下角，小键盘区域的回车键，映射到 pgdn 上。</p>
+<p>当我按下小键盘的回车键，效果就相当于按下 pgdn。</]]>
+    </summary>
+    <title>Mac 上的开源键盘映射应用——Karabiner-Elements</title>
     <updated>2024-10-19T07:02:01.342Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近在看漫画，需要经常使用到 pgdn 这颗按键，来切换到下一页。</p><p>但是它在键盘的顶部，我的手需要伸长去按。于是我现在的需求，就是想把键盘右下角，小键盘区域的回车键，映射到 pgdn 上。</p><p>当我按下小键盘的回车键，效果就相当于按下 pgdn。</p><p>然后我就发现了这个软件 <a href="https://github.com/pqrs-org/Karabiner-Elements">Karabiner-Elements</a></p><p>在 GitHub 上面有 18.7 k 的 star，只有 Mac 版本。</p><blockquote><p>Supported systems</p><ul><li>macOS 15 Sequoia<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li><li>macOS 14 Sonoma<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li><li>macOS 13 Ventura<ul><li>Both Intel-based Macs 和 Apple Silicon Macs</li></ul></li></ul></blockquote><p><img src="/img/2024/Karabiner-Elements.webp" alt="Karabiner-Elements"></p><p>应用下载后打开，如上图这样设置一下，就可以实现我的目的了。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;最近在看漫画，需要经常使用到 pgdn 这颗按键，来切换到下一页。&lt;/p&gt;
-&lt;p&gt;但是它在键盘的顶部，我的手需要伸长去按。于是我现在的需求，就是想把键盘右下角，小键盘区域的回车键，映射到 pgdn 上。&lt;/p&gt;
-&lt;p&gt;当我按下小键盘的回车键，效果就相当于按下 pgdn。&lt;/</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
   </entry>
-  
   <entry>
-    <title>在 Windows 的搜狗输入法中，输出直角引号「」</title>
-    <link href="https://powersee.github.io/2024/09/win-sougou-punctuation/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
+    <content>
+      <![CDATA[<p>默认情况下，在 Windows 的搜狗输入法中，直接按方括号键，得到的是 <code>【】</code></p><p>而我想要的是 <code>「」</code>，要怎么打出来呢？</p><p>可以在状态栏，右键搜狗图标，选择「符号大全」，在里面它叫「左角括号」。</p><p><img src="/img/2024/sougou-fuhao.png" alt="sougou-fuhao"></p><p>如果使用频繁，这么去点选，效率就太低了。</p><p>我也尝试过，到设置里面，更改自定义标点，但是没法改为这个「左右角括号」。</p><p>所以接下来将通过修改输入法的配置文件，来实现自定义标点，最终的效果，就是我按下方括号键 <code>[</code> 就可以直接得到直角引号 <code>「</code></p><p>我的搜狗没有登录账号，所以这个配置文件的路径是</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%USERPROFILE%\AppData\LocalLow\SogouPY</span><br></pre></td></tr></table></figure><p>把这个地址粘贴到「资源管理器」的地址栏中，然后按下回车键即可打开文件夹。</p><p>这里面有一个<code>punctures.ini</code>  文件，我们需要修改里面的内容。选中它，然后右键「编辑」，就可以使用记事本来打开它。</p><p>里面是搜狗输入法独有的键值代码，网上好像也找不到这些代码的对应表。</p><blockquote><p>左右方括号的代码是<code>[flaafl]</code>和<code>[fnaafn]</code>，我们可以通过搜索来找到它们。</p></blockquote><p>我们观察配置文件，发现这两个的 ChHalf 和 ChFull 的值是一样的，这意味着，在半角和全角状态下，按下左右方括号键，得到的都是【】</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[flaafl]</span><br><span class="line">Name=flaaaaaafl</span><br><span class="line">ChHalf=badaaaaaca</span><br><span class="line">ChFull=badaaaaaca</span><br><span class="line"></span><br><span class="line">[fmaafm]</span><br><span class="line">xxxxxxx</span><br><span class="line"></span><br><span class="line">[fnaafn]</span><br><span class="line">Name=fnaaaaaafn</span><br><span class="line">ChHalf=bbdaaaaacb</span><br><span class="line">ChFull=bbdaaaaacb</span><br></pre></td></tr></table></figure><p>于是我只要修改 chhalf 后面的值就可以了。结果变成这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[flaafl]</span><br><span class="line">Name=flaaaaaafl</span><br><span class="line">ChHalf=amdaaaaadm</span><br><span class="line">ChFull=badaaaaaca</span><br><span class="line"></span><br><span class="line">[fmaafm]</span><br><span class="line">xxx</span><br><span class="line"></span><br><span class="line">[fnaafn]</span><br><span class="line">Name=fnaaaaaafn</span><br><span class="line">ChHalf=andaaaaadn</span><br><span class="line">ChFull=bbdaaaaacb</span><br></pre></td></tr></table></figure><p>电脑重启之后就生效了。</p><p>这里的 amdaaaaadm 和 andaaaaadn 对应的是「 和 」。</p><p>参考：<a href="https://lainbo.com/article/sogou-input-straight-quotes">在Windows中，搜狗输入法输出直角引号「」的优雅方式 | Lainbo’s Blog</a></p>]]>
+    </content>
     <id>https://powersee.github.io/2024/09/win-sougou-punctuation/</id>
+    <link href="https://powersee.github.io/2024/09/win-sougou-punctuation/"/>
     <published>2024-09-09T03:17:29.000Z</published>
+    <summary>
+      <![CDATA[<p>默认情况下，在 Windows 的搜狗输入法中，直接按方括号键，得到的是 <code>【】</code></p>
+<p>而我想要的是 <code>「」</code>，要怎么打出来呢？</p>
+<p>可以在状态栏，右键搜狗图标，选择「符号大全」，在里面它叫「左角括号」。</p]]>
+    </summary>
+    <title>在 Windows 的搜狗输入法中，输出直角引号「」</title>
     <updated>2024-09-09T03:20:46.502Z</updated>
-    
-    <content type="html"><![CDATA[<p>默认情况下，在 Windows 的搜狗输入法中，直接按方括号键，得到的是 <code>【】</code></p><p>而我想要的是 <code>「」</code>，要怎么打出来呢？</p><p>可以在状态栏，右键搜狗图标，选择「符号大全」，在里面它叫「左角括号」。</p><p><img src="/img/2024/sougou-fuhao.png" alt="sougou-fuhao"></p><p>如果使用频繁，这么去点选，效率就太低了。</p><p>我也尝试过，到设置里面，更改自定义标点，但是没法改为这个「左右角括号」。</p><p>所以接下来将通过修改输入法的配置文件，来实现自定义标点，最终的效果，就是我按下方括号键 <code>[</code> 就可以直接得到直角引号 <code>「</code></p><p>我的搜狗没有登录账号，所以这个配置文件的路径是</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%USERPROFILE%\AppData\LocalLow\SogouPY</span><br></pre></td></tr></table></figure><p>把这个地址粘贴到「资源管理器」的地址栏中，然后按下回车键即可打开文件夹。</p><p>这里面有一个<code>punctures.ini</code>  文件，我们需要修改里面的内容。选中它，然后右键「编辑」，就可以使用记事本来打开它。</p><p>里面是搜狗输入法独有的键值代码，网上好像也找不到这些代码的对应表。</p><blockquote><p>左右方括号的代码是<code>[flaafl]</code>和<code>[fnaafn]</code>，我们可以通过搜索来找到它们。</p></blockquote><p>我们观察配置文件，发现这两个的 ChHalf 和 ChFull 的值是一样的，这意味着，在半角和全角状态下，按下左右方括号键，得到的都是【】</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[flaafl]</span><br><span class="line">Name=flaaaaaafl</span><br><span class="line">ChHalf=badaaaaaca</span><br><span class="line">ChFull=badaaaaaca</span><br><span class="line"></span><br><span class="line">[fmaafm]</span><br><span class="line">xxxxxxx</span><br><span class="line"></span><br><span class="line">[fnaafn]</span><br><span class="line">Name=fnaaaaaafn</span><br><span class="line">ChHalf=bbdaaaaacb</span><br><span class="line">ChFull=bbdaaaaacb</span><br></pre></td></tr></table></figure><p>于是我只要修改 chhalf 后面的值就可以了。结果变成这样</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[flaafl]</span><br><span class="line">Name=flaaaaaafl</span><br><span class="line">ChHalf=amdaaaaadm</span><br><span class="line">ChFull=badaaaaaca</span><br><span class="line"></span><br><span class="line">[fmaafm]</span><br><span class="line">xxx</span><br><span class="line"></span><br><span class="line">[fnaafn]</span><br><span class="line">Name=fnaaaaaafn</span><br><span class="line">ChHalf=andaaaaadn</span><br><span class="line">ChFull=bbdaaaaacb</span><br></pre></td></tr></table></figure><p>电脑重启之后就生效了。</p><p>这里的 amdaaaaadm 和 andaaaaadn 对应的是「 和 」。</p><p>参考：<a href="https://lainbo.com/article/sogou-input-straight-quotes">在Windows中，搜狗输入法输出直角引号「」的优雅方式 | Lainbo’s Blog</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;默认情况下，在 Windows 的搜狗输入法中，直接按方括号键，得到的是 &lt;code&gt;【】&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;而我想要的是 &lt;code&gt;「」&lt;/code&gt;，要怎么打出来呢？&lt;/p&gt;
-&lt;p&gt;可以在状态栏，右键搜狗图标，选择「符号大全」，在里面它叫「左角括号」。&lt;/p</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
   </entry>
-  
   <entry>
-    <title>写 markdown 时中英文切换频繁？Mac 版搜狗输入法的解决方案</title>
-    <link href="https://powersee.github.io/2024/09/mac-sougou-zh-en/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    <content>
+      <![CDATA[<p>从我了解 markdown 距今也好几年了，目前主力的笔记工具，是付费软件 Typora，它默认新建的文档，就是 md 结尾的 markdown 文件。</p><p>这种语言给文本设置格式的时候，得使用英文的标点符号。因此经常需要按 shift 键来切换中英状态。</p><p>比如说，我现在用中文打字中，然后需要用到引用块，那么需要打出 &gt; 这个符号，因此需要先切换为英文，打出大于号 &gt; 然后再切换回中文，继续打字。</p><p>不过目前我找到了一个还不错的解决方案——「让输入法在中文状态下，某些按键打出的是英文标点符号」。</p><p>其实直接在中文状态下，使用全英文标点符号，是最简单的解决方案。但是我不打算用这种，因为平时常用的逗号和句号这些，还是用中文的全角符号，看起来比较美观。</p><p>平时我常用的格式，就是一二三级标题，手动输入是 <code>#</code>，不过我很少手动，设置标题用快捷键就行。cmd + 1 这样。</p><p>还有就是 <code>代码</code> 和</p><blockquote><p>引用</p></blockquote><p>这两种格式，我之前一般都是切换到英文状态下，来输入 <code>`</code> 和 <code>&gt;</code> 的。</p><p>而现在，我不需要按 shift 键来切换了。因为在 Mac 的搜狗输入法里，有一个「符号替换」功能。</p><p><img src="/img/2024/Punctuation-replace.webp" alt="Punctuation-replace"></p><p>里面默认就有几条规则，我们可以点击左下角的 + 来新建规则。</p><p><img src="/img/2024/replace-2.jpg" alt="replace-2"></p><p>它会出现两个输入框，第一个只能用英文输入法来输入字符，第二个就可以用中文。</p><p>我是这么操作的：</p><ol><li>第一个框，按一下波浪键，第二个框，切换到英文状态，按一下波浪键。</li><li>第一个框，按 shift + 大于号键，也就是输入一个大于号。第二个框，切换到英文状态，同样输入一个大于号 &gt;。</li></ol><p>然后就 OK 了。</p><p>其实我觉得它这里的逻辑是可以优化一下的，让第一个框，也可以输入中文标点，会比较直观一些。</p><p>这样操作之后呢，我就没法打出 <code>》</code> 这个右书名号了。不过不重要，我基本没怎么使用过这个符号。</p><p>如果真要打出来，也是可以的，按快捷键 <code>Ctrl + shift + e</code> 就可以呼出「符号菜单」，在里面找就行。</p><p><img src="/img/2024/mac-sougou-fuhao.webp" alt="mac-sougou-fuhao"></p>]]>
+    </content>
     <id>https://powersee.github.io/2024/09/mac-sougou-zh-en/</id>
+    <link href="https://powersee.github.io/2024/09/mac-sougou-zh-en/"/>
     <published>2024-09-08T14:51:44.000Z</published>
+    <summary>
+      <![CDATA[<p>从我了解 markdown 距今也好几年了，目前主力的笔记工具，是付费软件 Typora，它默认新建的文档，就是 md 结尾的 markdown 文件。</p>
+<p>这种语言给文本设置格式的时候，得使用英文的标点符号。因此经常需要按 shift 键来切换中英状态。</p>]]>
+    </summary>
+    <title>写 markdown 时中英文切换频繁？Mac 版搜狗输入法的解决方案</title>
     <updated>2024-09-08T15:05:09.792Z</updated>
-    
-    <content type="html"><![CDATA[<p>从我了解 markdown 距今也好几年了，目前主力的笔记工具，是付费软件 Typora，它默认新建的文档，就是 md 结尾的 markdown 文件。</p><p>这种语言给文本设置格式的时候，得使用英文的标点符号。因此经常需要按 shift 键来切换中英状态。</p><p>比如说，我现在用中文打字中，然后需要用到引用块，那么需要打出 &gt; 这个符号，因此需要先切换为英文，打出大于号 &gt; 然后再切换回中文，继续打字。</p><p>不过目前我找到了一个还不错的解决方案——「让输入法在中文状态下，某些按键打出的是英文标点符号」。</p><p>其实直接在中文状态下，使用全英文标点符号，是最简单的解决方案。但是我不打算用这种，因为平时常用的逗号和句号这些，还是用中文的全角符号，看起来比较美观。</p><p>平时我常用的格式，就是一二三级标题，手动输入是 <code>#</code>，不过我很少手动，设置标题用快捷键就行。cmd + 1 这样。</p><p>还有就是 <code>代码</code> 和</p><blockquote><p>引用</p></blockquote><p>这两种格式，我之前一般都是切换到英文状态下，来输入 <code>`</code> 和 <code>&gt;</code> 的。</p><p>而现在，我不需要按 shift 键来切换了。因为在 Mac 的搜狗输入法里，有一个「符号替换」功能。</p><p><img src="/img/2024/Punctuation-replace.webp" alt="Punctuation-replace"></p><p>里面默认就有几条规则，我们可以点击左下角的 + 来新建规则。</p><p><img src="/img/2024/replace-2.jpg" alt="replace-2"></p><p>它会出现两个输入框，第一个只能用英文输入法来输入字符，第二个就可以用中文。</p><p>我是这么操作的：</p><ol><li>第一个框，按一下波浪键，第二个框，切换到英文状态，按一下波浪键。</li><li>第一个框，按 shift + 大于号键，也就是输入一个大于号。第二个框，切换到英文状态，同样输入一个大于号 &gt;。</li></ol><p>然后就 OK 了。</p><p>其实我觉得它这里的逻辑是可以优化一下的，让第一个框，也可以输入中文标点，会比较直观一些。</p><p>这样操作之后呢，我就没法打出 <code>》</code> 这个右书名号了。不过不重要，我基本没怎么使用过这个符号。</p><p>如果真要打出来，也是可以的，按快捷键 <code>Ctrl + shift + e</code> 就可以呼出「符号菜单」，在里面找就行。</p><p><img src="/img/2024/mac-sougou-fuhao.webp" alt="mac-sougou-fuhao"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;从我了解 markdown 距今也好几年了，目前主力的笔记工具，是付费软件 Typora，它默认新建的文档，就是 md 结尾的 markdown 文件。&lt;/p&gt;
-&lt;p&gt;这种语言给文本设置格式的时候，得使用英文的标点符号。因此经常需要按 shift 键来切换中英状态。&lt;/p&gt;</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
   </entry>
-  
   <entry>
-    <title>Typora Mac 版本如何打开开发人员工具？</title>
-    <link href="https://powersee.github.io/2024/08/typora-macos-debug/"/>
+    <author>
+      <name>powersee</name>
+    </author>
+    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
+    <content>
+      <![CDATA[<p>目前我 Mac 上的 Typora 已经升级到了 1.9.4 版本，现在我找不到调出「开发人员工具」的地方。</p><p>以前的版本，我记得在设置里面，勾选上开发工具，然后在编辑页面右键就行，现在没有了。</p><p>目前新版本，需要通过 Safari 才行。</p><p>先打开 Typora，然后打开 Safari 浏览器，点击上方的「开发」，第三行就是我们机器的名字和系统版本，鼠标放上去，就可以在右边看到 Typora。</p><p><img src="/img/2024/Safari-debug-Typora.webp" alt="Safari-debug-Typora"></p><p>我这里在 Typora 打开了 3 个文档，所以这里有 3 个选项，鼠标放到对应选项时，后面的文档会高亮起来。</p><p><img src="/img/2024/Typora-debug.webp" alt="Typora-debug"></p><p>点击之后就可以打开对应文档的「开发人员工具」了。</p><p>参考：<a href="https://support.typoraio.cn/Debug-Themes/">Debug Themes &#x2F; CSS - Typora Support</a></p>]]>
+    </content>
     <id>https://powersee.github.io/2024/08/typora-macos-debug/</id>
+    <link href="https://powersee.github.io/2024/08/typora-macos-debug/"/>
     <published>2024-08-18T08:56:04.000Z</published>
+    <summary>
+      <![CDATA[<p>目前我 Mac 上的 Typora 已经升级到了 1.9.4 版本，现在我找不到调出「开发人员工具」的地方。</p>
+<p>以前的版本，我记得在设置里面，勾选上开发工具，然后在编辑页面右键就行，现在没有了。</p>
+<p>目前新版本，需要通过 Safari 才行。</p>]]>
+    </summary>
+    <title>Typora Mac 版本如何打开开发人员工具？</title>
     <updated>2024-08-18T08:56:43.098Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前我 Mac 上的 Typora 已经升级到了 1.9.4 版本，现在我找不到调出「开发人员工具」的地方。</p><p>以前的版本，我记得在设置里面，勾选上开发工具，然后在编辑页面右键就行，现在没有了。</p><p>目前新版本，需要通过 Safari 才行。</p><p>先打开 Typora，然后打开 Safari 浏览器，点击上方的「开发」，第三行就是我们机器的名字和系统版本，鼠标放上去，就可以在右边看到 Typora。</p><p><img src="/img/2024/Safari-debug-Typora.webp" alt="Safari-debug-Typora"></p><p>我这里在 Typora 打开了 3 个文档，所以这里有 3 个选项，鼠标放到对应选项时，后面的文档会高亮起来。</p><p><img src="/img/2024/Typora-debug.webp" alt="Typora-debug"></p><p>点击之后就可以打开对应文档的「开发人员工具」了。</p><p>参考：<a href="https://support.typoraio.cn/Debug-Themes/">Debug Themes &#x2F; CSS - Typora Support</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;目前我 Mac 上的 Typora 已经升级到了 1.9.4 版本，现在我找不到调出「开发人员工具」的地方。&lt;/p&gt;
-&lt;p&gt;以前的版本，我记得在设置里面，勾选上开发工具，然后在编辑页面右键就行，现在没有了。&lt;/p&gt;
-&lt;p&gt;目前新版本，需要通过 Safari 才行。&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    
-    <category term="Mac" scheme="https://powersee.github.io/tags/Mac/"/>
-    
   </entry>
-  
-  <entry>
-    <title>Windows 10 无法连接上 Xbox 手柄</title>
-    <link href="https://powersee.github.io/2024/08/xbox-controller-remove-failed/"/>
-    <id>https://powersee.github.io/2024/08/xbox-controller-remove-failed/</id>
-    <published>2024-08-16T17:33:51.000Z</published>
-    <updated>2024-08-16T17:35:09.537Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/img/2024/xbox-controller-keling.webp" alt="xbox-controller-keling"></p><p>又一次被这个 Xbox 手柄折磨了。</p><p>原本这个手柄在我的 win10 台式机上面，是可以正常使用的。然而前段时间，我拿另外一台电脑，通过蓝牙连接这个手柄。</p><p>手柄好像认了新电脑当主人之后，就连接不上旧电脑了。</p><p>那按理来说，我把手柄和旧电脑，重新匹配一下就好呗。然而事情没有这么简单。</p><p><img src="/img/2024/xbox-controller-remove-failed.png" alt="xbox-controller-remove-failed"></p><p>因为我在 Windows 的蓝牙设置里，没法删掉 Xbox 手柄。点击删除设备会提示「删除失败」。</p><p>而不删除的话，我让手柄进入配对模式，此时电脑是搜索不到手柄的，也就没法连接了。</p><h3 id="尝试方案一"><a href="#尝试方案一" class="headerlink" title="尝试方案一"></a>尝试方案一</h3><p>打开「设备管理器」，把上方的「查看」里面的「显示隐藏的设备」勾选上。</p><p>然后把里面的蓝牙设备都卸载掉。</p><p>我这边卸载后，还是没法连接上手柄。</p><h3 id="尝试方案二"><a href="#尝试方案二" class="headerlink" title="尝试方案二"></a>尝试方案二</h3><p>安装一个蓝牙命令行工具 <a href="https://bluetoothinstaller.com/bluetooth-command-line-tools">Bluetooth command line tools</a></p><p>安装这个主要为了使用 btpair 这个命令，网页上对它的介绍是</p><blockquote><p>Performs pairing with remote bluetooth devices.<br>与远程蓝牙设备进行配对。</p></blockquote><p>不过这个软件好像有点老了，最新的版本距今也接近 12 年。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Version history</span><br><span class="line">1.2.0.56 Nov 2, 2012</span><br><span class="line">Minor improvements and new featues in btconfig, btpair and bcom</span><br><span class="line">Windows 8 support.</span><br></pre></td></tr></table></figure><p>看到它这么久没更新了，我其实是有些怀疑的，老软件到底能不能解决新机器的问题呢？</p><p>最终实测是有效果，从官网下载并安装 <code>BluetoothCLTools-1.2.0.56.exe</code>，然后打开 powershell，执行 <code>btpair -u</code>，删除所有匹配过的蓝牙设备。</p><p>之后的我手柄进入匹配模式，电脑搜索蓝牙信号，就可以搜索到，然后成功连接上了。</p><p>这不是我第一次被蓝牙连接 xbox 手柄所困扰，我相信也不会是最后一次。我记得上次我是在设备管理器里面，删除 Microsoft 开头的蓝牙设备后，就可以连接手柄了。</p><p>但是这次不行，所以我找到新的方法，也成功解决了问题。这里我就把过程记录下来，希望后面其他玩家遇到同样的问题时，可以搜索到吧。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/img/2024/xbox-controller-keling.webp&quot; alt=&quot;xbox-controller-keling&quot;&gt;&lt;/p&gt;
-&lt;p&gt;又一次被这个 Xbox 手柄折磨了。&lt;/p&gt;
-&lt;p&gt;原本这个手柄在我的 win10 台式机上面，是可以</summary>
-      
-    
-    
-    
-    
-    <category term="Windows" scheme="https://powersee.github.io/tags/Windows/"/>
-    
-    <category term="Xbox" scheme="https://powersee.github.io/tags/Xbox/"/>
-    
-  </entry>
-  
 </feed>
